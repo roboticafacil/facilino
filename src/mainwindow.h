@@ -79,6 +79,7 @@ public slots:
     void actionInclude();
     void actionInjectWebHelper();
     void actionInsertLanguage();
+    void actionLicense();
     void actionMessages();
     void actionMonitor();
     void actionMonitorSend();

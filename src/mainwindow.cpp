@@ -54,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
     float zoomScale = settings->zoomScale();
     ui->webView->setZoomFactor(zoomScale);
 
+    actionLicense();
+
     // Hide messages
     actionCloseMessages();
     serialPortClose();
@@ -270,6 +272,13 @@ void MainWindow::actionInsertLanguage() {
     // Set language in Roboblocks
     QString jsLanguage = QString("var roboblocksLanguage = '%1';").
             arg(settings->defaultLanguage());
+    ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
+}
+
+void MainWindow::actionLicense() {
+    // Set license
+    QString jsLanguage = QString("var license = '%1';").
+            arg(settings->license());
     ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
 }
 
@@ -502,6 +511,7 @@ void MainWindow::actionSettings() {
     // Open preferences dialog
     QString htmlIndex = settings->htmlIndex();
     QString defaultLanguage = settings->defaultLanguage();
+    QString license = settings->license();
     // Supported list of languages
     QStringList languageList;
     languageList << "en-GB" << "ca-ES" << "es-ES" << "eu-ES"
@@ -588,6 +598,10 @@ void MainWindow::loadBlockly() {
             SIGNAL(javaScriptWindowObjectCleared()),
             this,
             SLOT(actionInsertLanguage()));
+    connect(ui->webView->page()->mainFrame(),
+            SIGNAL(javaScriptWindowObjectCleared()),
+            this,
+            SLOT(actionLicense()));
     ui->webView->load(QUrl::fromLocalFile(settings->htmlIndex()));
     ui->webView->page()->mainFrame()->setScrollBarPolicy(
                 Qt::Vertical,
@@ -673,12 +687,12 @@ void MainWindow::setXmlFileName(const QString &fileName) {
         // Enable save as
         ui->actionSave_as->setEnabled(false);
         // Display file name in window title
-        setWindowTitle("Visualino");
+        setWindowTitle("Facilino");
     } else {
         // Enable save as
         ui->actionSave_as->setEnabled(true);
         // Display file name in window title
-        setWindowTitle("Visualino - " + this->xmlFileName);
+        setWindowTitle("Facilino - " + this->xmlFileName);
     }
 }
 

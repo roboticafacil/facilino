@@ -34,14 +34,13 @@ int main(int argc, char *argv[])
     delete settings;
 
     QTranslator appTranslator;
-    QString tsFile = "visualino_" + defaultLocale.toLower();
+    QString tsFile = "facilino_" + defaultLocale.toLower();
     QStringList directories;
     // List of directories to search
     // In Windows and Mac, the translation files must be located in the same
     // directory than the executable. In Linux, search also in /usr/share/.
     directories.append("./ts/");
     directories.append(a.applicationDirPath() + "/ts/");
-    directories.append("/usr/share/visualino/ts/");
     foreach (QString directory, directories) {
         bool loaded = appTranslator.load(tsFile, directory);
         if (loaded) {

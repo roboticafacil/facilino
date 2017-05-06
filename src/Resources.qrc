@@ -13,7 +13,7 @@
         <file>../icons/bar-chart-24x24.png</file>
     </qresource>
     <qresource prefix="/">
-        <file>../icons/splashscreen.png</file>
         <file>../icons/about-header.png</file>
+        <file>../icons/splashscreen.png</file>
     </qresource>
 </RCC>

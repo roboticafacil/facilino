@@ -22,8 +22,8 @@ SettingsStore::SettingsStore(const QString &fileName) {
     // Read settings file
     settings = new QSettings(QSettings::IniFormat,
                              QSettings::UserScope,
-                             "visualino",
-                             "visualino");
+                             "facilino",
+                             "facilino");
 
     // If IDE path is empty, copy original settings
     if (settings->value(platform + "arduino_ide_path", "").toString() == "") {
@@ -42,28 +42,32 @@ QString SettingsStore::arduinoBoard() {
 }
 
 QString SettingsStore::arduinoIdePath() {
-    return relativePath("arduino_ide_path", "/usr/bin/arduino");
+    return relativePath("arduino_ide_path", "./arduino/arduino_debug.exe");
 }
 
 QString SettingsStore::defaultLanguage() {
     return settings->value(platform + "language", "en-GB").toString();
 }
 
+QString SettingsStore::license() {
+    return settings->value(platform + "license", "").toString();
+}
+
 QString SettingsStore::examplesPath() {
     return settings->value(platform + "examples_path",
-                           "/usr/share/visualino/examples/").toString();
+                           "examples/").toString();
 }
 
 QString SettingsStore::tmpDirName() {
-    return relativePath("tmp_dir_name", "/tmp/visualino/");
+    return relativePath("tmp_dir_name", "temp/");
 }
 
 QString SettingsStore::tmpFileName() {
-    return relativePath("tmp_file_name", "/tmp/visualino/visualino.ino");
+    return relativePath("tmp_file_name", "./temp/temp.ino");
 }
 
 QString SettingsStore::htmlIndex() {
-    return relativePath("html_index", "/usr/share/visualino/html/index.html");
+    return relativePath("html_index", "./html/index.html");
 }
 
 bool SettingsStore::iconLabels() {
@@ -116,8 +120,8 @@ void SettingsStore::copyDefaultSettings(const QString &fileName,
     // Reload settings
     settings = new QSettings(QSettings::IniFormat,
                              QSettings::UserScope,
-                             "visualino",
-                             "visualino");
+                             "facilino",
+                             "facilino");
 }
 
 void SettingsStore::setArduinoBoard(const QString &value) {
@@ -146,6 +150,10 @@ void SettingsStore::setIconLabels(bool icon_labels) {
 
 void SettingsStore::setDefaultLanguage(const QString &value) {
     settings->setValue(platform + "language", value);
+}
+
+void SettingsStore::setLicense(const QString &value) {
+    settings->setValue(platform + "license", value);
 }
 
 void SettingsStore::setExamplesPath(const QString &value) {

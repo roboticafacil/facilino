@@ -34,6 +34,8 @@ SettingsDialog::SettingsDialog(SettingsStore *settings,
     ui->languageBox->setCurrentIndex(
                 languageList.indexOf(settings->defaultLanguage()));
 
+    ui->licenseEdit->setText(settings->license());
+
     this->settings = settings;
     settingsChanged = false;
 
@@ -66,6 +68,11 @@ void SettingsDialog::accept() {
     QString language = languageList.at(ui->languageBox->currentIndex());
     if (language != settings->defaultLanguage()) {
         settings->setDefaultLanguage(language);
+        settingsChanged = true;
+    }
+
+    if (ui->licenseEdit->text() != settings->license()) {
+        settings->setLicense(ui->licenseEdit->text());
         settingsChanged = true;
     }
 
