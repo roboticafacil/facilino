@@ -1,7 +1,7 @@
-Visualino
+Facilino
 =========
 
-Visual programming environment for Arduino.
+Visual programming environment for DYOR.
 
 
 Install
@@ -13,26 +13,26 @@ Check INSTALL file.
 Requirements
 ------------
 
-In order to Visualino to execute sketches, install Arduino IDE >= 1.6.
+In order to Facilino to execute sketches, install Arduino IDE >= 1.6.
 
 
 Configure
 ---------
 
 To setup the path to the Arduino IDE command line tool in your platform
-check the online documentation at [http://www.visualino.net/docs/](www.visualino.net/docs/).
+check the online documentation at [http://dyor.roboticafacil.es/facilino-info].
 
 
 Support
 -------
 
-Go to the [http://www.visualino.net/forum/](forum).
+Go to the [http://dyor.roboticafacil.es/forum](forum).
 
 
 Developer
 ---------
 
-VÃ­ctor R. Ruiz <rvr@linotipo.es>
+Robótica Fácil <soporte@roboticafacil.es>
 
 
 Credits
@@ -40,6 +40,7 @@ Credits
 
 * [https://developers.google.com/blockly/](Google Blockly).
 * [https://github.com/bq/roboblocks](bq's roboblocks).
+* [http://www.visualino.net](Visualino by Víctor R. Ruiz <rvr@linotipo.es>).
 
 
 License
