@@ -1,15 +1,15 @@
 {
-    "name": "com.ubuntu.developer.vrruiz.visualino",
-    "description": "Visual Programming Environment for Arduino.",
+    "name": "com.ubuntu.developer.roboticafacil.facilino",
+    "description": "Visual Programming Environment for DYOR.",
     "framework": "ubuntu-sdk-14.10-qml-dev3",
     "architecture": "all",
-    "title": "Visualino",
+    "title": "Facilino",
     "hooks": {
-        "visualino": {
-            "apparmor": "visualino.json",
-            "desktop": "visualino.desktop"
+        "facilino": {
+            "apparmor": "facilino.json",
+            "desktop": "facilino.desktop"
         }
     },
     "version": "0.1",
-    "maintainer": "Víctor R. Ruiz <vrruiz@gmail.com>"
+    "maintainer": "Leopoldo Armesto <roboticafacil.es@gmail.com>"
 }
