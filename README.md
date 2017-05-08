@@ -32,7 +32,9 @@ Go to the [http://dyor.roboticafacil.es/forum](forum).
 Developer
 ---------
 
-Robótica Fácil <soporte@roboticafacil.es>
+In order to make this code work using Qt, you must create an "html" folder in your binary file with the contents of the "roboblocks/html" folder.
+
+RobÃ³tica FÃ¡cil <soporte@roboticafacil.es>
 
 
 Credits
@@ -40,7 +42,7 @@ Credits
 
 * [https://developers.google.com/blockly/](Google Blockly).
 * [https://github.com/bq/roboblocks](bq's roboblocks).
-* [http://www.visualino.net](Visualino by Víctor R. Ruiz <rvr@linotipo.es>).
+* [http://www.visualino.net](Visualino by VÃ­ctor R. Ruiz <rvr@linotipo.es>).
 
 
 License
