@@ -32,7 +32,7 @@ Go to the [http://dyor.roboticafacil.es/forum](forum).
 Developer
 ---------
 
-In order to make this code work using Qt, you must create an "html" folder in your binary file with the contents of the "roboblocks/html" folder.
+In order to make this code work using Qt, you must copy "html" folder from "roboblocks" folder to your binary file folder. Also the "ts" folder from "." folder has to be copies to your binary file folder.
 
 Robótica Fácil <soporte@roboticafacil.es>
 
