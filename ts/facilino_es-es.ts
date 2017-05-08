@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/aboutdialog.ui" line="42"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Facilino (all rights reserved). Visit our store &lt;a href=&quot;tienda.roboticafacil.es&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;tienda.roboticafacil.es&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;It uses the following open source projects:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.qt.io/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt 5&lt;/span&gt;&lt;/a&gt;, The Qt Company (LGPL license 2.1).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://developers.google.com/blockly/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Google Blockly&lt;/span&gt;&lt;/a&gt; (MIT license).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/bq/roboblocks&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Roboblocks&lt;/span&gt;&lt;/a&gt;, bq (LGPL license).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://visualino.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Visualino&lt;/span&gt;&lt;/a&gt;, Victor Ruíz (MIT license).&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Facilino (todos los derechos reservados). Visita nuestra tienda &lt;a href=&quot;tienda.roboticafacil.es&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;tienda.roboticafacil.es&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Utiliza los siguientes programas de código abierto:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.qt.io/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt 5&lt;/span&gt;&lt;/a&gt;, The Qt Company (LGPL license 2.1).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://developers.google.com/blockly/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Google Blockly&lt;/span&gt;&lt;/a&gt; (Apache 2.0 license).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/bq/roboblocks&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Roboblocks&lt;/span&gt;&lt;/a&gt;, bq (LGPL license).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://visualino.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Visualino&lt;/span&gt;&lt;/a&gt;, Victor Ruíz (MIT license).&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visualino is open source software (MIT license). Visit the web site at &lt;a href=&quot;http://www.visualino.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;visualino.net&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;2014-2015 Víctor R. Ruiz &amp;lt;&lt;a href=&quot;mailto:rvr@linotipo.es&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;rvr@linotipo.es&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;p&gt;It uses the following open source projects:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.qt.io/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt 5&lt;/span&gt;&lt;/a&gt;, The Qt Company (LGPL license 2.1).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://developers.google.com/blockly/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Google Blockly&lt;/span&gt;&lt;/a&gt; (MIT license).&lt;/li&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/bq/roboblocks&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Roboblocks&lt;/span&gt;&lt;/a&gt;, bq (LGPL license).&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;This project is done with the help of &lt;a href=&quot;http://www.facebook.com/groups/arduinograncanaria&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Arduino Gran Canaria&lt;/span&gt;&lt;/a&gt; members.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -26,11 +26,11 @@
     <name>MainWindow</name>
     <message>
         <source>Visualino</source>
-        <translation type="vanished">Visualino</translation>
+        <translation type="vanished">Facilino</translation>
     </message>
     <message>
         <source>about:blank</source>
-        <translation type="vanished">about:blank</translation>
+        <translation type="vanished">Acerca de</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="238"/>
@@ -49,7 +49,7 @@
     <message>
         <location filename="../src/mainwindow.ui" line="311"/>
         <source>arduino:avr:nano:cpu=atmega328</source>
-        <translation type="unfinished"></translation>
+        <translation>arduino:avr:nano:cpu=atmega328</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="316"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/mainwindow.ui" line="321"/>
         <source>arduino:avr:diecimila</source>
-        <translation type="unfinished"></translation>
+        <translation>arduino:avr:diecimila</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="326"/>
@@ -69,17 +69,17 @@
     <message>
         <location filename="../src/mainwindow.ui" line="331"/>
         <source>Intel:arc32:arduino_101</source>
-        <translation type="unfinished"></translation>
+        <translation>Intel:arc32:arduino_101</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="336"/>
         <source>esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dio,UploadSpeed=115200,FlashSize=512K64,ResetMethod=ck,Debug=Disabled,DebugLevel=None____</source>
-        <translation type="unfinished"></translation>
+        <translation>esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dio,UploadSpeed=115200,FlashSize=512K64,ResetMethod=ck,Debug=Disabled,DebugLevel=None____</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="341"/>
         <source>esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M3M</source>
-        <translation type="unfinished"></translation>
+        <translation>esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M3M</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="400"/>
@@ -104,12 +104,12 @@
     <message>
         <location filename="../src/mainwindow.ui" line="445"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Editar</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="483"/>
         <source>toolBar</source>
-        <translation>toolBar</translation>
+        <translation>Caja de herramientas</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="503"/>
@@ -157,42 +157,42 @@
     <message>
         <location filename="../src/mainwindow.ui" line="722"/>
         <source>Zoom +</source>
-        <translation type="unfinished"></translation>
+        <translation>Ampliar +</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="725"/>
         <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl++</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="730"/>
         <source>Zoom -</source>
-        <translation type="unfinished"></translation>
+        <translation>Disminuir</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="733"/>
         <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+-</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="738"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Deshacer</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="741"/>
         <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Z</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="746"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Rehacer</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="749"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Y</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../src/mainwindow.ui" line="23"/>
         <source>Facilino</source>
-        <translation type="unfinished"></translation>
+        <translation>Facilino</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="597"/>
@@ -411,7 +411,7 @@
     <message>
         <location filename="../src/settingsdialog.ui" line="146"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencia</translation>
     </message>
     <message>
         <source>Roboblocks Path</source>

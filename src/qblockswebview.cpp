@@ -7,15 +7,17 @@ QBlocksWebView::QBlocksWebView(QWidget *parent)
     : QWebView(parent) {
 }
 
-/*
- * Deactivate. Bad usability.
- *
 void QBlocksWebView::wheelEvent(QWheelEvent *event) {
     // Capture mouse wheel events.
     // Zoom the WebView
     float scale = event->delta() / 120.0 / 10.0;
     doZoom(scale);
 }
+
+/*
+ * Deactivate. Bad usability.
+ *
+
 */
 
 void QBlocksWebView::doZoom(float scale) {
