@@ -17,6 +17,13 @@ macx {
 }
 
 win32 {
+    RC_ICONS = facilino.ico
+    deploy.commands = windeployqt --release $${OUT_PWD}/src/facilino.exe
+    QMAKE_EXTRA_TARGETS += deploy
+}
+
+win64 {
+    RC_ICONS = facilino.ico
     deploy.commands = windeployqt --release $${OUT_PWD}/src/facilino.exe
     QMAKE_EXTRA_TARGETS += deploy
 }

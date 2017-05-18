@@ -376,17 +376,17 @@
         <translation>SVP redémarrer l&apos;application pour afficher le langage sélectionné.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="646"/>
+        <location filename="../src/mainwindow.cpp" line="647"/>
         <source>Finished.</source>
         <translation>Terminé.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="655"/>
+        <location filename="../src/mainwindow.cpp" line="656"/>
         <source>Building...</source>
         <translation>Compiler...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="949"/>
+        <location filename="../src/mainwindow.cpp" line="950"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Il y a des fichiers qui pourraient être perdus. Voulez-vous les sauver d&apos;abord ?</translation>
     </message>

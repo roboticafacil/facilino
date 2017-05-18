@@ -7,7 +7,6 @@
 class QBlocksWebView : public QWebView
 {
 public:
-    QBlocksWebView();
     QBlocksWebView(QWidget *parent = 0);
 
     void zoomIn();
@@ -17,7 +16,7 @@ private:
     void wheelEvent(QWheelEvent *event);
 
     void init();
-    void doZoom(float scale);
+    void doZoom(double scale);
 
 signals:
 

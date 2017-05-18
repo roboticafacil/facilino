@@ -360,17 +360,17 @@
         <translation>Пожалуйста, перезапустите программу для отображения выбранного языка.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="646"/>
+        <location filename="../src/mainwindow.cpp" line="647"/>
         <source>Finished.</source>
         <translation>Завершено.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="655"/>
+        <location filename="../src/mainwindow.cpp" line="656"/>
         <source>Building...</source>
         <translation>Сборка...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="949"/>
+        <location filename="../src/mainwindow.cpp" line="950"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Имеются изменения в программе, которые могут быть потеряны. Сохранить их, прежде чем продолжим?</translation>
     </message>

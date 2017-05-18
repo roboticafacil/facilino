@@ -357,17 +357,17 @@
         <translation>Proszę uruchomić ponownie aplikację aby pokazać ją w wybranym języku.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="646"/>
+        <location filename="../src/mainwindow.cpp" line="647"/>
         <source>Finished.</source>
         <translation>Zakończone.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="655"/>
+        <location filename="../src/mainwindow.cpp" line="656"/>
         <source>Building...</source>
         <translation>Buduję...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="949"/>
+        <location filename="../src/mainwindow.cpp" line="950"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Niezapisane zmiany zostaną utracone. Czy chcesz je teraz zachować?</translation>
     </message>

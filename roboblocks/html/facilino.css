@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#code {
+    margin: 0;
+    float: right;
+    width: 33%;
+    height: 100%;
+    background-color: #F0F0F0;
+    color: #5F5F5F;
+    overflow: auto;
+}
+
+#wrap {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.treeLabelBlock {
+  float: left;
+  margin: 0 5px 0 5px;
+  width: 10px;
+  height: 100%; 
+}

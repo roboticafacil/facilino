@@ -18,13 +18,13 @@
 #include <QThread>
 #include <QTimer>
 #include <QWebFrame>
+#include <QWebSecurityOrigin>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     // Align last toolbar action to the right
     QWidget *empty = new QWidget(this);
     empty->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Set zoom scale of the web view
     float zoomScale = settings->zoomScale();
     ui->webView->setZoomFactor(zoomScale);
-
+    ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     actionLicense();
 
     // Hide messages
@@ -522,19 +522,20 @@ void MainWindow::actionSettings() {
     if (result && settingsDialog.changed()) {
         // Reload blockly page
         if (htmlIndex != settings->htmlIndex()
-                || defaultLanguage != settings->defaultLanguage()) {
+                || defaultLanguage != settings->defaultLanguage() || license!=settings->license()) {
             // Refresh workspace with new language
             xmlLoadContent = getXml();
             loadBlockly();
             connect(ui->webView,
                     SIGNAL(loadFinished(bool)),
                     SLOT(onLoadFinished(bool)));
-
             // Reload app warning
+            if (defaultLanguage != settings->defaultLanguage()) {
             QMessageBox msgBox;
             msgBox.setText(tr("Please, restart the application to display "
                               "the selected language."));
             msgBox.exec();
+            }
         }
     }
 }
