@@ -32,7 +32,7 @@
 	    window.FacilinoLanguage = window.roboblocksLanguage;     
 	    //document.getElementById("output").innerHTML = license;
 			if (typeof(license) === 'undefined')
-			  license='';
+			  license='58d230b8d6b4d';
             Facilino.load({ zoom: 0.5, license: license});
             RoboBlocks.load({ zoom: 0.5 });
             // New workspace for each test case
@@ -47,21 +47,21 @@
             $('.blocklySvg').width('100%');
 			
 	    var colors = [
-	        "",
-		RoboBlocks.LANG_COLOUR_PROCEDURES,
-		RoboBlocks.LANG_COLOUR_CONTROL,
-		RoboBlocks.LANG_COLOUR_LOGIC,
-		RoboBlocks.LANG_COLOUR_MATH,
-		RoboBlocks.LANG_COLOUR_VARIABLES,
-		RoboBlocks.LANG_COLOUR_TEXT,
-		RoboBlocks.LANG_COLOUR_COMMUNICATION,
-		RoboBlocks.LANG_COLOUR_BQ,
-		RoboBlocks.LANG_COLOUR_LCD,
-		RoboBlocks.LANG_COLOUR_DYOR,
-		RoboBlocks.LANG_COLOUR_ZUM,
-		RoboBlocks.LANG_COLOUR_SERVO,
-		RoboBlocks.LANG_COLOUR_ADVANCED
-	    ];
+                "",
+				RoboBlocks.LANG_COLOUR_PROCEDURES,
+				RoboBlocks.LANG_COLOUR_CONTROL,
+				RoboBlocks.LANG_COLOUR_LOGIC,
+				RoboBlocks.LANG_COLOUR_MATH,
+				RoboBlocks.LANG_COLOUR_VARIABLES,
+				RoboBlocks.LANG_COLOUR_TEXT,
+				RoboBlocks.LANG_COLOUR_COMMUNICATION,
+				RoboBlocks.LANG_COLOUR_DISTANCE,
+				RoboBlocks.LANG_COLOUR_LCD,
+				RoboBlocks.LANG_COLOUR_LIGHT,
+				RoboBlocks.LANG_COLOUR_SOUND,
+                RoboBlocks.LANG_COLOUR_SERVO,
+				RoboBlocks.LANG_COLOUR_ADVANCED
+		];
 
             $('.blocklyTreeRow').each( function (i,e) {
                 $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');

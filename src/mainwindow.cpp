@@ -144,6 +144,7 @@ void MainWindow::arduinoExec(const QString &action) {
     if (ui->serialPortBox->count() > 0) {
         arguments << "--port" << ui->serialPortBox->currentText();
     }
+    //arguments << "--pref editor.external=false ";
     arguments << settings->tmpFileName();
     process->start(settings->arduinoIdePath(), arguments);
 
@@ -530,7 +531,7 @@ void MainWindow::actionSettings() {
                     SIGNAL(loadFinished(bool)),
                     SLOT(onLoadFinished(bool)));
             // Reload app warning
-            if (defaultLanguage != settings->defaultLanguage()) {
+            if (defaultLanguage != settings->defaultLanguage() || license!=settings->license() ) {
             QMessageBox msgBox;
             msgBox.setText(tr("Please, restart the application to display "
                               "the selected language."));
