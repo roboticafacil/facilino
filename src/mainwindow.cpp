@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    this->alert=false;
     ui->setupUi(this);
     // Align last toolbar action to the right
     QWidget *empty = new QWidget(this);
@@ -280,6 +281,11 @@ void MainWindow::actionLicense() {
     // Set license
     QString jsLanguage = QString("var license = '%1';").
             arg(settings->license());
+    if ((settings->license().isEmpty())&&(this->alert==false))
+    {
+        QMessageBox::information(this,"Facilino","Esta es una versión gratuita de Facilino con todas las funcionalidades básicas incluidas. Si dispone de una licencia, puede acceder a las funcionalidades avanzadas introduciéndola en las preferencias. Si tiene cualquier problema con la licencia, por favor, contacte con soporte@roboticafacil.es");
+        this->alert=true;
+    }
     ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
 }
 

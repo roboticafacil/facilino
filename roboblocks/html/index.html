@@ -32,7 +32,10 @@
 	    window.FacilinoLanguage = window.roboblocksLanguage;     
 	    //document.getElementById("output").innerHTML = license;
 		if (typeof(license) === 'undefined')
+		{
 	      license='';
+		  alert("Esta es una versi\xF3n gratuita de Facilino con todas las funcionalidades b\xE1sicas incluidas. Si dispones de una licencia para acceder a las funcionalidades avanzadas, por favor, introd\xFAcela en las preferencias.");
+		}
             Facilino.load({ zoom: 0.5, license: license});
             RoboBlocks.load({ zoom: 0.5 });
             // New workspace for each test case
