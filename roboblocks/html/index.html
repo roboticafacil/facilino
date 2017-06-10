@@ -23,7 +23,7 @@
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
     <script src="facilino.js"></script>
-   <script src="roboblocks.js"></script>
+   <script src="roboblocks_compressed.js"></script>
    
    <script language="JavaScript">
 	    if (window.roboblocksLanguage === undefined || window.roboblocksLanguage == null) {
@@ -31,7 +31,7 @@
             	}
 	    window.FacilinoLanguage = window.roboblocksLanguage;     
 	    //document.getElementById("output").innerHTML = license;
-	    if (typeof(license) === 'undefined')
+		if (typeof(license) === 'undefined')
 	      license='';
             Facilino.load({ zoom: 0.5, license: license});
             RoboBlocks.load({ zoom: 0.5 });
@@ -41,8 +41,7 @@
                	toolbox: Blockly.createToolbox()
             });
             // Create a default setup/loop block
-            Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),
-            document.getElementById('startBlocks'));
+            Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 	    $('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
 			
@@ -60,6 +59,7 @@
 				RoboBlocks.LANG_COLOUR_LIGHT,
 				RoboBlocks.LANG_COLOUR_SOUND,
                 RoboBlocks.LANG_COLOUR_SERVO,
+				RoboBlocks.LANG_COLOUR_COLOUR,
 				RoboBlocks.LANG_COLOUR_ADVANCED
 		];
 
@@ -68,9 +68,9 @@
             });
 
             // Update code
-                Blockly.addChangeListener(function () {
+                Blockly.getMainWorkspace().addChangeListener(function () {
 		$('#code').html('<code class="c++"><pre>'
-		  + escapeCode(Blockly.Arduino.workspaceToCode())
+		  + escapeCode(Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace()))
 		  + '</pre></code>');
 		  // Highlight
 		$("pre").each(function (i, e) {
@@ -103,8 +103,7 @@
 
             function resetWorkspace() {
                 Blockly.mainWorkspace.clear();
-                Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),
-                    document.getElementById('startBlocks'));
+                Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
             }
   </script>
 </body>

@@ -136,14 +136,8 @@
                 LANG_BQ_BUTTON: 'Botó',
                 LANG_BQ_BUTTON_PIN: 'PIN#',
                 LANG_BQ_BUTTON_TOOLTIP: 'Botó',
-                LANG_BQ_BUTTONS: 'Botonera',
-                LANG_BQ_BUTTONS_PIN: 'PIN#',
-                LANG_BQ_BUTTONS_BUTTON_A: 'Botó #A',
-                LANG_BQ_BUTTONS_BUTTON_B: 'Botó #B',
-                LANG_BQ_BUTTONS_BUTTON_C: 'Botó #C',
-                LANG_BQ_BUTTONS_BUTTON_D: 'Botó #D',
-                LANG_BQ_BUTTONS_BUTTON_E: 'Botó #E',
-                LANG_BQ_BUTTONS_TOOLTIP: 'Botonera',
+		LANG_BUTTON_PRESSED: 'Polsat',
+		LANG_BUTTON_NOT_PRESSED: 'No polsat',
                 LANG_BQ_INFRARED: 'Sensor infraroig',
                 LANG_BQ_INFRARED_PIN: 'Pin',
                 LANG_BQ_INFRARED_TOOLTIP: 'Retorna el valor digital mesurat pel sensor infraroig',
@@ -296,6 +290,7 @@
                 LANG_MATH_SINGLE_TOOLTIP_LOG10: 'Retorna el logaritme en base 10 d\'un nombre.',
                 LANG_MATH_SINGLE_TOOLTIP_EXP: 'Retorna el exponencial d\'un nombre.',
                 LANG_MATH_SINGLE_TOOLTIP_POW10: 'Retorna 10 elevat a una potència.',
+		LANG_MATH_COLOR_TOOLTIP: 'Retorna un color',
                 //text blocks:
                 LANG_CATEGORY_TEXT: 'Text',
                 LANG_TEXT_TEXT_HELPURL: '',
@@ -327,7 +322,7 @@
                 LANG_TEXT_SUBSTRING_TOOLTIP: 'Retalla els caràcters del text introduït que es trobin entre els dos índexs i crea amb ells un nou text.',
 				LANG_TEXT_CAST: 'A texte',
                 //advanced blocks :
-                LANG_CATEGORY_ADVANCED: 'E/E básica',
+                LANG_CATEGORY_ADVANCED: 'I/O bàsica',
                 LANG_ADVANCED_CONVERSION_CONVERT: 'Convertir',
                 LANG_ADVANCED_CONVERSION_DECIMAL: 'Decimal',
                 LANG_ADVANCED_CONVERSION_HEXADECIMAL: 'Hexadecimal',
@@ -479,7 +474,11 @@
                 LANG_SERVO_MOVE_DEGREES: 'Graus (0~180)',
                 LANG_SERVO_MOVE_DELAY: 'Pausa',
                 LANG_SERVO_MOVE_TOOLTIP: 'Moure el servo entre 0 i 180 graus.',
-                LANG_SERVO_WARNING: 'It is not possible to set the servo pin using a variable'
+                LANG_SERVO_WARNING: 'It is not possible to set the servo pin using a variable',
+		LANG_RELE: 'Relé',
+		LANG_RELE_PIN: 'PIN',
+		LANG_RELE_VALUE: 'Valor',
+		LANG_RELE_TOOLTIP: 'Activa o desactiva l\'estat d\'un relé'
             };
             // Node
             if (typeof module !== 'undefined' && module.exports) {
@@ -575,14 +574,8 @@
                 LANG_BQ_BUTTON: 'Button',
                 LANG_BQ_BUTTON_PIN: 'Pin',
                 LANG_BQ_BUTTON_TOOLTIP: 'Button',
-                LANG_BQ_BUTTONS: 'Button Pad',
-                LANG_BQ_BUTTONS_PIN: 'Pin',
-                LANG_BQ_BUTTONS_BUTTON_A: 'Button #A',
-                LANG_BQ_BUTTONS_BUTTON_B: 'Button #B',
-                LANG_BQ_BUTTONS_BUTTON_C: 'Button #C',
-                LANG_BQ_BUTTONS_BUTTON_D: 'Button #D',
-                LANG_BQ_BUTTONS_BUTTON_E: 'Button #E',
-                LANG_BQ_BUTTONS_TOOLTIP: 'Button Pad',
+		LANG_BUTTON_PRESSED: 'Pressed',
+		LANG_BUTTON_NOT_PRESSED: 'Released',
                 LANG_BQ_INFRARED: 'Infrared Sensor',
                 LANG_BQ_INFRARED_PIN: 'Pin',
                 LANG_BQ_INFRARED_TOOLTIP: 'Returns the digital value read by the infrared sensor.',
@@ -735,6 +728,7 @@
                 LANG_MATH_SINGLE_TOOLTIP_LOG10: 'Returns the base 10 logarithm of a number.',
                 LANG_MATH_SINGLE_TOOLTIP_EXP: 'Returns e to the power of a number.',
                 LANG_MATH_SINGLE_TOOLTIP_POW10: 'Returns 10 to the power of a number.',
+		LANG_MATH_COLOR_TOOLTIP: 'Returns a colour',
                 //text blocks:
                 LANG_CATEGORY_TEXT: 'Text',
                 LANG_TEXT_TEXT_HELPURL: '',
@@ -868,8 +862,8 @@
                 LANG_ZUM_BUTTON_PIN: 'Pin',
                 LANG_ZUM_BUTTON_TOOLTIP: 'zum Button',
                 LANG_ZUM_FOLLOWER: 'Infrared Sensor',
-                LANG_ZUM_FOLLOWER_PIN_LEFT: 'LEFT Pin',
-                LANG_ZUM_FOLLOWER_PIN_RIGHT: 'RIGHT Pin',
+                LANG_ZUM_FOLLOWER_PIN_LEFT: 'Left Pin',
+                LANG_ZUM_FOLLOWER_PIN_RIGHT: 'Right Pin',
                 LANG_ZUM_FOLLOWER_LEFT: 'Left',
                 LANG_ZUM_FOLLOWER_RIGHT: 'Right',
                 LANG_ZUM_FOLLOWER_TOOLTIP: 'Returns the digital value read by the infrared sensor',
@@ -919,7 +913,11 @@
                 LANG_SERVO_MOVE_DEGREES: 'Degrees (0~180)',
                 LANG_SERVO_MOVE_DELAY: 'Delay [ms]',
                 LANG_SERVO_MOVE_TOOLTIP: 'Move between 0~180 degree',
-                LANG_SERVO_WARNING: 'It is not possible to set the servo pin using a variable'
+                LANG_SERVO_WARNING: 'It is not possible to set the servo pin using a variable',
+		LANG_RELE: 'Relay',
+		LANG_RELE_PIN: 'PIN',
+		LANG_RELE_VALUE: 'Value',
+		LANG_RELE_TOOLTIP: 'Sets the relay state'
             };
             // Node
             if (typeof module !== 'undefined' && module.exports) {
@@ -1015,14 +1013,8 @@
                 LANG_BQ_BUTTON: 'Botón',
                 LANG_BQ_BUTTON_PIN: 'Pin',
                 LANG_BQ_BUTTON_TOOLTIP: 'Botón',
-                LANG_BQ_BUTTONS: 'Botonera',
-                LANG_BQ_BUTTONS_PIN: 'Pin',
-                LANG_BQ_BUTTONS_BUTTON_A: 'Botón #A',
-                LANG_BQ_BUTTONS_BUTTON_B: 'Botón #B',
-                LANG_BQ_BUTTONS_BUTTON_C: 'Botón #C',
-                LANG_BQ_BUTTONS_BUTTON_D: 'Botón #D',
-                LANG_BQ_BUTTONS_BUTTON_E: 'Botón #E',
-                LANG_BQ_BUTTONS_TOOLTIP: 'Botonera',
+		LANG_BUTTON_PRESSED: 'Pulsado',
+		LANG_BUTTON_NOT_PRESSED: 'No pulsado',
                 LANG_BQ_INFRARED: 'Sensor infrarrojo',
                 LANG_BQ_INFRARED_PIN: 'Pin',
                 LANG_BQ_INFRARED_TOOLTIP: 'Devuelve el valor digital medido por el sensor infrarrojo',
@@ -1175,6 +1167,7 @@
                 LANG_MATH_SINGLE_TOOLTIP_LOG10: 'Devuelve el logaritmo en base 10 de un número.',
                 LANG_MATH_SINGLE_TOOLTIP_EXP: 'Devuelve el exponencial de un número.',
                 LANG_MATH_SINGLE_TOOLTIP_POW10: 'Devuelve 10 elevado a una potencia.',
+		LANG_MATH_COLOR_TOOLTIP: 'Devuelve un color',
                 //text blocks:
                 LANG_CATEGORY_TEXT: 'Texto',
                 LANG_TEXT_TEXT_HELPURL: '',
@@ -1357,7 +1350,11 @@
                 LANG_SERVO_MOVE_DEGREES: 'Grados (0~180)',
                 LANG_SERVO_MOVE_DELAY: 'Pausa [ms]',
                 LANG_SERVO_MOVE_TOOLTIP: 'Mover el servo entre 0 y 180 grados.',
-                LANG_SERVO_WARNING: 'No puedes asignar una variable al pin del servo'
+                LANG_SERVO_WARNING: 'No puedes asignar una variable al pin del servo',
+		LANG_RELE: 'Relé',
+		LANG_RELE_PIN: 'PIN',
+		LANG_RELE_VALUE: 'Valor',
+		LANG_RELE_TOOLTIP: 'Activa o desactiva el estado de un relé'
             };
             // Node
             if (typeof module !== 'undefined' && module.exports) {
@@ -1377,8 +1374,8 @@
         RoboBlocks.locales.initialize();
         RoboBlocks.variables = {};
         RoboBlocks.isVariable = function(varValue) {
-            for (var i in Blockly.Variables.allVariables()) {
-                if (Blockly.Variables.allVariables()[i] === varValue) {
+            for (var i in Blockly.Variables.allUsedVariables) {
+                if (Blockly.Variables.allUsedVariables[i] === varValue) {
                     return true;
                 }
             }
@@ -1435,8 +1432,8 @@
         RoboBlocks.LANG_COLOUR_ADVANCED = '#9142CE';
         RoboBlocks.LANG_COLOUR_VARIABLES = '#B244CC';
         RoboBlocks.LANG_COLOUR_PROCEDURES = '#CE42B3';
+		RoboBlocks.LANG_COLOUR_COLOUR ='#9FD388';
 	RoboBlocks.LANG_COLOUR_LIGHT= '#FF8A00';
-        //RoboBlocks.LANG_COLOUR_37_IN_1 = '#FFA2A2';
         RoboBlocks.setColors = function(colorArray) {
             RoboBlocks.LANG_COLOUR_DISTANCE = colorArray[0];
             RoboBlocks.LANG_COLOUR_SOUND = colorArray[1];
@@ -1451,6 +1448,7 @@
             RoboBlocks.LANG_COLOUR_VARIABLES = colorArray[10];
             RoboBlocks.LANG_COLOUR_PROCEDURES = colorArray[11];
 	    RoboBlocks.LANG_COLOUR_LIGHT = colorArray[12];
+		RoboBlocks.LANG_COLOUR_COLOUR = colorArray[13];
 	    //RoboBlocks.LANG_COLOUR_37_IN_1 = colorArray[13];
         };
 
@@ -2610,7 +2608,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'Serial.readString()\n';
+                __p += 'Serial.readString()';
 
             }
             return __p
@@ -2764,8 +2762,8 @@
                 __e = _.escape;
             with(obj) {
                 __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',INPUT_PULLUP);\n';
+                    ((__t = (dropdown_pin)) == null ? '' : __t) + 
+                    ',' + ((__t = (pullup)) == null ? '' : __t)+');\n';
 
             }
             return __p
@@ -2936,7 +2934,1645 @@
 
         var JST = this.JST;
 
-        // Source: src/blocks/advanced_map/advanced_map.js
+
+	// Source: src/blocks/procedures_callnoreturn/procedures_callnoreturn.js
+        /* global Blockly, JST, RoboBlocks */
+        /**
+         * procedures_callnoreturn code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.procedures_callnoreturn = function() {
+            // Call a procedure with a return value.
+            var funcName = this.getFieldValue('PROCEDURES');
+            var args = [];
+            var code = '';
+            var a;
+            try {
+                for (var x = 0; x < this.getVariables(funcName).length; x++) {
+                    args[x] = Blockly.Arduino.valueToCode(this, 'ARG' + x, Blockly.Arduino.ORDER_NONE) || '';
+                    a = RoboBlocks.findPinMode(args[x]);
+                    code += a['code'];
+                    args[x] = a['pin'];
+                }
+            } catch (e) {}
+            var funcArgs = args.join(', ');
+            code += JST['procedures_callnoreturn']({
+                'funcName': funcName,
+                'funcArgs': funcArgs
+            });
+            return code;
+        };
+        Blockly.Blocks.procedures_callnoreturn = {
+            // Variable getter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Variables are handled specially.
+            helpUrl: RoboBlocks.URL_CONTROLS,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALLNORETURN_TOOLTIP'));
+                this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
+                this.quarkConnections_ = null;
+                this.quarkArguments_ = null;
+                this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+				this.setInputsInline(false);
+            },
+            validName: function(name) {
+                if (name && name.length > 0) {
+                    var i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    name = name.replace(/([ ])/g, '_');
+                    name = name.replace(/([áàâä])/g, 'a');
+                    name = name.replace(/([éèêë])/g, 'e');
+                    name = name.replace(/([íìîï])/g, 'i');
+                    name = name.replace(/([óòôö])/g, 'o');
+                    name = name.replace(/([úùûü])/g, 'u');
+                    name = name.replace(/([ñ])/g, 'n');
+                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
+                    i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                return name;
+            },
+            getProcedures: function() {
+                var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                var procedures_dropdown = [];
+                if (procedures[0].length > 0) {
+                    for (var i in procedures[0]) {
+                        var proc_name = procedures[0][i][0];
+                        proc_name = this.validName(proc_name);
+                        procedures_dropdown.push([proc_name, proc_name]);
+                    }
+                } else {
+                    procedures_dropdown.push([RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE'), RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE')]);
+                }
+                return procedures_dropdown;
+            },
+            maxVariableNumber: function() {
+                var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                var procedures_dropdown = [];
+                var max_num = 0;
+                if (procedures[0].length > 0 || procedures[1].length > 0) {
+                    for (var i in procedures[0]) {
+                        if (procedures[0][i][1].length > max_num) { // if the length of the variable array is larger than the max_num, equal max_num to that number
+                            max_num = procedures[0][i][1].length;
+                        }
+                    }
+                    return max_num;
+                } else {
+                    procedures_dropdown.push(['', '']);
+                }
+            },
+            getVariables: function(funcName) {
+                try {
+                    var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                    var procedures_dropdown = [];
+                    if (procedures[0].length > 0) {
+                        for (var i in procedures[0]) {
+                            if (procedures[0][i][0] === funcName) {
+                                return procedures[0][i][1];
+                            }
+                        }
+                    } else {
+                        procedures_dropdown.push(['', '']);
+                    }
+                } catch (e) {}
+            },
+            exists: function() {
+                var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                if (procedures[0].length > 0) {
+                    for (var i in procedures[0]) {
+                        if (procedures[0][i][0] === this.getFieldValue('PROCEDURES')) {
+                            return true;
+                        }
+                    }
+                } else {
+                    return false;
+                }
+            },
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+                if (this.getFieldValue('PROCEDURES') !== this.last_procedure && this.getFieldValue('PROCEDURES')) {
+                    this.changeVariables();
+                    this.last_procedure = this.getFieldValue('PROCEDURES');
+                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                } else if (this.getVariables(this.getFieldValue('PROCEDURES')) !== this.last_variables) {
+                    this.addVariables();
+                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                    this.last_procedure = this.getFieldValue('PROCEDURES');
+                }
+                if (!this.exists()) {
+                    try {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALL_WITHOUT_DEFINITION'));
+                    } catch (e) {}
+                } else {
+                    try {
+                        this.setWarningText(null);
+                    } catch (e) {}
+                }
+            },
+            addVariables: function() {
+                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                var var_num = 0;
+                if (func_variables) {
+                    if (!this.last_variables) {
+                        this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                    }
+                    if (func_variables.length >= this.last_variables.length) {
+                        var_num = func_variables.length;
+                    } else if (this.last_variables) {
+                        try {
+                            var_num = this.last_variables.length;
+                        } catch (e) {}
+                    }
+                    for (var x = 0; x < var_num; x++) {
+                        if (this.getInput('ARG' + x) === null) {
+                            this.appendValueInput('ARG' + x).appendField(func_variables[x], 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
+                        } else {
+                            if (func_variables[x] && this.getFieldValue('ARG_NAME' + x)) {
+                                this.setFieldValue(func_variables[x], 'ARG_NAME' + x);
+                            } else {
+                                this.removeInput('ARG' + x);
+                            }
+                        }
+                    }
+                    this.arguments_ = func_variables;
+                }
+            },
+            renameProcedure: function(oldName, newName) {
+                if (this.last_procedure) {
+					console.log("Hello, I'm here");
+                    var procedures = this.getProcedures();
+                    for (var i in procedures) {
+                        if (Blockly.Names.equals(oldName, procedures[i][0])) {
+                            this.removeInput('DUMMY');
+                            this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+							this.addVariables();
+                        }
+                    }
+                    if (this.last_procedure === oldName) {
+                        this.last_procedure = newName;
+                    }
+                    try {
+                        this.setFieldValue(this.last_procedure, 'PROCEDURES');
+                    } catch (e) {}
+                }
+            },
+            changeVariables: function() {
+                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES')); //get the variables of the actual function
+                for (var i = 0; i < this.maxVariableNumber(); i++) { // remove all the possible variable inputs
+                    if (this.getInput('ARG' + i) === null) {
+                        break;
+                    }
+                    this.removeInput('ARG' + i);
+                }
+                for (var variable in func_variables) {
+                    this.appendValueInput('ARG' + variable).appendField(func_variables[variable]).setAlign(Blockly.ALIGN_RIGHT);
+                }
+                this.arguments_ = func_variables;
+            },
+            mutationToDom: function() {
+                // Save the name and arguments (none of which are editable).
+                var container = document.createElement('mutation');
+                container.setAttribute('name', this.getFieldValue('PROCEDURES'));
+                if (typeof this.arguments_ === 'undefined') {
+                    this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
+                }
+                if (typeof this.arguments_ === 'undefined') {
+                    this.arguments_ = [];
+                }
+                for (var x = 0; x < this.arguments_.length; x++) {
+                    var parameter = document.createElement('arg');
+                    parameter.setAttribute('name', this.arguments_[x]);
+                    container.appendChild(parameter);
+                }
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                this.xmlElement = xmlElement;
+                // Restore the name and parameters.
+                var name = xmlElement.getAttribute('name');
+                this.last_procedure = name;
+                this.setFieldValue(name, 'PROCEDURES');
+                for (var x = 0; x < xmlElement.childNodes.length; x++) {
+                    this.appendValueInput('ARG' + x).appendField(xmlElement.childNodes[x].getAttribute('name'), 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
+                }
+            }
+        };
+        // Source: src/blocks/procedures_callreturn/procedures_callreturn.js
+        /* global Blockly, JST, RoboBlocks */
+        /**
+         * procedures_callreturn code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.procedures_callreturn = function() {
+            // Call a procedure with a return value.
+            var funcName = this.getFieldValue('PROCEDURES');
+            var args = [];
+            var a;
+            var code = '';
+            for (var x = 0; x < this.getVariables(funcName).length; x++) {
+                args[x] = Blockly.Arduino.valueToCode(this, 'ARG' + x, Blockly.Arduino.ORDER_NONE) || 'null';
+
+                a = RoboBlocks.findPinMode(args[x]);
+                code += a['code'];
+                args[x] = a['pin'];
+            }
+            var funcArgs = args.join(', ');
+            code += JST['procedures_callreturn']({
+                'funcName': funcName,
+                'funcArgs': funcArgs
+            });
+            //funcName + '(' + args.join(', ') + ')';
+            return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
+        };
+        Blockly.Blocks.procedures_callreturn = {
+            // Variable getter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Variables are handled specially.
+            helpUrl: RoboBlocks.URL_CONTROLS,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+                this.setOutput(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALLRETURN_TOOLTIP'));
+                this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
+                this.quarkConnections_ = null;
+                this.quarkArguments_ = null;
+                this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+            },
+            validName: function(name) {
+                if (name && name.length > 0) {
+                    var i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    name = name.replace(/([ ])/g, '_');
+                    name = name.replace(/([áàâä])/g, 'a');
+                    name = name.replace(/([éèêë])/g, 'e');
+                    name = name.replace(/([íìîï])/g, 'i');
+                    name = name.replace(/([óòôö])/g, 'o');
+                    name = name.replace(/([úùûü])/g, 'u');
+                    name = name.replace(/([ñ])/g, 'n');
+                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
+                    i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    for (var j in Blockly.Arduino.RESERVED_WORDS_) {
+                        var reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
+                        if (name === reserved_words[j]) {
+                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
+                            name = '';
+                            break;
+                        } else {
+                            this.setWarningText(null);
+                        }
+                    }
+                }
+                return name;
+            },
+            getProcedures: function() {
+                var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                var procedures_dropdown = [];
+                if (procedures[1].length > 0) {
+                    for (var i in procedures[1]) {
+                        var proc_name = procedures[1][i][0];
+                        proc_name = this.validName(proc_name);
+                        procedures_dropdown.push([proc_name, proc_name]);
+                    }
+                } else {
+                    procedures_dropdown.push([RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE'), RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE')]);
+                }
+                return procedures_dropdown;
+            },
+            maxVariableNumber: function() {
+                var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                var procedures_dropdown = [];
+                var max_num = 0;
+                if (procedures[1].length > 0) {
+                    for (var i in procedures[1]) {
+                        if (procedures[1][i][1].length > max_num) { // if the length of the variable array is larger than the max_num, equal max_num to that number
+                            max_num = procedures[1][i][1].length;
+                        }
+                    }
+                    return max_num;
+                } else {
+                    procedures_dropdown.push(['', '']);
+                }
+            },
+            getVariables: function(funcName) {
+                try {
+                    var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                    var procedures_dropdown = [];
+                    if (procedures[1].length > 0) {
+                        for (var i in procedures[1]) {
+                            if (procedures[1][i][0] === funcName) {
+                                return procedures[1][i][1];
+                            }
+                        }
+                    } else {
+                        procedures_dropdown.push(['', '']);
+                    }
+                } catch (e) {}
+            },
+            exists: function() {
+                var procedures = Blockly.Procedures.allProcedures(Blockly.mainWorkspace);
+                if (procedures[1].length > 0) {
+                    for (var i in procedures[1]) {
+                        if (procedures[1][i][0] === this.getFieldValue('PROCEDURES')) {
+                            return true;
+                        }
+                    }
+                } else {
+                    return false;
+                }
+            },
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+                if (this.getFieldValue('PROCEDURES') !== this.last_procedure && this.getFieldValue('PROCEDURES')) {
+                    this.changeVariables();
+                    this.last_procedure = this.getFieldValue('PROCEDURES');
+                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                } else if (this.getVariables(this.getFieldValue('PROCEDURES')) !== this.last_variables) {
+                    this.addVariables();
+                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                    this.last_procedure = this.getFieldValue('PROCEDURES');
+                }
+                if (!this.exists()) {
+                    try {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALL_WITHOUT_DEFINITION'));
+                    } catch (e) {}
+                } else {
+                    try {
+                        this.setWarningText(null);
+                    } catch (e) {}
+                }
+            },
+            addVariables: function() {
+                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                var var_num = 0;
+                if (func_variables) {
+                    if (!this.last_variables) {
+                        this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+                    }
+                    if (func_variables.length >= this.last_variables.length) {
+                        var_num = func_variables.length;
+                    } else if (this.last_variables) {
+                        try {
+                            var_num = this.last_variables.length;
+                        } catch (e) {}
+                    }
+                    for (var x = 0; x < var_num; x++) {
+                        if (this.getInput('ARG' + x) === null) {
+                            this.appendValueInput('ARG' + x).appendField(func_variables[x], 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
+                        } else {
+                            if (func_variables[x] && this.getFieldValue('ARG_NAME' + x)) {
+                                this.setFieldValue(func_variables[x], 'ARG_NAME' + x);
+                            } else {
+                                this.removeInput('ARG' + x);
+                            }
+                        }
+                    }
+                    this.arguments_ = func_variables;
+                }
+            },
+            renameProcedure: function(oldName, newName) {
+                if (this.last_procedure) {
+                    var procedures = this.getProcedures();
+                    for (var i in procedures) {
+                        if (Blockly.Names.equals(oldName, procedures[i][0])) {
+                            this.removeInput('DUMMY');
+                            this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+                        }
+                    }
+                    if (this.last_procedure === oldName) {
+                        this.last_procedure = newName;
+                    }
+                    try {
+                        this.setFieldValue(this.last_procedure, 'PROCEDURES');
+                    } catch (e) {}
+                }
+            },
+            changeVariables: function() {
+                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES')); //get the variables of the actual function
+                for (var i = 0; i < this.maxVariableNumber(); i++) { // remove all the possible variable inputs
+                    if (this.getInput('ARG' + i) === null) {
+                        break;
+                    }
+                    this.removeInput('ARG' + i);
+                }
+                for (var variable in func_variables) {
+                    this.appendValueInput('ARG' + variable).appendField(func_variables[variable]).setAlign(Blockly.ALIGN_RIGHT);
+                }
+                this.arguments_ = func_variables;
+            },
+            mutationToDom: function() {
+                // Save the name and arguments (none of which are editable).
+                var container = document.createElement('mutation');
+                container.setAttribute('name', this.getFieldValue('PROCEDURES'));
+                if (typeof this.arguments_ === 'undefined') {
+                    this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
+                }
+                if (typeof this.arguments_ === 'undefined') {
+                    this.arguments_ = [];
+                }
+                for (var x = 0; x < this.arguments_.length; x++) {
+                    var parameter = document.createElement('arg');
+                    parameter.setAttribute('name', this.arguments_[x]);
+                    container.appendChild(parameter);
+                }
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                this.xmlElement = xmlElement;
+                // Restore the name and parameters.
+                var name = xmlElement.getAttribute('name');
+                this.last_procedure = name;
+                this.setFieldValue(name, 'PROCEDURES');
+                for (var x = 0; x < xmlElement.childNodes.length; x++) {
+                    this.appendValueInput('ARG' + x).appendField(xmlElement.childNodes[x].getAttribute('name'), 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
+                }
+            }
+        };
+        // Source: src/blocks/procedures_defnoreturn/procedures_defnoreturn.js
+        /* global Blockly, JST, RoboBlocks */
+        /**
+         * procedures_defnoreturn code generation
+         * @return {String} Code generated with block parameters
+         */
+        // Defining a procedure without a return value uses the same generator as
+        // a procedure with a return value.
+        Blockly.Arduino.procedures_defnoreturn = function() {
+            // Define a procedure with a return value.
+            var funcName = this.getFieldValue('NAME');
+            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
+            branch = branch.replace(/&quot;/g, '"');
+            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
+            }
+            // branch=branch.replace(/&amp;/g, '');
+
+            var returnType = 'void';
+            var args = this.paramString;
+            var code = JST['procedures_defnoreturn']({
+                'returnType': returnType,
+                'funcName': funcName,
+                'args': args,
+                'branch': branch
+            });
+            // code=code.replace(/&amp;/g, '');
+
+            code = Blockly.Arduino.scrub_(this, code);
+            Blockly.Arduino.definitions_[funcName] = code;
+            return null;
+        };
+		
+	Blockly.Blocks.procedures_defnoreturn = {
+	category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
+	helpUrl: RoboBlocks.URL_FUNCTIONS,
+	init: function() {
+    	this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+		var name = new Blockly.FieldTextInput('',Blockly.Procedures.rename);
+		name.setSpellcheck(false);
+        this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE')).appendField(name,'NAME').appendField('', 'PARAMS');
+        this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
+		if ((this.workspace.options.comments || (this.workspace.options.parentWorkspace && this.workspace.options.parentWorkspace.options.comments)) && Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT) {
+			this.setCommentText(Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT);
+		}
+        this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_TOOLTIP'));
+        this.arguments_ = [];
+        this.type_arguments_ = [];
+		this.setStatements_(true);
+		this.setInputsInline(false);
+  },
+  setStatements_: function(hasStatements) {
+    if (this.hasStatements_ === hasStatements) {
+      return;
+    }
+    if (hasStatements) {
+      this.appendStatementInput('STACK')
+          .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_DO'));
+      if (this.getInput('RETURN')) {
+        this.moveInputBefore('STACK', 'RETURN');
+      }
+    } else {
+      this.removeInput('STACK', true);
+    }
+    this.hasStatements_ = hasStatements;
+  },
+  updateParams_: function() {
+    // Check for duplicated arguments.
+    var badArg = false;
+    var hash = {};
+    for (var i = 0; i < this.arguments_.length; i++) {
+      if (hash['arg_' + this.arguments_[i].toLowerCase()]) {
+        badArg = true;
+        break;
+      }
+      hash['arg_' + this.arguments_[i].toLowerCase()] = true;
+    }
+    if (badArg) {
+      this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEF_DUPLICATE_WARNING'));
+    } else {
+      this.setWarningText(null);
+    }
+    // Merge the arguments into a human-readable list.
+    var params = [];
+    for (var i in this.arguments_) {
+		params.push(this.type_arguments_[i] + ' ' + this.arguments_[i]);
+    }
+    this.paramString = params.join(', ');
+    // The params field is deterministic based on the mutation,
+    // no need to fire a change event.
+    Blockly.Events.disable();
+    try {
+      this.setFieldValue(this.paramString, 'PARAMS');
+    } finally {
+      Blockly.Events.enable();
+    }
+  },  
+  mutationToDom: function(opt_paramIds) {
+    var container = document.createElement('mutation');
+    if (opt_paramIds) {
+      container.setAttribute('name', this.getFieldValue('NAME'));
+    }
+    for (var i = 0; i < this.arguments_.length; i++) {
+      var parameter = document.createElement('arg_name');
+      parameter.setAttribute('name', this.arguments_[i]);
+      if (opt_paramIds && this.paramIds_) {
+        parameter.setAttribute('paramId', this.paramIds_[i]);
+      }
+      container.appendChild(parameter);
+	  
+	  parameter = document.createElement('arg_type');
+	  parameter.setAttribute('name', this.type_arguments_[i]);
+	  if (opt_paramIds && this.paramIds_) {
+        parameter.setAttribute('paramId', this.paramIds_[i]);
+      }
+	  container.appendChild(parameter);
+    }
+
+    // Save whether the statement input is visible.
+    if (!this.hasStatements_) {
+      container.setAttribute('statements', 'false');
+    }
+    return container;
+  },  
+  domToMutation: function(xmlElement) {
+    this.arguments_ = [];
+    for (var i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
+	  if (childNode.nodeName.toLowerCase() === 'arg_name') {
+        this.arguments_.push(childNode.getAttribute('name'));
+      }
+      if (childNode.nodeName.toLowerCase() === 'arg_type') {
+        this.type_arguments_.push(childNode.getAttribute('name'));
+      }
+    }
+    this.updateParams_();
+    Blockly.Procedures.mutateCallers(this);
+
+    // Show or hide the statement input.
+    this.setStatements_(xmlElement.getAttribute('statements') !== 'false');
+  },  
+  decompose: function(workspace) {
+    var containerBlock = workspace.newBlock('procedures_mutatorcontainer');
+    containerBlock.initSvg();
+
+    // Check/uncheck the allow statement box.
+    if (this.getInput('RETURN')) {
+      containerBlock.setFieldValue(this.hasStatements_ ? 'TRUE' : 'FALSE',
+                                   'STATEMENTS');
+    } else {
+      containerBlock.getInput('STATEMENT_INPUT').setVisible(false);
+    }
+
+    // Parameter list.
+    var connection = containerBlock.getInput('STACK').connection;
+    for (var i = 0; i < this.arguments_.length; i++) {
+      var paramBlock = workspace.newBlock('procedures_mutatorarg');
+      paramBlock.initSvg();
+	  paramBlock.setFieldValue(this.type_arguments_[i], 'TYPE');
+      paramBlock.setFieldValue(this.arguments_[i], 'NAME');
+      // Store the old location.
+      paramBlock.oldLocation = i;
+      connection.connect(paramBlock.previousConnection);
+      connection = paramBlock.nextConnection;
+    }
+    // Initialize procedure's callers with blank IDs.
+    Blockly.Procedures.mutateCallers(this);
+	//Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, null);
+    //Blockly.Procedures.mutateCallers(this.getFieldValue('TYPE'), this.workspace, this.type_arguments_, null);
+    return containerBlock;
+  },    
+  compose: function(containerBlock) {
+    // Parameter list.
+    this.arguments_ = [];
+	this.type_arguments_ = [];
+    this.paramIds_ = [];
+    var paramBlock = containerBlock.getInputTargetBlock('STACK');
+    while (paramBlock) {
+      this.arguments_.push(paramBlock.getFieldValue('NAME'));
+	  this.type_arguments_.push(paramBlock.getFieldValue('TYPE'));
+      this.paramIds_.push(paramBlock.id);
+      paramBlock = paramBlock.nextConnection &&
+          paramBlock.nextConnection.targetBlock();
+    }
+    this.updateParams_();
+    Blockly.Procedures.mutateCallers(this);
+
+    // Show/hide the statement input.
+    var hasStatements = containerBlock.getFieldValue('STATEMENTS');
+    if (hasStatements !== null) {
+      hasStatements = hasStatements == 'TRUE';
+      if (this.hasStatements_ != hasStatements) {
+        if (hasStatements) {
+          this.setStatements_(true);
+          // Restore the stack, if one was saved.
+          Blockly.Mutator.reconnect(this.statementConnection_, this, 'STACK');
+          this.statementConnection_ = null;
+        } else {
+          // Save the stack, then disconnect it.
+          var stackConnection = this.getInput('STACK').connection;
+          this.statementConnection_ = stackConnection.targetConnection;
+          if (this.statementConnection_) {
+            var stackBlock = stackConnection.targetBlock();
+            stackBlock.unplug();
+            stackBlock.bumpNeighbours_();
+          }
+          this.setStatements_(false);
+        }
+      }
+    }
+  },
+  getProcedureDef: function() {
+    return [this.getFieldValue('NAME'), this.arguments_, false];
+  },
+  getVars: function() {
+    return this.arguments_;
+  },
+  renameVar: function(oldName, newName) {
+    var change = false;
+    for (var i = 0; i < this.arguments_.length; i++) {
+      if (Blockly.Names.equals(oldName, this.arguments_[i])) {
+        this.arguments_[i] = newName;
+        change = true;
+      }
+    }
+    if (change) {
+      this.updateParams_();
+      // Update the mutator's variables if the mutator is open.
+      if (this.mutator.isVisible()) {
+        var blocks = this.mutator.workspace_.getAllBlocks();
+        for (var i = 0, block; block = blocks[i]; i++) {
+          if (block.type == 'procedures_mutatorarg' &&
+              Blockly.Names.equals(oldName, block.getFieldValue('NAME'))) {
+            block.setFieldValue(newName, 'NAME');
+          }
+        }
+      }
+    }
+  },
+  validName: function(name) {
+                if (name && name.length > 0) {
+                    var i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    name = name.replace(/([ ])/g, '_');
+                    name = name.replace(/([áàâä])/g, 'a');
+                    name = name.replace(/([éèêë])/g, 'e');
+                    name = name.replace(/([íìîï])/g, 'i');
+                    name = name.replace(/([óòôö])/g, 'o');
+                    name = name.replace(/([úùûü])/g, 'u');
+                    name = name.replace(/([ñ])/g, 'n');
+                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
+                    i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    for (var j in Blockly.Arduino.RESERVED_WORDS_) {
+                        this.reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
+                        if (name === this.reserved_words[j]) {
+                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
+                            name = '';
+                            break;
+                        } else {
+                            this.setWarningText(null);
+                        }
+                    }
+                }
+                return name;
+            },  
+  customContextMenu: function(options) {
+    // Add option to create caller.
+    var option = {enabled: true};
+    var name = this.getFieldValue('NAME');
+    option.text = Blockly.Msg.PROCEDURES_CREATE_DO.replace('%1', name);
+    var xmlMutation = goog.dom.createDom('mutation');
+    xmlMutation.setAttribute('name', name);
+    for (var i = 0; i < this.arguments_.length; i++) {
+      var xmlArg = goog.dom.createDom('arg');
+      xmlArg.setAttribute('name', this.arguments_[i]);
+      xmlMutation.appendChild(xmlArg);
+    }
+    var xmlBlock = goog.dom.createDom('block', null, xmlMutation);
+    xmlBlock.setAttribute('type', this.callType_);
+    option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
+    options.push(option);
+
+    // Add options to create getters for each parameter.
+    if (!this.isCollapsed()) {
+      for (var i = 0; i < this.arguments_.length; i++) {
+        var option = {enabled: true};
+        var name = this.arguments_[i];
+        option.text = Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name);
+        var xmlField = goog.dom.createDom('field', null, name);
+        xmlField.setAttribute('name', 'VAR');
+        var xmlBlock = goog.dom.createDom('block', null, xmlField);
+        xmlBlock.setAttribute('type', 'variables_get');
+        option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
+        options.push(option);
+      }
+    }
+  },
+  callType_: 'procedures_callnoreturn',
+  onchange: function() {
+                if (this.last_procedure !== this.getFieldValue('NAME')) {
+                    var name = this.getFieldValue('NAME');
+                    name = this.validName(name);
+                    try {
+                        this.setFieldValue(name, 'NAME');
+                    } catch (e) {}
+                    this.last_procedure = name;
+                }
+            }
+};
+		
+        /*Blockly.Blocks.procedures_defnoreturn = {
+            // Define a procedure with no return value.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
+            helpUrl: RoboBlocks.URL_FUNCTIONS,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                var name = Blockly.Procedures.findLegalName(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE'), this);
+                this.appendDummyInput().appendField(new Blockly.FieldTextInput(name, Blockly.Procedures.rename), 'NAME').appendField('', 'PARAMS');
+                // this.appendDummyInput().appendField(new Blockly.FieldTextInput(name), 'NAME').appendField('', 'PARAMS');
+                this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_DO'));
+                this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_TOOLTIP'));
+                this.arguments_ = [];
+                this.type_arguments_ = [];
+            },
+            updateParams_: function() {
+                // Check for duplicated arguments.
+                var badArg = false;
+                var hash = {};
+                for (var x = 0; x < this.arguments_.length; x++) {
+                    if (hash['arg_' + this.arguments_[x].toLowerCase()]) {
+                        badArg = true;
+                        break;
+                    }
+                    hash['arg_' + this.arguments_[x].toLowerCase()] = true;
+                }
+                if (badArg) {
+                    try {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEF_DUPLICATE_WARNING'));
+                    } catch (err) {
+                        console.log('Captured error: ', err);
+                    }
+                } else {
+                    this.setWarningText(null);
+                }
+                // Merge the arguments into a human-readable list.
+                var params = [];
+                for (var i in this.arguments_) {
+                    params.push(this.type_arguments_[i] + ' ' + this.arguments_[i]);
+                }
+                this.paramString = params.join(', ');
+                this.setFieldValue(this.paramString, 'PARAMS');
+            },
+            mutationToDom: function() {
+                var container = document.createElement('mutation');
+                for (var x = 0; x < this.arguments_.length; x++) {
+                    var parameter = document.createElement('arg_name');
+                    parameter.setAttribute('name', this.arguments_[x]);
+                    container.appendChild(parameter);
+                    parameter = document.createElement('arg_type');
+                    parameter.setAttribute('name', this.type_arguments_[x]);
+                    container.appendChild(parameter);
+                }
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                this.arguments_ = [];
+                this.type_arguments_ = [];
+                var childNode;
+                for (var x = 0; x < xmlElement.childNodes.length; x++) {
+                    childNode = xmlElement.childNodes[x];
+                    if (childNode.nodeName.toLowerCase() === 'arg_name') {
+                        this.arguments_.push(childNode.getAttribute('name'));
+                    }
+                    if (childNode.nodeName.toLowerCase() === 'arg_type') {
+                        this.type_arguments_.push(childNode.getAttribute('name'));
+                    }
+                }
+                this.updateParams_();
+            },
+            decompose: function(workspace) {
+                var containerBlock = Blockly.Block.obtain(workspace, 'procedures_mutatorcontainer');
+                containerBlock.initSvg();
+                var connection = containerBlock.getInput('STACK').connection;
+                for (var x = 0; x < this.arguments_.length; x++) {
+                    var paramBlock = Blockly.Block.obtain(workspace, 'procedures_mutatorarg');
+                    paramBlock.initSvg();
+                    paramBlock.setFieldValue(this.type_arguments_[x], 'TYPE');
+                    paramBlock.setFieldValue(this.arguments_[x], 'NAME');
+                    // Store the old location.
+                    paramBlock.oldLocation = x;
+                    connection.connect(paramBlock.previousConnection);
+                    connection = paramBlock.nextConnection;
+                }
+                // Initialize procedure's callers with blank IDs.
+                Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, null);
+                Blockly.Procedures.mutateCallers(this.getFieldValue('TYPE'), this.workspace, this.type_arguments_, null);
+                return containerBlock;
+            },
+            compose: function(containerBlock) {
+                this.arguments_ = [];
+                this.paramIds_ = [];
+                this.type_arguments_ = [];
+                var paramBlock = containerBlock.getInputTargetBlock('STACK');
+                var varName;
+                while (paramBlock) {
+                    varName = paramBlock.getFieldValue('NAME');
+                    this.type_arguments_.push(paramBlock.getFieldValue('TYPE'));
+                    this.arguments_.push(varName);
+                    this.paramIds_.push(paramBlock.id);
+                    paramBlock = paramBlock.nextConnection && paramBlock.nextConnection.targetBlock();
+                }
+                this.updateParams_();
+                Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, this.paramIds_);
+            },
+            dispose: function() {
+                var name = this.getFieldValue('NAME');
+                var editable = this.editable;
+                var workspace = this.workspace;
+                // Call parent's destructor.
+                Blockly.Block.prototype.dispose.apply(this, arguments);
+                if (editable) {
+                    // Dispose of any callers.
+                    Blockly.Procedures.disposeCallers(name, workspace);
+                }
+            },
+            getProcedureDef: function() {
+                // Return the name of the defined procedure,
+                // a list of all its arguments,
+                // and that it DOES NOT have a return value.
+                return [this.getFieldValue('NAME'), this.arguments_, false];
+            },
+            getVars: function() {
+                return this.arguments_;
+            },
+            renameVar: function(oldName, newName) {
+                var change = false;
+                for (var x = 0; x < this.arguments_.length; x++) {
+                    if (Blockly.Names.equals(oldName, this.arguments_[x])) {
+                        newName = this.validName(newName);
+                        this.arguments_[x] = newName;
+                        change = true;
+                    }
+                }
+                if (change) {
+                    this.updateParams_();
+                    // Update the mutator's variables if the mutator is open.
+                    if (this.mutator.isVisible_()) {
+                        var blocks = this.mutator.workspace_.getAllBlocks();
+                        var block;
+                        for (x = 0; blocks.length; x++) {
+                            block = blocks[x];
+                            if (block.type === 'procedures_mutatorarg' && Blockly.Names.equals(oldName, block.getFieldValue('NAME'))) {
+                                block.setFieldValue(newName, 'NAME');
+                            }
+                        }
+                    }
+                }
+            },
+            validName: function(name) {
+                if (name && name.length > 0) {
+                    var i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    name = name.replace(/([ ])/g, '_');
+                    name = name.replace(/([áàâä])/g, 'a');
+                    name = name.replace(/([éèêë])/g, 'e');
+                    name = name.replace(/([íìîï])/g, 'i');
+                    name = name.replace(/([óòôö])/g, 'o');
+                    name = name.replace(/([úùûü])/g, 'u');
+                    name = name.replace(/([ñ])/g, 'n');
+                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
+                    i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    for (var j in Blockly.Arduino.RESERVED_WORDS_) {
+                        this.reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
+                        if (name === this.reserved_words[j]) {
+                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
+                            name = '';
+                            break;
+                        } else {
+                            this.setWarningText(null);
+                        }
+                    }
+                }
+                return name;
+            },
+            onchange: function() {
+                if (this.last_procedure !== this.getFieldValue('NAME')) {
+                    var name = this.getFieldValue('NAME');
+                    name = this.validName(name);
+                    try {
+                        this.setFieldValue(name, 'NAME');
+                    } catch (e) {}
+                    this.last_procedure = name;
+                }
+            }
+        };*/
+		
+		Blockly.Blocks['procedures_mutatorcontainer'] = {
+	
+		init: function() {
+    this.appendDummyInput()
+        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORCONTAINER_Field'));
+    this.appendStatementInput('STACK');
+    this.appendDummyInput('STATEMENT_INPUT')
+        .appendField(Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS)
+        .appendField(new Blockly.FieldCheckbox('TRUE'), 'STATEMENTS');
+    this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+    this.setTooltip('');
+    this.contextMenu = false;
+  }
+};
+		
+		
+        /*Blockly.Blocks.procedures_mutatorcontainer = {
+            // Procedure container (for mutator dialog).
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORCONTAINER_Field'));
+                this.appendStatementInput('STACK');
+                this.setTooltip('');
+                this.contextMenu = false;
+            }
+        };*/
+		
+		
+		Blockly.Blocks['procedures_mutatorarg'] = {
+  init: function() {
+    var field = new Blockly.FieldTextInput('x', this.validator_);
+    this.appendDummyInput()
+        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORARG_Field')).appendField(new Blockly.FieldDropdown([
+                    ['int', 'int'],
+                    ['String', 'String']
+                ]), 'TYPE').appendField(field, 'NAME');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+    this.setTooltip('');
+    this.contextMenu = false;
+
+    // Create the default variable when we drag the block in from the flyout.
+    // Have to do this after installing the field on the block.
+    field.onFinishEditing_ = this.createNewVar_;
+    field.onFinishEditing_('x');
+  },
+  onchange: function() {
+	if (this.last_variable !== this.getFieldValue('NAME')) {
+		var name = this.getFieldValue('NAME');
+        name = this.validName(name);
+        try {
+			this.setFieldValue(name, 'NAME');
+        } catch (e) {}
+        this.last_variable = name;
+    }
+  },
+  validName: Blockly.Blocks.procedures_defnoreturn.validName,
+  validator_: function(newVar) {
+    newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
+    return newVar || null;
+  },
+  createNewVar_: function(newText) {
+    var source = this.sourceBlock_;
+    if (source && source.workspace && source.workspace.options &&
+        source.workspace.options.parentWorkspace) {
+      source.workspace.options.parentWorkspace.createVariable(newText);
+    }
+  }
+};
+		
+        /*Blockly.Blocks.procedures_mutatorarg = {
+            // Procedure argument (for mutator dialog).
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORARG_Field')).appendField(new Blockly.FieldDropdown([
+                    ['int', 'int'],
+                    ['String', 'String']
+                ]), 'TYPE').appendField(new Blockly.FieldTextInput('x', Blockly.Blocks.procedures_mutatorarg.validator), 'NAME');
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setTooltip('');
+                this.contextMenu = false;
+            },
+            onchange: function() {
+                if (this.last_variable !== this.getFieldValue('NAME')) {
+                    var name = this.getFieldValue('NAME');
+                    name = this.validName(name);
+                    try {
+                        this.setFieldValue(name, 'NAME');
+                    } catch (e) {}
+                    this.last_variable = name;
+                }
+            },
+            validName: Blockly.Blocks.procedures_defnoreturn.validName
+        };
+		
+		
+        Blockly.Blocks.procedures_mutatorarg.validator = function(newVar) {
+            // Merge runs of whitespace.  Strip leading and trailing whitespace.
+            // Beyond this, all names are legal.
+            newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
+            return newVar || null;
+        };*/
+		
+
+        // Source: src/blocks/procedures_defreturn/procedures_defreturn.js
+        /* global Blockly, JST, RoboBlocks */
+        /**
+         * procedures_defreturn code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.procedures_defreturn = function() {
+            // Define a procedure with a return value.
+            var funcName = this.getFieldValue('NAME');
+            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
+            branch = branch.replace(/&quot;/g, '"');
+
+            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
+            }
+            var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
+            var code = '';
+
+            returnValue = returnValue.replace(/&quot;/g, '"');
+            var returnType = this.getReturnType();
+            if (returnValue) {
+                var a = RoboBlocks.findPinMode(returnValue);
+                returnValue = a['code'];
+                returnValue += '  return ' + a['pin'] + ';\n';
+            }
+            var args = this.paramString;
+            code += JST['procedures_defreturn']({
+                'returnType': returnType,
+                'funcName': funcName,
+                'args': args,
+                'branch': branch,
+                'returnValue': returnValue
+            });
+            // code=code.replace(/&amp;/g, '');
+
+            code = Blockly.Arduino.scrub_(this, code);
+            Blockly.Arduino.definitions_[funcName] = code;
+            return null;
+        };
+		
+		Blockly.Blocks.procedures_defreturn = {
+		category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Procedures are handled specially.
+        helpUrl: RoboBlocks.URL_FUNCTIONS,
+		init: function() {
+    var nameField = new Blockly.FieldTextInput('',
+        Blockly.Procedures.rename);
+    nameField.setSpellcheck(false);
+    this.appendDummyInput()
+        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE'))
+        .appendField(nameField, 'NAME')
+        .appendField('', 'PARAMS');
+	//this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_DO'));
+    this.appendValueInput('RETURN')
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
+    this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
+    if ((this.workspace.options.comments ||
+         (this.workspace.options.parentWorkspace &&
+          this.workspace.options.parentWorkspace.options.comments)) &&
+        Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT) {
+      this.setCommentText(Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT);
+    }
+    this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+    this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_TOOLTIP'));
+    this.arguments_ = [];
+    this.setStatements_(true);
+    this.statementConnection_ = null;
+  },
+  isVariable: function(varValue) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+  getReturnType: function() {
+                var returnType;
+                var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
+                var a = RoboBlocks.findPinMode(returnValue);
+                // code+=a['code'];
+                returnValue = a['pin'];
+
+                var isFunction = false;
+
+                for (var i in Blockly.Arduino.definitions_) {
+                    if (Blockly.Arduino.definitions_[i].search(returnValue + ' \\(') >= 0) {
+                        isFunction = true;
+                        break;
+                    }
+                }
+                if (!returnValue) {
+                    returnType = 'void';
+                }
+                if (returnValue.search('"') >= 0) {
+                    returnType = 'String';
+                } else if (isFunction) { //returnValue.search('\\(') >= 0 && returnValue.search('\\)') >= 0) {
+                    for (i in Blockly.Arduino.definitions_) {
+                        if (Blockly.Arduino.definitions_[i].search(returnValue) >= 0) {
+                            if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'int' || Blockly.Arduino.definitions_[i].substring(0, 3) === '//b') { //bqbat function
+                                if (Blockly.Arduino.definitions_[i].substring(0, 5) === 'int *' || Blockly.Arduino.definitions_[i].substring(0, 5) === 'int _') {
+                                    returnType = 'int *';
+                                } else {
+                                    returnType = 'int';
+                                }
+                            } else if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'Str') {
+                                returnType = 'String';
+                            } else {
+                                returnType = '';
+                            }
+                        }
+                    }
+                } else if (this.isVariable(returnValue)) {
+                    returnType = RoboBlocks.variables[returnValue][0];
+                } else if ((returnValue.search('analogRead') >= 0) || (returnValue.search('digitalRead') >= 0) || (returnValue.search('Distanc') >= 0) || (!isNaN(parseFloat(returnValue)) || (returnValue.search('random') >= 0)) || (returnValue.search('map') >= 0) || returnValue.search('\\[') >= 0 || (returnValue.search('abs') >= 0) || (returnValue.search('sqrt') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('exp') >= 0) || (returnValue.search('pow') >= 0)) {
+                    returnType = 'int';
+                } else if (returnValue.search('readJoystick') >= 0 || returnValue[0] === '{') {
+                    returnType = 'int *';
+                } else {
+                    returnType = 'void';
+                }
+                return returnType;
+            },
+  setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
+  updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
+  mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
+  domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
+  decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
+  compose: Blockly.Blocks['procedures_defnoreturn'].compose,
+  getProcedureDef: function() {
+    return [this.getFieldValue('NAME'), this.arguments_, true];
+  },
+  getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
+  renameVar: Blockly.Blocks['procedures_defnoreturn'].renameVar,
+  customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
+  callType_: 'procedures_callreturn'
+};
+		
+		
+		
+        /*Blockly.Blocks.procedures_defreturn = {
+            // Define a procedure with a return value.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Procedures are handled specially.
+            helpUrl: RoboBlocks.URL_FUNCTIONS,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                var name = Blockly.Procedures.findLegalName(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE'), this);
+                this.appendDummyInput().appendField(new Blockly.FieldTextInput(name, Blockly.Procedures.rename), 'NAME').appendField('', 'PARAMS');
+                this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_DO'));
+                this.appendValueInput('RETURN').setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
+                this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_TOOLTIP'));
+                this.arguments_ = [];
+            },
+            isVariable: function(varValue) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+            getReturnType: function() {
+                var returnType;
+                var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
+                var a = RoboBlocks.findPinMode(returnValue);
+                // code+=a['code'];
+                returnValue = a['pin'];
+
+                var isFunction = false;
+
+                for (var i in Blockly.Arduino.definitions_) {
+                    if (Blockly.Arduino.definitions_[i].search(returnValue + ' \\(') >= 0) {
+                        isFunction = true;
+                        break;
+                    }
+                }
+                if (!returnValue) {
+                    returnType = 'void';
+                }
+                if (returnValue.search('"') >= 0) {
+                    returnType = 'String';
+                } else if (isFunction) { //returnValue.search('\\(') >= 0 && returnValue.search('\\)') >= 0) {
+                    for (i in Blockly.Arduino.definitions_) {
+                        if (Blockly.Arduino.definitions_[i].search(returnValue) >= 0) {
+                            if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'int' || Blockly.Arduino.definitions_[i].substring(0, 3) === '//b') { //bqbat function
+                                if (Blockly.Arduino.definitions_[i].substring(0, 5) === 'int *' || Blockly.Arduino.definitions_[i].substring(0, 5) === 'int _') {
+                                    returnType = 'int *';
+                                } else {
+                                    returnType = 'int';
+                                }
+                            } else if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'Str') {
+                                returnType = 'String';
+                            } else {
+                                returnType = '';
+                            }
+                        }
+                    }
+                } else if (this.isVariable(returnValue)) {
+                    returnType = RoboBlocks.variables[returnValue][0];
+                } else if ((returnValue.search('analogRead') >= 0) || (returnValue.search('digitalRead') >= 0) || (returnValue.search('Distanc') >= 0) || (!isNaN(parseFloat(returnValue)) || (returnValue.search('random') >= 0)) || (returnValue.search('map') >= 0) || returnValue.search('\\[') >= 0 || (returnValue.search('abs') >= 0) || (returnValue.search('sqrt') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('exp') >= 0) || (returnValue.search('pow') >= 0)) {
+                    returnType = 'int';
+                } else if (returnValue.search('readJoystick') >= 0 || returnValue[0] === '{') {
+                    returnType = 'int *';
+                } else {
+                    returnType = 'void';
+                }
+                return returnType;
+            },
+            updateParams_: Blockly.Blocks.procedures_defnoreturn.updateParams_,
+            decompose: Blockly.Blocks.procedures_defnoreturn.decompose,
+            compose: Blockly.Blocks.procedures_defnoreturn.compose,
+            dispose: Blockly.Blocks.procedures_defnoreturn.dispose,
+            getProcedureDef: function() {
+                // Return the name of the defined procedure,
+                // a list of all its arguments,
+                // and that it DOES have a return value.
+                return [this.getFieldValue('NAME'), this.arguments_, true];
+            },
+            getVars: Blockly.Blocks.procedures_defnoreturn.getVars,
+            renameVar: Blockly.Blocks.procedures_defnoreturn.renameVar,
+            mutationToDom: Blockly.Blocks.procedures_defnoreturn.mutationToDom,
+            domToMutation: Blockly.Blocks.procedures_defnoreturn.domToMutation,
+            validName: Blockly.Blocks.procedures_defnoreturn.validName,
+            onchange: Blockly.Blocks.procedures_defnoreturn.onchange
+        };*/
+
+        // Source: src/blocks/procedures_ifreturn/procedures_ifreturn.js
+        /* global Blockly, RoboBlocks */
+
+        /**
+         * procedures_ifreturn code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.procedures_ifreturn = function() {
+            // Conditionally return value from a procedure.
+            var condition = Blockly.Arduino.valueToCode(this, 'CONDITION',
+                Blockly.Arduino.ORDER_NONE) || '';
+            var code = '';
+            var a = RoboBlocks.findPinMode(condition);
+            code += a['code'];
+            condition = a['pin'];
+
+            code += 'if (' + condition + ') {\n';
+            // if (this.hasReturnValue_) {
+            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
+            a = RoboBlocks.findPinMode(value);
+            code += a['code'];
+            code += '  return (' + value + ');\n';
+            // } else {
+            //     code += '  return;\n';
+            // }
+            code += '}\n';
+            return code;
+        };
+
+
+
+        Blockly.Blocks.procedures_ifreturn = {
+            // Conditionally return value from a procedure.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
+            helpUrl: RoboBlocks.URL_FUNCTIONS,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendValueInput('CONDITION')
+                    .setCheck(Boolean)
+                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
+                this.appendDummyInput()
+                    .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
+                this.appendValueInput('VALUE');
+                this.setInputsInline(true);
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_TOOLTIP'));
+                this.hasReturnValue_ = true;
+            },
+            mutationToDom: function() {
+                // Save whether this block has a return value.
+                var container = document.createElement('mutation');
+                container.setAttribute('value', Number(this.hasReturnValue_));
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                // Restore whether this block has a return value.
+                var value = xmlElement.getAttribute('value');
+                this.hasReturnValue_ = (value === 1);
+                // if (!this.hasReturnValue_) {
+                //     this.removeInput('VALUE');
+                // }
+            },
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+                var legal = false;
+                // Is the block nested in a procedure?
+                var block = this;
+                do {
+                    if (block.type === 'procedures_defreturn') {
+                        legal = true;
+                        break;
+                    }
+                    block = block.getSurroundParent();
+                } while (block);
+                if (legal) {
+                    // If needed, toggle whether this block has a return value.
+                    // if (block.type === 'procedures_defnoreturn' && this.hasReturnValue_) {
+                    //     this.removeInput('VALUE');
+                    //     this.hasReturnValue_ = false;
+                    // } else if (block.type === 'procedures_defreturn' && !this.hasReturnValue_) {
+                    //     this.appendValueInput('VALUE');
+                    //     this.hasReturnValue_ = true;
+                    // }
+                    this.setWarningText(null);
+                } else {
+                    try {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
+                    } catch (err) {
+                        console.log('Captured error: ', err);
+                    }
+                }
+            }
+        };
+
+        // Source: src/blocks/procedures_return/procedures_return.js
+        /* global Blockly, RoboBlocks */
+
+        /**
+         * procedures_ifreturn code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.procedures_return = function() {
+            // Conditionally return value from a procedure.
+            var code = '';
+            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
+            var a = RoboBlocks.findPinMode(value);
+            code += a['code'];
+            code += '  return (' + value + ');\n';
+            return code;
+        };
+
+
+
+        Blockly.Blocks.procedures_return = {
+            // Conditionally return value from a procedure.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
+            helpUrl: RoboBlocks.URL_FUNCTIONS,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendDummyInput()
+                    .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN'));
+                this.appendValueInput('VALUE');
+                this.setInputsInline(true);
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN_TOOLTIP'));
+                this.hasReturnValue_ = true;
+            },
+            mutationToDom: function() {
+                // Save whether this block has a return value.
+                var container = document.createElement('mutation');
+                container.setAttribute('value', Number(this.hasReturnValue_));
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                // Restore whether this block has a return value.
+                var value = xmlElement.getAttribute('value');
+                this.hasReturnValue_ = (value === 1);
+            },
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+                var legal = false;
+                // Is the block nested in a procedure?
+                var block = this;
+                do {
+                    if (block.type === 'procedures_defreturn') {
+                        legal = true;
+                        break;
+                    }
+                    block = block.getSurroundParent();
+                } while (block);
+                if (legal) {
+                    this.setWarningText(null);
+                } else {
+                    try {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
+                    } catch (err) {
+                        console.log('Captured error: ', err);
+                    }
+                }
+            }
+        };
+
+        // Source: src/blocks/array_get/array_get.js
+        /* global Blockly, RoboBlocks */
+        /* jshint sub:true */
+        /**
+         * array_get code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.array_get = function() {
+            // Numeric value.
+            var variable = this.getFieldValue('VAR');
+            var index = this.getFieldValue('INDEX');
+            var code = variable + '[' + index + ']';
+            // -4.abs() returns -4 in Dart due to strange order of operation choices.
+            // -4 is actually an operator and a number.  Reflect this in the order.
+            // var order = code < 0 ? Blockly.Arduino.ORDER_UNARY_PREFIX : Blockly.Arduino.ORDER_ATOMIC;
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+        Blockly.Blocks.array_get = {
+            // Numeric value.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),
+            helpUrl: RoboBlocks.URL_VAR,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendDummyInput('DUMMY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET')).appendField(new Blockly.FieldVariable(' '), 'VAR');
+                // .appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR');
+                this.appendDummyInput('DUMMY2').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET1')).appendField(new Blockly.FieldTextInput('0', Blockly.Blocks.array_get.validator), 'INDEX').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET2'));
+                this.setOutput(true, Number);
+                this.setInputsInline(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_ARRAY_GET_TOOLTIP'));
+            },
+            getVariables: function() {
+                var variables = Blockly.Variables.allUsedVariables;
+                var dropdown = [];
+                if (variables.length > 0) {
+                    for (var i in variables) {
+                        dropdown.push([variables[i], variables[i]]);
+                    }
+                } else {
+                    dropdown.push(['', '']);
+                }
+                return dropdown;
+            },
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+                this.last_variable = this.getFieldValue('VAR');
+                if (!this.last_variables) {
+                    this.last_variables = Blockly.Variables.allUsedVariables;
+                }
+                var variables = Blockly.Variables.allUsedVariables;
+                for (var i in variables) {
+                    if (Blockly.Variables.allUsedVariables[i] !== this.last_variables[i]) {
+                        try {
+                            this.removeInput('DUMMY');
+                            this.removeInput('DUMMY2');
+                        } catch (e) {}
+                        this.appendDummyInput('DUMMY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET')).appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR');
+                        this.appendDummyInput('DUMMY2').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET1')).appendField(new Blockly.FieldTextInput('0', Blockly.Blocks.array_get.validator), 'INDEX').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET2'));
+                        this.setFieldValue(this.last_variable, 'VAR');
+                        this.last_variables = Blockly.Variables.allUsedVariables;
+                    }
+                }
+                try {
+                    if (!this.exists()) {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_VARIABLES_CALL_WITHOUT_DEFINITION'));
+                    } else {
+                        this.setWarningText(null);
+                    }
+                } catch (e) {}
+            },
+            renameVar: function(oldName, newName) {
+                if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+                    this.setTitleValue(newName, 'VAR');
+                }
+            },
+            exists: function() {
+                if (this.getFieldValue('VAR')) {
+                    for (var i in Blockly.Variables.allUsedVariables) {
+                        if (Blockly.Variables.allUsedVariables[i] === this.getFieldValue('VAR')) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        };
+        Blockly.Blocks.array_get.validator = function(text) {
+            // Ensure that only a number may be entered.
+            // TODO: Handle cases like 'o', 'ten', '1,234', '3,14', etc.
+            var n = window.parseFloat(text || 0);
+            return window.isNaN(n) ? null : String(n);
+        };
+        // Source: src/blocks/base_delay/base_delay.js
+        /* global Blockly, JST, RoboBlocks */
+
+        //register with blockly arduino
+        Blockly.Arduino.base_delay = function() {
+            var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC);
+            var code = '';
+            var a = RoboBlocks.findPinMode(delay_time);
+            code += a['code'];
+            delay_time = a['pin'];
+
+            code += JST['base_delay']({
+                'delay_time': delay_time
+            });
+            return code;
+        };
+
+        Blockly.Blocks.base_delay = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
+            helpUrl: RoboBlocks.URL_CONTROLS,
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
+                this.appendValueInput('DELAY_TIME', Number)
+                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_WAIT'))
+                    .setCheck(Number);
+                this.setInputsInline(true);
+                this.setPreviousStatement(true, null);
+                this.setNextStatement(true, null);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_TOOLTIP'));
+            }
+        };
+
+	// Source: src/blocks/advanced_map/advanced_map.js
         /* global Blockly, JST, RoboBlocks */
         /* jshint sub:true */
 
@@ -3017,132 +4653,6 @@
             }
         };
 
-        // Source: src/blocks/array_get/array_get.js
-        /* global Blockly, RoboBlocks */
-        /* jshint sub:true */
-        /**
-         * array_get code generation
-         * @return {String} Code generated with block parameters
-         */
-        Blockly.Arduino.array_get = function() {
-            // Numeric value.
-            var variable = this.getFieldValue('VAR');
-            var index = this.getFieldValue('INDEX');
-            var code = variable + '[' + index + ']';
-            // -4.abs() returns -4 in Dart due to strange order of operation choices.
-            // -4 is actually an operator and a number.  Reflect this in the order.
-            // var order = code < 0 ? Blockly.Arduino.ORDER_UNARY_PREFIX : Blockly.Arduino.ORDER_ATOMIC;
-            return [code, Blockly.Arduino.ORDER_ATOMIC];
-        };
-        Blockly.Blocks.array_get = {
-            // Numeric value.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),
-            helpUrl: RoboBlocks.URL_VAR,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
-                this.appendDummyInput('DUMMY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET')).appendField(new Blockly.FieldVariable(' '), 'VAR');
-                // .appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR');
-                this.appendDummyInput('DUMMY2').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET1')).appendField(new Blockly.FieldTextInput('0', Blockly.Blocks.array_get.validator), 'INDEX').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET2'));
-                this.setOutput(true, Number);
-                this.setInputsInline(true);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_ARRAY_GET_TOOLTIP'));
-            },
-            getVariables: function() {
-                var variables = Blockly.Variables.allVariables();
-                var dropdown = [];
-                if (variables.length > 0) {
-                    for (var i in variables) {
-                        dropdown.push([variables[i], variables[i]]);
-                    }
-                } else {
-                    dropdown.push(['', '']);
-                }
-                return dropdown;
-            },
-            onchange: function() {
-                if (!this.workspace) {
-                    // Block has been deleted.
-                    return;
-                }
-                this.last_variable = this.getFieldValue('VAR');
-                if (!this.last_variables) {
-                    this.last_variables = Blockly.Variables.allVariables();
-                }
-                var variables = Blockly.Variables.allVariables();
-                for (var i in variables) {
-                    if (Blockly.Variables.allVariables()[i] !== this.last_variables[i]) {
-                        try {
-                            this.removeInput('DUMMY');
-                            this.removeInput('DUMMY2');
-                        } catch (e) {}
-                        this.appendDummyInput('DUMMY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET')).appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR');
-                        this.appendDummyInput('DUMMY2').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET1')).appendField(new Blockly.FieldTextInput('0', Blockly.Blocks.array_get.validator), 'INDEX').appendField(RoboBlocks.locales.getKey('LANG_ARRAY_GET_BRACKET2'));
-                        this.setFieldValue(this.last_variable, 'VAR');
-                        this.last_variables = Blockly.Variables.allVariables();
-                    }
-                }
-                try {
-                    if (!this.exists()) {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_VARIABLES_CALL_WITHOUT_DEFINITION'));
-                    } else {
-                        this.setWarningText(null);
-                    }
-                } catch (e) {}
-            },
-            renameVar: function(oldName, newName) {
-                if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
-                    this.setTitleValue(newName, 'VAR');
-                }
-            },
-            exists: function() {
-                if (this.getFieldValue('VAR')) {
-                    for (var i in Blockly.Variables.allVariables()) {
-                        if (Blockly.Variables.allVariables()[i] === this.getFieldValue('VAR')) {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-        };
-        Blockly.Blocks.array_get.validator = function(text) {
-            // Ensure that only a number may be entered.
-            // TODO: Handle cases like 'o', 'ten', '1,234', '3,14', etc.
-            var n = window.parseFloat(text || 0);
-            return window.isNaN(n) ? null : String(n);
-        };
-        // Source: src/blocks/base_delay/base_delay.js
-        /* global Blockly, JST, RoboBlocks */
-
-        //register with blockly arduino
-        Blockly.Arduino.base_delay = function() {
-            var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC);
-            var code = '';
-            var a = RoboBlocks.findPinMode(delay_time);
-            code += a['code'];
-            delay_time = a['pin'];
-
-            code += JST['base_delay']({
-                'delay_time': delay_time
-            });
-            return code;
-        };
-
-        Blockly.Blocks.base_delay = {
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
-            helpUrl: RoboBlocks.URL_CONTROLS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendValueInput('DELAY_TIME', Number)
-                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_WAIT'))
-                    .setCheck(Number);
-                this.setInputsInline(true);
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_TOOLTIP'));
-            }
-        };
-
         // Source: src/blocks/base_map/base_map.js
         /* global Blockly, JST, RoboBlocks */
         /* jshint sub:true */
@@ -3189,26 +4699,6 @@
                 this.setInputsInline(true);
                 this.setOutput(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_BASE_MAP_TOOLTIP'));
-            }
-        };
-
-        // Source: src/blocks/base_millis/base_millis.js
-        /* global Blockly, JST, RoboBlocks */
-
-        //register with blockly arduino
-        Blockly.Arduino.base_millis = function() {
-            var code = 'millis()';
-            return [code, Blockly.Arduino.ORDER_ATOMIC];
-        };
-
-        Blockly.Blocks.base_millis = {
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
-            helpUrl: RoboBlocks.URL_CONTROLS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_MILLIS'));
-                this.setOutput(true, 'Number');
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_MILLIS_TOOLTIP'));
             }
         };
 
@@ -3299,57 +4789,6 @@
         // Source: src/blocks/bq_joystick/bq_joystick.js
         /* global Blockly, options,JST, RoboBlocks */
         /* jshint sub:true */
-        /**
-         * bq_joystick code generation
-         * @return {String} Code generated with block parameters
-         */
-        Blockly.Arduino.bq_joystick = function() {
-            var pinx = Blockly.Arduino.valueToCode(this, 'PINX', Blockly.Arduino.ORDER_ATOMIC);
-            var piny = Blockly.Arduino.valueToCode(this, 'PINY', Blockly.Arduino.ORDER_ATOMIC);
-            var pinbutton = Blockly.Arduino.valueToCode(this, 'PINBUTTON', Blockly.Arduino.ORDER_ATOMIC);
-            var code = '';
-
-            var a = RoboBlocks.findPinMode(pinx);
-            code += a['code'];
-            pinx = a['pin'];
-
-            a = RoboBlocks.findPinMode(piny);
-            code += a['code'];
-            piny = a['pin'];
-
-            a = RoboBlocks.findPinMode(pinbutton);
-            code += a['code'];
-            pinbutton = a['pin'];
-
-
-            var name = pinx.substring(0, 3) + '_' + piny.substring(0, 3);
-
-            Blockly.Arduino.definitions_['declare_var_internal_readJoystick_array_' + pinx] = 'int _internal_readJoystick_array_' + name + '[3];\n';
-            Blockly.Arduino.definitions_['define_joystick' + pinx] = JST['bq_joystick_definitions']({
-                'name': name,
-                'pinx': pinx,
-                'piny': piny,
-                'pinbutton': pinbutton
-            });
-            if (RoboBlocks.isVariable(pinbutton)) {
-                code += JST['bq_joystick_setups']({
-                    'pinbutton': pinbutton
-                });
-            } else {
-                Blockly.Arduino.setups_['setup_joystick_' + pinbutton] = JST['bq_joystick_setups']({
-                    'pinbutton': pinbutton
-                });
-            }
-            var array = Blockly.Arduino.valueToCode(this, 'POS', Blockly.Arduino.ORDER_ATOMIC);
-            code += JST['bq_joystick']({
-                'name': name,
-                'pinx': pinx,
-                'array': array
-            });
-            return [code, Blockly.Arduino.ORDER_ATOMIC];
-        };
-        
-
         /**
          * bq_piezo_buzzerav code generation
          * @return {String} Code generated with block parameters
@@ -3774,7 +5213,7 @@
                 return [this.getFieldValue('VAR')];
             },
             getVariables: function() {
-                var variables = Blockly.Variables.allVariables();
+                var variables = Blockly.Variables.allUsedVariables;
                 var dropdown = [];
                 if (variables.length > 0) {
                     for (var i in variables) {
@@ -3786,8 +5225,8 @@
                 return dropdown;
             },
             isVariable: function(varValue) {
-                for (var i in Blockly.Variables.allVariables()) {
-                    if (Blockly.Variables.allVariables()[i] === varValue) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
                         return true;
                     }
                 }
@@ -4567,7 +6006,7 @@
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
                 this.appendDummyInput('')
                     .appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED'))
-                    .appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_STATE'))
+                    .appendField(new Blockly.FieldImage("img/blocks/diode.png",48*options.zoom, 48*options.zoom)).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_STATE'))
                     .appendField(new Blockly.FieldDropdown([
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_ON') || 'ON', 'HIGH'],
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_OFF') || 'OFF', 'LOW']
@@ -4639,13 +6078,11 @@
             dropdown_pin = a['pin'];
             if (RoboBlocks.isVariable(dropdown_pin)) {
                 code += JST['inout_digital_write_setups']({
-                    'dropdown_pin': dropdown_pin,
-                    'dropdown_stat': dropdown_stat
+                    'dropdown_pin': dropdown_pin
                 });
             } else {
                 Blockly.Arduino.setups_['setup_green_digital_write_' + dropdown_pin] = JST['inout_digital_write_setups']({
-                    'dropdown_pin': dropdown_pin,
-                    'dropdown_stat': dropdown_stat
+                    'dropdown_pin': dropdown_pin
                 });
             }
             code += JST['inout_digital_write']({
@@ -5676,1058 +7113,6 @@
             }
         };
 
-        // Source: src/blocks/procedures_callnoreturn/procedures_callnoreturn.js
-        /* global Blockly, JST, RoboBlocks */
-        /**
-         * procedures_callnoreturn code generation
-         * @return {String} Code generated with block parameters
-         */
-        Blockly.Arduino.procedures_callnoreturn = function() {
-            // Call a procedure with a return value.
-            var funcName = this.getFieldValue('PROCEDURES');
-            var args = [];
-            var code = '';
-            var a;
-            try {
-                for (var x = 0; x < this.getVariables(funcName).length; x++) {
-                    args[x] = Blockly.Arduino.valueToCode(this, 'ARG' + x, Blockly.Arduino.ORDER_NONE) || '';
-                    a = RoboBlocks.findPinMode(args[x]);
-                    code += a['code'];
-                    args[x] = a['pin'];
-                }
-            } catch (e) {}
-            var funcArgs = args.join(', ');
-            code += JST['procedures_callnoreturn']({
-                'funcName': funcName,
-                'funcArgs': funcArgs
-            });
-            return code;
-        };
-        Blockly.Blocks.procedures_callnoreturn = {
-            // Variable getter.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Variables are handled specially.
-            helpUrl: RoboBlocks.URL_CONTROLS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALLNORETURN_TOOLTIP'));
-                this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
-                this.quarkConnections_ = null;
-                this.quarkArguments_ = null;
-                this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-            },
-            validName: function(name) {
-                if (name && name.length > 0) {
-                    var i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                    name = name.replace(/([ ])/g, '_');
-                    name = name.replace(/([áàâä])/g, 'a');
-                    name = name.replace(/([éèêë])/g, 'e');
-                    name = name.replace(/([íìîï])/g, 'i');
-                    name = name.replace(/([óòôö])/g, 'o');
-                    name = name.replace(/([úùûü])/g, 'u');
-                    name = name.replace(/([ñ])/g, 'n');
-                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
-                    i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                }
-                return name;
-            },
-            getProcedures: function() {
-                var procedures = Blockly.Procedures.allProcedures();
-                var procedures_dropdown = [];
-                if (procedures[0].length > 0) {
-                    for (var i in procedures[0]) {
-                        var proc_name = procedures[0][i][0];
-                        proc_name = this.validName(proc_name);
-                        procedures_dropdown.push([proc_name, proc_name]);
-                    }
-                } else {
-                    procedures_dropdown.push([RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE'), RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE')]);
-                }
-                return procedures_dropdown;
-            },
-            maxVariableNumber: function() {
-                var procedures = Blockly.Procedures.allProcedures();
-                var procedures_dropdown = [];
-                var max_num = 0;
-                if (procedures[0].length > 0 || procedures[1].length > 0) {
-                    for (var i in procedures[0]) {
-                        if (procedures[0][i][1].length > max_num) { // if the length of the variable array is larger than the max_num, equal max_num to that number
-                            max_num = procedures[0][i][1].length;
-                        }
-                    }
-                    return max_num;
-                } else {
-                    procedures_dropdown.push(['', '']);
-                }
-            },
-            getVariables: function(funcName) {
-                try {
-                    var procedures = Blockly.Procedures.allProcedures();
-                    var procedures_dropdown = [];
-                    if (procedures[0].length > 0) {
-                        for (var i in procedures[0]) {
-                            if (procedures[0][i][0] === funcName) {
-                                return procedures[0][i][1];
-                            }
-                        }
-                    } else {
-                        procedures_dropdown.push(['', '']);
-                    }
-                } catch (e) {}
-            },
-            exists: function() {
-                var procedures = Blockly.Procedures.allProcedures();
-                if (procedures[0].length > 0) {
-                    for (var i in procedures[0]) {
-                        if (procedures[0][i][0] === this.getFieldValue('PROCEDURES')) {
-                            return true;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            },
-            onchange: function() {
-                if (!this.workspace) {
-                    // Block has been deleted.
-                    return;
-                }
-                if (this.getFieldValue('PROCEDURES') !== this.last_procedure && this.getFieldValue('PROCEDURES')) {
-                    this.changeVariables();
-                    this.last_procedure = this.getFieldValue('PROCEDURES');
-                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                } else if (this.getVariables(this.getFieldValue('PROCEDURES')) !== this.last_variables) {
-                    this.addVariables();
-                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                    this.last_procedure = this.getFieldValue('PROCEDURES');
-                }
-                if (!this.exists()) {
-                    try {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALL_WITHOUT_DEFINITION'));
-                    } catch (e) {}
-                } else {
-                    try {
-                        this.setWarningText(null);
-                    } catch (e) {}
-                }
-            },
-            addVariables: function() {
-                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                var var_num = 0;
-                if (func_variables) {
-                    if (!this.last_variables) {
-                        this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                    }
-                    if (func_variables.length >= this.last_variables.length) {
-                        var_num = func_variables.length;
-                    } else if (this.last_variables) {
-                        try {
-                            var_num = this.last_variables.length;
-                        } catch (e) {}
-                    }
-                    for (var x = 0; x < var_num; x++) {
-                        if (this.getInput('ARG' + x) === null) {
-                            this.appendValueInput('ARG' + x).appendField(func_variables[x], 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
-                        } else {
-                            if (func_variables[x] && this.getFieldValue('ARG_NAME' + x)) {
-                                this.setFieldValue(func_variables[x], 'ARG_NAME' + x);
-                            } else {
-                                this.removeInput('ARG' + x);
-                            }
-                        }
-                    }
-                    this.arguments_ = func_variables;
-                }
-            },
-            renameProcedure: function(oldName, newName) {
-                if (this.last_procedure) {
-                    var procedures = this.getProcedures();
-                    for (var i in procedures) {
-                        if (Blockly.Names.equals(oldName, procedures[i][0])) {
-                            this.removeInput('DUMMY');
-                            this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
-                        }
-                    }
-                    if (this.last_procedure === oldName) {
-                        this.last_procedure = newName;
-                    }
-                    try {
-                        this.setFieldValue(this.last_procedure, 'PROCEDURES');
-                    } catch (e) {}
-                }
-            },
-            changeVariables: function() {
-                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES')); //get the variables of the actual function
-                for (var i = 0; i < this.maxVariableNumber(); i++) { // remove all the possible variable inputs
-                    if (this.getInput('ARG' + i) === null) {
-                        break;
-                    }
-                    this.removeInput('ARG' + i);
-                }
-                for (var variable in func_variables) {
-                    this.appendValueInput('ARG' + variable).appendField(func_variables[variable]).setAlign(Blockly.ALIGN_RIGHT);
-                }
-                this.arguments_ = func_variables;
-            },
-            mutationToDom: function() {
-                // Save the name and arguments (none of which are editable).
-                var container = document.createElement('mutation');
-                container.setAttribute('name', this.getFieldValue('PROCEDURES'));
-                if (typeof this.arguments_ === 'undefined') {
-                    this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
-                }
-                if (typeof this.arguments_ === 'undefined') {
-                    this.arguments_ = [];
-                }
-                for (var x = 0; x < this.arguments_.length; x++) {
-                    var parameter = document.createElement('arg');
-                    parameter.setAttribute('name', this.arguments_[x]);
-                    container.appendChild(parameter);
-                }
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                this.xmlElement = xmlElement;
-                // Restore the name and parameters.
-                var name = xmlElement.getAttribute('name');
-                this.last_procedure = name;
-                this.setFieldValue(name, 'PROCEDURES');
-                for (var x = 0; x < xmlElement.childNodes.length; x++) {
-                    this.appendValueInput('ARG' + x).appendField(xmlElement.childNodes[x].getAttribute('name'), 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
-                }
-            }
-        };
-        // Source: src/blocks/procedures_callreturn/procedures_callreturn.js
-        /* global Blockly, JST, RoboBlocks */
-        /**
-         * procedures_callreturn code generation
-         * @return {String} Code generated with block parameters
-         */
-        Blockly.Arduino.procedures_callreturn = function() {
-            // Call a procedure with a return value.
-            var funcName = this.getFieldValue('PROCEDURES');
-            var args = [];
-            var a;
-            var code = '';
-            for (var x = 0; x < this.getVariables(funcName).length; x++) {
-                args[x] = Blockly.Arduino.valueToCode(this, 'ARG' + x, Blockly.Arduino.ORDER_NONE) || 'null';
-
-                a = RoboBlocks.findPinMode(args[x]);
-                code += a['code'];
-                args[x] = a['pin'];
-            }
-            var funcArgs = args.join(', ');
-            code += JST['procedures_callreturn']({
-                'funcName': funcName,
-                'funcArgs': funcArgs
-            });
-            //funcName + '(' + args.join(', ') + ')';
-            return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
-        };
-        Blockly.Blocks.procedures_callreturn = {
-            // Variable getter.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Variables are handled specially.
-            helpUrl: RoboBlocks.URL_CONTROLS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
-                this.setOutput(true);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALLRETURN_TOOLTIP'));
-                this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
-                this.quarkConnections_ = null;
-                this.quarkArguments_ = null;
-                this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-            },
-            validName: function(name) {
-                if (name && name.length > 0) {
-                    var i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                    name = name.replace(/([ ])/g, '_');
-                    name = name.replace(/([áàâä])/g, 'a');
-                    name = name.replace(/([éèêë])/g, 'e');
-                    name = name.replace(/([íìîï])/g, 'i');
-                    name = name.replace(/([óòôö])/g, 'o');
-                    name = name.replace(/([úùûü])/g, 'u');
-                    name = name.replace(/([ñ])/g, 'n');
-                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
-                    i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                    for (var j in Blockly.Arduino.RESERVED_WORDS_) {
-                        var reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
-                        if (name === reserved_words[j]) {
-                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
-                            name = '';
-                            break;
-                        } else {
-                            this.setWarningText(null);
-                        }
-                    }
-                }
-                return name;
-            },
-            getProcedures: function() {
-                var procedures = Blockly.Procedures.allProcedures();
-                var procedures_dropdown = [];
-                if (procedures[1].length > 0) {
-                    for (var i in procedures[1]) {
-                        var proc_name = procedures[1][i][0];
-                        proc_name = this.validName(proc_name);
-                        procedures_dropdown.push([proc_name, proc_name]);
-                    }
-                } else {
-                    procedures_dropdown.push([RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE'), RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE')]);
-                }
-                return procedures_dropdown;
-            },
-            maxVariableNumber: function() {
-                var procedures = Blockly.Procedures.allProcedures();
-                var procedures_dropdown = [];
-                var max_num = 0;
-                if (procedures[1].length > 0) {
-                    for (var i in procedures[1]) {
-                        if (procedures[1][i][1].length > max_num) { // if the length of the variable array is larger than the max_num, equal max_num to that number
-                            max_num = procedures[1][i][1].length;
-                        }
-                    }
-                    return max_num;
-                } else {
-                    procedures_dropdown.push(['', '']);
-                }
-            },
-            getVariables: function(funcName) {
-                try {
-                    var procedures = Blockly.Procedures.allProcedures();
-                    var procedures_dropdown = [];
-                    if (procedures[1].length > 0) {
-                        for (var i in procedures[1]) {
-                            if (procedures[1][i][0] === funcName) {
-                                return procedures[1][i][1];
-                            }
-                        }
-                    } else {
-                        procedures_dropdown.push(['', '']);
-                    }
-                } catch (e) {}
-            },
-            exists: function() {
-                var procedures = Blockly.Procedures.allProcedures();
-                if (procedures[1].length > 0) {
-                    for (var i in procedures[1]) {
-                        if (procedures[1][i][0] === this.getFieldValue('PROCEDURES')) {
-                            return true;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            },
-            onchange: function() {
-                if (!this.workspace) {
-                    // Block has been deleted.
-                    return;
-                }
-                if (this.getFieldValue('PROCEDURES') !== this.last_procedure && this.getFieldValue('PROCEDURES')) {
-                    this.changeVariables();
-                    this.last_procedure = this.getFieldValue('PROCEDURES');
-                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                } else if (this.getVariables(this.getFieldValue('PROCEDURES')) !== this.last_variables) {
-                    this.addVariables();
-                    this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                    this.last_procedure = this.getFieldValue('PROCEDURES');
-                }
-                if (!this.exists()) {
-                    try {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALL_WITHOUT_DEFINITION'));
-                    } catch (e) {}
-                } else {
-                    try {
-                        this.setWarningText(null);
-                    } catch (e) {}
-                }
-            },
-            addVariables: function() {
-                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                var var_num = 0;
-                if (func_variables) {
-                    if (!this.last_variables) {
-                        this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
-                    }
-                    if (func_variables.length >= this.last_variables.length) {
-                        var_num = func_variables.length;
-                    } else if (this.last_variables) {
-                        try {
-                            var_num = this.last_variables.length;
-                        } catch (e) {}
-                    }
-                    for (var x = 0; x < var_num; x++) {
-                        if (this.getInput('ARG' + x) === null) {
-                            this.appendValueInput('ARG' + x).appendField(func_variables[x], 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
-                        } else {
-                            if (func_variables[x] && this.getFieldValue('ARG_NAME' + x)) {
-                                this.setFieldValue(func_variables[x], 'ARG_NAME' + x);
-                            } else {
-                                this.removeInput('ARG' + x);
-                            }
-                        }
-                    }
-                    this.arguments_ = func_variables;
-                }
-            },
-            renameProcedure: function(oldName, newName) {
-                if (this.last_procedure) {
-                    var procedures = this.getProcedures();
-                    for (var i in procedures) {
-                        if (Blockly.Names.equals(oldName, procedures[i][0])) {
-                            this.removeInput('DUMMY');
-                            this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
-                        }
-                    }
-                    if (this.last_procedure === oldName) {
-                        this.last_procedure = newName;
-                    }
-                    try {
-                        this.setFieldValue(this.last_procedure, 'PROCEDURES');
-                    } catch (e) {}
-                }
-            },
-            changeVariables: function() {
-                var func_variables = this.getVariables(this.getFieldValue('PROCEDURES')); //get the variables of the actual function
-                for (var i = 0; i < this.maxVariableNumber(); i++) { // remove all the possible variable inputs
-                    if (this.getInput('ARG' + i) === null) {
-                        break;
-                    }
-                    this.removeInput('ARG' + i);
-                }
-                for (var variable in func_variables) {
-                    this.appendValueInput('ARG' + variable).appendField(func_variables[variable]).setAlign(Blockly.ALIGN_RIGHT);
-                }
-                this.arguments_ = func_variables;
-            },
-            mutationToDom: function() {
-                // Save the name and arguments (none of which are editable).
-                var container = document.createElement('mutation');
-                container.setAttribute('name', this.getFieldValue('PROCEDURES'));
-                if (typeof this.arguments_ === 'undefined') {
-                    this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
-                }
-                if (typeof this.arguments_ === 'undefined') {
-                    this.arguments_ = [];
-                }
-                for (var x = 0; x < this.arguments_.length; x++) {
-                    var parameter = document.createElement('arg');
-                    parameter.setAttribute('name', this.arguments_[x]);
-                    container.appendChild(parameter);
-                }
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                this.xmlElement = xmlElement;
-                // Restore the name and parameters.
-                var name = xmlElement.getAttribute('name');
-                this.last_procedure = name;
-                this.setFieldValue(name, 'PROCEDURES');
-                for (var x = 0; x < xmlElement.childNodes.length; x++) {
-                    this.appendValueInput('ARG' + x).appendField(xmlElement.childNodes[x].getAttribute('name'), 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
-                }
-            }
-        };
-        // Source: src/blocks/procedures_defnoreturn/procedures_defnoreturn.js
-        /* global Blockly, JST, RoboBlocks */
-        /**
-         * procedures_defnoreturn code generation
-         * @return {String} Code generated with block parameters
-         */
-        // Defining a procedure without a return value uses the same generator as
-        // a procedure with a return value.
-        Blockly.Arduino.procedures_defnoreturn = function() {
-            // Define a procedure with a return value.
-            var funcName = this.getFieldValue('NAME');
-            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
-            branch = branch.replace(/&quot;/g, '"');
-            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
-                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
-            }
-            // branch=branch.replace(/&amp;/g, '');
-
-            var returnType = 'void';
-            var args = this.paramString;
-            var code = JST['procedures_defnoreturn']({
-                'returnType': returnType,
-                'funcName': funcName,
-                'args': args,
-                'branch': branch
-            });
-            // code=code.replace(/&amp;/g, '');
-
-            code = Blockly.Arduino.scrub_(this, code);
-            Blockly.Arduino.definitions_[funcName] = code;
-            return null;
-        };
-        Blockly.Blocks.procedures_defnoreturn = {
-            // Define a procedure with no return value.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
-            helpUrl: RoboBlocks.URL_FUNCTIONS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                var name = Blockly.Procedures.findLegalName(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE'), this);
-                this.appendDummyInput().appendField(new Blockly.FieldTextInput(name, Blockly.Procedures.rename), 'NAME').appendField('', 'PARAMS');
-                // this.appendDummyInput().appendField(new Blockly.FieldTextInput(name), 'NAME').appendField('', 'PARAMS');
-                this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_DO'));
-                this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_TOOLTIP'));
-                this.arguments_ = [];
-                this.type_arguments_ = [];
-            },
-            updateParams_: function() {
-                // Check for duplicated arguments.
-                var badArg = false;
-                var hash = {};
-                for (var x = 0; x < this.arguments_.length; x++) {
-                    if (hash['arg_' + this.arguments_[x].toLowerCase()]) {
-                        badArg = true;
-                        break;
-                    }
-                    hash['arg_' + this.arguments_[x].toLowerCase()] = true;
-                }
-                if (badArg) {
-                    try {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEF_DUPLICATE_WARNING'));
-                    } catch (err) {
-                        console.log('Captured error: ', err);
-                    }
-                } else {
-                    this.setWarningText(null);
-                }
-                // Merge the arguments into a human-readable list.
-                var params = [];
-                for (var i in this.arguments_) {
-                    params.push(this.type_arguments_[i] + ' ' + this.arguments_[i]);
-                }
-                this.paramString = params.join(', ');
-                this.setFieldValue(this.paramString, 'PARAMS');
-            },
-            mutationToDom: function() {
-                var container = document.createElement('mutation');
-                for (var x = 0; x < this.arguments_.length; x++) {
-                    var parameter = document.createElement('arg_name');
-                    parameter.setAttribute('name', this.arguments_[x]);
-                    container.appendChild(parameter);
-                    parameter = document.createElement('arg_type');
-                    parameter.setAttribute('name', this.type_arguments_[x]);
-                    container.appendChild(parameter);
-                }
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                this.arguments_ = [];
-                this.type_arguments_ = [];
-                var childNode;
-                for (var x = 0; x < xmlElement.childNodes.length; x++) {
-                    childNode = xmlElement.childNodes[x];
-                    if (childNode.nodeName.toLowerCase() === 'arg_name') {
-                        this.arguments_.push(childNode.getAttribute('name'));
-                    }
-                    if (childNode.nodeName.toLowerCase() === 'arg_type') {
-                        this.type_arguments_.push(childNode.getAttribute('name'));
-                    }
-                }
-                this.updateParams_();
-            },
-            decompose: function(workspace) {
-                var containerBlock = Blockly.Block.obtain(workspace, 'procedures_mutatorcontainer');
-                containerBlock.initSvg();
-                var connection = containerBlock.getInput('STACK').connection;
-                for (var x = 0; x < this.arguments_.length; x++) {
-                    var paramBlock = Blockly.Block.obtain(workspace, 'procedures_mutatorarg');
-                    paramBlock.initSvg();
-                    paramBlock.setFieldValue(this.type_arguments_[x], 'TYPE');
-                    paramBlock.setFieldValue(this.arguments_[x], 'NAME');
-                    // Store the old location.
-                    paramBlock.oldLocation = x;
-                    connection.connect(paramBlock.previousConnection);
-                    connection = paramBlock.nextConnection;
-                }
-                // Initialize procedure's callers with blank IDs.
-                Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, null);
-                Blockly.Procedures.mutateCallers(this.getFieldValue('TYPE'), this.workspace, this.type_arguments_, null);
-                return containerBlock;
-            },
-            compose: function(containerBlock) {
-                this.arguments_ = [];
-                this.paramIds_ = [];
-                this.type_arguments_ = [];
-                var paramBlock = containerBlock.getInputTargetBlock('STACK');
-                var varName;
-                while (paramBlock) {
-                    varName = paramBlock.getFieldValue('NAME');
-                    this.type_arguments_.push(paramBlock.getFieldValue('TYPE'));
-                    this.arguments_.push(varName);
-                    this.paramIds_.push(paramBlock.id);
-                    paramBlock = paramBlock.nextConnection && paramBlock.nextConnection.targetBlock();
-                }
-                this.updateParams_();
-                Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, this.paramIds_);
-            },
-            dispose: function() {
-                var name = this.getFieldValue('NAME');
-                var editable = this.editable;
-                var workspace = this.workspace;
-                // Call parent's destructor.
-                Blockly.Block.prototype.dispose.apply(this, arguments);
-                if (editable) {
-                    // Dispose of any callers.
-                    Blockly.Procedures.disposeCallers(name, workspace);
-                }
-            },
-            getProcedureDef: function() {
-                // Return the name of the defined procedure,
-                // a list of all its arguments,
-                // and that it DOES NOT have a return value.
-                return [this.getFieldValue('NAME'), this.arguments_, false];
-            },
-            getVars: function() {
-                return this.arguments_;
-            },
-            renameVar: function(oldName, newName) {
-                var change = false;
-                for (var x = 0; x < this.arguments_.length; x++) {
-                    if (Blockly.Names.equals(oldName, this.arguments_[x])) {
-                        newName = this.validName(newName);
-                        this.arguments_[x] = newName;
-                        change = true;
-                    }
-                }
-                if (change) {
-                    this.updateParams_();
-                    // Update the mutator's variables if the mutator is open.
-                    if (this.mutator.isVisible_()) {
-                        var blocks = this.mutator.workspace_.getAllBlocks();
-                        var block;
-                        for (x = 0; blocks.length; x++) {
-                            block = blocks[x];
-                            if (block.type === 'procedures_mutatorarg' && Blockly.Names.equals(oldName, block.getFieldValue('NAME'))) {
-                                block.setFieldValue(newName, 'NAME');
-                            }
-                        }
-                    }
-                }
-            },
-            validName: function(name) {
-                if (name && name.length > 0) {
-                    var i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                    name = name.replace(/([ ])/g, '_');
-                    name = name.replace(/([áàâä])/g, 'a');
-                    name = name.replace(/([éèêë])/g, 'e');
-                    name = name.replace(/([íìîï])/g, 'i');
-                    name = name.replace(/([óòôö])/g, 'o');
-                    name = name.replace(/([úùûü])/g, 'u');
-                    name = name.replace(/([ñ])/g, 'n');
-                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
-                    i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                    for (var j in Blockly.Arduino.RESERVED_WORDS_) {
-                        this.reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
-                        if (name === this.reserved_words[j]) {
-                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
-                            name = '';
-                            break;
-                        } else {
-                            this.setWarningText(null);
-                        }
-                    }
-                }
-                return name;
-            },
-            onchange: function() {
-                if (this.last_procedure !== this.getFieldValue('NAME')) {
-                    var name = this.getFieldValue('NAME');
-                    name = this.validName(name);
-                    try {
-                        this.setFieldValue(name, 'NAME');
-                    } catch (e) {}
-                    this.last_procedure = name;
-                }
-            }
-        };
-        Blockly.Blocks.procedures_mutatorcontainer = {
-            // Procedure container (for mutator dialog).
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORCONTAINER_Field'));
-                this.appendStatementInput('STACK');
-                this.setTooltip('');
-                this.contextMenu = false;
-            }
-        };
-        Blockly.Blocks.procedures_mutatorarg = {
-            // Procedure argument (for mutator dialog).
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORARG_Field')).appendField(new Blockly.FieldDropdown([
-                    ['int', 'int'],
-                    ['String', 'String']
-                ]), 'TYPE').appendField(new Blockly.FieldTextInput('x', Blockly.Blocks.procedures_mutatorarg.validator), 'NAME');
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
-                this.setTooltip('');
-                this.contextMenu = false;
-            },
-            onchange: function() {
-                if (this.last_variable !== this.getFieldValue('NAME')) {
-                    var name = this.getFieldValue('NAME');
-                    name = this.validName(name);
-                    try {
-                        this.setFieldValue(name, 'NAME');
-                    } catch (e) {}
-                    this.last_variable = name;
-                }
-            },
-            validName: Blockly.Blocks.procedures_defnoreturn.validName
-        };
-        Blockly.Blocks.procedures_mutatorarg.validator = function(newVar) {
-            // Merge runs of whitespace.  Strip leading and trailing whitespace.
-            // Beyond this, all names are legal.
-            newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
-            return newVar || null;
-        };
-
-        // Source: src/blocks/procedures_defreturn/procedures_defreturn.js
-        /* global Blockly, JST, RoboBlocks */
-        /**
-         * procedures_defreturn code generation
-         * @return {String} Code generated with block parameters
-         */
-        Blockly.Arduino.procedures_defreturn = function() {
-            // Define a procedure with a return value.
-            var funcName = this.getFieldValue('NAME');
-            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
-            branch = branch.replace(/&quot;/g, '"');
-
-            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
-                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
-            }
-            var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
-            var code = '';
-
-            returnValue = returnValue.replace(/&quot;/g, '"');
-            var returnType = this.getReturnType();
-            if (returnValue) {
-                var a = RoboBlocks.findPinMode(returnValue);
-                returnValue = a['code'];
-                returnValue += '  return ' + a['pin'] + ';\n';
-            }
-            var args = this.paramString;
-            code += JST['procedures_defreturn']({
-                'returnType': returnType,
-                'funcName': funcName,
-                'args': args,
-                'branch': branch,
-                'returnValue': returnValue
-            });
-            // code=code.replace(/&amp;/g, '');
-
-            code = Blockly.Arduino.scrub_(this, code);
-            Blockly.Arduino.definitions_[funcName] = code;
-            return null;
-        };
-        Blockly.Blocks.procedures_defreturn = {
-            // Define a procedure with a return value.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Procedures are handled specially.
-            helpUrl: RoboBlocks.URL_FUNCTIONS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                var name = Blockly.Procedures.findLegalName(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE'), this);
-                this.appendDummyInput().appendField(new Blockly.FieldTextInput(name, Blockly.Procedures.rename), 'NAME').appendField('', 'PARAMS');
-                this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_DO'));
-                this.appendValueInput('RETURN').setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
-                this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_TOOLTIP'));
-                this.arguments_ = [];
-            },
-            isVariable: function(varValue) {
-                for (var i in Blockly.Variables.allVariables()) {
-                    if (Blockly.Variables.allVariables()[i] === varValue) {
-                        return true;
-                    }
-                }
-                return false;
-            },
-            getReturnType: function() {
-                var returnType;
-                var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
-                var a = RoboBlocks.findPinMode(returnValue);
-                // code+=a['code'];
-                returnValue = a['pin'];
-
-                var isFunction = false;
-
-                for (var i in Blockly.Arduino.definitions_) {
-                    if (Blockly.Arduino.definitions_[i].search(returnValue + ' \\(') >= 0) {
-                        isFunction = true;
-                        break;
-                    }
-                }
-                if (!returnValue) {
-                    returnType = 'void';
-                }
-                if (returnValue.search('"') >= 0) {
-                    returnType = 'String';
-                } else if (isFunction) { //returnValue.search('\\(') >= 0 && returnValue.search('\\)') >= 0) {
-                    for (i in Blockly.Arduino.definitions_) {
-                        if (Blockly.Arduino.definitions_[i].search(returnValue) >= 0) {
-                            if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'int' || Blockly.Arduino.definitions_[i].substring(0, 3) === '//b') { //bqbat function
-                                if (Blockly.Arduino.definitions_[i].substring(0, 5) === 'int *' || Blockly.Arduino.definitions_[i].substring(0, 5) === 'int _') {
-                                    returnType = 'int *';
-                                } else {
-                                    returnType = 'int';
-                                }
-                            } else if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'Str') {
-                                returnType = 'String';
-                            } else {
-                                returnType = '';
-                            }
-                        }
-                    }
-                } else if (this.isVariable(returnValue)) {
-                    returnType = RoboBlocks.variables[returnValue][0];
-                } else if ((returnValue.search('analogRead') >= 0) || (returnValue.search('digitalRead') >= 0) || (returnValue.search('Distanc') >= 0) || (!isNaN(parseFloat(returnValue)) || (returnValue.search('random') >= 0)) || (returnValue.search('map') >= 0) || returnValue.search('\\[') >= 0 || (returnValue.search('abs') >= 0) || (returnValue.search('sqrt') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('exp') >= 0) || (returnValue.search('pow') >= 0)) {
-                    returnType = 'int';
-                } else if (returnValue.search('readJoystick') >= 0 || returnValue[0] === '{') {
-                    returnType = 'int *';
-                } else {
-                    returnType = 'void';
-                }
-                return returnType;
-            },
-            updateParams_: Blockly.Blocks.procedures_defnoreturn.updateParams_,
-            decompose: Blockly.Blocks.procedures_defnoreturn.decompose,
-            compose: Blockly.Blocks.procedures_defnoreturn.compose,
-            dispose: Blockly.Blocks.procedures_defnoreturn.dispose,
-            getProcedureDef: function() {
-                // Return the name of the defined procedure,
-                // a list of all its arguments,
-                // and that it DOES have a return value.
-                return [this.getFieldValue('NAME'), this.arguments_, true];
-            },
-            getVars: Blockly.Blocks.procedures_defnoreturn.getVars,
-            renameVar: Blockly.Blocks.procedures_defnoreturn.renameVar,
-            mutationToDom: Blockly.Blocks.procedures_defnoreturn.mutationToDom,
-            domToMutation: Blockly.Blocks.procedures_defnoreturn.domToMutation,
-            validName: Blockly.Blocks.procedures_defnoreturn.validName,
-            onchange: Blockly.Blocks.procedures_defnoreturn.onchange
-        };
-
-        // Source: src/blocks/procedures_ifreturn/procedures_ifreturn.js
-        /* global Blockly, RoboBlocks */
-
-        /**
-         * procedures_ifreturn code generation
-         * @return {String} Code generated with block parameters
-         */
-        Blockly.Arduino.procedures_ifreturn = function() {
-            // Conditionally return value from a procedure.
-            var condition = Blockly.Arduino.valueToCode(this, 'CONDITION',
-                Blockly.Arduino.ORDER_NONE) || '';
-            var code = '';
-            var a = RoboBlocks.findPinMode(condition);
-            code += a['code'];
-            condition = a['pin'];
-
-            code += 'if (' + condition + ') {\n';
-            // if (this.hasReturnValue_) {
-            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
-            a = RoboBlocks.findPinMode(value);
-            code += a['code'];
-            code += '  return (' + value + ');\n';
-            // } else {
-            //     code += '  return;\n';
-            // }
-            code += '}\n';
-            return code;
-        };
-
-
-
-        Blockly.Blocks.procedures_ifreturn = {
-            // Conditionally return value from a procedure.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
-            helpUrl: RoboBlocks.URL_FUNCTIONS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendValueInput('CONDITION')
-                    .setCheck(Boolean)
-                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
-                this.appendDummyInput()
-                    .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
-                this.appendValueInput('VALUE');
-                this.setInputsInline(true);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_TOOLTIP'));
-                this.hasReturnValue_ = true;
-            },
-            mutationToDom: function() {
-                // Save whether this block has a return value.
-                var container = document.createElement('mutation');
-                container.setAttribute('value', Number(this.hasReturnValue_));
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                // Restore whether this block has a return value.
-                var value = xmlElement.getAttribute('value');
-                this.hasReturnValue_ = (value === 1);
-                // if (!this.hasReturnValue_) {
-                //     this.removeInput('VALUE');
-                // }
-            },
-            onchange: function() {
-                if (!this.workspace) {
-                    // Block has been deleted.
-                    return;
-                }
-                var legal = false;
-                // Is the block nested in a procedure?
-                var block = this;
-                do {
-                    if (block.type === 'procedures_defreturn') {
-                        legal = true;
-                        break;
-                    }
-                    block = block.getSurroundParent();
-                } while (block);
-                if (legal) {
-                    // If needed, toggle whether this block has a return value.
-                    // if (block.type === 'procedures_defnoreturn' && this.hasReturnValue_) {
-                    //     this.removeInput('VALUE');
-                    //     this.hasReturnValue_ = false;
-                    // } else if (block.type === 'procedures_defreturn' && !this.hasReturnValue_) {
-                    //     this.appendValueInput('VALUE');
-                    //     this.hasReturnValue_ = true;
-                    // }
-                    this.setWarningText(null);
-                } else {
-                    try {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
-                    } catch (err) {
-                        console.log('Captured error: ', err);
-                    }
-                }
-            }
-        };
-
-        // Source: src/blocks/procedures_return/procedures_return.js
-        /* global Blockly, RoboBlocks */
-
-        /**
-         * procedures_ifreturn code generation
-         * @return {String} Code generated with block parameters
-         */
-        Blockly.Arduino.procedures_return = function() {
-            // Conditionally return value from a procedure.
-            var code = '';
-            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
-            var a = RoboBlocks.findPinMode(value);
-            code += a['code'];
-            code += '  return (' + value + ');\n';
-            return code;
-        };
-
-
-
-        Blockly.Blocks.procedures_return = {
-            // Conditionally return value from a procedure.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
-            helpUrl: RoboBlocks.URL_FUNCTIONS,
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendDummyInput()
-                    .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN'));
-                this.appendValueInput('VALUE');
-                this.setInputsInline(true);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN_TOOLTIP'));
-                this.hasReturnValue_ = true;
-            },
-            mutationToDom: function() {
-                // Save whether this block has a return value.
-                var container = document.createElement('mutation');
-                container.setAttribute('value', Number(this.hasReturnValue_));
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                // Restore whether this block has a return value.
-                var value = xmlElement.getAttribute('value');
-                this.hasReturnValue_ = (value === 1);
-            },
-            onchange: function() {
-                if (!this.workspace) {
-                    // Block has been deleted.
-                    return;
-                }
-                var legal = false;
-                // Is the block nested in a procedure?
-                var block = this;
-                do {
-                    if (block.type === 'procedures_defreturn') {
-                        legal = true;
-                        break;
-                    }
-                    block = block.getSurroundParent();
-                } while (block);
-                if (legal) {
-                    this.setWarningText(null);
-                } else {
-                    try {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
-                    } catch (err) {
-                        console.log('Captured error: ', err);
-                    }
-                }
-            }
-        };
-
         // Source: src/blocks/serial_available/serial_available.js
         /* global Blockly, JST, RoboBlocks */
         /* jshint sub:true */
@@ -7139,7 +7524,7 @@
                 }
             },
             getVariables: function() {
-                var variables = Blockly.Variables.allVariables();
+                var variables = Blockly.Variables.allUsedVariables;
                 var dropdown = [];
                 if (variables.length > 0) {
                     for (var i in variables) {
@@ -7152,11 +7537,11 @@
             },
             onchange: function() {
                 // if (!this.last_variables){
-                //     this.last_variables=Blockly.Variables.allVariables();
+                //     this.last_variables=Blockly.Variables.allUsedVariables;
                 // }
-                // var variables=Blockly.Variables.allVariables();
+                // var variables=Blockly.Variables.allUsedVariables;
                 // for (var i in variables){
-                //     if (Blockly.Variables.allVariables()[i]!==this.last_variables[i]){
+                //     if (Blockly.Variables.allUsedVariables[i]!==this.last_variables[i]){
                 //         try{
                 //             this.removeInput('TEXT');
                 //             this.appendValueInput('TEXT')
@@ -7165,7 +7550,7 @@
                 //                 .appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_APPENDTEXT'));
                 //             this.setInputsInline(true);
                 //         }catch(e){}
-                //         this.last_variables=Blockly.Variables.allVariables();
+                //         this.last_variables=Blockly.Variables.allUsedVariables;
                 //     }
                 // }
             }
@@ -7232,7 +7617,7 @@
             // Create a string made up of any number of elements of any type.
             var code = '';
             var a;
-            console.log('this.itemCount_', this.itemCount_);
+            //console.log('this.itemCount_', this.itemCount_);
             if (this.itemCount_ === 0) {
                 return ['\'\'', Blockly.Arduino.ORDER_ATOMIC];
             } else if (this.itemCount_ === 1) {
@@ -7245,22 +7630,22 @@
                 return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
             } else {
                 var i = (Blockly.Arduino.valueToCode(this, 'ADD0', Blockly.Arduino.ORDER_NONE) || '');
-                console.log('Blockly.Arduino.valueToCode(this, ADD0, Blockly.Arduino.ORDER_NONE)', Blockly.Arduino.valueToCode(this, 'ADD0', Blockly.Arduino.ORDER_NONE));
+                //console.log('Blockly.Arduino.valueToCode(this, ADD0, Blockly.Arduino.ORDER_NONE)', Blockly.Arduino.valueToCode(this, 'ADD0', Blockly.Arduino.ORDER_NONE));
                 a = RoboBlocks.findPinMode(i);
                 code = a['code'];
                 i = a['pin'];
 
                 var final_line = 'String(' + i;
-                console.log('iteration 0', '\ncode: ', code, '\nfinal_line: ', final_line, '\nb', i);
+                //console.log('iteration 0', '\ncode: ', code, '\nfinal_line: ', final_line, '\nb', i);
 
                 for (var n = 1; n < this.itemCount_; n++) {
                     i = (Blockly.Arduino.valueToCode(this, 'ADD' + n, Blockly.Arduino.ORDER_NONE) || '');
-                    console.log('Blockly.Arduino.valueToCode(this, ADDn, Blockly.Arduino.ORDER_NONE)', Blockly.Arduino.valueToCode(this, 'ADD' + n, Blockly.Arduino.ORDER_NONE));
+                    //console.log('Blockly.Arduino.valueToCode(this, ADDn, Blockly.Arduino.ORDER_NONE)', Blockly.Arduino.valueToCode(this, 'ADD' + n, Blockly.Arduino.ORDER_NONE));
                     a = RoboBlocks.findPinMode(i);
                     code += a['code'];
                     i = a['pin'];
                     final_line += ') + String(' + i;
-                    console.log('iteration', n, '\ncode: ', code, '\nfinal_line: ', final_line, '\nb', i);
+                    //console.log('iteration', n, '\ncode: ', code, '\nfinal_line: ', final_line, '\nb', i);
                 }
 
 
@@ -7583,7 +7968,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_GET_TOOLTIP'));
             },
             getVariables: function() {
-                var variables = Blockly.Variables.allVariables();
+                var variables = Blockly.Variables.allUsedVariables;
                 var dropdown = [];
                 if (variables.length > 0) {
                     for (var i in variables) {
@@ -7609,8 +7994,8 @@
                 }
             },
             exists: function() {
-                for (var i in Blockly.Variables.allVariables()) {
-                    if (Blockly.Variables.allVariables()[i] === this.getFieldValue('VAR')) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === this.getFieldValue('VAR')) {
                         return true;
                     }
                 }
@@ -7719,8 +8104,8 @@
                 }
             },
             isVariable: function(varValue) {
-                for (var i in Blockly.Variables.allVariables()) {
-                    if (Blockly.Variables.allVariables()[i] === varValue) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
                         return true;
                     }
                 }
@@ -7840,8 +8225,8 @@
                 }
             },
             isVariable: function(varValue) {
-                for (var i in Blockly.Variables.allVariables()) {
-                    if (Blockly.Variables.allVariables()[i] === varValue) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
                         return true;
                     }
                 }
@@ -8109,7 +8494,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_TOOLTIP'));
             },
             getVariables: function() {
-                var variables = Blockly.Variables.allVariables();
+                var variables = Blockly.Variables.allUsedVariables;
                 var dropdown = [];
                 if (variables.length > 0) {
                     for (var i in variables) {
@@ -8139,8 +8524,8 @@
                 }
             },
             exists: function() {
-                for (var i in Blockly.Variables.allVariables()) {
-                    if (Blockly.Variables.allVariables()[i] === this.getFieldValue('VAR')) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === this.getFieldValue('VAR')) {
                         return true;
                     }
                 }
@@ -8198,7 +8583,7 @@
          */
 
 
-        Blockly.Arduino.bq_buttons = function() {
+        /*Blockly.Arduino.bq_buttons = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
             var code_btn1 = Blockly.Arduino.statementToCode(this, 'BUTN1');
             var code_btn2 = Blockly.Arduino.statementToCode(this, 'BUTN2');
@@ -8240,19 +8625,19 @@
             });
 
             return code;
-        };
+        };*/
 
         /**
          * bq_buttons block definition
          * @type {Object}
          */
-        Blockly.Blocks.bq_buttons = {
+        /*Blockly.Blocks.bq_buttons = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
             tags: ['buttons'],
             helpUrl: RoboBlocks.URL_BASIC_IO,
-            /**
-             * bq_buttons initialization
-             */
+            //
+            // bq_buttons initialization
+            //
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
                 this.appendValueInput('PIN')
@@ -8279,7 +8664,7 @@
                 this.setNextStatement(true, null);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_BUTTONS_TOOLTIP'));
             }
-        };
+        };*/
 
 		// Source: src/blocks/zum_button/zum_button.js
         /* global Blockly, options, JST, RoboBlocks */
@@ -8288,19 +8673,134 @@
          * zum_button code generation
          * @return {String} Code generated with block parameters
          */
+
+	/**
+         * bq_button code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.button = function() {
+            var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+            var code = '';
+            var a = RoboBlocks.findPinMode(dropdown_pin);
+            code += a['code'];
+            dropdown_pin = a['pin'];
+
+            if (RoboBlocks.isVariable(dropdown_pin)) {
+                code += JST['zum_button_setups']({
+                    'dropdown_pin': dropdown_pin,
+		    'pullup': 'INPUT'
+                });
+            } else {
+                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = JST['zum_button_setups']({
+                    'dropdown_pin': dropdown_pin,
+		    'pullup': 'INPUT'
+                });
+            }
+            code += JST['bq_button']({
+                'dropdown_pin': dropdown_pin,
+            });
+            // console.log('code',code);
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+        /**
+         * bq_button block definition
+         * @type {Object}
+         */
+        Blockly.Blocks.button = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+            tags: ['button'],
+            helpUrl: RoboBlocks.URL_BUTTON,
+            //bq_button initialization
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
+                this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_BQ_BUTTON')).appendField(new Blockly.FieldImage('img/blocks/ky-004.png', 106 * options.zoom, 70 * options.zoom)).setCheck(Number).appendField(RoboBlocks.locales.getKey('LANG_BQ_BUTTON_PIN')).appendField(new Blockly.FieldImage('img/blocks/digital_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT);
+                this.setOutput(true, Boolean);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_BUTTON_TOOLTIP'));
+            }
+        };
+
+	/**
+         * bq_button code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.button_case = function() {
+            var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+            var code = '';
+            var a = RoboBlocks.findPinMode(dropdown_pin);
+            code += a['code'];
+            dropdown_pin = a['pin'];
+
+	    if (RoboBlocks.isVariable(dropdown_pin)) {
+                code += JST['zum_button_setups']({
+                    'dropdown_pin': dropdown_pin,
+		    'pullup': 'INPUT'
+                });
+            } else {
+                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = JST['zum_button_setups']({
+                    'dropdown_pin': dropdown_pin,
+		    'pullup': 'INPUT'
+                });
+            }
+
+	    var code_pressed = '';
+	    var code_not_pressed = '';
+	    code_pressed += Blockly.Arduino.statementToCode(this, 'PRESSED');
+            code_not_pressed += Blockly.Arduino.statementToCode(this, 'NOT_PRESSED');
+
+	    code_pressed = code_pressed.replace(/&quot;/g, '"');
+            code_not_pressed = code_not_pressed.replace(/&quot;/g, '"');
+
+            code += 'if ('+JST['bq_button']({
+                'dropdown_pin': dropdown_pin,
+            })+'==LOW){\n'+code_pressed+'\n}\nelse{\n'+code_not_pressed+'\n}\n';
+            // console.log('code',code);
+            return code;
+        };
+        /**
+         * bq_button block definition
+         * @type {Object}
+         */
+        Blockly.Blocks.button_case = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+            tags: ['button'],
+            helpUrl: RoboBlocks.URL_BUTTON,
+            //bq_button initialization
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
+                this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_BQ_BUTTON')).appendField(new Blockly.FieldImage('img/blocks/ky-004.png', 106 * options.zoom, 70 * options.zoom)).setCheck(Number).appendField(RoboBlocks.locales.getKey('LANG_BQ_BUTTON_PIN')).appendField(new Blockly.FieldImage('img/blocks/digital_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT);
+                this.setOutput(false, null);
+		this.appendStatementInput('PRESSED')
+                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .appendField(RoboBlocks.locales.getKey('LANG_BUTTON_PRESSED'));
+                this.appendStatementInput('NOT_PRESSED')
+                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .appendField(RoboBlocks.locales.getKey('LANG_BUTTON_NOT_PRESSED'));
+                this.setPreviousStatement(true, null);
+                this.setNextStatement(true, null);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_BUTTON_TOOLTIP'));
+            }
+        };
+
         Blockly.Arduino.zum_button = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
             var code = '';
             var a = RoboBlocks.findPinMode(dropdown_pin);
             code += a['code'];
             dropdown_pin = a['pin'];
+	    var pullup;
+            if (this.getFieldValue('PULLUP')==='FALSE')
+	      pullup='INPUT';
+	    else
+              pullup='INPUT_PULLUP';
             if (RoboBlocks.isVariable(dropdown_pin)) {
                 code += JST['zum_button_setups']({
                     'dropdown_pin': dropdown_pin,
+		    'pullup': pullup
                 });
             } else {
                 Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = JST['zum_button_setups']({
                     'dropdown_pin': dropdown_pin,
+		    'pullup': pullup
                 });
             }
             code += JST['zum_button']({
@@ -8317,44 +8817,205 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
             tags: ['button'],
             helpUrl: RoboBlocks.URL_BASIC_IO,
-            /**
-             * zum_button initialization
-             */
+            //
+            // zum_button initialization
+            //
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
-                this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ZUM_BUTTON')).appendField(new Blockly.FieldImage('img/blocks/zum02.png', 106 * options.zoom, 70 * options.zoom)).appendField(RoboBlocks.locales.getKey('LANG_ZUM_BUTTON_PIN'));
+                this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ZUM_BUTTON')).appendField(new Blockly.FieldImage('img/blocks/pushbutton.png', 104 * options.zoom, 50 * options.zoom)).appendField(RoboBlocks.locales.getKey('LANG_ZUM_BUTTON_PIN')).appendField(new Blockly.FieldImage('img/blocks/digital_signal.png', 48 * options.zoom, 48 * options.zoom));
+		this.appendDummyInput().appendField('pull-up?').appendField(new Blockly.FieldCheckbox('FALSE'), 'PULLUP').setAlign(Blockly.ALIGN_RIGHT);
                 this.setOutput(true, Boolean);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ZUM_BUTTON_TOOLTIP'));
+				this.setInputsInline(false);
             }
+        };
+
+	/**
+         * bq_joystick code generation
+         * @return {String} Code generated with block parameters
+         */
+        Blockly.Arduino.bq_joystickX = function() {
+            var pinx = Blockly.Arduino.valueToCode(this, 'PINX', Blockly.Arduino.ORDER_ATOMIC);
+            var code = 'analogRead('+pinx+')';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
 	/**
          * bq_joystick block definition
          * @type {Object}
          */
-        Blockly.Blocks.bq_joystick = {
+        Blockly.Blocks.bq_joystickX = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
             tags: ['joystick'],
             helpUrl: RoboBlocks.URL_BASIC_IO,
-            /**
-             * bq_joystick initialization
-             */
+            //
+            // bq_joystick initialization
+            //
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
-                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK')).appendField(new Blockly.FieldImage('img/blocks/bqmod11.png', 104 * options.zoom, 138 * options.zoom));
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 104* options.zoom, 50 * options.zoom));
+                this.appendValueInput('PINX').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_X')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.setOutput(true, Number);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_TOOLTIP'));
+            }
+        };
+
+	/**
+         * bq_joystick code generation
+         * @return {String} Code generated with block parameters
+         */
+	Blockly.Arduino.bq_joystickY = function() {
+            var pinx = Blockly.Arduino.valueToCode(this, 'PINX', Blockly.Arduino.ORDER_ATOMIC);
+            var piny = Blockly.Arduino.valueToCode(this, 'PINY', Blockly.Arduino.ORDER_ATOMIC);
+            var pinbutton = Blockly.Arduino.valueToCode(this, 'PINBUTTON', Blockly.Arduino.ORDER_ATOMIC);
+            var code = '';
+
+            var a = RoboBlocks.findPinMode(pinx);
+            code += a['code'];
+            pinx = a['pin'];
+
+            a = RoboBlocks.findPinMode(piny);
+            code += a['code'];
+            piny = a['pin'];
+
+            a = RoboBlocks.findPinMode(pinbutton);
+            code += a['code'];
+            pinbutton = a['pin'];
+
+
+            var name = pinx.substring(0, 3) + '_' + piny.substring(0, 3);
+
+            Blockly.Arduino.definitions_['declare_var_internal_readJoystick_array_' + pinx] = 'int _internal_readJoystick_array_' + name + '[3];\n';
+            Blockly.Arduino.definitions_['define_joystick' + pinx] = JST['bq_joystick_definitions']({
+                'name': name,
+                'pinx': pinx,
+                'piny': piny,
+                'pinbutton': pinbutton
+            });
+            if (RoboBlocks.isVariable(pinbutton)) {
+                code += JST['bq_joystick_setups']({
+                    'pinbutton': pinbutton
+                });
+            } else {
+                Blockly.Arduino.setups_['setup_joystick_' + pinbutton] = JST['bq_joystick_setups']({
+                    'pinbutton': pinbutton
+                });
+            }
+            var array = Blockly.Arduino.valueToCode(this, 'POS', Blockly.Arduino.ORDER_ATOMIC);
+            code += JST['bq_joystick']({
+                'name': name,
+                'pinx': pinx,
+                'array': array
+            });
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+
+	/**
+         * bq_joystick block definition
+         * @type {Object}
+         */
+        Blockly.Blocks.bq_joystickY = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+            tags: ['joystick'],
+            helpUrl: RoboBlocks.URL_BASIC_IO,
+            //
+            // bq_joystick initialization
+            //
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 104 * options.zoom, 50 * options.zoom));
                 // this.appendValueInput('POS')
                 //     .appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_POSITION'))
                 //     .setAlign(Blockly.ALIGN_RIGHT)
                 //     .setCheck(Number);
-                this.appendValueInput('PINX').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_X')).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
-                this.appendValueInput('PINY').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_Y')).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
-                this.appendValueInput('PINBUTTON').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_BUTTON')).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.appendValueInput('PINX').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_X')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.appendValueInput('PINY').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_Y')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.appendValueInput('PINBUTTON').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_BUTTON')).appendField(new Blockly.FieldImage('img/blocks/digital_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
                 this.setOutput(true, Number);
                 // this.setPreviousStatement(true, null);
                 // this.setNextStatement(true, null);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_TOOLTIP'));
             }
         };
+
+	/**
+         * bq_joystick code generation
+         * @return {String} Code generated with block parameters
+         */
+	Blockly.Arduino.bq_joystickBut = function() {
+            var pinx = Blockly.Arduino.valueToCode(this, 'PINX', Blockly.Arduino.ORDER_ATOMIC);
+            var piny = Blockly.Arduino.valueToCode(this, 'PINY', Blockly.Arduino.ORDER_ATOMIC);
+            var pinbutton = Blockly.Arduino.valueToCode(this, 'PINBUTTON', Blockly.Arduino.ORDER_ATOMIC);
+            var code = '';
+
+            var a = RoboBlocks.findPinMode(pinx);
+            code += a['code'];
+            pinx = a['pin'];
+
+            a = RoboBlocks.findPinMode(piny);
+            code += a['code'];
+            piny = a['pin'];
+
+            a = RoboBlocks.findPinMode(pinbutton);
+            code += a['code'];
+            pinbutton = a['pin'];
+
+
+            var name = pinx.substring(0, 3) + '_' + piny.substring(0, 3);
+
+            Blockly.Arduino.definitions_['declare_var_internal_readJoystick_array_' + pinx] = 'int _internal_readJoystick_array_' + name + '[3];\n';
+            Blockly.Arduino.definitions_['define_joystick' + pinx] = JST['bq_joystick_definitions']({
+                'name': name,
+                'pinx': pinx,
+                'piny': piny,
+                'pinbutton': pinbutton
+            });
+            if (RoboBlocks.isVariable(pinbutton)) {
+                code += JST['bq_joystick_setups']({
+                    'pinbutton': pinbutton
+                });
+            } else {
+                Blockly.Arduino.setups_['setup_joystick_' + pinbutton] = JST['bq_joystick_setups']({
+                    'pinbutton': pinbutton
+                });
+            }
+            var array = Blockly.Arduino.valueToCode(this, 'POS', Blockly.Arduino.ORDER_ATOMIC);
+            code += JST['bq_joystick']({
+                'name': name,
+                'pinx': pinx,
+                'array': array
+            });
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+
+	/**
+         * bq_joystick block definition
+         * @type {Object}
+         */
+        Blockly.Blocks.bq_joystickBut = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+            tags: ['joystick'],
+            helpUrl: RoboBlocks.URL_BASIC_IO,
+            //
+            // bq_joystick initialization
+            //
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 104 * options.zoom, 50 * options.zoom));
+                // this.appendValueInput('POS')
+                //     .appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_POSITION'))
+                //     .setAlign(Blockly.ALIGN_RIGHT)
+                //     .setCheck(Number);
+                this.appendValueInput('PINX').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_X')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.appendValueInput('PINY').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_Y')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.appendValueInput('PINBUTTON').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_BUTTON')).appendField(new Blockly.FieldImage('img/blocks/digital_signal.png', 48 * options.zoom, 48 * options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.setOutput(true, Number);
+                // this.setPreviousStatement(true, null);
+                // this.setNextStatement(true, null);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_TOOLTIP'));
+            }
+        };
+
         // Source: src/blocks/bq_led/bq_led.js
         /* global Blockly, options, JST, RoboBlocks */
         /* jshint sub:true */
@@ -8535,7 +9196,7 @@
          * zum_led code generation
          * @return {String} Code generated with block parameters
          */
-        Blockly.Arduino.zum_led = function() {
+        /*Blockly.Arduino.zum_led = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC) || '';
             var dropdown_stat = this.getFieldValue('STAT');
             var code = '';
@@ -8558,18 +9219,18 @@
                 'dropdown_stat': dropdown_stat
             });
             return code;
-        };
+        };*/
         /**
          * zum_led block definition
          * @type {Object}
          */
-        Blockly.Blocks.zum_led = {
+        /*Blockly.Blocks.zum_led = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
             tags: ['led'],
             helpUrl: RoboBlocks.URL_BASIC_IO,
-            /**
-             * zum_led initialization
-             */
+            //
+            // zum_led initialization
+            //
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ZUM_LED')).appendField(new Blockly.FieldImage('img/blocks/zum04.png', 104 * options.zoom, 70 * options.zoom)).appendField(RoboBlocks.locales.getKey('LANG_ZUM_LED_PIN'));
@@ -8581,7 +9242,7 @@
                 this.setNextStatement(true, null);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ZUM_LED_TOOLTIP'));
             }
-        };
+        };*/
         // Source: src/blocks/zum_photoresistor/zum_photoresistor.js
         /* global Blockly, options, JST, RoboBlocks */
         /* jshint sub:true */
@@ -8590,7 +9251,7 @@
          * zum_photoresistor code generation
          * @return {String} Code generated with block parameters
          */
-        Blockly.Arduino.zum_photoresistor = function() {
+        /*Blockly.Arduino.zum_photoresistor = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC) || '';
             var code = '';
             var a = RoboBlocks.findPinMode(dropdown_pin);
@@ -8604,20 +9265,20 @@
 
             //  code=code.substring(0,code.length-1);
             return [code, Blockly.Arduino.ORDER_ATOMIC];
-        };
+        };*/
 
 
         /**
          * zum_photoresistor block definition
          * @type {Object}
          */
-        Blockly.Blocks.zum_photoresistor = {
+        /*Blockly.Blocks.zum_photoresistor = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_LIGHT'),
             tags: ['photoresistor'],
             helpUrl: RoboBlocks.URL_LDR,
-            /**
-             * zum_photoresistor initialization
-             */
+            //
+            // zum_photoresistor initialization
+            //
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_LIGHT);
                 this.appendValueInput('PIN')
@@ -8627,7 +9288,7 @@
                 this.setOutput(true, Number);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ZUM_PHOTORESISTOR_TOOLTIP'));
             }
-        };
+        };*/
 
         // Source: src/blocks/zum_piezo_buzzer/zum_piezo_buzzer.js
         /* global Blockly, options, JST, RoboBlocks */
@@ -8778,7 +9439,7 @@
          * zum_potentiometer code generation
          * @return {String} Code generated with block parameters
          */
-        Blockly.Arduino.zum_potentiometer = function() {
+        /*Blockly.Arduino.zum_potentiometer = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC) || '';
             var code = '';
             var a = RoboBlocks.findPinMode(dropdown_pin);
@@ -8790,19 +9451,19 @@
             });
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
-        };
+        };*/
 
         /**
          * zum_potentiometer block definition
          * @type {Object}
          */
-        Blockly.Blocks.zum_potentiometer = {
+        /*Blockly.Blocks.zum_potentiometer = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
             tags: ['potentiometer'],
             helpUrl: RoboBlocks.URL_BASIC_IO,
-            /**
-             * zum_potentiometer initialization
-             */
+            //
+            // zum_potentiometer initialization
+            //
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
                 this.appendValueInput('PIN')
@@ -8812,7 +9473,51 @@
                 this.setOutput(true, Number);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ZUM_POTENTIOMETER_TOOLTIP'));
             }
+        };*/
+
+	Blockly.Arduino.dyor_31_in_1_rele = function() {
+            var code = '';
+            var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+	    var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ATOMIC);
+	    var a = RoboBlocks.findPinMode(dropdown_pin);
+            code += a['code'];
+            dropdown_pin = a['pin'];
+			
+			if (RoboBlocks.isVariable(dropdown_pin)) {
+                code += JST['inout_digital_write_setups']({
+                    'dropdown_pin': dropdown_pin
+                });
+			} else {
+				Blockly.Arduino.setups_['setup_green_digital_write_' + dropdown_pin] = JST['inout_digital_write_setups']({
+                    'dropdown_pin': dropdown_pin
+                });
+			}
+
+            code += JST['inout_digital_write']({
+                'dropdown_pin': dropdown_pin,
+		'dropdown_stat': value
+            });
+
+            //  code=code.substring(0,code.length-1);
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
+
+        Blockly.Blocks.dyor_31_in_1_rele = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),	
+            tags: ['rele'],
+            helpUrl: RoboBlocks.URL_BASIC_IO,
+            //rele initialization
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
+                this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_RELE')).appendField(new Blockly.FieldImage('img/blocks/rele.png', 182 * options.zoom, 126 * options.zoom)).appendField(RoboBlocks.locales.getKey('LANG_RELE_PIN')).appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",48*options.zoom,48*options.zoom)).setCheck(Number);
+		this.appendValueInput('VALUE', Boolean).setCheck(Boolean).setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_RELE_VALUE'));
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_RELE_TOOLTIP'));
+            }
+        };
+
+
         return Blockly.Blocks;
     }
     var RoboBlocks = {
