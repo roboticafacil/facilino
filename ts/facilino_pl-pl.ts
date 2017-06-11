@@ -127,9 +127,9 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="544"/>
-        <location filename="../src/mainwindow.cpp" line="185"/>
-        <location filename="../src/mainwindow.cpp" line="463"/>
-        <location filename="../src/mainwindow.cpp" line="467"/>
+        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="469"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Save</source>
         <translation>Zapisz</translation>
     </message>
@@ -311,68 +311,68 @@
         <translation>Pokaż/ukryj etykiety ikon</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="175"/>
+        <location filename="../src/mainwindow.cpp" line="176"/>
         <source>Examples</source>
         <translation>Przykłady</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="189"/>
+        <location filename="../src/mainwindow.cpp" line="190"/>
         <source>Export</source>
         <translation>Eksport</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="201"/>
-        <location filename="../src/mainwindow.cpp" line="483"/>
+        <location filename="../src/mainwindow.cpp" line="202"/>
+        <location filename="../src/mainwindow.cpp" line="489"/>
         <source>Couldn&apos;t open file to save content: %1.</source>
         <translation>Nie można otworzyć pliku do zapisu zawartości: %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="208"/>
+        <location filename="../src/mainwindow.cpp" line="209"/>
         <source>Done exporting: %1.</source>
         <translation>Eksport wykonany: %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="270"/>
+        <location filename="../src/mainwindow.cpp" line="271"/>
         <source>Include file</source>
         <translation>Dołącz plik</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="376"/>
+        <location filename="../src/mainwindow.cpp" line="382"/>
         <source>Open file</source>
         <translation>Otwórz plik</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="389"/>
+        <location filename="../src/mainwindow.cpp" line="395"/>
         <source>Blockly Files %1</source>
         <translation>Pliki Blockly %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="409"/>
+        <location filename="../src/mainwindow.cpp" line="415"/>
         <source>Couldn&apos;t open file to read content: %1.</source>
         <translation>Nie można otworzyć pliku do odczytu zawartości: %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="493"/>
+        <location filename="../src/mainwindow.cpp" line="499"/>
         <source>Done saving.</source>
         <translation>Zapis wykonany.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="542"/>
+        <location filename="../src/mainwindow.cpp" line="548"/>
         <source>Please, restart the application to display the selected language.</source>
         <translation>Proszę uruchomić ponownie aplikację aby pokazać ją w wybranym języku.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="654"/>
+        <location filename="../src/mainwindow.cpp" line="660"/>
         <source>Finished.</source>
         <translation>Zakończone.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="663"/>
+        <location filename="../src/mainwindow.cpp" line="669"/>
         <source>Building...</source>
         <translation>Buduję...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="957"/>
+        <location filename="../src/mainwindow.cpp" line="963"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Niezapisane zmiany zostaną utracone. Czy chcesz je teraz zachować?</translation>
     </message>

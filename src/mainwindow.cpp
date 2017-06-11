@@ -19,6 +19,7 @@
 #include <QTimer>
 #include <QWebFrame>
 #include <QWebSecurityOrigin>
+#include <QDesktopWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -283,7 +284,12 @@ void MainWindow::actionLicense() {
             arg(settings->license());
     if ((settings->license().isEmpty())&&(this->alert==false))
     {
-        QMessageBox::information(this,"Facilino","Esta es una versión gratuita de Facilino con todas las funcionalidades básicas incluidas. Si dispone de una licencia, puede acceder a las funcionalidades avanzadas introduciéndola en las preferencias. Si tiene cualquier problema con la licencia, por favor, contacte con soporte@roboticafacil.es");
+        //QMessageBox::information(this,"Facilino","Esta es una versión gratuita de Facilino con todas las funcionalidades básicas incluidas. Si dispone de una licencia, puede acceder a las funcionalidades avanzadas introduciéndola en las preferencias. Si tiene cualquier problema con la licencia, por favor, contacte con soporte@roboticafacil.es");
+        QMessageBox message(QMessageBox::Information,"Facilino","Esta es una versión gratuita de Facilino con todas las funcionalidades básicas incluidas. Si dispone de una licencia, puede acceder a las funcionalidades avanzadas introduciéndola en las preferencias. Si tiene cualquier problema con la licencia, por favor, contacte con soporte@roboticafacil.es",QMessageBox::NoButton,0,Qt::FramelessWindowHint);
+        message.show();
+        QWidget *screen  = QDesktopWidget().screen();
+        message.move((screen->width()-message.width())/2,(screen->height()-message.height())/2);
+        message.exec();
         this->alert=true;
     }
     ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
