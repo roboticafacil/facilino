@@ -127,15 +127,9 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="544"/>
-<<<<<<< HEAD
         <location filename="../src/mainwindow.cpp" line="188"/>
         <location filename="../src/mainwindow.cpp" line="464"/>
         <location filename="../src/mainwindow.cpp" line="468"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="186"/>
-        <location filename="../src/mainwindow.cpp" line="469"/>
-        <location filename="../src/mainwindow.cpp" line="473"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
         <source>Save</source>
         <translation>Desa</translation>
     </message>
@@ -317,31 +311,18 @@
         <translation>Mostar/amagar texte d&apos;icones</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../src/mainwindow.cpp" line="178"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="176"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
         <source>Examples</source>
         <translation>Exemples</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../src/mainwindow.cpp" line="192"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="190"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
         <source>Export</source>
         <translation>Exportar</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../src/mainwindow.cpp" line="204"/>
         <location filename="../src/mainwindow.cpp" line="484"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="202"/>
-        <location filename="../src/mainwindow.cpp" line="489"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
         <source>Couldn&apos;t open file to save content: %1.</source>
         <translation>No puc obrir arxiu per desar contingut: %1.</translation>
     </message>
