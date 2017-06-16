@@ -130,9 +130,9 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="544"/>
-        <location filename="../src/mainwindow.cpp" line="189"/>
-        <location filename="../src/mainwindow.cpp" line="465"/>
-        <location filename="../src/mainwindow.cpp" line="469"/>
+        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="460"/>
+        <location filename="../src/mainwindow.cpp" line="464"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
@@ -310,13 +310,13 @@
         <translation>Примеры...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="205"/>
-        <location filename="../src/mainwindow.cpp" line="485"/>
+        <location filename="../src/mainwindow.cpp" line="202"/>
+        <location filename="../src/mainwindow.cpp" line="480"/>
         <source>Couldn&apos;t open file to save content: %1.</source>
         <translation>Невозможно открыть файл для записи: %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="212"/>
+        <location filename="../src/mainwindow.cpp" line="209"/>
         <source>Done exporting: %1.</source>
         <translation>Завершен экспорт файла: %1.</translation>
     </message>
@@ -325,42 +325,42 @@
         <translation type="vanished">Импорт файла</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="179"/>
+        <location filename="../src/mainwindow.cpp" line="176"/>
         <source>Examples</source>
         <translation>Примеры</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="193"/>
+        <location filename="../src/mainwindow.cpp" line="190"/>
         <source>Export</source>
         <translation>Экспорт</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="274"/>
+        <location filename="../src/mainwindow.cpp" line="271"/>
         <source>Include file</source>
         <translation>Добавить файл</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="373"/>
         <source>Open file</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="391"/>
+        <location filename="../src/mainwindow.cpp" line="386"/>
         <source>Blockly Files %1</source>
         <translation>Файлы Blockly %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="411"/>
+        <location filename="../src/mainwindow.cpp" line="406"/>
         <source>Couldn&apos;t open file to read content: %1.</source>
         <translation>Невозможно открыть файл для чтения: %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="495"/>
+        <location filename="../src/mainwindow.cpp" line="490"/>
         <source>Done saving.</source>
         <translation>Запись завершена.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="544"/>
+        <location filename="../src/mainwindow.cpp" line="539"/>
         <source>Please, restart the application.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -369,17 +369,17 @@
         <translation type="vanished">Пожалуйста, перезапустите программу для отображения выбранного языка.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="658"/>
+        <location filename="../src/mainwindow.cpp" line="651"/>
         <source>Finished.</source>
         <translation>Завершено.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="667"/>
+        <location filename="../src/mainwindow.cpp" line="660"/>
         <source>Building...</source>
         <translation>Сборка...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Имеются изменения в программе, которые могут быть потеряны. Сохранить их, прежде чем продолжим?</translation>
     </message>

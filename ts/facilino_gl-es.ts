@@ -107,9 +107,9 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="544"/>
-        <location filename="../src/mainwindow.cpp" line="189"/>
-        <location filename="../src/mainwindow.cpp" line="465"/>
-        <location filename="../src/mainwindow.cpp" line="469"/>
+        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="460"/>
+        <location filename="../src/mainwindow.cpp" line="464"/>
         <source>Save</source>
         <translation>Gardar</translation>
     </message>
@@ -326,13 +326,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="205"/>
-        <location filename="../src/mainwindow.cpp" line="485"/>
+        <location filename="../src/mainwindow.cpp" line="202"/>
+        <location filename="../src/mainwindow.cpp" line="480"/>
         <source>Couldn&apos;t open file to save content: %1.</source>
         <translation>Non se puido abrir o ficheiro para gardar o contido:%1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="212"/>
+        <location filename="../src/mainwindow.cpp" line="209"/>
         <source>Done exporting: %1.</source>
         <translation>Exportación realizada: %1.</translation>
     </message>
@@ -341,42 +341,42 @@
         <translation type="vanished">Importar ficheiro</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="179"/>
+        <location filename="../src/mainwindow.cpp" line="176"/>
         <source>Examples</source>
         <translation>Exemplos</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="193"/>
+        <location filename="../src/mainwindow.cpp" line="190"/>
         <source>Export</source>
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="274"/>
+        <location filename="../src/mainwindow.cpp" line="271"/>
         <source>Include file</source>
         <translation>Incluír ficheiro</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="373"/>
         <source>Open file</source>
         <translation>Abrir ficheiro</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="391"/>
+        <location filename="../src/mainwindow.cpp" line="386"/>
         <source>Blockly Files %1</source>
         <translation>Ficheiros Blockly %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="411"/>
+        <location filename="../src/mainwindow.cpp" line="406"/>
         <source>Couldn&apos;t open file to read content: %1.</source>
         <translation>Non se puido abrir o ficheiro para ler o contido: %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="495"/>
+        <location filename="../src/mainwindow.cpp" line="490"/>
         <source>Done saving.</source>
         <translation>Gardado finalizado.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="544"/>
+        <location filename="../src/mainwindow.cpp" line="539"/>
         <source>Please, restart the application.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -385,17 +385,17 @@
         <translation type="vanished">Reinicie a aplicación para mostrar o idioma seleccionado.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="658"/>
+        <location filename="../src/mainwindow.cpp" line="651"/>
         <source>Finished.</source>
         <translation>Finalizou.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="667"/>
+        <location filename="../src/mainwindow.cpp" line="660"/>
         <source>Building...</source>
         <translation>Compilando...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Hai cambios sen gravar que podería perder. Desexa gardarlos antes de continuar?</translation>
     </message>

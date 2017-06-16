@@ -18,7 +18,6 @@
 #include <QThread>
 #include <QTimer>
 #include <QWebFrame>
-#include <QWebSecurityOrigin>
 #include <QDesktopWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -52,8 +51,6 @@ MainWindow::MainWindow(QWidget *parent) :
     xmlFileName = "";
     serial = NULL;
     QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
-    QWebSecurityOrigin::addLocalScheme("https");
-    ui->webView->page()->mainFrame()->securityOrigin().addAccessWhitelistEntry("https","roboticafacil.es",QWebSecurityOrigin::DisallowSubdomains);
     ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     float zoomScale = settings->zoomScale();
     ui->webView->setZoomFactor(zoomScale);
@@ -286,8 +283,6 @@ void MainWindow::actionLicense() {
     QString jsLanguage = QString("var license = '%1';").
             arg(settings->license());
     QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
-    QWebSecurityOrigin::addLocalScheme("https");
-    ui->webView->page()->mainFrame()->securityOrigin().addAccessWhitelistEntry("https","roboticafacil.es",QWebSecurityOrigin::DisallowSubdomains);
     ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
 }
 
@@ -611,8 +606,6 @@ void MainWindow::loadBlockly() {
             SIGNAL(javaScriptWindowObjectCleared()),
             this,
             SLOT(actionLicense()));
-    QWebSecurityOrigin::addLocalScheme("https");
-    ui->webView->page()->mainFrame()->securityOrigin().addAccessWhitelistEntry("https","roboticafacil.es",QWebSecurityOrigin::DisallowSubdomains);
     ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     ui->webView->load(QUrl::fromLocalFile(settings->htmlIndex()));
     ui->webView->page()->mainFrame()->setScrollBarPolicy(
