@@ -127,9 +127,9 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="544"/>
-        <location filename="../src/mainwindow.cpp" line="188"/>
-        <location filename="../src/mainwindow.cpp" line="464"/>
-        <location filename="../src/mainwindow.cpp" line="468"/>
+        <location filename="../src/mainwindow.cpp" line="189"/>
+        <location filename="../src/mainwindow.cpp" line="465"/>
+        <location filename="../src/mainwindow.cpp" line="469"/>
         <source>Save</source>
         <translation>Desa</translation>
     </message>
@@ -311,112 +311,72 @@
         <translation>Mostar/amagar texte d&apos;icones</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="178"/>
+        <location filename="../src/mainwindow.cpp" line="179"/>
         <source>Examples</source>
         <translation>Exemples</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="192"/>
+        <location filename="../src/mainwindow.cpp" line="193"/>
         <source>Export</source>
         <translation>Exportar</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="204"/>
-        <location filename="../src/mainwindow.cpp" line="484"/>
+        <location filename="../src/mainwindow.cpp" line="205"/>
+        <location filename="../src/mainwindow.cpp" line="485"/>
         <source>Couldn&apos;t open file to save content: %1.</source>
         <translation>No puc obrir arxiu per desar contingut: %1.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="211"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="209"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="212"/>
         <source>Done exporting: %1.</source>
         <translation>Fent exportació: %1.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="273"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="271"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="274"/>
         <source>Include file</source>
         <translation>Inclou arxiu</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="377"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="382"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="378"/>
         <source>Open file</source>
         <translation>Obre arxiu</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="390"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="395"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="391"/>
         <source>Blockly Files %1</source>
         <translation>Arxius Blockly %1</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="410"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="415"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="411"/>
         <source>Couldn&apos;t open file to read content: %1.</source>
         <translation>No puc obrir arxiu per llegir contingut: %1.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="494"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="499"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="495"/>
         <source>Done saving.</source>
         <translation>Desant.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="543"/>
+        <location filename="../src/mainwindow.cpp" line="544"/>
         <source>Please, restart the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-=======
-        <location filename="../src/mainwindow.cpp" line="548"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
         <source>Please, restart the application to display the selected language.</source>
         <translation type="vanished">Si us plau, reinicieu l&apos;aplicació per actualitzar la llengua</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="657"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="660"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="658"/>
         <source>Finished.</source>
         <translation>Acabat.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="666"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="669"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="667"/>
         <source>Building...</source>
         <translation>Construint...</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="960"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="963"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="961"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Hi ha canvis sense desar que podria pedre. Dessitja dessar-los abans de continuar?</translation>
     </message>

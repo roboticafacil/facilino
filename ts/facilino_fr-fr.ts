@@ -107,15 +107,9 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="544"/>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="188"/>
-        <location filename="../src/mainwindow.cpp" line="464"/>
-        <location filename="../src/mainwindow.cpp" line="468"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="189"/>
+        <location filename="../src/mainwindow.cpp" line="465"/>
         <location filename="../src/mainwindow.cpp" line="469"/>
-        <location filename="../src/mainwindow.cpp" line="473"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
@@ -332,22 +326,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="204"/>
-        <location filename="../src/mainwindow.cpp" line="484"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="202"/>
-        <location filename="../src/mainwindow.cpp" line="489"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="205"/>
+        <location filename="../src/mainwindow.cpp" line="485"/>
         <source>Couldn&apos;t open file to save content: %1.</source>
         <translation>On ne peut pas ouvrir le fichier pour sauver le contenu : %1.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="211"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="209"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="212"/>
         <source>Done exporting: %1.</source>
         <translation>Export réalisé : %1.</translation>
     </message>
@@ -356,105 +341,61 @@
         <translation type="vanished">Importer le fichier</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="178"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="176"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="179"/>
         <source>Examples</source>
         <translation>Exemples</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="192"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="190"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="193"/>
         <source>Export</source>
         <translation>Exporter</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="273"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="271"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="274"/>
         <source>Include file</source>
         <translation>Inclure le fichier</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="377"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="382"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="378"/>
         <source>Open file</source>
         <translation>Ouvrir le fichier</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="390"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="395"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="391"/>
         <source>Blockly Files %1</source>
         <translation>Fichiers Blockly %1</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="410"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="415"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="411"/>
         <source>Couldn&apos;t open file to read content: %1.</source>
         <translation>On ne peut pas ouvrir le fichier pour lire le contenu : %1.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="494"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="499"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="495"/>
         <source>Done saving.</source>
         <translation>Sauvegarde terminée.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="543"/>
+        <location filename="../src/mainwindow.cpp" line="544"/>
         <source>Please, restart the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-=======
-        <location filename="../src/mainwindow.cpp" line="548"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
         <source>Please, restart the application to display the selected language.</source>
         <translation type="vanished">SVP redémarrer l&apos;application pour afficher le langage sélectionné.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="657"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="660"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="658"/>
         <source>Finished.</source>
         <translation>Terminé.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="666"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="669"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="667"/>
         <source>Building...</source>
         <translation>Compiler...</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <location filename="../src/mainwindow.cpp" line="960"/>
-=======
-        <location filename="../src/mainwindow.cpp" line="963"/>
->>>>>>> f105aee39ce431250ce5c144db335533bb62453b
+        <location filename="../src/mainwindow.cpp" line="961"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Il y a des fichiers qui pourraient être perdus. Voulez-vous les sauver d&apos;abord ?</translation>
     </message>
