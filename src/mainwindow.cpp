@@ -50,11 +50,14 @@ MainWindow::MainWindow(QWidget *parent) :
     setArduinoBoard();
     xmlFileName = "";
     serial = NULL;
-
-    // Set zoom scale of the web view
+    QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
+    QWebSecurityOrigin::addLocalScheme("https");
+    ui->webView->page()->mainFrame()->securityOrigin().addAccessWhitelistEntry("https","roboticafacil.es",QWebSecurityOrigin::DisallowSubdomains);
+    ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     float zoomScale = settings->zoomScale();
     ui->webView->setZoomFactor(zoomScale);
-    ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
+
+
     actionLicense();
 
     // Hide messages
@@ -281,11 +284,9 @@ void MainWindow::actionLicense() {
     // Set license
     QString jsLanguage = QString("var license = '%1';").
             arg(settings->license());
-    if ((settings->license().isEmpty())&&(this->alert==false))
-    {
-        QMessageBox::information(this,"Facilino","Esta es una versión gratuita de Facilino con todas las funcionalidades básicas incluidas. Si dispone de una licencia, puede acceder a las funcionalidades avanzadas introduciéndola en las preferencias. Si tiene cualquier problema con la licencia, por favor, contacte con soporte@roboticafacil.es");
-        this->alert=true;
-    }
+    QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
+    QWebSecurityOrigin::addLocalScheme("https");
+    ui->webView->page()->mainFrame()->securityOrigin().addAccessWhitelistEntry("https","roboticafacil.es",QWebSecurityOrigin::DisallowSubdomains);
     ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
 }
 
@@ -539,8 +540,7 @@ void MainWindow::actionSettings() {
             // Reload app warning
             if (defaultLanguage != settings->defaultLanguage() || license!=settings->license() ) {
             QMessageBox msgBox;
-            msgBox.setText(tr("Please, restart the application to display "
-                              "the selected language."));
+            msgBox.setText(tr("Please, restart the application."));
             msgBox.exec();
             }
         }
@@ -610,6 +610,9 @@ void MainWindow::loadBlockly() {
             SIGNAL(javaScriptWindowObjectCleared()),
             this,
             SLOT(actionLicense()));
+    QWebSecurityOrigin::addLocalScheme("https");
+    ui->webView->page()->mainFrame()->securityOrigin().addAccessWhitelistEntry("https","roboticafacil.es",QWebSecurityOrigin::DisallowSubdomains);
+    ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     ui->webView->load(QUrl::fromLocalFile(settings->htmlIndex()));
     ui->webView->page()->mainFrame()->setScrollBarPolicy(
                 Qt::Vertical,
