@@ -14315,8 +14315,8 @@ Blockly.WorkspaceSvg = function(a, b, c) {
     this.useWorkspaceDragSurface_ = this.workspaceDragSurface_ && Blockly.utils.is3dSupported();
     this.SOUNDS_ = Object.create(null);
     this.highlightedBlocks_ = [];
-    this.registerToolboxCategoryCallback(Blockly.VARIABLE_CATEGORY_NAME,
-        Blockly.Variables.flyoutCategory);
+    //this.registerToolboxCategoryCallback(Blockly.VARIABLE_CATEGORY_NAME,
+    //    Blockly.Variables.flyoutCategory);
     this.registerToolboxCategoryCallback(Blockly.PROCEDURE_CATEGORY_NAME, Blockly.Procedures.flyoutCategory)
 };
 goog.inherits(Blockly.WorkspaceSvg, Blockly.Workspace);
@@ -17664,8 +17664,20 @@ Blockly.Variables.allUsedVariables = function(a) {
     return b
 };
 Blockly.Variables.allVariables = function(a) {
-    a instanceof Blockly.Block && console.warn("Deprecated call to Blockly.Variables.allVariables with a block instead of a workspace.  You may want Blockly.Variables.allUsedVariables");
-    return a.variableList
+    var b;
+    b = a ? a.getDescendants() : Blockly.mainWorkspace.getAllBlocks();
+    a = Object.create(null);
+    for (var c = 0; c < b.length; c++) {
+        var d = b[c].getVars;
+        if (d)
+            for (var d = d.call(b[c]), e = 0; e < d.length; e++) {
+                var f = d[e];
+                f && (a[f.toLowerCase()] = f)
+            }
+    }
+    b = [];
+    for (var g in a) b.push(a[g]);
+    return b
 };
 Blockly.Variables.flyoutCategory = function(a) {
 

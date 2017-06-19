@@ -1,7 +1,7 @@
 #include "qblockswebview.h"
 
 QBlocksWebView::QBlocksWebView(QWidget *parent)
-    : QWebView(parent) {
+    : QWebEngineView(parent) {
 }
 
 void QBlocksWebView::wheelEvent(QWheelEvent *event) {

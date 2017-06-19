@@ -7968,7 +7968,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_GET_TOOLTIP'));
             },
             getVariables: function() {
-                var variables = Blockly.Variables.allUsedVariables;
+                var variables = Blockly.Variables.allVariables();
                 var dropdown = [];
                 if (variables.length > 0) {
                     for (var i in variables) {
@@ -7980,6 +7980,27 @@
                 return dropdown;
             },
             onchange: function() {
+                 if (!this.workspace) {
+                     // Block has been deleted.
+                     return;
+                 }
+                 this.last_variable=this.getFieldValue('VAR');
+                 if (!this.last_variables){
+                     this.last_variables=Blockly.Variables.allVariables();
+                 }
+                 var variables=Blockly.Variables.allVariables();
+                 for (var i in variables){
+                     if (Blockly.Variables.allVariables()[i]!==this.last_variables[i]){
+                         try{
+                             this.removeInput('DUMMY');
+                         }catch(e){}
+                         this.appendDummyInput('DUMMY')
+                             .appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET'))
+                             .appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR');
+                         this.setFieldValue(this.last_variable, 'VAR');
+                         this.last_variables=Blockly.Variables.allVariables();
+                     }
+                 }
                 try {
                     if (!this.exists()) {
                         this.setWarningText(RoboBlocks.locales.getKey('LANG_VARIABLES_CALL_WITHOUT_DEFINITION'));
@@ -7994,8 +8015,8 @@
                 }
             },
             exists: function() {
-                for (var i in Blockly.Variables.allUsedVariables) {
-                    if (Blockly.Variables.allUsedVariables[i] === this.getFieldValue('VAR')) {
+                for (var i in Blockly.Variables.allVariables()) {
+                    if (Blockly.Variables.allVariables()[i] === this.getFieldValue('VAR')) {
                         return true;
                     }
                 }
@@ -8104,8 +8125,8 @@
                 }
             },
             isVariable: function(varValue) {
-                for (var i in Blockly.Variables.allUsedVariables) {
-                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
+                for (var i in Blockly.Variables.allVariables()) {
+                    if (Blockly.Variables.allVariables()[i] === varValue) {
                         return true;
                     }
                 }
@@ -8128,7 +8149,7 @@
                     name = name.replace(/([óòôö])/g, 'o');
                     name = name.replace(/([úùûü])/g, 'u');
                     name = name.replace(/([ñ])/g, 'n');
-                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
+                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\̣\─\ç\`\´\¨\^])/g, '');
                     i = 0;
                     while (i < name.length) {
                         if (!isNaN(parseFloat(name[i]))) {
@@ -8151,6 +8172,7 @@
                 return name;
             },
             onchange: function() {
+				//console.log(Blockly.Variables.allVariables().length);
                 if (this.last_variable !== this.getFieldValue('VAR')) {
                     var name = this.getFieldValue('VAR');
                     name = this.validName(name);
@@ -8207,8 +8229,7 @@
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BYTE'), 'byte'],
-                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float'],
-		    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_CHAR'),'char']
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float']
                 ]), "VAR_TYPE").
                 appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS'));
                 this.setInputsInline(false);
@@ -8225,8 +8246,8 @@
                 }
             },
             isVariable: function(varValue) {
-                for (var i in Blockly.Variables.allUsedVariables) {
-                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
+                for (var i in Blockly.Variables.allVariables()) {
+                    if (Blockly.Variables.allVariables()[i] === varValue) {
                         return true;
                     }
                 }
@@ -8249,7 +8270,7 @@
                     name = name.replace(/([óòôö])/g, 'o');
                     name = name.replace(/([úùûü])/g, 'u');
                     name = name.replace(/([ñ])/g, 'n');
-                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
+                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\̣\─\ç\`\´\¨\^])/g, '');
                     i = 0;
                     while (i < name.length) {
                         if (!isNaN(parseFloat(name[i]))) {
@@ -8325,15 +8346,7 @@
                             }
                         } else if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'Str') {
                             varType = 'String';
-                        } else if (Blockly.Arduino.definitions_[i].substring(0, 13) === 'unsigned long' || Blockly.Arduino.definitions_[i].substring(0, 3) === '//b') { //bqbat function
-                            if (Blockly.Arduino.definitions_[i].substring(0, 15) === 'unsigned long *' || Blockly.Arduino.definitions_[i].substring(0, 5) === 'int _') {
-                                varType = 'unsigned long *';
-                            } else {
-                                varType = 'unsigned long';
-                            }
-                        } 
-						
-						else {
+                        } else {
                             varType = '';
                         }
                         code += varType + ' ' + varName + '=' + varValue + ';\n';
@@ -8433,8 +8446,7 @@
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BYTE'), 'byte'],
-                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float'],
-		    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_CHAR'),'char']
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float']
                 ]), "VAR_TYPE").
                 appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS'));
                 this.setInputsInline(false);
@@ -8486,16 +8498,18 @@
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET'))
-                    // .appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR')
+                    //.appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR')
                     .appendField(new Blockly.FieldVariable(' '), 'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_AS')).setAlign(Blockly.ALIGN_RIGHT);
                 this.setInputsInline(false);
                 this.setPreviousStatement(true);
                 this.setNextStatement(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_TOOLTIP'));
+				//console.log(Blockly.Variables.allVariables().length);
             },
             getVariables: function() {
-                var variables = Blockly.Variables.allUsedVariables;
+                var variables = Blockly.Variables.allVariables();
                 var dropdown = [];
+				console.log(variables.length);
                 if (variables.length > 0) {
                     for (var i in variables) {
                         dropdown.push([variables[i], variables[i]]);
@@ -8510,6 +8524,26 @@
                     // Block has been deleted.
                     return;
                 }
+                this.last_variable=this.getFieldValue('VAR');
+                if (!this.last_variables){
+                    this.last_variables=Blockly.Variables.allVariables();
+                }
+                var variables=Blockly.Variables.allVariables();
+                for (var i in variables){
+                     if (Blockly.Variables.allVariables()[i]!==this.last_variables[i]){
+                         try{
+                             this.removeInput('VALUE');
+                             this.appendValueInput('VALUE')
+                                 .appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET'))
+                                 .appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR')
+                                 .appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_AS'))
+                                 .setAlign(Blockly.ALIGN_RIGHT);
+                             this.setInputsInline(false);
+                             this.setFieldValue(this.last_variable, 'VAR');
+                         }catch(e){}
+                         this.last_variables=Blockly.Variables.allVariables();
+                     }
+                 }
                 try {
                     if (!this.exists()) {
                         this.setWarningText(RoboBlocks.locales.getKey('LANG_VARIABLES_CALL_WITHOUT_DEFINITION'));
@@ -8524,8 +8558,8 @@
                 }
             },
             exists: function() {
-                for (var i in Blockly.Variables.allUsedVariables) {
-                    if (Blockly.Variables.allUsedVariables[i] === this.getFieldValue('VAR')) {
+                for (var i in Blockly.Variables.allVariables()) {
+                    if (Blockly.Variables.allVariables()[i] === this.getFieldValue('VAR')) {
                         return true;
                     }
                 }

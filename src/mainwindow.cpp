@@ -17,8 +17,9 @@
 #include <QStandardPaths>
 #include <QThread>
 #include <QTimer>
-#include <QWebFrame>
+#include <QWebEnginePage>
 #include <QDesktopWidget>
+#include <QWebEngineScript>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -119,39 +120,39 @@ void MainWindow::arduinoExec(const QString &action) {
         dir.mkdir(settings->tmpDirName());
     }
 
-    // Check if tmp file exists
-    QFile tmpFile(settings->tmpFileName());
-    if (tmpFile.exists()) {
-        tmpFile.remove();
-    }
-    tmpFile.open(QIODevice::WriteOnly);
-
     // Read code
-    QWebFrame *mainFrame = ui->webView->page()->mainFrame();
-    QVariant codeVariant = mainFrame->evaluateJavaScript(
-                "Blockly.Arduino.workspaceToCode();");
-    QString codeString = codeVariant.toString();
 
-    // Write code to tmp file
-    tmpFile.write(codeString.toLocal8Bit());
-    tmpFile.close();
+    ui->webView->page()->runJavaScript("Blockly.Arduino.workspaceToCode();",QWebEngineScript::MainWorld, [](const QVariant &codeVariant){
 
-    // Verify code
-    arguments << action;
-    // Board parameter
-    if (ui->boardBox->count() > 0) {
-        arguments << "--board" << ui->boardBox->currentText();
-    }
-    // Port parameter
-    if (ui->serialPortBox->count() > 0) {
-        arguments << "--port" << ui->serialPortBox->currentText();
-    }
-    //arguments << "--pref editor.external=false ";
-    arguments << settings->tmpFileName();
-    process->start(settings->arduinoIdePath(), arguments);
+        QString codeString = codeVariant.toString();
 
-    // Show messages
-    ui->messagesWidget->show();
+        // Check if tmp file exists
+        QFile tmpFile(settings->tmpFileName());
+        if (tmpFile.exists()) {
+            tmpFile.remove();
+        }
+        tmpFile.open(QIODevice::WriteOnly);
+        // Write code to tmp file
+        tmpFile.write(codeString.toLocal8Bit());
+        tmpFile.close();
+        // Verify code
+        arguments << action;
+        // Board parameter
+        if (ui->boardBox->count() > 0) {
+            arguments << "--board" << ui->boardBox->currentText();
+        }
+        // Port parameter
+        if (ui->serialPortBox->count() > 0) {
+            arguments << "--port" << ui->serialPortBox->currentText();
+        }
+        //arguments << "--pref editor.external=false ";
+        arguments << settings->tmpFileName();
+        process->start(settings->arduinoIdePath(), arguments);
+
+        // Show messages
+        ui->messagesWidget->show();
+        }
+    );
 }
 
 void MainWindow::actionAbout() {
