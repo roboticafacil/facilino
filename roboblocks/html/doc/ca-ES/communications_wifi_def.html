@@ -1,0 +1,80 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Defineix WiFi ESP8266</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/communications_wifi_def.png" title="communications_wifi_def" alt="communications_wifi_def"></image></p>
+<h4>Descripció</h4>
+<p>Defineix el mòdul WiFi ESP8266. La variant 'integrat' és per al processador ESP8266 (com NodeMCU o similars), mentre que la variant 'no integrat' utilitza comandaments AT per sèrie per comunicar amb el mòdul WiFi ESP8266.</p>
+<h4>Requisits</h4>
+<p>La versió 'integrat' requereix tenir configurat URL externes per a la gestió de targetes (board manager) en les preferències d'Arduino IDE:</p>
+<p><image src="doc/common/esp8266_preferences.png" title="esp8266_preferences" alt="esp8266_preferences"></image></p>
+Posteriorment, s'ha d'instal·lar la targeta ESP8266 al Board Manager d'Arduino IDE .:
+<p><image src="doc/common/esp8266_board_manager.png" title="esp8266_board_manager" alt="esp8266_board_manager"></image></p>
+<p>La versió 'no integrat' requereix tenir instal·lada la llibreria ITEADLIB_Arduino_WeeESP8266 <a href="https://github.com/itead/ITEADLIB_Arduino_WeeESP8266">https://github.com/itead/ITEADLIB_Arduino_WeeESP8266</a></p>
+<p><image src="doc/common/esp8266_module_library.png" title="esp8266_module_library" alt="esp8266_module_library"></image></p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Mode: Integrat o no integrat.</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+   <li>SSID: Nom de xarxa (SSID).</li>
+   <li>Contrasenya: Contrasenya d'accés a la xarxa.</li>
+   <li>Velocitat: Taxa de bauds (màxim 38400bps).</li>
+   <li>TX: Pin de transmissió d'Arduino (connectar a RX del mòdul ESP8266).</li>
+   <li>RX: Pin de recepció d'Arduino (connectar a TX del mòdul ESP8266).</li>
+</ul>
+<h4>Exemple 1</h4>
+En aquest exemple s'utilitza el mòdul WiFi ESP8266 amb Arduino UNO. En l'exemple es realitzen les primeres passes de configuració per a la connexió a la xarxa i després, en el bucle principal s'envia un missatge de text a un servidor en l'adreça IP 192.168.1.100 pel port 49152 (Arduino és client de la connexió ). Si es rep alguna resposta per part del servidor, el missatge es mostra per la consola a través del port sèrie USB.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/communications_wifi_def_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/esp8266_module_example_bb.png" title="esp8266_module_example_bb" alt="esp8266_module_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/communications_wifi_def_example.png" title="communications_wifi_def_example" alt="communications_wifi_def_example"></image>
+<h4>Exemple 2</h4>
+En aquest exemple s'utilitza el processador ESP8266 (integrat). L'exemple és funcionalment equivalent a l'exemple anterior.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/communications_wifi_def_example1.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/communications_wifi_def_example1.png" title="communications_wifi_def_example1" alt="communications_wifi_def_example1"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

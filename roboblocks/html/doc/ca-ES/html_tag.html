@@ -1,0 +1,66 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Etiqueta HTML</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/html_tag.png" title="html_tag" alt="html_tag"></image></p>
+<h4>Descripció</h4>
+<p>Crea una etiqueta HTML que pot contenir codi HTML i definir un conjunt d'atributs. El tipus d'etiqueta es selecciona amb el desplegable</p>
+<h4>Mutador</h4>
+Afegeix els atributs al contenidor que s'afegiran a l'etiqueta HTML:
+<h5>Contenidor</h5>
+<p><image src="doc/ca-ES/img/html_tag_attributes.png" title="html_tag_attributes" alt="html_tag_attributes"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/ca-ES/img/html_attribute_item.png" title="html_attribute_item" alt="html_attribute_item"></image></p>	
+<h4>Entrades</h4>
+<h4>Desplegable</h4>
+<ul>
+  <li>Etiqueta: Nom de l'etiqueta HTML.</li>
+</ul>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Codi HTML: Conjunt d'instruccions que contenen codi HTML definits dins de l'etiqueta.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple s'utilitza el processador ESP8266 (integrat) per crear una web que mostra el text "Hola món!"
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/communications_wifi_html_server_example1.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/communications_wifi_html_server_example1.png" title="communications_wifi_html_server_example1" alt="communications_wifi_html_server_example1"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

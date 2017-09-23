@@ -1,0 +1,62 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Busca cadena de text</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/text_search.png" title="text_search" alt="text_search"></image>
+<h4>Descripció</h4>
+<p>Retorna la posició de la primera o última instància d'una cadena de text a buscar. Si no es troba, retorna -1.</p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Instància: Primera o última instància</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+  <li>Cerca: Cadena de text a buscar.</li>
+  <li>Conté: Cadena de text on buscar (ha de ser del tipus cadena de text).</li>
+</ul>
+<h4>Eixida</h4>
+Posició del caràcter de la primera instància o última instància trobada.
+<h4>Exemple</h4>
+En aquest exemple es busca la lletra "o" en la frase "Hola món!". La primera instància està en la posició 1 i l'última instància en la posició 6.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/text_search_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/text_search_example.png" title="text_search_example" alt="text_search_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

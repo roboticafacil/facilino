@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Recorta cadena de texto</h3>
+<h4>Instrucción</h4>
+<image src="doc/es-ES/img/text_substring.png" title="text_substring" alt="text_substring"></image>
+<h4>Descripción</h4>
+<p>Devuelve una nueva cadena de texto recortada según los índices especificados (empezando desde 0 para el primer caracter).</p>
+<h4>Entradas</h4>
+<ul>
+  <li>Texto: Cadena de texto (debe ser del tipo cadena de texto).</li>
+  <li>Desde: Índice del primer caracter.</li>
+  <li>Hasta: Índice del último caracter (más uno).</li>
+</ul>
+<h4>Salida</h4>
+Cadena de texto recortada.
+<h4>Ejemplo</h4>
+En este ejemplo se recorta la frase "Hola mundo!", mostrándose sólo "la mu".
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/text_substring_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/text_substring_example.png" title="text_substring_example" alt="text_substring_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

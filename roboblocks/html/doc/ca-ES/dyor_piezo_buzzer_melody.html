@@ -1,0 +1,68 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Brunzidor (melodia musical)</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/dyor_piezo_buzzer_melody.png" title="dyor_piezo_buzzer_melody" alt="dyor_piezo_buzzer_melody"></image></p>
+<h4>Descripció</h4>
+<p>Emet un so amb una melodia musical (conjunt de notes amb una freqüència i durada).</p>
+<h4>Requisits</h4>
+Llicència de Facilino.
+<h4>Entrades</h4>
+<ul>
+  <li>Pin: Pin digital a què està connectat el brunzidor de so.</li>
+  <li>Melodia: Conjunt de notes (freqüència i durada) que defineixen la melodia.</li>
+</ul>
+<h4>Exemple 1</h4>
+En aquest exemple es mostra com generar melodies musicals predefinides.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_piezo_buzzer_melody_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/buzzer_example_bb.png" title="buzzer_example_bb" alt="buzzer_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_piezo_buzzer_melody_example.png" title="dyor_piezo_buzzer_melody_example" alt="dyor_piezo_buzzer_melody_example"></image>
+<h4>Exemple 2</h4>
+En aquest exemple es mostra com generar melodies musicals amb una partitura.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_piezo_buzzer_melody_example1.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/buzzer_example_bb.png" title="buzzer_example_bb" alt="buzzer_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_piezo_buzzer_melody_example1.png" title="dyor_piezo_buzzer_melody_example1" alt="dyor_piezo_buzzer_melody_example1"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

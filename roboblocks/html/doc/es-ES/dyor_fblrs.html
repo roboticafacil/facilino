@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Mueve base robot con servos con primitivas básicas</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/dyor_fblrs.png" title="dyor_fblrs" alt="dyor_fblrs"></image></p>
+<h4>Descripción</h4>
+<p>Controla los movimientos de la base de un robot controlado por servos de rotación contínua con primitivas básicas de movimiento: Hacia adelante, hacia atrás, izquierda, derecha y paro.</p>
+<h4>Requisitos</h4>
+Licencia de Facilino.
+<h4>Entradas</h4>
+<ul>
+  <li>Izquierda: Pin PWM al que está conectado el servo de rotación contínua de la rueda izquierda.</li>
+  <li>Derecho: Pin PWM al que está conectado el servo de rotación contínua de la rueda derecha.</li>
+  <li>Velocidad: Velocidad global (afecta a los dos motores por igual) en porcentaje (de 0% a 100%).</li>
+</ul>
+<h4>Desplegables</h4>
+<ul>
+  <li>Primitiva: primitiva de movimiento (hacia adelante, hacia atrás, izquierda, derecha o paro).</li>
+</ul>
+<h4>Ejemplo</h4>
+En este ejemplo se muestra cómo controlar los movimientos de un robot con primitivas. El robot se mueve hacia adelante durante dos segunos y después gira aleatoriamente a la izquierda o derecha durante un segundo.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_fblrs_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/servos360_example_bb.png" title="servos360_example_bb" alt="servos360_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/dyor_fblrs_example.png" title="dyor_fblrs_example" alt="dyor_fblrs_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

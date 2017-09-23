@@ -440,6 +440,7 @@ pressed: { border: 1px };</string>
     <addaction name="actionMessages"/>
     <addaction name="actionShow_hide_monitor"/>
     <addaction name="actionShow_hide_code"/>
+    <addaction name="actionShow_hide_doc"/>
     <addaction name="actionShow_hide_icon_labels"/>
     <addaction name="separator"/>
     <addaction name="actionZoomIn"/>
@@ -754,6 +755,11 @@ pressed: { border: 1px };</string>
     <string>Ctrl+Y</string>
    </property>
   </action>
+  <action name="actionShow_hide_doc">
+   <property name="text">
+    <string>Show/hide doc</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -968,7 +974,7 @@ pressed: { border: 1px };</string>
    <hints>
     <hint type="sourcelabel">
      <x>790</x>
-     <y>444</y>
+     <y>338</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1031,8 +1037,8 @@ pressed: { border: 1px };</string>
    <slot>actionMonitorSend()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>745</x>
-     <y>110</y>
+     <x>789</x>
+     <y>97</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1047,8 +1053,8 @@ pressed: { border: 1px };</string>
    <slot>actionMonitorSend()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>701</x>
-     <y>110</y>
+     <x>755</x>
+     <y>95</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -1280,6 +1286,22 @@ pressed: { border: 1px };</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShow_hide_doc</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>actionDoc()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>83</x>
+     <y>8</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-3</x>
+     <y>99</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>actionVerify()</slot>
@@ -1307,5 +1329,6 @@ pressed: { border: 1px };</string>
   <slot>actionZoomOut()</slot>
   <slot>actionDocumentUndo()</slot>
   <slot>actionDocumentRedo()</slot>
+  <slot>actionDoc()</slot>
  </slots>
 </ui>

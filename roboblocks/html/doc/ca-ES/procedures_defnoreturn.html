@@ -1,0 +1,66 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Funció sense retorn (definició)</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/procedures_defnoreturn.png" title="procedures_defnoreturn" alt="procedures_defnoreturn"></image>
+<h4>Descripció</h4>
+<p>Implementa la trucada d'una funció que no té un valor de retorn. El codi a executar en la funció s'ha de apilar dins de la instrucció. La funció pot tenir diversos arguments d'entrada (i de diferents tipus) utilitzant el mutador (icona de la part superior esquerra). Utilitza en combinació de la instrucció:</p>
+<image src="doc/ca-ES/img/procedures_callnoreturn.png" title="procedures_callnoreturn" alt="procedures_callnoreturn" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/procedures_callnoreturn.html');});"></image>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Executar: Instruccions a executar dins la funció.</li>
+</ul>
+<h4>Mutador</h4>
+Permet crear paràmetres d'entrada de la funció. Afegeix tantes variables com siguin necessàries, especifica el seu nom i tipus de variable.
+<h5>Contenidor</h5>
+<p><image src="doc/ca-ES/img/procedures_mutatorcontainer.png" title="procedures_mutatorcontainer" alt="procedures_mutatorcontainer"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/ca-ES/img/procedures_mutatorarg.png" title="procedures_mutatorarg.png" alt="procedures_mutatorarg.png"></image></p>
+<h4>Entrades</h4>
+<ul>
+  <li>Nom: Nom de la funció.
+</li></ul>
+<h4>Exemple</h4>
+En aquest exemple es mostra un missatge per la consola a través d'una funció.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/procedures_callnoreturn_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/procedures_callnoreturn_example.png" title="procedures_callnoreturn_example" alt="procedures_callnoreturn_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

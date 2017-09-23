@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Detecta color RGB</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/rgb_sensor.png" title="rgb_sensor" alt="rgb_sensor"></image></p>
+<h4>Descripción</h4>
+<p>Detecta un color con el sensor RGB TCS3200. Devuelve tres posibles colores: rojo, verde o azul, cualquier otro valor devuelto es un color no detectado.</p>
+<h4>Requisitos</h4>
+Licencia de Facilino.
+<h4>Entradas</h4>
+<ul>
+  <li>Pin S0: Pin S0 del sensor TCS3200.</li>
+  <li>Pin S1: Pin S1 del sensor TCS3200.</li>
+  <li>Pin S2: Pin S2 del sensor TCS3200.</li>
+  <li>Pin S3: Pin S3 del sensor TCS3200.</li>
+  <li>Pin OUT: Pin OUT del sensor TCS3200.</li>
+</ul>
+<h4>Salida</h4>
+Color detectado.
+<h4>Ejemplo</h4>
+En este ejemplo se muestra por consola la palabra 'ROJO', 'VERDE' o 'AZUL' en función de si se detecta el color rojo, verde o azul utilizando el sensor TCS3200. Los colores han sido previamente calibrados.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/rgb_sensor_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/tcs3200_example_bb.png" title="tcs3200_example_bb" alt="tcs3200_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/rgb_sensor_example.png" title="rgb_sensor_example" alt="rgb_sensor_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

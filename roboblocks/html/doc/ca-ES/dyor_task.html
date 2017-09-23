@@ -1,0 +1,68 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Multi-tasques (periòdiques)</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/dyor_task.png" title="dyor_task" alt="dyor_task"></image></p>
+<h4>Descripció</h4>
+<p>Permet definir un conjunt de tasques periòdiques utilitzant el temporitzador 0 d'Arduino. Totes aquelles instruccions que utilitzen el temporitzador 0 o retards poden veure afectades. Disposa d'una part de codi que sempre s'executa cada milisegon i una altra part que s'executa periòdicament segons es creen noves tasques amb el mutador.</p>
+<h4>Requisits</h4>
+Llicència de Facilino
+<h4>Mutador</h4>
+Crea noves tasques periòdiques afegint-les al contenidor:
+<h5>Contenidor</h5>
+<p><image src="doc/ca-ES/img/dyor_task_task.png" title="dyor_task_task" alt="dyor_task_task"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/ca-ES/img/dyor_task_item.png" title="dyor_task_item" alt="dyor_task_item"></image></p>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Executar sempre: Conjunt d'instruccions a executar cada mil·lisegon.</li>
+  <li>Tasca: Conjunt d'instruccions a executar al període especificat.</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+  <li>Període: Període de la tasca a executar en mil·lisegons.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple es controla el parpelleig de dos LEDs amb períodes de commutació diferents (multi-tasca).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_task_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/leds_example_bb.png" title="leds_example_bb" alt="leds_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_task_example.png" title="dyor_task_example" alt="dyor_task_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

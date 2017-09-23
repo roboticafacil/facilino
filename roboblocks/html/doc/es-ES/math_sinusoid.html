@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Senoide</h3>
+<h4>Instrucción</h4>
+<image src="doc/es-ES/img/math_sinusoid.png" title="math_sinusoid" alt="math_sinusoid"></image>
+<h4>Descripción</h4>
+<p>Esta instrucción permite generar ondas senoidales con amplitud, frecuencia, fase y valor medio definibles. El valor resultante depende del tiempo evaluado.</p>
+<h5>Gráfico</h5>
+<image src="doc/common/math_sinusoid_matlab.png" title="math_sinusoid_matlab" alt="math_sinusoid_matlab"></image>
+<h4>Entradas</h4>
+<ul>
+  <li>Amplitud: amplitud de la señal (diferencia entre pico y pico).</li>
+  <li>Frecuencia: Número de veces que se repite la señal por segundo (Hz).</li>
+  <li>Fase: Desplazamiento horizontal de la señal (ángulo en grados).</li>
+  <li>Valor medio: Desplazamiento vertical de la señal.</li>
+  <li>Tiempo: Instante de tiempo en el que se evalúa la señal (en microsegundos).</li>
+</ul>
+<h4>Salida</h4>
+Valor resultante de la señal.
+<h4>Ejemplo</h4>
+En este ejemplo se realiza un movimiento oscilatorio en un servo de posición (estos movimientos son los utilizados en algunos robots caminantes).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/math_sinusoid_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/servo_example_bb.png" title="servo_example" alt="servo_example"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/math_sinusoid_example.png" title="math_to_number_example" alt="math_to_number_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

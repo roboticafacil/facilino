@@ -1,0 +1,59 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">HTML formatted text</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/html_text_format.png" title="html_text_format" alt="html_text_format"></image></p>
+<h4>Description</h4>
+<p>Formatted text that can be insterted inside an HTML Tag.</p>
+<h4>Dropdown lists</h4>
+<ul>
+  <li>Format: The type of format to apply.</li>
+</ul>
+<h4>Inputs</h4>
+<ul>
+  <li>HTML code: Text with HTML format to include.</li>
+</ul>
+<h4>Example</h4>
+This example uses the ESP8266 (built-in) processor to create a web that displays a title in red and the formatted text "Hello world!"
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/communications_wifi_html_server_example2.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/communications_wifi_html_server_example2.png" title="communications_wifi_html_server_example2" alt="communications_wifi_html_server_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

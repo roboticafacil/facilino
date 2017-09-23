@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Binary value True/False</h3>
+<h4>Instrucción</h4>
+<image src="doc/en-GB/img/logic_boolean.png" title="logic_boolean" alt="logic_boolean"></image>
+<h4>Descripción</h4>
+<p>Constant with a binary value 'true' or 'false'. Used to compare or set binary variables or operations.</p>
+<h4>Dropdonw list</h4>
+<ul>
+  <li>Value: Binary value (true or false).</li>
+</ul>
+<h4>Output</h4>
+Selected binary value.
+<h4>Ejemplo</h4>
+This example is indeed a guessing game. Through the console, we must introduce numbers from 1 to 100 until we guess the secret number.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction('doc/examples/controls_flow_statements_example1.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/controls_flow_statements_example1.png" title="controls_flow_statements_example1" alt="controls_flow_statements_example1"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

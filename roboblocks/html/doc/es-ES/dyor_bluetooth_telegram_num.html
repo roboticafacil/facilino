@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #00496B; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #006699;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
+</style>
+</head>
+<body>
+<h3 id="up">Tipo de telegrama genérico (recepción)</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/dyor_bluetooth_telegram_num.png" title="dyor_bluetooth_telegram_num" alt="dyor_bluetooth_telegram_num"></image></p>
+<h4>Descripción</h4>
+<p>Determina el tipo de telegrama (valor genérico). Usar junto con la instrucción:</p>
+<p><image src="doc/es-ES/img/dyor_bluetooth_recv_telegram.png" title="dyor_bluetooth_recv_telegram" alt="dyor_bluetooth_recv_telegram" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/dyor_bluetooth_recv_telegram.html");});'></image></p>
+<h4>Requisitos</h4>
+<p>Licencia de Facilino</p>
+<h4>Entradas</h4>
+<ul>
+   <li>Telegrama: CMD del telegrama a decodificar.</li>
+</ul>
+<h4>Salida</h4>
+CMD del telegrama.
+<h5>Estructura telegrama</h5>
+<div class="datagrid"><table>
+<thead><tr><th>STX</th><th>CMD</th><th>Length</th><th>Data 0</th><th>...</th><th>Data N-1</th><th>END</th></tr></thead>
+</table></div>
+<p>Siendo STX el símbolo '@' en ASCII; CMD el comando (1 byte); Length la longitud de los datos; Data 0 ... Data N-1 los datos y END el símbolo '*' en ASCII.</p>
+<h4>Ejemplo</h4>
+No disponible.<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

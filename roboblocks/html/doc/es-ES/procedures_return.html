@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Retorno de función</h3>
+<h4>Instrucción</h4>
+<image src="doc/es-ES/img/procedures_return.png" title="procedures_return" alt="procedures_return"></image>
+<h4>Descripción</h4>
+<p>Devuelve un valor (sale de la función retornando el valor indicado). Usar dentro de de la instrucción:</p>
+<image src="doc/es-ES/img/procedures_defreturn.png" title="procedures_defreturn" alt="procedures_defreturn" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/procedures_defreturn.html");});'></image>
+<h4>Entradas</h4>
+<ul>
+  <li>devuelve: Valor a devolver.</li>
+</ul>
+<h4>Ejemplo</h4>
+En este ejemplo se le pide al usuario que proporcione un número mayor que 0 y tras introducir el número, la función devuelve el valor del número en caso de tener algún dato disponible en el puerto serie.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/procedures_return_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/procedures_return_example.png" title="procedures_return_example" alt="procedures_return_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

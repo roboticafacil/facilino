@@ -1,0 +1,61 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Reads humidity sensor DHT11 / DHT21 / DHT22</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/ambient_humid_humidityDHT.png" title="ambient_humid_humidityDHT" alt="ambient_humid_humidityDHT"></image></p>
+<h4>Description</h4>
+<p>Returns the humidity of the air in percentage read by the sensor DHT11 / DHT21 / DHT22</p>
+<h4>Dropdown lists</h4>
+<ul>
+  <li>Sensor: Model of the sensor used DHT11 / DHT21 / DHT22.</li>
+</ul>
+<h4>Inputs</h4>
+<ul>
+  <li>Pin: Pin to which the sensor is connected to.</li>
+</ul>
+<h4>Output</h4>
+Humidity returned by the sensor in percentage.
+<h4>Example</h4>
+In this example, the humidity read with the DHT11 sensor is shown on the console.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/ambient_humid_humidityDHT_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/dht11_example_bb.png" title="dht11_example_bb" alt="dht11_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/ambient_humid_humidityDHT_example.png" title="ambient_humid_humidityDHT_example" alt="ambient_humid_humidityDHT_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

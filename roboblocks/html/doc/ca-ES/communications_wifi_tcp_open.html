@@ -1,0 +1,59 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Obre connexió Client TCP / IP (ESP8266)</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/communications_wifi_tcp_open.png" title="communications_wifi_tcp_open" alt="communications_wifi_tcp_open"></image></p>
+<h4>Descripció</h4>
+<p>Estableix una connexió TCP / IP amb un servidor com a client TCP / IP. Requereix de la IP del servidor i el port a comunicar i seleccionar el mode (WiFi integrat o no integrat). Per configurar una connexió WiFi, usar la instrucció:</p>
+<p><image src="doc/ca-ES/img/communications_wifi_def.png" title="communications_wifi_def" alt="communications_wifi_def" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/communications_wifi_def.html');});"></image></p>
+Un cop oberta la connexió i transmesos / rebudes les dades és convenient tancar la connexió amb la instrucció:
+<p><image src="doc/ca-ES/img/communications_wifi_tcp_close.png" title="communications_wifi_tcp_close" alt="communications_wifi_tcp_close" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/communications_wifi_tcp_close.html');});"></image></p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Mode: Integrat o no integrat.</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+   <li>IP Servidor: Adreça IP del servidor.</li>
+   <li>Port: Port de connexió.</li>
+</ul>
+<h4>Exemple 1</h4>
+En aquest exemple s'utilitza el mòdul WiFi ESP8266 amb Arduino UNO. En l'exemple es realitzen les primeres passes de configuració per a la connexió a la xarxa i després, en el bucle principal s'envia un missatge de text a un servidor en l'adreça IP 192.168.1.100 pel port 49152 (Arduino és client de la connexió ). Si es rep alguna resposta per part del servidor, el missatge es mostra per la consola a través del port sèrie USB.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/communications_wifi_def_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/esp8266_module_example_bb.png" title="esp8266_module_example_bb" alt="esp8266_module_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/communications_wifi_def_example.png" title="communications_wifi_def_example" alt="communications_wifi_def_example"></image>
+<h4>Exemple 2</h4>
+En aquest exemple s'utilitza el processador ESP8266 (integrat). L'exemple és funcionalment equivalent a l'exemple anterior.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/communications_wifi_def_example1.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/communications_wifi_def_example1.png" title="communications_wifi_def_example1"></image>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p></p>
+</body>
+</html>

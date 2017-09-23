@@ -1,0 +1,68 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Converteix a nombre</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/math_to_number.png" title="math_to_number" alt="math_to_number"></image>
+<h4>Descripció</h4>
+<p>Converteix una expressió a un nombre. Aquesta instrucció permet convertir la dada d'entrada al tipus especificat.</p>
+<h5>Tipus</h5>
+<ul>
+  <li>Sencer: Ocupa 2 bytes en memòria i pot representar números des -32,768 to 32,767.</li>
+  <li>Enter llarg: Ocupa 4 bytes en memòria i pot representar números des -2,147,483,648 to 2,147,483,647.</li>
+  <li>Decimal: Ocupa 4 bytes en memòria i pot representar nombres reals.</li>
+  <li>Octet: Ocupa 1 byte en memòria i pot representar nombres des de 0 a 255.</li>
+</ul>
+<h4>Desplegables</h4>
+<ul>
+  <li>Tipus: Tipus de dada a convertir.</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+  <li>Valor: Valor a convertir.</li>
+</ul>
+<h4>Eixida</h4>
+Nombre convertit.
+<h4>Exemple</h4>
+En aquest exemple es realitzen diferents tipus de conversions que mostren els possibles errors que es poden cometre si no es realitzen amb precaució.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/math_to_number_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/math_to_number_example.png" title="math_to_number_example" alt="math_to_number_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

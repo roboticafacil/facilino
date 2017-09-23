@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Generates predefined expression in LEDs matrix</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_predef_expression.png" title="dyor_predef_expression" alt="dyor_predef_expression"></image></p>
+<h4>Description</h4>
+<p>It allows to generate a predefined expression for the robot DYOR with the LEDs matrix (max7219). It allows to select between five predefined expressions, as well as the orientation of the LEDs matrix.</p>
+<h4>Requirements</h4>
+Facilino's License.
+<h4>Inputs</h4>
+<ul>
+   <li>CS: Pin CS of the LED array (max7219).</li>
+   <li>DIN: Pin DIN of the matrix of LEDs (max7219).</li>
+   <li>CLK: Pin CLK of the LED array (max7219).</li>
+</ul>
+<h4>Dropdown lists</h4>
+<ul>
+  <li>Orientation: Vertical, Horizontal, Vertical 180º or Horizontal 180º</li>
+  <li>Expression: Angry, Happy, Sad, In Love, Surprised.</li>
+</ul>
+<h4>Example</h4>
+In this example, the DYOR robot generates the expression 'Happy' and 'Angry' alternatively with waiting times of 1000 milliseconds.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/dyor_predef_expression_example.bly&#39;)">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/led_matrix_example_bb.png" title="led_matrix_example_bb" alt="led_matrix_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_predef_expression_example.png" title="dyor_predef_expression_example" alt="dyor_predef_expression_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

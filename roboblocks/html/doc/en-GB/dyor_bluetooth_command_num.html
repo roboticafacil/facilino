@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Generic command</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_bluetooth_command_num.png" title="dyor_bluetooth_command_num" alt="dyor_bluetooth_command_num"></image></p>
+<h4>Description</h4>
+<p>Returns a command with the indicated value. Use in conjunction with instruction:</p>
+<p><image src="doc/en-GB/img/dyor_bluetooth_app.png" title="dyor_bluetooth_app" alt="dyor_bluetooth_app" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/dyor_bluetooth_app.html');});"></image></p>
+<h4>Requirements</h4>
+<p>Facilino's License</p>
+<h4>Inputs</h4>
+<ul>
+  <li>Value: value of the command.</li>
+</ul>
+<h4>Output</h4>
+Command indicated.
+<h4>Example</h4>
+In this example ASCII characters are read through bluetooth. If the user sends a '0' (30 in ASCII), two LEDs are connected to pins 5 and 6. If the user sends a '1' (31 to ASCII), the LED connected to pin 6 will light, whereas if a '2' (32 in ASCII) is sent, the LED connected to pin 5 will light up. The '3' (33 in ASCII) command will disable the LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_bluetooth_app_example2.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_bluetooth_app_example2.png" title="dyor_bluetooth_app_example2" alt="dyor_bluetooth_app_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

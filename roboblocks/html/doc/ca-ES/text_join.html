@@ -1,0 +1,63 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Concatena cadenes de text</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/text_join.png" title="text_join" alt="text_join"></image>
+<h4>Descripció</h4>
+<p>Aquesta instrucció permet unir (concatenar) cadenes de text. Gràcies al mutador, podem crear tantes cadenes de text com es vulgui. Permet per exemple combinar cadenes de text amb nombres.</p>
+<h4>Mutador</h4>
+Uneix text afegint nous elements:
+<h5>Contenidor</h5>
+<p><image src="doc/ca-ES/img/text_create_join_container.png" title="text_create_join_container" alt="text_create_join_container"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/ca-ES/img/text_create_join_item.png" title="text_create_join_item" alt="text_create_join_item"></image></p>
+<h4>Entrades</h4>
+<ul>
+  <li>Element: Element a concatenar.</li>
+</ul>
+<h4>Eixida</h4>
+Text generat.
+<h4>Exemple</h4>
+En aquest exemple es mostra com es pot concatenar una cadena de text senzilla amb un nombre.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/text_join_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/text_join_example.png" title="text_join_example" alt="text_join_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

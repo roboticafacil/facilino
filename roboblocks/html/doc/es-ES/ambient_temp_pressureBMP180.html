@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Temperatura con barómetro BMP180</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/ambient_temp_pressureBMP180.png" title="ambient_temp_pressureBMP180" alt="ambient_temp_pressureBMP180"></image></p>
+<h4>Descripción</h4>
+<p>Devuelve la temperatura en grados centígrados del sensor barométrico BMP180 (el sensor se conecta al bus I2C).</p>
+<h4>Requisitos</h4>
+Licencia de Facilino.
+<h4>Salida</h4>
+Temperatura leída por el sensor.
+<h4>Ejemplo</h4>
+En este ejemplo se muestra la presión barométrica, temperatura y titleitud altitud estimada leída con el sensor barométric BMP180.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/ambient_pressureBMP180_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/bmp180_example_bb.png" title="bmp180_example_bb" alt="bmp180_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/ambient_pressureBMP180_example.png" title="ambient_pressureBMP180_example" alt="ambient_pressureBMP180_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

@@ -1,7 +1,9 @@
 #include "qblockswebview.h"
 
+QBlocksWebView::QBlocksWebView() {
+}
 QBlocksWebView::QBlocksWebView(QWidget *parent)
-    : QWebEngineView(parent) {
+     {
 }
 
 void QBlocksWebView::wheelEvent(QWheelEvent *event) {
@@ -17,7 +19,7 @@ void QBlocksWebView::wheelEvent(QWheelEvent *event) {
 
 */
 
-void QBlocksWebView::doZoom(double scale) {
+void QBlocksWebView::doZoom(float scale) {
     // Apply zoom (in: scale > 0, out: scale < 0)
     if ((scale > 0 && zoomFactor() < 1.5) ||
         (scale < 0 && zoomFactor() > 0.5)) {

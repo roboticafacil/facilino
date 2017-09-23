@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Define WiFi ESP8266</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/communications_wifi_def.png" title="communications_wifi_def" alt="communications_wifi_def"></image></p>
+<h4>Descripción</h4>
+<p>Define el módulo WiFi ESP8266. La variante 'integrado' es para el procesador ESP8266 (como NodeMCU o similares), mientras que la variante 'no integrado' utiliza comandos AT por serie software para comunicar con el módulo WiFi ESP8266.</p>
+<h4>Requisitos</h4>
+<p>La versión 'integrado' requiere tener configurado URLs externas para la gestión de tarjetas (board manager) en las preferencias de Arduino IDE:</p>
+<p><image src="doc/common/esp8266_preferences.png" title="esp8266_preferences" alt="esp8266_preferences"></image></p>
+Posteriormente, se debe instalar la tarjeta ESP8266 en el Board Manager de Arduino IDE.:</p>
+<p><image src="doc/common/esp8266_board_manager.png" title="esp8266_board_manager" alt="esp8266_board_manager"></image></p>
+<p>La versión 'no integrado' requiere tener instalada la librería ITEADLIB_Arduino_WeeESP8266  <a href="https://github.com/itead/ITEADLIB_Arduino_WeeESP8266">https://github.com/itead/ITEADLIB_Arduino_WeeESP8266</a></p>
+<p><image src="doc/common/esp8266_module_library.png" title="esp8266_module_library" alt="esp8266_module_library"></image></p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Modo: Integrado o no integrado.</li>
+</ul>
+<h4>Entradas</h4>
+<ul>
+   <li>SSID: Nombre de red (SSID).</li>
+   <li>Contraseña: Contraseña de acceso a la red.</li>
+   <li>Velocidad: Tasa de baudios (máximo 38400bps).</li>
+   <li>TX: Pin de transmisión de Arduino (conectar a RX del módulo ESP8266).</li>
+   <li>RX: Pin de recepción de Arduino (conectar a TX del módulo ESP8266).</li>
+</ul>
+<h4>Ejemplo 1</h4>
+En este ejemplo se utiliza el módulo WiFi ESP8266 con Arduino UNO. En el ejemplo se realizan los primeros pasos de configuración para la conexión a la red y después, en el bucle principal se envía un mensaje de texto a un servidor en la dirección IP 192.168.1.100 por el puerto 49152 (Arduino es cliente de la conexión). Si se recibe alguna respuesta por parte del servidor, el mensaje se muestra por la consola a través del puerto serie USB.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/communications_wifi_def_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/esp8266_module_example_bb.png" title="esp8266_module_example_bb" alt="esp8266_module_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/communications_wifi_def_example.png" title="communications_wifi_def_example" alt="communications_wifi_def_example"></image>
+<h4>Ejemplo 2</h4>
+En este ejemplo se utiliza el procesador ESP8266 (integrado). El ejemplo es funcionalmente equivalente al ejemplo anterior.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/communications_wifi_def_example1.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/communications_wifi_def_example1.png" title="communications_wifi_def_example1" alt="communications_wifi_def_example1"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

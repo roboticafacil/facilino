@@ -1,0 +1,63 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Line Tracking with TCRT5000 (Binary)</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_line_following_binary.png" title="dyor_line_following_binary" alt="dyor_line_following_binary"></image></p>
+<h4>Description</h4>
+<p>Determines the rotation speed to be applied to the base of the DYOR robot to implement a line tracking algorithm (binary). It discriminates the amount of light received to execute three different cases: Black, Gray (neither black nor white) and White.</p>
+<h4>Requirements</h4>
+Facilino's License.
+<h4>Inputs</h4>
+<ul>
+   <li>Light: Amount of light read with the TCRT5000 sensor (analogue value).</li>
+</ul>
+<h4>Stacks</h4>
+<ul>
+  <li>Black: Set of instructions to execute in case of detecting black.</li>
+  <li>Gray: Set of instructions to execute in case of not detecting black or white.</li>
+  <li>White: Set of instructions to execute in case of detecting white.</li>
+</ul>
+<h4>Example</h4>
+This example shows a typical line tracking application with the DYOR robot.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/dyor_line_following_binary_example.bly&#39;)">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/tcrt5000_motors_example_bb.png" title="tcrt5000_motors_example_bb" alt="tcrt5000_motors_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_line_following_binary_example.png" title="dyor_line_following_binary_example" alt="dyor_line_following_binary_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

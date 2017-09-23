@@ -1,0 +1,66 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">If ... execute ..., else if ... execute, otherwise execute ...</h3>
+<h4>Instruction</h4>
+<image src="doc/en-GB/img/controls_if.png" title="controls_if" alt="controls_if"></image>
+<h4>Description</h4> 
+<p>Executes a set of instructions if a condition is met. Additional conditions may be generated subject to the preconditions not being met ('else if'), each with its set of instructions to execute. In addition, in case none of the previous conditions have been fulfilled, a set of instructions can be executed by default ('else').</p>
+<h4>Stacks</h4>
+<ul>
+  <li>do: Set of instructions to execute conditionally.</li>
+</ul>
+<h4>Mutator</h4>
+It allows to add other conditions to evaluate 'else if' or 'else'.
+<h5>Container</h5>
+<p><image src="doc/en-GB/img/controls_if_if.png" title="controls_if_if" alt="controls_if_if"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/en-GB/img/controls_if_elseif.png" title="controls_if_elseif" alt="controls_if_elseif"></image></p>
+<p><image src="doc/en-GB/img/controls_if_else.png" title="controls_if_else" alt="controls_if_else"></image></p>
+<h4>Inputs</h4>
+<ul>
+  <li>Condition: If true, the stacked instructions associated with the condition are executed.</li>
+</ul> 
+<h4>Example</h4>
+In this example, the analog input value of channel A0 of the potentiometer is read. When the value exceeds 800 units, the integrated LED on the board lights up; if the analog value is between 800 and 300, the LED flashes; if the value is below 300, the LED is off.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_if_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/pot_example_bb.png" title="pot_example_bb" alt="pot_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/controls_if_example.png" title="controls_if_example" alt="controls_if_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

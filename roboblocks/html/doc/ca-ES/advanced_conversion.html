@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Format d'impressió de nombre</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/advanced_conversion.png" title="advanced_conversion" alt="advanced_conversion"></image>
+<h4>Descripció</h4>
+<p>Aquesta instrucció proporciona el format especificat, decimal, hexadecimal, octal o binari, en mostrar (imprimir) un nombre pel port sèrie. Utilitzar juntament amb les instruccions:</p>
+<p><image src="doc/ca-ES/img/serial_print.png" title="serial_print" alt="serial_print"></image></p>
+<p><image src="doc/ca-ES/img/serial_println.png" title="serial_println" alt="serial_println"></image></p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Format: Format a convertir (Decimal, Hexadecimal, Octal o Binari).</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+  <li>Valor: Nombre a convertir.</li>
+</ul>
+<h4>Eixida</h4>
+Nombre a convertir, juntament amb l'argument del format.
+<h4>Exemple</h4>
+En aquest exemple es mostra per consola un mateix nombre amb diferents representacions: decimal, hexadecimal, octal i binari.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/advanced_conversion_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example_bb" alt="nano_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/advanced_conversion_example.png" title="advanced_conversion_example" alt="advanced_conversion_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

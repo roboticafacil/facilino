@@ -1,0 +1,70 @@
+﻿<html dir="ltr">
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body dir="ltr">
+<h3 id="up">Imprimir en LCD</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/lcd_print.png" title="lcd_print" alt="lcd_print"></image>
+<h4>Descripció</h4>
+<p>Mostra una cadena de text a la pantalla LCD. Pot especificar la posició del text a mostrar. Requereix definir prèviament les connexions a la pantalla LCD amb la instrucció:</p>
+<image src="doc/ca-ES/img/lcd_def.png" title="lcd_def" alt="lcd_def" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/lcd_def.html&quot;);});"></image>
+<h4>Entrades</h4>
+<ul>
+  <li>Text: Cadena de text a mostrar.</li>
+  <li>¿Fixar posició?: Determina si es fixa la posició del text a mostrar. Per defecte és la posició (0,0)</li>
+  <li>Fila: En el cas de seleccionar 'fixar la posició' determina la fila 0 o 1 corresponents a la primera o segona fila de la pantalla LCD.</li>
+  <li>column: En el cas de seleccionar 'fixar la posició' determina la columna (0 o 15) en la qual s'ha de posicionar el primer caràcter de la cadena de text a mostrar.</li>
+</ul>
+<h4>Exemple 1</h4>
+<p>En aquest exemple es mostra el circuit de la pantalla LCD a la targeta d'expansió d'Arduino Nano. En el codi de l'exemple es mostra la frase "Hello, world!" al principi de la pantalla LCD.</p>
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/lcd_print_example1.bly&#39;)">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/lcd_example_bb.png" title="lcd_example_bb" alt="lcd_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/lcd_print_example1.png" title="lcd_print_example1" alt="lcd_print_example1"></image>
+<h4>Exemple 2</h4>
+<p>En aquest exemple es mostra el circuit de la pantalla LCD a la targeta d'expansió d'Arduino Nano. En el codi de l'exemple es mostra la frase "Hello" a la primera fila i "world!" a la segona fila de la pantalla LCD.</p>
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/lcd_clear_example.bly&#39;)">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/lcd_example_bb.png" title="lcd_example_bb" alt="lcd_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/lcd_clear_example.png" title="lcd_print_example2" alt="lcd_print_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p></p>
+</body>
+</html>

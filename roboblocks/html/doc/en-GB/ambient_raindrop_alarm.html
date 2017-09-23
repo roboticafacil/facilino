@@ -1,0 +1,64 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Rain level alarm</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/ambient_raindrop_alarm.png" title="ambient_raindrop_alarm" alt="ambient_raindrop_alarm"></image></p>
+<h4>Description</h4>
+<p>Discriminates the amount of rain from the rain sensor and executes the corresponding code. Alarm levels can be set with the instruction:</p>
+<p><image src="doc/en-GB/img/ambient_raindrop_set_alarm.png" title="ambient_raindrop_set_alarm" alt="ambient_raindrop_set_alarm" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/ambient_raindrop_set_alarm.html');});"></image></p>
+<h4>Requirements</h4>
+Facilino's License.
+<h4>Inputs</h4>
+<ul>
+  <li>Pin: Analog pin to which the sensor is connected to.</li>
+</ul>
+<h4>Applicable Instructions</h4>
+<ul>
+  <li>Intense rain: Set of instructions to run in case of rain (intense).</li>
+  <li>Soft rain: Set of instructions to run in case of rain (soft).</li>
+  <li>Dry: Set of instructions to run in case there is no rain.</li>
+</ul>
+<h4>Example</h4>
+In this example, alarm level messages are displayed on the console in case of rainning.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/ambient_raindrop_alarm_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/raindrop_example_bb.png" title="raindrop_example_bb" alt="raindrop_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/ambient_raindrop_alarm_example.png" title="ambient_raindrop_alarm_example" alt="ambient_raindrop_alarm_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Do ... while / until</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/controls_doWhile.png" title="controls_doWhile" alt="controls_doWhile"></image></p>
+<h4>Description</h4>
+<p>Run a code while or until a condition is met. The first iteration is always executed.</p>
+<h4>Stacks</h4>
+<ul>
+  <li>Do: Instructions to execute</li>
+</ul>
+<h4>Dropdown lists</h4>
+<ul>
+  <li>Mode: The code will run 'while' or 'until' the condition is met.</li>
+</ul>
+<h4>Inputs</h4>
+<ul>
+  <li>Condition: Condition to be evaluated.</li>
+</ul>
+<h4>Example 1</h4>
+In this example, a code is executed 10 times.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_doWhile_example1.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Facilino Code</h5>
+<p><image src="doc/en-GB/img/controls_doWhile_example1.png" title="controls_doWhile_example1" alt="controls_doWhile_example1"></image></p>
+<h4>Example 2</h4>
+In this example, a code is executed 10 times.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_doWhile_example2.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Facilino Code</h5>
+<p><image src="doc/en-GB/img/controls_doWhile_example2.png" title="controls_doWhile_example2" alt="controls_doWhile_example2"></image></p>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

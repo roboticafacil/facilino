@@ -1,12 +1,13 @@
 #ifndef QBLOCKSWEBVIEW_H
 #define QBLOCKSWEBVIEW_H
 
-#include <QWebView>
+#include <QWebEngineView>
 #include <QWheelEvent>
 
-class QBlocksWebView : public QWebView
+class QBlocksWebView : public QWebEngineView
 {
 public:
+    QBlocksWebView();
     QBlocksWebView(QWidget *parent = 0);
 
     void zoomIn();
@@ -16,7 +17,7 @@ private:
     void wheelEvent(QWheelEvent *event);
 
     void init();
-    void doZoom(double scale);
+    void doZoom(float scale);
 
 signals:
 

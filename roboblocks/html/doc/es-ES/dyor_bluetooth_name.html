@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Configura nombre bluetooth</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/dyor_bluetooth_name.png" title="dyor_bluetooth_name" alt="dyor_bluetooth_name"></image></p>
+<h4>Descripción</h4>
+<p>Configura el nombre del módulo bluetooth HC-06 y similares mediante comunicación serie por software con comandos AT. El cambio del nombre es permanente, quiere decir que una vez cambiado se mantiene. Requiere de la velocidad de comunicación y los pines a los que está conectado. En Arduino UNO y similares, los pines 0 y 1 se utilizan para la comunicación serie hardware, mientras que esta instrucción permite utilizar el módulo bluetooth HC-06 y similares mediante comunicación serie por software y por tanto la conexión de los pines de transmisión y recepción deben especificarse, así como la velocidad de comunicación (por defecto 9600 baudios).</p>
+<h4>Requisitos</h4>
+Licencia de Facilino
+<h4>Entradas</h4>
+<ul>
+   <li>Velocidad: Velcidad de transmisión en baudios. Valor por defecto 9600. Nota: por encima de 38400 no suele funcionar bien.</li>
+   <li>TX: Pin de transmisión de Arduino (conectar a RX del módulo HC-06).</li>
+   <li>RX: Pin de recepción de Arduino (conectar a TX del módulo HC-06).</li>
+   <li>Nombre: Nombre a configurar (el dispositivo bluetooth debe aparecer con ese nombre al cabo de un tiempo).</li>
+</ul>
+<h4>Ejemplo</h4>
+En este ejemplo se modifica el nombre que tiene por defecto el módulo bluetooth por el de "ROBOTICAFACIL".
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_bluetooth_name_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/bluetooth_example_bb.png" title="bluetooth_example_bb" alt="bluetooth_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/dyor_bluetooth_name_example.png" title="dyor_bluetooth_name_example" alt="dyor_bluetooth_name_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

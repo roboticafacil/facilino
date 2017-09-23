@@ -1,0 +1,83 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Rep comandament (bluetooth)</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/dyor_bluetooth_app.png" title="dyor_bluetooth_app" alt="dyor_bluetooth_app"></image></p>
+<h4>Descripció</h4>
+<p>Rep ordres per bluetooth d'una aplicació externa. Executa un conjunt d'instruccions en funció del comandament rebut. Disposa d'una opció per repetir una ordre, vol dir que una vegada enviat, aquest es recorda internament fins que es rep el comandament '0' (cancel·lar repetició).</p>
+<h4>Requisits</h4>
+<p>Llicència de Facilino</p>
+<p>Utilitza juntament amb la instrucció:</p>
+<p><image src="doc/ca-ES/img/dyor_bluetooth_def.png" title="dyor_bluetooth_def" alt="dyor_bluetooth_def" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/dyor_bluetooth_def.html');});"></image></p>
+<p><image src="doc/ca-ES/img/dyor_bluetooth_command.png" title="dyor_bluetooth_command" alt="dyor_bluetooth_command" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/dyor_bluetooth_command.html');});"></image></p>
+<h5>versions anteriors</h5>
+En versions anteriors de Facilino, aquesta instrucció disposava dels pins TX i RX configurables. Aquesta opció s'ha eliminat per simplificar és aspecte de la instrucció. Assegura't que fas servir la instrucció de definició del mòdul bluetooth per al correcte funcionament.
+<h4>Mutador</h4>
+Afegeix les ordres a descodificar al contenidor:
+<h5>Contenidor</h5>
+<p><image src="doc/ca-ES/img/dyor_bluetooth_app_app.png" title="dyor_bluetooth_app_app" alt="dyor_bluetooth_app_app"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/ca-ES/img/dyor_bluetooth_app_item.png" title="dyor_bluetooth_app_item" alt="dyor_bluetooth_app_item"></image></p>
+<h4>Entrades</h4>
+<ul>
+   <li>Comandament: Nombre del comando a executar.</li>
+   <li>Repeteix: Si està marcat, recorda el comando per repetir les instruccions fins que s'envia el comandament 0.</li>
+</ul>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Fer: Conjunt d'instruccions a executar en cas de rebre el comandament.</li>
+</ul>
+<h4>Exemple 1</h4>
+En aquest exemple es rep un conjunt d'ordres pel mòdul bluetooth. Aquestes ordres estan predefinits, per al seu ús amb el robot Dyor i d'implementar instruccions específiques, com és el cas del control de la matriu de LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_bluetooth_app_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_led_matrix_example_bb.png" title="bluetooth_led_matrix_example_bb" alt="bluetooth_led_matrix_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_bluetooth_app_example.png" title="dyor_bluetooth_app_example" alt="dyor_bluetooth_app_example"></image>
+<h4>Exemple 2</h4>
+En aquest exemple es llegeixen caràcters ASCII per bluetooth. Si l'usuari envia un '0' (30 en ASCII), s'encenen dos LEDs connectats als pins 5 i 6. Si l'usuari envia un '1' (31 en ASCII), s'encén el LED connectat al pin 6, mentre que si s'envia un '2' (32 en ASCII), s'encén el LED connectat al pin 5. El commandament '3' (33 en ASCII) desactivarà els LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_bluetooth_app_example2.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_bluetooth_app_example2.png" title="dyor_bluetooth_app_example2" alt="dyor_bluetooth_app_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

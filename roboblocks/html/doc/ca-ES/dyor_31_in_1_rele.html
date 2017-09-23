@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Activa o desactiva un relé</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/dyor_31_in_1_rele.png" title="dyor_31_in_1_rele" alt="dyor_31_in_1_rele"></image>
+<h4>Descripció</h4>
+<p>Un relé s'activa o es desactiva mitjançant el corresponent pin connectat a la bobina del relé. En molts processos industrials, un relé està associat a un senyal de potència que ha de ser activada o desactivada segons convingui, per aquest motiu s'ha introduït una instrucció específica per a això, si bé, aquesta instrucció és funcionalment és idèntica a la instrucció:</p>
+<image src="doc/ca-ES/img/inout_digital_write.png" title="inout_digital_write" alt="inout_digital_write" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_digital_write.html');});"></image>
+<h4>Entrades</h4>
+<ul>
+  <li>Pin: Pin digital a llegir.</li>
+  <li>Valor: ALT per activar o SOTA per desactivar.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple el corrent d'un motor es talla si es detecta que un intrús ha envaït una àrea de seguretat (representat pel polsador).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_31_in_1_relay_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/relay_example_bb.png" title="relay_example_bb" alt="relay_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_31_in_1_relay_example.png" title="dyor_31_in_1_relay_example" alt="dyor_31_in_1_relay_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

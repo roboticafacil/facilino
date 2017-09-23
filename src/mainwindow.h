@@ -9,7 +9,7 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QtSerialPort/QSerialPort>
-#include <QWebView>
+#include <QWebEngineView>
 
 namespace Ui {
 class MainWindow;
@@ -46,6 +46,7 @@ private:
                            const QString &directory = "");
     void arduinoExec(const QString &action);
     void documentHistoryReset();
+	QVariant evaluateJavaScript(const QString code);												
     QString escapeCharacters(const QString& string);
     QString getXml();
     QString getCode();
@@ -74,6 +75,7 @@ public slots:
     void actionAbout();
     void actionCloseMessages();
     void actionCode();
+    void actionDoc();
     void actionExamples();
     void actionExportSketch();
     void actionIconLabels();

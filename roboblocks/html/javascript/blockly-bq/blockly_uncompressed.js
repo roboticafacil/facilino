@@ -16140,7 +16140,7 @@ Blockly.BlockSvg.prototype.onMouseUp_ = function(a) {
 };
 Blockly.BlockSvg.prototype.showHelp_ = function() {
     var a = goog.isFunction(this.helpUrl) ? this.helpUrl() : this.helpUrl;
-    a && window.open(a)
+    a && ('#doc').html(a);
 };
 Blockly.BlockSvg.prototype.showContextMenu_ = function(a) {
     if (!this.workspace.options.readOnly && this.contextMenu) {

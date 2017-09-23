@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Sets bluetooth module</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_bluetooth_def.png" title="dyor_bluetooth_def" alt="dyor_bluetooth_def"></image></p>
+<h4>Description</h4>
+<p>Defines the bluetooth HC-06 module (and similar ones) through serial software communication with commands AT. It configures its speed and the pins to which it is connected. In Arduino UNO (and similar ones), pins 0 and 1 are used for hardware serial communication, whereas this instruction allows to use the Bluetooth HC-06 module through serial communication and therefore the connection of the transmission and reception pins must be specified, as well as the communication speed (default 9600 baud).</p>
+<h4>Inputs</h4>
+<ul>
+   <li>Speed: Baud rate speed. Default value:9600. Note: Above 38400 does not usually work well.</li>
+   <li>TX: Arduino transmission pin (connect to RX of HC-06 module).</li>
+   <li>RX: Arduino reception pin (connect to TX of HC-06 module).</li>
+</ul>
+<h4>Example</h4>
+In this example ASCII characters are read through bluetooth. If the user sends a '0' (30 in ASCII), the two LEDs connected to pins 5 and 6 are light up. If the user sends a '1' (31 to ASCII), the LED connected to pin 6 will light up (LED connected to pin 5 will be off), whereas if a '2' (32 in ASCII) is sent, the LED connected to pin 5 will light up (LED connected to pin 6 will be off). Any other data received will turn off the LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_switch_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/controls_switch_example.png" title="controls_switch_example" alt="controls_switch_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

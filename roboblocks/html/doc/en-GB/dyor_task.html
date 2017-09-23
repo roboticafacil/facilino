@@ -1,0 +1,68 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Multi-Tasks (periodic)</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_task.png" title="dyor_task" alt="dyor_task"></image></p>
+<h4>Description</h4>
+<p>Defines a set of periodic tasks using the Arduino timer0. All instructions that use timer0 or delays may be affected. It has a stack for instructions that are always executed (every millisecond) and another stacks for tasks that are executed periodically.</p>
+<h4>Requirements</h4>
+Facilino's License
+<h4>Mutator</h4>
+Create new periodic tasks by adding them to the container:
+<h5>Container</h5>
+<p><image src="doc/en-GB/img/dyor_task_task.png" title="dyor_task_task" alt="dyor_task_task"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/en-GB/img/dyor_task_item.png" title="dyor_task_item" alt="dyor_task_item"></image></p>
+<h4>Stacks</h4>
+<ul>
+  <li>always do: Set of instructions to execute every millisecond.</li>
+  <li>Task: Set of instructions to execute to the specified period.</li>
+</ul>
+<h4>Inputs</h4>
+<ul>
+  <li>Period: Period of the task to be executed in milliseconds.</li>
+</ul>
+<h4>Example</h4>
+This example controls the blinking of two LEDs with different switching periods (multi-task).
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/dyor_task_example.bly&#39;)">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/leds_example_bb.png" title="leds_example_bb" alt="leds_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_task_example.png" title="dyor_task_example" alt="dyor_task_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

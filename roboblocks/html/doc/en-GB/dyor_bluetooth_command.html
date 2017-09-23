@@ -1,0 +1,188 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.datagrid table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+.datagrid {
+  font: normal 12px/150% Arial,Helvetica,sans-serif;
+  background: #fff;
+  overflow: hidden;
+  border: 1px solid #006699;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.datagrid table td, .datagrid table th {
+  padding: 3px 10px;
+}
+.datagrid table thead th {
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0.05,#006699),color-stop(1,#00557f));
+  background: -moz-linear-gradient(center top,#006699 5%,#00557f 100%);
+  background-color: #006699;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  border-left: 1px solid #0070a8;
+}
+.datagrid table thead th:first-child {
+  border: none;
+}
+.datagrid table tbody td {
+  color: #00496b;
+  border-left: 1px solid #e1eef4;
+  font-size: 12px;
+  font-weight: normal;
+}
+.datagrid table tbody .alt td {
+  background: #e1eef4;
+  color: #00496b;
+}
+.datagrid table tbody td:first-child {
+  border-left: none;
+}
+.datagrid table tbody tr:last-child td {
+  border-bottom: none;
+}
+.datagrid table tfoot td div {
+  border-top: 1px solid #006699;
+  background: #e1eef4;
+}
+.datagrid table tfoot td {
+  padding: 0;
+  font-size: 12px;
+}
+.datagrid table tfoot td div {
+  padding: 2px;
+}
+.datagrid table tfoot td ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+.datagrid table tfoot li {
+  display: inline;
+}
+.datagrid table tfoot li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 1px;
+  color: #ffffff;
+  border: 1px solid #006699;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0.05,#006699),color-stop(1,#00557f));
+  background: -moz-linear-gradient(center top,#006699 5%,#00557f 100%);
+  background-color: #006699;
+}
+.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover {
+  text-decoration: none;
+  border-color: #006699;
+  color: #ffffff;
+  background: none;
+  background-color: #00557f;
+}
+div.dhtmlx_window_active, div.dhx_modal_cover_dv {
+  position: fixed !important;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Predefined command</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_bluetooth_command.png" title="dyor_bluetooth_command" alt="dyor_bluetooth_command"></image></p>
+<h4>Description</h4>
+<p>Returns a predefined command for the DYOR robot. Use in conjunction with instruction:</p>
+<p><image src="doc/en-GB/img/dyor_bluetooth_app.png" title="dyor_bluetooth_app" alt="dyor_bluetooth_app" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/dyor_bluetooth_app.html');});"></image></p>
+<h4>Requirements</h4>
+<p>Facilino's License</p>
+<h4>Dropdown lists</h4>
+<ul>
+  <li>Command: Select a command (see list).</li>
+</ul>
+<h4>Output</h4>
+Selected command.
+<h5>List of commands</h5>
+<div class="datagrid"><table>
+<thead><tr><th>Name</th><th>Value</th></tr></thead>
+<tbody><tr class="alt"><td>Cancel repeating</td><td>0</td></tr>
+	<tr><td>Angry</td><td>1</td></tr>
+	<tr class="alt"><td>Happy</td><td>2</td></tr>
+	<tr><td>Sad</td><td>3</td></tr>
+	<tr class="alt"><td>In love</td><td>4</td></tr>
+	<tr><td>Surprised</td><td>5</td></tr>
+	<tr class="alt"><td>C4</td><td>11</td></tr>
+	<tr><td>D4</td><td>12</td></tr>
+	<tr class="alt"><td>E4</td><td>13</td></tr>
+	<tr><td>F4</td><td>14</td></tr>
+	<tr class="alt"><td>G4</td><td>15</td></tr>
+	<tr><td>A4</td><td>16</td></tr>
+	<tr class="alt"><td>B4</td><td>17</td></tr>
+	<tr><td>Forward</td><td>21</td></tr>
+	<tr class="alt"><td>Backward</td><td>22</td></tr>
+	<tr><td>Turn right</td><td>23</td></tr>
+	<tr class="alt"><td>Turn left</td><td>24</td></tr>
+	<tr><td>Stop</td><td>25</td></tr>
+	<tr class="alt"><td>Close left finger</td><td>3</td></tr>
+	<tr><td>Open left finger</td><td>32</td></tr>
+	<tr class="alt"><td>Close right finger</td><td>33</td></tr>
+	<tr><td>Open right finger</td><td>34</td></tr>
+	<tr class="alt"><td>Close grip</td><td>35</td></tr>
+	<tr><td>Open grip</td><td>36</td></tr>
+	<tr class="alt"><td>Avoid obstacles</td><td>41</td></tr>
+	<tr><td>Line follower</td><td>42</td></tr>
+	<tr class="alt"><td>Black</td><td>43</td></tr>
+	<tr><td>White</td><td>44</td></tr>
+	<tr class="alt"><td>Raise left arm</td><td>51</td></tr>
+	<tr><td>Low left arm</td><td>52</td></tr>
+	<tr class="alt"><td>Raise right arm</td><td>53</td></tr>
+	<tr><td>Low right arm</td><td>54</td></tr>
+	<tr class="alt"><td>Raise arms</td><td>55</td></tr>
+	<tr><td>Lower arms</td><td>56</td></tr>
+</tbody>
+</table></div>
+<h4>Example</h4>
+In this example, a set of commands are received with the bluetooth module. These commands are predefined for use with the DYOR robot and must implement specific instructions, such as the control of the LEDs matrix.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_bluetooth_app_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_led_matrix_example_bb.png" title="bluetooth_led_matrix_example_bb" alt="bluetooth_led_matrix_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_bluetooth_app_example.png" title="dyor_bluetooth_app_example" alt="dyor_bluetooth_app_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

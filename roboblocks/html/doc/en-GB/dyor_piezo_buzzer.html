@@ -1,0 +1,58 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Buzzer (Predefined Musical Note)</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_piezo_buzzer.png" title="dyor_piezo_buzzer" alt="dyor_piezo_buzzer"></image></p>
+<h4>Description</h4>
+<p>Emits a sound with a predefined musical note (generates a frequency signal for a buzzer). You can choose the type of note, the duration of the note, and whether you want to generate a tie effect between notes.</p>
+<h4>Inputs</h4>
+<ul>
+  <li>Pin: Digital pin to which the sound buzzer is connected to.</li>
+  <li>Note: Musical note to be generated.</li>
+  <li>Duration: Duration of the musical note.</li>
+  <li>Tie: Sets tie condition.</li>
+</ul>
+<h4>Example</h4>
+This example shows how to generate predefined musical notes.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/dyor_piezo_buzzer_example.bly&#39;)">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/buzzer_example_bb.png" title="buzzer_example_bb" alt="buzzer_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_piezo_buzzer_example.png" title="dyor_piezo_buzzer_example" alt="dyor_piezo_buzzer_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

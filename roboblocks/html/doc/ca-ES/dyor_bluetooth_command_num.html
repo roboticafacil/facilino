@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Comandament genèric</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/dyor_bluetooth_command_num.png" title="dyor_bluetooth_command_num" alt="dyor_bluetooth_command_num"></image></p>
+<h4>Descripció</h4>
+<p>Retorna una ordre amb el valor indicat. Utilitza juntament amb la instrucció:</p>
+<p><image src="doc/ca-ES/img/dyor_bluetooth_app.png" title="dyor_bluetooth_app" alt="dyor_bluetooth_app" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/dyor_bluetooth_app.html');});"></image></p>
+<h4>Requisits</h4>
+<p>Llicència de Facilino</p>
+<h4>Entrades</h4>
+<ul>
+  <li>Valor: valor de la comanda.</li>
+</ul>
+<h4>Eixida</h4>
+Comando indicat.
+<h4>Exemple</h4>
+En aquest exemple es llegeixen caràcters ASCII per bluetooth. Si l'usuari envia un '0' (30 en ASCII), s'encenen dos LEDs connectats als pins 5 i 6. Si l'usuari envia un '1' (31 en ASCII), s'encén el LED connectat al pin 6, mentre que si s'envia un '2' (32 en ASCII), s'encén el LED connectat al pin 5. El comandament '3' (33 en ASCII) desactivarà els LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_bluetooth_app_example2.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_bluetooth_app_example2.png" title="dyor_bluetooth_app_example2" alt="dyor_bluetooth_app_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

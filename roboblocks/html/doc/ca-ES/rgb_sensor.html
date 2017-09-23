@@ -1,0 +1,64 @@
+﻿<html dir="ltr">
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body dir="ltr">
+<h3 id="up">Detecta color RGB</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/rgb_sensor.png" title="rgb_sensor" alt="rgb_sensor"></image></p>
+<h4>Descripció</h4>
+<p>Detecta un color amb el sensor RGB TCS3200. Retorna tres possibles colors: roig, verd o blau, qualsevol altre valor retornat és un color no detectat.</p>
+<h4>Requisits</h4>
+Llicència de Facilino.
+<h4>Entrades</h4>
+<ul>
+  <li>Pin S0: Pin S0 del sensor TCS3200.</li>
+  <li>Pin S1: Pin S1 del sensor TCS3200.</li>
+  <li>Pin S2: Pin S2 del sensor TCS3200.</li>
+  <li>Pin S3: Pin S3 del sensor TCS3200.</li>
+  <li>Pin OUT: Pin OUT del sensor TCS3200.</li>
+</ul>
+<h4>Eixida</h4>
+Color detectat.
+<h4>Exemple</h4>
+En aquest exemple es mostra per consola la paraula 'ROIG', 'VERD' o 'BLAU' en funció de si es detecta el color roig, verd o blau utilitzant el sensor TCS3200. Els colors han estat prèviament calibrats.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/rgb_sensor_example.bly&#39;)">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/tcs3200_example_bb.png" title="tcs3200_example_bb" alt="tcs3200_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/rgb_sensor_example.png" title="rgb_sensor_example" alt="rgb_sensor_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p></p>
+</body>
+</html>

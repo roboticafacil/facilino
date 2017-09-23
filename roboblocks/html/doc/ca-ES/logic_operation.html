@@ -1,0 +1,62 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Operadors lògics</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/logic_operation.png" title="logic_operation" alt="logic_operation"></image>
+<h4>Descripció</h4>
+<p>Avalua les entrades i retorna cert o fals en funció de l'operador lògic seleccionat (I, O, XOR, XNOR o IMPLICACIÓ LÒGICA).</p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Operador: Operador lògic a avaluar.</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+  <li>A: Valor lògic a avaluar.</li>
+  <li>B: Valor lògic a avaluar.</li>
+</ul>
+<h4>Eixida</h4>
+Valor binari avaluat (verdader o fals).
+<h4>Exemple</h4>
+En aquest exemple es mostra, a través del LED integrat el resultat de l'operació lògica seleccionada (segons el nombre introduït per consola). Els valors de les entrades es determinen segons pressionem els botons.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/logic_operation_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/switches_example_bb.png" title="switches_example_bb" alt="switches_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/logic_operation_example.png" title="logic_operation_example" alt="logic_operation_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

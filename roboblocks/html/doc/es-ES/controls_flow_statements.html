@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Interrumpe/Continúa con la siguiente iteración de un bucle</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/controls_flow_statements.png" title="controls_flow_statements" alt="controls_flow_statements"></image></p>
+<h4>Descripción</h4>
+<p>Instrucción para romper o continuar con la siguiente iteración de un bucle. Debe utilizarse dentro de cualquier instrucción de bucle:</p>
+<p><image src="doc/es-ES/img/controls_for.png" title="controls_for" alt="controls_for" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/controls_for.html");});'></image></p>
+<p><image src="doc/es-ES/img/controls_doWhile.png" title="controls_doWhile" alt="controls_doWhile" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/controls_doWhile.html");});'></image></p>
+<p><image src="doc/es-ES/img/controls_whileUntil.png" title="controls_whileUntil" alt="controls_whileUntil" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/controls_doWhile.html");});'></image></p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Acción: Interrupme o continúa con la siguiente iteración de un bucle.</li>
+</ul>
+<h4>Ejemplo 1</h4>
+En este ejemplo se plantea el juego de adivinar un número secreto. Desde la consola, podemos ir introduciendo números del 1 al 100 hasta acertar con el número secreto.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_flow_statements_example1.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/controls_flow_statements_example1.png" title="controls_flow_statements_example1" alt="controls_flow_statements_example1"></image>
+<h4>Ejemplo 2</h4>
+En este ejemplo, el LED integrado (pin 13) parpadea por defecto, sin embargo, al pulsar el botón el LED dejará de parpadear.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_flow_statements_example2.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/switch_example_bb.png" title="switch_example_bb" alt="switch_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/controls_flow_statements_example2.png" title="controls_flow_statements_example2" alt="controls_flow_statements_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

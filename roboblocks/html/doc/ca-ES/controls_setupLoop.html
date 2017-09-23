@@ -1,0 +1,56 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Inici / Repetir</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/controls_setupLoop.png" title="controls_setupLoop" alt="controls_setupLoop"></image>
+<h4>Descripció</h4>
+<p>Aquesta instrucció ha d'estar en tot programa d'Arduino i de fet s'inclou per defecte en iniciar un nou codi. Permet incloure instruccions que s'executaran a l'inici (només durant l'arrencada) i instruccions que es repetiran indefinidament (en acabar l'última instrucció torna a començar a executar la primera instrucció).</p>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Inici: conjunt d'instruccions que només s'executen una vegada (a l'inici).</li>
+  <li>Repetició: conjunt d'instruccions que s'executen repetidament.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple es mostra un missatge a l'inici i un altre en el bucle principal.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/controls_setupLoop_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/controls_setupLoop_example.png" title="controls_setupLoop_example" alt="controls_setupLoop_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

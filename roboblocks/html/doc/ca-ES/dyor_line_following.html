@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Seguiment de línies amb TCRT5000 (Proporcional)</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/dyor_line_following.png" title="dyor_line_following" alt="dyor_line_following"></image></p>
+<h4>Descripció</h4>
+<p>Determina la velocitat de gir a aplicar a la base del robot Dyor per implementar l'algoritme de seguiment de línies. La velocitat de gir de correcció és proporcional a la diferència entre el nivell de llum llegit i un valor de llum intermedi de referència (entre negre i blanc).</p>
+<h4>Requisits</h4>
+Llicència de Facilino.
+<h4>Entrades</h4>
+<ul>
+   <li>Llum: Quantitat de llum llegida amb el sensor TCRT5000 (valor analògic).</li>
+   <li>Guany: Factor de correcció, com més elevat més brusc són els moviments de correcció. Si és molt baix, pot ser que no corregeixi.</li>
+</ul>
+<h4>Eixida</h4>
+Retorna el valor de gir proporcional (entre -100% i 100%).
+<h4>Exemple</h4>
+En aquest exemple es mostra una típica aplicació de seguiment de línies amb el robot Dyor.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_line_following_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/tcrt5000_motors_example_bb.png" title="tcrt5000_motors_example_bb" alt="tcrt5000_motors_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_line_following_example.png" title="dyor_line_following_example" alt="dyor_line_following_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

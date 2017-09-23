@@ -1,0 +1,54 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Interpreta un nombre sencer pel port sèrie</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/serial_parseint.png" title="serial_parseint" alt="serial_parseint"></image>
+<h4>Descripció</h4>
+<p>Aquesta instrucció retorna un nombre sencer 'interpretat' pel port sèrie. Tots els caràcters a l'inici de la cadena de text que no siguin dígits del 0 al 9 o el signe menys són ignorats. La 'interpretació' finalitza quan es llegeix un caràcter no vàlid. Si passat un temps especificat no s'ha rebut cap caràcter, la funció retorna 0. El temps pot ser establert amb la instrucció:</p>
+<image src="doc/ca-ES/img/serial_timeout.png" title="serial_timeout" alt="serial_timeout"></image>
+<h4>Eixida</h4>
+Nombre sencer interpretat.
+<h4>Exemple</h4>
+En aquest exemple es mostra, a través del LED integrat el resultat de l'operació lògica seleccionada (segons el nombre introduït per consola). Els valors de les entrades es determinen segons pressionem els botons.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/logic_operation_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/switch_example_bb.png" title="switch_example_bb" alt="switch_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/logic_operation_example.png" title="logic_operation_example" alt="logic_operation_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

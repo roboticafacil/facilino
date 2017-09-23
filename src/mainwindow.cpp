@@ -18,8 +18,7 @@
 #include <QThread>
 #include <QTimer>
 #include <QWebEnginePage>
-#include <QDesktopWidget>
-#include <QWebEngineScript>
+#include <QEventLoop>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -51,8 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setArduinoBoard();
     xmlFileName = "";
     serial = NULL;
-    QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
-    ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
+    //QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
+    //ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     float zoomScale = settings->zoomScale();
     ui->webView->setZoomFactor(zoomScale);
 
@@ -120,39 +119,38 @@ void MainWindow::arduinoExec(const QString &action) {
         dir.mkdir(settings->tmpDirName());
     }
 
+    // Check if tmp file exists
+    QFile tmpFile(settings->tmpFileName());
+    if (tmpFile.exists()) {
+        tmpFile.remove();
+    }
+    tmpFile.open(QIODevice::WriteOnly);
+
     // Read code
+	QVariant codeVariant = evaluateJavaScript("Blockly.Arduino.workspaceToCode();");
+    QString codeString = codeVariant.toString();
+	
 
-    ui->webView->page()->runJavaScript("Blockly.Arduino.workspaceToCode();",QWebEngineScript::MainWorld, [](const QVariant &codeVariant){
+    // Write code to tmp file
+    tmpFile.write(codeString.toLocal8Bit());
+    tmpFile.close();
 
-        QString codeString = codeVariant.toString();
+    // Verify code
+    arguments << action;
+    // Board parameter
+    if (ui->boardBox->count() > 0) {
+        arguments << "--board" << ui->boardBox->currentText();
+    }
+    // Port parameter
+    if (ui->serialPortBox->count() > 0) {
+        arguments << "--port" << ui->serialPortBox->currentText();
+    }
+    //arguments << "--pref editor.external=false ";
+    arguments << settings->tmpFileName();
+    process->start(settings->arduinoIdePath(), arguments);
 
-        // Check if tmp file exists
-        QFile tmpFile(settings->tmpFileName());
-        if (tmpFile.exists()) {
-            tmpFile.remove();
-        }
-        tmpFile.open(QIODevice::WriteOnly);
-        // Write code to tmp file
-        tmpFile.write(codeString.toLocal8Bit());
-        tmpFile.close();
-        // Verify code
-        arguments << action;
-        // Board parameter
-        if (ui->boardBox->count() > 0) {
-            arguments << "--board" << ui->boardBox->currentText();
-        }
-        // Port parameter
-        if (ui->serialPortBox->count() > 0) {
-            arguments << "--port" << ui->serialPortBox->currentText();
-        }
-        //arguments << "--pref editor.external=false ";
-        arguments << settings->tmpFileName();
-        process->start(settings->arduinoIdePath(), arguments);
-
-        // Show messages
-        ui->messagesWidget->show();
-        }
-    );
+    // Show messages
+    ui->messagesWidget->show();
 }
 
 void MainWindow::actionAbout() {
@@ -164,7 +162,15 @@ void MainWindow::actionAbout() {
 void MainWindow::actionCode() {
     // Show/hide code
     QString jsLanguage = QString("toogleCode();");
-    ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
+    //ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
+	evaluateJavaScript(jsLanguage);
+}
+
+void MainWindow::actionDoc() {
+    // Show/hide code
+    QString jsLanguage = QString("toogleDoc();");
+    //ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
+	evaluateJavaScript(jsLanguage);
 }
 
 void MainWindow::actionExamples() {
@@ -276,15 +282,16 @@ void MainWindow::actionInsertLanguage() {
     // Set language in Roboblocks
     QString jsLanguage = QString("var roboblocksLanguage = '%1';").
             arg(settings->defaultLanguage());
-    ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
+    //ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
+	ui->webView->page()->runJavaScript(jsLanguage);
 }
 
 void MainWindow::actionLicense() {
     // Set license
     QString jsLanguage = QString("var license = '%1';").
             arg(settings->license());
-    QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
-    ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
+    //QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
+    ui->webView->page()->runJavaScript(jsLanguage);
 }
 
 void MainWindow::actionMonitor() {
@@ -347,8 +354,9 @@ void MainWindow::actionNew() {
     webHelper->resetSourceChanged();
 
     // Clear workspace
-    QWebFrame *frame = ui->webView->page()->mainFrame();
-    frame->evaluateJavaScript("resetWorkspace();");
+    //QWebFrame *frame = ui->webView->page()->mainFrame();
+    //frame->evaluateJavaScript("resetWorkspace();");
+	evaluateJavaScript("resetWorkspace();");
 
     // Reset history
     documentHistoryReset();
@@ -519,9 +527,7 @@ void MainWindow::actionSettings() {
     QString license = settings->license();
     // Supported list of languages
     QStringList languageList;
-    languageList << "en-GB" << "ca-ES" << "es-ES" << "eu-ES"
-                 << "fr-FR" << "gl-ES" << "it-IT" << "pl-PL"
-                 << "pt-BR" << "pt-PT" << "ru";
+    languageList << "en-GB" << "ca-ES" << "es-ES";
     SettingsDialog settingsDialog(settings, languageList, this);
     int result = settingsDialog.exec();
     if (result && settingsDialog.changed()) {
@@ -556,8 +562,11 @@ void MainWindow::actionZoomOut() {
 
 QString MainWindow::getXml() {
     // Get XML
-    QWebFrame *frame = ui->webView->page()->mainFrame();
-    QVariant xml = frame->evaluateJavaScript(
+   // QWebFrame *frame = ui->webView->page()->mainFrame();
+    //QVariant xml = frame->evaluateJavaScript(
+    //    "var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());"
+   //     "var data = Blockly.Xml.domToText(xml); data;");
+   QVariant xml = evaluateJavaScript(
         "var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());"
         "var data = Blockly.Xml.domToText(xml); data;");
     return xml.toString();
@@ -565,9 +574,10 @@ QString MainWindow::getXml() {
 
 QString MainWindow::getCode() {
     // Get code
-    QWebFrame *frame = ui->webView->page()->mainFrame();
-    QVariant xml = frame->evaluateJavaScript(
-        "Blockly.Arduino.workspaceToCode();");
+   // QWebFrame *frame = ui->webView->page()->mainFrame();
+   // QVariant xml = frame->evaluateJavaScript(
+    //    "Blockly.Arduino.workspaceToCode();");
+	QVariant xml = evaluateJavaScript("Blockly.Arduino.workspaceToCode();");
     return xml.toString();
 }
 
@@ -575,7 +585,7 @@ void MainWindow::setXml(const QString &xml, bool clear) {
     // Set XML
     QString escapedXml(escapeCharacters(xml));
 
-    QWebFrame *frame = ui->webView->page()->mainFrame();
+    //QWebFrame *frame = ui->webView->page()->mainFrame();
     QString js = QString("var data = '%1'; "
         "var xml = Blockly.Xml.textToDom(data);"
         "Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),xml);"
@@ -584,7 +594,8 @@ void MainWindow::setXml(const QString &xml, bool clear) {
     if (clear) {
         js.prepend("Blockly.mainWorkspace.clear();");
     }
-    frame->evaluateJavaScript(js);
+    //frame->evaluateJavaScript(js);
+	evaluateJavaScript(js);
 }
 
 bool MainWindow::listIsEqual(const QStringList &listOne,
@@ -599,26 +610,26 @@ bool MainWindow::listIsEqual(const QStringList &listOne,
 
 void MainWindow::loadBlockly() {
     // Load blockly index
-    connect(ui->webView->page()->mainFrame(),
+    connect(ui->webView->page(),
             SIGNAL(javaScriptWindowObjectCleared()),
             this,
             SLOT(actionInsertLanguage()));
-    connect(ui->webView->page()->mainFrame(),
+    connect(ui->webView->page(),
             SIGNAL(javaScriptWindowObjectCleared()),
             this,
             SLOT(actionLicense()));
-    ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
+    //ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     ui->webView->load(QUrl::fromLocalFile(settings->htmlIndex()));
-    ui->webView->page()->mainFrame()->setScrollBarPolicy(
+    /*ui->webView->page()->setScrollBarPolicy(
                 Qt::Vertical,
                 Qt::ScrollBarAlwaysOff);
-    ui->webView->page()->mainFrame()->setScrollBarPolicy(
+    ui->webView->page()->setScrollBarPolicy(
                 Qt::Horizontal,
                 Qt::ScrollBarAlwaysOff);
-
+    */
     // Signal is emitted before frame loads any web content
     webHelper = new JsWebHelpers();
-    connect(ui->webView->page()->mainFrame(),
+    connect(ui->webView->page(),
             SIGNAL(javaScriptWindowObjectCleared()),
             this,
             SLOT(actionInjectWebHelper()));
@@ -925,6 +936,18 @@ void MainWindow::updateSerialPorts() {
     }
 }
 
+QVariant MainWindow::evaluateJavaScript(const QString code) {
+    // Execute JavaScript code and return
+    QEventLoop loop;
+    QVariant returnValue = "";
+    QWebEnginePage *page = ui->webView->page();
+    page->runJavaScript(code, [&](const QVariant var){
+        returnValue = var;
+        loop.quit();
+    });
+    loop.exec();
+    return returnValue;
+}															 
 QString MainWindow::escapeCharacters(const QString& string)
 {
     QString rValue = QString(string);
@@ -942,9 +965,9 @@ QString MainWindow::escapeCharacters(const QString& string)
 void MainWindow::actionInjectWebHelper() {
     // Inject the webHelper object in the webview. This is used in index.html,
     // where a call is made back to webHelper.sourceChanged() function.
-    ui->webView->page()->mainFrame()->addToJavaScriptWindowObject(
-                QString("webHelper"),
-                webHelper);
+    //ui->webView->page()->addToJavaScriptWindowObject(
+    //            QString("webHelper"),
+    //            webHelper);
 }
 
 int MainWindow::checkSourceChanged() {
@@ -990,9 +1013,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
             if (keyEvent->key() == Qt::Key_Backspace) {
                 // Is the active element a text field?
-                QWebFrame *frame = ui->webView->page()->mainFrame();
-                QVariant code = frame->evaluateJavaScript(
-                    "document.activeElement.type");
+                //QWebFrame *frame = ui->webView->page()->mainFrame();
+                //QVariant code = frame->evaluateJavaScript(
+                //    "document.activeElement.type");
+				QVariant code = evaluateJavaScript("document.activeElement.type");
                 QString type = code.toString();
                 if (type == "text") {
                     // Text field: pass the event to the widget

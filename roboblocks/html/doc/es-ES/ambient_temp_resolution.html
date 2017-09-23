@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Resolución temperatura sensor DS18B20</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/ambient_temp_resolution.png" title="ambient_temp_resolution" alt="ambient_temp_resolution"></image></p>
+<h4>Descripción</h4>
+<p>Establece la resolución del sensor de temperatura DS18B20, cuanto más resolución más precisa es la lectura.</p>
+<h4>Requisitos</h4>
+Licencia de Facilino.
+<h4>Desplegables</h4>
+<ul>
+  <li>Bits: Bits de resolución del sensor.</li>
+</ul>
+<h4>Entradas</h4>
+<ul>
+  <li>Bus Pin: Pin al que está conectado el sensor.</li>
+</ul>
+<h4>Ejemplo</h4>
+En este ejemplo se muestra por consola la temperatura leída con el sensor DS18B20 a diferentes resoluciones.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/ambient_temp_resolution_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/18b20_example_bb.png" title="18b20_example_bb" alt="18b20_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/ambient_temp_resolution_example.png" title="ambient_temp_resolution_example" alt="ambient_temp_resolution_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

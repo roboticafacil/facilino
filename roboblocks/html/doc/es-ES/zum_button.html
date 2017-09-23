@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Lee entrada digital (con resistencia pull-up)</h3>
+<h4>Instrucción</h4>
+<p><image src="doc/es-ES/img/zum_button.png" title="zum_button" alt="zum_button"></image></p>
+<h4>Descripción</h4>
+<p>Devuelve ALTO o BAJO en función de si está desconectada o conectada una entrada digital, respectivamente (típicamente en los botones o microinterruptores). La entrada requiere el uso de una resistencia pull-up para su correcta lectura. Esta instrucción activa la resistencia interna del propio Arduino (entre 20K y 50K, según el microcontrolador).</p>
+<h4>Entradas</h4>
+<ul>
+  <li>Pin: Pin digital a leer.</li>
+</ul>
+<h4>Salida</h4>
+Valor digital leído (ALTO o BAJO).
+<h4>Ejemplo</h4>
+Este ejemplo muestra el uso de un botón sin resistencia externa.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/zum_button_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/switch2_example_bb.png" title="switch2_example_bb" alt="switch2_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/zum_button_example.png" title="zum_button_example" alt="zum_button_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

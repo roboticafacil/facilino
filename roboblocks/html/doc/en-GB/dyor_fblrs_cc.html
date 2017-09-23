@@ -1,0 +1,65 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Moves robot base with DC motors and basic primitives</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_fblrs_cc.png" title="dyor_fblrs_cc" alt="dyor_fblrs_cc"></image></p>
+<h4>Description</h4>
+<p>Controls the movements of the robot's base controlled with DC motors and basic movement primitives: forward, backward, left, right and stop.</p>
+<h4>Requirements</h4>
+Facilino's License.
+<h4>Inputs</h4>
+<ul>
+  <li>Left IN1: PWM pin to which the left motor is connected to (input 1).</li>
+  <li>Left IN2: PWM pin to which the left motor is connected to (input 2)</li>
+  <li>Right IN3: PWM pin to which the right motor is connected to (input 3).</li>
+  <li>Right IN4: PWM pin to which the right motor is connected to (input 4).</li>
+  <li>Speed: Overall speed (affects both engines equally) in percentage (from 0% to 100%).</li>
+</ul>
+<h4>Dropdown lists</h4>
+<ul>
+  <li>Primitive: primitive movement (forward, backward, left, right or stop).</li>
+</ul>
+<h4>Example</h4>
+This example shows how to control the movements of a robot with primitives. The robot moves forward for two seconds and then spins randomly to the left or right for a second.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_fblrs_cc_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/motors_dc_example_bb.png" title="motors_dc_example_bb" alt="motors_dc_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_fblrs_cc_example.png" title="dyor_fblrs_cc_example" alt="dyor_fblrs_cc_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

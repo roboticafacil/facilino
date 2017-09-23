@@ -1,0 +1,208 @@
+<html>
+<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    	<meta name="robots" content="Index,Allow">
+    	<meta name="description" content="Entorno de programación visual para Arduino"/>
+    	<meta name="keywords" content="facilino,robot,arduino,dyor" />
+    	<meta name="author" content="Robótica Fácil"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">																
+    	<title>Facilino</title>
+    	<link rel="stylesheet" type="text/css" href="facilino.css">
+    	<link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+	</head>
+<body>
+	<div id="wrap">
+        <div id="blockly" style="float: left; width: 66%;">
+			<span id="position"></span>
+			<div id="dragbar"></div>
+		</div>
+		<div id="code_doc" style="float: left; width: 34%;">
+          <div id="code" style="float: none; width: 100%; height: 50%;">
+		  </div>
+		  <span id="position1"></span>
+			<div id="dragbar1" style="float: none; width=100%;"></div>
+		  <div id="doc" style="float: none; width: 100%; height: 50%;">
+		  </div>
+		</div>
+    </div>
+	<!-- <div id="console"></div> -->
+    <script src="javascript/jquery/dist/jquery.min.js"></script>
+    <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/highlight/highlight.pack.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+    <script src="facilino_not_obfuscated.js"></script>
+    <script src="roboblocks.js"></script>
+    <xml id='startBlocks' style='display: none'></xml>
+
+    <script language="JavaScript">
+	    if (window.roboblocksLanguage === undefined || window.roboblocksLanguage == null) {
+                	//var roboblocksLanguage = 'es-ES';
+					//var roboblocksLanguage = 'ca-ES';
+					var roboblocksLanguage = 'en-GB';
+            	}
+		var file = "doc/"+roboblocksLanguage+"/index.html";
+		$(function(){$("#doc").load(file);});
+		
+	    window.FacilinoLanguage = window.roboblocksLanguage;     
+	    //document.getElementById("output").innerHTML = license;
+		if (typeof(license) === 'undefined')
+		{
+	      license='592406a3202bb';
+		  //alert("Esta es una versi\xF3n gratuita de Facilino con todas las funcionalidades b\xE1sicas incluidas. Si dispones de una licencia para acceder a las funcionalidades avanzadas, por favor, introd\xFAcela en las preferencias.");
+		}
+            Facilino.load({ zoom: 1, license: license});
+            RoboBlocks.load({ zoom: 1 });
+            // New workspace for each test case
+            var el = document.getElementById('blockly');
+            Blockly.inject(el, {
+               	toolbox: Blockly.createToolbox()
+            });
+		
+            // Create a default setup/loop block
+			Blockly.exportAllBlocks();
+			//document.getElementById('startBlocks').innerHTML = Blockly.allBlocks();
+            Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+	    $('.blocklySvg, #blockly').height('100%');
+            $('.blocklySvg').width('100%');
+			
+	    var colors = [
+                "",
+				RoboBlocks.LANG_COLOUR_PROCEDURES,
+				RoboBlocks.LANG_COLOUR_CONTROL,
+				RoboBlocks.LANG_COLOUR_LOGIC,
+				RoboBlocks.LANG_COLOUR_MATH,
+				RoboBlocks.LANG_COLOUR_VARIABLES,
+				RoboBlocks.LANG_COLOUR_TEXT,
+				RoboBlocks.LANG_COLOUR_COMMUNICATION,
+				RoboBlocks.LANG_COLOUR_DISTANCE,
+				RoboBlocks.LANG_COLOUR_LCD,
+				RoboBlocks.LANG_COLOUR_LIGHT,
+				RoboBlocks.LANG_COLOUR_SOUND,
+                RoboBlocks.LANG_COLOUR_SERVO,
+				RoboBlocks.LANG_COLOUR_AMBIENT,
+				RoboBlocks.LANG_COLOUR_HTML,
+				RoboBlocks.LANG_COLOUR_ADVANCED
+		];
+
+            $('.blocklyTreeRow').each( function (i,e) {
+                $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');
+            });
+
+		// webHelper is injected in Facilino
+		   //webHelper.sourceChanged();
+            // Show/hide code
+            function toogleCode() {
+                if ($('#code').css('display') == 'none') {
+                    // Show
+                    $('#code').show();
+                    $('#blockly').width('66%');
+					if ($('#doc').css('display') == 'none' )
+					  $('#code').height('100%');
+					else
+					  $('#code').height('50%');
+                } else {
+                    // Hide
+                    $('#code').hide();
+					if ($('#doc').css('display') == 'none' )
+					  $('#blockly').width('100%');
+					else {
+					  $('#blockly').width('66%');
+					  $('#doc').width('34%');
+					  $('#doc').height('100%');
+					}
+                }
+                // Resize workspace
+                Blockly.fireUiEvent(window, "resize");
+            }
+
+            function escapeCode(code) {
+                var str = code;
+                str = str.replace(/</g, "&lt;");
+                str = str.replace(/>/g, "&gt;");
+                return str;
+            }
+
+            function resetWorkspace() {
+                Blockly.mainWorkspace.clear();
+                Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+            }
+			
+		var dragging = false;
+		var dragging1 = false;
+		
+		$('#dragbar').mousedown(function(e){
+			e.preventDefault();
+       
+			dragging = true;
+			var code = $('#code_doc');
+			var ghostbar = $('<div>',
+                        {id:'ghostbar',
+                         css: {
+                                height: code.outerHeight(),
+                                top: code.offset().top,
+                                left: code.offset().left
+                               }
+                        }).appendTo('body');
+       
+				$(document).mousemove(function(e){
+					ghostbar.css("left",e.pageX+2);
+				});
+       
+		});
+		
+		$('#dragbar1').mousedown(function(e){
+			e.preventDefault();
+       
+			dragging1 = true;
+			var doc = $('#doc');
+			var ghostbar = $('<div>',
+                        {id:'ghostbar1',
+                         css: {
+                                width: doc.outerWidth(),
+                                top: doc.offset().top,
+                                left: doc.offset().left
+                               }
+                        }).appendTo('body');
+       
+				$(document).mousemove(function(e){
+					ghostbar.css("top",e.pageY+2);
+				});
+       
+		});
+
+		$(document).mouseup(function(e){
+			if (dragging) 
+			{
+				var percentage = (e.pageX / window.innerWidth) * 100;
+				var mainPercentage = 100-percentage;
+           
+				//$('#console').text("side:" + percentage + " main:" + mainPercentage);
+				
+				$('#blockly').css("width",percentage + "%");
+				$('#code_doc').css("width",mainPercentage + "%");
+				$('#ghostbar').remove();
+				$(document).unbind('mousemove');
+				Blockly.svgResize(Blockly.getMainWorkspace());
+				dragging = false;
+			}
+			
+			if (dragging1) 
+			{
+				var percentage = (e.pageY / window.innerHeight) * 100;
+				var mainPercentage = 100-percentage;
+           
+				//$('#console').text("side:" + percentage + " main:" + mainPercentage);
+           
+				$('#code').css("height",percentage + "%");
+				$('#doc').css("height",mainPercentage + "%");
+				$('#ghostbar1').remove();
+				$(document).unbind('mousemove');
+				dragging1 = false;
+			}
+		});
+  </script>
+</body>
+</html>

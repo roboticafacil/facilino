@@ -1,0 +1,67 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">State machine transition</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/controls_statemachine_transition_state.png" title="controls_statemachine_transition_state" alt="controls_statemachine_transition_state"></image></p>
+<h4>Description</h4>
+<p>Generates an AND condition between two states for AND between states and AND divergence transitions. This instruction is used in conjunction with the instructions:</p>
+<p><image src="doc/en-GB/img/controls_statemachine.png" title="controls_statemachine" alt="controls_statemachine" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/controls_statemachine.html');});"></image></p>
+<p><image src="doc/en-GB/img/controls_statemachine_transition_state_end.png" title="controls_statemachine_transition_state_end" alt="controls_statemachine_transition_state_end" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/controls_statemachine_transition_state_end.html');});"></image></p>
+<p><image src="doc/en-GB/img/controls_statemachine_transition_to.png" title="controls_statemachine_transition_to" alt="controls_statemachine_transition_to" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/controls_statemachine_transition_to.html');});"></image></p>
+<p><image src="doc/en-GB/img/controls_statemachine_transition_from.png" title="controls_statemachine_transition_from" alt="controls_statemachine_transition_from" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/controls_statemachine_transition_from.html');});"></image></p>
+<h4>Requirements</h4>
+Facilino's License
+<h4>Inputs</h4>
+<ul>
+  <li>Expression of states: Expression of states to concatenate (AND).</li>
+</ul>
+<h4>Dropdown lists</h4>
+<ul>
+   <li>State: State to concatenate (AND).</li>
+</ul>
+<h4>Example</h4>
+This example controls the activation or deactivation of a motor and an LED with a single four state state machine using an AND divergence and AND convergence. In state 0 (initially active) the motor will be deactivated and the LED will be off, while in state 1, the motor will be activated. On the other hand, in state 2 the LED will be on, while in state 3 the LED will be off. The transition conditions from one state to another are defined by the transition instructions. Specifically, to switch from state 0 to state 1, we must press the button connected to pin 2, which will also activate state 2. To switch to state 3 from state 2, we must press the button connected to pin 3. The transition with states 1 and 3 activated to state 0 is immediate, since it uses a "1" (always true).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_statemachine_example2.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/relay_buttons_led_example_bb.png" title="relay_buttons_led_example_bb" alt="relay_buttons_led_example_bb"></image>
+<h5>Grafcet</h5>
+<image src="doc/common/controls_statemachine_grafcet2.png" title="controls_statemachine_grafcet2" alt="controls_statemachine_grafcet2"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/controls_statemachine_example2.png" title="controls_statemachine_example2" alt="controls_statemachine_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

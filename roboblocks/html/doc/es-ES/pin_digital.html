@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Pin digital</h3>
+<h4>Instrucción</h4>
+<image src="doc/es-ES/img/pin_digital.png" title="pin_digital" alt="pin_digital"></image>
+<h4>Descripción</h4>
+<p>Pin digital (desde 0 a 13 en los procesadores similares a Arduino Uno).</p>
+<h5>Desplegable</h5>
+<ul>
+  <li>Pin: Pin digital de 0 a 13.</li>
+</ul>
+<h4>Salida</h4>
+Pin digital.
+<h4>Ejemplo</h4>
+En este ejemplo se enciende el LED integrado (pin 13) si se pulsan los botones a la vez o si no se pulsa ningún botón. Si sólo se pulsa uno de los botones, el LED se apaga.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/inout_digital_read_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/switches_example_bb.png" title="switches_example_bb" alt="switches_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/inout_digital_read_example.png" title="inout_digital_read_example" alt="inout_digital_read_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Read RGB color</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/rgb_raw_sensor.png" title="rgb_raw_sensor" alt="rgb_raw_sensor"></image></p>
+<h4>Description</h4>
+<p>Returns the value in milliseconds of the TCS3200 RGB sensor when a filter is activated: red, green, blue or white (without filter). The sensitivity to each of the filters against the same color is different, and can be used to detect colors.</p>
+<h4>Inputs</h4>
+<ul>
+  <li>Color: Color to generate</li>
+  <li>Pin S0: Pin S0 of sensor TCS3200.</li>
+  <li>Pin S1: Pin S1 of the TCS3200 sensor.</li>
+  <li>Pin S2: Pin S2 of the TCS3200 sensor.</li>
+  <li>Pin S3: Pin S3 of TCS3200 sensor.</li>
+  <li>Pin OUT: Pin OUT of TCS3200 sensor.</li>
+</ul>
+<h4>Example</h4>
+In this example different readings are shown with the different filters of the TCS3200 sensor against the same color.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/rgb_raw_sensor_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/tcs3200_example_bb.png" title="tcs3200_example_bb" alt="tcs3200_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/rgb_raw_sensor_example.png" title="rgb_raw_sensor_example" alt="rgb_raw_sensor_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

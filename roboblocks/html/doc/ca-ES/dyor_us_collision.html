@@ -1,0 +1,67 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Detecció de col·lisió (amb sensor d'ultrasons HC-SR04)</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/dyor_us_collision.png" title="dyor_us_collision" alt="dyor_us_collision"></image></p>
+<h4>Descripció</h4>
+<p>Discrimina si el robot està en col·lisió o no en funció d'una distància donada de referència utilitzant el sensor d'ultrasons HC-SR04. Entre mesura i mesura hem d'assegurar que transcorren almenys 60ms.</p>
+<h5>Nota complementària</h5>
+<p>La instrucció utilitza una variant de la instrucció 'pulseIn' d'Arduino que permet ser utilitzada dins de la interrupció 0 (instrucció multi-tasca).</p>
+<p><image src="doc/ca-ES/img/dyor_task.png" title="dyor_task" alt="dyor_task" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/dyor_task.html');});"></image></p>
+<h4>Requisits</h4>
+Llicència de Facilino.
+<h4>Entrades</h4>
+<ul>
+   <li>Eco: Pin del senyal d'eco (ECHO).</li>
+   <li>Dispar: Pin del senyal de dispar (TRIGGER).</li>
+   <li>Distància: Distància mínima a partir de la qual es considera col·lisió.</li>
+</ul>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Col·lisió: conjunt d'instruccions a executar en cas de col·lisió.</li>
+  <li>Lliure: conjunt d'instruccions a executar en cas de NO col·lisió.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple es modifica l'expressió de la matriu de LEDs del robot Dyor en funció de la distància a la qual es troba l'objecte més pròxim.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_us_collision_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/sonar_led_matrix_example_bb.png" title="sonar_led_matrix_example_bb" alt="sonar_led_matrix_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/dyor_us_collision_example.png" title="dyor_us_collision_example" alt="dyor_us_collision_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

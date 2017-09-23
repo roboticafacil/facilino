@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">LCD Print</h3>
+<h4>Instruction</h4>
+<image src="doc/en-GB/img/lcd_print.png" title="lcd_print" alt="lcd_print"></image>
+<h4>Description</h4>
+<p>Displays a text string on the LCD screen. The position of the text to be displayed can be specified. Requires to previously define the connections to the LCD with the instruction:</p>
+<image src="doc/en-GB/img/lcd_def.png" title="lcd_def" alt="lcd_def" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/lcd_def.html');});"></image>
+<h4>Inputs</h4>
+<ul>
+  <li>Text: String to display text.</li>
+  <li>Set text position?: Determines whether the position of the text to be displayed is set. By default it is the position (0,0)</li>
+  <li>Row: In the case of selecting 'set text position' determines row 0 or 1 corresponding to the first or second row of the LCD.</li>
+  <li>Column: In the case of selecting 'set text position' determines the column (0 or 15) in which the first character of the text string to be displayed is to be positioned.</li>
+</ul>
+<h4>Example 1</h4>
+<p>This example shows the LCD circuit to the Arduino Nano expansion card. The code in the example shows the phrase "Hello, world!" at the top of the LCD screen.</p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/lcd_print_example1.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/lcd_example_bb.png" title="lcd_example_bb" alt="lcd_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/lcd_print_example1.png" title="lcd_print_example1" alt="lcd_print_example1"></image>
+<h4>Example 2</h4>
+<p>This example shows the LCD circuit to the Arduino Nano expansion card. The code in the example shows the phrase "Hello" in the first row and "world!" on the second row of the LCD.</p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/lcd_clear_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/lcd_example_bb.png" title="lcd_example_bb" alt="lcd_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/lcd_clear_example.png" title="lcd_print_example2" alt="lcd_print_example2"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

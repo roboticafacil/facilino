@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Digital Infrared Sensor (TCRT5000)</h3>
+<h4>Instruction</h4>
+<p><image src="doc/en-GB/img/dyor_infrared_digital.png" title="dyor_infrared_digital" alt="dyor_infrared_digital"></image></p>
+<h4>Description</h4>
+<p>Returns HIGH or LOW according to the amount of light received by the TCRT5000 infrared sensor using digital output (DO). The sensitivity can be adjusted with the potentiometer.</p>
+<h4>Inputs</h4>
+<ul>
+   <li>Pin: TCRT5000 sensor digital signal (DO) pin.</li>
+</ul>
+<h4>Output</h4>
+Returns the analog value of the amount of light (close to 0 with pure white and close to 1023 for pure black).
+<h4>Example</h4>
+In this example the information of the infrared sensor TCRT5000 is read on its digital output. Display 'HIGH 'or' LOW 'depending on the value read. The TCRT5000 sensor DO signal is connected to the A4 pin, which acts as a digital pin. 
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_infrared_digital_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/tcrt5000_example_bb.png" title="tcrt5000_example_bb" alt="tcrt5000_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/dyor_infrared_digital_example.png" title="dyor_infrared_digital_example" alt="dyor_infrared_digital_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

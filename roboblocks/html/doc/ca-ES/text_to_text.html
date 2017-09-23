@@ -1,0 +1,61 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Converteix a cadena de text</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/text_to_text.png" title="text_to_text" alt="text_to_text"></image>
+<h4>Descripció</h4>
+<p>Converteix la informació d'entrada a text o caràcter.</p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Conversió: Determina el tipus de conversió a realitzar.</li>
+</ul>
+<h4>Entrades</h4>
+<ul>
+  <li>Entrada: Informació a convertir.</li>
+</ul>
+<h4>Eixida</h4>
+Cadena de text o caràcter convertit.
+<h4>Exemple</h4>
+En aquest exemple d'una banda es converteix el nombre 12345 a una cadena de text per a determinar el nombre de dígits. D'altra banda, es converteix el nombre 113 que correspon a la lletra 'q' en ASCII.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/text_to_text_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/text_to_text_example.png" title="text_to_text_example" alt="text_to_text_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

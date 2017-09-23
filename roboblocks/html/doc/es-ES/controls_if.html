@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_wrapper {
+    text-align: center;
+	color: red;
+}
+.button {
+    background-color: #2E2EFE;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Si...ejecutar..., en cambio si...ejecutar, de lo contrario ejecutar...</h3>
+<h4>Instrucción</h4>
+<image src="doc/es-ES/img/controls_if.png" title="controls_if" alt="controls_if"></image>
+<h4>Descripción</h4>
+<p>Ejecuta un conjunto de instrucciones si se cumple una condición. Pueden generarse condiciones adicionales supeditadas a que las condiciones previas no se hayan cumplido, cada una de ellas con su conjunto de instrucciones correspondientes a ejecutar. Además, en caso de que ninguna de las condiciones previas se haya cumplido, puede añadirse un conjunto de instrucciones a ejecutar.</p>
+<h4>Instrucciones apilables</h4>
+<ul>
+  <li>ejecutar: Conjunto de instrucciones a ejecutar de forma condicionada.</li>
+</ul>
+<h4>Mutador</h4>
+Permite añadir otras condiciones a evaluar 'en cambio si' o 'de lo contrario'.
+<h5>Contenedor</h5>
+<p><image src="doc/es-ES/img/controls_if_if.png" title="controls_if_if" alt="controls_if_if"></image></p>
+<h5>Elementos</h5>
+<p><image src="doc/es-ES/img/controls_if_elseif.png" title="controls_if_elseif" alt="controls_if_elseif"></image></p>
+<p><image src="doc/es-ES/img/controls_if_else.png" title="controls_if_else" alt="controls_if_else"></image></p>
+<h4>Entradas</h4>
+<ul>
+  <li>Condición: En caso de ser cierta, se ejecutan las instrucciones apiladas asociadas a la condición.</li>
+</ul> 
+<h4>Ejemplo</h4>
+En este ejemplo se lee el valor de entrada analógica del canal A0 del potenciómetro. En el momento en el que el valor supera las 800 unidades se enciende el LED integrado en la placa; si el valor analógico está entre 800 y 300, el LED parpadea; si el valor está por debajo de 300, el LED se apaga.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_if_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/pot_example_bb.png" title="pot_example_bb" alt="pot_example_bb"></image>
+<h5>Código Facilino</h5>
+<image src="doc/es-ES/img/controls_if_example.png" title="controls_if_example" alt="controls_if_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Valor digital ALT / BAIX</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/inout_highlow.png" title="inout_highlow" alt="inout_highlow"></image>
+<h4>Descripció</h4>
+<p>Constant amb el valor digital 'ALT' o 'BAIX'. S'utilitza per comparar l'estat d'un senyal digital.</p>
+<h4>Desplegables</h4>
+<ul>
+  <li>Estat: Estat del valor del senyal digital (ALT o BAIX).</li>
+</ul>
+<h4>Eixida</h4>
+Estat del valor del senyal digital (ALT o BAIX).
+<h4>Exemple</h4>
+En aquest exemple, mostra el valor de l'estat del botó (ALT o BAIX).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/inout_highlow_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/switch_example_bb.png" title="switch_example_bb" alt="switch_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/inout_highlow_example.png" title="inout_highlow_example" alt="inout_highlow_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

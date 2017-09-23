@@ -1,0 +1,61 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Color RGB</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/rgb_colour.png" title="rgb_colour" alt="rgb_colour"></image></p>
+<h4>Descripció</h4>
+<p>Retorna un color RGB que pot ser comparat amb el resultat de la instrucció de detecció de color:</p>
+<p><image src="doc/ca-ES/img/rgb_sensor.png" title="rgb_sensor" alt="rgb_sensor" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/rgb_sensor.html');});"></image></p>
+<h4>Requisits</h4>
+Llicència de Facilino.
+<h4>Entrades</h4>
+<ul>
+  <li>Color: Color a comparar.</li>
+</ul>
+<h4>Eixida</h4>
+Color.
+<h4>Exemple</h4>
+<h4>Exemple</h4>
+En aquest exemple es mostra per consola la paraula 'ROIG', 'VERD' o 'BLAU' en funció de si es detecta el color roig, verd o blau utilitzant el sensor TCS3200. Els colors han estat prèviament calibrats.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/rgb_sensor_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/tcs3200_example_bb.png" title="tcs3200_example_bb" alt="tcs3200_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/rgb_sensor_example.png" title="rgb_sensor_example" alt="rgb_sensor_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

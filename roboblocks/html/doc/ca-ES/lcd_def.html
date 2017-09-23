@@ -1,0 +1,63 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">LCD (2x16)</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/lcd_def.png" title="lcd_def" alt="lcd_def"></image>
+<h4>Descripció</h4>
+<p>Defineix les connexions d'una pantalla LCD 2x16 basat en el xip Hitachi HD44780 (o compatible). Utilitza el mode de transmissió de 4-bits de dades (de D4 a D7).</p>
+<h5>Entrades (segons ordre i nomenclatura dels pins de la pantalla LCD)</h5>
+<ul>
+  <li>RS: Selecció de registre.</li>
+  <li>E: Senyal d'habilitació de la pantalla.</li>
+  <li>D4: Bit 4 de dades</li>
+  <li>D5: Bit 5 de dades</li>
+  <li>D6: Bit 6 de dades</li>
+  <li>D7: Bit 7 de dades</li>
+</ul>
+<h4>Requisits</h4>
+<p>Requereix tenir instal·lada la llibreria 'LiquidCristal' en Arduino IDE.</p>
+<p><image src="doc/common/lcd_def_library.png" title="lcd_def_library" alt="lcd_def_library"></image></p>
+<h4>Exemple</h4>
+<p>En aquest exemple es mostra el circuit de la pantalla LCD a la targeta d'expansió d'Arduino Nano. En el codi de l'exemple es mostra la frase 'Hello world! " a la pantalla LCD.</p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/lcd_clear_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/lcd_example_bb.png" title="lcd_example_bb" alt="lcd_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/lcd_clear_example.png" title="lcd_def_example" alt="lcd_def_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

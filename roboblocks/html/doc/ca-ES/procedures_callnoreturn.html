@@ -1,0 +1,56 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Funció sense retorn (cridada)</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/procedures_callnoreturn.png" title="procedures_callnoreturn" alt="procedures_callnoreturn"></image>
+<h4>Descripció</h4>
+<p>Realitza una crida a una funció que no té retorn (que no torna cap valor). Si la funció té arguments d'entrada, aquests poden ser passats a la funció amb els connectors d'entrada de la pròpia instrucció. Utilitza en combinació de la instrucció:</p>
+<image src="doc/ca-ES/img/procedures_defnoreturn.png" title="procedures_defnoreturn" alt="procedures_defnoreturn" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/procedures_defnoreturn.html');});"></image>
+<h4>Desplegables</h4>
+<ul>
+  <li>Funció: Nom de la funció a cridar.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple es mostra un missatge per la consola a través d'una funció.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/procedures_callnoreturn_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/procedures_callnoreturn_example.png" title="procedures_callnoreturn_example" alt="procedures_callnoreturn_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

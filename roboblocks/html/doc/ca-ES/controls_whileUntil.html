@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Mentres / Fins que ...</h3>
+<h4>Instrucció</h4>
+<p><image src="doc/ca-ES/img/controls_whileUntil.png" title="controls_whileUntil" alt="controls_whileUntil"></image></p>
+<h4>Descripció</h4>
+<p>Executa un codi mentres o fins que es compleixi una condició. Avalua la condició abans d'executar la primera iteració.</p>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Instruccions a executar</li>
+</ul>
+<h4>Desplegables</h4>
+<ul>
+  <li>Mode: El codi s'executarà 'mentres' o 'fins que' es compleixi la condició.</li>
+</ul>
+<h4>Exemple 1</h4>
+En aquest exemple, el programa s'espera mentre l'usuari no pressione el botó (estat alt).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/controls_whileUntil_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/switch_example_bb.png" title="switch_example" alt="switch_example"></image>
+<h5>Codi Facilino</h5>
+<p><image src="doc/ca-ES/img/controls_whileUntil_example.png" title="controls_whileUntil_example" alt="controls_whileUntil_example"></image></p>
+<h4>Exemple 2</h4>
+En aquest exemple, el programa s'espera fins que l'usuari premi el botó (estat sota).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/controls_whileUntil1_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/switch_example_bb.png" title="switch_example" alt="switch_example"></image>
+<h5>Codi Facilino</h5>
+<p><image src="doc/ca-ES/img/controls_whileUntil1_example.png" title="controls_whileUntil1_example" alt="controls_whileUntil1_example"></image></p>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

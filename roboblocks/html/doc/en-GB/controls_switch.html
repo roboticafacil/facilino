@@ -1,0 +1,66 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Switch</h3>
+<h4>Instruction</h4>
+<image src="doc/en-GB/img/controls_switch.png" title="controls_switch" alt="controls_switch"></image>
+<h4>Description</h4>
+<p>Execute a set of instructions depending on the case. Compares the input entry with the different cases. If no case can be found, then a set of default instructions can be executed (default).</p>
+<h4>Stacks</h4>
+<ul>
+  <li>Execute: Stackable instruction set</li>
+</ul>
+<h4>Mutator</h4>
+It allows adding other conditions to evaluate 'case' or 'default'.
+<h5>Container</h5>
+<p><image src="doc/en-GB/img/controls_switch_switch.png" title="controls_switch_switch" alt="controls_switch_switch"></image></p>
+<h5>Elements</h5>
+<p><image src="doc/en-GB/img/controls_switch_case.png" title="controls_switch_case" alt="controls_switch_case"></image></p>
+<p><image src="doc/en-GB/img/controls_switch_default.png" title="controls_switch_default" alt="controls_switch_default"></image></p>
+<h4>Inputs</h4>
+<ul>
+  <li>Condition: If true, the stacked instructions associated with the condition are executed.</li>
+</ul> 
+<h4>Example</h4>
+In this example ASCII characters are read through bluetooth. If the user sends a '0' (30 in ASCII), the two LEDs connected to pins 5 and 6 are light up. If the user sends a '1' (31 to ASCII), the LED connected to pin 6 will light up (LED connected to pin 5 will be off), whereas if a '2' (32 in ASCII) is sent, the LED connected to pin 5 will light up (LED connected to pin 6 will be off). Any other data received will turn off the LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/controls_switch_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
+<h5>Facilino Code</h5>
+<image src="doc/en-GB/img/controls_switch_example.png" title="controls_switch_example" alt="controls_switch_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

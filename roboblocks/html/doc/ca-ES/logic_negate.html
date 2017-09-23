@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+</head>
+<body>
+<h3 id="up">Negació lògica</h3>
+<h4>Instrucció</h4>
+<image src="doc/ca-ES/img/logic_negate.png" title="logic_negate" alt="logic_negate"></image>
+<h4>Descripció</h4>
+<p>Nega la lògica de l'entrada. Retorna cert en cas que l'entrada sigui falsa o fals en cas que l'entrada sigui certa.</p>
+<h4>Entrades</h4>
+<ul>
+  <li>Entrada: Valor lògic a avaluar.</li>
+</ul>
+<h4>Eixida</h4>
+Valor binari avaluat (verdader o fals).
+<h4>Exemple</h4>
+En aquest exemple es nega el valor llegit a l'entrada digital 2 (connectada a un polsador). El botó es llegeix com 'BAIX' en cas d'estar atapeït, que és equivalent a 'fals' en binari. En negar l'entrada, si premem el botó la sortida de la instrucció de negació tornarà cert.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/logic_negate_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/switch_example_bb.png" title="switch_example_bb" alt="switch_example_bb"></image>
+<h5>Codi Facilino</h5>
+<image src="doc/ca-ES/img/logic_negate_example.png" title="logic_negate_example" alt="logic_negate_example"></image>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>
