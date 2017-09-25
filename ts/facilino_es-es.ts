@@ -376,17 +376,29 @@
         <translation>Reinicie la aplicación para mostrar el idioma seleccionado.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="../src/mainwindow.cpp" line="646"/>
+=======
+        <location filename="../src/mainwindow.cpp" line="666"/>
+>>>>>>> 4f1a5a4d7ee2d503e33d3c145ee0ee35621164d0
         <source>Finished.</source>
         <translation>Finalizó.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="../src/mainwindow.cpp" line="655"/>
+=======
+        <location filename="../src/mainwindow.cpp" line="675"/>
+>>>>>>> 4f1a5a4d7ee2d503e33d3c145ee0ee35621164d0
         <source>Building...</source>
         <translation>Compilando...</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="../src/mainwindow.cpp" line="949"/>
+=======
+        <location filename="../src/mainwindow.cpp" line="978"/>
+>>>>>>> 4f1a5a4d7ee2d503e33d3c145ee0ee35621164d0
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Hay cambios sin grabar que podría perder. ¿Desea guardarlos antes de continuar?</translation>
     </message>

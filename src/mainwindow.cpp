@@ -619,6 +619,9 @@ void MainWindow::loadBlockly() {
             this,
             SLOT(actionLicense()));
     //ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
+    //QMessageBox msgBox;
+    //msgBox.setText(settings->htmlIndex());
+    //msgBox.exec();
     ui->webView->load(QUrl::fromLocalFile(settings->htmlIndex()));
     /*ui->webView->page()->setScrollBarPolicy(
                 Qt::Vertical,
