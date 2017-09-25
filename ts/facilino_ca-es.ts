@@ -371,17 +371,17 @@
         <translation type="vanished">Si us plau, reinicieu l&apos;aplicació per actualitzar la llengua</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="663"/>
+        <location filename="../src/mainwindow.cpp" line="666"/>
         <source>Finished.</source>
         <translation>Acabat.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="672"/>
+        <location filename="../src/mainwindow.cpp" line="675"/>
         <source>Building...</source>
         <translation>Construint...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="975"/>
+        <location filename="../src/mainwindow.cpp" line="978"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Hi ha canvis sense desar que podria pedre. Dessitja dessar-los abans de continuar?</translation>
     </message>
