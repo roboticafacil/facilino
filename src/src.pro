@@ -5,6 +5,10 @@ QT += core gui serialport widgets webenginewidgets
 TARGET = facilino
 TEMPLATE = app
 
+linux {
+    CONFIG += c++11
+}
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     settingsdialog.cpp \
