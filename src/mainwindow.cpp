@@ -941,10 +941,7 @@ QVariant MainWindow::evaluateJavaScript(const QString code) {
     QEventLoop loop;
     QVariant returnValue = "";
     QWebEnginePage *page = ui->webView->page();
-    page->runJavaScript(code, [&](const QVariant var){
-        returnValue = var;
-        loop.quit();
-    });
+    page->runJavaScript(code, [&](const QVariant var){returnValue = var; loop.quit(); });
     loop.exec();
     return returnValue;
 }															 

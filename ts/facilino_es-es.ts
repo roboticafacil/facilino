@@ -392,7 +392,7 @@
         <translation>Compilando...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="978"/>
+        <location filename="../src/mainwindow.cpp" line="975"/>
         <source>There are unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation>Hay cambios sin grabar que podría perder. ¿Desea guardarlos antes de continuar?</translation>
     </message>
