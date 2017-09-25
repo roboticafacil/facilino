@@ -74,7 +74,7 @@ QString SettingsStore::tmpFileName() {
 }
 
 QString SettingsStore::htmlIndex() {
-    return relativePath("html_index", "./html/index.html");
+    return relativePath("html_index", "./html/index_"+defaultLanguage()+".html");
 }
 
 bool SettingsStore::iconLabels() {

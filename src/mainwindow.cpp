@@ -611,11 +611,11 @@ bool MainWindow::listIsEqual(const QStringList &listOne,
 void MainWindow::loadBlockly() {
     // Load blockly index
     connect(ui->webView->page(),
-            SIGNAL(javaScriptWindowObjectCleared()),
+            SIGNAL(loadFinished(bool)),
             this,
             SLOT(actionInsertLanguage()));
     connect(ui->webView->page(),
-            SIGNAL(javaScriptWindowObjectCleared()),
+            SIGNAL(loadFinished(bool)),
             this,
             SLOT(actionLicense()));
     //ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
@@ -630,7 +630,7 @@ void MainWindow::loadBlockly() {
     // Signal is emitted before frame loads any web content
     webHelper = new JsWebHelpers();
     connect(ui->webView->page(),
-            SIGNAL(javaScriptWindowObjectCleared()),
+            SIGNAL(loadFinished(bool)),
             this,
             SLOT(actionInjectWebHelper()));
     // Capture signal
