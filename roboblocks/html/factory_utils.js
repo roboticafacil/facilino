@@ -549,14 +549,14 @@ FactoryUtils.formatJson_ = function(blockType, rootBlock) {
       break;
   }
   // Generate colour.
-  var colourBlock = rootBlock.getInputTargetBlock('COLOUR');
+  /*var colourBlock = rootBlock.getInputTargetBlock('COLOUR');
   if (colourBlock && !colourBlock.disabled) {
     var hue = parseInt(colourBlock.getFieldValue('HUE'), 10);
     JS.colour = hue;
-  }
+  }*/
 
   JS.tooltip = FactoryUtils.getInputFromRootBlock_(rootBlock,'TOOLTIP');
-  JS.helpUrl = FactoryUtils.getInputFromRootBlock_(rootBlock,'HELPURL');
+  //JS.helpUrl = FactoryUtils.getInputFromRootBlock_(rootBlock,'HELPURL');
 
   return JSON.stringify(JS, null, '  ');
 };
@@ -573,15 +573,15 @@ FactoryUtils.formatJavaScript_ = function(blockType, rootBlock, workspace) {
   var code = [];
   code.push("Blockly.Blocks['" + blockType + "'] = {");
   if (rootBlock.getFieldValue('CATEGORY')==='OTHER')
-	code.push("  category: '"+rootBlock.getFieldValue('OTHER_CATEGORY')+"',");
+	code.push("  category: '"+(rootBlock.getFieldValue('OTHER_CATEGORY') || 'Category')+"',");
   else
     code.push("  category: Facilino.locales.getKey('LANG_CATEGORY_"+rootBlock.getFieldValue('CATEGORY')+"'),");
   if (rootBlock.getFieldValue('CATEGORY')==='OTHER')
-	  code.push("  category_colour: '"+rootBlock.getFieldValue('COLOUR')+"',");
+	  code.push("  category_colour: '"+(rootBlock.getFieldValue('COLOUR') || '#000000')+"',");
   else
 	  code.push("  category_colour: Facilino.LANG_COLOUR_"+rootBlock.getFieldValue('CATEGORY')+",");
   if (rootBlock.getFieldValue('CATEGORY')==='OTHER')
-	  code.push("  colour: '"+rootBlock.getFieldValue('COLOUR')+"',");
+	  code.push("  colour: '"+(rootBlock.getFieldValue('COLOUR') || '#000000')+"',");
   else
 	  code.push("  colour: Facilino.LANG_COLOUR_"+rootBlock.getFieldValue('CATEGORY')+",");
   //var tag = FactoryUtils.getInputFromRootBlock_(rootBlock,'TAG');
@@ -677,7 +677,7 @@ FactoryUtils.formatJavaScript_ = function(blockType, rootBlock, workspace) {
   // Generate colour.
   //code.push('    this.setColour("#FF00FF");');
   if (rootBlock.getFieldValue('CATEGORY')==='OTHER')
-	  code.push('    this.setColour("'+rootBlock.getFieldValue('COLOUR')+'");');
+	  code.push('    this.setColour("'+(rootBlock.getFieldValue('COLOUR')||'#000000')+'");');
   else
     code.push('    this.setColour("'+Facilino.locales.getKey('LANG_COLOUR_'+rootBlock.getFieldValue('CATEGORY'))+'");');
 
