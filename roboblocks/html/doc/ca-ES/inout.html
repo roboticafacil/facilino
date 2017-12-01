@@ -1,23 +1,79 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
 <body>
 <h3 id="up">E/E bàsica</h3>
 Conjunt d'instruccions per al maneig d'entradas i eixides bàsic.
-<p><image src="doc/ca-ES/img/inout_analog_read.png" title="inout_analog_read" alt="inout_analog_read" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_analog_read.html');});"></image></p>
-<p><image src="doc/ca-ES/img/inout_analog_write.png" title="inout_analog_write" alt="inout_analog_write" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_analog_write.html');});"></image></p>
-<p><image src="doc/ca-ES/img/inout_builtin_led.png" title="inout_builtin_led" alt="inout_builtin_led" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_builtin_led.html');});"></image></p>
-<p><image src="doc/ca-ES/img/inout_digital_read.png" title="inout_digital_read" alt="inout_digital_read" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_digital_read.html');});"></image></p>
-<p><image src="doc/ca-ES/img/inout_digital_write.png" title="inout_digital_write" alt="inout_digital_write" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_digital_write.html');});"></image></p>
-<p><image src="doc/ca-ES/img/inout_digital_mode.png" title="inout_digital_mode" alt="inout_digital_mode" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_digital_mode.html');});"></image></p>
-<p><image src="doc/ca-ES/img/inout_highlow.png" title="inout_highlow" alt="inout_highlow" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/inout_highlow.html');});"></image></p>
-<p><image src="doc/ca-ES/img/pin_analog.png" title="pin_analog" alt="pin_analog" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/pin_analog.html');});"></image></p>
-<p><image src="doc/ca-ES/img/pin_digital.png" title="pin_digital" alt="pin_digital" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/pin_digital.html');});"></image></p>
-<p><image src="doc/ca-ES/img/pin_pwm.png" title="pin_pwm" alt="pin_pwm" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/pin_pwm.html');});"></image></p>
-<p><image src="doc/ca-ES/img/button.png" title="button" alt="button" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/button.html');});"></image></p>
-<p><image src="doc/ca-ES/img/button_case.png" title="button_case" alt="button_case" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/button_case.html');});"></image></p>
-<p><image src="doc/ca-ES/img/zum_button.png" title="zum_button" alt="zum_button" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/zum_button.html');});"></image></p>
-<p><image src="doc/ca-ES/img/joystick_dir.png" title="joystick_dir" alt="joystick_dir" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/joystick_dir.html');});"></image></p>
-<p><image src="doc/ca-ES/img/joystick_mag.png" title="joystick_mag" alt="joystick_mag" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/joystick_mag.html');});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_31_in_1_rele.png" title="dyor_31_in_1_rele" alt="dyor_31_in_1_rele" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/dyor_31_in_1_rele.html');});"></image></p>
-<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('inout_analog_read','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('inout_analog_write','blocklyInstruction2');</script>
+<div id='blocklyInstruction3'></div><script>injectInstruction('inout_builtin_led','blocklyInstruction3');</script>
+<div id='blocklyInstruction4'></div><script>injectInstruction('inout_digital_read','blocklyInstruction4');</script>
+<div id='blocklyInstruction5'></div><script>injectInstruction('inout_digital_write','blocklyInstruction5');</script>
+<div id='blocklyInstruction6'></div><script>injectInstruction('inout_digital_mode','blocklyInstruction6');</script>
+<div id='blocklyInstruction7'></div><script>injectInstruction('inout_highlow','blocklyInstruction7');</script>
+<div id='blocklyInstruction8'></div><script>injectInstruction('pin_analog','blocklyInstruction8');</script>
+<div id='blocklyInstruction9'></div><script>injectInstruction('pin_digital','blocklyInstruction9');</script>
+<div id='blocklyInstruction10'></div><script>injectInstruction('pin_pwm','blocklyInstruction10');</script>
+<div id='blocklyInstruction11'></div><script>injectInstruction('button','blocklyInstruction11');</script>
+<div id='blocklyInstruction12'></div><script>injectInstruction('button_case','blocklyInstruction12');</script>
+<div id='blocklyInstruction13'></div><script>injectInstruction('zum_button','blocklyInstruction13');</script>
+<div id='blocklyInstruction14'></div><script>injectInstruction('joystick_dir','blocklyInstruction14');</script>
+<div id='blocklyInstruction15'></div><script>injectInstruction('joystick_mag','blocklyInstruction15');</script>
+<div id='blocklyInstruction16'></div><script>injectInstruction('dyor_31_in_1_rele','blocklyInstruction16');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

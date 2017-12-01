@@ -1,0 +1,523 @@
+<html>
+<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<meta name="robots" content="Index,Allow">
+    	<meta name="description" content="Entorno de programación visual para Arduino"/>
+		<link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+    	<meta name="keywords" content="facilino,robot,arduino,dyor" />
+    	<meta name="author" content="Robótica Fácil"/>
+    	<title>Facilino</title>
+    	
+		<link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+		<link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  <link rel="stylesheet" href="factory.css">
+  <link rel="stylesheet" type="text/css" href="facilino.css">
+  <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<style>
+		select.icon-menu option {
+background-repeat:no-repeat;
+background-position:bottom left;
+padding-left:30px;
+}
+	</style>
+	<script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smooth-scroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+	<script src="javascript/blockly-bq/arduino_compressed.js"></script>
+	<script src="javascript/jquery/dist/jquery.min.js"></script>
+	<script src="lang/en-gb.js"></script>
+	<script src="javascript/blockly-bq/blocks_compressed.js"></script>
+	<script src="factory_utils.js"></script>
+	<script src="javascript/underscore/underscore.js"></script>
+  <script src="facilino_empty.js"></script>
+  <script src="factory.js"></script>
+  <script src="block_exporter_tools.js"></script>
+  <script type="text/javascript" src="javascript/lib/zip.js"></script>
+  <script src="blocks_not_obfuscated.js"></script>
+  <script src="app_controller.js"></script>
+	</head>
+<body>
+		<div ><section class="menu cid-qAignIVLHL" once="menu" id="menu1-e" data-rv-view="7" style="width: 100%">
+		<nav class="navbar navbar-expand beta-menu  align-items-center navbar-fixed-top navbar-toggleable-sm">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="menu-logo">
+				<div class="navbar-brand">
+					<span class="navbar-logo">
+						<a href="https://roboticafacil.es" target="_blank">
+							 <img src="assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="Facilino" title="Facilino" media-simple="true" style="height: 3.8rem;">
+						</a>
+					</span>
+					<span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://roboticafacil.es" target="_blank"><h2>&nbsp;&nbsp;Facilino My Blocks</h2></a></span>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			
+				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+							<li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
+							File</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="BlockFactory.showStarterBlock(); localStorage.setItem('MyBlocksPreLoaded','block_type');" aria-expanded="false">New</button><button class="text-white dropdown-item display-4" onclick="document.getElementById('fileInput').click();" aria-expanded="false">Upload</button><input id="fileInput" type="file" style="display: none;" accept=".bli," onclick="fileSelected(this.files)"></input><button class="text-white dropdown-item display-4" onclick="butSave()" aria-expanded="false">Download</button></div></li>
+							
+							<li class="nav-item"><a class="nav-link link text-white display-4" aria-expanded="false"></a></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">
+							
+							Edit</a><div class="dropdown-menu"><button id="undo" class="text-white dropdown-item display-4" onclick="butUndo()" aria-expanded="false">Undo</button><button id="redo" class="text-white dropdown-item display-4" onclick="butRedo()" aria-expanded="false">Redo</button></div></li>
+							<li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
+							Library</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="butAdd();" aria-expanded="false">Add</button><button class="text-white dropdown-item display-4" onclick="butUpdate();" aria-expanded="false">Update</button><button class="text-white dropdown-item display-4" onclick="butDelete();" aria-expanded="false">Delete</button><button class="text-white dropdown-item display-4" onclick="butDeleteAll();" aria-expanded="false">Delete All</button></div></li>
+				</ul>
+				<div class="navbar-buttons mbr-section-btn"><button id="button_blockLib" class="btn btn-sm btn-primary-outline display-4" title="Block Library" onclick="showHideBlockLibrary()"><span class="mbri-database mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+				<select id="blockLibrary" class="text-black dropdown-toggle display-6 icon-menu" onchange="blockLibraryChange(this.value)" style="display: none">
+				<option value="block_type">Select block</option>
+				</select>
+		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Return to Facilino" onclick="window.location='./Facilino.html'"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+			</div>
+		</nav>
+		</section>
+		</div>
+		<div style="height: 100%;">
+		<div id="blockly" style="float: left; width: 66%">
+				<span id="position"></span>
+				<div id="dragbar"></div>
+			</div>
+			<div id="blocklyPreviewContainer" style="float: right; width: 34%;">
+				<div id="preview" style="float: none; width: 100%; height: 20%;"></div>
+				<div id="languageDiv" style="float: none; width: 100%;  font-size: 70%; height=0%">
+					<pre id="languagePre" style="float: none; width: 34%; height=0%"></pre>
+					<textarea id="languageTA"></textarea>
+				</div>
+				<div id="generatorDiv" style="float: none; width: 100%;  font-size: 70%; height=0%">
+					<pre id="generatorPre" style="float: none; width: 34%; height=0%"></pre>
+				</div>
+		  <div><iframe id="docDiv" style="overflow: scroll; width: 100%; font-size: 70%;" frameBorder="0"></iframe></div>
+			</div>
+		</div>
+	
+	
+  <xml id="blockfactory_toolbox" class="toolbox" >
+    <category name="Block">
+	  <category name="Inputs">
+        <block type="input_value">
+        <value name="TYPE">
+          <shadow type="type_null"></shadow>
+        </value>
+        </block>
+        <block type="input_statement">
+        <value name="TYPE">
+          <shadow type="type_null"></shadow>
+        </value>
+        </block>
+        <block type="input_dummy">
+	    </block>
+	  </category>
+	  <category name="Fields">
+        <block type="field_static"></block>
+        <block type="field_input">
+	    </block>
+      <block type="field_number">
+	  </block>
+      <block type="field_angle">
+	  </block>
+      <block type="field_dropdown">
+	  </block>
+      <block type="field_checkbox">
+	  </block>
+      <block type="field_colour">
+	  </block>
+      <block type="field_image"></block>
+	  </category>
+	  <category name="Types">
+      <block type="type_group"></block>
+      <block type="type_null"></block>
+      <block type="type_boolean"></block>
+      <block type="type_number"></block>
+      <block type="type_string"></block>
+      <block type="type_other"></block>
+	  </category>
+	  <category name="Tags">
+	  <block type="tag"></block>
+	  </category>
+	  <category name="Examples">
+	  <block type="example"></block>
+	  </category>
+    </category>
+	<category name="Code">
+	  <category name="Headers">
+	    <block type="code_header"></block>
+	  </category>
+	  <category name="Global Variables">
+	    <block type="code_variable"></block>
+		<block type="code_generic_variable"></block>
+	  </category>
+	  <category name="Functions">
+	    <block type="code_function"></block>
+	    <block type="code_function_return"></block>
+		<block type="code_function_generic_return"></block>
+		<block type="code_function_ext"></block>
+		<block type="code_function_ext_return"></block>
+		<block type="code_function_ext_generic_return"></block>
+		<block type="code_variable"></block>
+		<block type="code"></block>
+	    <block type="code_join"></block>
+		<block type="code_set_variables"></block>
+	    <block type="code_more"></block>
+	    <block type="code_func_arg"></block>
+	    <block type="code_end"></block>
+		<block type="code_semicolon_end"></block>
+		<block type="code_if"></block>
+		<block type="code_switch"></block>
+		<block type="code_for"></block>
+		<block type="code_while"></block>
+		<block type="code_flow_statements"></block>
+	  </category>
+	  <category name="Setup">
+	    <block type="setup_section"></block>
+	    <block type="code"></block>
+	    <block type="code_join"></block>
+		<block type="code_set_variables"></block>
+	    <block type="code_more"></block>
+	    <block type="code_variables"></block>
+	    <block type="code_end"></block>
+		<block type="code_semicolon_end"></block>
+		<block type="code_if"></block>
+		<block type="code_switch"></block>
+		<block type="code_for"></block>
+		<block type="code_while"></block>
+		<block type="code_flow_statements"></block>
+	  </category>
+	  <category name="Inline">
+	    <block type="code"></block>
+	    <block type="code_join"></block>
+		<block type="code_set_variables"></block>
+	    <block type="code_more"></block>
+	    <block type="code_variables"></block>
+	    <block type="code_end"></block>
+		<block type="code_semicolon_end"></block>
+		<block type="code_if"></block>
+		<block type="code_switch"></block>
+		<block type="code_for"></block>
+		<block type="code_while"></block>
+		<block type="code_flow_statements"></block>
+	  </category>
+	</category>
+	<category name="Doc">
+	  <block type="doc_input">
+	    <value name="DOC">
+		  <block type="text" deletable="false" movable="false">
+		    <field name="TEXT"></field></block>
+		</value>
+	  </block>
+	  <block type="doc_statement">
+	    <value name="DOC">
+		  <block type="text" deletable="false" movable="false">
+		    <field name="TEXT"></field></block>
+		</value>
+	  </block>
+	  <block type="doc_fields">
+	    <value name="DOC">
+		  <block type="text" deletable="false" movable="false">
+		    <field name="TEXT"></field></block>
+		</value>
+	  </block>
+	  <block type="doc_examples">
+	    <value name="DESCRIPTION">
+		  <block type="text" deletable="false" movable="false">
+		    <field name="TEXT"></field></block>
+		</value>
+		<value name="CIRCUIT">
+		  <block type="text" deletable="false" movable="false">
+		    <field name="TEXT"></field><field name="EXT">.png</field></block>
+		</value>
+	  </block>
+	</category>
+  </xml>
+  
+   <script language="JavaScript">
+		if (localStorage.getItem("MyBlocks")===undefined || localStorage.getItem("MyBlocks")===null)
+		{
+			localStorage.setItem('MyBlocks', '[]');
+		}
+		MyBlocks = JSON.parse(localStorage.getItem('MyBlocks'));
+		if (localStorage.getItem("MyBlocksPreLoaded")===undefined || localStorage.getItem("MyBlocksPreLoaded")===null)
+		{
+			localStorage.setItem('MyBlocksPreLoaded', 'block_type');
+		}
+		MyBlocksPreLoaded = localStorage.getItem('MyBlocksPreLoaded');
+		var blocklyFactory;
+	zip.workerScriptsPath = 'lib/';
+    var init = function() {
+      //BlocklyDevTools.Analytics.init();
+
+      blocklyFactory = new AppController();
+      blocklyFactory.init();
+      window.addEventListener('beforeunload', blocklyFactory.confirmLeavePage);
+	  blockLibrarySelect = document.getElementById('blockLibrary');
+	  MyBlocks.forEach(function (block){
+			blockLibrarySelect.options.add( new Option(block.name,block.name));
+	  });
+	  var block = localStorage.getItem('MyBlocksPreLoaded');
+	  if (block!=='block_type')
+		{
+			for (i=0;i<MyBlocks.length;i++)
+			{
+				if (MyBlocks[i].name===block)
+				{
+					BlockFactory.mainWorkspace.clear();
+					Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(MyBlocks[i].factory),BlockFactory.mainWorkspace);
+					BlockFactory.mainWorkspace.clearUndo();
+					break;
+				}
+			}
+		}
+    };
+	Facilino.load({ zoom: 1 });
+	//console.log(Facilino);
+	$('.blocklySvg, #blockly').height('100%');
+    $('.blocklySvg').width('100%');
+    window.addEventListener('load',init);
+	
+	
+		</script>
+		
+	
+  <script>
+		var dragging = false;
+			
+		$('#dragbar').mousedown(function(e){
+			e.preventDefault();
+       
+			dragging = true;
+			var code = $('#blocklyPreviewContainer');
+			var ghostbar = $('<div>',
+                        {id:'ghostbar',
+                         css: {
+                                height: code.outerHeight(),
+                                top: code.offset().top,
+                                left: code.offset().left
+                               }
+                        }).appendTo('body');
+       
+				$(document).mousemove(function(e){
+					ghostbar.css("left",e.pageX+2);
+				});
+       
+		});
+
+		$(document).mouseup(function(e){
+			if (dragging) 
+			{
+				var percentage = (e.pageX / window.innerWidth) * 100;
+				var mainPercentage = 100-percentage;
+				
+				//console.log("side:" + percentage + " main:" + mainPercentage);
+				
+				width=percentage + "%";
+				$('#blockly').css("width",width);
+				$('.blocklySvg').width('100%');
+				$('#blocklyPreviewContainer').css("width",mainPercentage + "%");
+				$('#ghostbar').remove();
+				$(document).unbind('mousemove');
+				Blockly.svgResize(Blockly.getMainWorkspace());
+				dragging = false;
+			}
+		});
+		
+		
+		
+		function fileSelected(input){
+			if (input.length>0)
+			{
+				var file = input[0];
+				var reader = new FileReader();
+				reader.readAsText(file);
+				reader.onloadend = function(){
+					var xmlData = $(reader.result);
+					BlockFactory.mainWorkspace.clear();
+					Blockly.Xml.domToWorkspace(xmlData[0],BlockFactory.mainWorkspace);
+					var block_name = Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace).childNodes[0].childNodes[1].childNodes[0].data;
+					localStorage('MyBlocksPreLoaded',block_name);
+					BlockFactory.mainWorkspace.clearUndo();
+				};
+			}
+		}
+		
+		function butSave()
+		{
+			var link = document.createElement('a');
+			var text = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace));
+			link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
+			link.download = 'filename.bli';
+			document.body.appendChild(link);
+			link.click();
+		}
+		
+		function butAdd()
+		{
+			var block_name = Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace).childNodes[0].childNodes[1].childNodes[0].data;
+			if (block_name==='block_type')
+			{
+				alert('You can not save a block with this name');
+				return;
+			}
+			for (var i=0;i<MyBlocks.length;i++){
+				if (MyBlocks[i].name===block_name)
+				{
+					var r = confirm("This block already exists. Do you want to update it?");
+					if (r==true)
+						butUpdate();
+					return;
+				}
+			}
+			var xmlFactory = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace));
+			var tools = new BlockExporterTools();
+			var xml = Blockly.Xml.textToDom(xmlFactory);
+			var rootBlock = tools.getRootBlockFromXml_(xml);
+			var code = FactoryUtils.getBlockDefinition(block_name, rootBlock,'JavaScript', tools.hiddenWorkspace);
+			var tempBlock = FactoryUtils.getDefinedBlock(block_name, tools.hiddenWorkspace);
+			code +='\n'+FactoryUtils.getGeneratorStub(tempBlock, 'Arduino');
+			var block = {name: block_name, factory: xmlFactory, code: code};
+			MyBlocks.push(block);
+			localStorage.setItem("MyBlocks",JSON.stringify(MyBlocks));
+			blockLibrarySelect = document.getElementById('blockLibrary');
+			blockLibrarySelect.options.add( new Option(block_name,block_name));
+		}
+		
+		function butUpdate()
+		{
+			var block_name = Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace).childNodes[0].childNodes[1].childNodes[0].data;
+			if (block_name==='block_type')
+			{
+				alert('You can not update a block with this name');
+				return;
+			}
+			for (var i=0;i<MyBlocks.length;i++){
+				if (MyBlocks[i].name===block_name)
+				{
+					var xmlFactory = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace));
+					var tools = new BlockExporterTools();
+					var xml = Blockly.Xml.textToDom(xmlFactory);
+					var rootBlock = tools.getRootBlockFromXml_(xml);
+					var code = FactoryUtils.getBlockDefinition(block_name, rootBlock,'JavaScript', tools.hiddenWorkspace);
+					var tempBlock = FactoryUtils.getDefinedBlock(block_name, tools.hiddenWorkspace);
+					code +='\n'+FactoryUtils.getGeneratorStub(tempBlock, 'Arduino');
+					var doc = JSON.stringify(FactoryUtils.getDoc(block_name)).replace(/\\n/g, "\\n").replace(/\\'/g, "\\'").replace(/\\"/g, '\\"').replace(/\\&/g, "\\&").replace(/\\r/g, "\\r").replace(/\\t/g, "\\t").replace(/\\b/g, "\\b").replace(/\\f/g, "\\f");
+					code +='\n Blockly.Doc[\''+block_name+'\'] = '+doc+';';
+					console.log(code);
+					var block = {name: block_name, factory: xmlFactory, code: code};
+					MyBlocks[i]=block;
+					localStorage.setItem("MyBlocks",JSON.stringify(MyBlocks));
+					return;
+				}
+			}
+			var r = confirm("This block does not exists. Do you want to add it?");
+			if (r==true)
+				butAdd();
+		}
+		
+		function butDelete()
+		{
+			var block_name = Blockly.Xml.workspaceToDom(BlockFactory.mainWorkspace).childNodes[0].childNodes[1].childNodes[0].data;
+			if (block_name==='block_type')
+			{
+				alert('You can not delete a block with this name');
+				return;
+			}
+			for (var i=0;i<MyBlocks.length;i++){
+				if (MyBlocks[i].name===block_name)
+				{
+					MyBlocks.splice(i,1);
+					localStorage.setItem("MyBlocks",JSON.stringify(MyBlocks));
+					BlockFactory.showStarterBlock();
+					blockLibrarySelect = document.getElementById('blockLibrary');
+					blockLibrarySelect.remove(i+1);
+					return;
+				}
+			}
+			alert('This block does not exists in the library!');
+		}
+		
+		function butDeleteAll()
+		{
+			MyBlocks = [];
+			localStorage.setItem("MyBlocks",'[]');
+			BlockFactory.showStarterBlock();
+			blockLibrarySelect = document.getElementById('blockLibrary');
+			for (i = (blockLibrarySelect.options.length-1); i > 0; i--) {
+				blockLibrarySelect.remove(i);
+			}
+		}
+		
+		function butUndo()
+		{
+			if (BlockFactory.History.position>0){
+				var item =  BlockFactory.History.stack[--BlockFactory.History.position];
+				if (BlockFactory.History.position > 0)
+					$("#undo").show();
+				else
+					$("#undo").hide();
+				if (BlockFactory.History.position<(BlockFactory.History.stack.length-1))
+					$("#redo").show();
+				else
+					$("#redo").hide();
+				BlockFactory.mainWorkspace.clear();
+				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),BlockFactory.mainWorkspace);
+				console.log('Undo: '+BlockFactory.History.position);
+			}
+		}
+		
+		function butRedo()
+		{
+			if (BlockFactory.History.position<(BlockFactory.History.stack.length-1))
+			{
+				var item = BlockFactory.History.stack[++BlockFactory.History.position];
+				if (BlockFactory.History.position > 0)
+					$("#undo").show();
+				else
+					$("#undo").hide();
+				if (BlockFactory.History.position<(BlockFactory.History.stack.length-1))
+					$("#redo").show();
+				else
+					$("#redo").hide();
+				BlockFactory.mainWorkspace.clear();
+				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),BlockFactory.mainWorkspace);
+				//console.log('Redo: '+History.position);
+			}
+		}
+		
+		function showHideBlockLibrary()
+		{
+			var lang=document.getElementById('blockLibrary');
+			//console.log(lang.style.display);
+			if (lang.style.display==='none')
+				lang.style.display='initial';
+			else
+				lang.style.display='none';
+		}
+		
+		function blockLibraryChange(block)
+		{
+			localStorage.setItem('MyBlocksPreLoaded',block);
+			window.location.reload();
+		}
+  </script>
+</body>
+</html>

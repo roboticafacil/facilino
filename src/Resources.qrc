@@ -11,6 +11,11 @@
         <file>../icons/usb-24x24.png</file>
         <file>../icons/enter-16x16.png</file>
         <file>../icons/bar-chart-24x24.png</file>
+        <file>../icons/MyBlocks.png</file>
+        <file>../icons/cancel-button.png</file>
+        <file>../icons/add-button-inside-black-circle.png</file>
+        <file>../icons/update-arrows.png</file>
+        <file>../icons/key.png</file>
     </qresource>
     <qresource prefix="/">
         <file>../icons/about-header.png</file>

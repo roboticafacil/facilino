@@ -1,6 +1,9 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
-<style>.button_wrapper {
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
   text-align: center;
   color: red;
 }
@@ -14,17 +17,53 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Interromp / Continua amb la següent iteració d'un bucle</h3>
 <h4>Instrucció</h4>
-<p><image src="doc/ca-ES/img/controls_flow_statements.png" title="controls_flow_statements" alt="controls_flow_statements"></image></p>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_flow_statements','blocklyInstruction');</script>
 <h4>Descripció</h4>
 <p>Instrucció per a interrompre o continuar amb la següent iteració d'un bucle. S'ha d'utilitzar dins de qualsevol instrucció de bucle:</p>
-<p><image src="doc/ca-ES/img/controls_for.png" title="controls_for" alt="controls_for" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/controls_for.html');});"></image></p>
-<p><image src="doc/ca-ES/img/controls_doWhile.png" title="controls_doWhile" alt="controls_doWhile" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/controls_doWhile.html');});"></image></p>
-<p><image src="doc/ca-ES/img/controls_whileUntil.png" title="controls_whileUntil" alt="controls_whileUntil" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/controls_doWhile.html');});"></image></p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('controls_for','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('controls_doWhile','blocklyInstruction2');</script>
+<div id='blocklyInstruction3'></div><script>injectInstruction('controls_whileUntil','blocklyInstruction3');</script>
 <h4>Desplegables</h4>
 <ul>
   <li>Acció: Interromp o continua amb la següent iteració d'un bucle.</li>
@@ -38,7 +77,7 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/controls_flow_statements_example1.png" title="controls_flow_statements_example1" alt="controls_flow_statements_example1"></image>
+<div id='example1'></div><script>injectExample('controls_flow_statements_example1.bly','example1');</script>
 <h4>Exemple 2</h4>
 En aquest exemple, el LED integrat (pin 13) parpelleja per defecte, però, en prémer el botó el LED deixarà de parpallejar.
 <div class="button_wrapper">
@@ -48,21 +87,7 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/switch_example_bb.png" title="switch_example_bb" alt="switch_example_bb"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/controls_flow_statements_example2.png" title="controls_flow_statements_example2" alt="controls_flow_statements_example2"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+<div id='example2'></div><script>injectExample('controls_flow_statements_example2.bly','example2');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

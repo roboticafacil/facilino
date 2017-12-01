@@ -1,5 +1,13 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -14,25 +22,72 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Function with return (definition)</h3>
 <h4>Instruction</h4>
-<image src="doc/en-GB/img/procedures_defreturn.png" title="procedures_defreturn" alt="procedures_defreturn"></image>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('procedures_defreturn','blocklyInstruction');</script>
 <h4>Description</h4>
 <p>Implements the call of a function that has a return value. The code to execute in the function must be stacked inside the statement. The function can have multiple input arguments (and of different types) using the mutator (top left icon). Use in combination of instruction:</p>
-<image src="doc/en-GB/img/procedures_callreturn.png" title="procedures_callreturn" alt="procedures_callreturn" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/procedures_callreturn.html');});"></image>
-<h4>Stacks</h4>
+<div id='blocklyInstructionzz'></div>
+<script>injectInstruction('procedures_callreturn','blocklyInstructionzz');</script>
+<h4>Statement Instructions</h4>
 <ul>
   <li>Execute: Instructions to execute within the function.</li>
 </ul>
 <h4>Mutator</h4>
 Allows you to create input parameters of the function. Add as many variables as needed, specify their name and type of variable.
 <h5>Container</h5>
-<p><image src="doc/en-GB/img/procedures_mutatorcontainer.png" title="procedures_mutatorcontainer" alt="procedures_mutatorcontainer"></image></p>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('procedures_mutatorcontainer','blocklyInstruction1');</script>
 <h5>Elements</h5>
-<p><image src="doc/en-GB/img/procedures_mutatorarg.png" title="procedures_mutatorarg.png" alt="procedures_mutatorarg.png"></image></p>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('procedures_mutatorarg','blocklyInstruction2');</script>
 <h4>Inputs</h4>
 <ul>
   <li>Name: Name of the function.
@@ -46,21 +101,8 @@ All changes will be lost!
 <h5>Circuit</h5>
 <image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
 <h5>Facilino Code</h5>
-<image src="doc/en-GB/img/procedures_callreturn_example.png" title="procedures_callreturn_example" alt="procedures_callreturn_example"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+<div id='example'></div>
+<script>injectExample('procedures_callreturn_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
 </body>
 </html>

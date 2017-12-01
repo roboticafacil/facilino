@@ -1,6 +1,9 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
-<style>.button_wrapper {
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
   text-align: center;
   color: red;
 }
@@ -14,17 +17,53 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Obre connexió Client TCP / IP (ESP8266)</h3>
 <h4>Instrucció</h4>
-<p><image src="doc/ca-ES/img/communications_wifi_tcp_open.png" title="communications_wifi_tcp_open" alt="communications_wifi_tcp_open"></image></p>
+<div id='blocklyInstruction'></div><script>injectInstruction('communications_wifi_tcp_open','blocklyInstruction');</script>
 <h4>Descripció</h4>
 <p>Estableix una connexió TCP / IP amb un servidor com a client TCP / IP. Requereix de la IP del servidor i el port a comunicar i seleccionar el mode (WiFi integrat o no integrat). Per configurar una connexió WiFi, usar la instrucció:</p>
-<p><image src="doc/ca-ES/img/communications_wifi_def.png" title="communications_wifi_def" alt="communications_wifi_def" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/communications_wifi_def.html');});"></image></p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('communications_wifi_def','blocklyInstruction1');</script>
 Un cop oberta la connexió i transmesos / rebudes les dades és convenient tancar la connexió amb la instrucció:
-<p><image src="doc/ca-ES/img/communications_wifi_tcp_close.png" title="communications_wifi_tcp_close" alt="communications_wifi_tcp_close" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/communications_wifi_tcp_close.html');});"></image></p>
+<div id='blocklyInstruction2'></div><script>injectInstruction('communications_wifi_tcp_close','blocklyInstruction2');</script>
 <h4>Desplegables</h4>
 <ul>
   <li>Mode: Integrat o no integrat.</li>
@@ -43,7 +82,7 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/esp8266_module_example_bb.png" title="esp8266_module_example_bb" alt="esp8266_module_example_bb"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/communications_wifi_def_example.png" title="communications_wifi_def_example" alt="communications_wifi_def_example"></image>
+<div id='example'></div><script>injectExample('communications_wifi_def_example.bly','example');</script>
 <h4>Exemple 2</h4>
 En aquest exemple s'utilitza el processador ESP8266 (integrat). L'exemple és funcionalment equivalent a l'exemple anterior.
 <div class="button_wrapper">
@@ -53,7 +92,7 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/communications_wifi_def_example1.png" title="communications_wifi_def_example1"></image>
-<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p></p>
+<div id='example1'></div><script>injectExample('communications_wifi_def_example1.bly','example1');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p></p>
 </body>
 </html>

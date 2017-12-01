@@ -1,6 +1,9 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
-<style>.button_wrapper {
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
   text-align: center;
   color: red;
 }
@@ -14,12 +17,48 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Espera a complir condició</h3>
 <h4>Instrucció</h4>
-<p><image src="doc/ca-ES/img/dyor_controls_wait.png" title="dyor_controls_wait" alt="dyor_controls_wait"></image></p>
+<div id='blocklyInstruction'></div><script>injectInstruction('dyor_controls_wait','blocklyInstruction');</script>
 <h4>Descripció</h4>
 <p>Espera fins que es compleixi una condició entre dos valors.</p>
 <h4>Entrades</h4>
@@ -36,21 +75,7 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/switch_example_bb.png" title="switch_example_bb" alt="switch_example_bb"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/dyor_controls_wait_example.png" title="dyor_controls_wait_example" alt="dyor_controls_wait_example"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+<div id='example'></div><script>injectExample('dyor_controls_wait_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

@@ -1,30 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.button_wrapper {
-    text-align: center;
-	color: red;
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
 }
 .button {
-    background-color: #2E2EFE;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
+table {
+      height: 100%;
+      width: 100%;
+    }
+    #blocklyArea {
+      height: 99%;
+      text-align: center;
+    }
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #00496B; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #006699;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+	var mainWorkspace   = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Función con retorno (definición)</h3>
 <h4>Instrucción</h4>
-<image src="doc/es-ES/img/procedures_defreturn.png" title="procedures_defreturn" alt="procedures_defreturn"></image>
+<div id='blocklyInstruction'></div><script>injectInstruction('procedures_defreturn','blocklyInstruction');</script>
 <h4>Descripción</h4>
 <p>Implementa la llamada de una función que tiene un valor de retorno. El código a ejecutar en la función se debe apilar dentro de la instrucción. La función puede tener varios argumentos de entrada (y de diferentes tipos) utilizando el mutador (icono de la parte superior izquierda). Usar en combinación de la instrucción:</p>
-<image src="doc/es-ES/img/procedures_callreturn.png" title="procedures_callreturn" alt="procedures_callreturn" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/procedures_callreturn.html");});'></image>
+<div id='blocklyInstruction1'></div><script>injectInstruction('procedures_callreturn','blocklyInstruction1');</script>
 <h4>Instrucciones apilables</h4>
 <ul>
   <li>Ejecutar: Instrucciones a ejecutar dentro de la función.</li>
@@ -32,12 +88,12 @@
 <h4>Mutador</h4>
 Permite crear parámetros de entrada de la función. Añade tantas variables como sean necesarias, especifica su nombre y tipo de variable.
 <h5>Contenedor</h5>
-<p><image src="doc/es-ES/img/procedures_mutatorcontainer.png" title="procedures_mutatorcontainer" alt="procedures_mutatorcontainer"></image></p>
+<div id='blocklyInstruction2'></div><script>injectInstruction('procedures_mutatorcontainer','blocklyInstruction2');</script>
 <h5>Elementos</h5>
-<p><image src="doc/es-ES/img/procedures_mutatorarg.png" title="procedures_mutatorarg.png" alt="procedures_mutatorarg.png"></image></p>
+<div id='blocklyInstruction3'></div><script>injectInstruction('procedures_mutatorarg','blocklyInstruction3');</script>
 <h4>Entradas</h4>
 <ul>
-  <li>Nombre: Nombre de la función.</h5>
+  <li>Nombre: Nombre de la función.</li>
 </ul>
 <h4>Ejemplo</h4>
 En este ejemplo se define una sencilla función de suma de dos números.
@@ -48,21 +104,7 @@ Se perderán todos los cambios!
 <h5>Circuito</h5>
 <image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
 <h5>Código Facilino</h5>
-<image src="doc/es-ES/img/procedures_callreturn_example.png" title="procedures_callreturn_example" alt="procedures_callreturn_example"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+<div id='example'></div><script>injectExample('procedures_callreturn_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

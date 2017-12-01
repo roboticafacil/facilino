@@ -1,5 +1,13 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -14,12 +22,56 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Send TCP / IP Client (ESP8266)</h3>
 <h4>Instruction</h4>
-<p><image src="doc/en-GB/img/communications_wifi_send.png" title="communications_wifi_send" alt="communications_wifi_send"></image></p>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('communications_wifi_send','blocklyInstruction');</script>
 <h4>Description</h4>
 <p>Sends a text string over an opened TCP / IP connection. To configure a WiFi connection, use the instruction:</p>
 <p><image src="doc/en-GB/img/communications_wifi_def.png" title="communications_wifi_def" alt="communications_wifi_def" onclick="$(function(){$('#doc').load('doc/en-GB/communications_wifi_def.html');});"></image></p>
@@ -42,31 +94,19 @@ All changes will be lost!
 <h5>Circuit</h5>
 <image src="doc/circuits/esp8266_module_example_bb.png" title="esp8266_module_example_bb" alt="esp8266_module_example_bb"></image>
 <h5>Facilino Code</h5>
-<image src="doc/en-GB/img/communications_wifi_def_example.png" title="communications_wifi_def_example" alt="communications_wifi_def_example"></image>
+<div id='example1'></div>
+<script>injectExample('communications_wifi_def_example.bly','example1');</script>
 <h4>Example 2</h4>
 This example uses the ESP8266 (integrated) processor. The example is functionally equivalent to the above example.
 <div class="button_wrapper">
-<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/communications_wifi_def_example1.bly&#39;)">Open</button></p>
+<p><button align="center" class="button" onclick="openFunction('doc/examples/communications_wifi_def_example1.bly')">Open</button></p>
 All changes will be lost!
 </div>
 <h5>Circuit</h5>
 <image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
 <h5>Facilino Code</h5>
-<image src="doc/en-GB/img/communications_wifi_def_example1.png" title="communications_wifi_def_example1" alt="communications_wifi_def_example1"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+<div id='example2'></div>
+<script>injectExample('communications_wifi_def_example2.bly','example2');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
 </body>
 </html>

@@ -16140,6 +16140,7 @@ Blockly.BlockSvg.prototype.onMouseUp_ = function(a) {
 };
 Blockly.BlockSvg.prototype.showHelp_ = function() {
     var a = goog.isFunction(this.helpUrl) ? this.helpUrl() : this.helpUrl;
+	console.log(a);
     a && ('#doc').html(a);
 };
 Blockly.BlockSvg.prototype.showContextMenu_ = function(a) {
@@ -18604,7 +18605,7 @@ Blockly.Toolbox = function(a) {
     this.RTL = a.options.RTL;
     this.horizontalLayout_ = a.options.horizontalLayout;
     this.toolboxPosition = a.options.toolboxPosition;
-    this.config_ = {
+    /*this.config_ = {
         indentWidth: 19,
         cssRoot: "blocklyTreeRoot",
         cssHideRoot: "blocklyHidden",
@@ -18613,6 +18614,18 @@ Blockly.Toolbox = function(a) {
         cssItemLabel: "blocklyTreeLabel",
         cssTreeIcon: "blocklyTreeIcon",
         cssExpandedFolderIcon: "blocklyTreeIconOpen",
+        cssFileIcon: "blocklyTreeIconNone",
+        cssSelectedRow: "blocklyTreeSelected"
+    };*/
+	this.config_ = {
+        indentWidth: 19,
+        cssRoot: "blocklyTreeRoot",
+        cssHideRoot: "blocklyHidden",
+        cssItem: "",
+        cssTreeRow: "blocklyTreeRow",
+        cssItemLabel: "blocklyTreeLabel",
+        cssTreeIcon: "",
+        cssExpandedFolderIcon: "",
         cssFileIcon: "blocklyTreeIconNone",
         cssSelectedRow: "blocklyTreeSelected"
     };
@@ -18869,7 +18882,7 @@ Blockly.Css.CONTENT = [".blocklySvg {", "background-color: #fff;", "outline: non
     "overflow-x: hidden;", "max-height: 100%;", "z-index: 20000;", "}", ".blocklyWidgetDiv .goog-menuitem {", "color: #000;", "font: normal 13px Arial, sans-serif;", "list-style: none;", "margin: 0;", "padding: 4px 7em 4px 28px;", "white-space: nowrap;", "}", ".blocklyWidgetDiv .goog-menuitem.goog-menuitem-rtl {", "padding-left: 7em;", "padding-right: 28px;", "}", ".blocklyWidgetDiv .goog-menu-nocheckbox .goog-menuitem,", ".blocklyWidgetDiv .goog-menu-noicon .goog-menuitem {", "padding-left: 12px;", "}", ".blocklyWidgetDiv .goog-menu-noaccel .goog-menuitem {",
     "padding-right: 20px;", "}", ".blocklyWidgetDiv .goog-menuitem-content {", "color: #000;", "font: normal 13px Arial, sans-serif;", "}", ".blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-accel,", ".blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-content {", "color: #ccc !important;", "}", ".blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-icon {", "opacity: 0.3;", "-moz-opacity: 0.3;", "filter: alpha(opacity=30);", "}", ".blocklyWidgetDiv .goog-menuitem-highlight,", ".blocklyWidgetDiv .goog-menuitem-hover {",
     "background-color: #d6e9f8;", "border-color: #d6e9f8;", "border-style: dotted;", "border-width: 1px 0;", "padding-bottom: 3px;", "padding-top: 3px;", "}", ".blocklyWidgetDiv .goog-menuitem-checkbox,", ".blocklyWidgetDiv .goog-menuitem-icon {", "background-repeat: no-repeat;", "height: 16px;", "left: 6px;", "position: absolute;", "right: auto;", "vertical-align: middle;", "width: 16px;", "}", ".blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-checkbox,", ".blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-icon {",
-    "left: auto;", "right: 6px;", "}", ".blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,", ".blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {", "background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0;", "}", ".blocklyWidgetDiv .goog-menuitem-accel {", "color: #999;", "direction: ltr;", "left: auto;", "padding: 0 6px;", "position: absolute;", "right: 0;", "text-align: right;", "}", ".blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-accel {", "left: 0;", "right: auto;",
+    "left: auto;", "right: 6px;", "}", ".blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,", ".blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {", "background: 'img/gstatic/editor/editortoolbar.png' no-repeat -512px 0;", "}", ".blocklyWidgetDiv .goog-menuitem-accel {", "color: #999;", "direction: ltr;", "left: auto;", "padding: 0 6px;", "position: absolute;", "right: 0;", "text-align: right;", "}", ".blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-accel {", "left: 0;", "right: auto;",
     "text-align: left;", "}", ".blocklyWidgetDiv .goog-menuitem-mnemonic-hint {", "text-decoration: underline;", "}", ".blocklyWidgetDiv .goog-menuitem-mnemonic-separator {", "color: #999;", "font-size: 12px;", "padding-left: 4px;", "}", ".blocklyWidgetDiv .goog-menuseparator {", "border-top: 1px solid #ccc;", "margin: 4px 0;", "padding: 0;", "}", ""
 ];
 /*Blockly.Css.CONTENT = [".blocklySvg {", "  background-color: #fff;", "  border: 1px solid #ddd;", "  overflow: hidden;", "}", ".blocklyWidgetDiv {", "  position: absolute;", "  display: none;", "  z-index: 999;", "}", ".blocklyDraggable {", "  cursor: url(<<<PATH>>>/media/handopen.cur) 8 5, auto;", "}", ".blocklyResizeSE {", "  fill: #aaa;", "  cursor: se-resize;", "}", ".blocklyResizeSW {", "  fill: #aaa;", "  cursor: sw-resize;", "}", ".blocklyResizeLine {", "  stroke-width: 1;", "  stroke: #888;", "}", ".blocklyHighlightedConnectionPath {",

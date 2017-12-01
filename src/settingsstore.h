@@ -25,6 +25,7 @@ public:
     QString tmpDirName();
     QString tmpFileName();
     QString htmlIndex();
+    QString htmlIndexMyBlocks();
     bool iconLabels();
     float zoomScale();
     QString license();

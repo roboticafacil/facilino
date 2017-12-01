@@ -1,6 +1,9 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
-<style>.button_wrapper {
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
   text-align: center;
   color: red;
 }
@@ -14,20 +17,56 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Concatena cadenes de text</h3>
 <h4>Instrucció</h4>
-<image src="doc/ca-ES/img/text_join.png" title="text_join" alt="text_join"></image>
+<div id='blocklyInstruction'></div><script>injectInstruction('text_join','blocklyInstruction');</script>
 <h4>Descripció</h4>
 <p>Aquesta instrucció permet unir (concatenar) cadenes de text. Gràcies al mutador, podem crear tantes cadenes de text com es vulgui. Permet per exemple combinar cadenes de text amb nombres.</p>
 <h4>Mutador</h4>
 Uneix text afegint nous elements:
 <h5>Contenidor</h5>
-<p><image src="doc/ca-ES/img/text_create_join_container.png" title="text_create_join_container" alt="text_create_join_container"></image></p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('text_create_join_container','blocklyInstruction1');</script>
 <h5>Elements</h5>
-<p><image src="doc/ca-ES/img/text_create_join_item.png" title="text_create_join_item" alt="text_create_join_item"></image></p>
+<div id='blocklyInstruction2'></div><script>injectInstruction('text_create_join_item','blocklyInstruction2');</script>
 <h4>Entrades</h4>
 <ul>
   <li>Element: Element a concatenar.</li>
@@ -43,21 +82,7 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/text_join_example.png" title="text_join_example" alt="text_join_example"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+<div id='example'></div><script>injectExample('text_join_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

@@ -15,7 +15,7 @@
 class QBlocksWebView : public QWebEngineView
 {
 public:
-    QBlocksWebView();
+    //QBlocksWebView();
     QBlocksWebView(QWidget *parent = 0);
     //void wheelEvent(QWheelEvent *event);
     bool event(QEvent * ev);

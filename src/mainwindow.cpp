@@ -19,12 +19,18 @@
 #include <QTimer>
 #include <QWebEnginePage>
 #include <QEventLoop>
+#include <QUrlQuery>
+#include <QSignalMapper>
+#include <QtWebChannel/QWebChannel>
+#include <QUndoStack>
+#include <QDomDocument>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     this->alert=false;
+    signalMapper = new QSignalMapper(this);
     ui->setupUi(this);
     // Align last toolbar action to the right
     QWidget *empty = new QWidget(this);
@@ -37,9 +43,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->monitorToolBar->insertWidget(ui->actionMonitor, emptyMonitor);
     // Hide monitor toolbar
     ui->monitorToolBar->setVisible(false);
+    ui->licenseLabel->setText("Checking license...");
+    ui->license->setVisible(false);
+
 
     // Hide graphs widget
     ui->graphsWidget->setVisible(false);
+
 
     // Set monospaced font in the monitor
     const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
@@ -49,30 +59,45 @@ MainWindow::MainWindow(QWidget *parent) :
     settings = new SettingsStore(CONFIG_INI);
     setArduinoBoard();
     xmlFileName = "";
+    this->myblocks=false; //The standard Facilino programming view
     serial = NULL;
     //QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
     //ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     float zoomScale = settings->zoomScale();
     ui->webView->setZoomFactor(zoomScale);
 
-
-    actionLicense();
+    initCategories();
+    //actionLicense();
 
     // Hide messages
     actionCloseMessages();
     serialPortClose();
 
+    actionInjectWebHelper();
     // Load blockly index
+
     loadBlockly();
+    webHelper->setSourceChangeEnable(true);
+    documentHistory.clear();
+    documentHistory.setUndoLimit(0);  //No limit
+
+
 
     // Set timer to update list of available ports
     updateSerialPorts();
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateSerialPorts()));
     timer->start(5000);
+    licenseTimer = new QTimer(this);
+    connect(licenseTimer, SIGNAL(timeout()), this, SLOT(checkLicense()));
+    licenseTimer->start(1000);  //Initially waits 1sec for checking the license
+    //checkLicense();
+
+    //Hide MyBlocks toolbar
+    this->switchToMyBlocks(false);
 
     ui->consoleText->document()->setMaximumBlockCount(100);
-
+    //ui->messagesWidget->show();
     // Show/hide icon labels in the menu bar
     iconLabels();
 
@@ -97,7 +122,10 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(messageChanged(QString)),
             this,
             SLOT(onStatusMessageChanged(QString)));
-
+    ui->actionUndo->setEnabled(false);
+    ui->actionRedo->setEnabled(false);
+    connect(&documentHistory,SIGNAL(canUndoChanged(bool)),this,SLOT(onUndoChanged(bool)));
+    connect(&documentHistory,SIGNAL(canRedoChanged(bool)),this,SLOT(onRedoChanged(bool)));
     // Filter events to capture backspace key
     ui->webView->installEventFilter(this);
 }
@@ -127,9 +155,7 @@ void MainWindow::arduinoExec(const QString &action) {
     tmpFile.open(QIODevice::WriteOnly);
 
     // Read code
-	QVariant codeVariant = evaluateJavaScript("Blockly.Arduino.workspaceToCode();");
-    QString codeString = codeVariant.toString();
-	
+    QString codeString = evaluateJavaScript("Blockly.Arduino.workspaceToCode();");
 
     // Write code to tmp file
     tmpFile.write(codeString.toLocal8Bit());
@@ -162,14 +188,12 @@ void MainWindow::actionAbout() {
 void MainWindow::actionCode() {
     // Show/hide code
     QString jsLanguage = QString("toogleCode();");
-    //ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
 	evaluateJavaScript(jsLanguage);
 }
 
 void MainWindow::actionDoc() {
     // Show/hide code
     QString jsLanguage = QString("toogleDoc();");
-    //ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
 	evaluateJavaScript(jsLanguage);
 }
 
@@ -180,7 +204,7 @@ void MainWindow::actionExamples() {
     }
 
     // Open an example from the examples folder
-    actionOpenInclude(tr("Examples"), true, settings->examplesPath());
+    actionOpenInclude(tr("Examples"), true, QDir::currentPath()+settings->examplesPath());
     // Void file name to prevent overwriting the original file by mistake
     setXmlFileName("");
 }
@@ -206,8 +230,7 @@ void MainWindow::actionExportSketch() {
     if (result == 0) {
         // Display error message
         QMessageBox msgBox(this);
-        msgBox.setText(QString(tr("Couldn't open file to save content: %1.")
-                               ).arg(inoFileName));
+        msgBox.setText(QString(tr("Couldn't open file to save content: %1.")).arg(inoFileName));
         msgBox.exec();
         return;
     }
@@ -217,34 +240,68 @@ void MainWindow::actionExportSketch() {
     statusBar()->showMessage(message, 2000);
 }
 
-void MainWindow::actionDocumentUndo() {
-    // If no history, return
-    if (documentHistory.length() < 2) return;
-    if (documentHistoryStep == -1) {
-        // First undo, get previous document
-        documentHistoryStep = documentHistory.length() - 2;
-    } else {
-        // If already in first change, return
-        if (documentHistoryStep == 0) return;
-        documentHistoryStep--;
+void MainWindow::onSourceChanged() {
+    if (!webHelper->isSourceChangeEnabled())
+        return;
+    if (sourceChanging) {
+        sourceChanging = false;
+        return;
     }
-    sourceChanging = true; // Prevent adding this change to the history
-    setXml(documentHistory[documentHistoryStep], true);
+    QString code("Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));");
+    QWebEnginePage *page = ui->webView->page();
+    page->runJavaScript(code, [&](const QVariant var){
+        QString xml = var.toString();
+        if (documentHistory.count()>0)
+        {
+            if (QString::compare(lastDocument,xml)==0) return;
+            //if (QString::compare(QString("<xml xmlns=\"http://www.w3.org/1999/xhtml\"></xml>"),xml)==0) return;
+            if (documentHistory.index()==documentHistoryStep && (QString::compare(documentHistory.text(documentHistory.index()-1),xml)==0)){ return;}
+        }
+        QUndoCommand *command = new QUndoCommand(xml);
+        documentHistory.push(command);
+        lastDocument=xml;
+        //ui->licenseLabel->setText(QString::number(documentHistory.index())+" "+QString::number(documentHistory.count()));
+        //ui->textBrowser->append(QString::number(documentHistory.index())+" "+escapeCharacters(xml));
+    });
 }
 
+void MainWindow::actionDocumentUndo() {
+    if (documentHistory.canUndo()&&documentHistory.index()>1)
+    {
+        documentHistory.undo();
+        documentHistoryStep=documentHistory.index();
+        //ui->licenseLabel->setText(QString::number(documentHistory.index())+" "+QString::number(documentHistory.count()));
+        //ui->textBrowser->append(QString::number(documentHistory.index())+" "+escapeCharacters(documentHistory.text(documentHistory.index()-1)));
+        setXml(documentHistory.text(documentHistory.index()-1), true);
+    }
+    else
+        ui->actionUndo->setEnabled(false);
+}
 void MainWindow::actionDocumentRedo() {
-    // If already in first change, return
-    if (documentHistory.length() < 2) return;
-    if (documentHistoryStep >= documentHistory.length() - 1) return;
-    documentHistoryStep++;
-    sourceChanging = true; // Prevent adding this change to the history
-    setXml(documentHistory[documentHistoryStep], true);
+    if (documentHistory.canRedo()&&(documentHistory.index()<documentHistory.count()))
+    {
+        documentHistory.redo();
+        documentHistoryStep=documentHistory.index();
+        //ui->licenseLabel->setText(QString::number(documentHistory.index())+" "+QString::number(documentHistory.count()));
+        //ui->textBrowser->append(QString::number(documentHistory.index())+" "+escapeCharacters(documentHistory.text(documentHistory.index()-1)));
+        setXml(documentHistory.text(documentHistory.index()-1), true);
+    }
+    else
+        ui->actionRedo->setEnabled(false);
+}
+
+void MainWindow::onUndoChanged(bool canUndo)
+{
+    ui->actionUndo->setEnabled(canUndo);
+}
+
+void MainWindow::onRedoChanged(bool canRedo)
+{
+    ui->actionRedo->setEnabled(canRedo);
 }
 
 void MainWindow::documentHistoryReset() {
     // Clear history of changes
-    sourceChanging = false;
-    documentHistoryStep = -1;
     documentHistory.clear();
 }
 
@@ -282,15 +339,13 @@ void MainWindow::actionInsertLanguage() {
     // Set language in Roboblocks
     QString jsLanguage = QString("var roboblocksLanguage = '%1';").
             arg(settings->defaultLanguage());
-    //ui->webView->page()->mainFrame()->evaluateJavaScript(jsLanguage);
 	ui->webView->page()->runJavaScript(jsLanguage);
 }
 
 void MainWindow::actionLicense() {
     // Set license
-    QString jsLanguage = QString("var license = '%1';").
+    QString jsLanguage = QString("window.webHelper.license = '%1';").
             arg(settings->license());
-    //QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
     ui->webView->page()->runJavaScript(jsLanguage);
 }
 
@@ -343,21 +398,17 @@ void MainWindow::actionNew() {
     if (checkSourceChanged() == QMessageBox::Cancel) {
         return;
     }
-
     // Unset file name
     setXmlFileName("");
-
-    // Disable save as
-    ui->actionSave_as->setEnabled(false);
-
     // Reset source change status
     webHelper->resetSourceChanged();
-
+    // Disable save as
+    ui->actionSave_as->setEnabled(false);
     // Clear workspace
-    //QWebFrame *frame = ui->webView->page()->mainFrame();
-    //frame->evaluateJavaScript("resetWorkspace();");
-	evaluateJavaScript("resetWorkspace();");
-
+    if (!this->myblocks)
+      evaluateJavaScript("resetWorkspace();");
+    else
+      evaluateJavaScript("BlockFactory.showStarterBlock();");
     // Reset history
     documentHistoryReset();
 }
@@ -373,12 +424,10 @@ void MainWindow::actionOpen() {
     if (checkSourceChanged() == QMessageBox::Cancel) {
         return;
     }
-
     // Open file
     QString directory = QStandardPaths::locate(
                 QStandardPaths::DocumentsLocation,
-                "",
-                QStandardPaths::LocateDirectory);
+                "",QStandardPaths::LocateDirectory);
     actionOpenInclude(tr("Open file"), true, directory);
 
     // Reset source changed and history
@@ -390,11 +439,16 @@ void MainWindow::actionOpenInclude(const QString &title,
                                    bool clear,
                                    const QString &directory) {
     // Open file dialog
+    QString extension;
+    if (!myblocks)
+        extension = QString("bly");
+    else
+        extension = QString("bli");
     QFileDialog fileDialog(this, title);
     fileDialog.setFileMode(QFileDialog::AnyFile);
     fileDialog.setNameFilter(QString(tr("Blockly Files %1")).
-                             arg("(*.bly *.xml)"));
-    fileDialog.setDefaultSuffix("bly");
+                             arg("(*."+extension+")"));
+    fileDialog.setDefaultSuffix(extension);
     if (!directory.isEmpty()) fileDialog.setDirectory(directory);
     if (!fileDialog.exec()) return; // Return if cancelled
     QStringList selectedFiles = fileDialog.selectedFiles();
@@ -417,20 +471,16 @@ void MainWindow::openFileToWorkspace(const QString &xmlFileName, bool clear) {
         msgBox.exec();
         return;
     }
-
     // Read content
     QByteArray content = xmlFile.readAll();
     QString xml(content);
     xmlFile.close();
-
     // Set XML to Workspace
     setXml(xml, clear);
-
     // Set XML file name
     if (clear) {
         setXmlFileName(xmlFileName);
     }
-
 }
 
 void MainWindow::actionOpenMessages() {
@@ -444,7 +494,6 @@ void MainWindow::actionQuit() {
     if (checkSourceChanged() == QMessageBox::Cancel) {
         return;
     }
-
     // Quit
     close();
 }
@@ -463,13 +512,18 @@ void MainWindow::actionSaveAndSaveAs(bool askFileName,
                                      const QString &directory) {
     // Save XML file
     QString xmlFileName;
+    QString extension="";
+    if (!myblocks)
+        extension=QString("bly");
+    else
+        extension=QString("bli");
 
     if (this->xmlFileName.isEmpty() || askFileName == true) {
         // Open file dialog
         QFileDialog fileDialog(this, tr("Save"));
         fileDialog.setFileMode(QFileDialog::AnyFile);
-        fileDialog.setNameFilter(QString("Blockly Files %1").arg("(*.bly)"));
-        fileDialog.setDefaultSuffix("bly");
+        fileDialog.setNameFilter(QString("Facilino Files %1").arg("(*."+extension+")"));
+        fileDialog.setDefaultSuffix(extension);
         fileDialog.setLabelText(QFileDialog::Accept, tr("Save"));
         if (!directory.isEmpty()) fileDialog.setDirectory(directory);
         if (!fileDialog.exec()) return; // Return if cancelled
@@ -480,7 +534,6 @@ void MainWindow::actionSaveAndSaveAs(bool askFileName,
     } else {
         xmlFileName = this->xmlFileName;
     }
-
     int result = saveXml(xmlFileName);
 
     if (result == 0) {
@@ -491,13 +544,10 @@ void MainWindow::actionSaveAndSaveAs(bool askFileName,
         msgBox.exec();
         return;
     }
-
     // Set file name
     setXmlFileName(xmlFileName);
-
     // Feedback
     statusBar()->showMessage(tr("Done saving."), 2000);
-
     // Reset status changed status
     webHelper->resetSourceChanged();
 }
@@ -527,27 +577,37 @@ void MainWindow::actionSettings() {
     QString license = settings->license();
     // Supported list of languages
     QStringList languageList;
-    languageList << "en-GB" << "ca-ES" << "es-ES";
+    languageList << "en-GB" << "es-ES" << "ca-ES" << "gl-ES" << "eu-ES" << "de-DE" << "fr-FR" << "it-IT" << "pt-PT" << "pl-PL" << "ru-RU";
     SettingsDialog settingsDialog(settings, languageList, this);
     int result = settingsDialog.exec();
     if (result && settingsDialog.changed()) {
         // Reload blockly page
         if (htmlIndex != settings->htmlIndex()
                 || defaultLanguage != settings->defaultLanguage() || license!=settings->license()) {
-            // Refresh workspace with new language
+            QMessageBox::StandardButton reply;
             xmlLoadContent = getXml();
             loadBlockly();
-            connect(ui->webView,
-                    SIGNAL(loadFinished(bool)),
-                    SLOT(onLoadFinished(bool)));
-            // Reload app warning
-            if (defaultLanguage != settings->defaultLanguage() || license!=settings->license() ) {
-            QMessageBox msgBox;
-            msgBox.setText(tr("Please, restart the application."));
-            msgBox.exec();
+            ui->licenseLabel->setText(tr("Checking license..."));
+            ui->license->setVisible(false);
+            licenseTimer->start(1000);
+            QMessageBox msg;
+            msg.setText(tr("Changes successfully applied!"));
+            msg.exec();
+            setXml(xmlLoadContent,true);
+
+            /*setXmlFileName("");
+            // Disable save as
+            ui->actionSave_as->setEnabled(false);
+            // Reset source change status
+            webHelper->resetSourceChanged();
+            reply = QMessageBox::question(this, tr("Settings changed!"), tr("Are you sure?"),QMessageBox::Yes|QMessageBox::No);
+            // Refresh workspace with new language
+            if (reply == QMessageBox::Yes)
+            {
+
+            }*/
             }
         }
-    }
 }
 
 void MainWindow::actionZoomIn() {
@@ -562,40 +622,42 @@ void MainWindow::actionZoomOut() {
 
 QString MainWindow::getXml() {
     // Get XML
-   // QWebFrame *frame = ui->webView->page()->mainFrame();
-    //QVariant xml = frame->evaluateJavaScript(
-    //    "var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());"
-   //     "var data = Blockly.Xml.domToText(xml); data;");
-   QVariant xml = evaluateJavaScript(
-        "var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());"
-        "var data = Blockly.Xml.domToText(xml); data;");
-    return xml.toString();
+    QString xml = evaluateJavaScript(QString("try{Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));}catch(e){alert('Fire!');}"));
+    return xml;
 }
 
 QString MainWindow::getCode() {
     // Get code
-   // QWebFrame *frame = ui->webView->page()->mainFrame();
-   // QVariant xml = frame->evaluateJavaScript(
-    //    "Blockly.Arduino.workspaceToCode();");
-	QVariant xml = evaluateJavaScript("Blockly.Arduino.workspaceToCode();");
-    return xml.toString();
+    QString xml = evaluateJavaScript(QString("Blockly.Arduino.workspaceToCode();"));
+    return xml;
 }
 
 void MainWindow::setXml(const QString &xml, bool clear) {
     // Set XML
     QString escapedXml(escapeCharacters(xml));
-
-    //QWebFrame *frame = ui->webView->page()->mainFrame();
-    QString js = QString("var data = '%1'; "
-        "var xml = Blockly.Xml.textToDom(data);"
-        "Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),xml);"
-         "").arg(escapedXml);
-
-    if (clear) {
-        js.prepend("Blockly.mainWorkspace.clear();");
+    QString js;
+    if (!myblocks)
+    {
+        js = QString("var data = '%1'; "
+                              "var xml = Blockly.Xml.textToDom(data);"
+                              "Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),xml);"
+                               "").arg(escapedXml);
+        if (clear) {
+            js.prepend("Blockly.mainWorkspace.clear();");
+        }
     }
-    //frame->evaluateJavaScript(js);
-	evaluateJavaScript(js);
+    else
+    {
+        js = QString(        "var xml = Blockly.Xml.textToDom('%1');"
+                             "Blockly.Xml.domToWorkspace(xml, BlockFactory.mainWorkspace);"
+                             "BlockFactory.mainWorkspace.clearUndo();").arg(escapedXml.remove(QRegExp("[\\n\\t\\r]")));
+        if (clear) {
+            js.prepend("BlockFactory.mainWorkspace.clear();");
+        }
+    }
+
+    evaluateJavaScript(js);
+    //documentHistoryStep=-1;
 }
 
 bool MainWindow::listIsEqual(const QStringList &listOne,
@@ -618,26 +680,14 @@ void MainWindow::loadBlockly() {
             SIGNAL(loadFinished(bool)),
             this,
             SLOT(actionLicense()));
-    //ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
-    //QMessageBox msgBox;
-    //msgBox.setText(settings->htmlIndex());
-    //msgBox.exec();
-    ui->webView->load(QUrl::fromLocalFile(settings->htmlIndex()));
-    /*ui->webView->page()->setScrollBarPolicy(
-                Qt::Vertical,
-                Qt::ScrollBarAlwaysOff);
-    ui->webView->page()->setScrollBarPolicy(
-                Qt::Horizontal,
-                Qt::ScrollBarAlwaysOff);
-    */
-    // Signal is emitted before frame loads any web content
-    webHelper = new JsWebHelpers();
-    connect(ui->webView->page(),
-            SIGNAL(loadFinished(bool)),
-            this,
-            SLOT(actionInjectWebHelper()));
-    // Capture signal
-    connect(webHelper, SIGNAL(changed()), this, SLOT(onSourceChanged()));
+
+    QUrl url = QUrl::fromLocalFile(settings->htmlIndex());
+    QUrlQuery query(url);
+    query.addQueryItem("language",settings->defaultLanguage());
+    query.addQueryItem("processor","arduino-nano");
+    url.setQuery(query);
+    ui->webView->load(url);
+    //checkLicense();  //First call to activate the license from the beginning
     // Reset history
     sourceChanging = false;
     documentHistoryStep = -1;
@@ -673,27 +723,6 @@ void MainWindow::onProcessOutputUpdated() {
 void MainWindow::onProcessStarted() {
     ui->textBrowser->clear();
     ui->textBrowser->append(tr("Building..."));
-}
-
-void MainWindow::onSourceChanged() {
-    if (sourceChanging) {
-        sourceChanging = false;
-        return;
-    }
-    QString xml = getXml();
-    if (documentHistory.length() > 0) {
-        if (documentHistoryStep >= 0) {
-            // Change ocurred at mid history. Remove the rest of steps.
-            while (documentHistory.length() > documentHistoryStep + 1) {
-                documentHistory.removeLast();
-            }
-            documentHistoryStep = -1;
-        } else {
-            // Add step to history only if there is a real change
-            if (documentHistory.last() == xml) return;
-        }
-    }
-    documentHistory.append(xml);
 }
 
 void MainWindow::onStatusMessageChanged(const QString &message) {
@@ -883,7 +912,6 @@ int MainWindow::saveXml(const QString &xmlFilePath) {
 
     // Get XML
     QVariant xml = getXml();
-
     // Save XML to file
     QFile xmlFile(xmlFilePath);
     if (!xmlFile.open(QIODevice::WriteOnly)) {
@@ -939,14 +967,46 @@ void MainWindow::updateSerialPorts() {
     }
 }
 
-QVariant MainWindow::evaluateJavaScript(const QString code) {
+void MainWindow::checkLicense() {
+    if (!myblocks)
+    {
+        if (QString::compare(settings->license(),QString(""))!=0)
+        {
+            QString jsLanguage = QString("checkLicense('%1');").arg(settings->license());
+            QString activeLicense= evaluateJavaScript(jsLanguage);
+            if ((QString::compare(activeLicense,settings->license())==0))
+            {
+                ui->licenseLabel->setText(tr("License Active"));
+                ui->license->setVisible(true);
+            }
+            else
+            {
+                ui->licenseLabel->setText(tr("Demo version"));
+                ui->license->setVisible(false);
+            }
+        }
+        else
+        {
+            ui->licenseLabel->setText(tr("Demo version"));
+            ui->license->setVisible(false);
+        }
+        if (licenseTimer->interval()<300000)
+        {
+            licenseTimer->start(300000);
+        }
+    }
+}
+
+QString MainWindow::evaluateJavaScript(const QString code) {
     // Execute JavaScript code and return
     QEventLoop loop;
     QVariant returnValue = "";
     QWebEnginePage *page = ui->webView->page();
-    page->runJavaScript(code, [&](const QVariant var){returnValue = var; loop.quit(); });
+    page->runJavaScript(code, [&](const QVariant var){returnValue = var;
+        loop.quit();
+    });
     loop.exec();
-    return returnValue;
+    return returnValue.toString();
 }															 
 QString MainWindow::escapeCharacters(const QString& string)
 {
@@ -965,9 +1025,12 @@ QString MainWindow::escapeCharacters(const QString& string)
 void MainWindow::actionInjectWebHelper() {
     // Inject the webHelper object in the webview. This is used in index.html,
     // where a call is made back to webHelper.sourceChanged() function.
-    //ui->webView->page()->addToJavaScriptWindowObject(
-    //            QString("webHelper"),
-    //            webHelper);
+    webHelper = new JsWebHelpers();
+    webHelper->setLicense(settings->license());
+    channel = new QWebChannel(ui->webView->page());
+    ui->webView->page()->setWebChannel(channel);
+    connect(webHelper, SIGNAL(changed()), this, SLOT(onSourceChanged()));
+    channel->registerObject(QString("webHelper"), webHelper);
 }
 
 int MainWindow::checkSourceChanged() {
@@ -975,7 +1038,7 @@ int MainWindow::checkSourceChanged() {
     if (webHelper->sourceChanges() > 1) {
         // Does the user want to save the changes?
         QMessageBox msgBox(this);
-        msgBox.setText(QString(tr("There are unsaved changes that could be "
+        msgBox.setText(QString(tr("There could be unsaved changes that could be "
                                   "lost. Do you want to save them before "
                                   "continuing?")));
         msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard |
@@ -1035,4 +1098,465 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
         // Pass the event on to the parent class
         return QMainWindow::eventFilter(obj, event);
     }
+}
+
+void MainWindow::on_actionMy_Blocks_triggered()
+{
+    QMessageBox::StandardButton reply;
+    if (!this->myblocks)
+    {
+        reply = QMessageBox::question(this, tr("My Blocks"), tr("Are you sure you want to change to My Blocks? All changes will be lost!"),
+                                QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            this->switchToMyBlocks(true);
+            QUrl url = QUrl::fromLocalFile(settings->htmlIndexMyBlocks());
+            ui->webView->load(url);
+        }
+        else
+            ui->actionMy_Blocks->setChecked(false);
+    }
+    else
+    {
+        reply = QMessageBox::question(this, tr("My Blocks"), tr("Are you sure you want to exit from My Blocks? All changes will be lost!"),
+                                    QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            this->switchToMyBlocks(false);
+            QUrl url = QUrl::fromLocalFile(settings->htmlIndex());
+            QUrlQuery query(url);
+            query.addQueryItem("language",settings->defaultLanguage());
+            query.addQueryItem("processor","arduino-nano");
+            url.setQuery(query);
+            ui->webView->load(url);
+        }
+        else
+            ui->actionMy_Blocks->setChecked(true);
+
+    }
+}
+
+void MainWindow::on_actionMonitor_triggered()
+{
+
+}
+
+void MainWindow::on_actionMy_Blocks_2_triggered()
+{
+    this->on_actionMy_Blocks_triggered();
+}
+
+void MainWindow::on_block_triggered(const QString &block)
+{
+    if (checkSourceChanged() == QMessageBox::Cancel) {
+        return;
+    }
+    setXml(blocksXml[block],true);
+    setXmlFileName(block);
+}
+
+void MainWindow::switchToMyBlocks(bool var)
+{
+    ui->actionMy_Blocks->setChecked(var);
+    ui->mainToolBar->setVisible(!var);
+    ui->myBlocksToolBar->setVisible(var);
+    ui->menu_FileMyBlocks->menuAction()->setVisible(var);
+    ui->menuLibrary->menuAction()->setVisible(var);
+    ui->menu_File->menuAction()->setVisible(!var);
+    ui->menu_Edit->menuAction()->setVisible(!var);
+    ui->menuView->menuAction()->setVisible(!var);
+    ui->license->setVisible(!var);
+    ui->licenseLabel->setVisible(!var);
+    ui->boardBox->setEnabled(!var);
+    ui->serialPortBox->setEnabled(!var);
+    this->myblocks=var;
+    if (var)
+    {
+        updateDOMLibraryFromXML();
+        updateLibraryMenu();
+    }
+    else
+    {
+        licenseTimer->start(1000);
+    }
+    webHelper->resetSourceChanged();
+}
+
+void MainWindow::updateDOMLibraryFromXML()
+{
+    QDir dir;
+    QFile xmlFile(dir.currentPath()+"/html/library.xml");
+    if (!xmlFile.open(QIODevice::ReadOnly | QIODevice::Text) || !doc.setContent(&xmlFile))
+        return;
+    xmlFile.close();
+}
+
+/*void MainWindow::on_actionblockMenuSelected_triggered()
+{
+}*/
+
+void MainWindow::on_actionNew_triggered()
+{
+}
+
+void MainWindow::on_actionNew_4_triggered()
+{
+    actionNew();
+}
+
+void MainWindow::on_actionOpen_3_triggered()
+{
+    actionOpen();
+}
+
+void MainWindow::on_actionSave_3_triggered()
+{
+    actionSave();
+}
+
+void MainWindow::on_actionQuit_2_triggered()
+{
+    actionQuit();
+}
+
+void MainWindow::on_actionSave_as_2_triggered()
+{
+    actionSaveAs();
+}
+
+void MainWindow::on_actionadd_triggered()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, tr("My Blocks"), tr("Are you sure you want to add this block to the library?"),
+                            QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        QString xml = getXml();
+        QDomDocument new_block_doc;
+        if (new_block_doc.setContent(xml))
+        {
+            QDomNodeList new_block = new_block_doc.firstChild().childNodes();
+            QDomNodeList items = new_block.item(0).childNodes();
+            QString new_block_name;
+            for (int j=0;j<items.size();j++)
+            {
+                QString attr_name =items.item(j).attributes().namedItem("name").nodeValue();
+                if (QString::compare(attr_name,"NAME")==0)
+                {
+                    new_block_name = items.item(j).toElement().text();
+                    break;
+                }
+            }
+            if (blocksXml.contains(new_block_name))
+            {
+                QMessageBox::StandardButton reply2;
+                reply2 = QMessageBox::question(this, tr("My Blocks"), tr("This block already exists in the library. Do you want to update it?"),
+                                        QMessageBox::Yes|QMessageBox::No);
+                if (reply2 == QMessageBox::Yes)
+                {
+                    updateDOMBlock(new_block_name,new_block_doc);
+                    updateXMLLibraryFromDOM();
+                    updateMyBlocks();
+                    updateMyBlocksDoc(new_block_name);
+                }
+                return;
+            }
+            addDOMBlock(new_block_name,new_block_doc);
+            updateXMLLibraryFromDOM();
+            updateMyBlocks();
+            updateMyBlocksDoc(new_block_name);
+            updateLibraryMenu();
+            setXmlFileName(new_block_name);
+        }
+    }
+}
+
+void MainWindow::addDOMBlock(QString new_block_name, QDomDocument new_block_doc)
+{
+    QDomDocument block_library_item;
+    //I don't know other ways for removing the xml tag
+    //QString block_str = QString("<block_library_item>%1</block_library_item>").arg(new_block_doc.toString().replace("<xml xmlns=\"http://www.w3.org/1999/xhtml\">","").replace("</xml>",""));
+    QString block_str = QString("<block_library_item>%1</block_library_item>").arg(DOMNodeListToString(new_block_doc.firstChild().childNodes()));
+    //ui->textBrowser->append(block_str);
+    block_library_item.setContent(block_str);
+    block_library_item.firstChild().toElement().setAttribute("name",new_block_name);
+    //ui->textBrowser->append(block_library_item.toString());
+    doc.firstChild().appendChild(block_library_item);
+    //ui->textBrowser->append(doc.toString());
+    blocksXml[new_block_name]=block_str;
+}
+
+QString MainWindow::DOMNodeToString(QDomNode node)
+{
+    QString str;
+    QTextStream textStream(&str);
+    node.save(textStream,QDomNode::CDATASectionNode);
+    return textStream.readAll();
+}
+
+QString MainWindow::DOMNodeListToString(QDomNodeList nodeList)
+{
+    QString str;
+    for (int i=0;i<nodeList.size();i++)
+    {
+        str+=DOMNodeToString(nodeList.item(i));
+    }
+    return str;
+}
+
+void MainWindow::updateLibraryMenu()
+{
+    QMap<QString,QStringList> blocks;
+    blocksXml.clear();
+    QDomNodeList block_library_items = doc.firstChild().childNodes();
+    for (int i=0;i<block_library_items.size();i++)
+    {
+        QDomNode block_node = block_library_items.item(i);
+        QString str = DOMNodeToString(block_node);
+        QDomNode block = block_node.childNodes().item(0);  //Get the factory_base node
+        QString block_name = block_node.attributes().namedItem("name").nodeValue();
+        QDomNodeList items = block.childNodes();
+        for (int j=0;j<items.size();j++)
+        {
+            QString attr_name = items.item(j).attributes().namedItem("name").nodeValue();
+            if (QString::compare(attr_name,"CATEGORY")==0)
+            {
+                QString category_name = items.item(j).toElement().text();
+                blocks[categories[category_name]].push_back(block_name);
+                blocksXml[block_name].push_back(str);
+                //ui->textBrowser->append(block_name+" "+escapeCharacters(textStream.readAll()));
+                break;
+            }
+        }
+    }
+    //First disconnect all possible actions
+    foreach(const QAction *action, ui->menuLibrary->actions())
+        signalMapper->disconnect(action,SIGNAL(triggered()));
+    ui->menuLibrary->clear();
+    foreach (QStringList category, blocks) {
+        QMenu * menu = new QMenu(blocks.key(category));
+        int count=1;
+        foreach (QString block, category) {
+            //menu->addMenu(block);
+            QAction * action = new QAction(block,menu);
+            connect(action, SIGNAL(triggered()), signalMapper, SLOT(map()));
+            signalMapper->setMapping(action,block);
+            menu->addAction(action);
+            count++;
+        }
+        connect(signalMapper, SIGNAL(mapped(const QString &)), this, SLOT(on_block_triggered(const QString &)));
+        ui->menuLibrary->addMenu(menu);
+    }
+    setXmlFileName("");
+}
+
+void MainWindow::updateXMLLibraryFromDOM()
+{
+    QDir dir;
+    QFile xmlFile(dir.currentPath()+"/html/library.xml");
+    if (!xmlFile.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+    QTextStream xmlStream(&xmlFile );
+    xmlStream << doc.toString();
+    xmlFile.close();
+    //Now we update again the DOM object (some of the DOM nodes, when created or updated might not be QDomElements and attributes method does not properly work)
+    updateDOMLibraryFromXML();
+}
+
+void MainWindow::updateDOMBlock(QString block_name, QDomDocument block_name_doc)
+{
+    QDomDocument block_library_item;
+    //I don't know other ways for removing the xml tag
+    //QString block_str = update_block_name.toString().replace("<xml xmlns=\"http://www.w3.org/1999/xhtml\">","").replace("</xml>","");
+    QString block_str = QString("<block_library_item>%1</block_library_item>").arg(DOMNodeListToString(block_name_doc.firstChild().childNodes()));
+    block_library_item.setContent(block_str);
+    block_library_item.firstChild().toElement().setAttribute("name",block_name);
+    QDomNodeList all_block_library_items = doc.firstChild().childNodes();
+    QDomNode old_library_item;
+    for (int i=0;i<all_block_library_items.size();i++)
+    {
+        if (QString::compare(all_block_library_items.item(i).attributes().namedItem("name").nodeValue(),block_name)==0)
+        {
+            old_library_item=all_block_library_items.item(i);
+            break;
+        }
+    }
+    doc.firstChild().replaceChild(block_library_item,old_library_item);
+    blocksXml[block_name]=block_str;
+}
+
+void MainWindow::on_actionupdate_triggered()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, tr("My Blocks"), tr("Are you sure you want to update this block from the library?"),
+                            QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        QString xml = getXml();
+        QDomDocument update_block_doc;
+        if (update_block_doc.setContent(xml))
+        {
+            QDomNodeList update_block = update_block_doc.firstChild().childNodes();
+            QDomNodeList items = update_block.item(0).childNodes();
+            QString update_block_name;
+            for (int j=0;j<items.size();j++)
+            {
+                QString attr_name =items.item(j).attributes().namedItem("name").nodeValue();
+                if (QString::compare(attr_name,"NAME")==0)
+                {
+                    update_block_name = items.item(j).toElement().text();
+                    break;
+                }
+            }
+            if (!blocksXml.contains(update_block_name))
+            {
+                QMessageBox::StandardButton reply2;
+                reply2 = QMessageBox::question(this, tr("My Blocks"), tr("This block does not exist in the library. Do you want to add it?"),
+                                        QMessageBox::Yes|QMessageBox::No);
+                if (reply2 == QMessageBox::Yes)
+                {
+                    addDOMBlock(update_block_name,update_block_doc);
+                    updateXMLLibraryFromDOM();
+                    updateMyBlocks();
+                    updateMyBlocksDoc(update_block_name);
+                    updateLibraryMenu();
+                }
+                return;
+            }
+            updateDOMBlock(update_block_name,update_block_doc);
+            updateXMLLibraryFromDOM();
+            updateMyBlocks();
+            updateMyBlocksDoc(update_block_name);
+        }
+    }
+}
+
+void MainWindow::on_actiondelete_triggered()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, tr("My Blocks"), tr("Are you sure you want to delete this block from the library?"),
+                            QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        QString xml = getXml();
+        QDomDocument delete_block_doc;
+        if (delete_block_doc.setContent(xml))
+        {
+            QDomNodeList delete_block = delete_block_doc.firstChild().childNodes();
+            QDomNodeList items = delete_block.item(0).childNodes();
+            QString delete_block_name;
+            for (int j=0;j<items.size();j++)
+            {
+                QString attr_name =items.item(j).attributes().namedItem("name").nodeValue();
+                if (QString::compare(attr_name,"NAME")==0)
+                {
+                    delete_block_name = items.item(j).toElement().text();
+                    break;
+                }
+            }
+            if (!blocksXml.contains(delete_block_name))
+            {
+                QMessageBox msg;
+                msg.setText(tr("This block does not exist in the library and can't be delete it."));
+                msg.exec();
+                return;
+            }
+            deleteDOMBlock(delete_block_name);
+            updateXMLLibraryFromDOM();
+            updateMyBlocks();
+            deleteMyBlocksDoc(delete_block_name);
+        }
+    }
+}
+
+void MainWindow::deleteDOMBlock(QString block_name)
+{
+    QDomNodeList all_block_library_items = doc.firstChild().childNodes();
+    QDomNode old_library_item;
+    for (int i=0;i<all_block_library_items.size();i++)
+    {
+        if (QString::compare(all_block_library_items.item(i).attributes().namedItem("name").nodeValue(),block_name)==0)
+        {
+            old_library_item=all_block_library_items.item(i);
+            break;
+        }
+    }
+    doc.firstChild().removeChild(old_library_item);
+    if (blocksXml.contains(block_name))
+        blocksXml.erase(blocksXml.find(block_name));
+    updateXMLLibraryFromDOM();
+    updateLibraryMenu();
+    webHelper->resetSourceChanged();
+    actionNew();
+}
+
+void MainWindow::updateMyBlocks()
+{
+    QDir dir;
+    QFile blockFile(dir.currentPath()+"/html/my_blocks.js");
+    if (blockFile.open(QIODevice::WriteOnly))
+    {
+        QTextStream stream(&blockFile);
+        QString tools_code = "var tools = new BlockExporterTools();";
+        evaluateJavaScript(tools_code);
+        foreach (QString block_type, blocksXml.keys())
+        {
+            QString code = QString("var tools = new BlockExporterTools();"
+                                   "var xml = Blockly.Xml.textToDom('%1');"
+                                   "var rootBlock = tools.getRootBlockFromXml_(xml);"
+                                   "FactoryUtils.getBlockDefinition('%2', rootBlock,'JavaScript', tools.hiddenWorkspace)").arg(blocksXml[block_type].remove(QRegExp("[\n\t\r]")),block_type);
+            QString code1 = QString("var tempBlock = FactoryUtils.getDefinedBlock('%1', tools.hiddenWorkspace);"
+                               "FactoryUtils.getGeneratorStub(tempBlock, 'Arduino')").arg(block_type);
+            QString block_definiton_code = evaluateJavaScript(code);
+            QString block_arduino_code = evaluateJavaScript(code1);
+            stream << block_definiton_code << endl << block_arduino_code << endl;
+        }
+        blockFile.close();
+    }
+}
+
+void MainWindow::updateMyBlocksDoc(QString block_type)
+{
+    QDir dir;
+    QFile blockFile(dir.currentPath()+QString("/html/doc/en-GB/%1.html").arg(block_type));
+
+    if (blockFile.open(QIODevice::WriteOnly))
+    {
+        QTextStream stream(&blockFile);
+        QString tools_code = "var tools = new BlockExporterTools();";
+        evaluateJavaScript(tools_code);
+        QString code = QString("var tools = new BlockExporterTools();"
+                               "var xml = Blockly.Xml.textToDom('%1');"
+                               "var rootBlock = tools.getRootBlockFromXml_(xml);"
+                               "FactoryUtils.getBlockDefinition('%2', rootBlock,'JavaScript', tools.hiddenWorkspace)").arg(blocksXml[block_type].remove(QRegExp("[\n\t\r]")),block_type);
+        QString code1 = QString("FactoryUtils.getDoc('%1')").arg(block_type);
+        QString block_definiton_code = evaluateJavaScript(code);
+        QString block_doc_code = evaluateJavaScript(code1);
+        stream << block_doc_code << endl;
+        blockFile.close();
+    }
+}
+
+void MainWindow::deleteMyBlocksDoc(QString block_type)
+{
+    QDir dir;
+    QFile blockFile(dir.currentPath()+QString("/html/doc/en-GB/%1.html").arg(block_type));
+    if (blockFile.exists())
+        QFile::remove(dir.currentPath()+QString("/html/doc/en-GB/%1.html").arg(block_type));
+}
+
+void MainWindow::initCategories()
+{
+    categories.clear();
+    categories["BLOCKS"].push_back("My Blocks");
+    categories["PROCEDURES"].push_back("Functions");
+    categories["CONTROL"].push_back("Control");
+    categories["LOGIC"].push_back("Logic");
+    categories["MATH"].push_back("Math");
+    categories["VARIABLES"].push_back("Variables");
+    categories["TEXT"].push_back("Text");
+    categories["COMMUNICATION"].push_back("Communication");
+    categories["DISTANCE"].push_back("Distance");
+    categories["SCREEN"].push_back("Screen");
+    categories["LIGHT"].push_back("Light");
+    categories["SOUND"].push_back("SOUND");
+    categories["MOVEMENT"].push_back("Movement");
+    categories["AMBIENT"].push_back("Ambient");
+    categories["HTML"].push_back("HTML");
+    categories["ADVANCED"].push_back("Basic I/O");
 }

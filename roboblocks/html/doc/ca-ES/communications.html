@@ -1,35 +1,91 @@
-﻿<html dir="ltr">
-<body dir="ltr">
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
 <h3 id="up">Communicació</h3>
 Conjunt d'instruccions per a la comunicació amb dispositius pel port sèrie (USB, Bluetooth, WIFI).
-<p><image src="doc/ca-ES/img/dyor_bluetooth_def.png" title="dyor_bluetooth_def" alt="dyor_bluetooth_def" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_def.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_name.png" title="dyor_bluetooth_name" alt="dyor_bluetooth_name" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_name.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_app.png" title="dyor_bluetooth_app" alt="dyor_bluetooth_app" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_app.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_command.png" title="dyor_bluetooth_command" alt="dyor_bluetooth_command" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_command.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_command_num.png" title="dyor_bluetooth_command_num" alt="dyor_bluetooth_command_num" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_command_num.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_recv_telegram.png" title="dyor_bluetooth_recv_telegram" alt="dyor_bluetooth_recv_telegram" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_recv_telegram.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_telegram_type.png" title="dyor_bluetooth_telegram_type" alt="dyor_bluetooth_telegram_type" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_telegram_type.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_telegram_num.png" title="dyor_bluetooth_telegram_num" alt="dyor_bluetooth_telegram_num" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_telegram_num.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_decode_telegram.png" title="dyor_bluetooth_decode_telegram" alt="dyor_bluetooth_decode_telegram" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_decode_telegram.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_decode_telegram_num.png" title="dyor_bluetooth_decode_telegram_num" alt="dyor_bluetooth_decode_telegram_num" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_decode_telegram_num.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_send_telegram.png" title="dyor_bluetooth_send_telegram" alt="dyor_bluetooth_send_telegram" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_send_telegram.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_receive.png" title="dyor_bluetooth_receive" alt="dyor_bluetooth_receive" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_receive.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_send.png" title="dyor_bluetooth_send" alt="dyor_bluetooth_send" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_send.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/dyor_bluetooth_available.png" title="dyor_bluetooth_available" alt="dyor_bluetooth_available" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/dyor_bluetooth_available.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/communications_wifi_def.png" title="communications_wifi_def" alt="communications_wifi_def" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/communications_wifi_def.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/communications_wifi_tcp_open.png" title="communications_wifi_tcp_open" alt="communications_wifi_tcp_open" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/communications_wifi_tcp_open.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/communications_wifi_tcp_close.png" title="communications_wifi_tcp_close" alt="communications_wifi_tcp_close" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/communications_wifi_tcp_close.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/communications_wifi_recv.png" title="communications_wifi_recv" alt="communications_wifi_recv" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/communications_wifi_recv.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/communications_wifi_send.png" title="communications_wifi_send" alt="communications_wifi_send" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/communications_wifi_send.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/communications_wifi_html_server.png" title="communications_wifi_html_server" alt="communications_wifi_html_server" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/communications_wifi_html_server.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/serial_available.png" title="serial_available" alt="serial_available" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/serial_available.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/serial_parseint.png" title="serial_parseint" alt="serial_parseint" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/serial_parseint.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/serial_print.png" title="serial_print" alt="serial_print" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/serial_print.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/serial_println.png" title="serial_println" alt="serial_println" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/serial_println.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/serial_read.png" title="serial_read" alt="serial_read" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/serial_read.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/serial_readstring.png" title="serial_readstring" alt="serial_readstring" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/serial_readstring.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/advanced_conversion.png" title="advanced_conversion" alt="advanced_conversion" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/advanced_conversion.html&quot;);});"></image></p>
-<p><image src="doc/ca-ES/img/serial_timeout.png" title="serial_timeout" alt="serial_timeout" style="cursor: pointer;" onclick="$(function(){$(&quot;#doc&quot;).load(&quot;doc/ca-ES/serial_timeout.html&quot;);});"></image></p>
-<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('dyor_bluetooth_def','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('dyor_bluetooth_name','blocklyInstruction2');</script>
+<div id='blocklyInstruction3'></div><script>injectInstruction('dyor_bluetooth_app','blocklyInstruction3');</script>
+<div id='blocklyInstruction4'></div><script>injectInstruction('dyor_bluetooth_command','blocklyInstruction4');</script>
+<div id='blocklyInstruction5'></div><script>injectInstruction('dyor_bluetooth_command_num','blocklyInstruction5');</script>
+<div id='blocklyInstruction6'></div><script>injectInstruction('dyor_bluetooth_recv_telegram','blocklyInstruction6');</script>
+<div id='blocklyInstruction7'></div><script>injectInstruction('dyor_bluetooth_telegram_type','blocklyInstruction7');</script>
+<div id='blocklyInstruction8'></div><script>injectInstruction('dyor_bluetooth_telegram_num','blocklyInstruction8');</script>
+<div id='blocklyInstruction9'></div><script>injectInstruction('dyor_bluetooth_decode_telegram','blocklyInstruction9');</script>
+<div id='blocklyInstruction10'></div><script>injectInstruction('dyor_bluetooth_decode_telegram_num','blocklyInstruction10');</script>
+<div id='blocklyInstruction11'></div><script>injectInstruction('dyor_bluetooth_send_telegram','blocklyInstruction11');</script>
+<div id='blocklyInstruction12'></div><script>injectInstruction('dyor_bluetooth_receive','blocklyInstruction12');</script>
+<div id='blocklyInstruction13'></div><script>injectInstruction('dyor_bluetooth_send','blocklyInstruction13');</script>
+<div id='blocklyInstruction14'></div><script>injectInstruction('dyor_bluetooth_available','blocklyInstruction14');</script>
+<div id='blocklyInstruction15'></div><script>injectInstruction('communications_wifi_def','blocklyInstruction15');</script>
+<div id='blocklyInstruction16'></div><script>injectInstruction('communications_wifi_tcp_open','blocklyInstruction16');</script>
+<div id='blocklyInstruction17'></div><script>injectInstruction('communications_wifi_tcp_close','blocklyInstruction17');</script>
+<div id='blocklyInstruction18'></div><script>injectInstruction('communications_wifi_recv','blocklyInstruction18');</script>
+<div id='blocklyInstruction19'></div><script>injectInstruction('communications_wifi_send','blocklyInstruction19');</script>
+<div id='blocklyInstruction20'></div><script>injectInstruction('communications_wifi_html_server','blocklyInstruction20');</script>
+<div id='blocklyInstruction21'></div><script>injectInstruction('serial_available','blocklyInstruction21');</script>
+<div id='blocklyInstruction22'></div><script>injectInstruction('serial_parseint','blocklyInstruction22');</script>
+<div id='blocklyInstruction23'></div><script>injectInstruction('serial_print','blocklyInstruction23');</script>
+<div id='blocklyInstruction24'></div><script>injectInstruction('serial_println','blocklyInstruction24');</script>
+<div id='blocklyInstruction25'></div><script>injectInstruction('serial_read','blocklyInstruction25');</script>
+<div id='blocklyInstruction26'></div><script>injectInstruction('serial_readstring','blocklyInstruction26');</script>
+<div id='blocklyInstruction27'></div><script>injectInstruction('advanced_conversion','blocklyInstruction27');</script>
+<div id='blocklyInstruction28'></div><script>injectInstruction('serial_timeout','blocklyInstruction28');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

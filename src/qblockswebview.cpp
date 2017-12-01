@@ -1,7 +1,7 @@
 #include "qblockswebview.h"
 
-QBlocksWebView::QBlocksWebView() {
-}
+/*QBlocksWebView::QBlocksWebView() {
+}*/
 QBlocksWebView::QBlocksWebView(QWidget *parent): QWebEngineView(parent), child_(nullptr)
 {
 }
@@ -60,9 +60,9 @@ void QBlocksWebView::doZoom(float scale) {
 }
 
 void QBlocksWebView::zoomIn() {
-    doZoom(0.1);
+    doZoom((float)0.1);
 }
 
 void QBlocksWebView::zoomOut() {
-    doZoom(-0.1);
+    doZoom((float)-0.1);
 }

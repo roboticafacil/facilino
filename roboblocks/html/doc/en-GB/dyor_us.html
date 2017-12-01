@@ -1,5 +1,13 @@
-﻿<html >
+﻿<!DOCTYPE html>
+<html>
 <head>
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -14,17 +22,62 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body >
 <h3 id="up">Get distance with ultrasonic sensor (HC-SR04)</h3>
 <h4>Instruction</h4>
-<p><image src="doc/en-GB/img/dyor_us.png" title="dyor_us" alt="dyor_us"></image></p>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('dyor_us','blocklyInstruction');</script>
 <h4>Description</h4>
 <p>Gets the distance in centimeters from the ultrasonic sensor HC-SR04. Between measurements we must ensure that at least 60ms time gap.</p>
 <h5>Additional note</h5>
 <p>The instruction uses a variant of the 'pulseIn' instruction of Arduino that allows it to be used within interrupt 0 (multi-task instruction).</p>
-<p><image src="doc/en-GB/img/dyor_task.png" title="dyor_task" alt="dyor_task" onclick="$(function(){$('#doc').load('doc/en-GB/dyor_task.html');});"></image></p>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('dyor_task','blocklyInstruction1');</script>
 <h4>Inputs</h4>
 <ul>
    <li>Eco: Pin of the echo signal (ECHO).</li>
@@ -41,21 +94,8 @@ All changes will be lost!
 <h5>Circuit</h5>
 <image src="doc/circuits/sonar_example_bb.png" title="sonar_example_bb" alt="sonar_example_bb"></image>
 <h5>Facilino Code</h5>
-<image src="doc/en-GB/img/dyor_us_example.png" title="dyor_us_example" alt="dyor_us_example"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+<div id='example'></div>
+<script>injectExample('dyor_us_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
 </body>
 </html>

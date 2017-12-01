@@ -1,5 +1,13 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -14,33 +22,82 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+		async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Receive command</h3>
 <h4>Instruction</h4>
-<p><image src="doc/en-GB/img/dyor_bluetooth_app.png" title="dyor_bluetooth_app" alt="dyor_bluetooth_app"></image></p>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('dyor_bluetooth_app','blocklyInstruction');</script>
 <h4>Description</h4>
 <p>Receives bluetooth commands from an external application. Executes a set of instructions based on the received command. It has an option to repeat a command, it means that once sent, it is internally executed again until the '0' (cancel repeat) command is received.</p>
 <h4>Requirements</h4>
 <p>Facilino's License</p>
 <p>Use in conjunction with instruction:</p>
-<p><image src="doc/en-GB/img/dyor_bluetooth_def.png" title="dyor_bluetooth_def" alt="dyor_bluetooth_def" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/dyor_bluetooth_def.html');});"></image></p>
-<p><image src="doc/en-GB/img/dyor_bluetooth_command.png" title="dyor_bluetooth_command" alt="dyor_bluetooth_command" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/dyor_bluetooth_command.html');});"></image></p>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('dyor_bluetooth_def','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('dyor_bluetooth_command','blocklyInstruction2');</script>
 <h5>Previous Versions</h5>
 In previous versions of Facilino, this instruction had configurable TX and RX pins. This option has been removed to simplify the aspect of the instruction. You must make sure that you use the bluetooth module definition instruction for correct operation.
 <h4>Mutator</h4>
 Drag and drop the commands to decode in the container:
 <h5>Container</h5>
-<p><image src="doc/en-GB/img/dyor_bluetooth_app_app.png" title="dyor_bluetooth_app_app" alt="dyor_bluetooth_app_app"></image></p>
+<div id='blocklyInstruction3'></div>
+<script>injectInstruction('dyor_bluetooth_app_app','blocklyInstruction3');</script>
 <h5>Elements</h5>
-<p><image src="doc/en-GB/img/dyor_bluetooth_app_item.png" title="dyor_bluetooth_app_item" alt="dyor_bluetooth_app_item"></image></p>
+<div id='blocklyInstruction4'></div>
+<script>injectInstruction('dyor_bluetooth_app_item','blocklyInstruction4');</script>
 <h4>Inputs</h4>
 <ul>
    <li>Command: Number of the command to execute.</li>
    <li>Repeat: If checked, remember the command to repeat the instructions every iteration until the command 0 is sent.</li>
 </ul>
-<h4>Stacks</h4>
+<h4>Statement Instructions</h4>
 <ul>
   <li>Do: Set of instructions to execute in case of receiving the command.</li>
 </ul>
@@ -53,7 +110,8 @@ All changes will be lost!
 <h5>Circuit</h5>
 <image src="doc/circuits/bluetooth_led_matrix_example_bb.png" title="bluetooth_led_matrix_example_bb" alt="bluetooth_led_matrix_example_bb"></image>
 <h5>Facilino Code</h5>
-<image src="doc/en-GB/img/dyor_bluetooth_app_example.png" title="dyor_bluetooth_app_example" alt="dyor_bluetooth_app_example"></image>
+<div id='example1'></div>
+<script>injectExample('dyor_bluetooth_app_example.bly','example1');</script>
 <h4>Example 2</h4>
 In this example ASCII characters are read through bluetooth. If the user sends a '0' (30 in ASCII), two LEDs are connected to pins 5 and 6. If the user sends a '1' (31 to ASCII), the LED connected to pin 6 will light, whereas if a '2' (32 in ASCII) is sent, the LED connected to pin 5 will light up. The '3' (33 in ASCII) command will disable the LEDs.
 <div class="button_wrapper">
@@ -63,21 +121,8 @@ All changes will be lost!
 <h5>Circuit</h5>
 <image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
 <h5>Facilino Code</h5>
-<image src="doc/en-GB/img/dyor_bluetooth_app_example2.png" title="dyor_bluetooth_app_example2" alt="dyor_bluetooth_app_example2"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+<div id='example2'></div>
+<script>injectExample('dyor_bluetooth_app_example2.bly','example2');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
 </body>
 </html>

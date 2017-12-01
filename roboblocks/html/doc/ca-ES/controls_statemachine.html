@@ -1,6 +1,9 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
-<style>.button_wrapper {
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
   text-align: center;
   color: red;
 }
@@ -14,27 +17,63 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Màquina d'estats</h3>
 <h4>Instrucció</h4>
-<p><image src="doc/ca-ES/img/controls_statemachine.png" title="controls_statemachine" alt="controls_statemachine"></image></p>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_statemachine','blocklyInstruction');</script>
 <h4>Descripció</h4>
 <p>Permet definir una màquina d'estats, podent afegir estats inicials (inicialitzats des del principi) o estats que s'activaran i desactivaran segons les seves condicions d'activació i desactivació. Utilitzar en combinació de les següents instruccions:</p>
-<p><image src="doc/ca-ES/img/controls_statemachine_transition_state_end.png" title="controls_statemachine_transition_state_end" alt="controls_statemachine_transition_state_end" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/controls_statemachine_transition_state_end.html');});"></image></p>
-<p><image src="doc/ca-ES/img/controls_statemachine_transition_state.png" title="controls_statemachine_transition_state" alt="controls_statemachine_transition_state" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/controls_statemachine_transition_state.html');});"></image></p>
-<p><image src="doc/ca-ES/img/controls_statemachine_transition_to.png" title="controls_statemachine_transition_to" alt="controls_statemachine_transition_to" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/controls_statemachine_transition_to.html');});"></image></p>
-<p><image src="doc/ca-ES/img/controls_statemachine_transition_from.png" title="controls_statemachine_transition_from" alt="controls_statemachine_transition_from" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/ca-ES/controls_statemachine_transition_from.html');});"></image></p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('controls_statemachine_transition_state_end','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('controls_statemachine_transition_state','blocklyInstruction2');</script>
+<div id='blocklyInstruction3'></div><script>injectInstruction('controls_statemachine_transition_to','blocklyInstruction3');</script>
+<div id='blocklyInstruction4'></div><script>injectInstruction('controls_statemachine_transition_from','blocklyInstruction4');</script>
 <h4>Requisits</h4>
 Llicència de Facilino
 <h4>Mutador</h4>
 Afegeix nous estats a la màquina d'estats. Els estats inicials estan actius des de l'arrencada:
 <h5>Contenidor</h5>
-<p><image src="doc/ca-ES/img/controls_statemachine_ss.png" title="controls_statemachine_ss" alt="controls_statemachine_ss"></image></p>
+<div id='blocklyInstruction5'></div><script>injectInstruction('controls_statemachine_ss','blocklyInstruction5');</script>
 <h5>Elements</h5>
-<p><image src="doc/ca-ES/img/controls_statemachine_initial_state.png" title="controls_statemachine_initial_state" alt="controls_statemachine_initial_state"></image></p>
-<p><image src="doc/ca-ES/img/controls_statemachine_state.png" title="controls_statemachine_state" alt="controls_statemachine_state"></image></p>
+<div id='blocklyInstruction6'></div><script>injectInstruction('controls_statemachine_initial_state','blocklyInstruction6');</script>
+<div id='blocklyInstruction7'></div><script>injectInstruction('controls_statemachine_state','blocklyInstruction7');</script>
 <h4>Instruccions apilables</h4>
 <ul>
   <li>Fer: Conjunt d'instruccions a executar en el cas que l'estat corresponent estigui actiu.</li>
@@ -50,7 +89,7 @@ Es perdran tots els canvis!
 <h5>Grafcet</h5>
 <image src="doc/common/controls_statemachine_grafcet1.png" title="controls_statemachine_grafcet1" alt="controls_statemachine_grafcet1"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/controls_statemachine_example1.png" title="controls_statemachine_example1" alt="controls_statemachine_example1"></image>
+<div id='example1'></div><script>injectExample('controls_statemachine_example1.bly','example1');</script>
 <h4>Exemple 2</h4>
 En aquest exemple es controla l'activació o desactivació d'un motor i un LED amb una senzilla màquina d'estats de quatre estats utilitzant una divergència AND i convergència AND. En l'estat 0 (actiu inicialment) el motor estarà desactivat i el LED apagat, mentre que a l'estat 1, el motor estarà activat. D'altra banda, en l'estat 2 l'LED estarà encès, mentre que a l'estat 3 el LED estarà apagat. Les condicions de transició d'un estat a un altre estan definides per les instruccions de transició. Concretament, per passar de l'estat 0 al estat 1, hem de prémer el botó connectat al pin 2, que també activarà el estat 2. Per passar a l'estat 3 des de l'estat 2, hem de prémer el botó connectat al pin 3. La transició amb els estats 1 i 3 activats a l'estat 0 és immediata, ja que utilitza un "1" (sempre cert).
 <div class="button_wrapper">
@@ -62,7 +101,7 @@ Es perdran tots els canvis!
 <h5>Grafcet</h5>
 <image src="doc/common/controls_statemachine_grafcet2.png" title="controls_statemachine_grafcet2" alt="controls_statemachine_grafcet2"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/controls_statemachine_example2.png" title="controls_statemachine_example2" alt="controls_statemachine_example2"></image>
+<div id='example2'></div><script>injectExample('controls_statemachine_example2.bly','example2');</script>
 <h4>Exemple 3</h4>
 En aquest exemple es controla l'activació o desactivació de dos motors amb una senzilla màquina d'estats de tres estats utilitzant una divergència OR i convergència OR, de manera que només un dels dos podrà estar actiu. En l'estat 0 (actiu inicialment) els motors estaran desactivats, mentre que a l'estat 1, el motor 1 estarà activat (i el motor 2 desactivat) i en l'estat 2 l'motor 2 estarà activat (i el motor 1 desactivat). Les condicions de transició d'un estat a un altre estan definides per les instruccions de transició. Concretament, per passar de l'estat 0 al estat 1, hem de prémer el botó connectat al pin 2. Per passar a l'estat 2 hem de prémer el botó connectat al pin 3. El botó connectat al pin 4 desactivarà qualsevol dels dos estats que estigui actiu, ja sigui el estat 1 o el 2.
 <div class="button_wrapper">
@@ -74,7 +113,7 @@ Es perdran tots els canvis!
 <h5>Grafcet</h5>
 <image src="doc/common/controls_statemachine_grafcet3.png" title="controls_statemachine_grafcet3" alt="controls_statemachine_grafcet3"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/controls_statemachine_example3.png" title="controls_statemachine_example3" alt="controls_statemachine_example3"></image>
+<div id='example3'></div><script>injectExample('controls_statemachine_example3.bly','example3');</script>
 <h4>Exemple 4</h4>
 En aquest exemple es controla l'activació o desactivació de dos motors amb una senzilla màquina d'estats de quatre estats (funcionalment idèntic a l'exemple anterior però amb dues màquines d'estats independents). En l'estat 0 (actiu inicialment) el motor 1 estarà desactivat, mentre que a l'estat 1, el motor 1 estarà activat. D'altra banda, en l'estat 2 (actiu inicialment) el motor 2 estarà desactivat, mentre que a l'estat 3 el motor estarà actiu. Les condicions de transició d'un estat a un altre estan definides per les instruccions de transició. Concretament, per passar de l'estat 0 al estat 1, hem de prémer el botó connectat al pin 2. Per passar a l'estat 3 hem de prémer el botó connectat al pin 3. El botó connectat al pin 4 desactivarà qualsevol dels dos estats que estiguin actius, ja sigui el estat 1 o el 3.
 <div class="button_wrapper">
@@ -86,21 +125,7 @@ Es perdran tots els canvis!
 <h5>Grafcet</h5>
 <image src="doc/common/controls_statemachine_grafcet4.png" title="controls_statemachine_grafcet4" alt="controls_statemachine_grafcet4"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/controls_statemachine_example4.png" title="controls_statemachine_example4" alt="controls_statemachine_example4"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+<div id='example4'></div><script>injectExample('controls_statemachine_example4.bly','example4');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

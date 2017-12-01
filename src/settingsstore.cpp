@@ -62,7 +62,7 @@ QString SettingsStore::license() {
 
 QString SettingsStore::examplesPath() {
     return settings->value(platform + "examples_path",
-                           "examples/").toString();
+                           "./html/doc/examples/").toString();
 }
 
 QString SettingsStore::tmpDirName() {
@@ -74,7 +74,11 @@ QString SettingsStore::tmpFileName() {
 }
 
 QString SettingsStore::htmlIndex() {
-    return relativePath("html_index", "./html/index_"+defaultLanguage()+".html");
+    return relativePath("html_index", "./html/index.html");
+}
+
+QString SettingsStore::htmlIndexMyBlocks() {
+    return relativePath("html_index", "./html/index_my_blocks.html");
 }
 
 bool SettingsStore::iconLabels() {

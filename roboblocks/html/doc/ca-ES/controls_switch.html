@@ -1,6 +1,9 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
-<style>.button_wrapper {
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
   text-align: center;
   color: red;
 }
@@ -14,12 +17,48 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Si ... (casos)</h3>
 <h4>Instrucció</h4>
-<image src="doc/ca-ES/img/controls_switch.png" title="controls_switch" alt="controls_switch"></image>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_switch','blocklyInstruction');</script>
 <h4>Descripció</h4>
 <p>Executa un conjunt d'instruccions segons el cas. Compara l'entrada amb les diferents entrades dels casos. Si cap dels casos és igual, és possible iniciar un conjunt d'instruccions per defecte (en altre cas).</p>
 <h4>Instruccions apilables</h4>
@@ -29,10 +68,10 @@
 <h4>Mutador</h4>
 Permet afegir altres condicions a avaluar 'cas' o 'en un altre cas'.
 <h5>Contenidor</h5>
-<p><image src="doc/ca-ES/img/controls_switch_switch.png" title="controls_switch_switch" alt="controls_switch_switch"></image></p>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_switch_switch','blocklyInstruction');</script>
 <h5>Elements</h5>
-<p><image src="doc/ca-ES/img/controls_switch_case.png" title="controls_switch_case" alt="controls_switch_case"></image></p>
-<p><image src="doc/ca-ES/img/controls_switch_default.png" title="controls_switch_default" alt="controls_switch_default"></image></p>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_switch_case','blocklyInstruction');</script>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_switch_default','blocklyInstruction');</script>
 <h4>Entrades</h4>
 <ul>
   <li>Condició: En cas de ser certa, s'executen les instruccions apilades associades a la condició.</li>
@@ -46,21 +85,7 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
 <h5>Codi Facilino</h5>
-<image src="doc/ca-ES/img/controls_switch_example.png" title="controls_switch_example" alt="controls_switch_example"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="dalt"></image></a> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+<div id='example'></div><script>injectExample('controls_switch_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

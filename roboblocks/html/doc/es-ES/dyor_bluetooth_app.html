@@ -1,42 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.button_wrapper {
-    text-align: center;
-	color: red;
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
 }
 .button {
-    background-color: #2E2EFE;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #00496B; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #006699;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
 </style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+$('#'+exampleDiv).height((bbox.height+25)+'px');
+$('#'+exampleDiv).width((bbox.width+25)+'px');
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
 </head>
 <body>
 <h3 id="up">Recibe comando</h3>
 <h4>Instrucción</h4>
-<p><image src="doc/es-ES/img/dyor_bluetooth_app.png" title="dyor_bluetooth_app" alt="dyor_bluetooth_app"></image></p>
+<div id='blocklyInstruction'></div><script>injectInstruction('dyor_bluetooth_app','blocklyInstruction');</script>
 <h4>Descripción</h4>
 <p>Recibe comandos por bluetooth de una aplicación externa. Ejecuta un conjunto de instrucciones en función del comando recibido. Dispone de una opción para repetir un comando, quiere decir que una vez enviado, éste se recuerda internamente hasta que se recibe el comando '0' (cancelar repetición).</p>
 <h4>Requisitos</h4>
 <p>Licencia de Facilino</p>
 <p>Usar junto con la instrucción:</p>
-<p><image src="doc/es-ES/img/dyor_bluetooth_def.png" title="dyor_bluetooth_def" alt="dyor_bluetooth_def" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/dyor_bluetooth_def.html");});'></image></p>
-<p><image src="doc/es-ES/img/dyor_bluetooth_command.png" title="dyor_bluetooth_command" alt="dyor_bluetooth_command" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/dyor_bluetooth_command.html");});'></image></p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('dyor_bluetooth_def','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('dyor_bluetooth_command','blocklyInstruction2');</script>
 <h5>Versiones anteriores</h5>
 En versiones anteriores de Facilino, esta instrucción disponía de los pines TX y RX configurables. Esta opción se ha eliminado para simplificar es aspecto de la instrucción. Debes asegurarte que usas la instrucción de definición del módulo bluetooth para el correcto funcionamiento.
 <h4>Mutador</h4>
 Arrastra los comandos a decodificar en el contenedor:
 <h5>Contenedor</h5>
-<p><image src="doc/es-ES/img/dyor_bluetooth_app_app.png" title="dyor_bluetooth_app_app" alt="dyor_bluetooth_app_app"></image></p>
+<div id='blocklyInstruction3'></div><script>injectInstruction('dyor_bluetooth_app_app','blocklyInstruction3');</script>
 <h5>Elementos</h5>
-<p><image src="doc/es-ES/img/dyor_bluetooth_app_item.png" title="dyor_bluetooth_app_item" alt="dyor_bluetooth_app_item"></image></p>
+<div id='blocklyInstruction4'></div><script>injectInstruction('dyor_bluetooth_app_item','blocklyInstruction4');</script>
 <h4>Entradas</h4>
 <ul>
    <li>Comando: Número del comando a ejecutar.</li>
@@ -55,7 +104,7 @@ Se perderán todos los cambios!
 <h5>Circuito</h5>
 <image src="doc/circuits/bluetooth_led_matrix_example_bb.png" title="bluetooth_led_matrix_example_bb" alt="bluetooth_led_matrix_example_bb"></image>
 <h5>Código Facilino</h5>
-<image src="doc/es-ES/img/dyor_bluetooth_app_example.png" title="dyor_bluetooth_app_example" alt="dyor_bluetooth_app_example"></image>
+<div id='example'></div><script>injectExample('dyor_bluetooth_app_example.bly','example');</script>
 <h4>Ejemplo 2</h4>
 En este ejemplo se leen carácteres ASCII por bluetooth. Si el usuario envía un '0' (30 en ASCII), se encienden dos LEDs conectados a los pines 5 y 6. Si el usuario envía un '1' (31 en ASCII), se enciende el LED conectado al pin 6, mientras que si se envía un '2' (32 en ASCII), se enciende el LED conectado al pin 5. El comando '3' (33 en ASCII) desactivará los LEDs.
 <div class="button_wrapper">
@@ -65,21 +114,7 @@ Se perderán todos los cambios!
 <h5>Circuito</h5>
 <image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
 <h5>Código Facilino</h5>
-<image src="doc/es-ES/img/dyor_bluetooth_app_example2.png" title="dyor_bluetooth_app_example2" alt="dyor_bluetooth_app_example2"></image>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+<div id='example2'></div><script>injectExample('dyor_bluetooth_app_example2.bly','example2');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
 </body>
 </html>

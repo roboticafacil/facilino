@@ -1,0 +1,154 @@
+<html>
+<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<meta name="robots" content="Index,Allow">
+    	<meta name="description" content="Entorno de programación visual para Arduino"/>
+		<link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+    	<meta name="keywords" content="facilino,robot,arduino,dyor" />
+    	<meta name="author" content="Robótica Fácil"/>
+    	<title>Facilino MyMusic</title>
+		<link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+		<link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  <!-- <link rel="stylesheet" href="factory.css">
+  <link rel="stylesheet" type="text/css" href="facilino.css">
+  <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css"> -->
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <script src="javascript/abcjs/abcjs_editor_latest-min.js" type="text/javascript"></script>
+	<style>
+		select.icon-menu option {
+background-repeat:no-repeat;
+background-position:bottom left;
+padding-left:30px;
+}
+	</style>
+	<script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smooth-scroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  <script type="text/javascript">
+	window.onload = function() {
+		new ABCJS.Editor("abc", { canvas_id: "canvas",
+			midi_id: "midi",
+			warnings_id: "warnings",
+			parser_params: {}
+		});
+		//new ABCJS.Editor("abc2", {generate_midi: true, generate_warnings: false});
+	}
+
+</script>
+	</head>
+<body>
+		<div ><section class="menu cid-qAignIVLHL" once="menu" id="menu1-e" data-rv-view="7" style="width: 100%">
+		<nav class="navbar navbar-expand beta-menu  align-items-center navbar-fixed-top navbar-toggleable-sm">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="menu-logo">
+				<div class="navbar-brand">
+					<span class="navbar-logo">
+						<a href="https://roboticafacil.es" target="_blank">
+							 <img src="assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="Facilino" title="Facilino" media-simple="true" style="height: 3.8rem;">
+						</a>
+					</span>
+					<span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://roboticafacil.es" target="_blank"><h2>&nbsp;&nbsp;Facilino My Music</h2></a></span>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			
+				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+							<li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
+							File</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="BlockFactory.showStarterBlock(); localStorage.setItem('MyBlocksPreLoaded','block_type');" aria-expanded="false">New</button><button class="text-white dropdown-item display-4" onclick="document.getElementById('fileInput').click();" aria-expanded="false">Upload</button><input id="fileInput" type="file" style="display: none;" accept=".bli," onclick="fileSelected(this.files)"></input><button class="text-white dropdown-item display-4" onclick="butSave()" aria-expanded="false">Download</button></div></li>
+							
+							<li class="nav-item"><a class="nav-link link text-white display-4" aria-expanded="false"></a></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">
+							
+							Edit</a><div class="dropdown-menu"><button id="undo" class="text-white dropdown-item display-4" onclick="butUndo()" aria-expanded="false">Undo</button><button id="redo" class="text-white dropdown-item display-4" onclick="butRedo()" aria-expanded="false">Redo</button></div></li>
+							<li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
+							Library</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="butAdd();" aria-expanded="false">Add</button><button class="text-white dropdown-item display-4" onclick="butUpdate();" aria-expanded="false">Update</button><button class="text-white dropdown-item display-4" onclick="butDelete();" aria-expanded="false">Delete</button><button class="text-white dropdown-item display-4" onclick="butDeleteAll();" aria-expanded="false">Delete All</button></div></li>
+				</ul>
+				<div class="navbar-buttons mbr-section-btn"><button id="button_blockLib" class="btn btn-sm btn-primary-outline display-4" title="Music Library" onclick="showHideMusicLibrary()"><span class="mbri-database mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+				<select id="blockLibrary" class="text-black dropdown-toggle display-6 icon-menu" onchange="musicLibraryChange(this.value)" style="display: none">
+				<option value="block_type">Select block</option>
+				</select>
+		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Return to Facilino" onclick="window.location='./Facilino.html'"><span class="mbri-music mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+			</div>
+		</nav>
+		</section>
+		</div>
+  <script>
+		function fileSelected(input)
+		{
+		}
+		
+		function butSave()
+		{
+		}
+		
+		function butAdd()
+		{
+		}
+		
+		function butUpdate()
+		{
+		}
+		
+		function butDelete()
+		{
+		}
+		
+		function butDeleteAll()
+		{
+		}
+		
+		function butUndo()
+		{
+		}
+		
+		function butRedo()
+		{
+		}
+		
+		function showHideMusicLibrary()
+		{
+		}
+		
+		function musicLibraryChange(block)
+		{
+		}
+  </script>
+  <textarea id="abc" cols="80" rows="15">X: 1
+T: Cooley's
+M: 4/4
+L: 1/8
+R: reel
+K: Emin
+|:D2|EB{c}BA B2 EB|~B2 AB dBAG|FDAD BDAD|FDAD dAFD|
+EBBA B2 EB|B2 AB defg|afe^c dBAF|DEFD E2:|
+|:gf|eB B2 efge|eB B2 gedB|A2 FA DAFA|A2 FA defg|
+eB B2 eBgB|eB B2 defg|afe^c dBAF|DEFD E2:|
+</textarea>
+
+<div id="warnings"></div>
+<hr>
+<div id="midi"></div>
+<div id="canvas"></div>
+</body>
+</html>

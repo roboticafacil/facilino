@@ -1,5 +1,13 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -14,42 +22,17 @@
   display: inline-block;
   font-size: 16px;
 }
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
 </style>
-</head>
-<body>
-<h3 id="up">Line Tracking with TCRT5000 (Binary)</h3>
-<h4>Instruction</h4>
-<p><image src="doc/en-GB/img/dyor_line_following_binary.png" title="dyor_line_following_binary" alt="dyor_line_following_binary"></image></p>
-<h4>Description</h4>
-<p>Determines the rotation speed to be applied to the base of the DYOR robot to implement a line tracking algorithm (binary). It discriminates the amount of light received to execute three different cases: Black, Gray (neither black nor white) and White.</p>
-<h4>Requirements</h4>
-Facilino's License.
-<h4>Inputs</h4>
-<ul>
-   <li>Light: Amount of light read with the TCRT5000 sensor (analogue value).</li>
-</ul>
-<h4>Stacks</h4>
-<ul>
-  <li>Black: Set of instructions to execute in case of detecting black.</li>
-  <li>Gray: Set of instructions to execute in case of not detecting black or white.</li>
-  <li>White: Set of instructions to execute in case of detecting white.</li>
-</ul>
-<h4>Example</h4>
-This example shows a typical line tracking application with the DYOR robot.
-<div class="button_wrapper">
-<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/dyor_line_following_binary_example.bly&#39;)">Open</button></p>
-All changes will be lost!
-</div>
-<h5>Circuit</h5>
-<image src="doc/circuits/tcrt5000_motors_example_bb.png" title="tcrt5000_motors_example_bb" alt="tcrt5000_motors_example_bb"></image>
-<h5>Facilino Code</h5>
-<image src="doc/en-GB/img/dyor_line_following_binary_example.png" title="dyor_line_following_binary_example" alt="dyor_line_following_binary_example"></image>
 <script>
 function openFunction(bly) {
     $.ajax({
         type: "GET" ,
         url: bly ,
         dataType: "xml" ,
+		async: false,
         success: function(xml) {
 			var txt = new XMLSerializer().serializeToString(xml);
 			Blockly.mainWorkspace.clear();
@@ -58,6 +41,63 @@ function openFunction(bly) {
         }
     });
 }
-</script><p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <a href="#up"><image src="doc/common/up.png" title="up"></image></a> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Line Tracking with TCRT5000 (Binary)</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('dyor_line_following_binary','blocklyInstruction');</script>
+<h4>Description</h4>
+<p>Determines the rotation speed to be applied to the base of the DYOR robot to implement a line tracking algorithm (binary). It discriminates the amount of light received to execute three different cases: Black, Gray (neither black nor white) and White.</p>
+<h4>Requirements</h4>
+Facilino's License.
+<h4>Inputs</h4>
+<ul>
+   <li>Light: Amount of light read with the TCRT5000 sensor (analogue value).</li>
+</ul>
+<h4>Statement Instructions</h4>
+<ul>
+  <li>Black: Set of instructions to execute in case of detecting black.</li>
+  <li>Gray: Set of instructions to execute in case of not detecting black or white.</li>
+  <li>White: Set of instructions to execute in case of detecting white.</li>
+</ul>
+<h4>Example</h4>
+This example shows a typical line tracking application with the DYOR robot.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction('doc/examples/dyor_line_following_binary_example.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/tcrt5000_motors_example_bb.png" title="tcrt5000_motors_example_bb" alt="tcrt5000_motors_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example1'></div>
+<script>injectExample('dyor_line_following_binary_example.bly','example1');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
 </body>
 </html>

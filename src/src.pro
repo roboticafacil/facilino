@@ -1,4 +1,5 @@
-QT += core gui serialport widgets webenginewidgets
+# QT += core gui serialport widgets webenginewidgets
+QT += core gui serialport webchannel webenginewidgets widgets xml
 
 # greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkit webkitwidgets
 
@@ -23,7 +24,7 @@ HEADERS += mainwindow.h \
     settingsstore.h \
     graphwidget.h \
     aboutdialog.h \
-    jswebhelpers.h \
+    jswebhelpers.h
     qblockswebview.h
 
 FORMS += mainwindow.ui \
