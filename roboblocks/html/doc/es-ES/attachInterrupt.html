@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -71,17 +65,19 @@ $('#'+exampleDiv).width((bbox.width+25)+'px');
 <h4>Instrucción</h4>
 <div id='blocklyInstruction'></div><script>injectInstruction('attachInterrupt','blocklyInstruction');</script>
 <h4>Descripción</h4>
-<p>Gestiona las interrupciones 2 y 3 de Arduino (UNO y compatibles). Los pines 2 y 3 de Arduino pueden soportar interrupciones del modo "estado bajo", "cambio", "flanco de subida" o "flanco de bajada". El código incluido dentro de la interrupción es prioritario con respecto al código del bucle principal.</p>
+<p>Gestiona las interrupciones de Arduino y procesadores ESP. Las interrupciones soportan el modo "estado bajo", "cambio", "flanco de subida" o "flanco de bajada". El código incluido dentro de la interrupción es prioritario con respecto al código del bucle principal. No usar junto con las siguientes instrucciones con el mismo número de interrupción:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('controls_counterInterrupt','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('controls_numberOfInterrupts','blocklyInstruction2');</script>
 <h4>Requisitos</h4>
 Licencia de Facilino
 <h4>Desplegables</h4>
 <ul>
-   <li>Interrupción: Interrupción a utilizar (2 o 3 en procesadores compatibles con Arduino UNO).</li>
+   <li>Pin: Pin a utilizar para la interrupción.</li>
    <li>Modo: Modo de la interrupción, "estado bajo", "cambio", "flanco de subida" o "flanco de bajada".</li>
 </ul>
 <h5>Instrucciones aplilables</h5>
 <ul>
-  <li>Hacer: Conjunto de instrucciones a realizar en el caso que se active la interrupción.</li>
+  <li>Hacer: Conjunto de instrucciones a realizar dentro de la interrupción en el caso que se active.</li>
 </ul>
 <h4>Ejemplo</h4>
 En este ejemplo la corriente de un motor se corta si se detecta que un intruso ha invadido un área de seguridad (representado por el pulsador). Al tratarse de un aspecto de seguridad, el código ha sido incluido dentro de una interrupción.

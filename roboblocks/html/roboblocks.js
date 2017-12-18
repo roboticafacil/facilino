@@ -12,17 +12,31 @@
     var load = function(options) {
         // Source: src/lang.js
         /* global RoboBlocks, options */
-        RoboBlocks.locales = {
+        /*RoboBlocks.locales = {
             defaultLanguage: {},
-            languages: []
+            languages: [],
+			processor: ''
+        };*/
+		
+		RoboBlocks.locales = {
+            defaultLanguage: {},
+			processor: ''
         };
 		
 		
-        RoboBlocks.locales.getLang = function() {
+        /*RoboBlocks.locales.getLang = function() {
             return this.defaultLanguage.lngCode;
-        };
+        };*/
+		
+		RoboBlocks.locales.setLang = function(lang) {
+			this.defaultLanguage = lang;
+		}
         RoboBlocks.locales.getKey = function(key) {
             return this.defaultLanguage[key];
+        };
+		
+		RoboBlocks.locales.setKey = function(key,value) {
+            this.defaultLanguage[key]=value;
         };
 		
 		RoboBlocks.getHelpUrl = function (block) {
@@ -30,7 +44,7 @@
 		}
 		
         RoboBlocks.locales.initialize = function() {
-            var lang = options.lang || window.roboblocksLanguage || 'en-GB';
+            /*var lang = options.lang || window.roboblocksLanguage || 'en-GB';
 			var languages;
 			var defaultLanguage;
 			$.ajax({
@@ -44,7 +58,9 @@
 				});
 			this.languages=languages.langs;
 			this.defaultLanguage=defaultLanguage;
-			this.defaultLanguage.lngCode = lang;
+			this.defaultLanguage.lngCode = lang;*/
+			this.defaultLanguage = options.langKeys ||window.langKeys || {};
+			this.processor = options.proc || window.FacilinoProcessor || 'ArduinoNano';
 			return this;
         };
             
@@ -95,7 +111,8 @@
         RoboBlocks.LANG_COLOUR_MOVEMENT = '#CECE42';
 		RoboBlocks.LANG_COLOUR_MOVEMENT_MOTORS = '#CECE42';
 		RoboBlocks.LANG_COLOUR_MOVEMENT_ROBOTBASE = '#B8B838';
-		RoboBlocks.LANG_COLOUR_MOVEMENT_ROBOTACC = '#A3A32F'; //8D8D25, 78781C
+		RoboBlocks.LANG_COLOUR_MOVEMENT_ROBOTACC = '#A3A32F';
+		RoboBlocks.LANG_COLOUR_MOVEMENT_WALK = '#8D8D25'; // 78781C
         RoboBlocks.LANG_COLOUR_SCREEN = '#ACCE42';
 		RoboBlocks.LANG_COLOUR_SCREEN_LCD = '#ACCE42'; //8EAC32, 7F9B2A, 718B23
 		RoboBlocks.LANG_COLOUR_SCREEN_LEDMATRIX = '#9DBD3A';
@@ -110,6 +127,7 @@
 		RoboBlocks.LANG_COLOUR_COMMUNICATION_USB = '#4263CE'; // #2E489B, #283F8A
 		RoboBlocks.LANG_COLOUR_COMMUNICATION_BLUETOOTH = '#3B5ABD';
 		RoboBlocks.LANG_COLOUR_COMMUNICATION_WIFI = '#3551AC';
+		RoboBlocks.LANG_COLOUR_COMMUNICATION_IOT = '#2E489B';
         RoboBlocks.LANG_COLOUR_ADVANCED = '#9142CE'; //853BBE, 7A34AF, 6E2DA0, 632791
 		RoboBlocks.LANG_COLOUR_ADVANCED_ANALOG = '#9142CE';
 		RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL = '#853BBE';
@@ -133,53 +151,24 @@
         /*
          * Arduino Board profiles
          */
-        var profiles = {
-            arduino: {
-                description: 'Standard-compatible board',
-                digital: [
-					['0', '0'],
-					['1', '1'],
-                    ['2', '2'],
-                    ['3', '3'],
-                    ['4', '4'],
-                    ['5', '5'],
-                    ['6', '6'],
-                    ['7', '7'],
-                    ['8', '8'],
-                    ['9', '9'],
-                    ['10', '10'],
-                    ['11', '11'],
-                    ['12', '12'],
-                    ['13', '13']
-                ],
-                pwm: [
-                    ['3', '3'],
-                    ['5', '5'],
-                    ['6', '6'],
-                    ['9', '9'],
-                    ['10', '10'],
-                    ['11', '11']
-                ],
-                analog: [
-                    ['A0', 'A0'],
-                    ['A1', 'A1'],
-                    ['A2', 'A2'],
-                    ['A3', 'A3'],
-                    ['A4', 'A4'],
-                    ['A5', 'A5'],
-		    ['A6', 'A6'],
-		    ['A7', 'A7']
-                ],
-                serial: 9600,
-            },
-            'arduino_mega': {
-                description: 'Mega-compatible board',
-            },
-        };
-
-
-        // Set default profile to arduino standard-compatible board
-        profiles['default'] = profiles.arduino;
+		var profiles;
+		$.ajax({
+				url: 'profiles.json',
+				dataType: "text",
+				async: false,
+				}).done(function(text) {
+				profiles = $.parseJSON(text);
+				if (RoboBlocks.locales.processor==='ArduinoNano')
+					profiles['default'] = profiles.arduinoNano;
+				else if (RoboBlocks.locales.processor==='ArduinoUno')
+					profiles['default'] = profiles.arduinoUno;
+				else if (RoboBlocks.locales.processor==='NodeMCU')
+					profiles['default'] = profiles.nodeMCU;
+				else if (RoboBlocks.locales.processor==='ESP32')
+					profiles['default'] = profiles.esp32_R32;
+				else 
+					profiles['default'] = profiles.arduinoNano;
+				});
 
         /**
          * Generates toolbox XML with all blocks defined in Blockly.Blocks
@@ -218,6 +207,28 @@
 
             return toolbox;
         };*/
+		
+		Blockly.getBlocks = function() {
+
+            var blocks = { };
+
+            for (var block in this.Blocks) {
+                // important check that this is objects own property 
+                // not from prototype prop inherited
+                if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object) {
+                    var category = this.Blocks[block].category;
+					var subcategory = this.Blocks[block].subcategory;
+					var colour = this.Blocks[block].category_colour;
+					if (subcategory===undefined)
+						subcategory='root';
+                    blocks[category] = blocks[category] || { };
+					blocks[category][subcategory] = blocks[category][subcategory] || [];
+                    blocks[category][subcategory].push(block);
+                }
+            }
+			return blocks;
+		};
+		
 		Blockly.createToolbox = function() {
 
             var blocks = { };
@@ -984,9 +995,10 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'digitalWrite(13,' +
-                    ((__t = (dropdown_stat)) == null ? '' : __t) +
-                    ');\n';
+				if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
+                  __p += 'digitalWrite(13,' +((__t = (dropdown_stat)) == null ? '' : __t) +');\n';
+				else if ((RoboBlocks.locales.processor==='ESP32')||(RoboBlocks.locales.processor==='NodeMCU'))
+				  __p += 'digitalWrite(2,' +((__t = (dropdown_stat)) == null ? '' : __t) +');\n';
 
             }
             return __p
@@ -997,7 +1009,10 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'pinMode(13,OUTPUT);\n';
+				if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
+                  __p += 'pinMode(13,OUTPUT);\n';
+			    else if ((RoboBlocks.locales.processor==='ESP32')||(RoboBlocks.locales.processor==='NodeMCU'))
+				  __p += 'pinMode(2,OUTPUT);\n';
 
             }
             return __p
@@ -1835,11 +1850,12 @@
 			examples: ['procedures_callnoreturn_example.bly'],	
 			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_PROCEDURES_CALLNORETURN_TOOLTIP','LANG_PROCEDURES_DEFNORETURN_PROCEDURE','LANG_PROCEDURES_CALL_WITHOUT_DEFINITION'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
                 this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_CALLNORETURN_TOOLTIP'));
                 this.arguments_ = this.getVariables(this.getFieldValue('PROCEDURES'));
                 this.quarkConnections_ = null;
@@ -1937,6 +1953,7 @@
                     // Block has been deleted.
                     return;
                 }
+				//console.log('Hello');
                 if (this.getFieldValue('PROCEDURES') !== this.last_procedure && this.getFieldValue('PROCEDURES')) {
                     this.changeVariables();
                     this.last_procedure = this.getFieldValue('PROCEDURES');
@@ -1957,10 +1974,12 @@
                 }
             },
             addVariables: function() {
+				//console.log(this.getFieldValue('PROCEDURES'));
                 var func_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+				//console.log(func_variables);
                 var var_num = 0;
-                if (func_variables) {
-                    if (!this.last_variables) {
+                if (func_variables && this.getFieldValue('PROCEDURES')!=='') {
+					if (!this.last_variables) {
                         this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
                     }
                     if (func_variables.length >= this.last_variables.length) {
@@ -1970,7 +1989,7 @@
                             var_num = this.last_variables.length;
                         } catch (e) {}
                     }
-                    for (var x = 0; x < var_num; x++) {
+					for (var x = 0; x < var_num; x++) {
                         if (this.getInput('ARG' + x) === null) {
                             this.appendValueInput('ARG' + x).appendField(func_variables[x], 'ARG_NAME' + x).setAlign(Blockly.ALIGN_RIGHT);
                         } else {
@@ -1990,8 +2009,10 @@
                     var procedures = this.getProcedures();
                     for (var i in procedures) {
                         if (Blockly.Names.equals(oldName, procedures[i][0])) {
-                            this.removeInput('DUMMY');
-                            this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+							//console.log("Hello, I'm here");
+							this.setFieldValue(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+                            //this.removeInput('DUMMY');
+                            //this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
 							this.addVariables();
                         }
                     }
@@ -2005,7 +2026,9 @@
             },
             changeVariables: function() {
                 var func_variables = this.getVariables(this.getFieldValue('PROCEDURES')); //get the variables of the actual function
-                for (var i = 0; i < this.maxVariableNumber(); i++) { // remove all the possible variable inputs
+                //console.log(this.getFieldValue('PROCEDURES'));
+				//console.log(func_variables);
+				for (var i = 0; i < this.maxVariableNumber(); i++) { // remove all the possible variable inputs
                     if (this.getInput('ARG' + i) === null) {
                         break;
                     }
@@ -2074,6 +2097,7 @@
 			examples: ['procedures_callreturn_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_PROCEDURES_CALLRETURN_TOOLTIP','LANG_PROCEDURES_DEFRETURN_PROCEDURE','LANG_PROCEDURES_CALL_WITHOUT_DEFINITION'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
                 this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
@@ -2083,6 +2107,8 @@
                 this.quarkConnections_ = null;
                 this.quarkArguments_ = null;
                 this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
+				this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
             },
             validName: function(name) {
                 if (name && name.length > 0) {
@@ -2113,7 +2139,7 @@
                     for (var j in Blockly.Arduino.RESERVED_WORDS_) {
                         var reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
                         if (name === reserved_words[j]) {
-                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
+                            this.setWarningText('Reserved word');
                             name = '';
                             break;
                         } else {
@@ -2206,7 +2232,7 @@
             addVariables: function() {
                 var func_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
                 var var_num = 0;
-                if (func_variables) {
+                if (func_variables && this.getFieldValue('PROCEDURES')!=='') {
                     if (!this.last_variables) {
                         this.last_variables = this.getVariables(this.getFieldValue('PROCEDURES'));
                     }
@@ -2236,8 +2262,9 @@
                     var procedures = this.getProcedures();
                     for (var i in procedures) {
                         if (Blockly.Names.equals(oldName, procedures[i][0])) {
-                            this.removeInput('DUMMY');
-                            this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+                            //this.removeInput('DUMMY');
+                            //this.appendDummyInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
+							this.setFieldValue(new Blockly.FieldDropdown(this.getProcedures()), 'PROCEDURES');
                         }
                     }
                     if (this.last_procedure === oldName) {
@@ -2323,6 +2350,7 @@
 		examples: ['procedures_callnoreturn_example.bly'],
 		category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		keys: ['LANG_PROCEDURES_DEFNORETURN_PROCEDURE','LANG_PROCEDURES_DEFNORETURN_TOOLTIP','LANG_PROCEDURES_DEFNORETURN_DO'],
 		init: function() {    	
 		this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
 		var name = new Blockly.FieldTextInput('',Blockly.Procedures.rename);
@@ -2343,8 +2371,7 @@
       return;
     }
     if (hasStatements) {
-      this.appendStatementInput('STACK')
-          .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_DO'));
+      this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_DO')).setCheck(['code','function']);
       if (this.getInput('RETURN')) {
         this.moveInputBefore('STACK', 'RETURN');
       }
@@ -2365,7 +2392,7 @@
       hash['arg_' + this.arguments_[i].toLowerCase()] = true;
     }
     if (badArg) {
-      this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEF_DUPLICATE_WARNING'));
+      this.setWarningText('Duplicate argument');
     } else {
       this.setWarningText(null);
     }
@@ -2569,7 +2596,7 @@
                     for (var j in Blockly.Arduino.RESERVED_WORDS_) {
                         this.reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
                         if (name === this.reserved_words[j]) {
-                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
+                            this.setWarningText('Reserved word');
                             name = '';
                             break;
                         } else {
@@ -2626,10 +2653,11 @@
 		
 		Blockly.Blocks['procedures_mutatorcontainer'] = {
 		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		keys: ['LANG_PROCEDURES_MUTATORCONTAINER_Field'],
 		init: function() {
     this.appendDummyInput()
         .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORCONTAINER_Field'));
-    this.appendStatementInput('STACK');
+		this.appendStatementInput('STACK').setCheck(['code','function']);
     this.appendDummyInput('STATEMENT_INPUT')
         .appendField(Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS)
         .appendField(new Blockly.FieldCheckbox('TRUE'), 'STATEMENTS');
@@ -2641,6 +2669,7 @@
 	
 		Blockly.Blocks['procedures_mutatorarg'] = {
 			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_PROCEDURES_MUTATORARG_Field'],
   init: function() {
     var field = new Blockly.FieldTextInput('x', this.validator_);
     this.appendDummyInput()
@@ -2724,23 +2753,16 @@
 		examples: ['procedures_callreturn_example.bly'],
 		category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		keys: ['LANG_PROCEDURES_DEFRETURN_PROCEDURE','LANG_PROCEDURES_DEFRETURN_RETURN','LANG_PROCEDURES_DEFRETURN_TOOLTIP'],
 		init: function() {
 			var nameField = new Blockly.FieldTextInput('',
 				Blockly.Procedures.rename);
 			nameField.setSpellcheck(false);
-			this.appendDummyInput()
-				.appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE'))
-				.appendField(nameField, 'NAME')
-				.appendField('', 'PARAMS');
+			this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE')).appendField(nameField, 'NAME').appendField('', 'PARAMS');
 			//this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_DO'));
-			this.appendValueInput('RETURN')
-				.setAlign(Blockly.ALIGN_RIGHT)
-				.appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
+			this.appendValueInput('RETURN').setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
 			this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-			if ((this.workspace.options.comments ||
-				 (this.workspace.options.parentWorkspace &&
-				  this.workspace.options.parentWorkspace.options.comments)) &&
-				Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT) {
+			if ((this.workspace.options.comments ||(this.workspace.options.parentWorkspace && this.workspace.options.parentWorkspace.options.comments)) && Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT) {
 			  this.setCommentText(Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT);
 			}
 			this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
@@ -2852,16 +2874,14 @@
 			examples: ['procedures_ifreturn_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_CONTROLS_IF_MSG_IF','LANG_PROCEDURES_DEFRETURN_RETURN','LANG_PROCEDURES_IFRETURN_TOOLTIP','LANG_PROCEDURES_IFRETURN_WARNING'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendValueInput('CONDITION')
-                    .setCheck(Boolean)
-                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
-                this.appendDummyInput()
-                    .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
+                this.appendValueInput('CONDITION').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
                 this.appendValueInput('VALUE');
-                this.setInputsInline(true);
-                this.setPreviousStatement(true);
+                this.setInputsInline(true,'function');
+                this.setPreviousStatement(true,'function');
                 this.setNextStatement(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_TOOLTIP'));
                 this.hasReturnValue_ = true;
@@ -2935,14 +2955,15 @@
 			examples: ['procedures_return_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_PROCEDURES_RETURN','LANG_PROCEDURES_RETURN_TOOLTIP','LANG_PROCEDURES_IFRETURN_WARNING'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN'));
                 this.appendValueInput('VALUE');
                 this.setInputsInline(true);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'function');
+                this.setNextStatement(true,'function');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN_TOOLTIP'));
                 this.hasReturnValue_ = true;
             },
@@ -3014,10 +3035,11 @@
 			examples: ['controls_setupLoop_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_SETUP_LOOP_SETUP_TITLE','LANG_CONTROLS_SETUP_LOOP_LOOP_TITLE','LANG_CONTROLS_SETUP_LOOP_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendStatementInput('SETUP').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SETUP_LOOP_SETUP_TITLE'));
-                this.appendStatementInput('LOOP').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SETUP_LOOP_LOOP_TITLE'));
+                this.appendStatementInput('SETUP').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SETUP_LOOP_SETUP_TITLE')).setCheck('code');
+                this.appendStatementInput('LOOP').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SETUP_LOOP_LOOP_TITLE')).setCheck('code');
                 this.setPreviousStatement(false);
                 this.setNextStatement(false);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_SETUP_LOOP_TOOLTIP'));
@@ -3057,16 +3079,17 @@
 			examples: ['controls_doWhile_example1.bly','controls_doWhile_example2.bly'],	
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_DOWHILE_OPERATOR_DO','LANG_CONTROLS_WHILEUNTIL_OPERATOR_WHILE','LANG_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL','LANG_CONTROLS_DOWHILE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendStatementInput('DO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_OPERATOR_DO'));
-                this.appendValueInput('WHILE').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_TITLE_REPEAT')).appendField(new Blockly.FieldDropdown([
+                this.appendStatementInput('DO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_OPERATOR_DO')).setCheck('code');
+                this.appendValueInput('WHILE').setCheck(Boolean).appendField(new Blockly.FieldDropdown([
                     [RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_OPERATOR_WHILE'), 'WHILE'],
                     [RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL'), 'UNTIL']
                 ]), 'MODE');
                 // this.appendValueInput('WHILE').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_OPERATOR_WHILE'));
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_TOOLTIP'));
             }
         };
@@ -3095,14 +3118,15 @@
 			examples: ['base_delay_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_BASE_DELAY_WAIT','LANG_CONTROLS_BASE_DELAY_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendValueInput('DELAY_TIME', Number)
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_WAIT'))
                     .setCheck(Number);
                 this.setInputsInline(true);
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_TOOLTIP'));
             }
         };
@@ -3156,6 +3180,7 @@
 			examples: ['advanced_map_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_ADVANCED_MAP_MAP','LANG_MATH_ADVANCED_MAP_FROM','LANG_MATH_ADVANCED_MAP_HYPHEN','LANG_MATH_ADVANCED_MAP_BRACKET','LANG_MATH_ADVANCED_MAP_TO','LANG_MATH_ADVANCED_MAP_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_MATH);
                 this.appendValueInput('NUM', Number)
@@ -3211,6 +3236,7 @@
 			examples: ['base_map_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_BASE_MAP','LANG_MATH_BASE_MAP_VALUE_TO','LANG_MATH_BASE_MAP_BRACKET','LANG_MATH_BASE_MAP_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_MATH);
                 this.appendValueInput('NUM', Number)
@@ -3239,6 +3265,7 @@
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			examples: ['base_us_example.bly'],
+			keys: ['LANG_CONTROLS_BASE_US','LANG_CONTROLS_BASE_US_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_US'));
@@ -3267,6 +3294,7 @@
 			examples: ['controls_flow_statements_example1.bly','controls_flow_statements_example2.bly'],		
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_FLOW_STATEMENTS_OPERATOR_BREAK','LANG_CONTROLS_FLOW_STATEMENTS_OPERATOR_CONTINUE','LANG_CONTROLS_FLOW_STATEMENTS_INPUT_OFLOOP','LANG_CONTROLS_FLOW_STATEMENTS_WARNING','LANG_CONTROLS_FLOW_STATEMENTS_TOOLTIP_BREAK','LANG_CONTROLS_FLOW_STATEMENTS_TOOLTIP_CONTINUE'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 var dropdown = new Blockly.FieldDropdown(
@@ -3277,7 +3305,7 @@
                 this.appendDummyInput()
                     .appendField(dropdown, 'FLOW')
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_FLOW_STATEMENTS_INPUT_OFLOOP'));
-                this.setPreviousStatement(true);
+                this.setPreviousStatement(true,'code');
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
                 this.setTooltip(function() {
@@ -3355,15 +3383,16 @@
 			examples: ['controls_for_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_FOR_INPUT_WITH','LANG_CONTROLS_FOR_INPUT_FROM','LANG_CONTROLS_FOR_INPUT_TO','LANG_CONTROLS_FOR_INPUT_DO'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendValueInput('VAR').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_INPUT_WITH'));
                 // .appendField(new Blockly.FieldVariable(' '), 'VAR');
                 this.appendValueInput('FROM').setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_INPUT_FROM'));
                 this.appendValueInput('TO').setCheck(Number).setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_INPUT_TO'));
-                this.appendStatementInput('DO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_INPUT_DO'));
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.appendStatementInput('DO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_INPUT_DO')).setCheck('code');
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setInputsInline(true);
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
@@ -3397,9 +3426,9 @@
             onchange: function() {
                 try {
                     if (this.isVariable(Blockly.Arduino.valueToCode(this, 'FROM', Blockly.Arduino.ORDER_ATOMIC))) {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_FROM_WARNING'));
+                        this.setWarningText('FROM input is not a variable');
                     } else if (this.isVariable(Blockly.Arduino.valueToCode(this, 'TO', Blockly.Arduino.ORDER_ATOMIC))) {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_TO_WARNING'));
+                        this.setWarningText(RoboBlocks.locales.getKey('TO input is not a variable'));
                     } else {
                         this.setWarningText(null);
                     }
@@ -3463,31 +3492,23 @@
 			examples: ['controls_if_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_IF_MSG_IF','LANG_CONTROLS_IF_MSG_THEN','LANG_CONTROLS_IF_TOOLTIP_1','LANG_CONTROLS_IF_ELSEIF_Field_ELSEIF','LANG_CONTROLS_IF_MSG_THEN','LANG_CONTROLS_IF_ELSE_Field_ELSE'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendValueInput('IF0')
                     .setCheck(Boolean)
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
-                this.appendStatementInput('DO0')
-                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN'))
-                    .setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.appendStatementInput('DO0').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN')).setAlign(Blockly.ALIGN_RIGHT).setCheck('code');
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setMutator(new Blockly.Mutator(['controls_if_elseif',
                     'controls_if_else'
                 ]));
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
                 this.setTooltip(function() {
-                    if (!thisBlock.elseifCount_ && !thisBlock.elseCount_) {
+                    if (!thisBlock.elseifCount_ && !thisBlock.elseCount_)
                         return RoboBlocks.locales.getKey('LANG_CONTROLS_IF_TOOLTIP_1');
-                    } else if (!thisBlock.elseifCount_ && thisBlock.elseCount_) {
-                        return RoboBlocks.locales.getKey('LANG_CONTROLS_IF_TOOLTIP_2');
-                    } else if (thisBlock.elseifCount_ && !thisBlock.elseCount_) {
-                        return RoboBlocks.locales.getKey('LANG_CONTROLS_IF_TOOLTIP_3');
-                    } else if (thisBlock.elseifCount_ && thisBlock.elseCount_) {
-                        return RoboBlocks.locales.getKey('LANG_CONTROLS_IF_TOOLTIP_4');
-                    }
                     return '';
                 });
                 this.elseifCount_ = 0;
@@ -3510,31 +3531,26 @@
                 this.elseifCount_ = window.parseInt(xmlElement.getAttribute('elseif'), 10);
                 this.elseCount_ = window.parseInt(xmlElement.getAttribute('else'), 10);
                 for (var x = 1; x <= this.elseifCount_; x++) {
-                    this.appendValueInput('IF' + x)
-                        .setCheck(Boolean)
-                        .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_ELSEIF'));
-                    this.appendStatementInput('DO' + x)
-                        .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN'))
-                        .setAlign(Blockly.ALIGN_RIGHT);
+                    this.appendValueInput('IF' + x).setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSEIF_Field_ELSEIF'));
+                    this.appendStatementInput('DO' + x).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN')).setAlign(Blockly.ALIGN_RIGHT).setCheck('code');
                 }
                 if (this.elseCount_) {
-                    this.appendStatementInput('ELSE')
-                        .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_ELSE'))
-                        .setAlign(Blockly.ALIGN_RIGHT);
+					this.appendDummyInput('ELSE_LABEL').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSE_Field_ELSE'));
+                    this.appendStatementInput('ELSE').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN')).setAlign(Blockly.ALIGN_RIGHT).setCheck('code');
                 }
             },
             decompose: function(workspace) {
-                var containerBlock = Blockly.Block.obtain(workspace, 'controls_if_if');
+                var containerBlock = workspace.newBlock('controls_if_if');
                 containerBlock.initSvg();
                 var connection = containerBlock.getInput('STACK').connection;
                 for (var x = 1; x <= this.elseifCount_; x++) {
-                    var elseifBlock = Blockly.Block.obtain(workspace, 'controls_if_elseif');
+                    var elseifBlock = workspace.newBlock('controls_if_elseif');
                     elseifBlock.initSvg();
                     connection.connect(elseifBlock.previousConnection);
                     connection = elseifBlock.nextConnection;
                 }
                 if (this.elseCount_) {
-                    var elseBlock = Blockly.Block.obtain(workspace, 'controls_if_else');
+                    var elseBlock = workspace.newBlock('controls_if_else');
                     elseBlock.initSvg();
                     connection.connect(elseBlock.previousConnection);
                 }
@@ -3543,6 +3559,7 @@
             compose: function(containerBlock) {
                 // Disconnect the else input blocks and remove the inputs.
                 if (this.elseCount_) {
+					this.removeInput('ELSE_LABEL');
                     this.removeInput('ELSE');
                 }
                 this.elseCount_ = 0;
@@ -3558,12 +3575,9 @@
                     switch (clauseBlock.type) {
                         case 'controls_if_elseif':
                             this.elseifCount_++;
-                            var ifInput = this.appendValueInput('IF' + this.elseifCount_)
-                                .setCheck(Boolean)
-                                .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_ELSEIF'));
-                            var doInput = this.appendStatementInput('DO' + this.elseifCount_);
-                            doInput.appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN'))
-                                .setAlign(Blockly.ALIGN_RIGHT);
+                            var ifInput = this.appendValueInput('IF' + this.elseifCount_).setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSEIF_Field_ELSEIF'));
+                            var doInput = this.appendStatementInput('DO' + this.elseifCount_).setCheck('code');
+                            doInput.appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN')).setAlign(Blockly.ALIGN_RIGHT);
                             // Reconnect any child blocks.
                             if (clauseBlock.valueConnection_) {
                                 ifInput.connection.connect(clauseBlock.valueConnection_);
@@ -3574,8 +3588,9 @@
                             break;
                         case 'controls_if_else':
                             this.elseCount_++;
-                            var elseInput = this.appendStatementInput('ELSE');
-                            elseInput.appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_ELSE'))
+							this.appendDummyInput('ELSE_LABEL').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSE_Field_ELSE'));
+                            var elseInput = this.appendStatementInput('ELSE').setCheck('code');
+                            elseInput.appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN'))
                                 .setAlign(Blockly.ALIGN_RIGHT);
                             // Reconnect any child blocks.
                             if (clauseBlock.statementConnection_) {
@@ -3620,13 +3635,14 @@
 
         Blockly.Blocks.controls_if_if = {
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_IF_IF_Field_IF','LANG_CONTROLS_IF_IF_TOOLTIP'],
             // If condition.
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_IF_Field_IF'))
                     .setAlign(Blockly.ALIGN_RIGHT);
-                this.appendStatementInput('STACK');
+                this.appendStatementInput('STACK').setCheck('if');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_IF_TOOLTIP'));
                 this.contextMenu = false;
             }
@@ -3634,14 +3650,15 @@
 
         Blockly.Blocks.controls_if_elseif = {
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_IF_ELSEIF_Field_ELSEIF','LANG_CONTROLS_IF_ELSEIF_TOOLTIP'],
             // Else-If condition.
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSEIF_Field_ELSEIF'))
                     .setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'if');
+                this.setNextStatement(true,'if');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSEIF_TOOLTIP'));
                 this.contextMenu = false;
             }
@@ -3650,12 +3667,13 @@
         Blockly.Blocks.controls_if_else = {
             // Else condition.
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_IF_ELSE_Field_ELSE','LANG_CONTROLS_IF_ELSE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSE_Field_ELSE'))
                     .setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true);
+                this.setPreviousStatement(true,'if');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_ELSE_TOOLTIP'));
                 this.contextMenu = false;
             }
@@ -3715,27 +3733,16 @@
 			examples: ['controls_switch_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_SWITCH','LANG_CONTROLS_SWITCH_CASE','LANG_CONTROLS_IF_MSG_THEN','LANG_CONTROLS_SWITCH_DEFAULT'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendValueInput('IF0')
-                    .setCheck(Boolean)
-                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH'))
-                    .setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.appendValueInput('IF0').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH')).setAlign(Blockly.ALIGN_RIGHT);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setMutator(new Blockly.Mutator(['controls_switch_case', 'controls_switch_default']));
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
                 this.setTooltip(function() {
-                    if (!thisBlock.switchCount_ && !thisBlock.defaultCount_) {
-                        return RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_TOOLTIP_1');
-                    } else if (!thisBlock.switchCount_ && thisBlock.defaultCount_) {
-                        return RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_TOOLTIP_2');
-                    } else if (thisBlock.switchCount_ && !thisBlock.defaultCount_) {
-                        return RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_TOOLTIP_3');
-                    } else if (thisBlock.switchCount_ && thisBlock.defaultCount_) {
-                        return RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_TOOLTIP_4');
-                    }
                     return '';
                 });
                 this.defaultCount_ = 0;
@@ -3757,33 +3764,26 @@
                 this.switchCount_ = window.parseInt(xmlElement.getAttribute('case'), 10);
                 this.defaultCount_ = window.parseInt(xmlElement.getAttribute('default'), 10);
                 for (var x = 1; x <= this.switchCount_; x++) {
-                    this.appendValueInput('SWITCH' + x)
-                        .setCheck(Number)
-                        .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_CASE'))
-                        .setAlign(Blockly.ALIGN_RIGHT);
+                    this.appendValueInput('SWITCH' + x).setCheck(Number).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_CASE')).setAlign(Blockly.ALIGN_RIGHT);
                     this.setInputsInline(true);
-                    this.appendStatementInput('DO' + x)
-                        .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN'))
-                        .setAlign(Blockly.ALIGN_RIGHT);
+                    this.appendStatementInput('DO' + x).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN')).setAlign(Blockly.ALIGN_RIGHT).setCheck('code');
                 }
                 if (this.defaultCount_) {
-                    this.appendStatementInput('DEFAULT')
-                        .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_DEFAULT'))
-                        .setAlign(Blockly.ALIGN_RIGHT);
+                    this.appendStatementInput('DEFAULT').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_DEFAULT')).setAlign(Blockly.ALIGN_RIGHT).setCheck('code');
                 }
             },
             decompose: function(workspace) {
-                var containerBlock = Blockly.Block.obtain(workspace, 'controls_switch_switch');
+                var containerBlock = workspace.newBlock('controls_switch_switch');
                 containerBlock.initSvg();
                 var connection = containerBlock.getInput('STACK').connection;
                 for (var x = 1; x <= this.switchCount_; x++) {
-                    var switchBlock = Blockly.Block.obtain(workspace, 'controls_switch_case');
+                    var switchBlock = workspace.newBlock('controls_switch_case');
                     switchBlock.initSvg();
                     connection.connect(switchBlock.previousConnection);
                     connection = switchBlock.nextConnection;
                 }
                 if (this.defaultCount_) {
-                    var defaultBlock = Blockly.Block.obtain(workspace, 'controls_switch_default');
+                    var defaultBlock = workspace.newBlock('controls_switch_default');
                     defaultBlock.initSvg();
                     connection.connect(defaultBlock.previousConnection);
                 }
@@ -3808,20 +3808,12 @@
                         case 'controls_switch_case':
                             this.switchCount_++;
                             var case_lang;
-                            if (this.switchCount_ === 1) {
-                                case_lang = RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_IS');
-                            } else {
-                                case_lang = RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_CASE');
-                            }
-                            var switchInput = this.appendValueInput('SWITCH' + this.switchCount_)
-                                .setCheck(Number)
-                                .appendField(case_lang)
-                                .setAlign(Blockly.ALIGN_RIGHT);
+                            case_lang = RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_CASE');
+                            var switchInput = this.appendValueInput('SWITCH' + this.switchCount_).setCheck(Number).appendField(case_lang).setAlign(Blockly.ALIGN_RIGHT);
                             this.setInputsInline(true);
 
-                            var doInput = this.appendStatementInput('DO' + this.switchCount_);
-                            doInput.appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_DO'))
-                                .setAlign(Blockly.ALIGN_RIGHT);
+                            var doInput = this.appendStatementInput('DO' + this.switchCount_).setCheck('code');
+                            doInput.appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN')).setAlign(Blockly.ALIGN_RIGHT);
                             // Reconnect any child blocks.
                             if (clauseBlock.valueConnection_) {
                                 switchInput.connection.connect(clauseBlock.valueConnection_);
@@ -3832,7 +3824,7 @@
                             break;
                         case 'controls_switch_default':
                             this.defaultCount_++;
-                            var defaultInput = this.appendStatementInput('DEFAULT');
+                            var defaultInput = this.appendStatementInput('DEFAULT').setCheck('code');
                             defaultInput.appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_DEFAULT'))
                                 .setAlign(Blockly.ALIGN_RIGHT);
                             // Reconnect any child blocks.
@@ -3878,12 +3870,13 @@
         Blockly.Blocks.controls_switch_switch = {
             // If condition.
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_SWITCH'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH'))
                     .setAlign(Blockly.ALIGN_RIGHT);
-                this.appendStatementInput('STACK');
+                this.appendStatementInput('STACK').setCheck('switch');
                 this.setTooltip('Switch');
                 this.contextMenu = false;
             }
@@ -3892,13 +3885,14 @@
         Blockly.Blocks.controls_switch_case = {
             // case condition.
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_SWITCH_CASE'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_CASE'))
                     .setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'switch');
+                this.setNextStatement(true,'switch');
                 this.setTooltip('Switch case');
                 this.contextMenu = false;
             }
@@ -3907,12 +3901,13 @@
         Blockly.Blocks.controls_switch_default = {
             // default condition.
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_SWITCH_DEFAULT'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH_DEFAULT'))
                     .setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true);
+                this.setPreviousStatement(true,'switch');
                 this.setTooltip('Switch default');
                 this.contextMenu = false;
             }
@@ -3956,15 +3951,16 @@
 			examples: ['controls_whileUntil_example.bly','controls_whileUntil1_example.bly'],	
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_WHILEUNTIL_OPERATOR_WHILE','LANG_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL','LANG_CONTROLS_DOWHILE_OPERATOR_DO','LANG_CONTROLS_WHILEUNTIL_TOOLTIP_WHILE','LANG_CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendValueInput('BOOL').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_TITLE_REPEAT')).appendField(new Blockly.FieldDropdown([
+                this.appendValueInput('BOOL').setCheck(Boolean).appendField(new Blockly.FieldDropdown([
                     [RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_OPERATOR_WHILE'), 'WHILE'],
                     [RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL'), 'UNTIL']
                 ]), 'MODE');
-                this.appendStatementInput('DO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_INPUT_DO'));
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.appendStatementInput('DO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_OPERATOR_DO'));
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
                 this.setTooltip(function() {
@@ -4008,10 +4004,11 @@
 			examples: ['inout_analog_read_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_ANALOG,
+			keys: ['LANG_ADVANCED_INOUT_ANALOG_READ','LANG_ADVANCED_INOUT_ANALOG_READ_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_ANALOG);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_READ')).appendField(new Blockly.FieldImage("img/blocks/analog_signal.svg",24*options.zoom, 24*options.zoom));
-                this.setOutput(true, Number);1
+                this.setOutput(true, Number);
                 this.setInputsInline(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_READ_TOOLTIP'));
             }
@@ -4055,13 +4052,14 @@
             examples: ['inout_analog_write_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_ANALOG,
+			keys: ['LANG_ADVANCED_INOUT_ANALOG_WRITE','LANG_ADVANCED_INOUT_ANALOG_WRITE_VALUE','LANG_ADVANCED_INOUT_ANALOG_WRITE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_ANALOG);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE')).appendField(new Blockly.FieldImage("img/blocks/pwm_signal.svg",24*options.zoom, 24*options.zoom));
                 this.appendValueInput('NUM', Number).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE_VALUE')).appendField(new Blockly.FieldImage("img/blocks/analog_signal.svg",24*options.zoom, 24*options.zoom)).setCheck(Number);
                 this.setInputsInline(true);
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE_TOOLTIP'));
             }
         };
@@ -4090,6 +4088,7 @@
             examples: ['inout_builtin_led_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_ADVANCED_BUILTIN_LED','LANG_ADVANCED_BUILTIN_LED_ON','LANG_ADVANCED_BUILTIN_LED_OFF','LANG_ADVANCED_BUILTIN_LED_TOGGLE','LANG_ADVANCED_BUILTIN_LED_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
                 this.appendDummyInput('')
@@ -4100,8 +4099,8 @@
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_OFF') || 'OFF', 'LOW'],
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_TOGGLE') || 'TOGGLE', 'TOGGLE']																											 
                     ]), 'STAT');
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_TOOLTIP'));
             }
         };
@@ -4135,6 +4134,7 @@
 			examples: ['inout_digital_read_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_ADVANCED_INOUT_DIGITAL_READ','LANG_ADVANCED_INOUT_DIGITAL_READ_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_READ')).appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom));
@@ -4175,13 +4175,14 @@
             examples: ['inout_digital_read_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_ADVANCED_INOUT_DIGITAL_WRITE','LANG_ADVANCED_INOUT_DIGITAL_WRITE_PIN','LANG_ADVANCED_INOUT_DIGITAL_WRITE_STATE','LANG_ADVANCED_INOUT_DIGITAL_WRITE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_WRITE')).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_WRITE_PIN')).appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom));
                 this.appendValueInput('STAT').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_WRITE_STATE')).setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true, null);
+                this.setPreviousStatement(true,'code');
                 this.setInputsInline(true);
-                this.setNextStatement(true, null);
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_WRITE_TOOLTIP'));
             }
         };
@@ -4201,6 +4202,7 @@
             examples: ['inout_digital_mode_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_ADVANCED_INOUT_DIGITAL_MODE','LANG_ADVANCED_INOUT_DIGITAL_MODE_PIN','LANG_ADVANCED_INOUT_DIGITAL_MODE_MODE','LANG_ADVANCED_INOUT_DIGITAL_MODE_OUTPUT','LANG_ADVANCED_INOUT_DIGITAL_MODE_INPUT','LANG_ADVANCED_INOUT_DIGITAL_MODE_PULLUP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_MODE')).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_MODE_PIN')).appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom));
@@ -4209,9 +4211,9 @@
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_MODE_INPUT') || 'INPUT', 'INPUT'],
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_MODE_PULLUP') || 'PULLUP', 'INPUT_PULLUP']
                     ]), 'MODE').setAlign(Blockly.ALIGN_RIGHT);
-                this.setPreviousStatement(true, null);
+                this.setPreviousStatement(true,'code');
                 this.setInputsInline(true);
-                this.setNextStatement(true, null);
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_MODE_TOOLTIP'));
             }
         };
@@ -4235,6 +4237,7 @@
 			examples: ['inout_highlow_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_ADVANCED_HIGHLOW_HIGH','LANG_ADVANCED_HIGHLOW_LOW','LANG_ADVANCED_HIGHLOW_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
                 this.appendDummyInput('')
@@ -4263,18 +4266,15 @@
             examples: ['lcd_clear_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_SCREEN,
 			colour: RoboBlocks.LANG_COLOUR_SCREEN_LCD,
+			keys: ['LANG_LCD_CLEAR','LANG_LCD_CLEAR_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_SCREEN_LCD);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_LCD_CLEAR')).appendField(new Blockly.FieldImage('img/blocks/lcd.svg', 52*options.zoom, 24*options.zoom));
                 // .appendField(new Blockly.FieldImage('img/blocks/bqmod03.png', 52*options.zoom, 20*options.zoom));
-
-
-
                 this.setInputsInline(false);
-
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_CLEAR_TOOLTIP'));
             }
         };
@@ -4303,6 +4303,7 @@
             examples: ['lcd_def_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_SCREEN,
 			colour: RoboBlocks.LANG_COLOUR_SCREEN_LCD,
+			keys: ['LANG_LCD_DEF','LANG_LCD_PINS','LANG_LCD_DEF_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_SCREEN_LCD);
                 this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_LCD_DEF')).appendField(new Blockly.FieldImage('img/blocks/lcd.svg', 52*options.zoom, 24*options.zoom));
@@ -4315,8 +4316,8 @@
                     .appendField(new Blockly.FieldTextInput('5'), 'LCD_5')
                     .appendField(new Blockly.FieldTextInput('6'), 'LCD_6');
                 this.setInputsInline(false);
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_DEF_TOOLTIP'));
             }
         };
@@ -4363,6 +4364,7 @@
             examples: ['lcd_print_example1.bly','lcd_print_example2.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_SCREEN,
 			colour: RoboBlocks.LANG_COLOUR_SCREEN_LCD,
+			keys: ['LANG_LCD_PRINT','LANG_LCD_PRINT_POSITION','LANG_LCD_PRINT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_SCREEN_LCD);
                 this.appendValueInput('VAL').appendField(RoboBlocks.locales.getKey('LANG_LCD_PRINT')).appendField(new Blockly.FieldImage('img/blocks/lcd.svg', 52*options.zoom, 24*options.zoom));
@@ -4371,8 +4373,8 @@
                 this.last_pos = this.getFieldValue('POS');
                 this.getPosition();
                 this.setInputsInline(false);
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_PRINT_TOOLTIP'));
             },
             getPosition: function() {
@@ -4427,6 +4429,7 @@
             examples: ['lcd_setBacklight_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_SCREEN,
 			colour: RoboBlocks.LANG_COLOUR_SCREEN_LCD,
+			keys: ['LANG_LCD_SETBACKLIGHT','LANG_LCD_SETBACKLIGHT_CLOSE','LANG_LCD_SETBACKLIGHT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_SCREEN_LCD);
                 this.appendDummyInput()
@@ -4437,12 +4440,10 @@
                     ]), 'STATE')
                     .appendField(RoboBlocks.locales.getKey('LANG_LCD_SETBACKLIGHT_CLOSE')).appendField(new Blockly.FieldImage('img/blocks/lcd.svg', 52*options.zoom, 24*options.zoom));
                 // .appendField(new Blockly.FieldImage('img/blocks/bqmod03.png', 52*options.zoom, 20*options.zoom));
-
-
                 this.setInputsInline(false);
 
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_SETBACKLIGHT_TOOLTIP'));
             }
         };
@@ -4462,6 +4463,7 @@
 			tags: ['logic'],					
 			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,	
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
+			keys: ['LANG_LOGIC_BOOLEAN_TRUE','LANG_LOGIC_BOOLEAN_FALSE'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_LOGIC);
                 this.setOutput(true, Boolean);
@@ -4521,7 +4523,8 @@
 			examples: ['logic_compare_example.bly'],
 			tags: ['logic'],						
 			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,		
-			colour: RoboBlocks.LANG_COLOUR_LOGIC,			
+			colour: RoboBlocks.LANG_COLOUR_LOGIC,
+			keys: ['LANG_LOGIC_COMPARE_TOOLTIP_EQ','LANG_LOGIC_COMPARE_TOOLTIP_NEQ','LANG_LOGIC_COMPARE_TOOLTIP_LT','LANG_LOGIC_COMPARE_TOOLTIP_LTE','LANG_LOGIC_COMPARE_TOOLTIP_GT','LANG_LOGIC_COMPARE_TOOLTIP_GTE'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_LOGIC);
                 this.setOutput(true, Boolean);
@@ -4603,6 +4606,7 @@
 			tags: ['logic'],	
 			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
+			keys: ['LANG_LOGIC_OPERATION_AND','LANG_LOGIC_OPERATION_OR','LANG_LOGIC_OPERATION_XOR','LANG_LOGIC_OPERATION_XNOR','LANG_LOGIC_OPERATION_IMPLIES','LANG_LOGIC_OPERATION_TOOLTIP_AND','LANG_LOGIC_OPERATION_TOOLTIP_OR','LANG_LOGIC_OPERATION_TOOLTIP_XOR','LANG_LOGIC_OPERATION_TOOLTIP_XNOR','LANG_LOGIC_OPERATION_TOOLTIP_IMPLIES'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_LOGIC);
                 this.setOutput(true, Boolean);
@@ -4658,6 +4662,7 @@
 			tags: ['logic'],							
 			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,	
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
+			keys: ['LANG_LOGIC_NEGATE_INPUT_NOT','LANG_LOGIC_NEGATE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_LOGIC);
                 this.setOutput(true, Boolean);
@@ -4718,6 +4723,7 @@
 			tags: ['math'],		
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_ARITHMETIC_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_MATH);
                 this.setOutput(true, Number);
@@ -4729,10 +4735,7 @@
                 this.setInputsInline(true);
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
-                this.setTooltip(function() {
-                    var mode = thisBlock.getFieldValue('OP');
-                    return Blockly.Blocks.math_arithmetic.TOOLTIPS[mode];
-                });
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_ARITHMETIC_TOOLTIP'));
             }
         };
 
@@ -4786,12 +4789,12 @@
 			tags: ['math'],								
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_MODULO_TOOLTIP'],
             init: function() {
                 this.setColour(this.colour);
                 this.setOutput(true, Number);
                 this.appendValueInput('DIVIDEND')
-                    .setCheck(Number)
-                    .appendField(RoboBlocks.locales.getKey('LANG_MATH_MODULO_INPUT_DIVIDEND'));
+                    .setCheck(Number);
                 this.appendValueInput('DIVISOR')
                     .setCheck(Number)
                     .setAlign(Blockly.ALIGN_RIGHT)
@@ -4820,6 +4823,7 @@
 			tags: ['math'],					
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_NUMBER_TOOLTIP'],
             init: function() {
                 this.setColour(this.colour);
                 this.appendDummyInput()
@@ -4868,6 +4872,7 @@
 			tags: ['math'],							
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_ADVANCED_MATH_RANDOM','LANG_ADVANCED_MATH_RANDOM_AND','LANG_ADVANCED_MATH_RANDOM_TOOLTIP'],
             init: function() {
                 this.setColour(this.colour);
                 this.appendValueInput('NUM', Number)
@@ -4897,6 +4902,7 @@
 			examples: ['math_to_number_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_ADVANCED_MATH_CAST','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_FLOAT'],
             init: function() {
                 this.setColour(this.colour);
                 this.appendValueInput('VALUE')
@@ -4930,6 +4936,7 @@
 			examples: ['math_sinusoid_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_ADVANCED_MATH_SINUSOID','LANG_ADVANCED_MATH_SINUSOID_AMPLITUDE','LANG_ADVANCED_MATH_SINUSOID_FREQ','LANG_ADVANCED_MATH_SINUSOID_PHASE','LANG_ADVANCED_MATH_SINUSOID_OFFSET','LANG_ADVANCED_MATH_SINUSOID_TIME','LANG_ADVANCED_MATH_SINUSOID_TOOLTIP'],
             init: function() {
                 this.setColour(this.colour);
                 this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_MATH_SINUSOID')).setAlign(Blockly.Blocks.ALIGN_RIGHT);
@@ -5041,6 +5048,7 @@
 			tags: ['math'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_SINGLE_OP_ROOT','LANG_MATH_SINGLE_OP_ABSOLUTE','LANG_MATH_SINGLE_TOOLTIP_ROOT','LANG_MATH_SINGLE_TOOLTIP_ABS','LANG_MATH_SINGLE_TOOLTIP_NEG','LANG_MATH_SINGLE_TOOLTIP_LN','LANG_MATH_SINGLE_TOOLTIP_LOG10','LANG_MATH_SINGLE_TOOLTIP_EXP','LANG_MATH_SINGLE_TOOLTIP_POW10'],
             init: function() {
                 this.setColour(this.colour);
                 this.setOutput(true, Number);
@@ -5082,11 +5090,13 @@
 
         Blockly.Blocks.pin_analog = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ANALOG'),
             helpUrl: RoboBlocks.getHelpUrl('pin_analog'),
 			examples: ['inout_analog_read_example.bly'],
 			tags: ['input','output'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED,
+			keys: ['LANG_VARIABLES_PIN_ANALOG','LANG_VARIABLES_PIN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED);
                 this.appendDummyInput('').appendField(new Blockly.FieldImage("img/blocks/analog_signal.svg",24*options.zoom, 24*options.zoom))
@@ -5113,6 +5123,7 @@
 			tags: ['input','output'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_VARIABLES_PIN_DIGITAL','LANG_VARIABLES_PIN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
                 this.appendDummyInput('').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom))
@@ -5138,6 +5149,7 @@
 			tags: ['input','output'],			 
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_VARIABLES_PIN_PWM','LANG_VARIABLES_PIN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
                 this.appendDummyInput('').appendField(new Blockly.FieldImage("img/blocks/pwm_signal.svg",24*options.zoom, 24*options.zoom))
@@ -5172,14 +5184,15 @@
             examples: ['serial_available_example.bly'],  
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
+			keys: ['LANG_ADVANCED_SERIAL_AVAILABLE','LANG_CONTROLS_REPEAT_INPUT_DO','LANG_ADVANCED_SERIAL_AVAILABLE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_AVAILABLE')).appendField(new Blockly.FieldImage('img/blocks/usb.svg', 52*options.zoom, 24*options.zoom));
                 this.appendStatementInput('DO')
                     .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_REPEAT_INPUT_DO'));
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_AVAILABLE_TOOLTIP'));
             }
         };
@@ -5203,6 +5216,7 @@
             examples: ['logic_operation_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
+			keys: ['LANG_ADVANCED_SERIAL_PARSEINT','LANG_ADVANCED_SERIAL_PARSEINT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendDummyInput('')
@@ -5237,11 +5251,12 @@
             examples: ['serial_print_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
+			keys: ['LANG_ADVANCED_SERIAL_PRINT','LANG_ADVANCED_SERIAL_PRINT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendValueInput('CONTENT', String).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_PRINT')).appendField(new Blockly.FieldImage('img/blocks/usb.svg', 52*options.zoom, 24*options.zoom));
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_PRINT_TOOLTIP'));
             }
         };
@@ -5270,11 +5285,12 @@
             examples: ['serial_print_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
+			keys: ['LANG_ADVANCED_SERIAL_PRINTLN','LANG_ADVANCED_SERIAL_PRINTLN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendValueInput('CONTENT', String).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_PRINTLN')).appendField(new Blockly.FieldImage('img/blocks/usb.svg', 52*options.zoom, 24*options.zoom));
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_PRINTLN_TOOLTIP'));
             }
         };
@@ -5298,6 +5314,7 @@
             tags: ['serial','communication'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
+			keys: ['LANG_ADVANCED_SERIAL_READ','LANG_ADVANCED_SERIAL_READ_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendDummyInput('')
@@ -5327,6 +5344,7 @@
             examples: ['serial_readstring_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
+			keys: ['LANG_ADVANCED_SERIAL_READSTRING','LANG_ADVANCED_SERIAL_READSTRING_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_READSTRING')).appendField(new Blockly.FieldImage('img/blocks/usb.svg', 52*options.zoom, 24*options.zoom));
@@ -5361,6 +5379,7 @@
             examples: ['advanced_conversion_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
+			keys: ['LANG_ADVANCED_CONVERSION_CONVERT','LANG_ADVANCED_CONVERSION_DECIMAL','LANG_ADVANCED_CONVERSION_HEXADECIMAL','LANG_ADVANCED_CONVERSION_OCTAL','LANG_ADVANCED_CONVERSION_BINARY','LANG_ADVANCED_CONVERSION_VALUE','LANG_ADVANCED_CONVERSION_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendDummyInput('')
@@ -5395,11 +5414,12 @@
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
             tags: ['serial'],
             examples: ['serial_read_example.bly'],
+			keys: ['LANG_ADVANCED_SERIAL_TIMEOUT','LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION_USB);
                 this.appendValueInput('TIMEOUT', Number).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_TIMEOUT')).appendField(new Blockly.FieldImage('img/blocks/usb.svg', 52*options.zoom, 24*options.zoom));
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP'));
             }
         };
@@ -5421,6 +5441,7 @@
 			examples: ['serial_special_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,
+			keys: ['LANG_ADVANCED_SERIAL_SPECIAL','LANG_ADVANCED_SERIAL_SPECIAL_TAB','LANG_ADVANCED_SERIAL_SPECIAL_CARRIAGE_RETURN','LANG_ADVANCED_SERIAL_SPECIAL_LINE_FEED','LANG_ADVANCED_SERIAL_SPECIAL_QUOTE','LANG_ADVANCED_SERIAL_SPECIAL_DOUBLE_QUOTE','LANG_ADVANCED_SERIAL_SPECIAL_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendDummyInput('')
@@ -5451,7 +5472,8 @@
             helpUrl: RoboBlocks.getHelpUrl('text'),
 			examples: ['controls_setupLoop_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,			
+			colour: RoboBlocks.LANG_COLOUR_TEXT,		
+			keys: ['LANG_TEXT_TEXT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendDummyInput()
@@ -5490,14 +5512,15 @@
 			examples: ['text_append_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_APPEND_TO','LANG_TEXT_APPEND_APPENDTEXT','LANG_TEXT_APPEND_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('VAR')
                     // .appendField(new Blockly.FieldVariable(' '), 'VAR')
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_TO'));
                 this.appendValueInput('TEXT').appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_APPENDTEXT'));
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setInputsInline(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_TOOLTIP'));
             },
@@ -5574,11 +5597,10 @@
 			examples: ['text_equalsIgnoreCase_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_EQUALSIGNORECASE_EQUAL','LANG_TEXT_EQUALSIGNORECASE_QUESTION','LANG_TEXT_EQUALSIGNORECASE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
-                this.appendValueInput('STRING1')
-                    .appendField(RoboBlocks.locales.getKey('LANG_TEXT_EQUALSIGNORECASE_IS'));
-
+                this.appendValueInput('STRING1');
                 this.appendValueInput('STRING2')
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_EQUALSIGNORECASE_EQUAL'))
                     .setAlign(Blockly.ALIGN_RIGHT);
@@ -5642,6 +5664,7 @@
 			examples: ['text_join_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_JOIN_Field_CREATEWITH','LANG_TEXT_JOIN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('ADD0')
@@ -5677,11 +5700,11 @@
                 }
             },
             decompose: function(workspace) {
-                var containerBlock = Blockly.Block.obtain(workspace, 'text_create_join_container');
+                var containerBlock = workspace.newBlock('text_create_join_container');
                 containerBlock.initSvg();
                 var connection = containerBlock.getInput('STACK').connection;
                 for (var x = 0; x < this.itemCount_; x++) {
-                    var itemBlock = Blockly.Block.obtain(workspace, 'text_create_join_item');
+                    var itemBlock = workspace.newBlock('text_create_join_item');
                     itemBlock.initSvg();
                     connection.connect(itemBlock.previousConnection);
                     connection = itemBlock.nextConnection;
@@ -5740,7 +5763,7 @@
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_CREATE_JOIN_TITLE_JOIN'));
-                this.appendStatementInput('STACK');
+                this.appendStatementInput('STACK').setCheck('text_join');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CREATE_JOIN_TOOLTIP'));
                 this.contextMenu = false;
             }
@@ -5749,12 +5772,13 @@
         Blockly.Blocks.text_create_join_item = {
             // Add items.
 			colour: RoboBlocks.LANG_COLOUR_TEXT,
+			keys: ['LANG_TEXT_CREATE_JOIN_ITEM_TITLE_ITEM','LANG_TEXT_CREATE_JOIN_ITEM_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_CREATE_JOIN_ITEM_TITLE_ITEM'));
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'text_join');
+                this.setNextStatement(true,'text_join');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CREATE_JOIN_ITEM_TOOLTIP'));
                 this.contextMenu = false;
             }
@@ -5787,6 +5811,7 @@
 			examples: ['text_length_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,
+			keys: ['LANG_TEXT_LENGTH_INPUT_LENGTH','LANG_TEXT_LENGTH_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('VALUE')
@@ -5830,6 +5855,7 @@
 			examples: ['text_substring_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_SUBSTRING','LANG_TEXT_SUBSTRING_FROM','LANG_TEXT_SUBSTRING_TO','LANG_TEXT_SUBSTRING_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('STRING1')
@@ -5887,6 +5913,7 @@
 			examples: ['text_search_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_SEARCH','LANG_TEXT_IN','LANG_TEXT_FIRST','LANG_TEXT_LAST','LANG_TEXT_SEARCH_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('STRING1').appendField(RoboBlocks.locales.getKey('LANG_TEXT_SEARCH'));
@@ -5922,6 +5949,7 @@
 			examples: ['text_contains_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_CONTAINS','LANG_TEXT_EXPRESSION','LANG_TEXT_CONTAINS_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('STRING2').appendField(RoboBlocks.locales.getKey('LANG_TEXT_CONTAINS'));
@@ -5950,6 +5978,7 @@
 			examples: ['text_to_text_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_CAST','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_CHAR'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('VALUE')
@@ -5981,6 +6010,7 @@
 			examples: ['variables_example.bly'],							  
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_GET','LANG_VARIABLES_GET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendDummyInput('DUMMY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET'))
@@ -6067,15 +6097,16 @@
 			tags: ['variables'],
 			examples: ['variables_example.bly'],	
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,				
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,		
+			keys: ['LANG_VARIABLES_SET','LANG_VARIABLES_SET_AS','LANG_VARIABLES_SET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET'))
                     // .appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR')
                     .appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_AS')).setAlign(Blockly.ALIGN_RIGHT);
                 this.setInputsInline(false);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_TOOLTIP'));
             },
             getVariables: function() {
@@ -6217,12 +6248,13 @@
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_LOCAL','LANG_VARIABLES_LOCAL_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL')).appendField(new Blockly.FieldTextInput(''), 'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_EQUALS'));
                 this.setInputsInline(false);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_TOOLTIP'));
             },
             getVars: function() {
@@ -6270,7 +6302,7 @@
                     for (var j in Blockly.Arduino.RESERVED_WORDS_) {
                         var reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
                         if (name === reserved_words[j]) {
-                            this.setWarningText(RoboBlocks.locales.getKey('LANG_RESERVED_WORDS'));
+                            this.setWarningText('Reserved word');
                             name = '';
                             break;
                         } else {
@@ -6319,6 +6351,7 @@
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_LOCAL','LANG_VARIABLES_LOCAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_LOCAL_TOOLTIP2'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').
@@ -6335,8 +6368,8 @@
                 ]), "VAR_TYPE").
                 appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS'));
                 this.setInputsInline(false);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_TOOLTIP2'));
             },
             getVars: function() {
@@ -6435,12 +6468,13 @@
 			examples: ['variables_example.bly'],	
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_GLOBAL','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_GLOBAL_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL')).appendField(new Blockly.FieldTextInput(''), 'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS'));
                 this.setInputsInline(false);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_TOOLTIP'));
             },
             getVars: function() {
@@ -6488,6 +6522,7 @@
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_GLOBAL','LANG_VARIABLES_GLOBAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_GLOBAL_TOOLTIP2'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').
@@ -6504,8 +6539,8 @@
                 ]), "VAR_TYPE").
                 appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS'));
                 this.setInputsInline(false);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_TOOLTIP2'));
             },
             getVars: function() {
@@ -6553,7 +6588,8 @@
 			tags: ['variables'],
 			examples: ['variables_global_volatile_type_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			keys: ['LANG_VARIABLES_GLOBAL_VOLATILE','LANG_VARIABLES_GLOBAL_TYPE','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_GLOBAL_VOLATILE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').
@@ -6569,8 +6605,8 @@
                 ]), "VAR_TYPE").
                 appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS'));
                 this.setInputsInline(false);
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_VOLATILE_TOOLTIP'));
             },
             getVars: function() {
@@ -6616,14 +6652,162 @@
 			examples: ['controls_execute_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_EXECUTE','LANG_CONTROLS_EXECUTE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
                 this.appendValueInput('CONTENT', String).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_EXECUTE'));
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_EXECUTE_TOOLTIP'));
             }
         };
+		
+		Blockly.Arduino.inout_spi_begin = function() {
+            var baudrate = Blockly.Arduino.valueToCode(this, 'BAUDRATE', Blockly.Arduino.ORDER_ATOMIC);
+			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
+            var code = 'SPI.beginTransaction(SPISettings('+baudrate+','+this.getFieldValue('ORDER')+','+ this.getFieldValue('MODE')+'));\n'
+            return code;
+        };
+
+        Blockly.Blocks.inout_spi_begin = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_OTHER'),
+            tags: ['input','output','spi'],
+            helpUrl: RoboBlocks.getHelpUrl('inout_spi_begin'),
+			examples: ['inout_spi_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_SPI_BEGIN','LANG_SPI_BAUDRATE','LANG_SPI_BEGIN_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
+                this.appendValueInput('BAUDRATE').appendField(RoboBlocks.locales.getKey('LANG_SPI_BEGIN')).appendField(RoboBlocks.locales.getKey('LANG_SPI_BAUDRATE')).setAlign(Blockly.ALIGN_RIGHT);
+				this.appendDummyInput('').appendField(new Blockly.FieldDropdown([['MSB','MSBFIRST'],['LSB','LSBFIRST']]),'ORDER').setAlign(Blockly.ALIGN_RIGHT);
+				this.appendDummyInput('').appendField(new Blockly.FieldDropdown([['MODE0','SPI_MODE0'],['MODE1','SPI_MODE1'],['MODE2','SPI_MODE2'],['MODE3','SPI_MODE3']]),'MODE').setAlign(Blockly.ALIGN_RIGHT);
+				this.setOutput(false, null);
+				this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_BEGIN_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.inout_spi_transfer = function() {
+			var data = Blockly.Arduino.valueToCode(this, 'DATA', Blockly.Arduino.ORDER_ATOMIC);
+			var mode = this.getFieldValue('MODE');
+			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
+			var code ='';
+			if (mode==='1')
+				code += 'SPI.transfer('+data+');\n';
+			else if (mode==='2')
+				code += 'SPI.transfer16('+data+');\n';
+            return code;
+        };
+
+        Blockly.Blocks.inout_spi_transfer = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_OTHER'),
+            tags: ['input','output','spi'],
+            helpUrl: RoboBlocks.getHelpUrl('inout_spi_transfer'),
+			examples: ['inout_spi_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_SPI_TRANSFER','LANG_SPI_TRANSFER_ONE_BYTE','LANG_SPI_TRANSFER_TWO_BYTES','LANG_SPI_TRANSFER_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
+                this.appendValueInput('DATA').appendField(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
+				//this.appendDummyInput('').appendField(new Blockly.FieldDropdown([[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_ONE_BYTE'),'1'],[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_TWO_BYTES'),'2'],[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_BUFFER'),'3']]),'MODE').setAlign(Blockly.ALIGN_RIGHT);
+				this.appendDummyInput('').appendField(new Blockly.FieldDropdown([[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_ONE_BYTE'),'1'],[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_TWO_BYTES'),'2']]),'MODE').setAlign(Blockly.ALIGN_RIGHT);
+				this.setOutput(false,null);
+				this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+				this.setInputsInline(false);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_TOOLTIP'));
+            }
+        };
+
+		Blockly.Arduino.inout_spi_transfer_recv = function() {
+			var data = Blockly.Arduino.valueToCode(this, 'DATA', Blockly.Arduino.ORDER_ATOMIC);
+			var mode = this.getFieldValue('MODE');
+			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
+			var code ='';
+			if (mode==='1')
+				code += 'SPI.transfer('+data+')';
+			else if (mode==='2')
+				code += 'SPI.transfer16('+data+')';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+
+        Blockly.Blocks.inout_spi_transfer_recv = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_OTHER'),
+            tags: ['input','output','spi'],
+            helpUrl: RoboBlocks.getHelpUrl('inout_spi_transfer_recv'),
+			examples: ['inout_spi_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,	
+			keys: ['LANG_SPI_TRANSFER','LANG_SPI_TRANSFER_ONE_BYTE','LANG_SPI_TRANSFER_TWO_BYTES','LANG_SPI_TRANSFER_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
+                this.appendValueInput('DATA').appendField(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
+				//this.appendDummyInput('').appendField(new Blockly.FieldDropdown([[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_ONE_BYTE'),'1'],[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_TWO_BYTES'),'2'],[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_BUFFER'),'3']]),'MODE').setAlign(Blockly.ALIGN_RIGHT);
+				this.appendDummyInput('').appendField(new Blockly.FieldDropdown([[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_ONE_BYTE'),'1'],[RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_TWO_BYTES'),'2']]),'MODE').setAlign(Blockly.ALIGN_RIGHT);
+				this.setOutput(true,Number);
+				this.setPreviousStatement(false,'code');
+                this.setNextStatement(false,'code');
+				this.setInputsInline(false);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.inout_spi_end = function() {
+			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
+            var code = 'SPI.endTransaction();\n';
+            return code;
+        };
+
+        Blockly.Blocks.inout_spi_end = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_OTHER'),
+            tags: ['input','output','spi'],
+            helpUrl: RoboBlocks.getHelpUrl('inout_spi_end'),
+			examples: ['inout_spi_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,	
+			keys: ['LANG_SPI_END','LANG_SPI_END_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
+                this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_SPI_END'));
+				this.setOutput(false, null);
+				this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_END_TOOLTIP'));
+            }
+        };
+		
+		
+		
+		/*Blockly.Arduino.inout_spi_interrupt = function() {
+			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
+            var code = 'SPI.usingInterrupt('+this.getFieldValue('INTERRUPT')+');\n';
+            return code;
+        };
+
+        Blockly.Blocks.inout_spi_interrupt = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_OTHER'),
+            tags: ['input','output','spi'],
+            helpUrl: RoboBlocks.getHelpUrl('inout_spi_interrupt'),
+			examples: [],
+			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,	
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
+                this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_SPI_INTERRUPT')).appendField(new Blockly.FieldDropdown([['2','2'],['3','3']]),'INTERRUPT');
+				this.setOutput(false, null);
+				this.setPreviousStatement(true,'code');
+                this.setNextStatement(true, null);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_INTERRUPT_TOOLTIP'));
+            }
+        };*/
 		
         Blockly.Arduino.button = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
@@ -6657,7 +6841,8 @@
             helpUrl: RoboBlocks.getHelpUrl('button'),
 			examples: ['button_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
-			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,	
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_BQ_BUTTON','LANG_BQ_BUTTON_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_BQ_BUTTON')).appendField(new Blockly.FieldImage('img/blocks/pushbutton.png', 52*options.zoom, 24*options.zoom)).setCheck(Number).appendField(RoboBlocks.locales.getKey('LANG_BQ_BUTTON_PIN')).appendField(new Blockly.FieldImage('img/blocks/digital_signal.png', 24*options.zoom, 24*options.zoom)).setAlign(Blockly.ALIGN_RIGHT);
@@ -6707,6 +6892,7 @@
 			examples: ['button_case_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_BQ_BUTTON','LANG_BQ_BUTTON_PIN','LANG_BUTTON_PRESSED','LANG_BUTTON_NOT_PRESSED','LANG_BQ_BUTTON_TOOLTIP'],
             //bq_button initialization
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
@@ -6718,8 +6904,8 @@
                 this.appendStatementInput('NOT_PRESSED')
                     .setAlign(Blockly.ALIGN_RIGHT)
                     .appendField(RoboBlocks.locales.getKey('LANG_BUTTON_NOT_PRESSED'));
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_BUTTON_TOOLTIP'));
             }
         };
@@ -6760,6 +6946,7 @@
             examples: ['zum_button_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_ZUM_BUTTON','LANG_ZUM_BUTTON_PIN','LANG_ZUM_BUTTON_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ZUM_BUTTON')).appendField(RoboBlocks.locales.getKey('LANG_ZUM_BUTTON_PIN')).appendField(new Blockly.FieldImage('img/blocks/digital_signal.png', 24*options.zoom, 24*options.zoom));
@@ -6795,6 +6982,7 @@
             examples: ['joystick_dir_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_BQ_JOYSTICK_DIR','LANG_BQ_JOYSTICK_PIN_X','LANG_BQ_JOYSTICK_PIN_Y','LANG_BQ_JOYSTICK_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
                 this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_DIR')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 52*options.zoom, 24*options.zoom));										 
@@ -6830,6 +7018,7 @@
             examples: ['joystick_dir_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_BQ_JOYSTICK_MAG','LANG_BQ_JOYSTICK_PIN_X','LANG_BQ_JOYSTICK_PIN_Y','LANG_BQ_JOYSTICK_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
                 this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_MAG')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 52*options.zoom, 24*options.zoom));
@@ -6878,6 +7067,7 @@
 			examples: ['zum_piezo_buzzerav_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_SOUND,
 			colour: RoboBlocks.LANG_COLOUR_SOUND_BUZZER,
+			keys: ['LANG_ZUM_PIEZO_BUZZERAV','LANG_ZUM_PIEZO_BUZZERAV_PIN','LANG_ZUM_PIEZO_BUZZERAV_TONE','LANG_ZUM_PIEZO_BUZZERAV_DURATION','LANG_ZUM_PIEZO_BUZZERAV_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_SOUND_BUZZER);
                 this.appendValueInput('PIN')
@@ -6894,8 +7084,8 @@
                     .setAlign(Blockly.ALIGN_RIGHT)
                     .appendField(RoboBlocks.locales.getKey('LANG_ZUM_PIEZO_BUZZERAV_DURATION'));
 
-                this.setPreviousStatement(true, null);
-                this.setNextStatement(true, null);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ZUM_PIEZO_BUZZERAV_TOOLTIP'));
             }
         };
@@ -6935,13 +7125,14 @@
 			examples: ['dyor_31_in_1_relay_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,
+			keys: ['LANG_RELE','LANG_RELE_VALUE','LANG_RELE_TOOLTIP'],
             //rele initialization
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_RELE')).appendField(new Blockly.FieldImage('img/blocks/relays.png', 52*options.zoom, 24*options.zoom)).appendField(RoboBlocks.locales.getKey('LANG_RELE_PIN')).appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom,24*options.zoom)).setCheck(Number);
 		this.appendValueInput('VALUE', Boolean).setCheck(Boolean).setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_RELE_VALUE'));
-                this.setPreviousStatement(true);
-                this.setNextStatement(true);
+                this.setPreviousStatement('code');
+                this.setNextStatement('code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_RELE_TOOLTIP'));
             }
         };

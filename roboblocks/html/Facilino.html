@@ -4,7 +4,7 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     	<meta name="robots" content="Index,Allow">
-    	<meta name="description" content="Entorno de programación visual para Arduino"/>
+    	<meta name="description" content="Block programming environment for Arduino"/>
 		<link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
     	<meta name="keywords" content="facilino,robot,arduino,dyor" />
     	<meta name="author" content="Robótica Fácil"/>
@@ -44,8 +44,8 @@ padding-left:30px;
     <script src="javascript/blockly-bq/blockly_compressed.js"></script>
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
-    <script src="facilino.js"></script>
-    <script src="roboblocks_compressed.js"></script>
+    <script src="facilino_not_obfuscated.js"></script>
+    <script src="roboblocks.js"></script>
 	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true' x='20' y='5'></block> </xml>
 
 	<div>
@@ -91,10 +91,18 @@ padding-left:30px;
 		<option value="ru-RU" class="text-black dropdown-item display-6" style="background-image:url(img/flags/russia.png)">&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</option>
 		<option value="nb-NO" class="text-black dropdown-item display-6" style="background-image:url(img/flags/norway.png)">Norsk</option>
 		</select>
-		<div class="navbar-buttons mbr-section-btn"><p id="licenseP" class="btn btn-sm btn-primary-outline display-4" title="Enter your license"><span class="mbri-key mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span><input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();"/></p>  </div>
+		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Hardware settings" onclick="showHideProcessor()"><span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+			<select id="processor" class="text-black dropdown-toggle display-6 icon-menu" onchange="processorChange(this.value)" style="display: none">
+		<option value="ArduinoNano" class="text-black dropdown-item display-6">Arduino Nano</option>
+		<option value="ArduinoUno" class="text-black dropdown-item display-6">Arduino Uno</option>
+		<option value="NodeMCU" class="text-black dropdown-item display-6">NodeMCU</option>
+		<option value="ESP32" class="text-black dropdown-item display-6">R32 (ESP32)</option>
+		</select>
+		<div class="navbar-buttons mbr-section-btn"><button id="licenseP" class="btn btn-sm btn-primary-outline display-4" title="Enter your license" onclick="showHideLicense()"><span class="mbri-key mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span><input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();" style="display: none"/></p>  </div>
 			<div class="navbar-buttons mbr-section-btn"><button id="button_copy" class="btn btn-sm btn-primary-outline display-4" title="Copy code to clipboard" onclick="copyToClipboard()"><span class="mbri-share mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Create your own blocks" onclick="window.location='./FacilinoMyBlocks.html'"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Translate Facilino" onclick="window.location='./FacilinoTranslate.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
         </div>
 	</nav>
 	</section>
@@ -118,16 +126,22 @@ padding-left:30px;
    <script language="JavaScript">
 		if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
 			localStorage.setItem('language', 'en-GB');
+		if (localStorage.getItem("processor")===undefined || localStorage.getItem("processor")===null)
+			localStorage.setItem('processor', 'ArduinoNano');
 		if (localStorage.getItem("license")===undefined ||localStorage.getItem("license")===null)
 		  localStorage.setItem('license', '');
 		if (localStorage.getItem("saved")===undefined || localStorage.getItem("saved")===null)
 			localStorage.setItem('saved', '');
 		window.roboblocksLanguage = localStorage.getItem("language");
+		window.roboblocksProcessor = localStorage.getItem("processor");
+		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
 		var lic = localStorage.getItem("license");
 		$("#language").val(window.roboblocksLanguage);
 		$("#license_text").val(lic);
 		checkLicense(lic);
 	    window.FacilinoLanguage = window.roboblocksLanguage; 
+		window.FacilinoProcessor = window.roboblocksProcessor;
+		
 	    //document.getElementById("doc").innerHTML = window.roboblocksLanguage;
 		//document.getElementById("doc").innerHTML = license;
 		var file = "doc/"+window.roboblocksLanguage+"/index.html";
@@ -144,7 +158,7 @@ padding-left:30px;
 		//MyBlocks
 		MyBlocks.forEach(function (block){
 			eval(block.code);
-			console.log(block.code);
+			//console.log(block.code);
 		});
 		//console.log(Blockly.Blocks['block_type1']);
 		//	$.getScript( "my_blocks.js", function( data, textStatus, jqxhr ) {
@@ -311,6 +325,7 @@ padding-left:30px;
             function resetWorkspace() {
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+				localStorage.setItem('saved',Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace())));
             }
 			
 		var dragging = false;
@@ -472,6 +487,12 @@ padding-left:30px;
 			window.location.reload();
 		}
 		
+		function processorChange(processor)
+		{
+			localStorage.setItem('processor',processor);
+			window.location.reload();
+		}
+		
 		function copyToClipboard()
 		{ 
 			var r = document.createRange();
@@ -480,6 +501,7 @@ padding-left:30px;
 			document.execCommand("copy");
 			r.selectNode(document.body);
 			window.getSelection().addRange(r);
+			clearSelection();
 		}
 		
 		function showHideLanguage()
@@ -490,6 +512,32 @@ padding-left:30px;
 				lang.style.display='initial';
 			else
 				lang.style.display='none';
+		}
+		
+		function showHideProcessor()
+		{
+			var proc=document.getElementById('processor');
+			if (proc.style.display==='none')
+				proc.style.display='initial';
+			else
+				proc.style.display='none';
+		}
+		
+		function showHideLicense()
+		{
+			var lic=document.getElementById('license_text');
+			if (lic.style.display==='none')
+				lic.style.display='initial';
+			else
+				lic.style.display='none';
+		}
+		
+		function clearSelection() {
+			if ( document.selection ) {
+				document.selection.empty();
+			} else if ( window.getSelection ) {
+				window.getSelection().removeAllRanges();
+			}
 		}
 		
 		function checkLicense(lic){delete window["\x6C\x69\x63\x65\x6E\x73\x65"];$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79\x2D\x6F\x75\x74\x6C\x69\x6E\x65");if(lic["\x6C\x65\x6E\x67\x74\x68"]== 13){$(function(){$["\x61\x6A\x61\x78"]({url:"\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6F\x62\x6F\x74\x69\x63\x61\x66\x61\x63\x69\x6C\x2E\x65\x73\x2F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2F\x62\x6C\x6F\x63\x6B\x6C\x79\x2F\x6C\x6F\x67\x69\x6E\x5F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2E\x70\x68\x70\x3F\x6C\x69\x63\x65\x6E\x73\x65\x3D"+ lic,data:"",type:"\x47\x45\x54",dataType:"\x6A\x73\x6F\x6E",async:true,success:function(data,textStatus,jqXHR){if(data[1]=== "\x6F\x6B"){window["\x6C\x69\x63\x65\x6E\x73\x65"]= lic;$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79")}else {if(data[1]=== "\x65\x72\x72\x6F\x72"){delete window["\x6C\x69\x63\x65\x6E\x73\x65"];$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79\x2D\x6F\x75\x74\x6C\x69\x6E\x65");alert("\x57\x72\x6F\x6E\x67\x20\x6C\x69\x63\x65\x6E\x73\x65\x21")}}},error:function(jqXHR,textStatus,errorThrown){if(lic["\x6C\x65\x6E\x67\x74\x68"]!= 0){alert("\x4C\x69\x63\x65\x6E\x73\x65\x20\x63\x6F\x75\x6C\x64\x20\x6E\x6F\x74\x20\x62\x65\x20\x76\x61\x6C\x69\x64\x61\x74\x65\x64\x21\x20\x50\x6C\x65\x61\x73\x65\x20\x63\x68\x65\x63\x6B\x20\x66\x69\x72\x65\x77\x61\x6C\x6C\x20\x73\x65\x74\x74\x69\x6E\x67\x73")};delete window["\x6C\x69\x63\x65\x6E\x73\x65"];$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79\x2D\x6F\x75\x74\x6C\x69\x6E\x65")}})})}}

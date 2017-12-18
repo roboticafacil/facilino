@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Contador en interrupció</h3>
+<h4>Instrucció</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_counterInterrupt','blocklyInstruction');</script>
+<h4>Descripció</h4>
+<p>Conta el nombre de vegades que un senyal dispara una interrupció. Si la interrupció ha sigut activada des de la'última vegada, aleshores executa el codi dins de la instrucció. Les interrupcions poden establir-se en mode "estat baix", "canvi", "flanc de pujada" o "flanc de baixada". El codi inclòs dins de la interrupció és prioritari pel que fa al codi del bucle principal. Aquesta instrucció s'ha incloure en el codi principal, mentres que el codi de la propia interrupció ya ve donat i simplement incrementa un contador. No usar en combinació de les següents instruccions amb el mateix nombre d'interrupció:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('attachInterrupt','blocklyInstruction1');</script>
+<p>No obstant això, pot ser utilitzada en combinació de la següent instrucció, perque les dos implementen el mateix codi de la interrupció:</p>
+<div id='blocklyInstruction2'></div><script>injectInstruction('controls_numberOfInterrupts','blocklyInstruction2');</script>
+<h4>Requisits</h4>
+Llicència de Facilino
+<h4>Desplegables</h4>
+<ul>
+   <li>Pin: Pin a utilitzar per a la interrupció.</li>
+   <li>Mode: Mode de la interrupció, "estat baix", "canvi", "flanc de pujada" o "flanc de baixada".</li>
+</ul>
+<h5>instruccions apilables</h5>
+<ul>
+  <li>Fer: Conjunt d'instruccions a realitzar dins de la interrupció en el cas que s'activi.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple el corrent d'un motor es talla si es detecta que un intrús ha envaït una àrea de seguretat (representat pel polsador). En tractar-se d'un aspecte de seguretat, el codi ha estat inclòs dins d'una interrupció.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_31_in_1_relay_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/relay_example_bb.png" title="relay_example_bb" alt="relay_example_bb"></image>
+<h5>Codi Facilino</h5>
+<div id='example'></div><script>injectExample('dyor_31_in_1_relay_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

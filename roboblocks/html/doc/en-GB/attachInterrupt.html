@@ -73,17 +73,19 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('attachInterrupt','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Manages interrupts 2 and 3 of Arduino (UNO and compatible). Arduino pins 2 and 3 can withstand interruptions of the "low state", "change", "rising edge" or "falling edge" mode. The code included within the interrupt is executed with higher priority than main loop code.</p>
+<p>Manages interrupts of Arduino and ESP processors. Interrupts can be programmed in "low state", "change", "rising edge" or "falling edge" mode. The code included within the interrupt is executed with higher priority than main loop code. Do not use in combination of the following instructions for the same interrupt number:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('controls_counterInterrupt','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('controls_numberOfInterrupts','blocklyInstruction2');</script>
 <h4>Requirements</h4>
 Facilino's License
 <h4>Dropdown lists</h4>
 <ul>
-   <li>Interruption: Interruption to be used (2 or 3 on Arduino UNO compatible processors).</li>
+   <li>Pin: Interrupt pin to be used.</li>
    <li>Mode: Interrupt mode, "low state", "change", "rising edge" or "falling edge".</li>
 </ul>
 <h5>Statement Instructions</h5>
 <ul>
-  <li>do: Set of instructions to be executed in case the interrupt is activated.</li>
+  <li>do: Set of instructions to be executed within the interrupt in case is triggered.</li>
 </ul>
 <h4>Example</h4>
 In this example the current of an motor is cut off if an intruder invades a safety area (represented by the pushbutton). As this is a security issue, the code has been included within an interrupt.

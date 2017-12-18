@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -79,16 +73,12 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 Once the connection is opened and the data transmitted / received it is convenient to close the connection with the instruction:
 <div id='blocklyInstruction2'></div>
 <script>injectInstruction('communications_wifi_tcp_close','blocklyInstruction2');</script>
-<h4>Dropdown lists</h4>
-<ul>
-  <li>Mode: Integrated or non-integrated.</li>
-</ul>
 <h4>Inputs</h4>
 <ul>
    <li>IP Server: IP address of the server.</li>
    <li>Port: Port of connection.</li>
 </ul>
-<h4>Example 1</h4>
+<h4>Example</h4>
 This example uses the ESP8266 WiFi module with Arduino UNO. In the example the first configuration steps are made for the connection to the network and then in the main loop a text message is sent to a server at the IP address 192.168.1.100 by the port 49152 (Arduino is the client of the connection ). If a response is received from the server, the message is displayed on the console via the USB serial port.
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/communications_wifi_def_example.bly')">Open</button></p>
@@ -99,17 +89,6 @@ All changes will be lost!
 <h5>Facilino Code</h5>
 <div id='example1'></div>
 <script>injectExample('communications_wifi_def_example.bly','example1');</script>
-<h4>Example 2</h4>
-This example uses the ESP8266 (integrated) processor. The example is functionally equivalent to the above example.
-<div class="button_wrapper">
-<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/communications_wifi_def_example1.bly')">Open</button></p>
-All changes will be lost!
-</div>
-<h5>Circuit</h5>
-<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
-<h5>Facilino Code</h5>
-<div id='example2'></div>
-<script>injectExample('communications_wifi_def_example1.bly','example2');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
 </p></body>
 </html>

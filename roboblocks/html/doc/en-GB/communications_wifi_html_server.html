@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -73,30 +67,26 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('communications_wifi_html_server','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Defines an HTTP server using the ESP8266 WiFi module to publish HTML code. The 'integrated' variant is for the ESP8266 processor (such as NodeMCU or similar), while the 'non-integrated' variant uses AT commands by serial software to communicate with the ESP8266 WiFi module.</p>
+<p>Defines an HTTP server using the ESP8266 WiFi module (or ESP processors) to publish HTML code.</p>
 <h4>Requirements</h4>
 <p>Facilino's License.</p>
-<p>The 'integrated' version requires having configured external URLs for the board management in the preferences of Arduino IDE:</p>
+<p>For the ESP8266 module, the instruction requires the ITEADLIB_Arduino_WeeESP8266 library to be installed <a href="https://github.com/itead/ITEADLIB_Arduino_WeeESP8266">https://github.com/itead/ITEADLIB_Arduino_WeeESP8266</a></p>
+<p><image src="doc/common/esp8266_module_library.png" title="esp8266_module_library" alt="esp8266_module_library"></image></p>
+<p>For ESP processors, this instruction requires having configured external URLs for the board management in the preferences of Arduino IDE:</p>
 <p><image src="doc/common/esp8266_preferences.png" title="esp8266_preferences" alt="esp8266_preferences"></image></p>
 Subsequently, the ESP8266 card must be installed on the Arduino IDE Board Manager:
 <p><image src="doc/common/esp8266_board_manager.png" title="esp8266_board_manager" alt="esp8266_board_manager"></image></p>
-<p>The 'non-integrated' version requires the ITEADLIB_Arduino_WeeESP8266 library to be installed <a href="https://github.com/itead/ITEADLIB_Arduino_WeeESP8266">https://github.com/itead/ITEADLIB_Arduino_WeeESP8266</a></p>
-<p><image src="doc/common/esp8266_module_library.png" title="esp8266_module_library" alt="esp8266_module_library"></image></p>
-<h4>Dropdown lists</h4>
-<ul>
-  <li>Mode: Integrated or non-integrated.</li>
-</ul>
 <h4>Inputs</h4>
 <ul>
    <li>SSID: Network Name (SSID).</li>
    <li>Password: Password to access the network.</li>
    <li>Port: Server port (default 80).</li>
    <li>HTML: HTML document to publish.</li>
-   <li>Speed: Baud rate (maximum 38400bps).</li>
-   <li>TX: Arduino transmission pin (connect to RX of module ESP8266).</li>
-   <li>RX: Arduino receive pin (connect to TX of ESP8266 module).</li>
+   <li>Speed: Baud rate (maximum 38400bps). [only ESP8266 module]</li>
+   <li>TX: Arduino transmission pin (connect to RX of module ESP8266). [only ESP8266 module]</li>
+   <li>RX: Arduino receive pin (connect to TX of ESP8266 module). [only ESP8266 module]</li>
 </ul>
-<h4>Example 1</h4>
+<h4>Example</h4>
 This example creates a web page that displays the message "Hello world!" using the ESP8266 module with Arduino UNO.
 <div class="button_wrapper">
 <p><button align="center" class="button" onclick="openFunction('doc/examples/communications_wifi_html_server_example.bly')">Open</button></p>
@@ -107,17 +97,6 @@ All changes will be lost!
 <h5>Facilino Code</h5>
 <div id='example1'></div>
 <script>injectExample('communications_wifi_html_server_example.bly','example1');</script>
-<h4>Example 2</h4>
-This example uses the ESP8266 (built-in) processor to create a web that displays the message "Hello world!"
-<div class="button_wrapper">
-<p><button align="center" class="button" onclick="openFunction('doc/examples/communications_wifi_html_server_example1.bly')">Open</button></p>
-All changes will be lost!
-</div>
-<h5>Circuit</h5>
-<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
-<h5>Facilino Code</h5>
-<div id='example2'></div>
-<script>injectExample('communications_wifi_html_server_example1.bly','example2');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
 </body>
 </html>
