@@ -136,19 +136,13 @@ function reinjectToolbox(blockDiv,key) {
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="https://roboticafacil.es" target="_blank">
-                         <img src="assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="Facilino" title="Facilino" media-simple="true" style="height: 3.8rem;">
+                         <img src="assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="" title="Facilino" media-simple="true" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://roboticafacil.es" target="_blank"><h2>&nbsp;&nbsp;Facilino Translate</h2></a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-			<li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
-                        File</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="resetWorkspace()" aria-expanded="false">New</button><button class="text-white dropdown-item display-4" onclick="document.getElementById('fileInput').click();" aria-expanded="false">Upload</button><input id="fileInput" type="file" style="display: none;" accept=".bly," onclick="fileSelected(this.files)"></input><button class="text-white dropdown-item display-4" onclick="butSave()" aria-expanded="false">Download</button><button class="text-white dropdown-item display-4" onclick="butExport()" aria-expanded="false">Export</button></div></li>
-						<li class="nav-item"><a class="nav-link link text-white display-4" aria-expanded="false"></a></li>
-			</ul>
             <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Language settings" onclick="showHideLanguage()"><span class="mbri-flag mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			<select id="language" class="text-black dropdown-toggle display-6 icon-menu" onchange="langChange(this.value)" style="display: none">
 		<option value="en-GB" class="text-black dropdown-item display-6" style="background-image:url(img/flags/united-kingdom.png)">English</option>
@@ -173,7 +167,6 @@ function reinjectToolbox(blockDiv,key) {
 		</select>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_submit" class="btn btn-sm btn-primary-outline display-4" title="Download" onclick="submitData()"><span class="mbri-save mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_refresh" class="btn btn-sm btn-primary-outline display-4" title="Restore" onclick="restoreData()"><span class="mbri-refresh mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
-		<div class="navbar-buttons mbr-section-btn"><button id="button_update" class="btn btn-sm btn-primary-outline display-4" title="Update" onclick="updateData()"><span class="mbri-update mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Return to Facilino" onclick="window.location='./Facilino.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
         </div>
 	</nav>
