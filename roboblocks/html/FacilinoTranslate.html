@@ -87,6 +87,7 @@ function reinjectInstruction(block,blockDiv,key) {
   el.parentNode.replaceChild(iDiv, el);
   RoboBlocks.locales.setKey(key,input.value);
   Facilino.locales.setKey(key,input.value);
+  window.dataLang.langs[document.getElementById("language").value].keys[key]=input.value;
   RoboBlocks.load({ zoom: 1 });
   Facilino.load({ zoom: 1 });
   injectInstruction(block,blockDiv);
@@ -109,6 +110,7 @@ function reinjectToolbox(blockDiv,key) {
   el.parentNode.replaceChild(iDiv, el);
   RoboBlocks.locales.setKey(key,input.value);
   Facilino.locales.setKey(key,input.value);
+  window.dataLang.langs[document.getElementById("language").value].keys[key]=input.value;
   RoboBlocks.load({ zoom: 1 });
   Facilino.load({ zoom: 1 });
   injectToolbox(blockDiv);
@@ -143,12 +145,6 @@ function reinjectToolbox(blockDiv,key) {
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-			<li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
-                        File</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="resetWorkspace()" aria-expanded="false">New</button><button class="text-white dropdown-item display-4" onclick="document.getElementById('fileInput').click();" aria-expanded="false">Upload</button><input id="fileInput" type="file" style="display: none;" accept=".bly," onclick="fileSelected(this.files)"></input><button class="text-white dropdown-item display-4" onclick="butSave()" aria-expanded="false">Download</button><button class="text-white dropdown-item display-4" onclick="butExport()" aria-expanded="false">Export</button></div></li>
-						<li class="nav-item"><a class="nav-link link text-white display-4" aria-expanded="false"></a></li>
-			</ul>
             <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Language settings" onclick="showHideLanguage()"><span class="mbri-flag mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			<select id="language" class="text-black dropdown-toggle display-6 icon-menu" onchange="langChange(this.value)" style="display: none">
 		<option value="en-GB" class="text-black dropdown-item display-6" style="background-image:url(img/flags/united-kingdom.png)">English</option>
@@ -173,29 +169,12 @@ function reinjectToolbox(blockDiv,key) {
 		</select>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_submit" class="btn btn-sm btn-primary-outline display-4" title="Download" onclick="submitData()"><span class="mbri-save mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_refresh" class="btn btn-sm btn-primary-outline display-4" title="Restore" onclick="restoreData()"><span class="mbri-refresh mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
-		<div class="navbar-buttons mbr-section-btn"><button id="button_update" class="btn btn-sm btn-primary-outline display-4" title="Update" onclick="updateData()"><span class="mbri-update mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Return to Facilino" onclick="window.location='./Facilino.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
         </div>
 	</nav>
 	</section>
 	</div>
-		<form>
-<!-- <div>Translation language: <select id="trans">
-<option value='en-GB'>en-GB</option>
-<option value='es-ES'>es-ES</option>
-<option value='ca-ES'>ca-ES</option>
-<option value='gl-ES'>gl-ES</option>
-<option value='eu-ES'>eu-ES</option>
-<option value='de-DE'>de-DE</option>
-<option value='fr-FR'>fr-FR</option>
-<option value='it-IT'>it-IT</option>
-<option value='pt-PT'>pt-PT</option>
-<option value='pl-PL'>pl-PL</option>
-<option value='ru-RU'>ru-RU</option>
-<option value='nb-NO'>nb-NO</option>
-</select> <input name="submit" type="button" value="Submit" onclick="submitData()"/><input name="restore" type="button" value="Restore" onclick="restoreData();"/><input name="update" type="button" value="Update" onclick="updateData();"/><p></p></div>
-<div>
-</form>-->
+	<div id="all">Wait a moment...</div>
 <script>
 if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
 			localStorage.setItem('language', 'en-GB');
@@ -254,9 +233,11 @@ function changeFunction() {
 	var blocks = Blockly.getBlocks();
 	
 	
+	var all_div_old = document.getElementById("all");
 	var all_div = document.createElement('div');
 	all_div.setAttribute("id","all");
-	document.body.appendChild(all_div);
+	//document.body.appendChild(all_div);
+	document.body.replaceChild(all_div, all_div_old);
 	
 	all_div.appendChild(document.createElement('p'));
 	var cat_div = document.createElement('h3');
@@ -367,21 +348,8 @@ function changeFunction() {
 }
 
 function submitData(){
-$.getJSON('facilino.json', function(data) {
-	var newData = jQuery.extend(true, {}, data);
-	var origLang='en-GB';
-	var transLang=document.getElementById("language").value;
-	var table = document.getElementById("keys_translations");
-	var rowCount = 1;
-	newData.langs[transLang]={keys: {}};
-	//console.log(data.langs[origLang].keys);
-	$.each(window.dataLang.langs[origLang].keys, function (key, text) {
-		newData.langs[transLang].keys[key]=table.rows[rowCount].cells[1].firstChild.value;
-		rowCount++;
-	});
-	var json_str = JSON.stringify(newData,null,'\t');
+	var json_str = JSON.stringify(window.dataLang,null,'\t');
 	saveFile('facilino.json', "data:application/json", new Blob([json_str],{type:""}));
-});
 }
 
 function restoreData(){
