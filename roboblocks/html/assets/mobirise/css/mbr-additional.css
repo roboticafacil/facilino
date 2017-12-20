@@ -2064,7 +2064,7 @@ body {
   outline: none;
 }
 .cid-qAignIVLHL .btn {
-  padding: 0.4rem 1.5rem;
+  padding: 0.4rem 0.5rem;
   display: inline-flex;
   align-items: center;
 }
@@ -2444,12 +2444,12 @@ body {
   outline: none;
 }
 .cid-qAignIVLHL .btn {
-  padding: 0.4rem 1.5rem;
+  padding: 0.4rem 0.8rem;
   display: inline-flex;
   align-items: center;
 }
 .cid-qAignIVLHL .btn .mbr-iconfont {
-  font-size: 1.6rem;
+  font-size: 1.25rem;
 }
 .cid-qAignIVLHL .menu-logo {
   margin-right: auto;

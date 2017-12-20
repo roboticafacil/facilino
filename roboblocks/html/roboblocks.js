@@ -259,6 +259,7 @@
                 toolbox += '<block type="' + type + '"></block>';
             };
 
+			//console.log(blocks);
             for (category in blocks) {
                 if (blocks.hasOwnProperty(category)) {
 					toolbox += '<category id="' + category + '" name="' + category + '" colour="'+colours[category]+'">';

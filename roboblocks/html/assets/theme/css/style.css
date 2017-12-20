@@ -224,8 +224,7 @@ figure[mbr-media-size] {
   font-size: 0; }
 
 nav .mbr-section-btn {
-  margin-left: 0rem;
-  margin-right: 0rem; }
+   }
 
 /*! Btn icon margin */
 .btn .mbr-iconfont, .btn.btn-sm .mbr-iconfont {
