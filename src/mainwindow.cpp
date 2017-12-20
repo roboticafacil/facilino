@@ -684,7 +684,7 @@ void MainWindow::loadBlockly() {
     QUrl url = QUrl::fromLocalFile(settings->htmlIndex());
     QUrlQuery query(url);
     query.addQueryItem("language",settings->defaultLanguage());
-    query.addQueryItem("processor","arduino-nano");
+    query.addQueryItem("processor",settings->arduinoBoardFacilino());
     url.setQuery(query);
     ui->webView->load(url);
     //checkLicense();  //First call to activate the license from the beginning
@@ -701,6 +701,8 @@ void MainWindow::setArduinoBoard() {
 void MainWindow::onBoardChanged() {
     // Board changed, update settings
     settings->setArduinoBoard(ui->boardBox->currentText());
+    settings->setArduinoBoardFacilino(SettingsStore::index2board[ui->boardBox->currentIndex()]);
+    loadBlockly();
 }
 
 void MainWindow::onLoadFinished(bool finished) {

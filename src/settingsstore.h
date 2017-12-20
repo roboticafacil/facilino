@@ -8,6 +8,8 @@
 
 #define CONFIG_INI "config.ini"
 
+#define SIZE_LIST 9
+
 class SettingsStore : public QObject
 {
     Q_OBJECT
@@ -19,6 +21,7 @@ public:
     bool save();
 
     QString arduinoBoard();
+    QString arduinoBoardFacilino();
     QString arduinoIdePath();
     QString defaultLanguage();
     QString examplesPath();
@@ -30,9 +33,12 @@ public:
     float zoomScale();
     QString license();
 
+    static const QString index2board[SIZE_LIST];
+
     void copyDefaultSettings(const QString &fileName = CONFIG_INI,
                              bool overwrite = false);
     void setArduinoBoard(const QString &value);
+    void setArduinoBoardFacilino(const QString &value);
     void setArduinoIdePath(const QString &value);
     void setIconLabels(bool icon_labels);
     void setDefaultLanguage(const QString &value);

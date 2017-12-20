@@ -8,6 +8,9 @@
 #include <QSettings>
 #include <QStandardPaths>
 
+const QString SettingsStore::index2board[SIZE_LIST] = {"ArduinoUno","ArduinoNano","ArduinoNano","ArduinoMega","ArduinoMega","ArduinoBt","ArduinoIntel","ESP8266","NodeMCU"};
+
+
 SettingsStore::SettingsStore(const QString &fileName) {
     // Set platform
 #ifdef Q_OS_LINUX
@@ -39,6 +42,10 @@ SettingsStore::~SettingsStore() {
 QString SettingsStore::arduinoBoard() {
     return settings->value(platform + "arduino_board",
                            "arduino:avr:uno").toString();
+}
+
+QString SettingsStore::arduinoBoardFacilino() {
+    return settings->value(platform + "arduino_board_facilino","ArduinoNano").toString();
 }
 
 QString SettingsStore::arduinoIdePath() {
@@ -137,6 +144,10 @@ void SettingsStore::copyDefaultSettings(const QString &fileName,
 
 void SettingsStore::setArduinoBoard(const QString &value) {
     settings->setValue(platform + "arduino_board", value);
+}
+
+void SettingsStore::setArduinoBoardFacilino(const QString &value) {
+    settings->setValue(platform + "arduino_board_facilino", value);
 }
 
 void SettingsStore::setArduinoIdePath(const QString &value) {
