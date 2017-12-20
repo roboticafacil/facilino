@@ -60,31 +60,37 @@
 	</script>
    
    <script language="JavaScript">
-	    if (window.roboblocksLanguage === undefined || window.roboblocksLanguage === null) {
+	    if (window.roboblocksLanguage === undefined || window.roboblocksLanguage === null || window.roboblocksProcessor===undefined || window.roboblocksProcessor===null) {
 			window.roboblocksLanguage = 'en-GB';
 			try {
+				
 				var parameters = location.search.substring(1).split("&");
 				var temp = parameters[0].split("=");
 				window.roboblocksLanguage = unescape(temp[1]);
 				temp = parameters[1].split("=");
-				var processor = unescape(temp[1]);
-				console.log(window.roboblocksLanguage);
+				window.roboblocksProcessor = unescape(temp[1]);
+				//console.log(window.roboblocksLanguage);
+				//alert(window.roboblocksLanguage);
+				//alert(window.roboblocksProcessor);
 			}
-			catch(e){ window.roboblocksLanguage = 'en-GB';};
+			catch(e){ window.roboblocksLanguage = 'en-GB'; window.roboblocksProcessor='ArduinoNano';};
 		}
-	    window.FacilinoLanguage = window.roboblocksLanguage;     
+	    window.FacilinoLanguage = window.roboblocksLanguage;
+		window.FacilinoProcessor=window.roboblocksProcessor;		
 	    //document.getElementById("doc").innerHTML = window.roboblocksLanguage;
 		//document.getElementById("doc").innerHTML = license;
+		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
 		var file = "doc/"+window.roboblocksLanguage+"/index.html";
 		$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
 		$(function(){$("#doc").load(file);});
-        Facilino.load({ zoom: 1});
         RoboBlocks.load({ zoom: 1 });
+		Facilino.load({ zoom: 1});
+        
 			
 			
 			
-			$.getScript( "my_blocks.js", function( data, textStatus, jqxhr ) {
-			  eval(data);
+			//$.getScript( "my_blocks.js", function( data, textStatus, jqxhr ) {
+			//  eval(data);
 			  // New workspace for each test case
             var el = document.getElementById('blockly');
 			//console.log(Blockly.createToolbox());
@@ -94,7 +100,7 @@
 			$('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
 			
-	    var colors = [
+	    /*var colors = [
                 "",
 				RoboBlocks.LANG_COLOUR_PROCEDURES,
 				RoboBlocks.LANG_COLOUR_CONTROL,
@@ -112,7 +118,7 @@
 				RoboBlocks.LANG_COLOUR_HTML,
 				RoboBlocks.LANG_COLOUR_ADVANCED,
 				RoboBlocks.LANG_COLOUR_BLOCKS
-		];
+		];*/
 
             /*$('.blocklyTreeRow').each( function (i,e) {
                 $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');
@@ -133,7 +139,7 @@
 		   }
 		   catch(e) {}
 	    });
-			});
+			//});
 			
 			var _0x9098=["\x6C\x69\x63\x65\x6E\x73\x65","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6F\x62\x6F\x74\x69\x63\x61\x66\x61\x63\x69\x6C\x2E\x65\x73\x2F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2F\x62\x6C\x6F\x63\x6B\x6C\x79\x2F\x6C\x6F\x67\x69\x6E\x5F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2E\x70\x68\x70\x3F\x6C\x69\x63\x65\x6E\x73\x65\x3D","","\x47\x45\x54","\x6A\x73\x6F\x6E","\x65\x72\x72\x6F\x72","\x6C\x65\x6E\x67\x74\x68","\x4C\x69\x63\x65\x6E\x73\x65\x20\x63\x6F\x75\x6C\x64\x20\x6E\x6F\x74\x20\x62\x65\x20\x76\x61\x6C\x69\x64\x61\x74\x65\x64\x21","\x61\x6A\x61\x78","\x74\x65\x73\x74"];function checkLicense(_0xc84dx2){window[_0x9098[0]]= _0xc84dx2;$(function(){$[_0x9098[8]]({url:_0x9098[1]+ window[_0x9098[0]],data:_0x9098[2],type:_0x9098[3],dataType:_0x9098[4],async:false,success:function(_0xc84dx3,_0xc84dx4,_0xc84dx5){if(_0xc84dx3[1]=== _0x9098[5]){delete window[_0x9098[0]]}},error:function(_0xc84dx5,_0xc84dx4,_0xc84dx6){if(window[_0x9098[0]][_0x9098[6]]!= 0){alert(_0x9098[7])};delete window[_0x9098[0]]}})});if(!window[_0x9098[0]]|| /^\s*$/[_0x9098[9]](window[_0x9098[0]])){return _0x9098[2]}else {return window[_0x9098[0]]}}
 			
