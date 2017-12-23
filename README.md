@@ -1,7 +1,7 @@
 Facilino
 =========
 
-Visual programming environment for DYOR.
+Visual programming environment for Arduino and ESP.
 
 
 Install
@@ -16,17 +16,18 @@ Requirements
 In order to Facilino to execute sketches, install Arduino IDE >= 1.6.
 
 
-Configure
+Releases
 ---------
 
-To setup the path to the Arduino IDE command line tool in your platform
-check the online documentation at [http://dyor.roboticafacil.es/facilino-info].
+Download the latests releases at [https://roboticafacil.es/descargas]
+
+Facilino requires a key (license) to activate advanced instructions. You can get it for free under some conditions (see [https://roboticafacil.es/licencia-facilino], for further details).
 
 
 Support
 -------
 
-Go to the [http://dyor.roboticafacil.es/forum](forum).
+E-mail support for Robotica Facil customers at <soporte@roboticafacil.es>
 
 
 Developer
@@ -48,5 +49,4 @@ Credits
 License
 -------
 
-Check LICENSE file.
-
+Check LICENSE file [https://github.com/roboticafacil/facilino/blob/master/LICENSE.md].
