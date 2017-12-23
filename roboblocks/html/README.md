@@ -48,8 +48,8 @@ facilino.js => Contains new Blockly instructions (obfuscated)
 Credits
 -------
 
-* [https://developers.google.com/blockly/](Google Blockly).
-* [https://github.com/bq/roboblocks](bq's roboblocks).
+* [https://developers.google.com/blockly] (Google Blockly).
+* [https://github.com/bq/roboblocks] (bq's roboblocks).
 
 
 License
