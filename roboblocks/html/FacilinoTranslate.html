@@ -151,7 +151,7 @@ function reinjectToolbox(blockDiv,key) {
 		<option value="es-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol</option>
 		<option value="ca-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/catalonia.png)">Catal&agrave;</option>
 		<option value="gl-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/galician.png)">Galego</option>
-		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskal</option>
+		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskera</option>
 		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
 		<option value="fr-FR" class="text-black dropdown-item display-6" style="background-image:url(img/flags/france.png)">Fran&ccedil;ais</option>
 		<option value="it-IT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/italy.png)">Italiano</option>
@@ -184,6 +184,8 @@ window.roboblocksLanguage = localStorage.getItem("language");
 window.roboblocksProcessor = localStorage.getItem("processor");
 window.FacilinoLanguage = window.roboblocksLanguage; 
 window.FacilinoProcessor = window.roboblocksProcessor;
+$("#language").val(window.roboblocksLanguage);
+$("#processor").val(window.roboblocksProcessor);
 window.dataLang = {};
 window.cat_keys = {};
 window.subcat_keys = {};

@@ -82,7 +82,7 @@ padding-left:30px;
 		<option value="es-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol</option>
 		<option value="ca-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/catalonia.png)">Catal&agrave;</option>
 		<option value="gl-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/galician.png)">Galego</option>
-		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskal</option>
+		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskera</option>
 		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
 		<option value="fr-FR" class="text-black dropdown-item display-6" style="background-image:url(img/flags/france.png)">Fran&ccedil;ais</option>
 		<option value="it-IT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/italy.png)">Italiano</option>
@@ -138,10 +138,11 @@ padding-left:30px;
 		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
 		var lic = localStorage.getItem("license");
 		$("#language").val(window.roboblocksLanguage);
+		$("#processor").val(window.roboblocksProcessor);
 		$("#license_text").val(lic);
 		checkLicense(lic);
 	    window.FacilinoLanguage = window.roboblocksLanguage; 
-		window.FacilinoProcessor = window.roboblocksProcessor;
+		window.FacilinoProcessor = window.roboblocksProcessor
 		
 	    //document.getElementById("doc").innerHTML = window.roboblocksLanguage;
 		//document.getElementById("doc").innerHTML = license;

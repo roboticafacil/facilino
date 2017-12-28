@@ -5760,6 +5760,7 @@
         Blockly.Blocks.text_create_join_container = {
             // Container.
 			colour: RoboBlocks.LANG_COLOUR_TEXT,
+			keys: ['LANG_TEXT_CREATE_JOIN_TITLE_JOIN','LANG_TEXT_CREATE_JOIN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendDummyInput()
