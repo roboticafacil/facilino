@@ -70,7 +70,6 @@ padding-left:30px;
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
                         
                         File</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="resetWorkspace()" aria-expanded="false">New</button><button class="text-white dropdown-item display-4" onclick="document.getElementById('fileInput').click();" aria-expanded="false">Upload</button><input id="fileInput" type="file" style="display: none;" accept=".bly," onclick="fileSelected(this.files)"></input><button class="text-white dropdown-item display-4" onclick="butSave()" aria-expanded="false">Download</button><button class="text-white dropdown-item display-4" onclick="butExport()" aria-expanded="false">Export</button></div></li><li class="nav-item"><a class="nav-link link text-white display-4" aria-expanded="false"></a></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">
@@ -169,7 +168,7 @@ padding-left:30px;
             var el = document.getElementById('blockly');
 			//console.log(Blockly.createToolbox());
 			
-            Blockly.inject(el, {toolbox: Blockly.createToolbox()});
+            Blockly.inject(el, {toolbox: Blockly.createToolbox(), zoom: {wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}});
             // Create a default setup/loop block
 			//Blockly.getMainWorkspace().clear();
             //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
