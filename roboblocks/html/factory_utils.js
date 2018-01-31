@@ -168,6 +168,11 @@ FactoryUtils.getGeneratorStub = function(block, generatorLanguage) {
 		{
 			code.push("  Blockly.Arduino.definitions_['declare_var_define_"+variablesBlock.getFieldValue('NAME')+"']='"+variablesBlock.getFieldValue('TYPE')+" "+variablesBlock.getFieldValue('NAME')+"="+variablesBlock.getFieldValue('INIT')+";';");
 		}
+		/*else
+		{
+			var _code = FactoryUtils.getCodeFromCodeBlock(variablesBlock);
+			code.push("  Blockly.Arduino.setups_['setup_"+setupBlock.getFieldValue('NAME')+"']='"+_code+"';");
+		}*/
       }
       variablesBlock = variablesBlock.nextConnection && variablesBlock.nextConnection.targetBlock();
   }
