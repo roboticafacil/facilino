@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.datagrid table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+.datagrid {
+  font: normal 12px/150% Arial,Helvetica,sans-serif;
+  background: #fff;
+  overflow: hidden;
+  border: 1px solid #006699;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.datagrid table td, .datagrid table th {
+  padding: 3px 10px;
+}
+.datagrid table thead th {
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0.05,#006699),color-stop(1,#00557f));
+  background: -moz-linear-gradient(center top,#006699 5%,#00557f 100%);
+  background-color: #006699;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  border-left: 1px solid #0070a8;
+}
+.datagrid table thead th:first-child {
+  border: none;
+}
+.datagrid table tbody td {
+  color: #00496b;
+  border-left: 1px solid #e1eef4;
+  font-size: 12px;
+  font-weight: normal;
+}
+.datagrid table tbody .alt td {
+  background: #e1eef4;
+  color: #00496b;
+}
+.datagrid table tbody td:first-child {
+  border-left: none;
+}
+.datagrid table tbody tr:last-child td {
+  border-bottom: none;
+}
+.datagrid table tfoot td div {
+  border-top: 1px solid #006699;
+  background: #e1eef4;
+}
+.datagrid table tfoot td {
+  padding: 0;
+  font-size: 12px;
+}
+.datagrid table tfoot td div {
+  padding: 2px;
+}
+.datagrid table tfoot td ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+.datagrid table tfoot li {
+  display: inline;
+}
+.datagrid table tfoot li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 1px;
+  color: #ffffff;
+  border: 1px solid #006699;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0.05,#006699),color-stop(1,#00557f));
+  background: -moz-linear-gradient(center top,#006699 5%,#00557f 100%);
+  background-color: #006699;
+}
+.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover {
+  text-decoration: none;
+  border-color: #006699;
+  color: #ffffff;
+  background: none;
+  background-color: #00557f;
+}
+div.dhtmlx_window_active, div.dhx_modal_cover_dv {
+  position: fixed !important;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Tipus d'telegrama predefinit (recepció)</h3>
+<h4>Instrucció</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('dyor_bluetooth_telegram_type','blocklyInstruction');</script>
+<h4>Descripció</h4>
+<p>Determina el tipus de telegrama rebut. Tipus predefinits: eixida digital, eixida analògica, servo, servo360, brunzidor de so o matriu de LEDs. Utilitza juntament amb la instrucció:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('dyor_bluetooth_recv_telegram','blocklyInstruction1');</script>
+<h4>Requisits</h4>
+<p>Llicència de Facilino</p>
+<h4>Desplegables</h4>
+<ul>
+   <li>Tipus: Tipus d'telegrama a rebre.</li>
+</ul>
+<h4>Eixida</h4>
+CMD del telegrama.
+<h5>Estructura telegrama</h5>
+<div class="datagrid"><table>
+<thead><tr><th>STX</th><th>CMD</th><th>Length</th><th>data 0</th><th>...</th><th>Data N-1</th><th>END</th></tr></thead>
+</table></div>
+Sent STX el símbol '@' a ASCII; CMD el comandament (1 byte); Length la longitud de les dades; Data 0 ... Data N-1 les dades i END el símbol '*' en ASCII.
+<h5>Telegrames predefinits</h5>
+<div class="datagrid"><table>
+<thead><tr><th>comando</th><th>Length</th><th>data 0</th><th>data 1</th><th>data 2</th><th>Data 3 a Data 10</th></tr></thead>
+<tbody><tr class="alt"><td>Eixida Digital</td><td>2</td><td>Pin</td><td>Valor</td><td>44</td><td>44</td></tr>
+	<tr><td>Eixida Analògica</td><td>2</td><td>Pin</td><td>Valor</td><td>44</td><td>44</td></tr>
+	<tr class="alt"><td>servo</td><td>2</td><td>Pin</td><td>angle</td><td>44</td><td>44</td></tr>
+	<tr><td>servo 360º</td><td>2</td><td>Pin</td><td>velocitat</td><td>44</td><td>44</td></tr>
+	<tr class="alt"><td>So</td><td>3</td><td>Pin</td><td>freqüència</td><td>durada</td><td>44</td></tr>
+	<tr><td>Matrix LEDs</td><td>4</td><td>Pin CS</td><td>Pin DIN</td><td>Pin CLK</td><td>Dada (8 bytes)</td></tr>
+</tbody>
+</table></div>
+<h4>Exemple</h4>
+En aquest exemple es rep un telegrama per activar remotament dos leds connectats als pins 5 i 6.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_bluetooth_recv_telegram_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
+<h5>Codi Facilino</h5>
+<div id='example'></div><script>injectExample('dyor_bluetooth_recv_telegram_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

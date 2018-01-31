@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Communicació</h3>
+Conjunt d'instruccions per a la comunicació amb dispositius pel port sèrie (USB, Bluetooth, WIFI).
+<div id='blocklyInstruction1'></div><script>injectInstruction('dyor_bluetooth_def','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('dyor_bluetooth_name','blocklyInstruction2');</script>
+<div id='blocklyInstruction3'></div><script>injectInstruction('dyor_bluetooth_app','blocklyInstruction3');</script>
+<div id='blocklyInstruction4'></div><script>injectInstruction('dyor_bluetooth_command','blocklyInstruction4');</script>
+<div id='blocklyInstruction5'></div><script>injectInstruction('dyor_bluetooth_command_num','blocklyInstruction5');</script>
+<div id='blocklyInstruction6'></div><script>injectInstruction('dyor_bluetooth_recv_telegram','blocklyInstruction6');</script>
+<div id='blocklyInstruction7'></div><script>injectInstruction('dyor_bluetooth_telegram_type','blocklyInstruction7');</script>
+<div id='blocklyInstruction8'></div><script>injectInstruction('dyor_bluetooth_telegram_num','blocklyInstruction8');</script>
+<div id='blocklyInstruction9'></div><script>injectInstruction('dyor_bluetooth_decode_telegram','blocklyInstruction9');</script>
+<div id='blocklyInstruction10'></div><script>injectInstruction('dyor_bluetooth_decode_telegram_num','blocklyInstruction10');</script>
+<div id='blocklyInstruction11'></div><script>injectInstruction('dyor_bluetooth_send_telegram','blocklyInstruction11');</script>
+<div id='blocklyInstruction12'></div><script>injectInstruction('dyor_bluetooth_receive','blocklyInstruction12');</script>
+<div id='blocklyInstruction13'></div><script>injectInstruction('dyor_bluetooth_send','blocklyInstruction13');</script>
+<div id='blocklyInstruction14'></div><script>injectInstruction('dyor_bluetooth_available','blocklyInstruction14');</script>
+<div id='blocklyInstruction15'></div><script>injectInstruction('communications_wifi_def','blocklyInstruction15');</script>
+<div id='blocklyInstruction16'></div><script>injectInstruction('communications_wifi_tcp_open','blocklyInstruction16');</script>
+<div id='blocklyInstruction17'></div><script>injectInstruction('communications_wifi_tcp_close','blocklyInstruction17');</script>
+<div id='blocklyInstruction18'></div><script>injectInstruction('communications_wifi_recv','blocklyInstruction18');</script>
+<div id='blocklyInstruction19'></div><script>injectInstruction('communications_wifi_send','blocklyInstruction19');</script>
+<div id='blocklyInstruction20'></div><script>injectInstruction('communications_wifi_html_server','blocklyInstruction20');</script>
+<div id='blocklyInstruction21'></div><script>injectInstruction('serial_available','blocklyInstruction21');</script>
+<div id='blocklyInstruction22'></div><script>injectInstruction('serial_parseint','blocklyInstruction22');</script>
+<div id='blocklyInstruction23'></div><script>injectInstruction('serial_print','blocklyInstruction23');</script>
+<div id='blocklyInstruction24'></div><script>injectInstruction('serial_println','blocklyInstruction24');</script>
+<div id='blocklyInstruction25'></div><script>injectInstruction('serial_read','blocklyInstruction25');</script>
+<div id='blocklyInstruction26'></div><script>injectInstruction('serial_readstring','blocklyInstruction26');</script>
+<div id='blocklyInstruction27'></div><script>injectInstruction('advanced_conversion','blocklyInstruction27');</script>
+<div id='blocklyInstruction28'></div><script>injectInstruction('serial_timeout','blocklyInstruction28');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

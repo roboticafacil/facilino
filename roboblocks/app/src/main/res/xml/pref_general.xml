@@ -1,0 +1,49 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_language_titles"
+        android:entryValues="@array/pref_language_values"
+        android:key="language_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="@string/pref_language_description"
+        android:title="@string/pref_language" />
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_processor_titles"
+        android:entryValues="@array/pref_processor_values"
+        android:key="processor_list"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:summary="@string/pref_processor_description"
+        android:title="@string/pref_processor" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="license_switch"
+        android:summary="@string/pref_license_description"
+        android:title="@string/pref_license" />
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_display_name"
+        android:dependency="license_switch"
+        android:inputType="textCapWords"
+        android:key="license_text"
+        android:maxLines="1"
+        android:password="true"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Get your license key at https://roboticafacil.es"
+        android:title="@string/pref_title_display_name" />
+
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+
+
+</PreferenceScreen>

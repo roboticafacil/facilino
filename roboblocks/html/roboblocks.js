@@ -5988,7 +5988,7 @@
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_CHAR'),'char']
                 ]), "CAST");
-                this.setInputsInline(true);
+                //this.setInputsInline(true);
                 this.setOutput(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_SUBSTRING_TOOLTIP'));
             }

@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
+<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
+<!--<script src='../../lang/en.js'></script>-->
+<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
+<!--<script src='../../blocks.js'></script>-->
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+		async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Musical note (melody)</h3>
+<h4>Instructions</h4>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('dyor_piezo_music_silencio_redonda','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('dyor_piezo_music_do_redonda','blocklyInstruction2');</script>
+<div id='blocklyInstruction3'></div>
+<script>injectInstruction('dyor_piezo_music_re_redonda','blocklyInstruction3');</script>
+<div id='blocklyInstruction4'></div>
+<script>injectInstruction('dyor_piezo_music_mi_redonda','blocklyInstruction4');</script>
+<div id='blocklyInstruction5'></div>
+<script>injectInstruction('dyor_piezo_music_fa_redonda','blocklyInstruction5');</script>
+<div id='blocklyInstruction6'></div>
+<script>injectInstruction('dyor_piezo_music_sol_redonda','blocklyInstruction6');</script>
+<div id='blocklyInstruction7'></div>
+<script>injectInstruction('dyor_piezo_music_la_redonda','blocklyInstruction7');</script>
+<div id='blocklyInstruction8'></div>
+<script>injectInstruction('dyor_piezo_music_si_redonda','blocklyInstruction8');</script>
+<div id='blocklyInstruction9'></div>
+<script>injectInstruction('dyor_piezo_music_silencio_blanca','blocklyInstruction9');</script>
+<div id='blocklyInstruction10'></div>
+<script>injectInstruction('dyor_piezo_music_do_blanca','blocklyInstruction10');</script>
+<div id='blocklyInstruction11'></div>
+<script>injectInstruction('dyor_piezo_music_re_blanca','blocklyInstruction11');</script>
+<div id='blocklyInstruction12'></div>
+<script>injectInstruction('dyor_piezo_music_mi_blanca','blocklyInstruction12');</script>
+<div id='blocklyInstruction13'></div>
+<script>injectInstruction('dyor_piezo_music_fa_blanca','blocklyInstruction13');</script>
+<div id='blocklyInstruction14'></div>
+<script>injectInstruction('dyor_piezo_music_sol_blanca','blocklyInstruction14');</script>
+<div id='blocklyInstruction15'></div>
+<script>injectInstruction('dyor_piezo_music_la_blanca','blocklyInstruction15');</script>
+<div id='blocklyInstruction16'></div>
+<script>injectInstruction('dyor_piezo_music_si_blanca','blocklyInstruction16');</script>
+<div id='blocklyInstruction17'></div>
+<script>injectInstruction('dyor_piezo_music_silencio_negra','blocklyInstruction17');</script>
+<div id='blocklyInstruction18'></div>
+<script>injectInstruction('dyor_piezo_music_do_negra','blocklyInstruction18');</script>
+<div id='blocklyInstruction19'></div>
+<script>injectInstruction('dyor_piezo_music_re_negra','blocklyInstruction19');</script>
+<div id='blocklyInstruction20'></div>
+<script>injectInstruction('dyor_piezo_music_mi_negra','blocklyInstruction20');</script>
+<div id='blocklyInstruction21'></div>
+<script>injectInstruction('dyor_piezo_music_fa_negra','blocklyInstruction21');</script>
+<div id='blocklyInstruction22'></div>
+<script>injectInstruction('dyor_piezo_music_sol_negra','blocklyInstruction22');</script>
+<div id='blocklyInstruction23'></div>
+<script>injectInstruction('dyor_piezo_music_la_negra','blocklyInstruction23');</script>
+<div id='blocklyInstruction24'></div>
+<script>injectInstruction('dyor_piezo_music_si_negra','blocklyInstruction24');</script>
+<div id='blocklyInstruction25'></div>
+<script>injectInstruction('dyor_piezo_music_silencio_corchea','blocklyInstruction25');</script>
+<div id='blocklyInstruction26'></div>
+<script>injectInstruction('dyor_piezo_music_do_corchea','blocklyInstruction26');</script>
+<div id='blocklyInstruction27'></div>
+<script>injectInstruction('dyor_piezo_music_re_corchea','blocklyInstruction27');</script>
+<div id='blocklyInstruction28'></div>
+<script>injectInstruction('dyor_piezo_music_mi_corchea','blocklyInstruction28');</script>
+<div id='blocklyInstruction29'></div>
+<script>injectInstruction('dyor_piezo_music_fa_corchea','blocklyInstruction29');</script>
+<div id='blocklyInstruction30'></div>
+<script>injectInstruction('dyor_piezo_music_sol_corchea','blocklyInstruction30');</script>
+<div id='blocklyInstruction31'></div>
+<script>injectInstruction('dyor_piezo_music_la_corchea','blocklyInstruction31');</script>
+<div id='blocklyInstruction32'></div>
+<script>injectInstruction('dyor_piezo_music_si_corchea','blocklyInstruction32');</script>
+<div id='blocklyInstruction33'></div>
+<script>injectInstruction('dyor_piezo_music_silencio_semicorchea','blocklyInstruction33');</script>
+<div id='blocklyInstruction34'></div>
+<script>injectInstruction('dyor_piezo_music_do_semicorchea','blocklyInstruction34');</script>
+<div id='blocklyInstruction35'></div>
+<script>injectInstruction('dyor_piezo_music_re_semicorchea','blocklyInstruction35');</script>
+<div id='blocklyInstruction36'></div>
+<script>injectInstruction('dyor_piezo_music_mi_semicorchea','blocklyInstruction36');</script>
+<div id='blocklyInstruction37'></div>
+<script>injectInstruction('dyor_piezo_music_fa_semicorchea','blocklyInstruction37');</script>
+<div id='blocklyInstruction38'></div>
+<script>injectInstruction('dyor_piezo_music_sol_semicorchea','blocklyInstruction38');</script>
+<div id='blocklyInstruction39'></div>
+<script>injectInstruction('dyor_piezo_music_la_semicorchea','blocklyInstruction39');</script>
+<div id='blocklyInstruction40'></div>
+<script>injectInstruction('dyor_piezo_music_si_semicorchea','blocklyInstruction40');</script>
+<div id='blocklyInstruction41'></div>
+<script>injectInstruction('dyor_piezo_music_end','blocklyInstruction41');</script>
+<h4>Description</h4>
+<p>Returns a musical note to generate a melody.</p>
+<h4>Requirements</h4>
+Facilino's License.
+<h4>Input</h4>
+<ul>
+  <li>Melody: Melody of notes.</li>
+</ul>
+<h4>Output</h4>
+Set of notes with frequencies and duration.
+<h4>Example</h4>
+This example shows how to generate musical melodies with a score.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction('doc/examples/dyor_piezo_buzzer_melody_example1.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/buzzer_example_bb.png" title="buzzer_example_bb" alt="buzzer_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example'></div>
+<script>injectExample('dyor_piezo_buzzer_melody_example1.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onclick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image></p>
+</body>
+</html>

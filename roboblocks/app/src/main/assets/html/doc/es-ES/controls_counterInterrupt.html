@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Contador en interrupción</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('controls_counterInterrupt','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>Cuenta el número de veces que una señal dispara una interrupción. Si la interrupción ha sido activada desde la última vez, entonces ejecuta el código dentro de la instrucción. Las interrupciones soportan el modo "estado bajo", "cambio", "flanco de subida" o "flanco de bajada". Esta instrucción se debe incluir en el código principal, mientras que el código de la propia interrupción viene dado y simplemente incrementa un contador. No usar en combinación de la siguiente instrucción para el mismo número de interrupción:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('attachInterrupt','blocklyInstruction1');</script>
+<p>No obstante, puede ser usada en combinación de la siguiente instrucción, ya que ambas implementan el mismo código para la interrupción:</p>
+<div id='blocklyInstruction2'></div><script>injectInstruction('controls_numberOfInterrupts','blocklyInstruction2');</script>
+<h4>Requisitos</h4>
+Licencia de Facilino
+<h4>Desplegables</h4>
+<ul>
+   <li>Pin: Pin a utilizar para la interrupción.</li>
+   <li>Modo: Modo de la interrupción, "estado bajo", "cambio", "flanco de subida" o "flanco de bajada".</li>
+</ul>
+<h5>Instrucciones aplilables</h5>
+<ul>
+  <li>Hacer: Conjunto de instrucciones a realizar dentro de la interrupción en el caso que se active.</li>
+</ul>
+<h4>Ejemplo</h4>
+En este ejemplo la corriente de un motor se corta si se detecta que un intruso ha invadido un área de seguridad (representado por el pulsador). Al tratarse de un aspecto de seguridad, el código ha sido incluido dentro de una interrupción. Al mismo tiempo, cada minuto se muestra por consola el número total de interrupciones.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_31_in_1_relay_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/relay_example_bb.png" title="relay_example_bb" alt="relay_example_bb"></image>
+<h5>Código Facilino</h5>
+<div id='example'></div><script>injectExample('dyor_31_in_1_relay_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+</body>
+</html>

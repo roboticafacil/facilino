@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/setting"
+        android:icon="@drawable/ic_settings_applications_orange_24dp"
+        android:title="@string/title_activity_settings" />
+    <item android:id="@+id/about"
+        android:icon="@drawable/ic_help_orange_24dp"
+        android:title="@string/title_activity_about" />
+</menu>

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Rep comandament (bluetooth)</h3>
+<h4>Instrucció</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('dyor_bluetooth_app','blocklyInstruction');</script>
+<h4>Descripció</h4>
+<p>Rep ordres per bluetooth d'una aplicació externa. Executa un conjunt d'instruccions en funció del comandament rebut. Disposa d'una opció per repetir una ordre, vol dir que una vegada enviat, aquest es recorda internament fins que es rep el comandament '0' (cancel·lar repetició).</p>
+<h4>Requisits</h4>
+<p>Llicència de Facilino</p>
+<p>Utilitza juntament amb la instrucció:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('dyor_bluetooth_def','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('dyor_bluetooth_command','blocklyInstruction2');</script>
+<h5>versions anteriors</h5>
+En versions anteriors de Facilino, aquesta instrucció disposava dels pins TX i RX configurables. Aquesta opció s'ha eliminat per simplificar és aspecte de la instrucció. Assegura't que fas servir la instrucció de definició del mòdul bluetooth per al correcte funcionament.
+<h4>Mutador</h4>
+Afegeix les ordres a descodificar al contenidor:
+<h5>Contenidor</h5>
+<div id='blocklyInstruction3'></div><script>injectInstruction('dyor_bluetooth_app_app','blocklyInstruction3');</script>
+<h5>Elements</h5>
+<div id='blocklyInstruction4'></div><script>injectInstruction('dyor_bluetooth_app_item','blocklyInstruction4');</script>
+<h4>Entrades</h4>
+<ul>
+   <li>Comandament: Nombre del comando a executar.</li>
+   <li>Repeteix: Si està marcat, recorda el comando per repetir les instruccions fins que s'envia el comandament 0.</li>
+</ul>
+<h4>Instruccions apilables</h4>
+<ul>
+  <li>Fer: Conjunt d'instruccions a executar en cas de rebre el comandament.</li>
+</ul>
+<h4>Exemple 1</h4>
+En aquest exemple es rep un conjunt d'ordres pel mòdul bluetooth. Aquestes ordres estan predefinits, per al seu ús amb el robot Dyor i d'implementar instruccions específiques, com és el cas del control de la matriu de LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_bluetooth_app_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_led_matrix_example_bb.png" title="bluetooth_led_matrix_example_bb" alt="bluetooth_led_matrix_example_bb"></image>
+<h5>Codi Facilino</h5>
+<div id='example'></div><script>injectExample('dyor_bluetooth_app_example.bly','example');</script>
+<h4>Exemple 2</h4>
+En aquest exemple es llegeixen caràcters ASCII per bluetooth. Si l'usuari envia un '0' (30 en ASCII), s'encenen dos LEDs connectats als pins 5 i 6. Si l'usuari envia un '1' (31 en ASCII), s'encén el LED connectat al pin 6, mentre que si s'envia un '2' (32 en ASCII), s'encén el LED connectat al pin 5. El commandament '3' (33 en ASCII) desactivarà els LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/dyor_bluetooth_app_example2.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/bluetooth_leds_example_bb.png" title="bluetooth_leds_example_bb" alt="bluetooth_leds_example_bb"></image>
+<h5>Codi Facilino</h5>
+<div id='example1'></div><script>injectExample('dyor_bluetooth_app_example2.bly','example1');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image></p>
+</body>
+</html>
