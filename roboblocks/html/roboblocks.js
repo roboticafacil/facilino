@@ -3372,9 +3372,25 @@
             code += a['code'];
             argument1 = a['pin'];
 
-            var up = parseFloat(argument0) <= parseFloat(argument1);
-            code += 'for (' + variable0 + ' = ' + argument0 + '; ' + variable0 + (up ? ' <= ' : ' >= ') + argument1 + '; ' + variable0 + (up ? '++' : '--') + ') {\n' + branch + '}\n';
-            return code;
+			var from_input=this.getInputTargetBlock('FROM');
+			var to_input=this.getInputTargetBlock('TO');
+			if (from_input&&to_input)
+			{
+				var from_type=this.getInputTargetBlock('FROM').type;
+				var to_type=this.getInputTargetBlock('TO').type;
+				//console.log(from_type);
+				//console.log(to_type);
+				if ((from_type=='variables_get')&&(to_type=='math_number'))
+					var up = false;  //We assume that the from input is bigger than the to input
+				else if ((from_type=='math_number')&&(to_type=='variables_get'))
+					var up = true;  //We assume that the from input is smaller than the from input
+				else if ((from_type=='math_number')&&(to_type=='math_number'))
+					var up = parseFloat(argument0) <= parseFloat(argument1);
+				else
+					var up = parseFloat(argument0) <= parseFloat(argument1);
+				code += 'for (' + variable0 + ' = ' + argument0 + '; ' + variable0 + (up ? ' <= ' : ' >= ') + argument1 + '; ' + variable0 + (up ? '++' : '--') + ') {\n' + branch + '}\n';
+            }
+			return code;
         };
         Blockly.Blocks.controls_for = {
             // For loop.
@@ -3425,7 +3441,7 @@
                 return false;
             },
             onchange: function() {
-                try {
+                /*try {
                     if (this.isVariable(Blockly.Arduino.valueToCode(this, 'FROM', Blockly.Arduino.ORDER_ATOMIC))) {
                         this.setWarningText('FROM input is not a variable');
                     } else if (this.isVariable(Blockly.Arduino.valueToCode(this, 'TO', Blockly.Arduino.ORDER_ATOMIC))) {
@@ -3433,7 +3449,24 @@
                     } else {
                         this.setWarningText(null);
                     }
-                } catch (e) {}
+                } catch (e) {}*/
+				var from_input=this.getInputTargetBlock('FROM');
+				var to_input=this.getInputTargetBlock('TO');
+				if (from_input&&to_input)
+				{
+					var from_type=from_input.type;
+					var to_type=to_input.type;
+					if ((from_type=='variables_get')&&(to_type=='math_number'))
+						this.setWarningText(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_LOOP_WARNING1'));
+					else if ((from_type=='math_number')&&(to_type=='variables_get'))
+						this.setWarningText(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_LOOP_WARNING2'));
+					else if ((from_type=='math_number')&&(to_type=='math_number'))
+						this.setWarningText(null);
+					else
+						this.setWarningText(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_LOOP_WARNING3'));
+				}
+				else
+					this.setWarningText(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_LOOP_WARNING4'));
             },
             renameVar: function(oldName, newName) {
                 if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
@@ -6128,7 +6161,7 @@
                     // Block has been deleted.
                     return;
                 }
-				this.last_variable=this.getFieldValue('VAR');
+				this.last_field_value=this.getFieldValue('VAR');
                 if (!this.last_variables){
                     this.last_variables=Blockly.Variables.allVariables();
                 }
@@ -6136,7 +6169,10 @@
                 for (var i in variables){
                      if (Blockly.Variables.allVariables()[i]!==this.last_variables[i]){
 						 this.getInput('VALUE').removeField('VAR');
-						 this.getInput('VALUE').insertFieldAt(1,new Blockly.FieldDropdown(this.getVariables()),'VAR');
+						 this.new_field=new Blockly.FieldDropdown(this.getVariables());
+						 this.new_field.setValue(this.last_field_value);
+						 this.getInput('VALUE').insertFieldAt(1,this.new_field,'VAR');
+						 //this.getInput('VALUE').insertFieldAt(1,this.last_field,'VAR');
                          this.last_variables=Blockly.Variables.allVariables();
                      }
                  }

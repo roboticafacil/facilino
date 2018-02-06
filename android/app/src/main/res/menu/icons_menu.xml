@@ -1,0 +1,51 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- "Mark Favorite", should appear as action button if possible -->
+    <item
+        android:id="@+id/action_new"
+        android:icon="@drawable/ic_insert_drive_file_white_24dp"
+        android:title="@string/action_new"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_download"
+        android:icon="@drawable/ic_download_white_24dp"
+        android:title="@string/action_download"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_upload"
+        android:icon="@drawable/ic_publish_white_24dp"
+        android:title="@string/action_upload"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_arduino"
+        android:icon="@drawable/ic_action_arduino"
+        android:title="@string/action_arduino"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_undo"
+        android:icon="@drawable/ic_undo_white_24dp"
+        android:title="@string/action_undo"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_redo"
+        android:icon="@drawable/ic_redo_white_24dp"
+        android:title="@string/action_redo"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_myblocks"
+        android:icon="@drawable/ic_widgets_white_24dp"
+        android:title="@string/action_myblocks"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_translate"
+        android:icon="@drawable/ic_g_translate_white_24dp"
+        android:title="@string/action_translate"
+        app:showAsAction="ifRoom"/>
+</menu>
