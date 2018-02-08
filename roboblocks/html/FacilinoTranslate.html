@@ -42,7 +42,7 @@ padding-left:30px;
 <script src="javascript/blockly-bq/blockly_compressed.js"></script>
 <script src="javascript/blockly-bq/blocks_compressed.js"></script>
 <script src="javascript/blockly-bq/arduino_compressed.js"></script>
-<script src="facilino.js"></script>
+<script src="facilino_not_obfuscated.js"></script>
 <script src="roboblocks_compressed.js"></script>
 <style>.button_wrapper {
   text-align: center;
@@ -160,13 +160,6 @@ function reinjectToolbox(blockDiv,key) {
 		<option value="ru-RU" class="text-black dropdown-item display-6" style="background-image:url(img/flags/russia.png)">&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</option>
 		<option value="nb-NO" class="text-black dropdown-item display-6" style="background-image:url(img/flags/norway.png)">Norsk</option>
 		</select>
-		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Hardware settings" onclick="showHideProcessor()"><span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
-			<select id="processor" class="text-black dropdown-toggle display-6 icon-menu" onchange="processorChange(this.value)" style="display: none">
-		<option value="ArduinoNano" class="text-black dropdown-item display-6">Arduino Nano</option>
-		<option value="ArduinoUno" class="text-black dropdown-item display-6">Arduino Uno</option>
-		<option value="NodeMCU" class="text-black dropdown-item display-6">NodeMCU</option>
-		<option value="ESP32" class="text-black dropdown-item display-6">R32 (ESP32)</option>
-		</select>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_submit" class="btn btn-sm btn-primary-outline display-4" title="Download" onclick="submitData()"><span class="mbri-save mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_refresh" class="btn btn-sm btn-primary-outline display-4" title="Restore" onclick="restoreData()"><span class="mbri-refresh mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Return to Facilino" onclick="window.location='./Facilino.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
@@ -178,14 +171,16 @@ function reinjectToolbox(blockDiv,key) {
 <script>
 if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
 			localStorage.setItem('language', 'en-GB');
-if (localStorage.getItem("processor")===undefined || localStorage.getItem("processor")===null)
-	localStorage.setItem('processor', 'ArduinoNano');
+//if (localStorage.getItem("processor")===undefined || localStorage.getItem("processor")===null)
+//	localStorage.setItem('processor', 'ArduinoNano');
 window.roboblocksLanguage = localStorage.getItem("language");
-window.roboblocksProcessor = localStorage.getItem("processor");
+//window.roboblocksProcessor = localStorage.getItem("processor");
+window.roboblocksProcessor = null;
 window.FacilinoLanguage = window.roboblocksLanguage; 
-window.FacilinoProcessor = window.roboblocksProcessor;
+//window.FacilinoProcessor = window.roboblocksProcessor;
+window.FacilinoProcessor = null;
 $("#language").val(window.roboblocksLanguage);
-$("#processor").val(window.roboblocksProcessor);
+//$("#processor").val(window.roboblocksProcessor);
 window.dataLang = {};
 window.cat_keys = {};
 window.subcat_keys = {};

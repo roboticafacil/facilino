@@ -6,14 +6,17 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.DialogFragment;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.Window;
+import android.webkit.ConsoleMessage;
 import android.webkit.JsPromptResult;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -24,8 +27,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window w = getWindow();
+        w.setTitle(context.getString(R.string.app_name));
         setContentView(R.layout.activity_main);
         myWebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = myWebView.getSettings();
@@ -50,11 +58,17 @@ public class MainActivity extends AppCompatActivity {
 
             public void onProgressChanged(WebView view, int progress)
             {
-                activity.setTitle(context.getString(R.string.loading)+"..."+progress+"%");
+                activity.setTitle(context.getString(R.string.app_name)+" "+context.getString(R.string.loading)+"..."+progress+"%");
                 activity.setProgress(progress * 100);
 
                 if(progress == 100)
-                    activity.setTitle(R.string.app_name);
+                    activity.setTitle(context.getString(R.string.app_name));
+            }
+            public boolean onConsoleMessage(ConsoleMessage cm) {
+                Log.d("Facilino", cm.message() + " -- From line "
+                        + cm.lineNumber() + " of "
+                        + cm.sourceId() );
+                return true;
             }
             @Override
             public boolean onJsPrompt(WebView view, String origin, String message, String defaultValue, final JsPromptResult result)
@@ -95,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myWebView.loadUrl("file:///android_asset/html/index.html");
+        myWebView.loadUrl("file:///android_asset/html/index.html?zoom=1");
     }
 
     @Override
@@ -126,15 +140,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_redo:
                 return true;
-            case R.id.action_myblocks:
-                return true;
-            case R.id.action_translate:
-                return true;
+            //case R.id.action_myblocks:
+            //    return true;
+            //case R.id.action_translate:
+            //    return true;
             case R.id.setting:
                 showSettings();
                 return true;
+            case R.id.shop:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://roboticafacil.es/"));
+                startActivity(browserIntent);
             case R.id.about:
-                //showAbout();
+                /*setContentView(aboutPage);*/
+                showAbout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -149,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setPositiveButton(R.string.new_yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
                 myWebView.evaluateJavascript("resetWorkspace();",null);
+                activity.setTitle(context.getString(R.string.app_name));
                 //myWebView.loadUrl("javascript: resetWorkspace();");
             }
         });
@@ -196,12 +215,12 @@ public class MainActivity extends AppCompatActivity {
                             public void onReceiveValue(String s) {
                                 String str = escapeXML(s);
                                 File f = new File(_chosenDir);
-                                //Toast.makeText(context, getString(R.string.toast_file_selected, f.getName()), Toast.LENGTH_LONG).show();
                                 FileOutputStream outputStream;
                                 try {
                                     outputStream = new FileOutputStream(f,false);
                                     outputStream.write(str.getBytes());
                                     outputStream.close();
+                                    activity.setTitle(context.getString(R.string.app_name) + " " + f.getName());
                                     Toast.makeText(context,context.getString(R.string.toast_file_saved)+" " + f.getName(), Toast.LENGTH_LONG).show();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -223,8 +242,36 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onChosenDir(String chosenDir)
                     {
+                        final String _chosenDir= chosenDir;
+                        File f = new File(_chosenDir);
+                        StringBuilder text = new StringBuilder();
+                        try {
+                            BufferedReader br = new BufferedReader(new FileReader(f));
+                            String line;
+                            while ((line = br.readLine()) != null) {
+                                text.append(line);
+                            }
+                            br.close();
+                        }
+                        catch (IOException e) {
+                            //You'll need to add proper error handling here
+                        }
+                        //Toast.makeText(context,text.toString(),Toast.LENGTH_LONG).show();
                         // The code in this function will be executed when the dialog OK button is pushed
-                        Toast.makeText(MainActivity.this, "Chosen FileOpenDialog File: "+ chosenDir, Toast.LENGTH_LONG).show();
+                        myWebView.evaluateJavascript("openXml('" + escapeCharacters(text.toString()) + "');", new ValueCallback<String>() {
+                            @Override
+                            public void onReceiveValue(String s) {
+                                if (s.equals("true")) {
+                                    File f = new File(_chosenDir);
+                                    activity.setTitle(context.getString(R.string.app_name) + " " + f.getName());
+                                    Toast.makeText(context, context.getString(R.string.open_success), Toast.LENGTH_LONG).show();
+                                }
+                                else {
+                                    activity.setTitle(context.getString(R.string.app_name));
+                                    Toast.makeText(context, context.getString(R.string.open_failed), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
                     }
                 });
 
@@ -237,24 +284,40 @@ public class MainActivity extends AppCompatActivity {
     {
         String newline = System.getProperty("line.separator");
         char[] charArray = s.toCharArray();
-        char previous=' ';
         StringBuilder str = new StringBuilder().append("");
         for (int i=1;i<charArray.length-1;i++)
         {
-            if (charArray[i]=='n'&&previous=='\\') {
-                previous='\n';
+            if (charArray[i]=='\\'&&charArray[i+1]=='n') {
                 str.append(newline);
+                i=i+1;
                 continue;
             }
-            if (charArray[i]=='\\'&&charArray[i+1]=='n') {
-                previous=charArray[i];
-                continue;
+            if (i<charArray.length-5)
+            {
+                if (charArray[i]=='\\'&&charArray[i+1]=='u'&&charArray[i+2]=='0'&&charArray[i+3]=='0'&&charArray[i+4]=='3'&&charArray[i+5]=='C')
+                {
+                    str.append('<');
+                    i=i+5;
+                    continue;
+                }
+                if (charArray[i]=='\\'&&charArray[i+1]=='u'&&charArray[i+2]=='0'&&charArray[i+3]=='0'&&charArray[i+4]=='3'&&charArray[i+5]=='E')
+                {
+                    str.append('>');
+                    i=i+5;
+                    continue;
+                }
             }
             str=str.append(charArray[i]);
-            previous=charArray[i];
         }
         String output =str.toString();
         return output;
+    }
+
+    private String escapeCharacters(String string)
+    {
+        string=string.replaceAll("\\/g","\\");
+        string=string.replaceAll("\"/g","\\\"");
+        return string;
     }
 
     private String escapeXML(String s)
@@ -293,4 +356,15 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(context, SettingsActivity.class);
         startActivity(myIntent);
     };
+
+    private void showAbout(){
+        Intent myIntent = new Intent(context, AboutActivity.class);
+        startActivity(myIntent);
+    }
+
+    private boolean isTablet(Context context) {
+        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
+        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
+        return (xlarge || large);
+    }
 }

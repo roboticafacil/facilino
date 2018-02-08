@@ -1,0 +1,20 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:fragment="es.roboticafacil.facilino.AboutActivity$GeneralAboutFragment"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/about_title_general" />
+
+    <header
+        android:fragment="es.roboticafacil.facilino.AboutActivity$AcknowledgementsAboutFragment"
+        android:icon="@drawable/ic_group_black_24dp"
+        android:title="@string/about_title_acknowledgements" />
+
+    <header
+        android:fragment="es.roboticafacil.facilino.AboutActivity$SocialAboutFragment"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="@string/about_title_social" />
+
+</preference-headers>

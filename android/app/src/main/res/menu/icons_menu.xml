@@ -37,7 +37,7 @@
         android:title="@string/action_redo"
         app:showAsAction="always"/>
 
-    <item
+    <!-- <item
         android:id="@+id/action_myblocks"
         android:icon="@drawable/ic_widgets_white_24dp"
         android:title="@string/action_myblocks"
@@ -47,5 +47,5 @@
         android:id="@+id/action_translate"
         android:icon="@drawable/ic_g_translate_white_24dp"
         android:title="@string/action_translate"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"/>-->
 </menu>

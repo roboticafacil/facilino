@@ -162,6 +162,36 @@
 				var str = (new XMLSerializer()).serializeToString(el);
 				return str;
 			}
+			
+			function openXml(xmlData)
+			{
+				try{
+					Blockly.mainWorkspace.clear();
+					var xml = Blockly.Xml.textToDom(xmlData);
+					Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),xml);	
+					return true;
+				}
+				catch (e)
+				{
+					return false;
+				}
+			}
+			
+			function StringToXMLDom(string){
+				var xmlDoc=null;
+				if (window.DOMParser)
+				{
+					parser=new DOMParser();
+					xmlDoc=parser.parseFromString(string,"text/xml");
+				}
+				else // Internet Explorer
+				{
+					xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+					xmlDoc.async="false";
+					xmlDoc.loadXML(string);
+				}
+	return xmlDoc;
+}
 		
 			function copyCode()
 			{

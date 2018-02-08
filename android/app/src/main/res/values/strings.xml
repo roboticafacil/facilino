@@ -2,6 +2,9 @@
     <string name="app_name">Facilino</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_about">About</string>
+
+    <string name="title_activity_shop">Buy license</string>
+    <string name="title_activity_about_description">A block programming tool for Arduino</string>
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
@@ -59,6 +62,11 @@
     <string name="pref_title_license_key">License Key</string>
     <string name="pref_title_license_default_value"></string>
 
+    <!-- About -->
+    <string name="about_title_social">Social</string>
+    <string name="about_title_general">General</string>
+    <string name="about_title_acknowledgements">Acknowledgements</string>
+
     <string name="action_new">New</string>
     <string name="action_download">Download</string>
     <string name="action_upload">Upload</string>
@@ -67,19 +75,21 @@
     <string name="action_redo">Redo</string>
     <string name="action_myblocks">MyBlocks</string>
     <string name="action_translate">Translate</string>
+    <string name="action_back">Back</string>
 
     <!-- Strings for new programm -->
-    <string name="new_title">Start a new program...</string>
+    <string name="new_title">Start a new program&#8230;</string>
     <string name="new_are_you_sure">Are you sure?</string>
     <string name="new_yes">Yes</string>
     <string name="new_no">No</string>
+    <string name="open_failed">Fail to open</string>
+    <string name="open_success">File successfully opened</string>
 
     <string name="toast_file_saved">File saved:</string>
 
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
 
-    <string name="pref_title_sync_frequency">Sync frequency</string>
     <string-array name="pref_sync_frequency_titles">
         <item>15 minutes</item>
         <item>30 minutes</item>
@@ -126,4 +136,25 @@
     <!-- Javascript and webview result -->
     <string name="loading">Loading</string>
     <string name="prompt_title">Introduce new value:</string>
+    <string name="title_activity_about2">About2Activity</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
 </resources>

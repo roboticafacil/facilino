@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:key="about_static_field_general_key1"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Website"
+        android:summary="https://roboticafacil.es/"/>
+    <Preference
+        android:key="about_static_field_general_key2"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Support"
+        android:summary="soporte@roboticafacil.es"/>
+    <Preference
+        android:key="about_static_field_general_key3"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Facilino is a registered TM by Ana Esther Ráez San Eusebio (Robótica Fácil). TM: M3660247 (OEMP)"
+        android:title="Trade Mark" />
+    <Preference
+        android:key="about_static_field_general_key4"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Created by"
+        android:summary="Leopoldo Armesto"/>
+    <Preference
+        android:key="about_static_field_general_key5"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Open Source"
+        android:summary="https://github.com/roboticafacil/facilino. Facilino is based on the following open source projects: Google Blockly (MIT license), Roboblocks, bq (LGPL license)"/>
+
+</PreferenceScreen>

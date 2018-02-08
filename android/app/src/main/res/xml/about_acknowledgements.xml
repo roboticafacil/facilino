@@ -1,0 +1,24 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <Preference
+        android:key="about_static_field_acknowledgments_key1"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Florentino Fernández Cueto, Lukas Bachschwell"
+        android:title="Bug Fixing" />
+    <Preference
+        android:key="about_static_field_acknowledgments_key2"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Tonny Scheuring"
+        android:title="French" />
+    <Preference
+        android:key="about_static_field_acknowledgments_key3"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Emanuela Del Dottore"
+        android:title="Italian" />
+
+</PreferenceScreen>
