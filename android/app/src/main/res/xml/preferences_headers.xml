@@ -4,17 +4,12 @@
 
     <header
         android:fragment="es.roboticafacil.facilino.SettingsActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
+        android:icon="@drawable/ic_settings_applications_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="es.roboticafacil.facilino.SettingsActivity$NotificationPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/pref_header_notifications" />
-
-    <header
-        android:fragment="es.roboticafacil.facilino.SettingsActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
-        android:title="@string/pref_header_data_sync" />
+        android:fragment="es.roboticafacil.facilino.SettingsActivity$CodeDocPreferenceFragment"
+        android:icon="@drawable/ic_settings_applications_black_24dp"
+        android:title="@string/pref_code_doc_title" />
 
 </preference-headers>

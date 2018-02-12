@@ -6,8 +6,13 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,12 +38,32 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     WebView myWebView;
     final Activity activity = this;
     final Context context = this;
     String filename = "filename.bly";
+    SharedPreferences sharedPref;
+    String lang_value;
+    String processor_value;
+    String license_value="";
+    boolean license_switch;
+    boolean license_active=false;
+    boolean code_shown=true;
+    boolean doc_shown=true;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = sharedPref.edit();
+        preferencesEditor.putString("language_list", lang_value);
+        preferencesEditor.putString("processor_list", processor_value);
+        preferencesEditor.putBoolean("license_switch", license_switch);
+        preferencesEditor.putString("license_text", license_value);
+        //preferencesEditor.putBoolean("code_switch", code_shown);
+        //preferencesEditor.putBoolean("doc_switch", doc_shown);
+        preferencesEditor.apply();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +77,29 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         webSettings.setDomStorageEnabled(true);
+        //webSettings.setSupportZoom(true);
+        //webSettings.setBuiltInZoomControls(true);
+        //webSettings.setDisplayZoomControls(true);
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPref.registerOnSharedPreferenceChangeListener(this);
+        lang_value = sharedPref.getString("language_list","");
+        processor_value = sharedPref.getString("processor_list","");
+        license_switch =sharedPref.getBoolean("license_switch",false);
+        if (license_switch) {
+            if (!license_value.equals(sharedPref.getString("license_text", ""))) {
+                license_value = sharedPref.getString("license_text", "");
+                checkLicense();
+            }
+        }
+        else{
+            Toast.makeText(context,R.string.demo_version,Toast.LENGTH_LONG).show();
+            license_value="";
+        }
+        SharedPreferences.Editor preferencesEditor = sharedPref.edit();
+        preferencesEditor.putBoolean("code_switch", code_shown);
+        preferencesEditor.putBoolean("doc_switch", doc_shown);
+        preferencesEditor.apply();
 
         myWebView.setWebChromeClient(new WebChromeClient() {
 
@@ -61,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 activity.setTitle(context.getString(R.string.app_name)+" "+context.getString(R.string.loading)+"..."+progress+"%");
                 activity.setProgress(progress * 100);
 
-                if(progress == 100)
+                if(progress == 100) {
                     activity.setTitle(context.getString(R.string.app_name));
+                }
             }
             public boolean onConsoleMessage(ConsoleMessage cm) {
                 Log.d("Facilino", cm.message() + " -- From line "
@@ -107,9 +155,76 @@ public class MainActivity extends AppCompatActivity {
                 view.loadUrl(url);
                 return true;
             }
+            /*@Override
+            public void onPageFinished(WebView view, String url) {
+                String javascript="javascript:document.getElementsByName('viewport')[0].setAttribute('content', 'initial-scale=1.0,maximum-scale=10.0');";
+                view.loadUrl(javascript);
+            }*/
         });
 
-        myWebView.loadUrl("file:///android_asset/html/index.html?zoom=1");
+        //myWebView.setInitialScale(95);
+        //myWebView.loadUrl("file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value);
+        myWebView.loadUrl("file:///android_asset/html/indexAndroid.html");
+        /*if (sharedPref.getBoolean("code_switch",false)&&!code_shown) {
+            myWebView.evaluateJavascript("toogleCode();", null);
+            code_shown=true;
+        }
+        else if (!sharedPref.getBoolean("code_switch",false)&&code_shown) {
+            myWebView.evaluateJavascript("toogleCode();", null);
+            //Toast.makeText(context,"Code generation has been hidden",Toast.LENGTH_LONG).show();
+            code_shown=false;
+        }
+        if (sharedPref.getBoolean("doc_switch",false)&&!doc_shown) {
+            myWebView.evaluateJavascript("toogleDoc();", null);
+            doc_shown=true;
+        }
+        else if (!sharedPref.getBoolean("doc_switch",false)&&doc_shown) {
+            myWebView.evaluateJavascript("toogleDoc();", null);
+            //Toast.makeText(context,"Documentation has been hidden",Toast.LENGTH_LONG).show();
+            doc_shown=false;
+        }*/
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        boolean reload = false;
+        if (!lang_value.equals(sharedPref.getString("language_list",""))) {
+            reload = true;
+            lang_value = sharedPref.getString("language_list","");
+        }
+        if (!processor_value.equals(sharedPref.getString("processor_list",""))) {
+            reload = true;
+            processor_value = sharedPref.getString("processor_list","");
+        }
+        //Toast.makeText(context,lang_value,Toast.LENGTH_LONG).show();
+        if (reload)
+            myWebView.loadUrl("file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value);
+        if (sharedPreferences.getBoolean("code_switch",false)&&!code_shown) {
+            myWebView.evaluateJavascript("toogleCode();", null);
+            code_shown=true;
+        }
+        else if (!sharedPreferences.getBoolean("code_switch",false)&&code_shown) {
+            myWebView.evaluateJavascript("toogleCode();", null);
+            code_shown=false;
+        }
+        if (sharedPreferences.getBoolean("doc_switch",false)&&!doc_shown) {
+            myWebView.evaluateJavascript("toogleDoc();", null);
+            doc_shown=true;
+        }
+        else if (!sharedPreferences.getBoolean("doc_switch",false)&&doc_shown) {
+            myWebView.evaluateJavascript("toogleDoc();", null);
+            doc_shown=false;
+        }
+        if (sharedPreferences.getBoolean("license_switch",false)) {
+            if (!license_value.equals(sharedPref.getString("license_text", ""))) {
+                license_value = sharedPref.getString("license_text", "");
+                checkLicense();
+            }
+        }
+        else {
+            Toast.makeText(context, R.string.demo_version, Toast.LENGTH_LONG).show();
+            license_value="";
+        }
     }
 
     @Override
@@ -133,6 +248,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_upload:
                 openXml();
                 return true;
+            case R.id.action_zoomin:
+                zoomIn();
+                return true;
+            case R.id.action_zoomout:
+                zoomOut();
+                return true;
             case R.id.action_arduino:
                 exportArduino();
                 return true;
@@ -151,7 +272,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://roboticafacil.es/"));
                 startActivity(browserIntent);
             case R.id.about:
-                /*setContentView(aboutPage);*/
                 showAbout();
                 return true;
             default:
@@ -178,6 +298,14 @@ public class MainActivity extends AppCompatActivity {
         });
         alertDialog.show();
     };
+
+    private void zoomIn() {
+        myWebView.evaluateJavascript("zoomIn();",null);
+    }
+
+    private void zoomOut(){
+        myWebView.evaluateJavascript("zoomOut();",null);
+    }
 
     private void exportArduino(){
         myWebView.evaluateJavascript("exportArduino();", new ValueCallback<String>() {
@@ -367,4 +495,39 @@ public class MainActivity extends AppCompatActivity {
         boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
         return (xlarge || large);
     }
+
+    private void checkLicense()
+    {
+        if (isOnline()) {
+            Toast.makeText(context, R.string.checking_license, Toast.LENGTH_LONG).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    myWebView.evaluateJavascript("checkLicense('" + license_value + "');", new ValueCallback<String>() {
+                        @Override
+                        public void onReceiveValue(String s) {
+                            if (s.equals("true")) {
+                                Toast.makeText(context, R.string.license_active, Toast.LENGTH_LONG).show();
+                                license_active=true;
+                            }
+                            else {
+                                Toast.makeText(context, R.string.license_not_active, Toast.LENGTH_LONG).show();
+                                license_active=false;
+                            }
+                        }
+                    });
+                }
+            }, 2000);
+
+        }
+        else
+            Toast.makeText(context, R.string.internet_connection, Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isOnline() {
+        ConnectivityManager cm =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
 }

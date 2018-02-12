@@ -12,6 +12,12 @@
         android:key="about_static_field_acknowledgments_key2"
         android:persistent="false"
         android:selectable="false"
+        android:summary="Miguel Carlos de Castro Miguel"
+        android:title="Galician" />
+    <Preference
+        android:key="about_static_field_acknowledgments_key2"
+        android:persistent="false"
+        android:selectable="false"
         android:summary="Tonny Scheuring"
         android:title="French" />
     <Preference

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="code_switch"
+        android:title="@string/pref_show_code"
+        android:summary="@string/pref_show_code_summary"/>
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="doc_switch"
+        android:title="@string/pref_show_doc"
+        android:summary="@string/pref_show_doc_summary"/>
+</PreferenceScreen>

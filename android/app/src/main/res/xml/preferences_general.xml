@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
-        android:defaultValue="0"
+        android:defaultValue="en-GB"
         android:entries="@array/pref_language_titles"
         android:entryValues="@array/pref_language_values"
         android:key="language_list"
@@ -11,7 +11,7 @@
         android:title="@string/pref_language" />
 
     <ListPreference
-        android:defaultValue="0"
+        android:defaultValue="ArduinoNano"
         android:entries="@array/pref_processor_titles"
         android:entryValues="@array/pref_processor_values"
         android:key="processor_list"
@@ -31,7 +31,7 @@
     <EditTextPreference
         android:defaultValue="@string/pref_title_license_default_value"
         android:dependency="license_switch"
-        android:inputType="textCapWords"
+        android:inputType="textPassword"
         android:key="license_text"
         android:maxLines="1"
         android:password="true"

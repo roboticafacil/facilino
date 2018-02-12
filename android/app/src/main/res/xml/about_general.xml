@@ -23,7 +23,7 @@
         android:key="about_static_field_general_key4"
         android:selectable="false"
         android:persistent="false"
-        android:title="Created by"
+        android:title="Developer"
         android:summary="Leopoldo Armesto"/>
     <Preference
         android:key="about_static_field_general_key5"

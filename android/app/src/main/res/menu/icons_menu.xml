@@ -20,6 +20,18 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@+id/action_zoomout"
+        android:icon="@drawable/ic_zoom_out"
+        android:title="@string/action_zoom_out"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_zoomin"
+        android:icon="@drawable/ic_zoom_in"
+        android:title="@string/action_zoom_in"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/action_arduino"
         android:icon="@drawable/ic_action_arduino"
         android:title="@string/action_arduino"

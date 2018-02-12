@@ -14,10 +14,10 @@
     <Preference
         android:key="about_static_field_social_key2"
         android:persistent="false"
-        android:selectable="false"
+        android:selectable="true"
         android:summary="roboticaUPV"
         android:title="Twitter" >
-        <!-- <intent android:action="android.settings.SYNC_SETTINGS" /> -->
+        <intent android:action="android.intent.action.VIEW" android:data="http://twitter.com/roboticaUPV"/>
     </Preference>
 
 </PreferenceScreen>
