@@ -16,18 +16,19 @@
     <string name="pref_language">Language</string>
     <string name="pref_language_description">Select your language</string>
     <string-array name="pref_language_titles">
-        <item>English</item>
-        <item>Spanish</item>
         <item>Català</item>
-        <item>Galego</item>
+        <item>Dansk</item>
+		<item>Deutsch</item>
+        <item>English</item>
+        <item>Español</item>
         <item>Euskera</item>
-        <item>Deutsch</item>
         <item>Français</item>
+        <item>Galego</item>
         <item>Italiano</item>
-        <item>Portuges</item>
-        <item>Polski</item>
-        <item>&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</item>
+        <item>Nederlands</item><item>Portuges</item>
         <item>Norsk</item>
+		<item>Polski</item>
+        <item>&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</item>
     </string-array>
     <string-array name="pref_language_values">
         <item>en-GB</item>
@@ -42,6 +43,8 @@
         <item>pl-PL</item>
         <item>ru-RU</item>
         <item>nb-NO</item>
+		<item>da-DK</item>
+		<item>nl-NL</item>
     </string-array>
 
     <string name="pref_processor">Processor</string>

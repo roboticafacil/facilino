@@ -49,6 +49,8 @@
 			}
 			catch(e){ window.roboblocksLanguage = 'en-GB'; window.roboblocksProcessor='ArduinoNano';};
 		}
+		if (localStorage.getItem("saved")===undefined || localStorage.getItem("saved")===null)
+			localStorage.setItem('saved', '');
 	    window.FacilinoLanguage = window.roboblocksLanguage;
 		window.FacilinoProcessor=window.roboblocksProcessor;		
 		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
@@ -84,6 +86,17 @@
 			ws.zoomCenter(-1);
 			*/
 			
+			if (localStorage.getItem("saved")!=='')
+			  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(localStorage.getItem("saved")),Blockly.getMainWorkspace())
+			
+			var History = {};
+			History.stack = [];
+			History.initialState ='';
+			History.position=0;
+			History.limit=200;
+			History.updating=false;
+			History.stack[0]=Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
+			
             // Create a default setup/loop block
             Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 			$('.blocklySvg, #blockly').height('100%');
@@ -98,6 +111,33 @@
 		$("pre").each(function (i, e) {
 		  hljs.highlightBlock(e);
 		});
+			//Save History
+			var current = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
+			if ((current !== History.stack[History.position])&&(current!==History.initialState))
+				History.updating=true;
+			//console.log(History.updating);
+			if (History.updating)
+			{
+				while (History.stack.length > History.limit) {
+					History.stack.shift();
+				}
+				History.position = Math.min(History.position,History.stack.length - 1);
+				History.stack = History.stack.slice(0, History.position + 1);
+				History.stack.push(current);
+				localStorage.setItem('saved',current);
+				History.position++;
+				/*if (History.position > 0)
+					$("#undo").show();
+				else
+					$("#undo").hide();
+				if (History.position<(History.stack.length-1))
+					$("#redo").show();
+				else
+					$("#redo").hide();*/
+				//console.log('Saving position '+History.position);
+				History.updating=false;
+				//console.log(History.updating);
+			}
 	    });
 			//});	
             
@@ -279,6 +319,43 @@
 				else
 					return false;
 			}
+			
+			function butUndo()
+		{
+			if (History.position>0){
+				var item =  History.stack[--History.position];
+				/*if (History.position > 0)
+					$("#undo").show();
+				else
+					$("#undo").hide();*/
+				/*if (History.position<(History.stack.length-1))
+					$("#redo").show();
+				else
+					$("#redo").hide();*/
+				Blockly.getMainWorkspace().clear();
+				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
+				//console.log('Undo: '+History.position);
+			}
+		}
+		
+		function butRedo()
+		{
+			if (History.position<(History.stack.length-1))
+			{
+				var item = History.stack[++History.position];
+				/*if (History.position > 0)
+					$("#undo").show();
+				else
+					$("#undo").hide();*/
+				/*if (History.position<(History.stack.length-1))
+					$("#redo").show();
+				else
+					$("#redo").hide();*/
+				Blockly.getMainWorkspace().clear();
+				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
+				//console.log('Redo: '+History.position);
+			}
+		}
 			
 		var dragging = false;
 		var dragging1 = false;

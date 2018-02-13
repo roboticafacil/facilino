@@ -258,8 +258,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 exportArduino();
                 return true;
             case R.id.action_undo:
+                undo();
                 return true;
             case R.id.action_redo:
+                redo();
                 return true;
             //case R.id.action_myblocks:
             //    return true;
@@ -304,6 +306,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private void zoomOut(){
+        myWebView.evaluateJavascript("zoomOut();",null);
+    }
+
+    private void undo(){
+        myWebView.evaluateJavascript("zoomOut();",null);
+    }
+
+    private void redo(){
         myWebView.evaluateJavascript("zoomOut();",null);
     }
 

@@ -77,18 +77,20 @@ padding-left:30px;
                         Edit</a><div class="dropdown-menu"><button id="undo" class="text-white dropdown-item display-4" onclick="butUndo()" aria-expanded="false">Undo</button><button id="redo" class="text-white dropdown-item display-4" onclick="butRedo()" aria-expanded="false">Redo</button></div></li></ul>
             <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Language settings" onclick="showHideLanguage()"><span class="mbri-flag mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			<select id="language" class="text-black dropdown-toggle display-6 icon-menu" onchange="langChange(this.value)" style="display: none">
+		<option value="ca-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/catalonia.png)">Catal&agrave;</option>
+		<option value="da-DK" class="text-black dropdown-item display-6" style="background-image:url(img/flags/denmark.png)">Dansk</option>
+		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
 		<option value="en-GB" class="text-black dropdown-item display-6" style="background-image:url(img/flags/united-kingdom.png)">English</option>
 		<option value="es-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol</option>
-		<option value="ca-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/catalonia.png)">Catal&agrave;</option>
-		<option value="gl-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/galician.png)">Galego</option>
 		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskera</option>
-		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
 		<option value="fr-FR" class="text-black dropdown-item display-6" style="background-image:url(img/flags/france.png)">Fran&ccedil;ais</option>
+		<option value="gl-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/galician.png)">Galego</option>
 		<option value="it-IT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/italy.png)">Italiano</option>
-		<option value="pt-PT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/portugal.png)">Portugues</option>
-		<option value="pl-PL" class="text-black dropdown-item display-6" style="background-image:url(img/flags/poland.png)">Polski</option>
-		<option value="ru-RU" class="text-black dropdown-item display-6" style="background-image:url(img/flags/russia.png)">&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</option>
+		<option value="nl-NL" class="text-black dropdown-item display-6" style="background-image:url(img/flags/netherlands.png)">Nederlands</option>
 		<option value="nb-NO" class="text-black dropdown-item display-6" style="background-image:url(img/flags/norway.png)">Norsk</option>
+		<option value="pl-PL" class="text-black dropdown-item display-6" style="background-image:url(img/flags/poland.png)">Polski</option>
+		<option value="pt-PT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/portugal.png)">Portugues</option>
+		<option value="ru-RU" class="text-black dropdown-item display-6" style="background-image:url(img/flags/russia.png)">&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</option>
 		</select>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Hardware settings" onclick="showHideProcessor()"><span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			<select id="processor" class="text-black dropdown-toggle display-6 icon-menu" onchange="processorChange(this.value)" style="display: none">
