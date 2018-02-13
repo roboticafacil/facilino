@@ -126,14 +126,8 @@
 				History.stack.push(current);
 				localStorage.setItem('saved',current);
 				History.position++;
-				/*if (History.position > 0)
-					$("#undo").show();
-				else
-					$("#undo").hide();
-				if (History.position<(History.stack.length-1))
-					$("#redo").show();
-				else
-					$("#redo").hide();*/
+				showHideUndo();
+				showHideRedo();
 				//console.log('Saving position '+History.position);
 				History.updating=false;
 				//console.log(History.updating);
@@ -324,17 +318,10 @@
 		{
 			if (History.position>0){
 				var item =  History.stack[--History.position];
-				/*if (History.position > 0)
-					$("#undo").show();
-				else
-					$("#undo").hide();*/
-				/*if (History.position<(History.stack.length-1))
-					$("#redo").show();
-				else
-					$("#redo").hide();*/
+				showHideUndo();
+				showHideRedo();
 				Blockly.getMainWorkspace().clear();
 				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
-				//console.log('Undo: '+History.position);
 			}
 		}
 		
@@ -343,18 +330,25 @@
 			if (History.position<(History.stack.length-1))
 			{
 				var item = History.stack[++History.position];
-				/*if (History.position > 0)
-					$("#undo").show();
-				else
-					$("#undo").hide();*/
-				/*if (History.position<(History.stack.length-1))
-					$("#redo").show();
-				else
-					$("#redo").hide();*/
+				showHideUndo();
+				showHideRedo();
 				Blockly.getMainWorkspace().clear();
 				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
-				//console.log('Redo: '+History.position);
 			}
+		}
+		
+		function showHideUndo() {
+			if (History.position > 0)
+					Android.showHideUndo(true);
+				else
+					Android.showHideUndo(false);
+		}
+		
+		function showHideRedo() {
+			if (History.position<(History.stack.length-1))
+					Android.showHideRedo(true);
+				else
+					Android.showHideRedo(false);
 		}
 			
 		var dragging = false;

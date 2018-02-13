@@ -22,6 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.webkit.ConsoleMessage;
+import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     boolean license_active=false;
     boolean code_shown=true;
     boolean doc_shown=true;
+    private Menu _menu = null;
 
     @Override
     protected void onPause() {
@@ -185,6 +187,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }*/
     }
 
+    @JavascriptInterface
+    public void showHideUndo(boolean state){
+        if (_menu!=null)
+            _menu.findItem(R.id.action_undo).setEnabled(state);
+    }
+
+    @JavascriptInterface
+    public void showHideRedo(boolean state){
+        if (_menu!=null)
+            _menu.findItem(R.id.action_redo).setEnabled(state);
+
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         boolean reload = false;
@@ -229,6 +244,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        _menu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.icons_menu, menu);
         inflater.inflate(R.menu.options_menu, menu);
@@ -310,11 +326,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private void undo(){
-        myWebView.evaluateJavascript("zoomOut();",null);
+        myWebView.evaluateJavascript("butUndo();",null);
     }
 
     private void redo(){
-        myWebView.evaluateJavascript("zoomOut();",null);
+        myWebView.evaluateJavascript("butRedo();",null);
     }
 
     private void exportArduino(){

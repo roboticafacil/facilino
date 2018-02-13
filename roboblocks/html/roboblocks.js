@@ -6782,7 +6782,7 @@
 			examples: ['inout_spi_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,	
-			keys: ['LANG_SPI_TRANSFER','LANG_SPI_TRANSFER_ONE_BYTE','LANG_SPI_TRANSFER_TWO_BYTES','LANG_SPI_TRANSFER_TOOLTIP'],
+			keys: ['LANG_SPI_TRANSFER','LANG_SPI_TRANSFER_ONE_BYTE','LANG_SPI_TRANSFER_TWO_BYTES','LANG_SPI_TRANSFER_RECV_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
                 this.appendValueInput('DATA').appendField(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
@@ -6792,7 +6792,7 @@
 				this.setPreviousStatement(false,'code');
                 this.setNextStatement(false,'code');
 				this.setInputsInline(false);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_TOOLTIP'));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_RECV_TOOLTIP'));
             }
         };
 		

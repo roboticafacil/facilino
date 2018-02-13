@@ -26,5 +26,17 @@
         android:selectable="false"
         android:summary="Emanuela Del Dottore"
         android:title="Italian" />
+    <Preference
+        android:key="about_static_field_acknowledgments_key4"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Zigor Aldazabal"
+        android:title="Basque" />
+    <Preference
+        android:key="about_static_field_acknowledgments_key5"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Aske Klok"
+        android:title="Danish" />
 
 </PreferenceScreen>

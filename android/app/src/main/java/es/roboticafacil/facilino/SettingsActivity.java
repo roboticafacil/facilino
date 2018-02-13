@@ -171,7 +171,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("license_text"));
         }
 
-        /*@Override
+        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
@@ -179,7 +179,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return super.onOptionsItemSelected(item);
-        }*/
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -198,7 +198,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             //bindPreferenceSummaryToValue(findPreference("doc_switch"));
         }
 
-        /*@Override
+        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
@@ -206,6 +206,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return super.onOptionsItemSelected(item);
-        }*/
+        }
     }
 }
