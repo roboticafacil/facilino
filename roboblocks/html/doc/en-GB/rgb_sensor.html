@@ -74,7 +74,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('rgb_sensor','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Detects a color with the RGB sensor TCS3200. Returns three possible colors: red, green or blue, any other returned value is an undetected color.</p>
+<p>Detects a colour with the RGB sensor TCS3200. Returns up to eleven possible colours: black (0), white (1), red (2), dark green (3), dark blue (4), yellow (5), magenta (6), light green (7), light blue (8), purple (9) or orange (10). If sensed colour is not within the listed values, then returns "No Colour (-1)".</p>
 <h4>Requirements</h4>
 Facilino's License.
 <h4>Inputs</h4>
@@ -88,7 +88,7 @@ Facilino's License.
 <h4>Output</h4>
 Color detected.
 <h4>Example</h4>
-In this example, the word 'RED', 'GREEN' or 'BLUE' is displayed on the console depending on whether the red, green or blue color is detected using the TCS3200 sensor. The colors have been previously calibrated.
+In this example, the colour names are displayed on the console if detected using the TCS3200 sensor.
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/rgb_sensor_example.bly')">Open</button></p>
 All changes will be lost!
