@@ -67,24 +67,6 @@
             var el = document.getElementById('blockly');
 			//console.log(Blockly.createToolbox());
             Blockly.inject(el, {toolbox: Blockly.createToolbox(), zoom: {controls: true, wheel: true, startScale: 0.8, maxScale: 2, minScale: 0.3, scaleSpeed: 1.1}});
-			/*var ws=Blockly.getMainWorkspace();
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			ws.markFocused();
-			ws.zoomCenter(-1);
-			*/
 			
 			if (localStorage.getItem("saved")!=='')
 			  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(localStorage.getItem("saved")),Blockly.getMainWorkspace())
@@ -98,7 +80,8 @@
 			History.stack[0]=Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
 			
             // Create a default setup/loop block
-            Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+			if (localStorage.getItem("saved")=='')
+              Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 			$('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
 
@@ -129,6 +112,7 @@
 				showHideUndo();
 				showHideRedo();
 				//console.log('Saving position '+History.position);
+				//Android.showToast('Saving position '+History.position+'/'+History.stack.length);
 				History.updating=false;
 				//console.log(History.updating);
 			}
@@ -200,6 +184,9 @@
             }
 
             function resetWorkspace() {
+				History.stack = [];
+				History.initialState ='';
+				History.position=0;
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
             }
@@ -262,12 +249,6 @@
 		
 			function copyCode()
 			{
-				/*var link = document.createElement('a');
-				var text = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
-				link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
-				link.download = 'filename.ino';
-				document.body.appendChild(link);
-				link.click();*/
 				var r = document.createRange();
 				r.selectNode(document.getElementById("code"));
 				clipboard.setData('text/plain',window.getSelection().addRange(r));
@@ -277,102 +258,75 @@
 				return window.clipboardData.getData('Text');
 			}
 			
-			function checkLicense(lic)
-			{
-				delete window.license;
-				if (lic.length==13){	
-					$(function ()
-					{
-						$.ajax({
-							url: "https://roboticafacil.es/facilino/blockly/login_facilino.php?license="+lic,
-							data: "",
-							type: "GET",
-							dataType: "json",
-							async: true,
-							success: function( data, textStatus, jqXHR ) {
-								if (data[1]==='ok')
-								{
-									window.license=lic;
-								}
-								else if (data[1]==='error')
-								{
-									delete window.license;
-								}
-							},
-							error: function( jqXHR, textStatus, errorThrown ) {
-								if (lic.length!=0)
-									delete window.license;
-							}
-						});
-					});
-					if (typeof window.license === 'undefined' || !window.license)
-						return true;
-					else
-						return false;
-				}
-				else
-					return false;
-			}
+			var _0x749e=["\x6C\x69\x63\x65\x6E\x73\x65","\x6C\x65\x6E\x67\x74\x68","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6F\x62\x6F\x74\x69\x63\x61\x66\x61\x63\x69\x6C\x2E\x65\x73\x2F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2F\x62\x6C\x6F\x63\x6B\x6C\x79\x2F\x6C\x6F\x67\x69\x6E\x5F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2E\x70\x68\x70\x3F\x6C\x69\x63\x65\x6E\x73\x65\x3D","","\x47\x45\x54","\x6A\x73\x6F\x6E","\x6F\x6B","\x65\x72\x72\x6F\x72","\x61\x6A\x61\x78","\x3C\x63\x6F\x64\x65\x20\x63\x6C\x61\x73\x73\x3D\x22\x63\x2B\x2B\x22\x3E\x3C\x70\x72\x65\x3E","\x67\x65\x74\x4D\x61\x69\x6E\x57\x6F\x72\x6B\x73\x70\x61\x63\x65","\x77\x6F\x72\x6B\x73\x70\x61\x63\x65\x54\x6F\x43\x6F\x64\x65","\x41\x72\x64\x75\x69\x6E\x6F","\x3C\x2F\x70\x72\x65\x3E\x3C\x2F\x63\x6F\x64\x65\x3E","\x68\x74\x6D\x6C","\x23\x63\x6F\x64\x65","\x68\x69\x67\x68\x6C\x69\x67\x68\x74\x42\x6C\x6F\x63\x6B","\x65\x61\x63\x68","\x70\x72\x65","\x75\x6E\x64\x65\x66\x69\x6E\x65\x64"];function checkLicense(_0x66a1x2){delete window[_0x749e[0]];if(_0x66a1x2[_0x749e[1]]== 13){$(function(){$[_0x749e[8]]({url:_0x749e[2]+ _0x66a1x2,data:_0x749e[3],type:_0x749e[4],dataType:_0x749e[5],async:true,success:function(_0x66a1x3,_0x66a1x4,_0x66a1x5){if(_0x66a1x3[1]=== _0x749e[6]){window[_0x749e[0]]= _0x66a1x2}else {if(_0x66a1x3[1]=== _0x749e[7]){delete window[_0x749e[0]]}}},error:function(_0x66a1x5,_0x66a1x4,_0x66a1x6){if(_0x66a1x2[_0x749e[1]]!= 0){delete window[_0x749e[0]]}}})});$(_0x749e[15])[_0x749e[14]](_0x749e[9]+ escapeCode(Blockly[_0x749e[12]][_0x749e[11]](Blockly[_0x749e[10]]()))+ _0x749e[13]);$(_0x749e[18])[_0x749e[17]](function(_0x66a1x7,_0x66a1x8){hljs[_0x749e[16]](_0x66a1x8)});if( typeof window[_0x749e[0]]=== _0x749e[19]||  !window[_0x749e[0]]){return true}else {return false}}else {$(_0x749e[15])[_0x749e[14]](_0x749e[9]+ escapeCode(Blockly[_0x749e[12]][_0x749e[11]](Blockly[_0x749e[10]]()))+ _0x749e[13]);$(_0x749e[18])[_0x749e[17]](function(_0x66a1x7,_0x66a1x8){hljs[_0x749e[16]](_0x66a1x8)});return false}}
 			
 			function butUndo()
-		{
-			if (History.position>0){
-				var item =  History.stack[--History.position];
-				showHideUndo();
-				showHideRedo();
-				Blockly.getMainWorkspace().clear();
-				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
-			}
-		}
-		
-		function butRedo()
-		{
-			if (History.position<(History.stack.length-1))
 			{
-				var item = History.stack[++History.position];
-				showHideUndo();
-				showHideRedo();
-				Blockly.getMainWorkspace().clear();
-				Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
+				if (History.position>0){
+					var item =  History.stack[--History.position];
+					showHideUndo();
+					showHideRedo();
+					//Android.showToast('Saving position '+History.position+'/'+History.stack.length);
+					Blockly.getMainWorkspace().clear();
+					Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
+				}
 			}
-		}
 		
-		function showHideUndo() {
-			if (History.position > 0)
-					Android.showHideUndo(true);
-				else
-					Android.showHideUndo(false);
-		}
-		
-		function showHideRedo() {
-			if (History.position<(History.stack.length-1))
-					Android.showHideRedo(true);
-				else
-					Android.showHideRedo(false);
-		}
+			function butRedo()
+			{
+				if (History.position<(History.stack.length-1))
+				{
+					var item = History.stack[++History.position];
+					showHideUndo();
+					showHideRedo();
+					//Android.showToast('Saving position '+History.position+'/'+History.stack.length);
+					Blockly.getMainWorkspace().clear();
+					Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
+				}
+			}
 			
-		var dragging = false;
-		var dragging1 = false;
+			function showHideUndo() {
+				if (History.position > 0)
+				{
+				//Android.showToast('Showing undo button');
+						Android.showHideUndo(true);
+				}
+					else
+					{
+					//Android.showToast('Hiding undo button');
+						Android.showHideUndo(false);
+						}
+			}
 			
-		$('#dragbar').mousedown(function(e){
-			e.preventDefault();
-       
-			dragging = true;
-			var code = $('#code_doc');
-			var ghostbar = $('<div>',
-                        {id:'ghostbar',
-                         css: {
-                                height: code.outerHeight(),
-                                top: code.offset().top,
-                                left: code.offset().left
-                               }
-                        }).appendTo('body');
-       
-				$(document).mousemove(function(e){
-					ghostbar.css("left",e.pageX+2);
-				});
-       
-		});
+			function showHideRedo() {
+				if (History.position<(History.stack.length-1))
+						Android.showHideRedo(true);
+					else
+						Android.showHideRedo(false);
+			}
+				
+			var dragging = false;
+			var dragging1 = false;
+				
+			$('#dragbar').mousedown(function(e){
+				e.preventDefault();
+		   
+				dragging = true;
+				var code = $('#code_doc');
+				var ghostbar = $('<div>',
+							{id:'ghostbar',
+							 css: {
+									height: code.outerHeight(),
+									top: code.offset().top,
+									left: code.offset().left
+								   }
+							}).appendTo('body');
+		   
+					$(document).mousemove(function(e){
+						ghostbar.css("left",e.pageX+2);
+					});
+		   
+			});
 		
 		$('#dragbar1').mousedown(function(e){
 			e.preventDefault();

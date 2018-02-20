@@ -9,16 +9,27 @@ import android.widget.Toast;
  */
 
 public class WebAppInterface {
-    Context mContext;
+    private MainActivity activity;
 
     /** Instantiate the interface and set the context */
-    WebAppInterface(Context c) {
-        mContext = c;
+    WebAppInterface(MainActivity a) {
+        activity = a;
     }
 
-    /** Show a toast from the web page */
+    @JavascriptInterface void showToast(String s)
+    {
+        Toast.makeText(activity,s,Toast.LENGTH_LONG).show();
+    }
+
     @JavascriptInterface
-    public void showToast(String toast) {
-        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+    public void showHideUndo(boolean state){
+        if (activity!=null)
+            activity.showHideUndo(state);
+    }
+
+    @JavascriptInterface
+    public void showHideRedo(boolean state){
+        if (activity!=null)
+            activity.showHideRedo(state);
     }
 }

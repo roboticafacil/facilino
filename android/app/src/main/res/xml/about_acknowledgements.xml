@@ -38,5 +38,11 @@
         android:selectable="false"
         android:summary="Aske Klok"
         android:title="Danish" />
+    <Preference
+        android:key="about_static_field_acknowledgments_key6"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Joao Moura"
+        android:title="Portuguese" />
 
 </PreferenceScreen>

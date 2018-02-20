@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -83,7 +77,7 @@ Licencia de Facilino.
    <li>CLK: Pin CLK de la matriz de LEDs (max7219).</li>
    <li>Expresión: Expresión a mostrar.</li>
 </ul>
-<h4>Ejemplo</h4>
+<h4>Ejemplo 1</h4>
 En este ejemplo el robot DYOR genera el número '1' al inicio en la matriz de LEDs.
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_generic_expression_example.bly')">Abrir</button></p>
@@ -93,6 +87,17 @@ Se perderán todos los cambios!
 <image src="doc/circuits/led_matrix_example_bb.png" title="led_matrix_example_bb" alt="led_matrix_example_bb"></image>
 <h5>Código Facilino</h5>
 <div id='example'></div><script>injectExample('dyor_generic_expression_example.bly','example');</script>
-<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image></p>
+<h4>Ejemplo 2</h4>
+En este ejemplo mostramos el símbolo de una nota musical y una carita sonriente en una matriz de LEDs.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_generic_expression_icons_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/led_matrix_example_bb.png" title="led_matrix_example_bb" alt="led_matrix_example_bb"></image>
+<h5>Código Facilino</h5>
+<div id='example2'></div>
+<script>injectExample('dyor_generic_expression_icons_example.bly','example2');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="acerca de" alt="acerca de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/es-ES/about.html');});"></image></p>
 </body>
 </html>

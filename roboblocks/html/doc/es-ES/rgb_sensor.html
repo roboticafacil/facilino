@@ -72,7 +72,7 @@ $('#'+exampleDiv).width((bbox.width+25)+'px');
 <h4>Instrucción</h4>
 <div id='blocklyInstruction'></div><script>injectInstruction('rgb_sensor','blocklyInstruction');</script>
 <h4>Descripción</h4>
-<p>Detecta un color con el sensor RGB TCS3200. Devuelve tres posibles colores: rojo, verde o azul, cualquier otro valor devuelto es un color no detectado.</p>
+<p>Detecta un color con el sensor RGB TCS3200. Devuelve hasta once posibles colores: negro (0), blanco (1), rojo (2), verde oscuro (3), azul oscuro (4), amarillo (5), magenta (6), verde claro (7), azul claro (8), morado (9) o naranja (10). Si el color no está entre los valores listados, entonces devuelve "Sin color (-1)".</p>
 <h4>Requisitos</h4>
 Licencia de Facilino.
 <h4>Entradas</h4>
@@ -86,7 +86,7 @@ Licencia de Facilino.
 <h4>Salida</h4>
 Color detectado.
 <h4>Ejemplo</h4>
-En este ejemplo se muestra por consola la palabra 'ROJO', 'VERDE' o 'AZUL' en función de si se detecta el color rojo, verde o azul utilizando el sensor TCS3200. Los colores han sido previamente calibrados.
+En este ejemplo, los nombres de los colores se muestran por consola si son detectados con el sensor TCS3200.
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/rgb_sensor_example.bly')">Abrir</button></p>
 Se perderán todos los cambios!

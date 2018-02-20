@@ -1,9 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset='utf-8'/>
-<style>
-.button_wrapper {
+<style>.button_wrapper {
   text-align: center;
   color: red;
 }
@@ -17,12 +16,18 @@
   display: inline-block;
   font-size: 16px;
 }
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #00496B; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #E1EEF4; color: #00496B; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #006699;background: #E1EEF4;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
  h4 { margin-top: 20px; }
  h5 { margin-top: 10px;}
+
 </style>
 <script>
 function openFunction(bly) {
-    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
 			var txt = new XMLSerializer().serializeToString(xml);
 			Blockly.mainWorkspace.clear();
 			var xmlDOM = Blockly.Xml.textToDom(txt);
@@ -48,18 +53,20 @@ function injectInstruction(block,blockDiv) {
 function injectExample(example,exampleDiv) { 
 	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
 	openFunction('doc/examples/'+example);
-	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
-	$('#'+exampleDiv).height((bbox.height+25)+'px');
-	$('#'+exampleDiv).width((bbox.width+25)+'px');
+var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+$('#'+exampleDiv).height((bbox.height+25)+'px');
+$('#'+exampleDiv).width((bbox.width+25)+'px');
+
 	window.dispatchEvent(new Event('resize'));
 }
 </script>
 </head>
-<body><h3 id="up">Detecta color RGB</h3>
+<body>
+<h3 id="up">Detecta color RGB</h3>
 <h4>Instrucció</h4>
 <div id='blocklyInstruction'></div><script>injectInstruction('rgb_sensor','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Detecta un color amb el sensor RGB TCS3200. Retorna tres possibles colors: roig, verd o blau, qualsevol altre valor retornat és un color no detectat.</p>
+<p>Detecta un color amb el sensor RGB TCS3200. Retorna fins a onze possibles colors: negre (0), blanc (1), roig (2), verd fosc (3), blau fosc (4), groc (5), magenta (6), verd clar (7), blau clar (8), morat (9) o taronja (10). Si el color no està entre els valors listats, aleshores retorna "Sense color (-1)".</p>
 <h4>Requisits</h4>
 Llicència de Facilino.
 <h4>Entrades</h4>
@@ -73,16 +80,15 @@ Llicència de Facilino.
 <h4>Eixida</h4>
 Color detectat.
 <h4>Exemple</h4>
-En aquest exemple es mostra per consola la paraula 'ROIG', 'VERD' o 'BLAU' en funció de si es detecta el color roig, verd o blau utilitzant el sensor TCS3200. Els colors han estat prèviament calibrats.
+En aquest exemple es mostren els noms dels colors per consola si són detectats pel sensor TCS3200.
 <div class="button_wrapper">
-<p><button align="center" class="button" onclick="openFunction(&#39;doc/examples/rgb_sensor_example.bly&#39;)">Obrir</button></p>
-Es perdran tots els canvis!
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/rgb_sensor_example.bly')">Obrir</button></p>
+Es pedran tots els canvis!
 </div>
 <h5>Circuit</h5>
 <image src="doc/circuits/tcs3200_example_bb.png" title="tcs3200_example_bb" alt="tcs3200_example_bb"></image>
 <h5>Codi Facilino</h5>
 <div id='example'></div><script>injectExample('rgb_sensor_example.bly','example');</script>
-
-<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="al respecte de" alt="al respecte de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/ca-ES/about.html');});"></image></p></p>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="acerca de" alt="acerca de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/ca-ES/about.html');});"></image></p>
 </body>
 </html>

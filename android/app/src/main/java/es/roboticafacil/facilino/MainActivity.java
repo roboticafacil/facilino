@@ -22,7 +22,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.webkit.ConsoleMessage;
-import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -40,19 +39,21 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-    WebView myWebView;
-    final Activity activity = this;
-    final Context context = this;
-    String filename = "filename.bly";
-    SharedPreferences sharedPref;
-    String lang_value;
-    String processor_value;
-    String license_value="";
-    boolean license_switch;
-    boolean license_active=false;
-    boolean code_shown=true;
-    boolean doc_shown=true;
-    private Menu _menu = null;
+    private WebView myWebView;
+    private final Activity activity = this;
+    private final Context context = this;
+    private String filename = "filename.bly";
+    private SharedPreferences sharedPref;
+    private String lang_value;
+    private String processor_value;
+    private String license_value="";
+    private boolean license_switch;
+    private boolean license_active=false;
+    private boolean code_shown=true;
+    private boolean doc_shown=true;
+    private boolean undo_shown=false;
+    private boolean redo_shown=false;
+    private boolean once=true;
 
     @Override
     protected void onPause() {
@@ -62,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         preferencesEditor.putString("processor_list", processor_value);
         preferencesEditor.putBoolean("license_switch", license_switch);
         preferencesEditor.putString("license_text", license_value);
-        //preferencesEditor.putBoolean("code_switch", code_shown);
-        //preferencesEditor.putBoolean("doc_switch", doc_shown);
         preferencesEditor.apply();
     }
 
@@ -79,14 +78,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         webSettings.setDomStorageEnabled(true);
-        //webSettings.setSupportZoom(true);
-        //webSettings.setBuiltInZoomControls(true);
-        //webSettings.setDisplayZoomControls(true);
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
-        lang_value = sharedPref.getString("language_list","");
-        processor_value = sharedPref.getString("processor_list","");
+        lang_value = sharedPref.getString("language_list","en-GB");
+        processor_value = sharedPref.getString("processor_list","ArduinoNano");
         license_switch =sharedPref.getBoolean("license_switch",false);
         if (license_switch) {
             if (!license_value.equals(sharedPref.getString("license_text", ""))) {
@@ -95,8 +91,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             }
         }
         else{
-            Toast.makeText(context,R.string.demo_version,Toast.LENGTH_LONG).show();
-            license_value="";
+            if (once) {
+                Toast.makeText(context, R.string.demo_version, Toast.LENGTH_LONG).show();
+                license_value = "";
+                once=false;
+            }
         }
         SharedPreferences.Editor preferencesEditor = sharedPref.edit();
         preferencesEditor.putBoolean("code_switch", code_shown);
@@ -157,47 +156,30 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 view.loadUrl(url);
                 return true;
             }
-            /*@Override
-            public void onPageFinished(WebView view, String url) {
-                String javascript="javascript:document.getElementsByName('viewport')[0].setAttribute('content', 'initial-scale=1.0,maximum-scale=10.0');";
-                view.loadUrl(javascript);
-            }*/
         });
-
-        //myWebView.setInitialScale(95);
+        if (lang_value.equals(""))
+            lang_value="en-GB";
+        if (processor_value.equals(""))
+            processor_value="ArduinoNano";
         //myWebView.loadUrl("file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value);
         myWebView.loadUrl("file:///android_asset/html/indexAndroid.html");
-        /*if (sharedPref.getBoolean("code_switch",false)&&!code_shown) {
-            myWebView.evaluateJavascript("toogleCode();", null);
-            code_shown=true;
-        }
-        else if (!sharedPref.getBoolean("code_switch",false)&&code_shown) {
-            myWebView.evaluateJavascript("toogleCode();", null);
-            //Toast.makeText(context,"Code generation has been hidden",Toast.LENGTH_LONG).show();
-            code_shown=false;
-        }
-        if (sharedPref.getBoolean("doc_switch",false)&&!doc_shown) {
-            myWebView.evaluateJavascript("toogleDoc();", null);
-            doc_shown=true;
-        }
-        else if (!sharedPref.getBoolean("doc_switch",false)&&doc_shown) {
-            myWebView.evaluateJavascript("toogleDoc();", null);
-            //Toast.makeText(context,"Documentation has been hidden",Toast.LENGTH_LONG).show();
-            doc_shown=false;
-        }*/
     }
 
-    @JavascriptInterface
     public void showHideUndo(boolean state){
-        if (_menu!=null)
-            _menu.findItem(R.id.action_undo).setEnabled(state);
+        undo_shown=state;
+        invalidateOptionsMenu();
     }
 
-    @JavascriptInterface
     public void showHideRedo(boolean state){
-        if (_menu!=null)
-            _menu.findItem(R.id.action_redo).setEnabled(state);
+        redo_shown=state;
+        invalidateOptionsMenu();
+    }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_undo).setVisible(undo_shown);
+        menu.findItem(R.id.action_redo).setVisible(redo_shown);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -205,13 +187,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         boolean reload = false;
         if (!lang_value.equals(sharedPref.getString("language_list",""))) {
             reload = true;
-            lang_value = sharedPref.getString("language_list","");
+            lang_value = sharedPref.getString("language_list","en-GB");
         }
         if (!processor_value.equals(sharedPref.getString("processor_list",""))) {
             reload = true;
-            processor_value = sharedPref.getString("processor_list","");
+            processor_value = sharedPref.getString("processor_list","ArduinoNano");
         }
-        //Toast.makeText(context,lang_value,Toast.LENGTH_LONG).show();
         if (reload)
             myWebView.loadUrl("file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value);
         if (sharedPreferences.getBoolean("code_switch",false)&&!code_shown) {
@@ -236,15 +217,17 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 checkLicense();
             }
         }
-        else {
-            Toast.makeText(context, R.string.demo_version, Toast.LENGTH_LONG).show();
-            license_value="";
-        }
+        /*else {
+            if (once) {
+                Toast.makeText(context, R.string.demo_version, Toast.LENGTH_LONG).show();
+                license_value = "";
+                once=false;
+            }
+        }*/
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        _menu = menu;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.icons_menu, menu);
         inflater.inflate(R.menu.options_menu, menu);
@@ -279,16 +262,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             case R.id.action_redo:
                 redo();
                 return true;
-            //case R.id.action_myblocks:
-            //    return true;
-            //case R.id.action_translate:
-            //    return true;
             case R.id.setting:
                 showSettings();
                 return true;
             case R.id.shop:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://roboticafacil.es/"));
                 startActivity(browserIntent);
+                return true;
             case R.id.about:
                 showAbout();
                 return true;
@@ -306,7 +286,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             public void onClick(DialogInterface dialog,int which) {
                 myWebView.evaluateJavascript("resetWorkspace();",null);
                 activity.setTitle(context.getString(R.string.app_name));
-                //myWebView.loadUrl("javascript: resetWorkspace();");
             }
         });
         alertDialog.setNegativeButton(R.string.new_no, new DialogInterface.OnClickListener() {
@@ -410,7 +389,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         catch (IOException e) {
                             //You'll need to add proper error handling here
                         }
-                        //Toast.makeText(context,text.toString(),Toast.LENGTH_LONG).show();
                         // The code in this function will be executed when the dialog OK button is pushed
                         myWebView.evaluateJavascript("openXml('" + escapeCharacters(text.toString()) + "');", new ValueCallback<String>() {
                             @Override
