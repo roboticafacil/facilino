@@ -109,6 +109,7 @@ padding-left:30px;
 	</nav>
 	</section>
 	</div>
+	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true'></block> </xml>
 	<div id="wrap" style="height: 90%;">
         <div id="blockly" style="float: left; width: 66%;">
 			<span id="position"></span>
@@ -173,7 +174,8 @@ padding-left:30px;
             Blockly.inject(el, {toolbox: Blockly.createToolbox(), zoom: {controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.05}});
             // Create a default setup/loop block
 			//Blockly.getMainWorkspace().clear();
-            //Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+            if (localStorage.getItem("saved")!=='')
+			  Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 			$('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
 			
@@ -189,6 +191,11 @@ padding-left:30px;
 			History.limit=200;
 			History.updating=false;
 			History.stack[0]=Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
+			
+			if (localStorage.getItem("saved")=='')
+              Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+			$('.blocklySvg, #blockly').height('100%');
+            $('.blocklySvg').width('100%');
 			
 	
 	    var colors = [
@@ -326,9 +333,11 @@ padding-left:30px;
             }
 
             function resetWorkspace() {
+				History.stack = [];
+				History.initialState ='';
+				History.position=0;
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
-				localStorage.setItem('saved',Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace())));
             }
 			
 		var dragging = false;
