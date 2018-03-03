@@ -1713,7 +1713,7 @@
             return __p
         };
 
-        this["JST"]["zum_infrared_setups"] = function(obj) {
+        /*this["JST"]["zum_infrared_setups"] = function(obj) {
             obj || (obj = {});
             var __t, __p = '',
                 __e = _.escape;
@@ -1724,7 +1724,7 @@
 
             }
             return __p
-        };
+        };*/
 
         this["JST"]["zum_led"] = function(obj) {
             obj || (obj = {});

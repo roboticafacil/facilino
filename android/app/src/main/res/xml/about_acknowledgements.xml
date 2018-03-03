@@ -44,5 +44,18 @@
         android:selectable="false"
         android:summary="Joao Moura"
         android:title="Portuguese" />
+    <Preference
+    android:key="about_static_field_acknowledgments_key7"
+    android:persistent="false"
+    android:selectable="false"
+    android:summary="Ruslan Bondar"
+    android:title="Russian" />
+
+    <Preference
+        android:key="about_static_field_acknowledgments_key8"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Lukas Bachschwell"
+        android:title="German" />
 
 </PreferenceScreen>
