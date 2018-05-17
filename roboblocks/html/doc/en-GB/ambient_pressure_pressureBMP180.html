@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -75,7 +69,9 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <h4>Description</h4>
 <p>Returns the atmospheric pressure of the barometric sensor BMP180 in Pascals (the sensor is connected to the I2C bus).</p>
 <h4>Requirements</h4>
-Facilino's License.
+<p>Facilino's License.</p>
+<p>This instruction requires BMP085 Adafruit Library installed on Arduino IDE. This library is available at: <a href="https://github.com/adafruit/Adafruit-BMP085-Library" target="_blank">https://github.com/adafruit/Adafruit-BMP085-Library</a> and also through the Library Manager:</p>
+<image src="doc/common/BMP085_install.png" title="BMP085_install" alt="BMP085_install"></image>
 <h4>Output</h4>
 Atmospheric pressure in Pascals.
 <h4>Example</h4>

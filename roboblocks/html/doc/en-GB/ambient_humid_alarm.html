@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -77,7 +71,10 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction1'></div>
 <script>injectInstruction('ambient_humid_set_alarm','blocklyInstruction1');</script>
 <h4>Requirements</h4>
-Facilino's License.
+<p>Facilino's License.</p>
+<p>This instruction requires DHT Adafruit Library and Adafruit Unified Sensor Library installed on Arduino IDE. These libraries are available at: <a href="https://github.com/adafruit/DHT-sensor-library" target="_blank">https://github.com/adafruit/DHT-sensor-library</a> and <a href="https://github.com/adafruit/Adafruit_Sensor" target="_blank">https://github.com/adafruit/Adafruit_Sensor</a> and also through the Library Manager:</p>
+<image src="doc/common/DHT_install.png" title="DHT_install" alt="dht_install"></image>
+<image src="doc/common/Adafruit_Unified_Sensor.png" title="Adrafruit_Sensor_install" alt="Adrafruit_Sensor_install"></image>
 <h4>Inputs</h4>
 <ul>
   <li>Pin: Pin to which the sensor is connected to.</li>

@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -73,7 +67,9 @@ $('#'+exampleDiv).width((bbox.width+25)+'px');
 <h4>Descripción</h4>
 <p>Devuelve la temperatura en grados centígrados del sensor barométrico BMP180 (el sensor se conecta al bus I2C).</p>
 <h4>Requisitos</h4>
-Licencia de Facilino.
+<p>Licencia de Facilino.</p>
+<p>Esta instrucción requiere la librería BMP085 Adafruit instalada en Arduino IDE. Esta librería está disponible en: <a href="https://github.com/adafruit/Adafruit-BMP085-Library" target="_blank">https://github.com/adafruit/Adafruit-BMP085-Library</a> y también a través del Gestor de Librerías:</p>
+<image src="doc/common/BMP085_install.png" title="BMP085_install" alt="BMP085_install"></image>
 <h4>Salida</h4>
 Temperatura leída por el sensor.
 <h4>Ejemplo</h4>

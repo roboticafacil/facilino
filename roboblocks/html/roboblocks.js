@@ -145,6 +145,9 @@
 		RoboBlocks.LANG_COLOUR_AMBIENT_OTHER = '#389AFC'; //188AFB
 		RoboBlocks.LANG_COLOUR_HTML = '#BDBDBD';
 		RoboBlocks.LANG_COLOUR_BLOCKS = '#FF00FF';
+		RoboBlocks.LANG_COLOUR_SYSTEM = '#ADAD85';  //#adad85, #a3a375, #999966, #8a8a5c,#7a7a52, #6b6b47, #5c5c3d, #4d4d33
+		RoboBlocks.LANG_COLOUR_SYSTEM_CONTROL = '#ADAD85';
+		RoboBlocks.LANG_COLOUR_SYSTEM_FILTERS = '#A3A375';
 
 
         // Source: src/profiles.js
@@ -170,11 +173,29 @@
 					profiles['default'] = profiles.arduinoNano;
 				});
 
-        /**
-         * Generates toolbox XML with all blocks defined in Blockly.Blocks
-         * @return {String} Blockly toolbox XML
-         */
-        /*Blockly.createToolbox = function() {
+        
+		RoboBlocks.checkHelpUrl = function (block) {
+			var file = 'doc/'+roboblocksLanguage+'/'+block+'.html'; 
+			var found=false; 
+			
+			$.ajax({
+				url:file,
+				async:false,
+				type:"HEAD",
+				error: function(){
+					$found=false; 
+					console.log('Checking '+block+' block in '+file); 
+					console.log(block+' not found');
+				},
+				success: function(){
+					$found=true; 
+					//console.log(block+' found');
+				}
+			});
+		}
+		
+		
+        Blockly.findMissingDoc = function() {
 
             var blocks = {};
 
@@ -188,25 +209,22 @@
                 }
             }
 
-            var toolbox = '<xml id="toolbox" style="display: none">';
+            var missingDoc = '';
 
             var categoryItem = function(type) {
-                toolbox += '<block type="' + type + '"></block>';
+				if (RoboBlocks.checkHelpUrl(type)===false)
+                  missingDoc += type+'\n';
             };
 
             for (block in blocks) {
 
                 if (blocks.hasOwnProperty(block)) {
-                    toolbox += '<category id="' + block + '" name="' + block + '">';
                     blocks[block].forEach(categoryItem);
-                    toolbox += '</category>';
                 }
 
             }
-            toolbox += '</xml>';
-
-            return toolbox;
-        };*/
+            console.log(missingDoc);
+        };
 		
 		Blockly.getBlocks = function() {
 
@@ -298,8 +316,8 @@
 					}
                 }
             }
-
-            return blocks[category];
+            //return blocks[category];
+			return blocks;
         };
 		
 		Blockly.exportAllBlocks = function() {
@@ -414,429 +432,6 @@
         // Source: tmp/jst.js
         // Source: tmp/jst.js
         this["JST"] = this["JST"] || {};
-
-
-        this["JST"]["advanced_conversion"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p +=
-                    ((__t = (value_num)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (convertion)) == null ? '' : __t);
-
-            }
-            return __p
-        };
-
-        this["JST"]["advanced_map"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'map(' +
-                    ((__t = (num)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (from_min)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (from_max)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (to_min)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (to_max)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["base_delay"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'delay(' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["base_map"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'map(' +
-                    ((__t = (value_num)) == null ? '' : __t) +
-                    ',0,1023,0,' +
-                    ((__t = (value_dmax)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["base_millis"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'millis()\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_bat"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Distance(' +
-                    ((__t = (trigger_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (echo_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_bat_definitions_distance"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'long Distance(int trigger_pin, int echo_pin)\n{\n  long microseconds = TP_init(trigger_pin, echo_pin);\n  long distance;\n  distance = microseconds/29/2;\n  if (distance == 0){\n    distance = 999;\n  }\n  return distance;\n}\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_bat_definitions_tp_init"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += '//bqBAT\nlong TP_init(int trigger_pin, int echo_pin)\n{\n  digitalWrite(trigger_pin, LOW);\n  delayMicroseconds(2);\n  digitalWrite(trigger_pin, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(trigger_pin, LOW);\n  long microseconds = pulseIn(echo_pin ,HIGH);\n  return microseconds;\n}\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_bat_setups_echo"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode( ' +
-                    ((__t = (echo_pin)) == null ? '' : __t) +
-                    ' , INPUT );\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_bat_setups_trigger"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode( ' +
-                    ((__t = (trigger_pin)) == null ? '' : __t) +
-                    ' , OUTPUT );\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_bluetooth_def_definitions"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += '#include <SoftwareSerial.h>';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_bluetooth_def_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',INPUT);\n  pinMode(' +
-                    ((__t = (NextPIN)) == null ? '' : __t) +
-                    ', OUTPUT);\n  _blueToothSerial.begin(' +
-                    ((__t = (baud_rate)) == null ? '' : __t) +
-                    ');\n  _blueToothSerial.flush();\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_button"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'digitalRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_button_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',INPUT_PULLUP);\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_buttons"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += '  adc_key_in =analogRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ');\n  key = get_key(adc_key_in);\n  if (key != oldkey)\n  {\n    delay(50);\n    adc_key_in = analogRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ');\n    key = get_key(adc_key_in);\n    if (key != oldkey)\n    {\n      oldkey = key;\n      if (key >=0){\n        switch(key)\n        {\n          case 0:\n           ' +
-                    ((__t = (code_btn1)) == null ? '' : __t) +
-                    '\n          break;\n          case 1:\n           ' +
-                    ((__t = (code_btn2)) == null ? '' : __t) +
-                    '\n          break;\n          case 2:\n           ' +
-                    ((__t = (code_btn3)) == null ? '' : __t) +
-                    '\n          break;\n          case 3:\n           ' +
-                    ((__t = (code_btn4)) == null ? '' : __t) +
-                    '\n          break;  \n          case 4:\n           ' +
-                    ((__t = (code_btn5)) == null ? '' : __t) +
-                    '\n          break;\n        }      \n      }\n    }\n  }\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_buttons_definitions"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'int get_key(unsigned int input)\n  {\n    int k;\n    for (k = 0; k < NUM_KEYS; k++)\n    {\n      if (input < adc_key_val[k])\n      {\n        return k;\n      }\n    }\n    if (k >= NUM_KEYS)k = -1;\n      return k;\n}\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_buttons_definitions_variables"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += '//bqButtons\nint adc_key_val[5] ={20,50, 100, 200, 600 };\nint NUM_KEYS = 5;\nint adc_key_in;\nint key=-1;\nint oldkey=-1;\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_infrared"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'digitalRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_infrared_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode( ' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ' , INPUT);\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_joystick"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'readJoystick_' +
-                    ((__t = (name)) == null ? '' : __t) +
-                    '()';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_joystick_definitions"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'int * readJoystick_' +
-                    ((__t = (name)) == null ? '' : __t) +
-                    '(){\n  _internal_readJoystick_array_' +
-                    ((__t = (name)) == null ? '' : __t) +
-                    '[0]=analogRead(' +
-                    ((__t = (pinx)) == null ? '' : __t) +
-                    ');\n  _internal_readJoystick_array_' +
-                    ((__t = (name)) == null ? '' : __t) +
-                    '[1]=analogRead(' +
-                    ((__t = (piny)) == null ? '' : __t) +
-                    ');\n  _internal_readJoystick_array_' +
-                    ((__t = (name)) == null ? '' : __t) +
-                    '[2]=digitalRead(' +
-                    ((__t = (pinbutton)) == null ? '' : __t) +
-                    ');\n  return _internal_readJoystick_array_' +
-                    ((__t = (name)) == null ? '' : __t) +
-                    ';\n}';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_joystick_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (pinbutton)) == null ? '' : __t) +
-                    ',INPUT_PULLUP);\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_led"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'digitalWrite(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (dropdown_stat)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_led_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',OUTPUT);\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_photoresistor"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'analogRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_piezo_buzzer"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'tone(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (dropdown_stat)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\ndelay(' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_piezo_buzzerav"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'tone(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (Buzztone)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\ndelay(' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\n\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bq_potentiometer"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'analogRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["bt_serial_available"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'if (_blueToothSerial.available()>0){\n' +
-                    ((__t = (branch)) == null ? '' : __t) +
-                    '\n}\n';
-
-            }
-            return __p
-        };
 
         this["JST"]["controls_doWhile"] = function(obj) {
             obj || (obj = {});
@@ -1085,105 +680,6 @@
             return __p
         };
 
-        this["JST"]["lcd_clear"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'lcd.clear();\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["lcd_def_declare"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'LiquidCrystal lcd(' +
-                    ((__t = (lcd_1)) == null ? '' : __t) +
-                    ', ' +
-                    ((__t = (lcd_2)) == null ? '' : __t) +
-                    ', ' +
-                    ((__t = (lcd_3)) == null ? '' : __t) +
-                    ', ' +
-                    ((__t = (lcd_4)) == null ? '' : __t) +
-                    ', ' +
-                    ((__t = (lcd_5)) == null ? '' : __t) +
-                    ', ' +
-                    ((__t = (lcd_6)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["lcd_def_definitions"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += '#include <Wire.h>\n#include <LiquidCrystal.h>';
-
-            }
-            return __p
-        };
-
-        this["JST"]["lcd_def_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'lcd.begin(16, 2);\nlcd.clear();\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["lcd_print"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'lcd.print(' +
-                    ((__t = (val)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["lcd_print_pos"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'lcd.setCursor(' +
-                    ((__t = (ycoor)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (xcoor)) == null ? '' : __t) +
-                    ');\nlcd.print(' +
-                    ((__t = (val)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["lcd_setBacklight"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'lcd.setBacklight(' +
-                    ((__t = (state)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
         this["JST"]["logic_compare"] = function(obj) {
             obj || (obj = {});
             var __t, __p = '',
@@ -1389,118 +885,7 @@
             return __p
         };
 
-        this["JST"]["serial_parseint"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.parseInt()\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_parseint_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.begin(' +
-                    ((__t = (bitrate)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_print"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.print(' +
-                    ((__t = (content)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_print_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.begin(' +
-                    ((__t = (bitrate)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_println"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.println(' +
-                    ((__t = (content)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_println_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.begin(' +
-                    ((__t = (bitrate)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_read"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.read()';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_read_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.begin(' +
-                    ((__t = (bitrate)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_readstring"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'Serial.readString()';
-
-            }
-            return __p
-        };
-
-        this["JST"]["serial_readstring_setups"] = function(obj) {
+        this["JST"]["serial_setups"] = function(obj) {
             obj || (obj = {});
             var __t, __p = '',
                 __e = _.escape;
@@ -1520,49 +905,6 @@
             with(obj) {
                 __p +=
                     ((__t = (char)) == null ? '' : __t);
-
-            }
-            return __p
-        };
-
-        this["JST"]["servo_move"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'servos[' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    '].write(' +
-                    ((__t = (value_degree)) == null ? '' : __t) +
-                    ');\ndelay(' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["servo_move_definitions_include"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += '#include <Servo.h>\n\nServo servos[13];';
-
-            }
-            return __p
-        };
-
-        this["JST"]["servo_move_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'servos[' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    '].attach(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ');';
 
             }
             return __p
@@ -1629,163 +971,6 @@
             return __p
         };
 
-	this["JST"]["zum_button"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'digitalRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_button_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) + 
-                    ',' + ((__t = (pullup)) == null ? '' : __t)+');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_follower"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'if(digitalRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')==HIGH)\n{\n  ' +
-                    ((__t = (code_btn1)) == null ? '' : __t) +
-                    '\n}\nif(digitalRead(' +
-                    ((__t = (NextPIN)) == null ? '' : __t) +
-                    ')==HIGH)\n{\n  ' +
-                    ((__t = (code_btn2)) == null ? '' : __t) +
-                    '\n}\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_follower_setups_nextpin"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode( ' +
-                    ((__t = (NextPIN)) == null ? '' : __t) +
-                    ' , INPUT);\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_follower_setups_pin"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode( ' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ' , INPUT);\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_infrared"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'digitalRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        /*this["JST"]["zum_infrared_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode( ' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ' , INPUT);\n';
-
-            }
-            return __p
-        };*/
-
-        this["JST"]["zum_led"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'digitalWrite(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (dropdown_stat)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_led_setups"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',OUTPUT);\n';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_photoresistor"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'analogRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
-        this["JST"]["zum_piezo_buzzer"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'tone(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (dropdown_stat)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\ndelay(' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\n';
-
-            }
-            return __p
-        };
-
         this["JST"]["zum_piezo_buzzerav"] = function(obj) {
             obj || (obj = {});
             var __t, __p = '',
@@ -1805,25 +990,718 @@
             return __p
         };
 
-        this["JST"]["zum_potentiometer"] = function(obj) {
-            obj || (obj = {});
-            var __t, __p = '',
-                __e = _.escape;
-            with(obj) {
-                __p += 'analogRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
-
-            }
-            return __p
-        };
-
         var JST = this.JST;
 
 
 	// Source: src/blocks/procedures_callnoreturn/procedures_callnoreturn.js
+		
+	Blockly.Blocks.procedures_defnoreturn = {
+		category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
+		helpUrl: RoboBlocks.getHelpUrl('procedures_defnoreturn'),
+		examples: ['procedures_callnoreturn_example.bly'],
+		category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		keys: ['LANG_PROCEDURES_DEFNORETURN_PROCEDURE','LANG_PROCEDURES_DEFNORETURN_TOOLTIP','LANG_PROCEDURES_DEFNORETURN_DO'],
+		init: function() {    	
+		this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+		var name = new Blockly.FieldTextInput('',Blockly.Procedures.rename);
+		name.setSpellcheck(false);
+        this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE')).appendField(name,'NAME').appendField('', 'PARAMS');
+        this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
+		if ((this.workspace.options.comments || (this.workspace.options.parentWorkspace && this.workspace.options.parentWorkspace.options.comments)) && Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT) {
+			this.setCommentText(Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT);
+		}
+        this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_TOOLTIP'));
+        this.arguments_ = [];
+        this.type_arguments_ = [];
+		this.setStatements_(true);
+		this.setInputsInline(false);
+  },
+  setStatements_: function(hasStatements) {
+    if (this.hasStatements_ === hasStatements) {
+      return;
+    }
+    if (hasStatements) {
+      this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_DO')).setCheck(['code','function']);
+      if (this.getInput('RETURN')) {
+        this.moveInputBefore('STACK', 'RETURN');
+      }
+    } else {
+      this.removeInput('STACK', true);
+    }
+    this.hasStatements_ = hasStatements;
+  },
+  updateParams_: function() {
+    // Check for duplicated arguments.
+    var badArg = false;
+    var hash = {};
+    for (var i = 0; i < this.arguments_.length; i++) {
+      if (hash['arg_' + this.arguments_[i].toLowerCase()]) {
+        badArg = true;
+        break;
+      }
+      hash['arg_' + this.arguments_[i].toLowerCase()] = true;
+    }
+    if (badArg) {
+      this.setWarningText('Duplicate argument');
+    } else {
+      this.setWarningText(null);
+    }
+    // Merge the arguments into a human-readable list.
+    var params = [];
+    for (var i in this.arguments_) {
+		try{
+		params.push(this.type_arguments_[i] + ' ' + this.arguments_[i]);
+		}
+		catch(e)
+		{
+		}
+    }
+    this.paramString = params.join(', ');
+    // The params field is deterministic based on the mutation,
+    // no need to fire a change event.
+    Blockly.Events.disable();
+    try {
+      this.setFieldValue(this.paramString, 'PARAMS');
+    } finally {
+      Blockly.Events.enable();
+    }
+  },  
+  mutationToDom: function(opt_paramIds) {
+    var container = document.createElement('mutation');
+    if (opt_paramIds) {
+      container.setAttribute('name', this.getFieldValue('NAME'));
+    }
+    for (var i = 0; i < this.arguments_.length; i++) {
+      var parameter = document.createElement('arg_name');
+      parameter.setAttribute('name', this.arguments_[i]);
+      if (opt_paramIds && this.paramIds_) {
+        parameter.setAttribute('paramId', this.paramIds_[i]);
+      }
+      container.appendChild(parameter);
+	  
+	  parameter = document.createElement('arg_type');
+	  try{
+	  parameter.setAttribute('name', this.type_arguments_[i]);
+	  if (opt_paramIds && this.paramIds_) {
+        parameter.setAttribute('paramId', this.paramIds_[i]);
+      }
+	  }
+	  catch(e)
+	  {
+	  }
+	  container.appendChild(parameter);
+    }
 
-        Blockly.Arduino.procedures_callnoreturn = function() {
+    // Save whether the statement input is visible.
+    if (!this.hasStatements_) {
+      container.setAttribute('statements', 'false');
+    }
+    return container;
+  },  
+  domToMutation: function(xmlElement) {
+    this.arguments_ = [];
+    for (var i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
+	  if (childNode.nodeName.toLowerCase() === 'arg_name') {
+        this.arguments_.push(childNode.getAttribute('name'));
+      }
+      if (childNode.nodeName.toLowerCase() === 'arg_type') {
+		  try{
+        this.type_arguments_.push(childNode.getAttribute('name'));
+		  }
+		  catch(e)
+		  {
+		  }
+      }
+    }
+    this.updateParams_();
+    Blockly.Procedures.mutateCallers(this);
+
+    // Show or hide the statement input.
+    this.setStatements_(xmlElement.getAttribute('statements') !== 'false');
+  },  
+  decompose: function(workspace) {
+    var containerBlock = workspace.newBlock('procedures_mutatorcontainer');
+    containerBlock.initSvg();
+
+    // Check/uncheck the allow statement box.
+    if (this.getInput('RETURN')) {
+      containerBlock.setFieldValue(this.hasStatements_ ? 'TRUE' : 'FALSE',
+                                   'STATEMENTS');
+    } else {
+      containerBlock.getInput('STATEMENT_INPUT').setVisible(false);
+    }
+
+    // Parameter list.
+    var connection = containerBlock.getInput('STACK').connection;
+    for (var i = 0; i < this.arguments_.length; i++) {
+      var paramBlock = workspace.newBlock('procedures_mutatorarg');
+      paramBlock.initSvg();
+	  paramBlock.setFieldValue(this.type_arguments_[i], 'TYPE');
+      paramBlock.setFieldValue(this.arguments_[i], 'NAME');
+      // Store the old location.
+      paramBlock.oldLocation = i;
+      connection.connect(paramBlock.previousConnection);
+      connection = paramBlock.nextConnection;
+    }
+    // Initialize procedure's callers with blank IDs.
+    Blockly.Procedures.mutateCallers(this);
+	//Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, null);
+    //Blockly.Procedures.mutateCallers(this.getFieldValue('TYPE'), this.workspace, this.type_arguments_, null);
+    return containerBlock;
+  },    
+  compose: function(containerBlock) {
+    // Parameter list.
+    this.arguments_ = [];
+	this.type_arguments_ = [];
+    this.paramIds_ = [];
+    var paramBlock = containerBlock.getInputTargetBlock('STACK');
+    while (paramBlock) {
+      this.arguments_.push(paramBlock.getFieldValue('NAME'));
+	  this.type_arguments_.push(paramBlock.getFieldValue('TYPE'));
+      this.paramIds_.push(paramBlock.id);
+      paramBlock = paramBlock.nextConnection &&
+          paramBlock.nextConnection.targetBlock();
+    }
+    this.updateParams_();
+    Blockly.Procedures.mutateCallers(this);
+
+    // Show/hide the statement input.
+    var hasStatements = containerBlock.getFieldValue('STATEMENTS');
+    if (hasStatements !== null) {
+      hasStatements = hasStatements == 'TRUE';
+      if (this.hasStatements_ != hasStatements) {
+        if (hasStatements) {
+          this.setStatements_(true);
+          // Restore the stack, if one was saved.
+          Blockly.Mutator.reconnect(this.statementConnection_, this, 'STACK');
+          this.statementConnection_ = null;
+        } else {
+          // Save the stack, then disconnect it.
+          var stackConnection = this.getInput('STACK').connection;
+          this.statementConnection_ = stackConnection.targetConnection;
+          if (this.statementConnection_) {
+            var stackBlock = stackConnection.targetBlock();
+            stackBlock.unplug();
+            stackBlock.bumpNeighbours_();
+          }
+          this.setStatements_(false);
+        }
+      }
+    }
+  },
+  getProcedureDef: function() {
+    return [this.getFieldValue('NAME'), this.arguments_, false];
+  },
+  getVars: function() {
+    return this.arguments_;
+  },
+  renameVar: function(oldName, newName) {
+    var change = false;
+    for (var i = 0; i < this.arguments_.length; i++) {
+      if (Blockly.Names.equals(oldName, this.arguments_[i])) {
+        this.arguments_[i] = newName;
+        change = true;
+      }
+    }
+    if (change) {
+      this.updateParams_();
+      // Update the mutator's variables if the mutator is open.
+      if (this.mutator.isVisible()) {
+        var blocks = this.mutator.workspace_.getAllBlocks();
+        for (var i = 0, block; block = blocks[i]; i++) {
+          if (block.type == 'procedures_mutatorarg' &&
+              Blockly.Names.equals(oldName, block.getFieldValue('NAME'))) {
+            block.setFieldValue(newName, 'NAME');
+          }
+        }
+      }
+    }
+  },
+  validName: function(name) {
+                if (name && name.length > 0) {
+                    var i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    name = name.replace(/([ ])/g, '_');
+                    name = name.replace(/([áàâä])/g, 'a');
+                    name = name.replace(/([éèêë])/g, 'e');
+                    name = name.replace(/([íìîï])/g, 'i');
+                    name = name.replace(/([óòôö])/g, 'o');
+                    name = name.replace(/([úùûü])/g, 'u');
+                    name = name.replace(/([ñ])/g, 'n');
+                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
+                    i = 0;
+                    while (i < name.length) {
+                        if (!isNaN(parseFloat(name[i]))) {
+                            name = name.substring(1, name.length);
+                        } else {
+                            break;
+                        }
+                    }
+                    for (var j in Blockly.Arduino.RESERVED_WORDS_) {
+                        this.reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
+                        if (name === this.reserved_words[j]) {
+                            this.setWarningText('Reserved word');
+                            name = '';
+                            break;
+                        } else {
+                            this.setWarningText(null);
+                        }
+                    }
+                }
+                return name;
+            },  
+  customContextMenu: function(options) {
+    // Add option to create caller.
+    var option = {enabled: true};
+    var name = this.getFieldValue('NAME');
+    option.text = Blockly.Msg.PROCEDURES_CREATE_DO.replace('%1', name);
+    var xmlMutation = goog.dom.createDom('mutation');
+    xmlMutation.setAttribute('name', name);
+    for (var i = 0; i < this.arguments_.length; i++) {
+      var xmlArg = goog.dom.createDom('arg');
+      xmlArg.setAttribute('name', this.arguments_[i]);
+      xmlMutation.appendChild(xmlArg);
+    }
+    var xmlBlock = goog.dom.createDom('block', null, xmlMutation);
+    xmlBlock.setAttribute('type', this.callType_);
+    option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
+    options.push(option);
+
+    // Add options to create getters for each parameter.
+    if (!this.isCollapsed()) {
+      for (var i = 0; i < this.arguments_.length; i++) {
+        var option = {enabled: true};
+        var name = this.arguments_[i];
+        option.text = Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name);
+        var xmlField = goog.dom.createDom('field', null, name);
+        xmlField.setAttribute('name', 'VAR');
+        var xmlBlock = goog.dom.createDom('block', null, xmlField);
+        xmlBlock.setAttribute('type', 'variables_get');
+        option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
+        options.push(option);
+      }
+    }
+  },
+  callType_: 'procedures_callnoreturn',
+  onchange: function() {
+                if (this.last_procedure !== this.getFieldValue('NAME')) {
+                    var name = this.getFieldValue('NAME');
+                    name = this.validName(name);
+                    try {
+                        this.setFieldValue(name, 'NAME');
+                    } catch (e) {}
+                    this.last_procedure = name;
+                }
+            }
+};
+		
+		Blockly.Blocks['procedures_mutatorcontainer'] = {
+		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		keys: ['LANG_PROCEDURES_MUTATORCONTAINER_Field'],
+		init: function() {
+    this.appendDummyInput()
+        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORCONTAINER_Field'));
+		this.appendStatementInput('STACK').setCheck(['code','function']);
+    this.appendDummyInput('STATEMENT_INPUT')
+        .appendField(Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS)
+        .appendField(new Blockly.FieldCheckbox('TRUE'), 'STATEMENTS');
+    this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+    this.setTooltip('');
+    this.contextMenu = false;
+  }
+};
+	
+		Blockly.Blocks['procedures_mutatorarg'] = {
+			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_PROCEDURES_MUTATORARG_Field'],
+  init: function() {
+    var field = new Blockly.FieldTextInput('x', this.validator_);
+    this.appendDummyInput()
+        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORARG_Field')).appendField(new Blockly.FieldDropdown([
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BYTE'), 'byte'],
+					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BOOL'), 'bool'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float'],
+					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String']
+                ]), 'TYPE').appendField(field, 'NAME');
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+    this.setTooltip('');
+    this.contextMenu = false;
+
+    // Create the default variable when we drag the block in from the flyout.
+    // Have to do this after installing the field on the block.
+    field.onFinishEditing_ = this.createNewVar_;
+    field.onFinishEditing_('x');
+  },
+  onchange: function() {
+	if (this.last_variable !== this.getFieldValue('NAME')) {
+		var name = this.getFieldValue('NAME');
+        name = this.validName(name);
+        try {
+			this.setFieldValue(name, 'NAME');
+        } catch (e) {}
+        this.last_variable = name;
+    }
+  },
+  validName: Blockly.Blocks.procedures_defnoreturn.validName,
+  validator_: function(newVar) {
+    newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
+    return newVar || null;
+  },
+  createNewVar_: function(newText) {
+    var source = this.sourceBlock_;
+    if (source && source.workspace && source.workspace.options &&
+        source.workspace.options.parentWorkspace) {
+      source.workspace.options.parentWorkspace.createVariable(newText);
+    }
+  }
+};
+
+		 // Source: src/blocks/procedures_defnoreturn/procedures_defnoreturn.js
+        // Defining a procedure without a return value uses the same generator as
+        // a procedure with a return value.
+        Blockly.Arduino.procedures_defnoreturn = function() {
+            // Define a procedure with a return value.
+            var funcName = this.getFieldValue('NAME');
+            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
+            branch = branch.replace(/&quot;/g, '"');
+            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
+            }
+            // branch=branch.replace(/&amp;/g, '');
+
+            var returnType = 'void';
+            var args = this.paramString;
+            var code = JST['procedures_defnoreturn']({
+                'returnType': returnType,
+                'funcName': funcName,
+                'args': args,
+                'branch': branch
+            });
+            // code=code.replace(/&amp;/g, '');
+
+            code = Blockly.Arduino.scrub_(this, code);
+            Blockly.Arduino.definitions_[funcName] = code;
+            return null;
+        };
+		
+        // Source: src/blocks/procedures_defreturn/procedures_defreturn.js
+        Blockly.Arduino.procedures_defreturn = function() {
+            // Define a procedure with a return value.
+            var funcName = this.getFieldValue('NAME');
+            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
+            branch = branch.replace(/&quot;/g, '"');
+
+            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
+            }
+            var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
+            var code = '';
+
+            returnValue = returnValue.replace(/&quot;/g, '"');
+            //var returnType = this.getReturnType();
+            if (returnValue) {
+                var a = RoboBlocks.findPinMode(returnValue);
+                returnValue = a['code'];
+                returnValue += '  return ' + a['pin'] + ';\n';
+            }
+			var returnType = this.getFieldValue('RETURN_TYPE');
+			console.log(returnType);
+            var args = this.paramString;
+            code += JST['procedures_defreturn']({
+                'returnType': returnType,
+                'funcName': funcName,
+                'args': args,
+                'branch': branch,
+                'returnValue': returnValue
+            });
+            // code=code.replace(/&amp;/g, '');
+
+            code = Blockly.Arduino.scrub_(this, code);
+            Blockly.Arduino.definitions_[funcName] = code;
+            return null;
+        };
+		
+		Blockly.Blocks.procedures_defreturn = {
+		category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Procedures are handled specially.
+        helpUrl: RoboBlocks.getHelpUrl('procedures_defreturn'),
+		examples: ['procedures_callreturn_example.bly'],
+		category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+		keys: ['LANG_PROCEDURES_DEFRETURN_PROCEDURE','LANG_PROCEDURES_DEFRETURN_RETURN','LANG_PROCEDURES_DEFRETURN_TOOLTIP'],
+		init: function() {
+			var nameField = new Blockly.FieldTextInput('',
+				Blockly.Procedures.rename);
+			nameField.setSpellcheck(false);
+			this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE')).appendField(nameField, 'NAME').appendField('', 'PARAMS');
+			//this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_DO'));
+			this.appendValueInput('RETURN').setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN')).appendField(new Blockly.FieldDropdown([
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BYTE'), 'byte'],
+					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BOOL'), 'bool'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float'],
+					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String']
+                ]), "RETURN_TYPE");
+			this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
+			if ((this.workspace.options.comments ||(this.workspace.options.parentWorkspace && this.workspace.options.parentWorkspace.options.comments)) && Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT) {
+			  this.setCommentText(Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT);
+			}
+			this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+			this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_TOOLTIP'));
+			this.arguments_ = [];
+			this.type_arguments_ = [];
+			this.setStatements_(true);
+			this.statementConnection_ = null;
+  },
+  isVariable: function(varValue) {
+                for (var i in Blockly.Variables.allUsedVariables) {
+                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+  /*getReturnType: function() {
+                var returnType;
+                var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
+                var a = RoboBlocks.findPinMode(returnValue);
+                // code+=a['code'];
+                returnValue = a['pin'];
+
+                var isFunction = false;
+
+                for (var i in Blockly.Arduino.definitions_) {
+                    if (Blockly.Arduino.definitions_[i].search(returnValue + ' \\(') >= 0) {
+                        isFunction = true;
+                        break;
+                    }
+                }
+                if (!returnValue) {
+                    returnType = 'void';
+                }
+                if (returnValue.search('"') >= 0) {
+                    returnType = 'String';
+                } else if (isFunction) { //returnValue.search('\\(') >= 0 && returnValue.search('\\)') >= 0) {
+                    for (i in Blockly.Arduino.definitions_) {
+                        if (Blockly.Arduino.definitions_[i].search(returnValue) >= 0) {
+                            if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'int' || Blockly.Arduino.definitions_[i].substring(0, 3) === '//b') { //bqbat function
+                                if (Blockly.Arduino.definitions_[i].substring(0, 5) === 'int *' || Blockly.Arduino.definitions_[i].substring(0, 5) === 'int _') {
+                                    returnType = 'int *';
+                                } else {
+                                    returnType = 'int';
+                                }
+                            } else if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'Str') {
+                                returnType = 'String';
+                            } else {
+                                returnType = '';
+                            }
+                        }
+                    }
+                } else if (this.isVariable(returnValue)) {
+                    returnType = RoboBlocks.variables[returnValue][0];
+                } else if ((returnValue.search('analogRead') >= 0) || (returnValue.search('digitalRead') >= 0) || (returnValue.search('Distanc') >= 0) || (!isNaN(parseFloat(returnValue)) || (returnValue.search('random') >= 0)) || (returnValue.search('map') >= 0) || returnValue.search('\\[') >= 0 || (returnValue.search('abs') >= 0) || (returnValue.search('sqrt') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('exp') >= 0) || (returnValue.search('pow') >= 0)) {
+                    returnType = 'int';
+                } else if (returnValue.search('readJoystick') >= 0 || returnValue[0] === '{') {
+                    returnType = 'int *';
+                } else {
+                    returnType = 'void';
+                }
+                return returnType;
+            },*/
+  setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
+  updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
+  mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
+  domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
+  decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
+  compose: Blockly.Blocks['procedures_defnoreturn'].compose,
+  getProcedureDef: function() {
+    return [this.getFieldValue('NAME'), this.arguments_, true];
+  },
+  getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
+  renameVar: Blockly.Blocks['procedures_defnoreturn'].renameVar,
+  customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
+  callType_: 'procedures_callreturn'
+};
+
+		
+		
+
+        // Source: src/blocks/procedures_ifreturn/procedures_ifreturn.js
+        Blockly.Arduino.procedures_ifreturn = function() {
+            // Conditionally return value from a procedure.
+            var condition = Blockly.Arduino.valueToCode(this, 'CONDITION',
+                Blockly.Arduino.ORDER_NONE) || '';
+            var code = '';
+            var a = RoboBlocks.findPinMode(condition);
+            code += a['code'];
+            condition = a['pin'];
+
+            code += 'if (' + condition + ') {\n';
+            // if (this.hasReturnValue_) {
+            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
+            a = RoboBlocks.findPinMode(value);
+            code += a['code'];
+            code += '  return (' + value + ');\n';
+            // } else {
+            //     code += '  return;\n';
+            // }
+            code += '}\n';
+            return code;
+        };
+		
+		
+
+        Blockly.Blocks.procedures_ifreturn = {
+            // Conditionally return value from a procedure.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
+            helpUrl: RoboBlocks.getHelpUrl('procedures_ifreturn'),
+			examples: ['procedures_ifreturn_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_CONTROLS_IF_MSG_IF','LANG_PROCEDURES_DEFRETURN_RETURN','LANG_PROCEDURES_IFRETURN_TOOLTIP','LANG_PROCEDURES_IFRETURN_WARNING'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendValueInput('CONDITION').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
+                this.appendValueInput('VALUE');
+                this.setInputsInline(true,'function');
+                this.setPreviousStatement(true,'function');
+                this.setNextStatement(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_TOOLTIP'));
+                this.hasReturnValue_ = true;
+            },
+            mutationToDom: function() {
+                // Save whether this block has a return value.
+                var container = document.createElement('mutation');
+                container.setAttribute('value', Number(this.hasReturnValue_));
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                // Restore whether this block has a return value.
+                var value = xmlElement.getAttribute('value');
+                this.hasReturnValue_ = (value === 1);
+                // if (!this.hasReturnValue_) {
+                //     this.removeInput('VALUE');
+                // }
+            },
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+                var legal = false;
+                // Is the block nested in a procedure?
+                var block = this;
+                do {
+                    if (block.type === 'procedures_defreturn') {
+                        legal = true;
+                        break;
+                    }
+                    block = block.getSurroundParent();
+                } while (block);
+                if (legal) {
+                    // If needed, toggle whether this block has a return value.
+                    // if (block.type === 'procedures_defnoreturn' && this.hasReturnValue_) {
+                    //     this.removeInput('VALUE');
+                    //     this.hasReturnValue_ = false;
+                    // } else if (block.type === 'procedures_defreturn' && !this.hasReturnValue_) {
+                    //     this.appendValueInput('VALUE');
+                    //     this.hasReturnValue_ = true;
+                    // }
+                    this.setWarningText(null);
+                } else {
+                    try {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
+                    } catch (err) {
+                        console.log('Captured error: ', err);
+                    }
+                }
+            }
+        };
+
+        // Source: src/blocks/procedures_return/procedures_return.js
+        Blockly.Arduino.procedures_return = function() {
+            // Conditionally return value from a procedure.
+            var code = '';
+            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
+            var a = RoboBlocks.findPinMode(value);
+            code += a['code'];
+            code += '  return (' + value + ');\n';
+            return code;
+        };
+
+
+
+        Blockly.Blocks.procedures_return = {
+            // Conditionally return value from a procedure.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
+            helpUrl: RoboBlocks.getHelpUrl('procedures_return'),
+			examples: ['procedures_return_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
+			keys: ['LANG_PROCEDURES_RETURN','LANG_PROCEDURES_RETURN_TOOLTIP','LANG_PROCEDURES_IFRETURN_WARNING'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
+                this.appendDummyInput()
+                    .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN'));
+                this.appendValueInput('VALUE');
+                this.setInputsInline(true);
+                this.setPreviousStatement(true,'function');
+                this.setNextStatement(true,'function');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN_TOOLTIP'));
+                this.hasReturnValue_ = true;
+            },
+            mutationToDom: function() {
+                // Save whether this block has a return value.
+                var container = document.createElement('mutation');
+                container.setAttribute('value', Number(this.hasReturnValue_));
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                // Restore whether this block has a return value.
+                var value = xmlElement.getAttribute('value');
+                this.hasReturnValue_ = (value === 1);
+            },
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+                var legal = false;
+                // Is the block nested in a procedure?
+                var block = this;
+                do {
+                    if (block.type === 'procedures_defreturn') {
+                        legal = true;
+                        break;
+                    }
+                    block = block.getSurroundParent();
+                } while (block);
+                if (legal) {
+                    this.setWarningText(null);
+                } else {
+                    try {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
+                    } catch (err) {
+                        console.log('Captured error: ', err);
+                    }
+                }
+            }
+        };
+		
+		
+		Blockly.Arduino.procedures_callnoreturn = function() {
             // Call a procedure with a return value.
             var funcName = this.getFieldValue('PROCEDURES');
             var args = [];
@@ -2317,694 +2195,7 @@
                 }
             }
         };
-        // Source: src/blocks/procedures_defnoreturn/procedures_defnoreturn.js
-        // Defining a procedure without a return value uses the same generator as
-        // a procedure with a return value.
-        Blockly.Arduino.procedures_defnoreturn = function() {
-            // Define a procedure with a return value.
-            var funcName = this.getFieldValue('NAME');
-            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
-            branch = branch.replace(/&quot;/g, '"');
-            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
-                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
-            }
-            // branch=branch.replace(/&amp;/g, '');
-
-            var returnType = 'void';
-            var args = this.paramString;
-            var code = JST['procedures_defnoreturn']({
-                'returnType': returnType,
-                'funcName': funcName,
-                'args': args,
-                'branch': branch
-            });
-            // code=code.replace(/&amp;/g, '');
-
-            code = Blockly.Arduino.scrub_(this, code);
-            Blockly.Arduino.definitions_[funcName] = code;
-            return null;
-        };
-		
-	Blockly.Blocks.procedures_defnoreturn = {
-		category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
-		helpUrl: RoboBlocks.getHelpUrl('procedures_defnoreturn'),
-		examples: ['procedures_callnoreturn_example.bly'],
-		category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-		keys: ['LANG_PROCEDURES_DEFNORETURN_PROCEDURE','LANG_PROCEDURES_DEFNORETURN_TOOLTIP','LANG_PROCEDURES_DEFNORETURN_DO'],
-		init: function() {    	
-		this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-		var name = new Blockly.FieldTextInput('',Blockly.Procedures.rename);
-		name.setSpellcheck(false);
-        this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_PROCEDURE')).appendField(name,'NAME').appendField('', 'PARAMS');
-        this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-		if ((this.workspace.options.comments || (this.workspace.options.parentWorkspace && this.workspace.options.parentWorkspace.options.comments)) && Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT) {
-			this.setCommentText(Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT);
-		}
-        this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_TOOLTIP'));
-        this.arguments_ = [];
-        this.type_arguments_ = [];
-		this.setStatements_(true);
-		this.setInputsInline(false);
-  },
-  setStatements_: function(hasStatements) {
-    if (this.hasStatements_ === hasStatements) {
-      return;
-    }
-    if (hasStatements) {
-      this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFNORETURN_DO')).setCheck(['code','function']);
-      if (this.getInput('RETURN')) {
-        this.moveInputBefore('STACK', 'RETURN');
-      }
-    } else {
-      this.removeInput('STACK', true);
-    }
-    this.hasStatements_ = hasStatements;
-  },
-  updateParams_: function() {
-    // Check for duplicated arguments.
-    var badArg = false;
-    var hash = {};
-    for (var i = 0; i < this.arguments_.length; i++) {
-      if (hash['arg_' + this.arguments_[i].toLowerCase()]) {
-        badArg = true;
-        break;
-      }
-      hash['arg_' + this.arguments_[i].toLowerCase()] = true;
-    }
-    if (badArg) {
-      this.setWarningText('Duplicate argument');
-    } else {
-      this.setWarningText(null);
-    }
-    // Merge the arguments into a human-readable list.
-    var params = [];
-    for (var i in this.arguments_) {
-		try{
-		params.push(this.type_arguments_[i] + ' ' + this.arguments_[i]);
-		}
-		catch(e)
-		{
-		}
-    }
-    this.paramString = params.join(', ');
-    // The params field is deterministic based on the mutation,
-    // no need to fire a change event.
-    Blockly.Events.disable();
-    try {
-      this.setFieldValue(this.paramString, 'PARAMS');
-    } finally {
-      Blockly.Events.enable();
-    }
-  },  
-  mutationToDom: function(opt_paramIds) {
-    var container = document.createElement('mutation');
-    if (opt_paramIds) {
-      container.setAttribute('name', this.getFieldValue('NAME'));
-    }
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var parameter = document.createElement('arg_name');
-      parameter.setAttribute('name', this.arguments_[i]);
-      if (opt_paramIds && this.paramIds_) {
-        parameter.setAttribute('paramId', this.paramIds_[i]);
-      }
-      container.appendChild(parameter);
-	  
-	  parameter = document.createElement('arg_type');
-	  try{
-	  parameter.setAttribute('name', this.type_arguments_[i]);
-	  if (opt_paramIds && this.paramIds_) {
-        parameter.setAttribute('paramId', this.paramIds_[i]);
-      }
-	  }
-	  catch(e)
-	  {
-	  }
-	  container.appendChild(parameter);
-    }
-
-    // Save whether the statement input is visible.
-    if (!this.hasStatements_) {
-      container.setAttribute('statements', 'false');
-    }
-    return container;
-  },  
-  domToMutation: function(xmlElement) {
-    this.arguments_ = [];
-    for (var i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
-	  if (childNode.nodeName.toLowerCase() === 'arg_name') {
-        this.arguments_.push(childNode.getAttribute('name'));
-      }
-      if (childNode.nodeName.toLowerCase() === 'arg_type') {
-		  try{
-        this.type_arguments_.push(childNode.getAttribute('name'));
-		  }
-		  catch(e)
-		  {
-		  }
-      }
-    }
-    this.updateParams_();
-    Blockly.Procedures.mutateCallers(this);
-
-    // Show or hide the statement input.
-    this.setStatements_(xmlElement.getAttribute('statements') !== 'false');
-  },  
-  decompose: function(workspace) {
-    var containerBlock = workspace.newBlock('procedures_mutatorcontainer');
-    containerBlock.initSvg();
-
-    // Check/uncheck the allow statement box.
-    if (this.getInput('RETURN')) {
-      containerBlock.setFieldValue(this.hasStatements_ ? 'TRUE' : 'FALSE',
-                                   'STATEMENTS');
-    } else {
-      containerBlock.getInput('STATEMENT_INPUT').setVisible(false);
-    }
-
-    // Parameter list.
-    var connection = containerBlock.getInput('STACK').connection;
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var paramBlock = workspace.newBlock('procedures_mutatorarg');
-      paramBlock.initSvg();
-	  paramBlock.setFieldValue(this.type_arguments_[i], 'TYPE');
-      paramBlock.setFieldValue(this.arguments_[i], 'NAME');
-      // Store the old location.
-      paramBlock.oldLocation = i;
-      connection.connect(paramBlock.previousConnection);
-      connection = paramBlock.nextConnection;
-    }
-    // Initialize procedure's callers with blank IDs.
-    Blockly.Procedures.mutateCallers(this);
-	//Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, null);
-    //Blockly.Procedures.mutateCallers(this.getFieldValue('TYPE'), this.workspace, this.type_arguments_, null);
-    return containerBlock;
-  },    
-  compose: function(containerBlock) {
-    // Parameter list.
-    this.arguments_ = [];
-	this.type_arguments_ = [];
-    this.paramIds_ = [];
-    var paramBlock = containerBlock.getInputTargetBlock('STACK');
-    while (paramBlock) {
-      this.arguments_.push(paramBlock.getFieldValue('NAME'));
-	  this.type_arguments_.push(paramBlock.getFieldValue('TYPE'));
-      this.paramIds_.push(paramBlock.id);
-      paramBlock = paramBlock.nextConnection &&
-          paramBlock.nextConnection.targetBlock();
-    }
-    this.updateParams_();
-    Blockly.Procedures.mutateCallers(this);
-
-    // Show/hide the statement input.
-    var hasStatements = containerBlock.getFieldValue('STATEMENTS');
-    if (hasStatements !== null) {
-      hasStatements = hasStatements == 'TRUE';
-      if (this.hasStatements_ != hasStatements) {
-        if (hasStatements) {
-          this.setStatements_(true);
-          // Restore the stack, if one was saved.
-          Blockly.Mutator.reconnect(this.statementConnection_, this, 'STACK');
-          this.statementConnection_ = null;
-        } else {
-          // Save the stack, then disconnect it.
-          var stackConnection = this.getInput('STACK').connection;
-          this.statementConnection_ = stackConnection.targetConnection;
-          if (this.statementConnection_) {
-            var stackBlock = stackConnection.targetBlock();
-            stackBlock.unplug();
-            stackBlock.bumpNeighbours_();
-          }
-          this.setStatements_(false);
-        }
-      }
-    }
-  },
-  getProcedureDef: function() {
-    return [this.getFieldValue('NAME'), this.arguments_, false];
-  },
-  getVars: function() {
-    return this.arguments_;
-  },
-  renameVar: function(oldName, newName) {
-    var change = false;
-    for (var i = 0; i < this.arguments_.length; i++) {
-      if (Blockly.Names.equals(oldName, this.arguments_[i])) {
-        this.arguments_[i] = newName;
-        change = true;
-      }
-    }
-    if (change) {
-      this.updateParams_();
-      // Update the mutator's variables if the mutator is open.
-      if (this.mutator.isVisible()) {
-        var blocks = this.mutator.workspace_.getAllBlocks();
-        for (var i = 0, block; block = blocks[i]; i++) {
-          if (block.type == 'procedures_mutatorarg' &&
-              Blockly.Names.equals(oldName, block.getFieldValue('NAME'))) {
-            block.setFieldValue(newName, 'NAME');
-          }
-        }
-      }
-    }
-  },
-  validName: function(name) {
-                if (name && name.length > 0) {
-                    var i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                    name = name.replace(/([ ])/g, '_');
-                    name = name.replace(/([áàâä])/g, 'a');
-                    name = name.replace(/([éèêë])/g, 'e');
-                    name = name.replace(/([íìîï])/g, 'i');
-                    name = name.replace(/([óòôö])/g, 'o');
-                    name = name.replace(/([úùûü])/g, 'u');
-                    name = name.replace(/([ñ])/g, 'n');
-                    name = name.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&\Ç\%\=\~\{\}\¿\¡\"\@\:\;\-\"\·\|\º\ª\¨\'\·\?\?\ç\`\´\¨\^])/g, '');
-                    i = 0;
-                    while (i < name.length) {
-                        if (!isNaN(parseFloat(name[i]))) {
-                            name = name.substring(1, name.length);
-                        } else {
-                            break;
-                        }
-                    }
-                    for (var j in Blockly.Arduino.RESERVED_WORDS_) {
-                        this.reserved_words = Blockly.Arduino.RESERVED_WORDS_.split(',');
-                        if (name === this.reserved_words[j]) {
-                            this.setWarningText('Reserved word');
-                            name = '';
-                            break;
-                        } else {
-                            this.setWarningText(null);
-                        }
-                    }
-                }
-                return name;
-            },  
-  customContextMenu: function(options) {
-    // Add option to create caller.
-    var option = {enabled: true};
-    var name = this.getFieldValue('NAME');
-    option.text = Blockly.Msg.PROCEDURES_CREATE_DO.replace('%1', name);
-    var xmlMutation = goog.dom.createDom('mutation');
-    xmlMutation.setAttribute('name', name);
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var xmlArg = goog.dom.createDom('arg');
-      xmlArg.setAttribute('name', this.arguments_[i]);
-      xmlMutation.appendChild(xmlArg);
-    }
-    var xmlBlock = goog.dom.createDom('block', null, xmlMutation);
-    xmlBlock.setAttribute('type', this.callType_);
-    option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
-    options.push(option);
-
-    // Add options to create getters for each parameter.
-    if (!this.isCollapsed()) {
-      for (var i = 0; i < this.arguments_.length; i++) {
-        var option = {enabled: true};
-        var name = this.arguments_[i];
-        option.text = Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name);
-        var xmlField = goog.dom.createDom('field', null, name);
-        xmlField.setAttribute('name', 'VAR');
-        var xmlBlock = goog.dom.createDom('block', null, xmlField);
-        xmlBlock.setAttribute('type', 'variables_get');
-        option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
-        options.push(option);
-      }
-    }
-  },
-  callType_: 'procedures_callnoreturn',
-  onchange: function() {
-                if (this.last_procedure !== this.getFieldValue('NAME')) {
-                    var name = this.getFieldValue('NAME');
-                    name = this.validName(name);
-                    try {
-                        this.setFieldValue(name, 'NAME');
-                    } catch (e) {}
-                    this.last_procedure = name;
-                }
-            }
-};
-		
-		Blockly.Blocks['procedures_mutatorcontainer'] = {
-		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-		keys: ['LANG_PROCEDURES_MUTATORCONTAINER_Field'],
-		init: function() {
-    this.appendDummyInput()
-        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORCONTAINER_Field'));
-		this.appendStatementInput('STACK').setCheck(['code','function']);
-    this.appendDummyInput('STATEMENT_INPUT')
-        .appendField(Blockly.Msg.PROCEDURES_ALLOW_STATEMENTS)
-        .appendField(new Blockly.FieldCheckbox('TRUE'), 'STATEMENTS');
-    this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-    this.setTooltip('');
-    this.contextMenu = false;
-  }
-};
-	
-		Blockly.Blocks['procedures_mutatorarg'] = {
-			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-			keys: ['LANG_PROCEDURES_MUTATORARG_Field'],
-  init: function() {
-    var field = new Blockly.FieldTextInput('x', this.validator_);
-    this.appendDummyInput()
-        .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_MUTATORARG_Field')).appendField(new Blockly.FieldDropdown([
-                    ['int', 'int'],
-                    ['String', 'String']
-                ]), 'TYPE').appendField(field, 'NAME');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-    this.setTooltip('');
-    this.contextMenu = false;
-
-    // Create the default variable when we drag the block in from the flyout.
-    // Have to do this after installing the field on the block.
-    field.onFinishEditing_ = this.createNewVar_;
-    field.onFinishEditing_('x');
-  },
-  onchange: function() {
-	if (this.last_variable !== this.getFieldValue('NAME')) {
-		var name = this.getFieldValue('NAME');
-        name = this.validName(name);
-        try {
-			this.setFieldValue(name, 'NAME');
-        } catch (e) {}
-        this.last_variable = name;
-    }
-  },
-  validName: Blockly.Blocks.procedures_defnoreturn.validName,
-  validator_: function(newVar) {
-    newVar = newVar.replace(/[\s\xa0]+/g, ' ').replace(/^ | $/g, '');
-    return newVar || null;
-  },
-  createNewVar_: function(newText) {
-    var source = this.sourceBlock_;
-    if (source && source.workspace && source.workspace.options &&
-        source.workspace.options.parentWorkspace) {
-      source.workspace.options.parentWorkspace.createVariable(newText);
-    }
-  }
-};
-		
-        // Source: src/blocks/procedures_defreturn/procedures_defreturn.js
-        Blockly.Arduino.procedures_defreturn = function() {
-            // Define a procedure with a return value.
-            var funcName = this.getFieldValue('NAME');
-            var branch = Blockly.Arduino.statementToCode(this, 'STACK');
-            branch = branch.replace(/&quot;/g, '"');
-
-            if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
-                branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g, '\'' + this.id + '\'') + branch;
-            }
-            var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
-            var code = '';
-
-            returnValue = returnValue.replace(/&quot;/g, '"');
-            var returnType = this.getReturnType();
-            if (returnValue) {
-                var a = RoboBlocks.findPinMode(returnValue);
-                returnValue = a['code'];
-                returnValue += '  return ' + a['pin'] + ';\n';
-            }
-            var args = this.paramString;
-            code += JST['procedures_defreturn']({
-                'returnType': returnType,
-                'funcName': funcName,
-                'args': args,
-                'branch': branch,
-                'returnValue': returnValue
-            });
-            // code=code.replace(/&amp;/g, '');
-
-            code = Blockly.Arduino.scrub_(this, code);
-            Blockly.Arduino.definitions_[funcName] = code;
-            return null;
-        };
-		
-		Blockly.Blocks.procedures_defreturn = {
-		category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Procedures are handled specially.
-        helpUrl: RoboBlocks.getHelpUrl('procedures_defreturn'),
-		examples: ['procedures_callreturn_example.bly'],
-		category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-		keys: ['LANG_PROCEDURES_DEFRETURN_PROCEDURE','LANG_PROCEDURES_DEFRETURN_RETURN','LANG_PROCEDURES_DEFRETURN_TOOLTIP'],
-		init: function() {
-			var nameField = new Blockly.FieldTextInput('',
-				Blockly.Procedures.rename);
-			nameField.setSpellcheck(false);
-			this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE')).appendField(nameField, 'NAME').appendField('', 'PARAMS');
-			//this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_DO'));
-			this.appendValueInput('RETURN').setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
-			this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-			if ((this.workspace.options.comments ||(this.workspace.options.parentWorkspace && this.workspace.options.parentWorkspace.options.comments)) && Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT) {
-			  this.setCommentText(Blockly.Msg.PROCEDURES_DEFRETURN_COMMENT);
-			}
-			this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-			this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_TOOLTIP'));
-			this.arguments_ = [];
-			this.setStatements_(true);
-			this.statementConnection_ = null;
-  },
-  isVariable: function(varValue) {
-                for (var i in Blockly.Variables.allUsedVariables) {
-                    if (Blockly.Variables.allUsedVariables[i] === varValue) {
-                        return true;
-                    }
-                }
-                return false;
-            },
-  getReturnType: function() {
-                var returnType;
-                var returnValue = Blockly.Arduino.valueToCode(this, 'RETURN', Blockly.Arduino.ORDER_NONE) || '';
-                var a = RoboBlocks.findPinMode(returnValue);
-                // code+=a['code'];
-                returnValue = a['pin'];
-
-                var isFunction = false;
-
-                for (var i in Blockly.Arduino.definitions_) {
-                    if (Blockly.Arduino.definitions_[i].search(returnValue + ' \\(') >= 0) {
-                        isFunction = true;
-                        break;
-                    }
-                }
-                if (!returnValue) {
-                    returnType = 'void';
-                }
-                if (returnValue.search('"') >= 0) {
-                    returnType = 'String';
-                } else if (isFunction) { //returnValue.search('\\(') >= 0 && returnValue.search('\\)') >= 0) {
-                    for (i in Blockly.Arduino.definitions_) {
-                        if (Blockly.Arduino.definitions_[i].search(returnValue) >= 0) {
-                            if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'int' || Blockly.Arduino.definitions_[i].substring(0, 3) === '//b') { //bqbat function
-                                if (Blockly.Arduino.definitions_[i].substring(0, 5) === 'int *' || Blockly.Arduino.definitions_[i].substring(0, 5) === 'int _') {
-                                    returnType = 'int *';
-                                } else {
-                                    returnType = 'int';
-                                }
-                            } else if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'Str') {
-                                returnType = 'String';
-                            } else {
-                                returnType = '';
-                            }
-                        }
-                    }
-                } else if (this.isVariable(returnValue)) {
-                    returnType = RoboBlocks.variables[returnValue][0];
-                } else if ((returnValue.search('analogRead') >= 0) || (returnValue.search('digitalRead') >= 0) || (returnValue.search('Distanc') >= 0) || (!isNaN(parseFloat(returnValue)) || (returnValue.search('random') >= 0)) || (returnValue.search('map') >= 0) || returnValue.search('\\[') >= 0 || (returnValue.search('abs') >= 0) || (returnValue.search('sqrt') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('log') >= 0) || (returnValue.search('exp') >= 0) || (returnValue.search('pow') >= 0)) {
-                    returnType = 'int';
-                } else if (returnValue.search('readJoystick') >= 0 || returnValue[0] === '{') {
-                    returnType = 'int *';
-                } else {
-                    returnType = 'void';
-                }
-                return returnType;
-            },
-  setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
-  updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
-  mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
-  domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
-  decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
-  compose: Blockly.Blocks['procedures_defnoreturn'].compose,
-  getProcedureDef: function() {
-    return [this.getFieldValue('NAME'), this.arguments_, true];
-  },
-  getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
-  renameVar: Blockly.Blocks['procedures_defnoreturn'].renameVar,
-  customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
-  callType_: 'procedures_callreturn'
-};
-		
-
-        // Source: src/blocks/procedures_ifreturn/procedures_ifreturn.js
-        Blockly.Arduino.procedures_ifreturn = function() {
-            // Conditionally return value from a procedure.
-            var condition = Blockly.Arduino.valueToCode(this, 'CONDITION',
-                Blockly.Arduino.ORDER_NONE) || '';
-            var code = '';
-            var a = RoboBlocks.findPinMode(condition);
-            code += a['code'];
-            condition = a['pin'];
-
-            code += 'if (' + condition + ') {\n';
-            // if (this.hasReturnValue_) {
-            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
-            a = RoboBlocks.findPinMode(value);
-            code += a['code'];
-            code += '  return (' + value + ');\n';
-            // } else {
-            //     code += '  return;\n';
-            // }
-            code += '}\n';
-            return code;
-        };
-
-
-
-        Blockly.Blocks.procedures_ifreturn = {
-            // Conditionally return value from a procedure.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
-            helpUrl: RoboBlocks.getHelpUrl('procedures_ifreturn'),
-			examples: ['procedures_ifreturn_example.bly'],
-			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-			keys: ['LANG_CONTROLS_IF_MSG_IF','LANG_PROCEDURES_DEFRETURN_RETURN','LANG_PROCEDURES_IFRETURN_TOOLTIP','LANG_PROCEDURES_IFRETURN_WARNING'],
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendValueInput('CONDITION').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
-                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_RETURN'));
-                this.appendValueInput('VALUE');
-                this.setInputsInline(true,'function');
-                this.setPreviousStatement(true,'function');
-                this.setNextStatement(true);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_TOOLTIP'));
-                this.hasReturnValue_ = true;
-            },
-            mutationToDom: function() {
-                // Save whether this block has a return value.
-                var container = document.createElement('mutation');
-                container.setAttribute('value', Number(this.hasReturnValue_));
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                // Restore whether this block has a return value.
-                var value = xmlElement.getAttribute('value');
-                this.hasReturnValue_ = (value === 1);
-                // if (!this.hasReturnValue_) {
-                //     this.removeInput('VALUE');
-                // }
-            },
-            onchange: function() {
-                if (!this.workspace) {
-                    // Block has been deleted.
-                    return;
-                }
-                var legal = false;
-                // Is the block nested in a procedure?
-                var block = this;
-                do {
-                    if (block.type === 'procedures_defreturn') {
-                        legal = true;
-                        break;
-                    }
-                    block = block.getSurroundParent();
-                } while (block);
-                if (legal) {
-                    // If needed, toggle whether this block has a return value.
-                    // if (block.type === 'procedures_defnoreturn' && this.hasReturnValue_) {
-                    //     this.removeInput('VALUE');
-                    //     this.hasReturnValue_ = false;
-                    // } else if (block.type === 'procedures_defreturn' && !this.hasReturnValue_) {
-                    //     this.appendValueInput('VALUE');
-                    //     this.hasReturnValue_ = true;
-                    // }
-                    this.setWarningText(null);
-                } else {
-                    try {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
-                    } catch (err) {
-                        console.log('Captured error: ', err);
-                    }
-                }
-            }
-        };
-
-        // Source: src/blocks/procedures_return/procedures_return.js
-        Blockly.Arduino.procedures_return = function() {
-            // Conditionally return value from a procedure.
-            var code = '';
-            var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE) || '';
-            var a = RoboBlocks.findPinMode(value);
-            code += a['code'];
-            code += '  return (' + value + ');\n';
-            return code;
-        };
-
-
-
-        Blockly.Blocks.procedures_return = {
-            // Conditionally return value from a procedure.
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
-            helpUrl: RoboBlocks.getHelpUrl('procedures_return'),
-			examples: ['procedures_return_example.bly'],
-			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
-			keys: ['LANG_PROCEDURES_RETURN','LANG_PROCEDURES_RETURN_TOOLTIP','LANG_PROCEDURES_IFRETURN_WARNING'],
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
-                this.appendDummyInput()
-                    .appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN'));
-                this.appendValueInput('VALUE');
-                this.setInputsInline(true);
-                this.setPreviousStatement(true,'function');
-                this.setNextStatement(true,'function');
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_PROCEDURES_RETURN_TOOLTIP'));
-                this.hasReturnValue_ = true;
-            },
-            mutationToDom: function() {
-                // Save whether this block has a return value.
-                var container = document.createElement('mutation');
-                container.setAttribute('value', Number(this.hasReturnValue_));
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                // Restore whether this block has a return value.
-                var value = xmlElement.getAttribute('value');
-                this.hasReturnValue_ = (value === 1);
-            },
-            onchange: function() {
-                if (!this.workspace) {
-                    // Block has been deleted.
-                    return;
-                }
-                var legal = false;
-                // Is the block nested in a procedure?
-                var block = this;
-                do {
-                    if (block.type === 'procedures_defreturn') {
-                        legal = true;
-                        break;
-                    }
-                    block = block.getSurroundParent();
-                } while (block);
-                if (legal) {
-                    this.setWarningText(null);
-                } else {
-                    try {
-                        this.setWarningText(RoboBlocks.locales.getKey('LANG_PROCEDURES_IFRETURN_WARNING'));
-                    } catch (err) {
-                        console.log('Captured error: ', err);
-                    }
-                }
-            }
-        };
+       
 		
 		        // Source: src/blocks/controls_setupLoop/controls_setupLoop.js
 
@@ -3047,7 +2238,7 @@
             }
         };
 		
-		// Source: src/blocks/bt_serial_available/bt_serial_available.js
+		
         Blockly.Arduino.controls_doWhile = function() {
             // Do while/until loop.
             var argument0 = Blockly.Arduino.valueToCode(this, 'WHILE', Blockly.Arduino.ORDER_NONE) || '';
@@ -3105,10 +2296,8 @@
             var a = RoboBlocks.findPinMode(delay_time);
             code += a['code'];
             delay_time = a['pin'];
-
-            code += JST['base_delay']({
-                'delay_time': delay_time
-            });
+			
+			code += 'delay('+delay_time+');\n';
             return code;
         };
 
@@ -3165,13 +2354,8 @@
             to_max = a['pin'];
 
 
-            code += JST['advanced_map']({
-                'num': num,
-                'from_min': from_min,
-                'from_max': from_max,
-                'to_min': to_min,
-                'to_max': to_max
-            });
+            code += 'map('+num+','+from_min+','+from_max+','+to_min+','+to_max+')';
+			
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -3222,11 +2406,8 @@
             a = RoboBlocks.findPinMode(value_dmax);
             code += a['code'];
             value_dmax = a['pin'];
-
-            code += JST['base_map']({
-                'value_num': value_num,
-                'value_dmax': value_dmax
-            });
+			
+			code += 'map('+value_num+',0,1023,0,'+value_dmax+')';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
@@ -3272,6 +2453,27 @@
                 this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_US'));
                 this.setOutput(true,Number);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_US_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.base_millis = function() {
+            var code = 'millis()';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+
+        Blockly.Blocks.base_millis = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
+            helpUrl: RoboBlocks.getHelpUrl('base_millis'),
+			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			examples: ['base_us_example.bly'],
+			keys: ['LANG_CONTROLS_BASE_MILLIS','LANG_CONTROLS_BASE_MILLIS_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
+                this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_MILLIS'));
+                this.setOutput(true,Number);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_MILLIS_TOOLTIP'));
             }
         };
 
@@ -4191,7 +3393,7 @@
                     'dropdown_pin': dropdown_pin
                 });
             } else {
-                Blockly.Arduino.setups_['setup_green_digital_write_' + dropdown_pin] = JST['inout_digital_write_setups']({
+                Blockly.Arduino.setups_['setup_digital_write_' + dropdown_pin] = JST['inout_digital_write_setups']({
                     'dropdown_pin': dropdown_pin
                 });
             }
@@ -4288,7 +3490,7 @@
 
 
         Blockly.Arduino.lcd_clear = function() {
-            var code = JST['lcd_clear']({});
+			var code = 'lcd.clear();\n';
             return code;
         };
 
@@ -4305,27 +3507,30 @@
                 this.setColour(RoboBlocks.LANG_COLOUR_SCREEN_LCD);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_LCD_CLEAR')).appendField(new Blockly.FieldImage('img/blocks/lcd.svg', 52*options.zoom, 24*options.zoom));
-                // .appendField(new Blockly.FieldImage('img/blocks/bqmod03.png', 52*options.zoom, 20*options.zoom));
                 this.setInputsInline(false);
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_CLEAR_TOOLTIP'));
-            }
+            },
+			onchange: function()
+			  {
+				  var Blocks=Blockly.getMainWorkspace().getAllBlocks();
+				  var block_found = Blocks.find(function (block){return (block.type=='lcd_def');});
+				  if (block_found===undefined)
+					this.setWarningText('This block instruction requires to define the LCD pin connections');
+				  else
+					this.setWarningText(null);
+				  
+			  }
         };
 
         // Source: src/blocks/lcd_def/lcd_def.js
 
         Blockly.Arduino.lcd_def = function() {
-            var lcd_pins = {};
-            lcd_pins['lcd_1'] = this.getFieldValue('LCD_1');
-            lcd_pins['lcd_2'] = this.getFieldValue('LCD_2');
-            lcd_pins['lcd_3'] = this.getFieldValue('LCD_3');
-            lcd_pins['lcd_4'] = this.getFieldValue('LCD_4');
-            lcd_pins['lcd_5'] = this.getFieldValue('LCD_5');
-            lcd_pins['lcd_6'] = this.getFieldValue('LCD_6');
-            Blockly.Arduino.definitions_['define_lcd'] = JST['lcd_def_definitions']({});
-            Blockly.Arduino.definitions_['declare_var_LCD'] = JST['lcd_def_declare'](lcd_pins);
-            Blockly.Arduino.setups_['setup_lcd_'] = JST['lcd_def_setups']({});
+            Blockly.Arduino.definitions_['define_wire'] = '#include <Wire.h>';
+			Blockly.Arduino.definitions_['define_liquid_crystals'] = '#include <LiquidCrystal.h>';
+            Blockly.Arduino.definitions_['declare_var_LCD'] = 'LiquidCrystal lcd('+this.getFieldValue('LCD_1')+','+this.getFieldValue('LCD_2')+','+this.getFieldValue('LCD_3')+','+this.getFieldValue('LCD_4')+this.getFieldValue('LCD_5')+','+this.getFieldValue('LCD_6')+');\n';
+            Blockly.Arduino.setups_['setup_lcd'] = 'lcd.begin(16, 2);\nlcd.clear();\n';
             return '';
         };
 
@@ -4362,8 +3567,8 @@
             var xcoor = Blockly.Arduino.valueToCode(this, 'XCOOR', Blockly.Arduino.ORDER_ATOMIC);
             var ycoor = Blockly.Arduino.valueToCode(this, 'YCOOR', Blockly.Arduino.ORDER_ATOMIC);
             var code = '';
-
-            var a = RoboBlocks.findPinMode(xcoor);
+			
+			var a = RoboBlocks.findPinMode(xcoor);
             code += a['code'];
             xcoor = a['pin'];
 
@@ -4375,17 +3580,10 @@
             code += a['code'];
             val = a['pin'];
 
-            if (this.getFieldValue('POS') === 'TRUE') {
-                code += JST['lcd_print_pos']({
-                    'val': val,
-                    'xcoor': xcoor,
-                    'ycoor': ycoor
-                });
-            } else {
-                code += JST['lcd_print']({
-                    'val': val
-                });
-            }
+            if (this.getFieldValue('POS') === 'TRUE')
+                code += 'lcd.setCursor('+ycoor+','+xcoor+');\n';
+			code += 'lcd.print(' +val+');\n';	
+			
             code = code.replace(/&quot;/g, '"');
             return code;
         };
@@ -4426,6 +3624,12 @@
                     this.getPosition();
                     this.last_pos = this.getFieldValue('POS');
                 }
+				var Blocks=Blockly.getMainWorkspace().getAllBlocks();
+				  var block_found = Blocks.find(function (block){return (block.type=='lcd_def');});
+				  if (block_found===undefined)
+					this.setWarningText('This block instruction requires to define the LCD pin connections');
+				  else
+					this.setWarningText(null);
             },
             mutationToDom: function() {
                 var container = document.createElement('mutation');
@@ -4448,10 +3652,8 @@
 
 
         Blockly.Arduino.lcd_setBacklight = function() {
-            var state = this.getFieldValue('STATE');
-            var code = JST['lcd_setBacklight']({
-                'state': state
-            });
+			var state = this.getFieldValue('STATE');
+            var code = 'lcd.setBacklight(' +state+');\n';
             return code;
         };
 
@@ -4479,7 +3681,17 @@
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_SETBACKLIGHT_TOOLTIP'));
-            }
+            },
+			onchange: function()
+			  {
+				  var Blocks=Blockly.getMainWorkspace().getAllBlocks();
+				  var block_found = Blocks.find(function (block){return (block.type=='lcd_def');});
+				  if (block_found===undefined)
+					this.setWarningText('This block instruction requires to define the LCD pin connections');
+				  else
+					this.setWarningText(null);
+				  
+			  }
         };
 
         // Source: src/blocks/logic_boolean/logic_boolean.js
@@ -5201,7 +4413,7 @@
             var branch = Blockly.Arduino.statementToCode(this, 'DO');
             branch = branch.replace(/&quot;/g, '"');
             // branch=branch.replace(/&amp;/g, '');
-			Blockly.Arduino.setups_['setup_serial'] = JST['serial_parseint_setups']({
+			Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
                 'bitrate': profiles.default.serial
             });
             var code = JST['serial_available']({
@@ -5234,10 +4446,10 @@
         // Source: src/blocks/serial_parseint/serial_parseint.js
 
         Blockly.Arduino.serial_parseint = function() {
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_parseint_setups']({
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
                 'bitrate': profiles.default.serial
             });
-            var code = 'Serial.parseInt()'; // JST['serial_parseint']({});
+            var code = 'Serial.parseInt()';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
@@ -5267,13 +4479,10 @@
             var a = RoboBlocks.findPinMode(content);
             code += a['code'];
             content = a['pin'];
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_print_setups']({
-                'bitrate': profiles.
-                default.serial
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
+                'bitrate': profiles.default.serial
             });
-            code += JST['serial_print']({
-                'content': content
-            });
+            code += 'Serial.print(' + content+');\n';
             return code;
         };
 
@@ -5301,13 +4510,10 @@
             var a = RoboBlocks.findPinMode(content);
             code += a['code'];
             content = a['pin'];
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_println_setups']({
-                'bitrate': profiles.
-                default.serial
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
+                'bitrate': profiles.default.serial
             });
-            code += JST['serial_println']({
-                'content': content
-            });
+            code += 'Serial.println(' + content+');\n';
             return code;
         };
 
@@ -5332,10 +4538,10 @@
 
         Blockly.Arduino.serial_read = function() {
 
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_read_setups']({
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
                 'bitrate': profiles.default.serial
             });
-            var code = JST['serial_read']({});
+            var code = 'Serial.read()';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
@@ -5362,10 +4568,10 @@
 
         Blockly.Arduino.serial_readstring = function() {
 
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_readstring_setups']({
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
                 'bitrate': profiles.default.serial
             });
-            var code = JST['serial_readstring']({});
+            var code = 'Serial.readString()';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
@@ -5396,12 +4602,9 @@
             code += a['code'];
             value_num = a['pin'];
 
-
             var convertion = this.getFieldValue('CONV');
-            code += JST['advanced_conversion']({
-                'value_num': value_num,
-                'convertion': convertion
-            });
+            code += value_num+','+convertion;
+
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -5460,10 +4663,7 @@
         // Source: src/blocks/serial_special/serial_special.js
 
         Blockly.Arduino.serial_special = function() {
-            var code = '\''+this.getFieldValue('CHAR')+'\'';
-											  
-							
-			   
+            var code = '\''+this.getFieldValue('CHAR')+'\'';			   
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -6821,32 +6021,6 @@
             }
         };
 		
-		
-		
-		/*Blockly.Arduino.inout_spi_interrupt = function() {
-			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
-            var code = 'SPI.usingInterrupt('+this.getFieldValue('INTERRUPT')+');\n';
-            return code;
-        };
-
-        Blockly.Blocks.inout_spi_interrupt = {
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
-			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_OTHER'),
-            tags: ['input','output','spi'],
-            helpUrl: RoboBlocks.getHelpUrl('inout_spi_interrupt'),
-			examples: [],
-			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
-			colour: RoboBlocks.LANG_COLOUR_ADVANCED_OTHER,	
-            init: function() {
-                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
-                this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_SPI_INTERRUPT')).appendField(new Blockly.FieldDropdown([['2','2'],['3','3']]),'INTERRUPT');
-				this.setOutput(false, null);
-				this.setPreviousStatement(true,'code');
-                this.setNextStatement(true, null);
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_INTERRUPT_TOOLTIP'));
-            }
-        };*/
-		
         Blockly.Arduino.button = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
             var code = '';
@@ -6855,19 +6029,11 @@
             dropdown_pin = a['pin'];
 
             if (RoboBlocks.isVariable(dropdown_pin)) {
-                code += JST['zum_button_setups']({
-                    'dropdown_pin': dropdown_pin,
-		    'pullup': 'INPUT'
-                });
+                code += 'pinMode(' +dropdown_pin+',INPUT);\n';
             } else {
-                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = JST['zum_button_setups']({
-                    'dropdown_pin': dropdown_pin,
-		    'pullup': 'INPUT'
-                });
+                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = 'pinMode(' +dropdown_pin+',INPUT);\n';
             }
-            code += JST['bq_button']({
-                'dropdown_pin': dropdown_pin,
-            });
+            code += 'digitalRead(' +dropdown_pin+')';
             // console.log('code',code);
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
@@ -6897,15 +6063,9 @@
             dropdown_pin = a['pin'];
 
 	    if (RoboBlocks.isVariable(dropdown_pin)) {
-                code += JST['zum_button_setups']({
-                    'dropdown_pin': dropdown_pin,
-		    'pullup': 'INPUT'
-                });
+                code += 'pinMode(' +dropdown_pin+',INPUT);\n';
             } else {
-                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = JST['zum_button_setups']({
-                    'dropdown_pin': dropdown_pin,
-		    'pullup': 'INPUT'
-                });
+                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = 'pinMode(' +dropdown_pin+',INPUT);\n';
             }
 
 	    var code_pressed = '';
@@ -6916,9 +6076,7 @@
 	    code_pressed = code_pressed.replace(/&quot;/g, '"');
             code_not_pressed = code_not_pressed.replace(/&quot;/g, '"');
 
-            code += 'if ('+JST['bq_button']({
-                'dropdown_pin': dropdown_pin,
-            })+'==LOW){\n'+code_pressed+'\n}\nelse{\n'+code_not_pressed+'\n}\n';
+            code += 'if ('+'digitalRead(' +dropdown_pin+')==LOW){\n'+code_pressed+'\n}\nelse{\n'+code_not_pressed+'\n}\n';
             // console.log('code',code);
             return code;
         };
@@ -6960,19 +6118,11 @@
 		 
 									
             if (RoboBlocks.isVariable(dropdown_pin)) {
-                code += JST['zum_button_setups']({
-                    'dropdown_pin': dropdown_pin,
-					'pullup': pullup
-                });
+                code += 'pinMode(' +dropdown_pin+',INPUT_PULLUP);\n';
             } else {
-                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = JST['zum_button_setups']({
-                    'dropdown_pin': dropdown_pin,
-		    'pullup': pullup
-                });
+                Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = 'pinMode(' +dropdown_pin+',INPUT_PULLUP);\n';
 			}
-            code += JST['zum_button']({
-                'dropdown_pin': dropdown_pin,
-            });
+            code += 'digitalRead(' +dropdown_pin+')'
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -7141,7 +6291,7 @@
                     'dropdown_pin': dropdown_pin
                 });
 			} else {
-				Blockly.Arduino.setups_['setup_green_digital_write_' + dropdown_pin] = JST['inout_digital_write_setups']({
+				Blockly.Arduino.setups_['setup_digital_write_' + dropdown_pin] = JST['inout_digital_write_setups']({
                     'dropdown_pin': dropdown_pin
                 });
 			}

@@ -16,6 +16,7 @@
         <file>../icons/add-button-inside-black-circle.png</file>
         <file>../icons/update-arrows.png</file>
         <file>../icons/key.png</file>
+        <file>../icons/copy.png</file>
     </qresource>
     <qresource prefix="/">
         <file>../icons/about-header.png</file>

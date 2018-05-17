@@ -154,6 +154,7 @@ private slots:
     void on_actionadd_triggered();
     void on_actionupdate_triggered();
     void on_actiondelete_triggered();
+    void on_actionCopy_triggered();
 };
 
 #endif // MAINWINDOW_H

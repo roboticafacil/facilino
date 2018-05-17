@@ -63,14 +63,15 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Predefined mouth expression (7-RGB LEDs matrix)</h3>
+<h3 id="up">Predefined mouth expression (7-RGB LEDs strip)</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('show_mouth','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Generates a predefined expression for the DYOR robots with a <a href="https://roboticafacil.es/producto/anillo-ws2812/" target="_blank">7-RGB LEDs matrix (ws2812)</a>.</p> 
+<p>Generates a predefined expression for the DYOR robots with a 7-RGB LEDs strip (ws2812).</p> 
 <h4>Requirements</h4>
 Facilino's License.
+<p>It requires to install NeoPixel library <a href="https://github.com/adafruit/Adafruit_NeoPixel" target="_blank">https://github.com/adafruit/Adafruit_NeoPixel</a>
 <h4>Inputs</h4>
 <ul>
    <li>PIN: 1-wire digital interface for data.</li>

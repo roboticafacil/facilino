@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -74,7 +68,10 @@ $('#'+exampleDiv).width((bbox.width+25)+'px');
 <p>Comprueba los niveles de alarma de humedad del sensor DHT11/DHT21/DHT22 y en caso de activarse una alarma, ejecuta el código correspondiente. Los niveles de alarma pueden establecerse con la instrucción:</p>
 <p><image src="doc/es-ES/img/ambient_humid_set_alarm.png" title="ambient_humid_set_alarm" alt="ambient_humid_set_alarm" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/ambient_humid_set_alarm.html");});'></image></p>
 <h4>Requisitos</h4>
-Licencia de Facilino.
+<p>Licencia de Facilino.</p>
+<p>Esta instrucción requiere las librerías DHT Adafruit y Adafruit Unified Sensor instaladas en Arduino IDE. Estas librerías están disponibles en: <a href="https://github.com/adafruit/DHT-sensor-library" target="_blank">https://github.com/adafruit/DHT-sensor-library</a> y <a href="https://github.com/adafruit/Adafruit_Sensor" target="_blank">https://github.com/adafruit/Adafruit_Sensor</a> y también a través del Gestor de Librerías:</p>
+<image src="doc/common/DHT_install.png" title="DHT_install" alt="dht_install"></image>
+<image src="doc/common/Adafruit_Unified_Sensor.png" title="Adrafruit_Sensor_install" alt="Adrafruit_Sensor_install"></image>
 <h4>Entradas</h4>
 <ul>
   <li>Pin: Pin al que está conectado el sensor.</li>

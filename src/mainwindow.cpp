@@ -24,6 +24,7 @@
 #include <QtWebChannel/QWebChannel>
 #include <QUndoStack>
 #include <QDomDocument>
+#include <QClipboard>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -1561,4 +1562,11 @@ void MainWindow::initCategories()
     categories["AMBIENT"].push_back("Ambient");
     categories["HTML"].push_back("HTML");
     categories["ADVANCED"].push_back("Basic I/O");
+}
+
+void MainWindow::on_actionCopy_triggered()
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    QString codeString = evaluateJavaScript("Blockly.Arduino.workspaceToCode();");
+    clipboard->setText(codeString);
 }

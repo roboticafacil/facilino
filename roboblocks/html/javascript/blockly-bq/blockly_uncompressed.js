@@ -11446,7 +11446,8 @@ Blockly.Events.Abstract = function(e) {
         var r = goog.dom.createDom("field", null, Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE);
         r.setAttribute("name", "NAME"), n.appendChild(r), t.push(n)
     }
-    return Blockly.Blocks.procedures_defreturn && ((n = goog.dom.createDom("block")).setAttribute("type", "procedures_defreturn"), n.setAttribute("gap", 16), (r = goog.dom.createDom("field", null, Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE)).setAttribute("name", "NAME"), n.appendChild(r), t.push(n)), Blockly.Blocks.procedures_ifreturn && ((n = goog.dom.createDom("block")).setAttribute("type", "procedures_ifreturn"), n.setAttribute("gap", 16), t.push(n)), t.length && t[t.length - 1].setAttribute("gap", 24), e = Blockly.Procedures.allProcedures(e), o(e[0], "procedures_callnoreturn"), o(e[1], "procedures_callreturn"), t
+    return Blockly.Blocks.procedures_defreturn && ((n = goog.dom.createDom("block")).setAttribute("type", "procedures_defreturn"), n.setAttribute("gap", 16), (r = goog.dom.createDom("field", null, Blockly.Msg.PROCEDURES_DEFRETURN_PROCEDURE)).setAttribute("name", "NAME"), n.appendChild(r), t.push(n)), 
+	Blockly.Blocks.procedures_ifreturn && ((n = goog.dom.createDom("block")).setAttribute("type", "procedures_ifreturn"), n.setAttribute("gap", 16), t.push(n)), t.length && t[t.length - 1].setAttribute("gap", 24), e = Blockly.Procedures.allProcedures(e), o(e[0], "procedures_callnoreturn"), o(e[1], "procedures_callreturn"), t
 }, Blockly.Procedures.getCallers = function(e, o) {
     for (var t = [], n = o.getAllBlocks(), r = 0; r < n.length; r++)
         if (n[r].getProcedureCall) {

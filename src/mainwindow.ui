@@ -518,6 +518,7 @@ pressed: { border: 1px };</string>
    </attribute>
    <addaction name="actionVerify"/>
    <addaction name="actionUpload"/>
+   <addaction name="actionCopy"/>
    <addaction name="separator"/>
    <addaction name="actionNew"/>
    <addaction name="separator"/>
@@ -950,6 +951,21 @@ pressed: { border: 1px };</string>
    </property>
    <property name="text">
     <string>Save as...</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/icons/icons/copy.png</normaloff>:/icons/icons/copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy to clipboard</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
  </widget>

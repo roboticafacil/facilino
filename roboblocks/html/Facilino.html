@@ -46,7 +46,7 @@ padding-left:30px;
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
     <script src="facilino_not_obfuscated.js"></script>
     <script src="roboblocks_compressed.js"></script>
-	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true' x='20' y='5'></block> </xml>
+	<xml id='startBlocks' style='display: none'><block type='controls_setupLoop' deletable='true' x='20' y='5'></block></xml>
 
 	<div>
 	<section class="menu cid-qAignIVLHL" once="menu" id="menu1-e" data-rv-view="7">
@@ -109,7 +109,7 @@ padding-left:30px;
 	</nav>
 	</section>
 	</div>
-	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true'></block> </xml>
+	<!-- <xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true'></block> </xml>-->
 	<div id="wrap" style="height: 90%;">
         <div id="blockly" style="float: left; width: 66%;">
 			<span id="position"></span>
@@ -182,8 +182,10 @@ padding-left:30px;
 			$("#redo").hide();
 			
 			if (localStorage.getItem("saved")!=='')
+			{
+			  Blockly.getMainWorkspace().clear();
 			  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(localStorage.getItem("saved")),Blockly.getMainWorkspace())
-			
+			}
 			var History = {};
 			History.stack = [];
 			History.initialState ='';
@@ -212,6 +214,7 @@ padding-left:30px;
 				RoboBlocks.LANG_COLOUR_LIGHT,
 				RoboBlocks.LANG_COLOUR_SOUND,
                 RoboBlocks.LANG_COLOUR_MOVEMENT,
+				RoboBlocks.LANG_COLOUR_SYSTEM,
 				RoboBlocks.LANG_COLOUR_AMBIENT,
 				RoboBlocks.LANG_COLOUR_HTML,
 				RoboBlocks.LANG_COLOUR_ADVANCED

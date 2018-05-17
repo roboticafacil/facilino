@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -72,6 +66,10 @@ $('#'+exampleDiv).width((bbox.width+25)+'px');
 <div id='blocklyInstruction'></div><script>injectInstruction('ambient_humid_humidityDHT','blocklyInstruction');</script>
 <h4>Descripción</h4>
 <p>Devuelve la humedad del aire en porcentaje leída por el sensor DHT11/DHT21/DHT22</p>
+<h4>Requisitos</h4>
+<p>Esta instrucción requiere las librerías DHT Adafruit y Adafruit Unified Sensor instaladas en Arduino IDE. Estas librerías están disponibles en: <a href="https://github.com/adafruit/DHT-sensor-library" target="_blank">https://github.com/adafruit/DHT-sensor-library</a> y <a href="https://github.com/adafruit/Adafruit_Sensor" target="_blank">https://github.com/adafruit/Adafruit_Sensor</a> y también a través del Gestor de Librerías:</p>
+<image src="doc/common/DHT_install.png" title="DHT_install" alt="dht_install"></image>
+<image src="doc/common/Adafruit_Unified_Sensor.png" title="Adrafruit_Sensor_install" alt="Adrafruit_Sensor_install"></image>
 <h4>Desplegables</h4>
 <ul>
   <li>Sensor: Modelo del sensor utilizado DHT11/DHT21/DHT22.</li>
