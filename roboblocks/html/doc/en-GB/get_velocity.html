@@ -66,13 +66,15 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <h3 id="up">Get Wheel Velocity</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
-<script>injectInstruction('set_encoders','blocklyInstruction');</script>
+<script>injectInstruction('get_velocity','blocklyInstruction');</script>
 <h4>Description</h4>
 <p>Returns the velocity of a wheel in RPM.</p>
 <h4>Dropdown lists</h4>
 <ul>
   <li>Wheel: Left or right wheel.</li>
 </ul>
+<h4>Output</h4>
+Wheel's velocity in RPM.
 <h4>Example</h4>
 In this example, the wheel speeds, left and right wheels, of a mobile base are measured.
 <div class="button_wrapper">

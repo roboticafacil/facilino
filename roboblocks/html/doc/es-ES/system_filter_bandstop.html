@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Filtro para-banda</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('system_filter_bandstop','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>Esta instrucción implementa un filtro para-banda de primer orden de Butterworth. Si la diferencia de tiempo entre el tiempo actual y el anterior es menor que Ts el filtro devuelve la salida anterior, mientras que si la diferencia es mayor el filtro actualiza la salida a partir del valor actual de entrada y obviamente la frecuencia de corte.</p>
+<h4>Requisitos</h4>
+Licencia de Facilino
+<h4>Campos</h4>
+<ul>
+  <li>Nombre: Nombre del filtro (debe ser diferente para cada filtro del mismo tipo).</li>
+  <li>Ts: Periodo de muestreo (en milisegundos).</li>
+  <li>Frec. de corte baja: La frecuencia de corte baja Wn se especifica en % y debe estar comprendida entre 0% < Wn < 100%, con 100% correspondiendo a la mitad de la frecuencia de muestreo Fs=1/Ts, siendo Ts el periodo de muestreo.</li>
+  <li>rec. de corte alta: Igual que la frecuencia de corte baja pero para la frecuencia de corte alta.
+</ul>
+<h4>Entradas</h4>
+<ul>
+  <li>Entrada: Señal de entrada.</li>
+</ul>
+<h4>Salida</h4>
+Salida filtrada.
+<h4>Ejemplo</h4>
+En este ejemplo se muestra cómo filtrar una señal ruidosa (compuesta por tres señales senoidales a diferentes frecuencias) usando un filtro para-banda. En este ejemplo las frecuencias de corte se han establecido entre 35Hz y 45Hz correspondientes al 35% y 45% de la mitad de la frecuencia de muestreo (100Hz).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/bandstop_filter_example.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<div id='example'></div>
+<script>injectExample('bandstop_filter_example.bly','example');</script>
+<image src="doc/common/bandstop_filter.png" title="bandstop_filter" alt="bandstop_filter"></image>
+<image src="doc/common/bandstop_filter_fft.png" title="bandstop_filter_fft" alt="bandstop_filter_fft"></image>
+<image src="doc/common/bandstop_filter_bode.png" title="bandstop_filter_bode" alt="bandstop_filter_bode"></image>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+</body>
+</html>
