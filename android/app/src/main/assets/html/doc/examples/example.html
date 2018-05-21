@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<meta charset='utf-8'/>
+<script src="../../javascript/jquery/dist/jquery.min.js"></script>
+    <script src="../../javascript/underscore/underscore.js"></script>
+    <script src="../../javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="../../javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="../../javascript/blockly-bq/arduino_compressed.js"></script>
+    <script src="../../facilino.js"></script>
+    <script src="../../roboblocks_compressed.js"></script>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+
+function loadFile(filePath) {
+  var result = null;
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", filePath, false);
+  xmlhttp.send();
+  if (xmlhttp.status==200) {
+    result = xmlhttp.responseText;
+  }
+  return result;
+}
+
+function openFunction(bly) {
+$.ajax({
+    url: bly,
+    type: "GET",
+    dataType: "xml",
+	async: false,
+    data: {
+    },
+    success: function (xml) {
+        var txt = new XMLSerializer().serializeToString(xml);
+		Blockly.mainWorkspace.clear();
+		var xmlDOM = Blockly.Xml.textToDom(txt);
+		Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+    },
+    error: function () {
+        console.log("error");
+    }
+});
+
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	//console.log(example);
+	openFunction(example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<div id='example'></div>
+<script>
+if (window.roboblocksLanguage === undefined || window.roboblocksLanguage === null || window.roboblocksProcessor===undefined || window.roboblocksProcessor===null) {
+window.roboblocksLanguage='en-GB';
+try {
+	console.log(location);
+	var parameters = location.search.substring(1).split("&");
+	var temp = parameters[0].split("=");
+	window.roboblocksLanguage = unescape(temp[1]);
+	temp = parameters[1].split("=");
+	window.roboblocksProcessor = unescape(temp[1]);
+	temp = parameters[2].split("=");
+	window.example = unescape(temp[1]);
+}
+catch(e){ window.roboblocksLanguage = 'en-GB'; window.roboblocksProcessor='ArduinoNano'};
+}
+console.log(window.roboblocksLanguage);	
+console.log(window.roboblocksProcessor);
+console.log(window.example);
+$.ajax({
+    url: '../../lang/facilino.json',
+    type: "GET",
+    dataType: "text",
+	async: false,
+	crossDomain: true,
+    data: {
+    },
+    success: function (text) {
+        window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;
+    },
+    error: function () {
+        console.log("error");
+    }
+});
+window.FacilinoLanguage=window.roboblocksLanguage;
+RoboBlocks.load({ zoom: 1 });
+Facilino.load({ zoom: 1});
+injectExample(window.example,'example');
+</script>
+</body>
+</html>

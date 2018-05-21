@@ -1,0 +1,408 @@
+<html>
+<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    	<meta name="robots" content="Index,Allow">
+    	<meta name="description" content="Entorno de programación visual para Arduino"/>
+    	<meta name="keywords" content="facilino,robot,arduino,dyor" />
+    	<meta name="author" content="Robótica Fácil"/>
+    	<title>Facilino</title>
+    	<link rel="stylesheet" type="text/css" href="facilino.css">
+    	<link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+		<style>
+		.blocklyTreeRow {
+		  height: 12px;
+		  line-height: 12px;
+          margin-bottom: 1px;
+          padding-right: 6px;
+		  padding-left: 0px;
+		}
+		.blocklyTreeLabel {
+		font-size: 5px;
+		padding: 0 0px;
+		}
+		.blocklyTreeIcon {
+		height: 6px;
+		vertical-align: middle;
+		width: 6px;
+		}
+		
+		.blocklyScrollbarVertical {
+		width: 7px;
+		}
+		.blocklyScrollbarHorizontal {
+		height: 7px;
+		}
+		</style>
+</head>
+<body>
+	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true'></block> </xml>
+	<div id="wrap">
+        <div id="blockly" style="float: left; width: 66%;">
+			<span id="position"></span>
+			<div id="dragbar"></div>
+		</div>
+		<div id="code_doc" style="float: left; width: 34%;">
+          <div id="code" style="float: none; width: 100%; height: 50%;">
+		  </div>
+		  <span id="position1"></span>
+			<div id="dragbar1" style="float: none; width=100%;"></div>
+		  <div id="doc" style="float: none; width: 100%; height: 50%;">
+		  </div>
+		</div>
+    </div>
+	
+    <script src="javascript/jquery/dist/jquery.min.js"></script>
+    <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/highlight/highlight.pack.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed_phone.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+    <script src="facilino.js"></script>
+    <script src="roboblocks_compressed.js"></script>
+   
+   <script language="JavaScript">
+	    if (window.roboblocksLanguage === undefined || window.roboblocksLanguage === null || window.roboblocksProcessor===undefined || window.roboblocksProcessor===null) {
+			window.roboblocksLanguage = 'en-GB';
+			try {
+				
+				var parameters = location.search.substring(1).split("&");
+				var temp = parameters[0].split("=");
+				window.roboblocksLanguage = unescape(temp[1]);
+				temp = parameters[1].split("=");
+				window.roboblocksProcessor = unescape(temp[1]);
+			}
+			catch(e){ window.roboblocksLanguage = 'en-GB'; window.roboblocksProcessor='ArduinoNano';};
+		}
+		if (localStorage.getItem("saved")===undefined || localStorage.getItem("saved")===null)
+			localStorage.setItem('saved', '');
+	    window.FacilinoLanguage = window.roboblocksLanguage;
+		window.FacilinoProcessor=window.roboblocksProcessor;		
+		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
+		var file = "doc/"+window.roboblocksLanguage+"/index.html";
+		$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
+		$(function(){$("#doc").load(file);});
+        RoboBlocks.load({ zoom: 0.5 });
+		Facilino.load({ zoom: 0.5});
+        
+			
+			//$.getScript( "my_blocks.js", function( data, textStatus, jqxhr ) {
+			//  eval(data);
+			  // New workspace for each test case
+            var el = document.getElementById('blockly');
+			//console.log(Blockly.createToolbox());
+            Blockly.inject(el, {toolbox: Blockly.createToolbox(), zoom: {controls: true, wheel: true, startScale: 0.4, maxScale: 0.8, minScale: 0.2, scaleSpeed: 1.1}});
+			
+			if (localStorage.getItem("saved")!=='')
+			  Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(localStorage.getItem("saved")),Blockly.getMainWorkspace())
+			
+			var History = {};
+			History.stack = [];
+			History.initialState ='';
+			History.position=0;
+			History.limit=200;
+			History.updating=false;
+			History.stack[0]=Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
+			
+            // Create a default setup/loop block
+			if (localStorage.getItem("saved")=='')
+              Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+			$('.blocklySvg, #blockly').height('100%');
+            $('.blocklySvg').width('100%');
+
+            // Update code
+                Blockly.getMainWorkspace().addChangeListener(function () {
+		$('#code').html('<code class="c++"><pre>'
+		  + escapeCode(Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace()))
+		  + '</pre></code>');
+		  // Highlight
+		$("pre").each(function (i, e) {
+		  hljs.highlightBlock(e);
+		});
+			//Save History
+			var current = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
+			if ((current !== History.stack[History.position])&&(current!==History.initialState))
+				History.updating=true;
+			//console.log(History.updating);
+			if (History.updating)
+			{
+				while (History.stack.length > History.limit) {
+					History.stack.shift();
+				}
+				History.position = Math.min(History.position,History.stack.length - 1);
+				History.stack = History.stack.slice(0, History.position + 1);
+				History.stack.push(current);
+				localStorage.setItem('saved',current);
+				History.position++;
+				showHideUndo();
+				showHideRedo();
+				//console.log('Saving position '+History.position);
+				//Android.showToast('Saving position '+History.position+'/'+History.stack.length);
+				History.updating=false;
+				//console.log(History.updating);
+			}
+	    });
+			//});	
+            
+            // Show/hide code
+            function toogleCode() {
+                if ($('#code').css('display') == 'none') {
+                    // Show
+                    $('#code').show();
+                    $('#blockly').width('66%');
+					if ($('#doc').css('display') == 'none' )
+					  $('#code').height('100%');
+					else
+					{
+					  $('#code').height('50%');
+					  $('#doc').width('100%');
+					  $('#doc').height('50%');
+					}
+                } else {
+                    // Hide
+                    $('#code').hide();
+					if ($('#doc').css('display') == 'none' )
+					  $('#blockly').width('100%');
+					else {
+					  $('#blockly').width('66%');
+					  $('#doc').width('100%');
+					  $('#doc').height('100%');
+					}
+                }
+                // Resize workspace
+                Blockly.fireUiEvent(window, "resize");
+            }
+			
+			function toogleDoc() {
+                if ($('#doc').css('display') == 'none') {
+                    // Show
+                    $('#doc').show();
+                    $('#blockly').width('66%');
+					if ($('#code').css('display') == 'none' )
+					  $('#doc').height('100%');
+					else
+					{
+					  $('#doc').height('50%');
+					  $('#code').width('100%');
+					  $('#code').height('50%');
+					}
+                } else {
+                    // Hide
+                    $('#doc').hide();
+					if ($('#code').css('display') == 'none' )
+					  $('#blockly').width('100%');
+					else {
+					  $('#blockly').width('66%');
+					  $('#code').width('100%');
+					  $('#code').height('100%');
+					}
+                }
+                // Resize workspace
+                Blockly.fireUiEvent(window, "resize");
+            }
+
+            function escapeCode(code) {
+                var str = code;
+                str = str.replace(/</g, "&lt;");
+                str = str.replace(/>/g, "&gt;");
+                return str;
+            }
+
+            function resetWorkspace() {
+				History.stack = [];
+				History.initialState ='';
+				History.position=0;
+                Blockly.mainWorkspace.clear();
+                Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
+            }
+			
+			function zoomIn()
+			{
+				var ws=Blockly.getMainWorkspace();
+				ws.markFocused();
+				ws.zoomCenter(1);
+			}
+			
+			function zoomOut()
+			{
+				var ws=Blockly.getMainWorkspace();
+				ws.markFocused();
+				ws.zoomCenter(-1);
+			}
+			
+			function exportArduino()
+			{
+				return Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
+			}
+			
+			function saveXml()
+			{
+				var el = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+				var str = (new XMLSerializer()).serializeToString(el);
+				return str;
+			}
+			
+			function openXml(xmlData)
+			{
+				try{
+					Blockly.mainWorkspace.clear();
+					var xml = Blockly.Xml.textToDom(xmlData);
+					Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(),xml);	
+					return true;
+				}
+				catch (e)
+				{
+					return false;
+				}
+			}
+			
+			function StringToXMLDom(string){
+				var xmlDoc=null;
+				if (window.DOMParser)
+				{
+					parser=new DOMParser();
+					xmlDoc=parser.parseFromString(string,"text/xml");
+				}
+				else // Internet Explorer
+				{
+					xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+					xmlDoc.async="false";
+					xmlDoc.loadXML(string);
+				}
+				return xmlDoc;
+			}
+		
+			function copyCode()
+			{
+				var r = document.createRange();
+				r.selectNode(document.getElementById("code"));
+				clipboard.setData('text/plain',window.getSelection().addRange(r));
+				r.selectNode(document.body);
+				window.getSelection().addRange(r);
+				clearSelection();
+				return window.clipboardData.getData('Text');
+			}
+			
+			var _0x749e=["\x6C\x69\x63\x65\x6E\x73\x65","\x6C\x65\x6E\x67\x74\x68","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6F\x62\x6F\x74\x69\x63\x61\x66\x61\x63\x69\x6C\x2E\x65\x73\x2F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2F\x62\x6C\x6F\x63\x6B\x6C\x79\x2F\x6C\x6F\x67\x69\x6E\x5F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2E\x70\x68\x70\x3F\x6C\x69\x63\x65\x6E\x73\x65\x3D","","\x47\x45\x54","\x6A\x73\x6F\x6E","\x6F\x6B","\x65\x72\x72\x6F\x72","\x61\x6A\x61\x78","\x3C\x63\x6F\x64\x65\x20\x63\x6C\x61\x73\x73\x3D\x22\x63\x2B\x2B\x22\x3E\x3C\x70\x72\x65\x3E","\x67\x65\x74\x4D\x61\x69\x6E\x57\x6F\x72\x6B\x73\x70\x61\x63\x65","\x77\x6F\x72\x6B\x73\x70\x61\x63\x65\x54\x6F\x43\x6F\x64\x65","\x41\x72\x64\x75\x69\x6E\x6F","\x3C\x2F\x70\x72\x65\x3E\x3C\x2F\x63\x6F\x64\x65\x3E","\x68\x74\x6D\x6C","\x23\x63\x6F\x64\x65","\x68\x69\x67\x68\x6C\x69\x67\x68\x74\x42\x6C\x6F\x63\x6B","\x65\x61\x63\x68","\x70\x72\x65","\x75\x6E\x64\x65\x66\x69\x6E\x65\x64"];function checkLicense(_0x66a1x2){delete window[_0x749e[0]];if(_0x66a1x2[_0x749e[1]]== 13){$(function(){$[_0x749e[8]]({url:_0x749e[2]+ _0x66a1x2,data:_0x749e[3],type:_0x749e[4],dataType:_0x749e[5],async:true,success:function(_0x66a1x3,_0x66a1x4,_0x66a1x5){if(_0x66a1x3[1]=== _0x749e[6]){window[_0x749e[0]]= _0x66a1x2}else {if(_0x66a1x3[1]=== _0x749e[7]){delete window[_0x749e[0]]}}},error:function(_0x66a1x5,_0x66a1x4,_0x66a1x6){if(_0x66a1x2[_0x749e[1]]!= 0){delete window[_0x749e[0]]}}})});$(_0x749e[15])[_0x749e[14]](_0x749e[9]+ escapeCode(Blockly[_0x749e[12]][_0x749e[11]](Blockly[_0x749e[10]]()))+ _0x749e[13]);$(_0x749e[18])[_0x749e[17]](function(_0x66a1x7,_0x66a1x8){hljs[_0x749e[16]](_0x66a1x8)});if( typeof window[_0x749e[0]]=== _0x749e[19]||  !window[_0x749e[0]]){return true}else {return false}}else {$(_0x749e[15])[_0x749e[14]](_0x749e[9]+ escapeCode(Blockly[_0x749e[12]][_0x749e[11]](Blockly[_0x749e[10]]()))+ _0x749e[13]);$(_0x749e[18])[_0x749e[17]](function(_0x66a1x7,_0x66a1x8){hljs[_0x749e[16]](_0x66a1x8)});return false}}
+			
+			function butUndo()
+			{
+				if (History.position>0){
+					var item =  History.stack[--History.position];
+					showHideUndo();
+					showHideRedo();
+					//Android.showToast('Saving position '+History.position+'/'+History.stack.length);
+					Blockly.getMainWorkspace().clear();
+					Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
+				}
+			}
+		
+			function butRedo()
+			{
+				if (History.position<(History.stack.length-1))
+				{
+					var item = History.stack[++History.position];
+					showHideUndo();
+					showHideRedo();
+					//Android.showToast('Saving position '+History.position+'/'+History.stack.length);
+					Blockly.getMainWorkspace().clear();
+					Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(item),Blockly.getMainWorkspace());
+				}
+			}
+			
+			function showHideUndo() {
+				if (History.position > 0)
+				{
+				//Android.showToast('Showing undo button');
+						Android.showHideUndo(true);
+				}
+					else
+					{
+					//Android.showToast('Hiding undo button');
+						Android.showHideUndo(false);
+						}
+			}
+			
+			function showHideRedo() {
+				if (History.position<(History.stack.length-1))
+						Android.showHideRedo(true);
+					else
+						Android.showHideRedo(false);
+			}
+				
+			var dragging = false;
+			var dragging1 = false;
+				
+			$('#dragbar').mousedown(function(e){
+				e.preventDefault();
+		   
+				dragging = true;
+				var code = $('#code_doc');
+				var ghostbar = $('<div>',
+							{id:'ghostbar',
+							 css: {
+									height: code.outerHeight(),
+									top: code.offset().top,
+									left: code.offset().left
+								   }
+							}).appendTo('body');
+		   
+					$(document).mousemove(function(e){
+						ghostbar.css("left",e.pageX+1);
+					});
+		   
+			});
+		
+		$('#dragbar1').mousedown(function(e){
+			e.preventDefault();
+       
+			dragging1 = true;
+			var doc = $('#doc');
+			var ghostbar = $('<div>',
+                        {id:'ghostbar1',
+                         css: {
+                                width: doc.outerWidth(),
+                                top: doc.offset().top,
+                                left: doc.offset().left
+                               }
+                        }).appendTo('body');
+       
+				$(document).mousemove(function(e){
+					ghostbar.css("top",e.pageY+1);
+				});
+       
+		});
+
+		$(document).mouseup(function(e){
+			if (dragging) 
+			{
+				var percentage = (e.pageX / window.innerWidth) * 100;
+				var mainPercentage = 100-percentage;
+           
+				//$('#console').text("side:" + percentage + " main:" + mainPercentage);
+				
+				$('#blockly').css("width",percentage + "%");
+				$('#code_doc').css("width",mainPercentage + "%");
+				$('#ghostbar').remove();
+				$(document).unbind('mousemove');
+				Blockly.svgResize(Blockly.getMainWorkspace());
+				dragging = false;
+			}
+			
+			if (dragging1) 
+			{
+				var percentage = (e.pageY / window.innerHeight) * 100;
+				var mainPercentage = 100-percentage;
+           
+				//$('#console').text("side:" + percentage + " main:" + mainPercentage);
+           
+				$('#code').css("height",percentage + "%");
+				$('#doc').css("height",mainPercentage + "%");
+				$('#ghostbar1').remove();
+				$(document).unbind('mousemove');
+				dragging1 = false;
+			}
+		});
+  </script>
+</body>
+</html>

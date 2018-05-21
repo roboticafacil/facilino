@@ -81,20 +81,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         myWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
-        lang_value = sharedPref.getString("language_list","en-GB");
-        processor_value = sharedPref.getString("processor_list","ArduinoNano");
-        license_switch =sharedPref.getBoolean("license_switch",false);
+        lang_value = sharedPref.getString("language_list", "en-GB");
+        processor_value = sharedPref.getString("processor_list", "ArduinoNano");
+        license_switch = sharedPref.getBoolean("license_switch", false);
         if (license_switch) {
             if (!license_value.equals(sharedPref.getString("license_text", ""))) {
                 license_value = sharedPref.getString("license_text", "");
                 checkLicense();
             }
-        }
-        else{
+        } else {
             if (once) {
                 Toast.makeText(context, R.string.demo_version, Toast.LENGTH_LONG).show();
                 license_value = "";
-                once=false;
+                once = false;
             }
         }
         SharedPreferences.Editor preferencesEditor = sharedPref.edit();
@@ -104,24 +103,24 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         myWebView.setWebChromeClient(new WebChromeClient() {
 
-            public void onProgressChanged(WebView view, int progress)
-            {
-                activity.setTitle(context.getString(R.string.app_name)+" "+context.getString(R.string.loading)+"..."+progress+"%");
+            public void onProgressChanged(WebView view, int progress) {
+                activity.setTitle(context.getString(R.string.app_name) + " " + context.getString(R.string.loading) + "..." + progress + "%");
                 activity.setProgress(progress * 100);
 
-                if(progress == 100) {
+                if (progress == 100) {
                     activity.setTitle(context.getString(R.string.app_name));
                 }
             }
+
             public boolean onConsoleMessage(ConsoleMessage cm) {
                 Log.d("Facilino", cm.message() + " -- From line "
                         + cm.lineNumber() + " of "
-                        + cm.sourceId() );
+                        + cm.sourceId());
                 return true;
             }
+
             @Override
-            public boolean onJsPrompt(WebView view, String origin, String message, String defaultValue, final JsPromptResult result)
-            {
+            public boolean onJsPrompt(WebView view, String origin, String message, String defaultValue, final JsPromptResult result) {
                 final EditText txtUrl = new EditText(context);
                 txtUrl.setSingleLine();
                 new AlertDialog.Builder(context)
@@ -129,40 +128,43 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         .setMessage(message)
                         .setView(txtUrl)
                         .setPositiveButton(android.R.string.ok,
-                                new AlertDialog.OnClickListener()
-                                {
-                                    public void onClick(DialogInterface dialog, int wicht)
-                                    {
+                                new AlertDialog.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int wicht) {
                                         result.confirm(txtUrl.getText().toString());
                                     }
                                 }).setCancelable(false)
                         .create()
                         .show();
                 return true;
-            };
+            }
+
+            ;
         });
 
         myWebView.setWebViewClient(new WebViewClient() {
 
             @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
-            {
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 // Handle the error
             }
 
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url)
-            {
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
         });
         if (lang_value.equals(""))
-            lang_value="en-GB";
+            lang_value = "en-GB";
         if (processor_value.equals(""))
-            processor_value="ArduinoNano";
+            processor_value = "ArduinoNano";
         //myWebView.loadUrl("file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value);
-        myWebView.loadUrl("file:///android_asset/html/indexAndroid.html");
+        if (isTablet(context)) {
+            myWebView.loadUrl("file:///android_asset/html/indexAndroid.html");
+        } else
+        {
+            myWebView.loadUrl("file:///android_asset/html/indexAndroidPhone.html");
+        }
     }
 
     public void showHideUndo(boolean state){

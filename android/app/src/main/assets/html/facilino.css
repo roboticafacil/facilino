@@ -35,7 +35,7 @@ html, body {
   background-color:black;
   height:100%;
   float: right;
-  width: 3px;
+  width: 2px;
   cursor: col-resize;
 }
 
@@ -43,7 +43,7 @@ html, body {
   background-color:black;
   width:100%;
   float: right;
-  height: 3px;
+  height: 2px;
   cursor: row-resize;
 }
 
@@ -51,7 +51,7 @@ html, body {
   background-color:black;
   width:100%;
   float: right;
-  height: 3px;
+  height: 2px;
   cursor: row-resize;
 }
 
@@ -59,12 +59,12 @@ html, body {
   background-color:black;
   width:100%;
   float: right;
-  height: 3px;
+  height: 2px;
   cursor: row-resize;
 }
 
 #ghostbar{
-  width:3px;
+  width:2px;
   background-color:#000;
   opacity:0.5;
   position:absolute;
@@ -73,7 +73,7 @@ html, body {
 }
 
 #ghostbar1{
-  height:3px;
+  height:2px;
   background-color:#000;
   opacity:0.5;
   position:absolute;
@@ -82,7 +82,7 @@ html, body {
 }
 
 #ghostbar2{
-  height:3px;
+  height:2px;
   background-color:#000;
   opacity:0.5;
   position:absolute;
@@ -91,7 +91,7 @@ html, body {
 }
 
 #ghostbar3{
-  height:3px;
+  height:2px;
   background-color:#000;
   opacity:0.5;
   position:absolute;

@@ -8671,7 +8671,7 @@ Blockly.Blocks = Object(null), Blockly.Touch = {}, Blockly.Touch.touchIdentifier
     o[Blockly.INPUT_VALUE] = new Blockly.ConnectionDB, o[Blockly.OUTPUT_VALUE] = new Blockly.ConnectionDB, o[Blockly.NEXT_STATEMENT] = new Blockly.ConnectionDB, o[Blockly.PREVIOUS_STATEMENT] = new Blockly.ConnectionDB, e.connectionDBList = o
 }, Blockly.constants = {}, Blockly.DRAG_RADIUS = 5, Blockly.SNAP_RADIUS = 20, Blockly.BUMP_DELAY = 250, Blockly.COLLAPSE_CHARS = 30, Blockly.LONGPRESS = 750, Blockly.SOUND_LIMIT = 100, Blockly.DRAG_STACK = !0, Blockly.HSV_SATURATION = .45, Blockly.HSV_VALUE = .65, Blockly.SPRITE = {
     width: 64,
-    height: 92,
+    height: 9,
     url: "sprites.png"
 }, Blockly.SVG_NS = "http://www.w3.org/2000/svg", Blockly.HTML_NS = "http://www.w3.org/1999/xhtml", Blockly.INPUT_VALUE = 1, Blockly.OUTPUT_VALUE = 2, Blockly.NEXT_STATEMENT = 3, Blockly.PREVIOUS_STATEMENT = 4, Blockly.DUMMY_INPUT = 5, Blockly.ALIGN_LEFT = -1, Blockly.ALIGN_CENTRE = 0, Blockly.ALIGN_RIGHT = 1, Blockly.DRAG_NONE = 0, Blockly.DRAG_STICKY = 1, Blockly.DRAG_BEGIN = 1, Blockly.DRAG_FREE = 2, Blockly.OPPOSITE_TYPE = [], Blockly.OPPOSITE_TYPE[Blockly.INPUT_VALUE] = Blockly.OUTPUT_VALUE, Blockly.OPPOSITE_TYPE[Blockly.OUTPUT_VALUE] = Blockly.INPUT_VALUE, Blockly.OPPOSITE_TYPE[Blockly.NEXT_STATEMENT] = Blockly.PREVIOUS_STATEMENT, Blockly.OPPOSITE_TYPE[Blockly.PREVIOUS_STATEMENT] = Blockly.NEXT_STATEMENT, Blockly.TOOLBOX_AT_TOP = 0, Blockly.TOOLBOX_AT_BOTTOM = 1, Blockly.TOOLBOX_AT_LEFT = 2, Blockly.TOOLBOX_AT_RIGHT = 3, Blockly.DELETE_AREA_TRASH = 1, Blockly.DELETE_AREA_TOOLBOX = 2, Blockly.VARIABLE_CATEGORY_NAME = "VARIABLE", Blockly.PROCEDURE_CATEGORY_NAME = "PROCEDURE", Blockly.Options = function(e) {
     var o, t, n, r, i, s = !!e.readOnly;
@@ -8823,7 +8823,7 @@ Blockly.Blocks = Object(null), Blockly.Touch = {}, Blockly.Touch.touchIdentifier
         height: this.BODY_HEIGHT_,
         y: this.LID_HEIGHT_
     }, o), Blockly.utils.createSvgElement("image", {
-        width: Blockly.SPRITE.width,
+        width: 24,
         x: -this.SPRITE_LEFT_,
         height: Blockly.SPRITE.height,
         y: -this.SPRITE_TOP_,
