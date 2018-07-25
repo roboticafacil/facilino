@@ -108,7 +108,7 @@ public class AboutActivity extends AppCompatPreferenceActivity {
             //bindPreferenceSummaryToValue(findPreference("example_list"));
         }
 
-        /*@Override
+        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
@@ -116,7 +116,7 @@ public class AboutActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return super.onOptionsItemSelected(item);
-        }*/
+        }
     }
 
     /**

@@ -9,6 +9,31 @@
     	<title>Facilino</title>
     	<link rel="stylesheet" type="text/css" href="facilino.css">
     	<link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+		<style>
+		.blocklyTreeRow {
+		  height: 18px;
+		  line-height: 18px;
+          margin-bottom: 3px;
+          padding-right: 8px;
+		  padding-left: 0px;
+		}
+		.blocklyTreeLabel {
+		font-size: 14px;
+		padding: 0 0px;
+		}
+		.blocklyTreeIcon {
+		height: 8px;
+		vertical-align: middle;
+		width: 8px;
+		}
+		
+		.blocklyScrollbarVertical {
+		width: 10px;
+		}
+		.blocklyScrollbarHorizontal {
+		height: 10px;
+		}
+		</style>
 </head>
 <body>
 	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true'></block> </xml>
@@ -30,7 +55,7 @@
     <script src="javascript/jquery/dist/jquery.min.js"></script>
     <script src="javascript/underscore/underscore.js"></script>
     <script src="javascript/highlight/highlight.pack.js"></script>
-    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed_tablet.js"></script>
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
     <script src="facilino.js"></script>
@@ -53,7 +78,7 @@
 			localStorage.setItem('saved', '');
 	    window.FacilinoLanguage = window.roboblocksLanguage;
 		window.FacilinoProcessor=window.roboblocksProcessor;		
-		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
+		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
 		var file = "doc/"+window.roboblocksLanguage+"/index.html";
 		$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
 		$(function(){$("#doc").load(file);});

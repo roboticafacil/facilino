@@ -63,29 +63,34 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Draws a stream of text in the LEDs matrix</h3>
+<h3 id="up">Draws a stream of text or image in the LEDs matrix</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('dyor_drawing_stream','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>This instruction accepts a stream of numbers (corresponding to a stream of text) to be shown in the 8x8 LEDs matrix (max7219). Given a delay time, the text will be shifted to the left (one column at each step) to show to complete text stream. Use in combination with the following instruction:</p>
+<p>This instruction accepts a stream (corresponding to a stream of text or image) to be shown in the 8x8 LEDs matrix (max7219). Given a delay time, the text or image will be shifted to the left (one column at each step) to show to complete text/image stream. Text and image shift can be done smoothly (one column each shift or individually). The instruction can be executed in the main flow such that it waits until the animation is over to execute next instruction or it can be used in the TIMER 0 interrupt as a background task. In the latter case, the next instruction will be executed immediately such that the main flow does not wait until the animation is over. Use in combination with the following instructions:</p>
 <div id='blocklyInstruction1'></div>
 <script>injectInstruction('dyor_drawing_text','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('dyor_drawing_sequentially','blocklyInstruction2');</script>
 <h4>Requirements</h4>
 Facilino's License.
 <h4>Inputs</h4>
 <ul>
-   <li>CS: Pin CS of the LED array (max7219).</li>
+   <li>CS: Pin CS of the LED matrix (max7219).</li>
    <li>DIN: Pin DIN of the matrix of LEDs (max7219).</li>
-   <li>CLK: Pin CLK of the LED array (max7219).</li>
-   <li>Stream text: Text to show in a stream.</li>
+   <li>CLK: Pin CLK of the LED matrix (max7219).</li>
+   <li>Orientation: Orientation of the LED matrix (max7219).</li>
+   <li>LED Matrix Stream: Text or LED Matrix 'images' to show in a stream.</li>
    <li>Wait: Transition wait time between consecutive streams.</li>
+   <li>Smooth shift?: If selected, the text or image is shifted by columns (one column once time have elapsed). Otherwise, the shift is done in 8 by 8 columns so each letter/image appears individually.</li>
+   <li>Background task?: If selected, the LED matrix animation starts and next instruction starts immediately (it doesn't wait until the animation is complete). Otherwise, the animation is executed and waits until it finishes to execute next instruction.</li>
 </ul>
 <h4>Dropdown list</h4>
 <ul>
    <li>Configuration: Configuration of the LEDs matrix (vertical, horizontal, vertical 180º or horizontal 180º).</li>
 </ul>
-<h4>Example</h4>
+<h4>Example 1</h4>
 In this example, we show the expression "DYOR is cool!" in the LEDs matrix with a controlled delay of 100ms on every shift.
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_generic_expression_stream_example.bly')">Open</button></p>
@@ -96,6 +101,50 @@ All changes will be lost!
 <h5>Facilino Code</h5>
 <div id='example1'></div>
 <script>injectExample('dyor_generic_expression_stream_example.bly','example1');</script>
+<h4>Example 2</h4>
+In this example, two images are shown in the LED Matrix meanwhile a melody with music notes.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/buzzer_tutorial_example4.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/led_matrix_buzzer_button_bb.png" title="led_matrix_buzzer_button_bb" alt="led_matrix_buzzer_button_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example2'></div>
+<script>injectExample('buzzer_tutorial_example4.bly','example2');</script>
+<h4>Example 3</h4>
+In this example, a sequence of images are shown while the built-in LED blinks.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/led_matrix_stream_tutorial_example1.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/led_matrix_example_bb.png" title="led_matrix_example_bb" alt="led_matrix_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example3'></div>
+<script>injectExample('led_matrix_stream_tutorial_example1.bly','example3');</script>
+<h4>Example 4</h4>
+In this example, the text "Hello everyone!" is shown while the built-in LED blinks.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/led_matrix_stream_tutorial_example2.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/led_matrix_example_bb.png" title="led_matrix_example_bb" alt="led_matrix_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example4'></div>
+<script>injectExample('led_matrix_stream_tutorial_example2.bly','example4');</script>
+<h4>Example 5</h4>
+This example shows a sequence of images on the LED Matrix as if charging a battery.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/led_matrix_tutorial_example3.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/led_matrix_example_bb.png" title="led_matrix_example_bb" alt="led_matrix_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example5'></div>
+<script>injectExample('led_matrix_tutorial_example3.bly','example5');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
 </body>
 </html>

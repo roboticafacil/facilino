@@ -82,6 +82,7 @@ padding-left:30px;
 		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
 		<option value="en-GB" class="text-black dropdown-item display-6" style="background-image:url(img/flags/united-kingdom.png)">English</option>
 		<option value="es-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol</option>
+		<option value="lt-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol (latino)</option>
 		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskera</option>
 		<option value="fr-FR" class="text-black dropdown-item display-6" style="background-image:url(img/flags/france.png)">Fran&ccedil;ais</option>
 		<option value="gl-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/galician.png)">Galego</option>
@@ -137,7 +138,7 @@ padding-left:30px;
 			localStorage.setItem('saved', '');
 		window.roboblocksLanguage = localStorage.getItem("language");
 		window.roboblocksProcessor = localStorage.getItem("processor");
-		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
+		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
 		var lic = localStorage.getItem("license");
 		$("#language").val(window.roboblocksLanguage);
 		$("#processor").val(window.roboblocksProcessor);
@@ -171,7 +172,7 @@ padding-left:30px;
             var el = document.getElementById('blockly');
 			//console.log(Blockly.createToolbox());
 			
-            Blockly.inject(el, {toolbox: Blockly.createToolbox(), zoom: {controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.05}});
+            Blockly.inject(el, {toolbox: Blockly.createToolbox(), zoom: {controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}});
             // Create a default setup/loop block
 			//Blockly.getMainWorkspace().clear();
             if (localStorage.getItem("saved")!=='')
@@ -200,7 +201,7 @@ padding-left:30px;
             $('.blocklySvg').width('100%');
 			
 	
-	    var colors = [
+	    /*var colors = [
                 "",
 				RoboBlocks.LANG_COLOUR_PROCEDURES,
 				RoboBlocks.LANG_COLOUR_CONTROL,
@@ -217,9 +218,10 @@ padding-left:30px;
 				RoboBlocks.LANG_COLOUR_SYSTEM,
 				RoboBlocks.LANG_COLOUR_AMBIENT,
 				RoboBlocks.LANG_COLOUR_HTML,
-				RoboBlocks.LANG_COLOUR_ADVANCED
+				RoboBlocks.LANG_COLOUR_ADVANCED,
+				RoboBlocks.LANG_COLOUR_DEPRECATED
 		];
-		colors.push(Blockly.createToolboxColours());
+		colors.push(Blockly.createToolboxColours());*/
 		
 		
 		

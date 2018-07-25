@@ -8521,7 +8521,105 @@ Blockly.Blocks = Object(null), Blockly.Touch = {}, Blockly.Touch.touchIdentifier
     (!goog.userAgent.IPHONE && !goog.userAgent.IPAD || goog.userAgent.isVersionOrHigher("537.51.2") || 0 === e.layerX || 0 === e.layerY) && (Blockly.utils.isRightButton(e) || this.sourceBlock_.workspace.isDragging() || this.sourceBlock_.isEditable() && this.showEditor_())
 }, Blockly.Field.prototype.setTooltip = function(e) {}, Blockly.Field.prototype.getAbsoluteXY_ = function() {
     return goog.style.getPageOffset(this.borderRect_)
-}, Blockly.Tooltip = {}, Blockly.Tooltip.visible = !1, Blockly.Tooltip.LIMIT = 50, Blockly.Tooltip.mouseOutPid_ = 0, Blockly.Tooltip.showPid_ = 0, Blockly.Tooltip.lastX_ = 0, Blockly.Tooltip.lastY_ = 0, Blockly.Tooltip.element_ = null, Blockly.Tooltip.poisonedElement_ = null, Blockly.Tooltip.OFFSET_X = 0, Blockly.Tooltip.OFFSET_Y = 10, Blockly.Tooltip.RADIUS_OK = 10, Blockly.Tooltip.HOVER_MS = 750, Blockly.Tooltip.MARGINS = 5, Blockly.Tooltip.DIV = null, Blockly.Tooltip.createDom = function() {
+}, 
+
+
+Blockly.Field1 = function(e, o) {
+    this.size_ = new goog.math.Size(0, Blockly.BlockSvg.MIN_BLOCK_Y), this.setValue(e), this.setValidator(o)
+}, Blockly.Field1.cacheWidths_ = null, Blockly.Field1.cacheReference_ = 0, Blockly.Field1.prototype.name = void 0, Blockly.Field1.prototype.maxDisplayLength = 50, Blockly.Field1.prototype.text_ = "", Blockly.Field1.prototype.sourceBlock_ = null, Blockly.Field1.prototype.visible_ = !0, Blockly.Field1.prototype.validator_ = null, Blockly.Field1.NBSP = " ", Blockly.Field1.prototype.EDITABLE = !0, Blockly.Field1.prototype.setSourceBlock = function(e) {
+    goog.asserts.assert(!this.sourceBlock_, "Field1 already bound to a block."), this.sourceBlock_ = e
+}, Blockly.Field1.prototype.init = function() {
+    this.fieldGroup_ || (this.fieldGroup_ = Blockly.utils.createSvgElement("g", {}, null), this.visible_ || (this.fieldGroup_.style.display = "none"), this.borderRect_ = Blockly.utils.createSvgElement("rect", {
+        rx: 4,
+        ry: 4,
+        x: -Blockly.BlockSvg.SEP_SPACE_X / 2,
+        y: 0,
+        height: 16
+    }, this.fieldGroup_, this.sourceBlock_.workspace), this.textElement_ = Blockly.utils.createSvgElement("text", {
+        class: "blocklyText",
+        y: this.size_.height - 12.5
+    }, this.fieldGroup_), this.updateEditable(), this.sourceBlock_.getSvgRoot().appendChild(this.fieldGroup_), this.mouseUpWrapper_ = Blockly.bindEventWithChecks_(this.fieldGroup_, "mouseup", this, this.onMouseUp_), this.render_())
+}, Blockly.Field1.prototype.initModel = function() {}, Blockly.Field1.prototype.dispose = function() {
+    this.mouseUpWrapper_ && (Blockly.unbindEvent_(this.mouseUpWrapper_), this.mouseUpWrapper_ = null), this.sourceBlock_ = null, goog.dom.removeNode(this.fieldGroup_), this.validator_ = this.borderRect_ = this.textElement_ = this.fieldGroup_ = null
+}, Blockly.Field1.prototype.updateEditable = function() {
+    var e = this.fieldGroup_;
+    this.EDITABLE && e && (this.sourceBlock_.isEditable() ? (Blockly.utils.addClass(e, "blocklyEditableText"), Blockly.utils.removeClass(e, "blocklyNonEditableText"), this.fieldGroup_.style.cursor = this.CURSOR) : (Blockly.utils.addClass(e, "blocklyNonEditableText"), Blockly.utils.removeClass(e, "blocklyEditableText"), this.fieldGroup_.style.cursor = ""))
+}, Blockly.Field1.prototype.isCurrentlyEditable = function() {
+    return this.EDITABLE && !!this.sourceBlock_ && this.sourceBlock_.isEditable()
+}, Blockly.Field1.prototype.isVisible = function() {
+    return this.visible_
+}, Blockly.Field1.prototype.setVisible = function(e) {
+    if (this.visible_ != e) {
+        this.visible_ = e;
+        var o = this.getSvgRoot();
+        o && (o.style.display = e ? "block" : "none", this.render_())
+    }
+}, Blockly.Field1.prototype.setValidator = function(e) {
+    this.validator_ = e
+}, Blockly.Field1.prototype.getValidator = function() {
+    return this.validator_
+}, Blockly.Field1.prototype.classValidator = function(e) {
+    return e
+}, Blockly.Field1.prototype.callValidator = function(e) {
+    var o = this.classValidator(e);
+    if (null === o) return null;
+    if (void 0 !== o && (e = o), o = this.getValidator()) {
+        if (null === (o = o.call(this, e))) return null;
+        void 0 !== o && (e = o)
+    }
+    return e
+}, Blockly.Field1.prototype.getSvgRoot = function() {
+    return this.fieldGroup_
+}, Blockly.Field1.prototype.render_ = function() {
+    if (this.visible_) {
+        goog.dom.removeChildren(this.textElement_);
+        var e = document.createTextNode(this.getDisplayText_());
+        this.textElement_.appendChild(e), this.updateWidth()
+    } else this.size_.width = 0
+}, Blockly.Field1.prototype.updateWidth = function() {
+    var e = Blockly.Field1.getCachedWidth(this.textElement_);
+    this.borderRect_ && this.borderRect_.setAttribute("width", e + Blockly.BlockSvg.SEP_SPACE_X), this.size_.width = e
+}, Blockly.Field1.getCachedWidth = function(e) {
+    var o, t = e.textContent + "\n" + e.className.baseVal;
+    if (Blockly.Field1.cacheWidths_ && (o = Blockly.Field1.cacheWidths_[t])) return o;
+    try {
+        o = e.getComputedTextLength()
+    } catch (o) {
+        return 8 * e.textContent.length
+    }
+    return Blockly.Field1.cacheWidths_ && (Blockly.Field1.cacheWidths_[t] = o), o
+}, Blockly.Field1.startCache = function() {
+    Blockly.Field1.cacheReference_++, Blockly.Field1.cacheWidths_ || (Blockly.Field1.cacheWidths_ = {})
+}, Blockly.Field1.stopCache = function() {
+    --Blockly.Field1.cacheReference_ || (Blockly.Field1.cacheWidths_ = null)
+}, Blockly.Field1.prototype.getSize = function() {
+    return this.size_.width || this.render_(), this.size_
+}, Blockly.Field1.prototype.getScaledBBox_ = function() {
+    var e = this.borderRect_.getBBox();
+    return new goog.math.Size(e.width * this.sourceBlock_.workspace.scale, e.height * this.sourceBlock_.workspace.scale)
+}, Blockly.Field1.prototype.getDisplayText_ = function() {
+    var e = this.text_;
+    return e ? (e.length > this.maxDisplayLength && (e = e.substring(0, this.maxDisplayLength - 2) + "…"), e = e.replace(/\s/g, Blockly.Field1.NBSP), this.sourceBlock_.RTL && (e += "‏"), e) : Blockly.Field1.NBSP
+}, Blockly.Field1.prototype.getText = function() {
+    return this.text_
+}, Blockly.Field1.prototype.setText = function(e) {
+    null !== e && (e = String(e)) !== this.text_ && (this.text_ = e, this.size_.width = 0, this.sourceBlock_ && this.sourceBlock_.rendered && (this.sourceBlock_.render(), this.sourceBlock_.bumpNeighbours_()))
+}, Blockly.Field1.prototype.getValue = function() {
+    return this.getText()
+}, Blockly.Field1.prototype.setValue = function(e) {
+    if (null !== e) {
+        var o = this.getValue();
+        o != e && (this.sourceBlock_ && Blockly.Events.isEnabled() && Blockly.Events.fire(new Blockly.Events.Change(this.sourceBlock_, "field", this.name, o, e)), this.setText(e))
+    }
+}, Blockly.Field1.prototype.onMouseUp_ = function(e) {
+    (!goog.userAgent.IPHONE && !goog.userAgent.IPAD || goog.userAgent.isVersionOrHigher("537.51.2") || 0 === e.layerX || 0 === e.layerY) && (Blockly.utils.isRightButton(e) || this.sourceBlock_.workspace.isDragging() || this.sourceBlock_.isEditable() && this.showEditor_())
+}, Blockly.Field1.prototype.setTooltip = function(e) {}, Blockly.Field1.prototype.getAbsoluteXY_ = function() {
+    return goog.style.getPageOffset(this.borderRect_)
+}, 
+
+
+
+Blockly.Tooltip = {}, Blockly.Tooltip.visible = !1, Blockly.Tooltip.LIMIT = 50, Blockly.Tooltip.mouseOutPid_ = 0, Blockly.Tooltip.showPid_ = 0, Blockly.Tooltip.lastX_ = 0, Blockly.Tooltip.lastY_ = 0, Blockly.Tooltip.element_ = null, Blockly.Tooltip.poisonedElement_ = null, Blockly.Tooltip.OFFSET_X = 0, Blockly.Tooltip.OFFSET_Y = 10, Blockly.Tooltip.RADIUS_OK = 10, Blockly.Tooltip.HOVER_MS = 750, Blockly.Tooltip.MARGINS = 5, Blockly.Tooltip.DIV = null, Blockly.Tooltip.createDom = function() {
     Blockly.Tooltip.DIV || (Blockly.Tooltip.DIV = goog.dom.createDom("DIV", "blocklyTooltipDiv"), document.body.appendChild(Blockly.Tooltip.DIV))
 }, Blockly.Tooltip.bindMouseEvents = function(e) {
     Blockly.bindEvent_(e, "mouseover", null, Blockly.Tooltip.onMouseOver_), Blockly.bindEvent_(e, "mouseout", null, Blockly.Tooltip.onMouseOut_), e.addEventListener("mousemove", Blockly.Tooltip.onMouseMove_, !1)
@@ -8575,7 +8673,7 @@ Blockly.Blocks = Object(null), Blockly.Touch = {}, Blockly.Touch.touchIdentifier
 }, Blockly.Input.prototype.removeField = function(e) {
     for (var o, t = 0; o = this.fieldRow[t]; t++)
         if (o.name === e) return o.dispose(), this.fieldRow.splice(t, 1), void(this.sourceBlock_.rendered && (this.sourceBlock_.render(), this.sourceBlock_.bumpNeighbours_()));
-    goog.asserts.fail('Field "%s" not found.', e)
+    goog.asserts.fail('Field1 "%s" not found.', e)
 }, Blockly.Input.prototype.isVisible = function() {
     return this.visible_
 }, Blockly.Input.prototype.setVisible = function(e) {

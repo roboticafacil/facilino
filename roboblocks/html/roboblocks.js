@@ -32,7 +32,7 @@
 			this.defaultLanguage = lang;
 		}
         RoboBlocks.locales.getKey = function(key) {
-            return this.defaultLanguage[key];
+            return this.defaultLanguage[key] || this.EngLanguage[key];
         };
 		
 		RoboBlocks.locales.setKey = function(key,value) {
@@ -60,6 +60,7 @@
 			this.defaultLanguage=defaultLanguage;
 			this.defaultLanguage.lngCode = lang;*/
 			this.defaultLanguage = options.langKeys ||window.langKeys || {};
+			this.EngLanguage = window.langKeysEng;
 			this.processor = options.proc || window.FacilinoProcessor || 'ArduinoNano';
 			return this;
         };
@@ -148,6 +149,7 @@
 		RoboBlocks.LANG_COLOUR_SYSTEM = '#ADAD85';  //#adad85, #a3a375, #999966, #8a8a5c,#7a7a52, #6b6b47, #5c5c3d, #4d4d33
 		RoboBlocks.LANG_COLOUR_SYSTEM_CONTROL = '#ADAD85';
 		RoboBlocks.LANG_COLOUR_SYSTEM_FILTERS = '#A3A375';
+		RoboBlocks.LANG_COLOUR_DEPRECATED = '#000000';
 
 
         // Source: src/profiles.js
@@ -198,7 +200,7 @@
         Blockly.findMissingDoc = function() {
 
             var blocks = {};
-			var ignore = ['dyor_piezo_music_silencio_redonda','dyor_piezo_music_do_redonda','dyor_piezo_music_re_redonda','dyor_piezo_music_mi_redonda','dyor_piezo_music_fa_redonda','dyor_piezo_music_sol_redonda','dyor_piezo_music_la_redonda','dyor_piezo_music_si_redonda','dyor_piezo_music_silencio_blanca','dyor_piezo_music_do_blanca','dyor_piezo_music_re_blanca','dyor_piezo_music_mi_blanca','dyor_piezo_music_fa_blanca','dyor_piezo_music_sol_blanca','dyor_piezo_music_la_blanca','dyor_piezo_music_si_blanca','dyor_piezo_music_silencio_negra','dyor_piezo_music_do_negra','dyor_piezo_music_re_negra','dyor_piezo_music_mi_negra','dyor_piezo_music_fa_negra','dyor_piezo_music_sol_negra','dyor_piezo_music_la_negra','dyor_piezo_music_si_negra','dyor_piezo_music_silencio_corchea','dyor_piezo_music_do_corchea','dyor_piezo_music_re_corchea','dyor_piezo_music_mi_corchea','dyor_piezo_music_fa_corchea','dyor_piezo_music_sol_corchea','dyor_piezo_music_la_corchea','dyor_piezo_music_si_corchea','dyor_piezo_music_silencio_semicorchea','dyor_piezo_music_do_semicorchea','dyor_piezo_music_re_semicorchea','dyor_piezo_music_mi_semicorchea','dyor_piezo_music_fa_semicorchea','dyor_piezo_music_sol_semicorchea','dyor_piezo_music_la_semicorchea','dyor_piezo_music_si_semicorchea','dyor_piezo_music_end','HIPPIE_adv_movement2'];
+			//var ignore = ['dyor_piezo_music_silencio_redonda','dyor_piezo_music_do_redonda','dyor_piezo_music_re_redonda','dyor_piezo_music_mi_redonda','dyor_piezo_music_fa_redonda','dyor_piezo_music_sol_redonda','dyor_piezo_music_la_redonda','dyor_piezo_music_si_redonda','dyor_piezo_music_silencio_blanca','dyor_piezo_music_do_blanca','dyor_piezo_music_re_blanca','dyor_piezo_music_mi_blanca','dyor_piezo_music_fa_blanca','dyor_piezo_music_sol_blanca','dyor_piezo_music_la_blanca','dyor_piezo_music_si_blanca','dyor_piezo_music_silencio_negra','dyor_piezo_music_do_negra','dyor_piezo_music_re_negra','dyor_piezo_music_mi_negra','dyor_piezo_music_fa_negra','dyor_piezo_music_sol_negra','dyor_piezo_music_la_negra','dyor_piezo_music_si_negra','dyor_piezo_music_silencio_corchea','dyor_piezo_music_do_corchea','dyor_piezo_music_re_corchea','dyor_piezo_music_mi_corchea','dyor_piezo_music_fa_corchea','dyor_piezo_music_sol_corchea','dyor_piezo_music_la_corchea','dyor_piezo_music_si_corchea','dyor_piezo_music_silencio_semicorchea','dyor_piezo_music_do_semicorchea','dyor_piezo_music_re_semicorchea','dyor_piezo_music_mi_semicorchea','dyor_piezo_music_fa_semicorchea','dyor_piezo_music_sol_semicorchea','dyor_piezo_music_la_semicorchea','dyor_piezo_music_si_semicorchea','dyor_piezo_music_end','HIPPIE_adv_movement2','dyor_piezo_music_silencio_redondap','dyor_piezo_music_silencio_blancap','dyor_piezo_music_silencio_negrap','dyor_piezo_music_silencio_corcheap','dyor_piezo_music_silencio_semicorcheap','dyor_piezo_music_do_redondap_vb','dyor_piezo_music_do_redonda_vb','dyor_piezo_music_do_blancap_vb','dyor_piezo_music_do_blanca_vb','dyor_piezo_music_do_negrap_vb','dyor_piezo_music_do_negra_vb','dyor_piezo_music_do_corcheap_vb','dyor_piezo_music_do_corchea_vb','dyor_piezo_music_do_semicorcheap_vb','dyor_piezo_music_do_semicorchea_vb','dyor_piezo_music_dos_redondap_vb','dyor_piezo_music_dos_redonda_vb','dyor_piezo_music_dos_blancap_vb','dyor_piezo_music_dos_blanca_vb','dyor_piezo_music_dos_negrap_vb','dyor_piezo_music_dos_negra_vb','dyor_piezo_music_dos_corcheap_vb','dyor_piezo_music_dos_corchea_vb','dyor_piezo_music_dos_semicorcheap_vb','dyor_piezo_music_dos_semicorchea_vb','dyor_piezo_music_reb_redondap_vb','dyor_piezo_music_reb_redonda_vb','dyor_piezo_music_reb_blancap_vb','dyor_piezo_music_reb_blanca_vb','dyor_piezo_music_reb_negrap_vb','dyor_piezo_music_reb_negra_vb','dyor_piezo_music_reb_corcheap_vb','dyor_piezo_music_reb_corchea_vb','dyor_piezo_music_reb_semicorcheap_vb','dyor_piezo_music_reb_semicorchea_vb','dyor_piezo_music_re_redondap_vb','dyor_piezo_music_re_redonda_vb','dyor_piezo_music_re_blancap_vb','dyor_piezo_music_re_blanca_vb','dyor_piezo_music_re_negrap_vb','dyor_piezo_music_re_negra_vb','dyor_piezo_music_re_corcheap_vb','dyor_piezo_music_re_corchea_vb','dyor_piezo_music_re_semicorcheap_vb','dyor_piezo_music_re_semicorchea_vb','dyor_piezo_music_res_redondap_vb','dyor_piezo_music_res_redonda_vb','dyor_piezo_music_res_blancap_vb','dyor_piezo_music_res_blanca_vb','dyor_piezo_music_res_negrap_vb','dyor_piezo_music_res_negra_vb','dyor_piezo_music_res_corcheap_vb'];
 
             for (var block in this.Blocks) {
                 // important check that this is objects own property 
@@ -213,10 +215,15 @@
             var missingDoc = '';
 
             var categoryItem = function(type) {
-				if (ignore.indexOf(type)<0){
-				  if (RoboBlocks.checkHelpUrl(type)===false)
+				if (!(type.includes('dyor_piezo_music_silencio')||type.includes('dyor_piezo_music_do')||type.includes('dyor_piezo_music_re')||type.includes('dyor_piezo_music_mi')||type.includes('dyor_piezo_music_fa')||type.includes('dyor_piezo_music_sol')||type.includes('dyor_piezo_music_la')||type.includes('dyor_piezo_music_si')))
+				{
+					if (RoboBlocks.checkHelpUrl(type)===false)
                     missingDoc += type+'\n';
 				}
+				/*if (ignore.indexOf(type)<0){
+				  if (RoboBlocks.checkHelpUrl(type)===false)
+                    missingDoc += type+'\n';
+				}*/
             };
 
             for (block in blocks) {
@@ -250,7 +257,7 @@
 			return blocks;
 		};
 		
-		Blockly.createToolbox = function() {
+		/*Blockly.createToolbox = function() {
 
             var blocks = { };
 			var colours = { };
@@ -270,9 +277,6 @@
                     blocks[category][subcategory].push(block);
                 }
             }
-			
-			//console.log(blocks);
-			//console.log(colours);
 
             var toolbox = '<xml id="toolbox" style="display: none">';
 
@@ -280,7 +284,6 @@
                 toolbox += '<block type="' + type + '"></block>';
             };
 
-			//console.log(blocks);
             for (category in blocks) {
                 if (blocks.hasOwnProperty(category)) {
 					toolbox += '<category id="' + category + '" name="' + category + '" colour="'+colours[category]+'">';
@@ -291,6 +294,71 @@
 							//console.log();
 							toolbox += '<category id="' + subcategory + '" name="' + subcategory + '" colour="'+this.Blocks[blocks[category][subcategory][0]].colour+'">';
 							blocks[category][subcategory].forEach(categoryItem);
+							toolbox += '</category>';
+						}
+					}
+					toolbox += '</category>';
+                }
+
+            }
+            toolbox += '</xml>';
+
+            return toolbox;
+        };*/
+		
+		Blockly.createToolbox = function() {
+
+            var blocks = { };
+			var colours = { };
+
+            for (var block in this.Blocks) {
+                // important check that this is objects own property 
+                // not from prototype prop inherited
+                if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
+                    var category = this.Blocks[block].category;
+					var subcategory = this.Blocks[block].subcategory;
+					var colour = this.Blocks[block].category_colour;
+					var subsubcategory = this.Blocks[block].subsubcategory;
+					if (subcategory===undefined)
+						subcategory='root';
+					if (subsubcategory===undefined)
+						subsubcategory='root';
+                    blocks[category] = blocks[category] || { };
+					colours[category] = colours[category] || colour;
+					blocks[category][subcategory] = blocks[category][subcategory] || [];
+					blocks[category][subcategory][subsubcategory] = blocks[category][subcategory][subsubcategory] || [];
+                    blocks[category][subcategory][subsubcategory].push(block);
+                }
+            }
+
+            var toolbox = '<xml id="toolbox" style="display: none">';
+
+            var categoryItem = function(type) {
+                toolbox += '<block type="' + type + '"></block>';
+            };
+
+            for (category in blocks) {
+                if (blocks.hasOwnProperty(category)) {
+					toolbox += '<category id="' + category + '" name="' + category + '" colour="'+colours[category]+'">';
+					for (subcategory in blocks[category]) {
+						if (subcategory==='root')
+							blocks[category]['root']['root'].forEach(categoryItem);
+						if (subcategory!=='root'){
+							//console.log(blocks);
+							toolbox += '<category id="' + subcategory + '" name="' + subcategory + '" colour="'+this.Blocks[blocks[category][subcategory]['root'][0]].colour+'">';
+							for (subsubcategory in blocks[category][subcategory])
+							{
+								if (subsubcategory==='root')
+								{
+									blocks[category][subcategory]['root'].forEach(categoryItem);
+								}
+								if (subsubcategory!=='root')
+								{
+									toolbox += '<category id="' + subsubcategory + '" name="' + subsubcategory + '" colour="'+this.Blocks[blocks[category][subcategory][subsubcategory][0]].colour+'">';
+									blocks[category][subcategory][subsubcategory].forEach(categoryItem);
+									toolbox += '</category>';
+								}
+							}
 							toolbox += '</category>';
 						}
 					}
@@ -979,15 +1047,13 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'tone(' +
+				__p += 'tone(' +
                     ((__t = (dropdown_pin)) == null ? '' : __t) +
                     ',' +
                     ((__t = (Buzztone)) == null ? '' : __t) +
                     ',' +
                     ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\ndelay(' +
-                    ((__t = (delay_time)) == null ? '' : __t) +
-                    ');\n\n';
+                    ');\n';
 
             }
             return __p
@@ -2323,6 +2389,37 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_TOOLTIP'));
             }
         };
+		
+		Blockly.Arduino.base_delay_sec = function() {
+            var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC);
+            var code = '';
+            var a = RoboBlocks.findPinMode(delay_time);
+            code += a['code'];
+            delay_time = a['pin'];
+			
+			code += 'delay(1000*'+delay_time+');\n';
+            return code;
+        };
+
+        Blockly.Blocks.base_delay_sec = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
+            helpUrl: RoboBlocks.getHelpUrl('base_delay_sec'),
+			examples: ['base_delay_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_BASE_DELAY_WAIT_SEC','LANG_CONTROLS_BASE_DELAY_SEC_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
+                this.appendValueInput('DELAY_TIME', Number)
+                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_WAIT_SEC'))
+                    .setCheck(Number);
+                this.setInputsInline(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_SEC_TOOLTIP'));
+            }
+        };
 
 	// Source: src/blocks/advanced_map/advanced_map.js
         // global Blockly, JST, RoboBlocks 
@@ -2625,7 +2722,7 @@
             getVars: function() {
                 return [this.getFieldValue('VAR')];
             },
-            getVariables: function() {
+            /*getVariables: function() {
                 var variables = Blockly.Variables.allUsedVariables;
                 var dropdown = [];
                 if (variables.length > 0) {
@@ -2636,15 +2733,15 @@
                     dropdown.push(['', '']);
                 }
                 return dropdown;
-            },
-            isVariable: function(varValue) {
+            },*/
+            /*isVariable: function(varValue) {
                 for (var i in Blockly.Variables.allUsedVariables) {
                     if (Blockly.Variables.allUsedVariables[i] === varValue) {
                         return true;
                     }
                 }
                 return false;
-            },
+            },*/
             onchange: function() {
                 /*try {
                     if (this.isVariable(Blockly.Arduino.valueToCode(this, 'FROM', Blockly.Arduino.ORDER_ATOMIC))) {
@@ -3532,7 +3629,7 @@
         Blockly.Arduino.lcd_def = function() {
             Blockly.Arduino.definitions_['define_wire'] = '#include <Wire.h>';
 			Blockly.Arduino.definitions_['define_liquid_crystals'] = '#include <LiquidCrystal.h>';
-            Blockly.Arduino.definitions_['declare_var_LCD'] = 'LiquidCrystal lcd('+this.getFieldValue('LCD_1')+','+this.getFieldValue('LCD_2')+','+this.getFieldValue('LCD_3')+','+this.getFieldValue('LCD_4')+this.getFieldValue('LCD_5')+','+this.getFieldValue('LCD_6')+');\n';
+            Blockly.Arduino.definitions_['declare_var_LCD'] = 'LiquidCrystal lcd('+this.getFieldValue('LCD_1')+','+this.getFieldValue('LCD_2')+','+this.getFieldValue('LCD_3')+','+this.getFieldValue('LCD_4')+','+this.getFieldValue('LCD_5')+','+this.getFieldValue('LCD_6')+');\n';
             Blockly.Arduino.setups_['setup_lcd'] = 'lcd.begin(16, 2);\nlcd.clear();\n';
             return '';
         };
@@ -4088,6 +4185,7 @@
             var n = window.parseFloat(text || 0);
             return window.isNaN(n) ? null : String(n);
         };
+		
 
         // Source: src/blocks/math_random/math_random.js
         Blockly.Arduino.math_random = function() {
@@ -4197,6 +4295,143 @@
                 this.setInputsInline(true);
                 this.setOutput(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_MATH_SINUSOID_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.math_1DArray_constructor = function() {
+            // Array constructor.
+			var code='{';
+			if (this.itemCount_>0)
+			{
+				item = Blockly.Arduino.valueToCode(this, 'ITEM0', Blockly.Arduino.ORDER_NONE)
+				code+=item;
+				for (var n = 1; n < this.itemCount_; n++) {
+					item = Blockly.Arduino.valueToCode(this, 'ITEM'+n, Blockly.Arduino.ORDER_NONE);
+					code+=','+item;
+				}
+			}
+			code+='}';
+			return [code,Blockly.Arduino.ORDER_NONE];
+        };
+
+        Blockly.Blocks.math_1DArray_constructor = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
+            helpUrl: RoboBlocks.getHelpUrl('math_1DArray_constructor'),
+			tags: ['variables'],
+			examples: ['variables_global_volatile_type_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_MATH,
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: [],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+				this.appendDummyInput('ITEMS').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY'));
+                this.setInputsInline(false);
+                this.setPreviousStatement(false);
+                this.setNextStatement(false);
+				this.setOutput(true,'Array');
+				this.setMutator(new Blockly.Mutator(['math_1DArray_constructor_item']));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_TOOLTIP'));
+				this.itemCount_ = 0;
+            },
+            mutationToDom: function() {
+                if (!this.itemCount_) {
+                    return null;
+                }
+				var container = document.createElement('mutation');
+				if (this.itemCount_) {
+					container.setAttribute('item', this.itemCount_);
+				}
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                this.itemCount_ = window.parseInt(xmlElement.getAttribute('item'), 10);
+                for (var x = 0; x < this.itemCount_; x++) {
+                    this.appendValueInput('ITEM'+x).setCheck([Number,Boolean]);
+                }
+            },
+			decompose: function(workspace) {
+                var containerBlock = workspace.newBlock('math_1DArray_constructor_constructor');
+                containerBlock.initSvg();
+                var connection = containerBlock.getInput('STACK').connection;
+                for (var x = 0; x < this.itemCount_; x++) {
+                    var itemBlock = workspace.newBlock('math_1DArray_constructor_item');
+                    itemBlock.initSvg();
+                    connection.connect(itemBlock.previousConnection);
+                    connection = itemBlock.nextConnection;
+                }
+                return containerBlock;
+            },
+            compose: function(containerBlock) {
+                // Disconnect all the task input blocks and remove the inputs.
+                for (var x = this.itemCount_-1; x >= 0; x--) {
+                    this.removeInput('ITEM' + x);
+                }
+                this.itemCount_ = 0;
+                // Rebuild the block's optional inputs.
+                var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+                while (clauseBlock) {
+                    switch (clauseBlock.type) {
+                        case 'math_1DArray_constructor_item':
+                            var itemInput = this.appendValueInput('ITEM' + this.itemCount_).setCheck([Number,Boolean]);
+                            this.itemCount_++;
+                            // Reconnect any child blocks.
+                            if (clauseBlock.valueConnection_) {
+                                itemInput.connection.connect(clauseBlock.valueConnection_);
+                            }
+                 
+                            break;
+                        default:
+                            throw 'Unknown block type.';
+                    }
+                    clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+                }
+				//this.getInput('ITEMS').removeField('SEP'+(this.itemCount_-1));
+			    //this.getInput('ITEMS').appendField('}','SEP'+(this.itemCount_-1));
+            },
+            saveConnections: function(containerBlock) {
+                // Store a pointer to any connected child blocks.
+                var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+                var x = 0;
+                while (clauseBlock) {
+                    switch (clauseBlock.type) {
+                        case 'math_1DArray_constructor_item':
+                            var itemInput = this.getInput('ITEM' + x);
+                            clauseBlock.valueConnection_ = itemInput && itemInput.connection.targetConnection;
+                            x++;
+                            break;
+                        default:
+                            throw 'Unknown block type.';
+                    }
+                    clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+                }
+            }
+        };
+		
+		 Blockly.Blocks.math_1DArray_constructor_constructor = {
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_VARIABLES_ARRAY','LANG_VARIABLES_ARRAY_TOOLTIP'],
+            // Task.
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY')).setAlign(Blockly.ALIGN_RIGHT);
+                this.appendStatementInput('STACK').setCheck('array_item');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_TOOLTIP'));
+                this.contextMenu = false;
+            }
+        };
+
+		Blockly.Blocks.math_1DArray_constructor_item = {
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+            // Task item.
+			keys: ['LANG_VARIABLES_ARRAY_ITEM'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ITEM')).setAlign(Blockly.ALIGN_RIGHT);
+                this.setPreviousStatement(true,'array_item');
+                this.setNextStatement(true,'array_item');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ITEM'));
+                this.contextMenu = false;
             }
         };
 
@@ -5248,7 +5483,7 @@
 			examples: ['variables_example.bly'],							  
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
-			keys: ['LANG_VARIABLES_GET','LANG_VARIABLES_GET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
+			keys: ['LANG_VARIABLES_GET','LANG_VARIABLES_GET_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendDummyInput('DUMMY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET'))
@@ -5259,7 +5494,7 @@
             },
             getVariables: function() {
                 var variables = Blockly.Variables.allVariables();
-                var dropdown = [];
+				var dropdown = [];
                 if (variables.length > 0) {
                     for (var i in variables) {
                         dropdown.push([variables[i], variables[i]]);
@@ -5277,14 +5512,100 @@
 				 
                  this.last_variable=this.getFieldValue('VAR');
                  if (!this.last_variables){
-                     this.last_variables=Blockly.Variables.allVariables();
+                     //this.last_variables=Blockly.Variables.allVariables();
+					 this.last_variables=[];
                  }
-                 var variables=Blockly.Variables.allVariables();
-                 for (var i in variables){
-                     if (Blockly.Variables.allVariables()[i]!==this.last_variables[i]){
+				 var variables=Blockly.Variables.allVariables();
+				 for (var i=0;i<variables.length;i++){
+					 if ((variables[i]!==this.last_variables[i])||(variables.length!==this.last_variables.length)){
 						 this.getInput('DUMMY').removeField('VAR');
 						 this.getInput('DUMMY').appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR');
                          this.setFieldValue(this.last_variable, 'VAR');
+                         this.last_variables=variables;
+                     }
+                 }
+                try {
+                    if (!this.exists()) {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_VARIABLES_CALL_WITHOUT_DEFINITION'));
+                    } else {
+                        this.setWarningText(null);
+                    }
+                } catch (e) {}
+            },
+            renameVar: function(oldName, newName) {
+                if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+                    this.setTitleValue(newName, 'VAR');
+                }
+            },
+            exists: function() {
+				var variables = Blockly.Variables.allVariables();
+                for (var i=0;i<variables.length;i++) {
+                    if (variables[i] === this.getFieldValue('VAR')) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
+		
+		Blockly.Arduino.variables_get_1Darray = function() {
+            // Variable setter.
+            var varName = this.getFieldValue('VAR') || '';
+			var index = Blockly.Arduino.valueToCode(this, 'INDEX', Blockly.Arduino.ORDER_NONE);
+            if (RoboBlocks.variables[this.getFieldValue('VAR')] !== undefined) {
+                this.var_type = RoboBlocks.variables[this.getFieldValue('VAR')][0];
+            }
+			varName+='['+index+']';
+            return [varName, Blockly.Arduino.ORDER_ATOMIC];
+        };
+        Blockly.Blocks.variables_get_1Darray = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('variables_get_1Darray'),
+			tags: ['variables'],
+			examples: ['variables_example.bly'],							  
+			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_GET','LANG_VARIABLES_ARRAY_INDEX','LANG_VARIABLES_GET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendValueInput('INDEX').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GET')).appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_INDEX'));
+                this.setOutput(true);
+				this.setInputsInline(true);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_GET_TOOLTIP'));
+            },
+            getVariables: function() {
+                var variables = Blockly.Variables.allVariables();
+				var dropdown = [];
+                if (variables.length > 0) {
+                    for (var i in variables) {
+                        dropdown.push([variables[i], variables[i]]);
+                    }
+                } else {
+                    dropdown.push(['', '']);
+                }
+                return dropdown;
+            },
+            onchange: function() {
+                 if (!this.workspace) {
+                     // Block has been deleted.
+                     return;
+                 }
+				 
+                 this.last_variable=this.getFieldValue('VAR');
+				 this.last_index=this.getFieldValue('INDEX');
+                 if (!this.last_variables){
+                     //this.last_variables=Blockly.Variables.allVariables();
+					 this.last_variables=[];
+                 }
+				 var variables=Blockly.Variables.allVariables();
+				 for (var i=0;i<variables.length;i++){
+					 if ((variables[i]!==this.last_variables[i])||(variables.length!==this.last_variables.length)){
+						 this.getInput('INDEX').removeField('VAR');
+						 this.new_field=new Blockly.FieldDropdown(this.getVariables());
+						 this.new_field.setValue(this.last_variable);
+						 this.getInput('INDEX').insertFieldAt(1,this.new_field,'VAR');
                          this.last_variables=Blockly.Variables.allVariables();
                      }
                  }
@@ -5302,8 +5623,9 @@
                 }
             },
             exists: function() {
-                for (var i in Blockly.Variables.allVariables()) {
-                    if (Blockly.Variables.allVariables()[i] === this.getFieldValue('VAR')) {
+				var variables = Blockly.Variables.allVariables();
+                for (var i=0;i<variables.length;i++) {
+                    if (variables[i] === this.getFieldValue('VAR')) {
                         return true;
                     }
                 }
@@ -5320,8 +5642,6 @@
             var a = RoboBlocks.findPinMode(varValue);
             code += a['code'];
             varValue = a['pin'];
-
-
             code += JST['variables_set']({
                 'varName': varName,
                 'varValue': varValue
@@ -5336,7 +5656,7 @@
 			examples: ['variables_example.bly'],	
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,		
-			keys: ['LANG_VARIABLES_SET','LANG_VARIABLES_SET_AS','LANG_VARIABLES_SET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
+			keys: ['LANG_VARIABLES_SET','LANG_VARIABLES_SET_AS','LANG_VARIABLES_SET_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
                 this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET'))
@@ -5401,6 +5721,81 @@
                 return false;
             }
         };
+		
+		Blockly.Arduino.variables_set_1Darray = function() {
+            // Variable setter.
+			var index = Blockly.Arduino.valueToCode(this, 'INDEX', Blockly.Arduino.ORDER_NONE) || '';
+            var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ASSIGNMENT) || '';
+            var varName = this.getFieldValue('VAR') || '';
+            var code = '';
+
+            var a = RoboBlocks.findPinMode(varValue);
+            code += a['code'];
+            varValue = a['pin'];
+
+			varName+='['+index+']';
+            code += JST['variables_set']({
+                'varName': varName,
+                'varValue': varValue
+            });
+            return code;
+        };
+        Blockly.Blocks.variables_set_1Darray = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('variables_set_1Darray'),
+			tags: ['variables'],
+			examples: ['variables_example.bly'],	
+			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,		
+			keys: ['LANG_VARIABLES_SET','LANG_VARIABLES_ARRAY_INDEX','LANG_VARIABLES_SET_AS','LANG_VARIABLES_SET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendValueInput('INDEX').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET')).appendField(new Blockly.FieldDropdown(this.getVariables()), 'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_INDEX')).setAlign(Blockly.ALIGN_RIGHT);
+                this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_AS')).setAlign(Blockly.ALIGN_RIGHT);
+                this.setInputsInline(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_TOOLTIP'));
+            },
+			getVariables: Blockly.Blocks.variables_set.getVariables,
+			renameVar: Blockly.Blocks.variables_set.renameVar,
+            exists: Blockly.Blocks.variables_set.exists,
+            onchange: function() {
+                if (!this.workspace) {
+                    // Block has been deleted.
+                    return;
+                }
+				this.last_field_value=this.getFieldValue('VAR');
+				//this.last_index_value=this.getFieldValue('INDEX');
+                if (!this.last_variables){
+                    this.last_variables=Blockly.Variables.allVariables();
+                }
+                var variables=Blockly.Variables.allVariables();
+                for (var i in variables){
+                     if (Blockly.Variables.allVariables()[i]!==this.last_variables[i]){
+						 this.getInput('INDEX').removeField('VAR');
+						 //this.getInput('VALUE').removeField('INDEX');
+						 this.new_field=new Blockly.FieldDropdown(this.getVariables());
+						 this.new_field.setValue(this.last_field_value);
+						 //this.new_field2=new Blockly.FieldNumber(0,0);
+						 //this.new_field2.setValue(this.last_index_value);
+						 this.getInput('INDEX').insertFieldAt(1,this.new_field,'VAR');
+						 //this.getInput('VALUE').insertFieldAt(3,this.new_field2,'INDEX');
+						 //this.getInput('VALUE').insertFieldAt(1,this.last_field,'VAR');
+                         this.last_variables=Blockly.Variables.allVariables();
+                     }
+                 }
+                try {
+                    if (!this.exists()) {
+                        this.setWarningText(RoboBlocks.locales.getKey('LANG_VARIABLES_CALL_WITHOUT_DEFINITION'));
+                    } else {
+                        this.setWarningText(null);
+                    }
+                } catch (e) {}
+            }
+        };
         
         // Source: src/blocks/variables_local/variables_local.js
         Blockly.Arduino.variables_local = function() {
@@ -5439,14 +5834,6 @@
                         } else if (Blockly.Arduino.definitions_[i].substring(0, 3) === 'Str') {
                             varType = 'String';
                         } else {
-																																										
-															
-									
-														  
-							 
-						  
-	  
-			
                             varType = '';
                         }
                         code += varType + ' ' + varName + '=' + varValue + ';\n';
@@ -5475,9 +5862,9 @@
                 code += varType + ' ' + varName + '=' + varValue + ';\n';
             }
 
-            RoboBlocks.variables[varName] = [varType, 'local'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local'];
+            RoboBlocks.variables[varName] = [varType, 'local','variable'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','variable'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','variable'];
 
             return code;
         };
@@ -5564,8 +5951,50 @@
                 }
             }
         };
-        // Source: src/blocks/variables_local_type/variables_local_type.js
-        Blockly.Arduino.variables_local_type = function() {
+		
+		// Source: src/blocks/variables_local/variables_local.js
+        Blockly.Arduino.variables_local_1DArray = function() {
+            // Variable setter.
+            var varType = 'int';
+			var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
+            var varName = this.getFieldValue('VAR') || '';
+			var array = this.getInputTargetBlock('VALUE');
+            var code = '';
+            //console.log(varValue);
+			//code += varType + ' ' + varName+'['+this.getFieldValue('SIZE')+'];\n';
+            code += varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+            RoboBlocks.variables[varName] = [varType, 'local','1DArray'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray'];
+
+            return code;
+        };
+        Blockly.Blocks.variables_local_1DArray = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
+            subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+			helpUrl: RoboBlocks.getHelpUrl('variables_local_1DArray'),
+			tags: ['variables'],
+			examples: ['variables_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_ARRAY_LOCAL','LANG_VARIABLES_LOCAL_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_LOCAL')).appendField(new Blockly.FieldTextInput(''),'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_SET_AS')).setCheck('Array');
+                this.setInputsInline(false);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_LOCAL_TOOLTIP'));
+            },
+            getVars: Blockly.Blocks.variables_local.getVars,
+			renameVar: Blockly.Blocks.variables_local.renameVar,
+            isVariable: Blockly.Blocks.variables_local.isVariable,
+            validName: Blockly.Blocks.variables_local.validName,
+			onchange: Blockly.Blocks.variables_local.onchange
+        };
+		
+		Blockly.Arduino.variables_local_type = function() {
             // Variable setter.
             var varType = this.getFieldValue('VAR_TYPE');
             var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ASSIGNMENT);
@@ -5578,9 +6007,9 @@
 
             code += varType + ' ' + varName + '=' + varValue + ';\n';
 
-            RoboBlocks.variables[varName] = [varType, 'local'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local'];
+            RoboBlocks.variables[varName] = [varType, 'local','variable'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','variable'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','variable'];
 
             return code;
         };
@@ -5613,14 +6042,60 @@
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_TOOLTIP2'));
             },
-            getVars: function() {
-                return [this.getFieldValue('VAR')];
+            getVars: Blockly.Blocks.variables_local.getVars,
+			renameVar: Blockly.Blocks.variables_local.renameVar,
+            isVariable: Blockly.Blocks.variables_local.isVariable,
+            validName: Blockly.Blocks.variables_local.validName,
+			onchange: Blockly.Blocks.variables_local.onchange
+        };
+		
+		// Source: src/blocks/variables_local_type/variables_local_type.js
+        Blockly.Arduino.variables_local_1DArray_type = function() {
+            // Variable setter.
+			var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
+            var varType = this.getFieldValue('VAR_TYPE');
+            var varName = this.getFieldValue('VAR') || '';
+			var array = this.getInputTargetBlock('VALUE');
+            var code = '';
+		
+            code += varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+            RoboBlocks.variables[varName] = [varType, 'local','1DArray'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray'];
+
+            return code;
+        };
+        Blockly.Blocks.variables_local_1DArray_type = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('variables_local_1DArray_type'),
+			tags: ['variables'],
+			examples: ['variables_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_ARRAY_LOCAL','LANG_VARIABLES_LOCAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_LOCAL_TOOLTIP2'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendValueInput('VALUE').
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_LOCAL')).
+                appendField(new Blockly.FieldTextInput(''), 'VAR').
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_TYPE')).
+                appendField(new Blockly.FieldDropdown([
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BYTE'), 'byte'],
+					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BOOL'), 'bool'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float']
+                ]), "VAR_TYPE").appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_EQUALS')).setCheck('Array');
+                this.setInputsInline(false);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_TOOLTIP2'));
             },
-            renameVar: function(oldName, newName) {
-                if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
-                    this.setFieldValue(newName, 'VAR');
-                }
-            },
+			getVars: Blockly.Blocks.variables_local.getVars,
+			renameVar: Blockly.Blocks.variables_local.renameVar,
             isVariable: Blockly.Blocks.variables_local.isVariable,
             validName: Blockly.Blocks.variables_local.validName,
 			onchange: Blockly.Blocks.variables_local.onchange
@@ -5695,9 +6170,9 @@
                 Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName + ';\n';
                 Blockly.Arduino.setups_['define_var' + varName] = varName + '=' + varValue + ';\n';
             }
-            RoboBlocks.variables[varName] = [varType, 'global'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global'];
+            RoboBlocks.variables[varName] = [varType, 'global','variable'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','variable'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','variable'];
 
             return '';
         };
@@ -5718,18 +6193,56 @@
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_TOOLTIP'));
             },
-            getVars: function() {
-                return [this.getFieldValue('VAR')];
-            },
-            renameVar: function(oldName, newName) {
-                if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
-                    this.setFieldValue(newName, 'VAR');
-                }
-            },
+            getVars: Blockly.Blocks.variables_local.getVars,
+            renameVar: Blockly.Blocks.variables_local.renameVar,
 			isVariable: Blockly.Blocks.variables_local.isVariable,
             validName: Blockly.Blocks.variables_local.validName,
             onchange: Blockly.Blocks.variables_local.onchange
         };
+		
+		
+		Blockly.Arduino.variables_global_1DArray = function() {
+            // Variable setter.
+			var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
+            var varType;
+            var varName = this.getFieldValue('VAR') || '';
+            var isFunction = false;
+			var array = this.getInputTargetBlock('VALUE');
+			
+			varType = 'int';
+            Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+            RoboBlocks.variables[varName] = [varType, 'global','1DArray'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray'];
+
+            return '';
+        };
+        Blockly.Blocks.variables_global_1DArray = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('variables_global_1DArray'),
+			tags: ['variables'],
+			examples: ['variables_example.bly'],	
+			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_ARRAY_GLOBAL','LANG_VARIABLES_ARRAY_GLOBAL_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_GLOBAL')).appendField(new Blockly.FieldTextInput(''), 'VAR').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_EQUALS')).setCheck('Array');
+                this.setInputsInline(false);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_GLOBAL_TOOLTIP'));
+            },
+            getVars: Blockly.Blocks.variables_local.getVars,
+            renameVar: Blockly.Blocks.variables_local.renameVar,
+			isVariable: Blockly.Blocks.variables_local.isVariable,
+            validName: Blockly.Blocks.variables_local.validName,
+            onchange: Blockly.Blocks.variables_local.onchange
+        };
+		
+		
         // Source: src/blocks/variables_global_type/variables_global_type.js
         Blockly.Arduino.variables_global_type = function() {
             // Variable setter.
@@ -5748,9 +6261,9 @@
             Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName + ';\n';
             Blockly.Arduino.setups_['define_var' + varName] = varName + '=' + varValue + ';\n';
 
-            RoboBlocks.variables[varName] = [varType, 'global'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global'];
+            RoboBlocks.variables[varName] = [varType, 'global','variable'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','variable'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','variable'];
 
             return '';
         };
@@ -5797,6 +6310,72 @@
 			validName: Blockly.Blocks.variables_local.validName
         };
 		
+		Blockly.Arduino.variables_global_1DArray_type = function() {
+            // Variable setter.
+            var varType = this.getFieldValue('VAR_TYPE');
+            var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
+            var varName = this.getFieldValue('VAR') || '';
+            var isFunction = false;
+			var array = this.getInputTargetBlock('VALUE');
+
+            var varName = this.getFieldValue('VAR') || '';
+            var code = '';
+
+            var a = RoboBlocks.findPinMode(varValue);
+            code += a['code'];
+            varValue = a['pin'];
+
+            Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+            
+            RoboBlocks.variables[varName] = [varType, 'global','1DArray'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray'];
+            return '';
+        };
+
+        Blockly.Blocks.variables_global_1DArray_type = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('variables_global_1DArray_type'),
+			tags: ['variables'],
+			examples: ['variables_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			keys: ['LANG_VARIABLES_ARRAY_GLOBAL','LANG_VARIABLES_GLOBAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_ARRAY_GLOBAL_TOOLTIP2'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendValueInput('VALUE').
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_GLOBAL')).
+                appendField(new Blockly.FieldTextInput(''), 'VAR').
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_TYPE')).
+                appendField(new Blockly.FieldDropdown([
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BYTE'), 'byte'],
+					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BOOL'), 'bool'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float']
+                ]), "VAR_TYPE").
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS')).setCheck('Array');
+                this.setInputsInline(false);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_GLOBAL_TOOLTIP2'));
+            },
+            getVars: function() {
+                return [this.getFieldValue('VAR')];
+            },
+            renameVar: function(oldName, newName) {
+                if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+                    this.setFieldValue(newName, 'VAR');
+                }
+            },
+            isVariable: Blockly.Blocks.variables_local.isVariable,
+            onchange: Blockly.Blocks.variables_local.onchange,
+			validName: Blockly.Blocks.variables_local.validName
+        };
+		
         
 		Blockly.Arduino.variables_global_volatile_type = function() {
             // Variable setter.
@@ -5815,9 +6394,9 @@
             Blockly.Arduino.definitions_['declare_var' + varName] = 'volatile ' + varType + ' ' + varName + ';\n';
             Blockly.Arduino.setups_['define_var' + varName] = varName + '=' + varValue + ';\n';
 
-            RoboBlocks.variables[varName] = ['volatile ' + varType, 'global'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global'];
+            RoboBlocks.variables[varName] = ['volatile ' + varType, 'global','variable'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','variable'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','variable'];
 
             return '';
         };
@@ -5861,7 +6440,74 @@
             isVariable: Blockly.Blocks.variables_local.isVariable,
             onchange: Blockly.Blocks.variables_local.onchange,
 			validName: Blockly.Blocks.variables_local.validName
-        };		
+        };	
+		
+		Blockly.Arduino.variables_global_volatile_1DArray_type = function() {
+            // Variable setter.
+            var varType = this.getFieldValue('VAR_TYPE');
+            var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ASSIGNMENT);
+            var varName = this.getFieldValue('VAR') || '';
+            var isFunction = false;
+			var array = this.getInputTargetBlock('VALUE');
+
+            var varName = this.getFieldValue('VAR') || '';
+            var code = '';
+
+            var a = RoboBlocks.findPinMode(varValue);
+            code += a['code'];
+            varValue = a['pin'];
+
+            Blockly.Arduino.definitions_['declare_var' + varName] = 'volatile ' + varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+            
+            RoboBlocks.variables[varName] = ['volatile ' + varType, 'global','1DArray'];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray'];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray'];
+
+            return '';
+        };
+
+        Blockly.Blocks.variables_global_volatile_1DArray_type = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('variables_global_volatile_1DArray_type'),
+			tags: ['variables'],
+			examples: ['variables_global_volatile_type_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
+			keys: ['LANG_VARIABLES_ARRAY_GLOBAL_VOLATILE','LANG_VARIABLES_GLOBAL_TYPE','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_ARRAY_GLOBAL_VOLATILE_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
+                this.appendValueInput('VALUE').
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_GLOBAL_VOLATILE')).
+                appendField(new Blockly.FieldTextInput(''), 'VAR').
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_TYPE')).
+                appendField(new Blockly.FieldDropdown([
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BYTE'), 'byte'],
+					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_BOOL'), 'bool'],
+                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'), 'float']
+                ]), "VAR_TYPE").
+                appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_EQUALS'));
+                this.setInputsInline(false);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_GLOBAL_VOLATILE_TOOLTIP'));
+            },
+            getVars: function() {
+                return [this.getFieldValue('VAR')];
+            },
+            renameVar: function(oldName, newName) {
+                if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+                    this.setFieldValue(newName, 'VAR');
+                }
+            },
+            isVariable: Blockly.Blocks.variables_local.isVariable,
+            onchange: Blockly.Blocks.variables_local.onchange,
+			validName: Blockly.Blocks.variables_local.validName
+        };
+
 
 		// Source: src/blocks/controls_execute/controls_execute.js
         Blockly.Arduino.controls_execute = function() {
@@ -6224,7 +6870,7 @@
         // Source: src/blocks/zum_piezo_buzzerav/zum_piezo_buzzerav.js
 
         Blockly.Arduino.zum_piezo_buzzerav = function() {
-            var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC) || '';
+            var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE) || '';
             var Buzztone = Blockly.Arduino.valueToCode(this, 'TONE', Blockly.Arduino.ORDER_ATOMIC);
             var delay_time = Blockly.Arduino.valueToCode(this, 'DURA', Blockly.Arduino.ORDER_ATOMIC);
 
@@ -6303,9 +6949,9 @@
                 'dropdown_pin': dropdown_pin,
 		'dropdown_stat': value
             });
-
+			//console.log(code);
             //  code=code.substring(0,code.length-1);
-            return [code, Blockly.Arduino.ORDER_ATOMIC];
+            return code;
         };
 
         Blockly.Blocks.dyor_31_in_1_rele = {

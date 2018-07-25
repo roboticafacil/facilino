@@ -21,6 +21,7 @@
 		<item>Deutsch</item>
         <item>English</item>
         <item>Español</item>
+        <item>Español (latino)</item>
         <item>Euskera</item>
         <item>Français</item>
         <item>Galego</item>
@@ -37,6 +38,7 @@
         <item>de-DE</item>
         <item>en-GB</item>
         <item>es-ES</item>
+        <item>lt-ES</item>
         <item>eu-ES</item>
         <item>fr-FR</item>
         <item>gl-ES</item>

@@ -11,7 +11,7 @@
     	<link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
 	</head>
 <body>
-	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true'></block> </xml>
+	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true' x='20' y='5'></block> </xml>
 	<div id="wrap">
         <div id="blockly" style="float: left; width: 66%;">
 			<span id="position"></span>
@@ -76,7 +76,7 @@
 		window.FacilinoProcessor=window.roboblocksProcessor;		
 	    //document.getElementById("doc").innerHTML = window.roboblocksLanguage;
 		//document.getElementById("doc").innerHTML = license;
-		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
+		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
 		var file = "doc/"+window.roboblocksLanguage+"/index.html";
 		$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
 		$(function(){$("#doc").load(file);});
@@ -96,26 +96,7 @@
             Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 			$('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
-			
-	    /*var colors = [
-                "",
-				RoboBlocks.LANG_COLOUR_PROCEDURES,
-				RoboBlocks.LANG_COLOUR_CONTROL,
-				RoboBlocks.LANG_COLOUR_LOGIC,
-				RoboBlocks.LANG_COLOUR_MATH,
-				RoboBlocks.LANG_COLOUR_VARIABLES,
-				RoboBlocks.LANG_COLOUR_TEXT,
-				RoboBlocks.LANG_COLOUR_COMMUNICATION,
-				RoboBlocks.LANG_COLOUR_DISTANCE,
-				RoboBlocks.LANG_COLOUR_LCD,
-				RoboBlocks.LANG_COLOUR_LIGHT,
-				RoboBlocks.LANG_COLOUR_SOUND,
-                RoboBlocks.LANG_COLOUR_MOVEMENT,
-				RoboBlocks.LANG_COLOUR_AMBIENT,
-				RoboBlocks.LANG_COLOUR_HTML,
-				RoboBlocks.LANG_COLOUR_ADVANCED,
-				RoboBlocks.LANG_COLOUR_BLOCKS
-		];*/
+		
 
             /*$('.blocklyTreeRow').each( function (i,e) {
                 $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');

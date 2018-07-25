@@ -78,7 +78,7 @@
 			localStorage.setItem('saved', '');
 	    window.FacilinoLanguage = window.roboblocksLanguage;
 		window.FacilinoProcessor=window.roboblocksProcessor;		
-		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
+		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
 		var file = "doc/"+window.roboblocksLanguage+"/index.html";
 		$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
 		$(function(){$("#doc").load(file);});

@@ -58,4 +58,11 @@
         android:summary="Lukas Bachschwell"
         android:title="German" />
 
+    <Preference
+        android:key="about_static_field_acknowledgments_key9"
+        android:persistent="false"
+        android:selectable="false"
+        android:summary="Ricardo Pinilla"
+        android:title="Español (Latino)" />
+
 </PreferenceScreen>

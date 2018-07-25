@@ -993,9 +993,9 @@ void MainWindow::checkLicense() {
             ui->licenseLabel->setText(tr("Demo version"));
             ui->license->setVisible(false);
         }
-        if (licenseTimer->interval()<300000)
+        if (licenseTimer->interval()<3600000)
         {
-            licenseTimer->start(300000);
+            licenseTimer->start(3600000);
         }
     }
 }

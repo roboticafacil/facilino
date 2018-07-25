@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Obtiene de DeviceHub</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('communications_wifi_iot_devicehub_post2','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>Obtiene datos de DeviceHub. Requiere el uso de esta instrucción:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('communications_wifi_iot_open_devicehub2','blocklyInstruction1');</script>
+<h4>Requisitos</h4>
+<p>Licencia de Facilino.</p>
+<p>La tarjeta ESP8266 debe configurarse en el Gestor de Tarjetas de Arduino IDE:</p>
+<p><image src="doc/common/esp8266_board_manager.png" title="esp8266_board_manager" alt="esp8266_board_manager"></image></p>
+<p>Para procesadores ESP32, la instrucción requiere la última versión del programa para ESP32:</p>
+<p><a href="https://github.com/espressif/arduino-esp32" target="_blank">https://github.com/espressif/arduino-esp32</a></p>
+<p>y seguir las instrucciones de instalación:</p>
+<p><a href="https://github.com/espressif/arduino-esp32#installation-instructions" target="_blank">https://github.com/espressif/arduino-esp32#installation-instructions</a></p>
+
+<h4>Entrada</h4>
+<ul>
+   <li>Nombre Actuador: Nombre del actuador en DeviceHub.</li>
+</ul>
+<h4>Output</h4>
+Número entero con el valor del actuador. Para actuadores digitales, el valor es 0 o 1. Para actuadores analógicos el valor está comprendido entre 0 y 100.
+<h4>Ejemplo</h4>
+Este es un ejemplo representativo de un proyecto IoT. Lee información de temperatura del sensor de temperatura/humedad DHT11 y almacena su valor en un sensor analógico de DeviceHub. También leer la información de un actuador digital de DeviceHub y compara su valor con "1", que es equivalente a ENCENDIDO ("0" significa APAGADO). Tras publicar y recibir la información de DeviceHub el procesador entra en un estado de sueño profundo durante 60 seconds.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_iot_temperature_relay_esp8266.bly')">Open</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/read_temp_realy_iot_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<div id='example'></div>
+<script>injectExample('demo_iot_temperature_relay_esp8266.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+</body>
+</html>
