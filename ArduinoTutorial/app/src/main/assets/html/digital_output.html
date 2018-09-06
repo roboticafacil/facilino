@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+  <meta name="description" content="Digital Output description">
+  <title>Digital Output</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  </head>
+<body>
+<div id="menu"></div>
+<script>$(function(){$('#menu').load('menu.html');});</script>
+
+<section class="mbr-section content8 cid-qYmzRXmNQG" id="content8-80">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="digital_input.html"><span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span></a>
+                    <a class="btn btn-primary display-4" href="analog_input.html"><span class="mbri-right mbr-iconfont mbr-iconfont-btn"></span></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYfOtZbFWn" id="content4-3z">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Digital Output</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">An Arduino's digital outputs detailed description</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content12 cid-qYfN0cUErI" id="content12-3t">
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <div><br></div><div><strong>Competencies</strong></div><div><strong><br></strong></div><ul>
+                    <li><strong>Understand</strong> the concept of digital signal.</li><li><strong>Understand</strong> the concept of digital output.</li><li><strong>Indentify</strong> a digital output circuit.</li><li><strong>Understand</strong>&nbsp;basic electronic components: resistor, diode and transistor.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfOj751da" id="content9-3y">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Digital Signals</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfN1vM6s0" id="content1-3u">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p><strong>Digital signals</strong> can only take two possible values <strong>HIGH</strong> or <strong>LOW</strong>. We refer to LOW when the voltage of a signal is closed to <strong>0V</strong>, while HIGH implies that the voltage of the signal is close to <strong>5V</strong> (for Arduino Uno).</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfO9NtyVq" id="content2-3w">
+
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(From Wikipedia)</strong>&nbsp;A digital signal is a signal that is being used to represent data as a sequence of discrete values; at any given time it can only take on one of a finite number of values.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfObqmySF" id="content9-3x">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Digital Outputs</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfPnLLBsY" id="content1-40">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>A <strong>digital output</strong> can only have two possible states <strong>LOW</strong> or <strong>HIGH</strong>. When setting a digital output to a <strong>LOW state</strong>, the voltage at <strong>its corresponding pin will be 0V</strong>, while setting the output to a <strong>HIGH state</strong> will make the digital pin to have a <strong>voltage of 5V</strong>. </p><p>In the following example, when we set the Digital Output to a <strong>HIGH</strong> state will make the pin to have 5V, the current (arrow in black) flows through resistor R2 and the <em>diod</em>e between the Q1 transistor base (B) and emitter (E). This causes transistor Q1 to behave in <em>shortcircuit</em> mode between colector (C) and emitter (E). As a consequence, there's a current flow through R1 which <strong>makes the LED to light on</strong>. As the voltage in C is nearly 0V, the resistor R1 will hold approximately 4.3V, considering that the typical voltage voltage drop in a diode is 0.7V. If the digital output is set to a <strong>LOW</strong> state, there will be no current flow through the B-E diode in Q1, which will make the transistor to be in opercircuit mode. Therefore, the won't be any current flowing through R1, which in turns will <strong>make the LED to switch off</strong>.&nbsp;</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYfN1XRnh1" id="image3-3v">
+
+    
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 36%;">
+                <img src="assets/images/arduino-output1-600x600.png" width="1400" alt="Mobirise" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<div id="footer"></div>
+<script>$(function(){$('#footer').load('footer.html');});</script>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>

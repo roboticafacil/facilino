@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <Preference
+        android:key="multiplatform_static_field_macos_key1"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Download"
+        android:summary="https://roboticafacil.es/en/download/"/>
+    <Preference
+        android:key="multiplatform_static_field_macos_key2"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Versions"
+        android:summary="Tested on HighSierra"/>
+    <Preference
+        android:key="multiplatform_static_field_macos_key3"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="License"
+        android:summary="You can use the same license on any platform"/>
+    <Preference
+        android:key="multiplatform_static_field_macos_key4"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Code Generation"
+        android:summary="Yes"/>
+    <Preference
+        android:key="multiplatform_static_field_macos_key5"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Code Verify/Upload"
+        android:summary="Arduino IDE"/>
+</PreferenceScreen>

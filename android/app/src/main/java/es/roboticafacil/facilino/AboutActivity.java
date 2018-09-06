@@ -138,7 +138,7 @@ public class AboutActivity extends AppCompatPreferenceActivity {
             //bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
         }
 
-        /*@Override
+        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == android.R.id.home) {
@@ -146,7 +146,7 @@ public class AboutActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return super.onOptionsItemSelected(item);
-        }*/
+        }
     }
 
     /**
@@ -167,7 +167,7 @@ public class AboutActivity extends AppCompatPreferenceActivity {
             // guidelines.
             //bindPreferenceSummaryToValue(findPreference("sync_frequency"));
         }
-        /*
+
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
@@ -176,6 +176,6 @@ public class AboutActivity extends AppCompatPreferenceActivity {
                 return true;
             }
             return super.onOptionsItemSelected(item);
-        }*/
+        }
     }
 }

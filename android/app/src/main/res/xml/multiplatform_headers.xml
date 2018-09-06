@@ -1,0 +1,30 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:fragment="es.roboticafacil.facilino.MultiplatformActivity$WindowsMultiplatformFragment"
+        android:icon="@drawable/ic_windows"
+        android:title="@string/multiplatform_title_windows" />
+
+    <header
+        android:fragment="es.roboticafacil.facilino.MultiplatformActivity$UbuntuMultiplatformFragment"
+        android:icon="@drawable/ic_ubuntu"
+        android:title="@string/multiplatform_title_ubuntu" />
+
+    <header
+        android:fragment="es.roboticafacil.facilino.MultiplatformActivity$macosMultiplatformFragment"
+        android:icon="@drawable/ic_macos"
+        android:title="@string/multiplatform_title_macOS" />
+
+    <header
+        android:fragment="es.roboticafacil.facilino.MultiplatformActivity$webMultiplatformFragment"
+        android:icon="@drawable/ic_web"
+        android:title="@string/multiplatform_title_web" />
+
+    <header
+        android:fragment="es.roboticafacil.facilino.MultiplatformActivity$androidMultiplatformFragment"
+        android:icon="@drawable/ic_android"
+        android:title="@string/multiplatform_title_android" />
+
+</preference-headers>

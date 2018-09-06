@@ -5,6 +5,9 @@
     <item android:id="@+id/shop"
         android:icon="@drawable/ic_shopping_cart_orange_24dp"
         android:title="@string/title_activity_shop" />
+    <item android:id="@+id/multiplatform"
+        android:icon="@drawable/ic_dashboard_orange_600_24dp"
+        android:title="@string/title_activity_multiplatform" />
     <item android:id="@+id/about"
         android:icon="@drawable/ic_help_orange_24dp"
         android:title="@string/title_activity_about" />

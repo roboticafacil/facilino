@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Arduino Tutorial</string>
+    <string name="title_home">Home</string>
+    <string name="title_arduino">Arduino</string>
+    <string name="title_electronics">Electronics</string>
+    <string name="title_facilino">Facilino</string>
+    <string name="title_exercises">Exercises</string>
+    <string name="title_about">About Us</string>
+    <string name="title_feedback">Feedback</string>
+    <string name="title_get_facilino">Get Facilino</string>
+    <string name="title_shop">Shop</string>
+    <string name="loading">Loading</string>
+</resources>

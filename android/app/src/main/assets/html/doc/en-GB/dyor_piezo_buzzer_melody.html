@@ -74,13 +74,16 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('dyor_piezo_buzzer_melody','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Emits sounds of a melody (set of notes with a frequency and duration).</p>
+<p>Emits sounds of a melody (set of notes with a frequency and duration). Sounds can be executed in the background so that the main flow of Arduino's loop function can continue executing other instructions while sounds are reproduced. When selecting task execution in the background the instruction uses Arduino's interrupt 0 and it is compatible with this instruction:</p>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('dyor_task','blocklyInstruction1');</script>
 <h4>Requirements</h4>
 Facilino's License.
 <h4>Inputs</h4>
 <ul>
   <li>Pin: Digital pin to which the sound buzzer is connected to.</li>
   <li>Melody: Set of notes (frequency and duration) that define the melody.</li>
+  <li>Background task?: Determines if the sound are executed in the Arduino's main loop or in the background (interrupt 0 of Arduino).</li> 
 </ul>
 <h4>Example 1</h4>
 This example shows how to generate predefined music melodies.
@@ -104,6 +107,17 @@ All changes will be lost!
 <h5>Facilino Code</h5>
 <div id='example1'></div>
 <script>injectExample('dyor_piezo_buzzer_melody_example1.bly','example1');</script>
+<h4>Example 3</h4>
+This example shows how to reproduce sound in the background while Arduino's main loop is executing other instructions.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction('doc/examples/buzzer_interrupt_tutorial_example1.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/buzzer_button_bb.png" title="buzzer_button_bb" alt="buzzer_button_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example2'></div>
+<script>injectExample('buzzer_interrupt_tutorial_example1.bly','example2');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
 </body>
 </html>

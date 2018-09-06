@@ -13,6 +13,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private String license_value="";
     private boolean license_switch;
     private boolean license_active=false;
-    private boolean code_shown=true;
-    private boolean doc_shown=true;
+    private boolean code_shown=false;
+    private boolean doc_shown=false;
     private boolean undo_shown=false;
     private boolean redo_shown=false;
     private boolean once=true;
@@ -69,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*try {
+            Runtime.getRuntime().exec("ln -s file:///android_asset/html/doc/en-GB/ file:///android_asset/html/doc/lt-ES/");
+        }
+        catch(IOException ioEx) {
+            ioEx.printStackTrace(); // or what ever you want to do with it
+        }*/
         Window w = getWindow();
         w.setTitle(context.getString(R.string.app_name));
         setContentView(R.layout.activity_main);
@@ -100,17 +107,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         preferencesEditor.putBoolean("code_switch", code_shown);
         preferencesEditor.putBoolean("doc_switch", doc_shown);
         preferencesEditor.apply();
+        //switchPreference;
+
+        activity.setTitle(context.getString(R.string.app_name));
 
         myWebView.setWebChromeClient(new WebChromeClient() {
 
-            public void onProgressChanged(WebView view, int progress) {
+            /*public void onProgressChanged(WebView view, int progress) {
                 activity.setTitle(context.getString(R.string.app_name) + " " + context.getString(R.string.loading) + "..." + progress + "%");
                 activity.setProgress(progress * 100);
 
                 if (progress == 100) {
                     activity.setTitle(context.getString(R.string.app_name));
                 }
-            }
+            }*/
 
             public boolean onConsoleMessage(ConsoleMessage cm) {
                 Log.d("Facilino", cm.message() + " -- From line "
@@ -158,12 +168,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             lang_value = "en-GB";
         if (processor_value.equals(""))
             processor_value = "ArduinoNano";
+
         //myWebView.loadUrl("file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value);
         if (isTablet(context)) {
-            myWebView.loadUrl("file:///android_asset/html/indexAndroid.html");
+            String URL = "file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value;
+            myWebView.loadUrl(URL);
         } else
         {
-            myWebView.loadUrl("file:///android_asset/html/indexAndroidPhone.html");
+            String URL = "file:///android_asset/html/indexAndroidPhone.html?language="+lang_value+"&processor="+ processor_value;
+            myWebView.loadUrl(URL);
         }
     }
 
@@ -198,21 +211,30 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         if (reload)
             myWebView.loadUrl("file:///android_asset/html/indexAndroid.html?language="+lang_value+"&processor="+ processor_value);
         if (sharedPreferences.getBoolean("code_switch",false)&&!code_shown) {
-            myWebView.evaluateJavascript("toogleCode();", null);
+            myWebView.evaluateJavascript("showCode();", null);
             code_shown=true;
         }
         else if (!sharedPreferences.getBoolean("code_switch",false)&&code_shown) {
-            myWebView.evaluateJavascript("toogleCode();", null);
+            myWebView.evaluateJavascript("hideCode();", null);
             code_shown=false;
         }
-        if (sharedPreferences.getBoolean("doc_switch",false)&&!doc_shown) {
-            myWebView.evaluateJavascript("toogleDoc();", null);
-            doc_shown=true;
-        }
-        else if (!sharedPreferences.getBoolean("doc_switch",false)&&doc_shown) {
-            myWebView.evaluateJavascript("toogleDoc();", null);
-            doc_shown=false;
-        }
+            if (sharedPreferences.getBoolean("doc_switch", false) && !doc_shown) {
+                if (lang_value.equals("en-GB")) {
+                    myWebView.evaluateJavascript("showDoc();", null);
+                    doc_shown = true;
+                }
+                else {
+                    //Toast.makeText(context, R.string.doc_missing, Toast.LENGTH_LONG).show();
+                    myWebView.evaluateJavascript("hideDoc();", null);
+                    doc_shown = false;
+                    //SharedPreferences.Editor editor = sharedPreferences.edit();
+                    //editor.putBoolean("doc_switch",false);
+                    //editor.commit();
+                }
+            } else if (!sharedPreferences.getBoolean("doc_switch", false) && doc_shown) {
+                myWebView.evaluateJavascript("hideDoc();", null);
+                doc_shown = false;
+            }
         if (sharedPreferences.getBoolean("license_switch",false)) {
             if (!license_value.equals(sharedPref.getString("license_text", ""))) {
                 license_value = sharedPref.getString("license_text", "");
@@ -268,8 +290,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 showSettings();
                 return true;
             case R.id.shop:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://roboticafacil.es/"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://roboticafacil.es/en/prod/facilino-license/"));
                 startActivity(browserIntent);
+                return true;
+            case R.id.multiplatform:
+                showMultiplatform();
                 return true;
             case R.id.about:
                 showAbout();
@@ -485,6 +510,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         String output =str.toString();
         return output;
     }
+
+    private void showMultiplatform(){
+        Intent myIntent = new Intent(context, MultiplatformActivity.class);
+        startActivity(myIntent);
+    };
 
     private void showSettings(){
         Intent myIntent = new Intent(context, SettingsActivity.class);

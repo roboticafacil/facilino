@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+  <meta name="description" content="Exercise 13">
+  <title>Exercise 13</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="facilino.css">
+  <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+  <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/highlight/highlight.pack.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+	<script src="javascript/blockly-bq/FieldButton.js"></script>
+    <script src="facilino.js"></script>
+    <script src="roboblocks_compressed.js"></script>
+  <script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+25) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(exercise,exampleDiv) {
+    var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('exercises/'+exercise);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+25) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function showHide(el1,ex,el) {
+	var y = document.getElementById(el1);
+	if (y.style.display === "none") {
+		y.style.display = "block";
+	} else {
+		y.style.display = "none";
+	}
+	var x = document.getElementById(el);
+	if (y.style.display === "block"){
+		var parent = x.parentNode;
+		parent.removeChild(x);
+		var div = document.createElement("div");
+		div.setAttribute("id",el);
+		parent.appendChild(div);
+		injectExample(ex,el);
+	}
+}
+</script>
+  </head>
+  
+<body>
+<div id="menu"></div>
+<script>$(function(){$('#menu').load('menu.html');});</script>
+
+  <section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="exercise12.html"><span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span></a>
+                    <a class="btn btn-primary display-4" href="exercise14.html"><span class="mbri-right mbr-iconfont mbr-iconfont-btn"></span></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Exercise 13</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Light Dependent Resistor</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong>Arduino Uno, Arduino multifunctional shield.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Preliminaries</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>LDR Calibration.</strong> The calibration process is relatively easy. Here, we show the calibrated values for our hardware, so results might differ from yours. You can reproduce them by using a mobile phone app to get estimated values of illuminance in luxes or a calibrated luxometer. Place your device as close as possible to the LDR and prepare a setup to generate controlled artificial light (i.e.: a source of light that you can regulate the distance with respect to your sensor or the light intensity). Then, you need to write a program first that prints on the console the mean value of several consecutive measurements (indicated in next Figures as 'LDR') and correlate that value with the estimated lux reading (indicated as 'lux'). Take as many measurements as possible to obtain the a curve as shown:</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/ldr_lux_raw.png" width="1400" alt="LDR-Lux Raw" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">As you can see, there's an quite obvious exponential relationship between both values. Actually, we notice that plotting the values in logarithmic scale, it provides a easier curve to fit (both magnitudes with similar orders of magnitude) and a quasi-linear relation:</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/ldr_lux_log.png" width="1400" alt="LDR-Lux Raw" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">To obtain the calibration curve, the recommended software is <a href="https://www.curveexpert.net" target="_blank">CurveExpert Basic</a>, since it contains a tool to fit amongst avaiable fitting models that will fulfill our needs. You can try to fit a polynomial or rational with the following data:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">    
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      log(LDR)</th><th class="head-item mbr-fonts-style display-7">
+                      log(lux)</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr> 
+			  <td class="body-item mbr-fonts-style display-7">2.336459734</td><td class="body-item mbr-fonts-style display-7">1.698970004</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">2.432969291</td><td class="body-item mbr-fonts-style display-7">1.903089987</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.545307116</td><td class="body-item mbr-fonts-style display-7">1.954242509</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.562292864</td><td class="body-item mbr-fonts-style display-7">2</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.57634135</td><td class="body-item mbr-fonts-style display-7">2.041392685</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.587710965</td><td class="body-item mbr-fonts-style display-7">2.079181246</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.622214023</td><td class="body-item mbr-fonts-style display-7">2.113943352</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.620136055</td><td class="body-item mbr-fonts-style display-7">2.195899652</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.685741739</td><td class="body-item mbr-fonts-style display-7">2.274157849</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.77815125</td><td class="body-item mbr-fonts-style display-7">2.51851394</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.797959644</td><td class="body-item mbr-fonts-style display-7">2.611723308</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.799340549</td><td class="body-item mbr-fonts-style display-7">2.698970004</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.824125834</td><td class="body-item mbr-fonts-style display-7">2.77815125</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.84260924</td><td class="body-item mbr-fonts-style display-7">2.84509804</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.857935265</td><td class="body-item mbr-fonts-style display-7">2.903089987</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.86923172</td><td class="body-item mbr-fonts-style display-7">2.954242509</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.879669206</td><td class="body-item mbr-fonts-style display-7">3</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.912222057</td><td class="body-item mbr-fonts-style display-7">3.176091259</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.930949031</td><td class="body-item mbr-fonts-style display-7">3.301029996</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.941511433</td><td class="body-item mbr-fonts-style display-7">3.397940009</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.955206538</td><td class="body-item mbr-fonts-style display-7">3.544068044</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.963787827</td><td class="body-item mbr-fonts-style display-7">3.698970004</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.981365509</td><td class="body-item mbr-fonts-style display-7">3.954242509</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">2.986771734</td><td class="body-item mbr-fonts-style display-7">4.155336037</td></tr><tr>
+			  </tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">For this particular case, a rational model provides a better fit, thus, by introducing previous data to CurveExpert software, we could obtain a rational model as shown (being x=log(LDR) and y=log(lux)):</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 60%;">
+                <img src="assets/images/ldr_curve_fitting.png" width="1400" alt="LDR-Lux Raw" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">The red line, provides the output of the model, while the pale red area is an indicator about the confidence of the estimated value (the narrower the better). With these results, we can assert that the math calibration function between LDR and lux is:</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 20%;">
+                <img src="assets/images/LDR_formula.gif" width="1400" alt="LDR-Lux Raw" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">with a=0.605203, b=-0.1992254, c=-0.6021304, d=0.0897771308</div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<script>
+		window.roboblocksLanguage = 'en-GB';
+		window.roboblocksProcessor = 'ArduinoUno';
+		window.FacilinoLanguage = window.roboblocksLanguage; 
+		window.FacilinoProcessor = window.roboblocksProcessor;
+		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
+		RoboBlocks.load({ zoom: 1 });
+		Facilino.load({ zoom: 1});
+</script>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('math_single','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('math_rational_function','blocklyInstruction1');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise12_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 13.1: Obtaining mean measurements</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Read LDR analog output</strong> and compute it's mean value of 10 consecutive readings. The LDR (connected to pin A1) provides integer values between 0 and 1023. Convert those values into a float number and compute the mean of 10 readins (waiting 20ms between each reading). Print the result on the console. <strong>Hint: </strong><i> First, create a float type variable initialized to 0. Then, using a for loop, read the analog measurement and add it up to the float variable and wait for next iterations. After all readings have been completed, divide the total amount by 10</i>. <button id="but1311" type="button" onclick="showHide('solutions1311','exercise_13_1_1.bly','exercise1311');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Mean function</strong>. Now, implement the previous code in a function, so that the mean can be computed with a different number of elements. Investigate which number suits better for your further experiments. <strong>Hint: </strong><i> Move the code into a function with return (it accepts an Integer input argument, i.e. 'int n' and returns a floating number as a result). Replace the constant '10' with the function argument</i>. <button id="but1312" type="button" onclick="showHide('solutions1312','exercise_13_1_2.bly','exercise1312');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1311" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1311'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1312" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1312'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1213" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1213'></div></div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise12_2">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 13.2: Model fitting</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Collect sensor data</strong>.  Collect as many data as you can, changing the light conditions. Everytime you read a new value of the LDR sensor (mean value among say 10 or 20 measurements), you have to annotate the lux measurement (with a mobile phone or a luxometer). <strong>Hint: </strong> <i>Whenever you read a new measurement, light conditions must be as steady as possible. Depending on you setup, you can create total darkness with illuminance values in lux close to zero to very bright conditions, ideally with illuminance values close to 10000, but if you can't create such conditions, don't worry, provide as much light as you can. Spacing between illuminance values must have a logarithmic distribution (if possible). For instance, you can try to measure the following values: lux={1, 18, 31, 56, 100, 180, 310, 560, 1000, 1800, 3100, 5600, 10000}</i>.</li>
+					<li><strong>Excel</strong>. Write all values in a Excel Spreadsheet. Compute the log values of each measurement (either for LDR measurements and lux measurements) and create a plot the log(LDR)-log(lux). <strong>Hint: </strong><i>Use a scattered plot if your data in X is not ordered</i>.</li>
+					<li><strong>CurveExpert Basic</strong>. Now, copy and paste the values from Excel to CurveExpert and fit a model using the magnifying glass icon and select an appropriate model. <strong>Hint:</strong><i> Once you get the results, your best choice will be one of the available math functions in Facilino with the highest score and the fewer number of parameters. Usually, it is a trade-off between score and parameters, because, models with more parameters tend to provide better scores at the expense of a complex model which might not </i>generalize<i> properly outside your data space. </i>May the force be with you...</li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise12_2">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 13.3: Calibrated sensor</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Calibrated sensor</strong>. With the results you get from the previous exercise, you can now implement a calibrated sensor to provide the values of the illuminance in luxes. <strong>Hint: </strong> <i>Use the appropriate math function curve instruction suitable to your model. Remember that your model was fitted with the log values of LDR and lux, which implies that you have to compute the 'log10' of the analog measurement and compute the '10^' of the resulting model output</i>.<button id="but1331" type="button" onclick="showHide('solutions1331','exercise_13_3_1.bly','exercise1331');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Calibrated function</strong>. Now, implement a function that accepts the raw LDR value and returns the calibrated value. <strong>Hint: </strong> <i>Follow similar steps as in exercise 13.1.2</i>.<button id="but1332" type="button" onclick="showHide('solutions1332','exercise_13_3_2.bly','exercise1332');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1331" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1331'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1332" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1332'></div></div>
+		</div>
+	</section>
+</section>
+
+
+<script>
+function HideButton(el)
+{
+	if (localStorage.getItem("solutions")===undefined || localStorage.getItem("solutions")===null)
+	{
+		var y = document.getElementById(el);
+		y.style.display = "none";
+	}
+}
+HideButton('but1311'); HideButton('but1312'); HideButton('but1331');
+</script>
+
+<div id="footer"></div>
+<script>$(function(){$('#footer').load('footer.html');});</script>
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>

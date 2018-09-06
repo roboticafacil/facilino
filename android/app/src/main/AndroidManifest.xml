@@ -16,16 +16,27 @@
         android:theme="@style/AppTheme"
         android:versionCode="@string/version_code">
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".OnBoardingActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" android:screenOrientation="landscape">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".MultiplatformActivity"
+            android:label="@string/title_activity_multiplatform"></activity>
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"></activity>

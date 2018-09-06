@@ -16,6 +16,7 @@ import android.preference.PreferenceActivity;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ import java.util.List;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
+    private static String lang_value = "en-GB";
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
@@ -45,13 +47,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-
+            //Toast.makeText(preference.getContext(), stringValue, Toast.LENGTH_SHORT).show();
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
-
+                if (preference.getKey().equals("language_list"))
+                {
+                    lang_value=stringValue;
+                }
                 // Set the summary to reflect the new value.
                 preference.setSummary(
                         index >= 0
@@ -69,7 +74,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
-                preference.setSummary(stringValue);
+                if (preference.getKey().equals("doc_switch"))
+                {
+                    SwitchPreference switchPreference = (SwitchPreference) preference;
+                    if (lang_value.equals("en-GB")) {
+                        switchPreference.setEnabled(true);
+                        preference.setSummary(stringValue);
+                    }
+                    else {
+                        switchPreference.setEnabled(false);
+                    }
+                }
+                else {
+                    preference.setSummary(stringValue);
+                }
             }
             return true;
         }
@@ -97,12 +115,24 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
+        if (preference instanceof SwitchPreference) {
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                    PreferenceManager
+                            .getDefaultSharedPreferences(preference.getContext())
+                            .getBoolean(preference.getKey(), false));
+        } else {
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                    PreferenceManager
+                            .getDefaultSharedPreferences(preference.getContext())
+                            .getString(preference.getKey(), ""));
+        }
+
         // Trigger the listener immediately with the preference's
         // current value.
-        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+        /*sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
-                        .getString(preference.getKey(), ""));
+                        .getString(preference.getKey(), ""));*/
     }
 
     @Override
@@ -194,8 +224,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            //bindPreferenceSummaryToValue(findPreference("code_switch"));
-            //bindPreferenceSummaryToValue(findPreference("doc_switch"));
+            bindPreferenceSummaryToValue(findPreference("code_switch"));
+            bindPreferenceSummaryToValue(findPreference("doc_switch"));
         }
 
         @Override

@@ -38,16 +38,16 @@
 <body>
 	<xml id='startBlocks' style='display: none'> <block type='controls_setupLoop' deletable='true'></block> </xml>
 	<div id="wrap">
-        <div id="blockly" style="float: left; width: 66%;">
+        <div id="blockly" style="float: left; width: 100%;">
 			<span id="position"></span>
 			<div id="dragbar"></div>
 		</div>
 		<div id="code_doc" style="float: left; width: 34%;">
-          <div id="code" style="float: none; width: 100%; height: 50%;">
+          <div id="code" style="float: none; width: 100%; height: 50%; display: none;">
 		  </div>
 		  <span id="position1"></span>
 			<div id="dragbar1" style="float: none; width=100%;"></div>
-		  <div id="doc" style="float: none; width: 100%; height: 50%;">
+		  <div id="doc" style="float: none; width: 100%; height: 50%; display: none;">
 		  </div>
 		</div>
     </div>
@@ -77,9 +77,11 @@
 		if (localStorage.getItem("saved")===undefined || localStorage.getItem("saved")===null)
 			localStorage.setItem('saved', '');
 	    window.FacilinoLanguage = window.roboblocksLanguage;
-		window.FacilinoProcessor=window.roboblocksProcessor;		
+		window.FacilinoProcessor=window.roboblocksProcessor;
+		var ev = document.createEvent('Event');
+		ev.initEvent('resize', true, true);		
 		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
-		var file = "doc/"+window.roboblocksLanguage+"/index.html";
+		var file = "doc/en-GB/index.html";
 		$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
 		$(function(){$("#doc").load(file);});
         RoboBlocks.load({ zoom: 0.5 });
@@ -145,11 +147,47 @@
 			//});	
             
             // Show/hide code
-            function toogleCode() {
+			function showCode()
+			{
+				if ($('#code').css('display') == 'none') {
+                    // Show
+                    $('#code').show();
+                    $('#blockly').width('66%');
+					
+					if ($('#doc').css('display') == 'none' )
+					  $('#code').height('100%');
+					else
+					{
+					  $('#code').height('50%');
+					  $('#doc').width('100%');
+					  $('#doc').height('50%');
+					}
+					window.dispatchEvent(ev);
+                }
+			}
+			
+			function hideCode()
+			{
+				if ($('#code').css('display') !== 'none') {
+                    // Hide
+                    $('#code').hide();
+					if ($('#doc').css('display') == 'none' )
+					  $('#blockly').width('100%');
+					else {
+					  $('#blockly').width('66%');
+					  $('#doc').width('100%');
+					  $('#doc').height('100%');
+					}
+					window.dispatchEvent(ev);
+                }
+			}
+			
+            /*function toogleCode() {
                 if ($('#code').css('display') == 'none') {
                     // Show
                     $('#code').show();
                     $('#blockly').width('66%');
+					
 					if ($('#doc').css('display') == 'none' )
 					  $('#code').height('100%');
 					else
@@ -170,10 +208,45 @@
 					}
                 }
                 // Resize workspace
-                Blockly.fireUiEvent(window, "resize");
-            }
+                window.dispatchEvent(ev);
+            }*/
 			
-			function toogleDoc() {
+			
+			function showDoc()
+			{
+				if ($('#doc').css('display') == 'none') {
+                    // Show
+                    $('#doc').show();
+                    $('#blockly').width('66%');
+					if ($('#code').css('display') == 'none' )
+					  $('#doc').height('100%');
+					else
+					{
+					  $('#doc').height('50%');
+					  $('#code').width('100%');
+					  $('#code').height('50%');
+					}
+					window.dispatchEvent(ev);
+                }
+			}
+			
+			function hideDoc()
+			{
+				if ($('#doc').css('display') !== 'none') {
+                    // Hide
+                    $('#doc').hide();
+					if ($('#code').css('display') == 'none' )
+					  $('#blockly').width('100%');
+					else {
+					  $('#blockly').width('66%');
+					  $('#code').width('100%');
+					  $('#code').height('100%');
+					}
+					window.dispatchEvent(ev);
+                }
+			}
+			
+			/*function toogleDoc() {
                 if ($('#doc').css('display') == 'none') {
                     // Show
                     $('#doc').show();
@@ -197,9 +270,10 @@
 					  $('#code').height('100%');
 					}
                 }
+				
                 // Resize workspace
-                Blockly.fireUiEvent(window, "resize");
-            }
+                window.dispatchEvent(ev);
+            }*/
 
             function escapeCode(code) {
                 var str = code;

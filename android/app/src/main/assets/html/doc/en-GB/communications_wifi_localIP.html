@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Gets local IP (WiFi ESP8266)</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('communications_wifi_localIP','blocklyInstruction');</script>
+<h4>Description</h4>
+<p>Returns the local IP, once is connected to a WiFi network. Requires to configure the WiFi device using instruction:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('communications_wifi_def','blocklyInstruction1');</script>
+<h4>Requirements</h4>
+<p>The instruction requires having configured external URLs for the board management in the preferences of Arduino IDE:</p>
+<p><image src="doc/common/esp8266_preferences.png" title="esp8266_preferences" alt="esp8266_preferences"></image></p>
+Subsequently, the ESP8266 card must be installed on the Arduino IDE Board Manager:
+<p><image src="doc/common/esp8266_board_manager.png" title="esp8266_board_manager" alt="esp8266_board_manager"></image></p>
+<h4>Output</h4>
+String with the local IP.
+<h4>Example</h4>
+This example uses the ESP8266 (integrated) processor to connect to a WiFi network. It shows the connection status, the local IP and MAC Address.
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction('doc/examples/demo_wifi_ESP_connection.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/esp8266_example_bb.png" title="esp8266_example_bb" alt="esp8266_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example'></div>
+<script>injectExample('demo_wifi_ESP_connection.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <Preference
+        android:key="multiplatform_static_field_android_key1"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Download"
+        android:summary="PlayStore"/>
+    <Preference
+        android:key="multiplatform_static_field_android_key2"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Min SDK Version"
+        android:summary="KITKAT (4.4 API)"/>
+    <Preference
+        android:key="multiplatform_static_field_android_key3"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="License"
+        android:summary="You can use the same license on any platform"/>
+    <Preference
+        android:key="multiplatform_static_field_android_key4"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Code Generation"
+        android:summary="Yes"/>
+    <Preference
+        android:key="multiplatform_static_field_android_key5"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Code Verify/Upload"
+        android:summary="ArduinoDroid"/>
+</PreferenceScreen>

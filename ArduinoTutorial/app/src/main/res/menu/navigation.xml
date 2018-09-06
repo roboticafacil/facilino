@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_arduino"
+        android:icon="@drawable/ic_action_arduino"
+        android:title="@string/title_arduino" />
+
+    <item
+        android:id="@+id/navigation_electronics"
+        android:icon="@drawable/ic_memory_black_24dp"
+        android:title="@string/title_electronics" />
+
+    <item
+        android:id="@+id/navigation_facilino"
+        android:icon="@drawable/ic_widgets_black_24dp"
+        android:title="@string/title_facilino" />
+
+    <item
+        android:id="@+id/navigation_exercises"
+        android:icon="@drawable/ic_import_contacts_black_24dp"
+        android:title="@string/title_exercises" />
+
+    <!--<item
+        android:id="@+id/navigation_about"
+        android:icon="@drawable/ic_import_contacts_black_24dp"
+        android:title="@string/title_about" />
+
+    <item
+        android:id="@+id/navigation_feedback"
+        android:icon="@drawable/ic_feedback_black_24dp"
+        android:title="@string/title_feedback" />
+
+    <item
+        android:id="@+id/navigation_get_facilino"
+        android:icon="@drawable/ic_cloud_download_black_24dp"
+        android:title="@string/title_get_facilino" />
+
+    <item
+        android:id="@+id/navigation_shop"
+        android:icon="@drawable/ic_store_black_24dp"
+        android:title="@string/title_shop" />-->
+</menu>

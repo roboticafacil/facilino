@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+  <meta name="description" content="Exercise 5">
+  <title>Exercise 5</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="facilino.css">
+  <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+  <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/highlight/highlight.pack.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+    <script src="facilino.js"></script>
+    <script src="roboblocks_compressed.js"></script>
+  <script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(exercise,exampleDiv) {
+    var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('exercises/'+exercise);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+25) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function showHide(el1,ex,el) {
+	var y = document.getElementById(el1);
+	if (y.style.display === "none") {
+		y.style.display = "block";
+	} else {
+		y.style.display = "none";
+	}
+	var x = document.getElementById(el);
+	if (y.style.display === "block"){
+		var parent = x.parentNode;
+		parent.removeChild(x);
+		var div = document.createElement("div");
+		div.setAttribute("id",el);
+		parent.appendChild(div);
+		injectExample(ex,el);
+	}
+}
+</script>
+  </head>
+  
+<body>
+<div id="menu"></div>
+<script>$(function(){$('#menu').load('menu.html');});</script>
+
+  <section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="exercise4.html"><span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span></a>
+                    <a class="btn btn-primary display-4" href="exercise6.html"><span class="mbri-right mbr-iconfont mbr-iconfont-btn"></span></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Exercise 5</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Logic instructions</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong>Arduino Uno, Arduino multifunctional shield.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<script>
+		window.roboblocksLanguage = 'en-GB';
+		window.roboblocksProcessor = 'ArduinoUno';
+		window.FacilinoLanguage = window.roboblocksLanguage; 
+		window.FacilinoProcessor = window.roboblocksProcessor;
+		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
+		RoboBlocks.load({ zoom: 1 });
+		Facilino.load({ zoom: 1});
+</script>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('logic_compare','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('logic_operation','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('logic_negate','blocklyInstruction4');</script></div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise5_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 5.1: Logic Operations</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>AND and OR Operations.</strong>. Implement the AND operation using the button switches (connected to pins D2 and D3) and the red and blue LEDs (connected to pin D12 and D13). The aim is to implement the following logic operations: RED=SW1&and;SW2  (AND Operation), BLUE=SW1&or;SW2 (OR operation).<button id="but511" type="button" onclick="showHide('solutions511','exercise_5_1_1.bly','exercise511');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Binary negation.</strong>. Boole algrebra establishes that RED=SW1&and;SW2=(&not;SW1)&or;(&not;SW2), as well as BLUE=SW1&or;SW2=&not;(SW1&and;SW2). Check it!<button id="but512" type="button" onclick="showHide('solutions512','exercise_5_1_2.bly','exercise512');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions511" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise511'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions512" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise512'></div></div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise5_2">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 5.2: Logic Comparison</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Segmenting potentiometer values</strong>. The potentiometer connected to pin A0 can provide values between 0 and 1023. However, we are interested in discriminating four diferent range of values: range1=[0,255], range2=[256,511], range3=[512,767] and range4=[768,1023]. Indicate each of the ranges by turning on and off the red and blue LEDs (connected to pins D12 and D13) so that red and blue are off in range1; red is on and blue is off in range2; red is off and blue is on in range3; and red and blue are on in range4.<button id="but521" type="button" onclick="showHide('solutions521','exercise_5_2_1.bly','exercise521');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions521" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise521'></div></div>
+		</div>
+	</section>
+</section>
+
+
+<script>
+function HideButton(el)
+{
+	if (localStorage.getItem("solutions")===undefined || localStorage.getItem("solutions")===null)
+	{
+		var y = document.getElementById(el);
+		y.style.display = "none";
+	}
+}
+HideButton('but511'); HideButton('but512'); HideButton('but521');
+</script>
+<div id="footer"></div>
+<script>$(function(){$('#footer').load('footer.html');});</script>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>

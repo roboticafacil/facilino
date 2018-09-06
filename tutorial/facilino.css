@@ -1,0 +1,128 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#code {
+    margin: 0;
+    float: right;
+    width: 33%;
+    height: 100%;
+    background-color: #F0F0F0;
+    color: #5F5F5F;
+    overflow: auto;
+}
+
+#doc {
+    margin: 0;
+    float: right;
+    width: 33%;
+    height: 100%;
+    background-color: #FFFFFF;
+    overflow: auto;
+}
+
+
+
+#wrap {
+	position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#dragbar{
+  background-color:black;
+  height:100%;
+  float: right;
+  width: 3px;
+  cursor: col-resize;
+}
+
+#dragbar1{
+  background-color:black;
+  width:100%;
+  float: right;
+  height: 3px;
+  cursor: row-resize;
+}
+
+#dragbar2{
+  background-color:black;
+  width:100%;
+  float: right;
+  height: 3px;
+  cursor: row-resize;
+}
+
+#dragbar3{
+  background-color:black;
+  width:100%;
+  float: right;
+  height: 3px;
+  cursor: row-resize;
+}
+
+#ghostbar{
+  width:3px;
+  background-color:#000;
+  opacity:0.5;
+  position:absolute;
+  cursor: col-resize;
+  z-index:999
+}
+
+#ghostbar1{
+  height:3px;
+  background-color:#000;
+  opacity:0.5;
+  position:absolute;
+  cursor: row-resize;
+  z-index:999
+}
+
+#ghostbar2{
+  height:3px;
+  background-color:#000;
+  opacity:0.5;
+  position:absolute;
+  cursor: row-resize;
+  z-index:999
+}
+
+#ghostbar3{
+  height:3px;
+  background-color:#000;
+  opacity:0.5;
+  position:absolute;
+  cursor: row-resize;
+  z-index:999
+}
+
+.treeLabelBlock {
+  float: left;
+  margin: 0 5px 0 5px;
+  width: 10px;
+  height: 100%; 
+}
+
+h3 {
+	font-weight: bold;
+    font-size: 18px;
+}
+
+h4 {
+	font-weight: bold;
+    font-size: 16px;
+}
+
+h5 {
+	font-weight: bold;
+    font-size: 14px;
+}
+
+select.icon-menu option {
+background-repeat:no-repeat;
+background-position:left center;
+padding-left:0px;
+}

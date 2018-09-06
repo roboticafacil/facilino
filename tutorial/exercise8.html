@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+  <meta name="description" content="Exercise 8">
+  <title>Exercise 8</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="facilino.css">
+  <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+  <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/highlight/highlight.pack.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+    <script src="facilino.js"></script>
+    <script src="roboblocks_compressed.js"></script>
+  <script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(exercise,exampleDiv) {
+    var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('exercises/'+exercise);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+25) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function showHide(el1,ex,el) {
+	var y = document.getElementById(el1);
+	if (y.style.display === "none") {
+		y.style.display = "block";
+	} else {
+		y.style.display = "none";
+	}
+	var x = document.getElementById(el);
+	if (y.style.display === "block"){
+		var parent = x.parentNode;
+		parent.removeChild(x);
+		var div = document.createElement("div");
+		div.setAttribute("id",el);
+		parent.appendChild(div);
+		injectExample(ex,el);
+	}
+}
+</script>
+  </head>
+  
+<body>
+<div id="menu"></div>
+<script>$(function(){$('#menu').load('menu.html');});</script>
+
+  <section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="exercise7.html"><span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span></a>
+                    <a class="btn btn-primary display-4" href="exercise9.html"><span class="mbri-right mbr-iconfont mbr-iconfont-btn"></span></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Exercise 8</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Variable Instructions</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/arduino-uno-492x328.jpg" width="1400" alt="Arduino Uno" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong>Arduino Uno.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Preliminaries</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>The rice and the chessboard story.</strong> There's a famous legend about the origin of chess that goes like this. When the inventor of the game showed it to the emperor of India, the emperor was so impressed by the new game, that he said to the man "Name your reward!"</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">"Oh emperor, my wishes are simple. I only wish for this. Give me one grain of rice for the first square of the chessboard, two grains for the next square, four for the next, eight for the next and so on for all 64 squares, with each square having double the number of grains as the square before."</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">The emperor agreed, amazed that the man had asked for such a small reward - or so he thought. After a week, his treasurer came back and informed him that the reward would add up to an astronomical sum, far greater than all the rice that could conceivably be produced in many many centuries!</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Variable types</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Arduino has several variable types for storing numbers or text. The following table shows the most used variable types:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">    
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Type</th><th class="head-item mbr-fonts-style display-7">
+                      Bits</th><th class="head-item mbr-fonts-style display-7">
+					  Min. Value</th><th class="head-item mbr-fonts-style display-7">
+					  Max. Value</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr> 
+			  <td class="body-item mbr-fonts-style display-7">boolean</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">1</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">byte</td><td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">255</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">int</td><td class="body-item mbr-fonts-style display-7">16</td><td class="body-item mbr-fonts-style display-7">-32768</td><td class="body-item mbr-fonts-style display-7">32767</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">long int</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-2147483648</td><td class="body-item mbr-fonts-style display-7">2147483647</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">float</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-3.4028235E+38</td><td class="body-item mbr-fonts-style display-7">3.4028235E+38</td></tr><tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<script>
+		window.roboblocksLanguage = 'en-GB';
+		window.roboblocksProcessor = 'ArduinoUno';
+		window.FacilinoLanguage = window.roboblocksLanguage; 
+		window.FacilinoProcessor = window.roboblocksProcessor;
+		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
+		RoboBlocks.load({ zoom: 1 });
+		Facilino.load({ zoom: 1});
+</script>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('variables_get','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('variables_set','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('variables_local','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('variables_local_type','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('variables_global','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('variables_global_type','blocklyInstruction6');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise8_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 8.1: The rice and the chessboard story</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>How many rice grains in total</strong>? Compute the requested number of grains. Use different number representations to see which can represent the number. Show on the console the total amount computed when using bytes, integers, long integers and floats.<button id="but811" type="button" onclick="showHide('solutions811','exercise_8_1_1.bly','exercise811');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions811" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise811'></div></div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise8_2">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 8.2: Sum of two strings</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Summing integer strings</strong>. Declar integer variables 'num1' and 'num2' and assign to then the value after converting a string with numbers. Sum the numbers and convert them back into a string to show the result on the console. Check if it works! <button id="but821"  type="button" onclick="showHide('solutions821','exercise_8_2_1.bly','exercise821');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li>Now, implement a function that accepts two integer numbers (as string type variables) and returns the sum of the variables in another string type variable. Check if it works! <button id="but822"  type="button" onclick="showHide('solutions822','exercise_8_2_2.bly','exercise822');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li>Now, modify the previous function so that it accepts float numbers (as string variables), instead of integers. Check if it works too! <button id="but823"  type="button" onclick="showHide('solutions823','exercise_8_2_3.bly','exercise823');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions821" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise821'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions822" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise822'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions823" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise823'></div></div>
+		</div>
+	</section>
+</section>
+
+<script>
+function HideButton(el)
+{
+	if (localStorage.getItem("solutions")===undefined || localStorage.getItem("solutions")===null)
+	{
+		var y = document.getElementById(el);
+		y.style.display = "none";
+	}
+}
+HideButton('but811'); HideButton('but821'); HideButton('but822'); HideButton('but823');
+</script>
+
+<div id="footer"></div>
+<script>$(function(){$('#footer').load('footer.html');});</script>
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>

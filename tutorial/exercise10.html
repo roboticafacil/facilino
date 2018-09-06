@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+  <meta name="description" content="Exercise 10">
+  <title>Exercise 10</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="facilino.css">
+  <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+  <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/highlight/highlight.pack.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+    <script src="facilino.js"></script>
+    <script src="roboblocks_compressed.js"></script>
+  <script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+25) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(exercise,exampleDiv) {
+    var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('exercises/'+exercise);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+25) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function showHide(el1,ex,el) {
+	var y = document.getElementById(el1);
+	if (y.style.display === "none") {
+		y.style.display = "block";
+	} else {
+		y.style.display = "none";
+	}
+	var x = document.getElementById(el);
+	if (y.style.display === "block"){
+		var parent = x.parentNode;
+		parent.removeChild(x);
+		var div = document.createElement("div");
+		div.setAttribute("id",el);
+		parent.appendChild(div);
+		injectExample(ex,el);
+	}
+}
+</script>
+  </head>
+  
+<body>
+<div id="menu"></div>
+<script>$(function(){$('#menu').load('menu.html');});</script>
+
+  <section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="exercise9.html"><span class="mbri-left mbr-iconfont mbr-iconfont-btn"></span></a>
+                    <a class="btn btn-primary display-4" href="exercise11.html"><span class="mbri-right mbr-iconfont mbr-iconfont-btn"></span></a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Exercise 10</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Text Instructions</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong>Arduino Uno, Arduino multifunctional shield.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<script>
+		window.roboblocksLanguage = 'en-GB';
+		window.roboblocksProcessor = 'ArduinoUno';
+		window.FacilinoLanguage = window.roboblocksLanguage; 
+		window.FacilinoProcessor = window.roboblocksProcessor;
+		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
+		RoboBlocks.load({ zoom: 1 });
+		Facilino.load({ zoom: 1});
+</script>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction0'></div><script>injectInstruction('text','blocklyInstruction0');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('text_append','blocklyInstruction7');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('text_charAt','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('text_join','blocklyInstruction8');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('text_length','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('text_substring','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('text_lower','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2a'></div><script>injectInstruction('text_search','blocklyInstruction2a');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4a'></div><script>injectInstruction('text_contains','blocklyInstruction4a');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise10_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 10.1: Reverse message</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Reverse string</strong>. Create a program that reads a string message over the serial port and prints the reserved message. <strong>Hint: </strong><i>First read a string message over the serial port using the </i>'read string'<i> instruction (check data availability on serial port). Afterwards, in a </i>for <i>loop, iterate over each of the characters of the message in reverse order (from n-1 to 0, being n the length of the string message) and append each of the characters to a string variable, so that after the </i>for<i> loop, you have the string reversed</i>. <button id="but1011" type="button" onclick="showHide('solutions1011','exercise_10_1_1.bly','exercise1011');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1011" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1011'></div></div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise10_2">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 10.2: Words</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Number of words</strong>. Create a program that reads a string message over the serial port and counts the number of separated words (prints a message "Number of words: xxx", being xxx the number of words). <strong>Hint: </strong><i>Implement a while loop and check if the message length is greater than 0. In the while loop, count the number of times a space character is found and (store the result in a variable "new_pos" and check if the difference with respect to the previous position "pos" is greater than zero). On each iteration of the while loop, crop the string message from "new_pos+1" to "n-1", being "n" the message length. To print the message with the number of words, use the instruction 'create text with' so you can concatenate a string and the result of the word count</i>.<button id="but1021" type="button" onclick="showHide('solutions1021','exercise_10_2_1.bly','exercise1021');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li>Now, modify the previous program so that every word detected is printed on the console with separated messages (each of them on a new line).<strong> Hint:</strong><i> Before incrementing the word counter, crop the message from "pos" to "new_pos-1"</i>.<button id="but1022" type="button" onclick="showHide('solutions1022','exercise_10_2_2.bly','exercise1022');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1021" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1021'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1022" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1022'></div></div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise10_3">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercise 10.3: Searching text</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Searching text</strong>. Create a program that makes the red LED (connected to pin D12) blink every time the user sends a message with the word 'Facilino' and makes the blue LED (connected to pin D13) blink every time the message contains the word 'Arduino'. <strong>Hint: </strong><i>Use the 'contains...expression' instruction in the text category</i>.<button id="but1031" type="button" onclick="showHide('solutions1031','exercise_10_3_1.bly','exercise1031');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li>Now, modify the previous program so that no matter the user introduces 'Facilino' or 'Arduino' in lower or capital letters that the LEDs also blink.<strong> Hint:</strong><i> Convert the received message to lower case and compare if the string contrains the words 'facilino' or 'arduino'</i>.<button id="but1032" type="button" onclick="showHide('solutions1032','exercise_10_3_2.bly','exercise1032');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1031" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1031'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1032" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1032'></div></div>
+		</div>
+	</section>
+</section>
+
+
+<script>
+function HideButton(el)
+{
+	if (localStorage.getItem("solutions")===undefined || localStorage.getItem("solutions")===null)
+	{
+		var y = document.getElementById(el);
+		y.style.display = "none";
+	}
+}
+HideButton('but1011'); HideButton('but1021'); HideButton('but1022'); HideButton('but1031'); HideButton('but1032');
+</script>
+
+<div id="footer"></div>
+<script>$(function(){$('#footer').load('footer.html');});</script>
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>

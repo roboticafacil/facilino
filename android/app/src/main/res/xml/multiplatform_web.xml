@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <Preference
+        android:key="multiplatform_static_field_web_key1"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="URL"
+        android:summary="https://roboticafacil.es/facilino/blockly/Facilino.html"/>
+    <Preference
+        android:key="multiplatform_static_field_web_key2"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Browsers"
+        android:summary="Tested on Firefox, Chrome and Safari"/>
+    <Preference
+        android:key="multiplatform_static_field_web_key3"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="License"
+        android:summary="You can use the same license on any platform"/>
+    <Preference
+        android:key="multiplatform_static_field_web_key4"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Code Generation"
+        android:summary="Yes"/>
+    <Preference
+        android:key="multiplatform_static_field_web_key5"
+        android:selectable="false"
+        android:persistent="false"
+        android:title="Code Verify/Upload"
+        android:summary="Arduino IDE"/>
+</PreferenceScreen>

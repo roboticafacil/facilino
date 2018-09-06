@@ -42,6 +42,7 @@ padding-left:30px;
 <script src="javascript/blockly-bq/blockly_compressed.js"></script>
 <script src="javascript/blockly-bq/blocks_compressed.js"></script>
 <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+<script src="javascript/blockly-bq/FieldButton.js"></script>
 <script src="facilino.js"></script>
 <script src="roboblocks_compressed.js"></script>
 <style>.button_wrapper {
@@ -87,7 +88,7 @@ function reinjectInstruction(block,blockDiv,key) {
   el.parentNode.replaceChild(iDiv, el);
   RoboBlocks.locales.setKey(key,input.value);
   Facilino.locales.setKey(key,input.value);
-  window.dataLang.langs[document.getElementById("language").value].keys[key]=input.value;
+  window.langKeys[document.getElementById("language").value].keys[key]=input.value;
   RoboBlocks.load({ zoom: 1 });
   Facilino.load({ zoom: 1 });
   injectInstruction(block,blockDiv);
@@ -110,7 +111,7 @@ function reinjectToolbox(blockDiv,key) {
   el.parentNode.replaceChild(iDiv, el);
   RoboBlocks.locales.setKey(key,input.value);
   Facilino.locales.setKey(key,input.value);
-  window.dataLang.langs[document.getElementById("language").value].keys[key]=input.value;
+  window.langKeys[document.getElementById("language").value].keys[key]=input.value;
   RoboBlocks.load({ zoom: 1 });
   Facilino.load({ zoom: 1 });
   injectToolbox(blockDiv);
@@ -152,7 +153,7 @@ function reinjectToolbox(blockDiv,key) {
 		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
 		<option value="en-GB" class="text-black dropdown-item display-6" style="background-image:url(img/flags/united-kingdom.png)">English</option>
 		<option value="es-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol</option>
-		<option value="lt-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol (latino)</option>
+		<option value="es-LT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol (latino)</option>
 		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskera</option>
 		<option value="fr-FR" class="text-black dropdown-item display-6" style="background-image:url(img/flags/france.png)">Fran&ccedil;ais</option>
 		<option value="gl-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/galician.png)">Galego</option>
@@ -201,35 +202,42 @@ document.getElementById("language").onchange = function() {restoreData();};
 changeFunction();
 function readTranslationFile(transLang)
 {
-	$.ajax({
-		url: 'lang/facilino.json',
-		async: false,
-		dataType: "text"
-		}).done(function(text) {
-		window.dataLang = {};
-		window.cat_keys = {};
-		window.subcat_keys = {};
-		window.dataLang = $.parseJSON(text);
-		$.each(window.dataLang.langs[window.origLang].keys, function (key, text) {
-			var tblRow = "";
-			if (window.dataLang.langs[transLang]==undefined)
-				window.dataLang.langs[transLang]={keys: {}};
-			if (window.dataLang.langs[transLang].keys[key]==undefined)
-			  window.dataLang.langs[transLang].keys[key]=window.dataLang.langs[window.origLang].keys[key];
-			if (window.dataLang.langs[transLang].keys[key]=='')
-			  window.dataLang.langs[transLang].keys[key]=window.dataLang.langs[window.origLang].keys[key];
-			if (key.indexOf("_CATEGORY_") !== -1)
-				window.cat_keys[key] = {orig: window.dataLang.langs[window.origLang].keys[key], translation: window.dataLang.langs[transLang].keys[key]};
-			if (key.indexOf("_SUBCATEGORY_") !== -1)
-				window.subcat_keys[key] = {orig: window.dataLang.langs[window.origLang].keys[key], translation: window.dataLang.langs[transLang].keys[key]};
-		});
-    });
+	$.ajax({url: 'lang/facilino_en-GB.json',dataType: "text",async: false,}).done(function(text) {window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys; 
+	$.ajax({url: 'lang/facilino_'+transLang+'.json',dataType: "text",async: false,}).done(function(text1) {
+
+	window.langKeys = $.parseJSON(text1).langs[transLang].keys;
+	
+	$.each(window.langKeysEng, function (key, text) {
+		var tblRow = "";
+		if (window.langKeys==undefined)
+			window.langKeys={};
+		if (window.langKeys[key]==undefined)
+		{
+		  console.log(key);
+		  window.langKeys[key]=window.langKeysEng[key];
+		}
+		if (window.langKeys[key]=='')
+		{
+		  console.log(key);
+		  window.langKeys[key]=window.langKeysEng[key];
+		}
+		if (key.indexOf("_CATEGORY_") !== -1)
+			window.cat_keys[key] = {orig: window.langKeysEng[key], translation: window.langKeys[key]};
+		if (key.indexOf("_SUBCATEGORY_") !== -1)
+			window.subcat_keys[key] = {orig: window.langKeysEng[key], translation: window.langKeys[key]};
+	});
+	
+	
+	});
+	});
 }
 function changeFunction() {
 	var transLang=document.getElementById("language").value;
+	localStorage.setItem('language',transLang);
 	window.roboblocksLanguage = transLang;
 	window.FacilinoLanguage = transLang;
-	window.langKeys = window.dataLang.langs[transLang].keys;
+	//window.langKeys = window.dataLang.langs[transLang].keys;
+	//window.langKeysEng = window.dataLang.langs[window.origLang].keys;
 	RoboBlocks.load({ zoom: 1 });
 	Facilino.load({ zoom: 1});
 	var blocks = Blockly.getBlocks();
@@ -328,8 +336,8 @@ function changeFunction() {
 				cell1.width = window.innerWidth/2;
 				var cell2 = row.insertCell(1);
 				cell2.width = window.innerWidth/2;
-				cell1.innerHTML = window.dataLang.langs[window.origLang].keys[key];
-				cell2.innerHTML = "<input type=\"text\" style=\"width: "+(window.innerWidth/2)+"px;\" id=\""+key+"\" name=\""+key+"\" value=\""+window.dataLang.langs[transLang].keys[key]+"\" onchange=\"reinjectInstruction('"+type+"','"+iDiv.id+"','"+key+"')\"/>";
+				cell1.innerHTML = window.langKeysEng[key];
+				cell2.innerHTML = "<input type=\"text\" style=\"width: "+(window.innerWidth/2)+"px;\" id=\""+key+"\" name=\""+key+"\" value=\""+window.langKeys[key]+"\" onchange=\"reinjectInstruction('"+type+"','"+iDiv.id+"','"+key+"')\"/>";
 			});
     };
 	
@@ -350,8 +358,12 @@ function changeFunction() {
 }
 
 function submitData(){
-	var json_str = JSON.stringify(window.dataLang,null,'\t');
-	saveFile('facilino.json', "data:application/json", new Blob([json_str],{type:""}));
+	var transLang=document.getElementById("language").value;
+	var str={langs: {}};
+	str.langs[transLang] = {keys: {}};
+	str.langs[transLang].keys= window.langKeys;
+	var json_str = JSON.stringify(str,null,'\t');
+	saveFile('facilino_'+transLang+'.json', "data:application/json", new Blob([json_str],{type:""}));
 }
 
 function restoreData(){
@@ -364,13 +376,13 @@ function restoreData(){
 
 function updateData(){
 	var transLang=document.getElementById("language").value;
-	for (key in window.dataLang.langs[transLang].keys)
+	for (key in window.langKeys)
 	{
 		//window.dataLang.langs[transLang].keys[key]=document.getElementById(key).value;
 		//console.log(key);
 		var element = document.getElementById(key);
 		if (element !==null)
-			window.dataLang.langs[transLang].keys[key]=element.value;
+			window.langKeys[key]=element.value;
 		//console.log(document.getElementById(key));
 	}
 	//localStorage.setItem('dataLang',window.dataLang);
