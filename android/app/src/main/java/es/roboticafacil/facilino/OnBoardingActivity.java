@@ -58,11 +58,11 @@ public class OnBoardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPref= PreferenceManager.getDefaultSharedPreferences(context);
-        /*if (sharedPref.getBoolean("skip", false))
+        if (sharedPref.getBoolean("skip", false))
         {
             Intent myIntent = new Intent(context, MainActivity.class);
             startActivity(myIntent);
-        }*/
+        }
         setContentView(R.layout.activity_on_boarding);
 
         btn_get_started = (Button) findViewById(R.id.btn_get_started);

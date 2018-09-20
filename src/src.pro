@@ -41,6 +41,7 @@ INSTALLS_DESTDIR = $${DESTDIR}
 macx {
   INSTALLS_DESTDIR = $${OUT_PWD}/facilino.app/Contents/MacOS/
   ICON = ../icons/facilino.icns
+  CONFIG += c++11
 }
 
 config.path = $${INSTALLS_DESTDIR}

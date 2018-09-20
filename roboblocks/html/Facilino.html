@@ -38,14 +38,14 @@ padding-left:30px;
   <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/theme/js/script.js"></script>
   
-  <script src="javascript/jquery/dist/jquery.min.js"></script>
+	<script src="javascript/jquery/dist/jquery.min.js"></script>
     <script src="javascript/underscore/underscore.js"></script>
     <script src="javascript/highlight/highlight.pack.js"></script>
     <script src="javascript/blockly-bq/blockly_compressed.js"></script>
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 	<script src="javascript/blockly-bq/FieldButton.js"></script>
-    <script src="facilino_not_obfuscated.js"></script>
+    <script src="facilino.js"></script>
     <script src="roboblocks.js"></script>
 	<xml id='startBlocks' style='display: none'><block type='controls_setupLoop' deletable='true' x='20' y='5'></block></xml>
 
@@ -105,10 +105,8 @@ padding-left:30px;
 		<input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();" style="display: none"/></p>
 			<div class="navbar-buttons mbr-section-btn"><button id="button_copy" class="btn btn-sm btn-primary-outline display-4" title="Copy code to clipboard" onclick="copyToClipboard()"><span class="mbri-share mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			
-		<!-- <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Create your own blocks" onclick="window.location='./FacilinoMyBlocks.html'"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
-		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Translate Facilino" onclick="window.location='./FacilinoTranslate.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>-->
-        <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Create your own blocks" onclick="toogleCode()"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
-		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Translate Facilino" onclick="toogleDoc()"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Create your own blocks" onclick="window.location='./FacilinoMyBlocks.html'"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Translate Facilino" onclick="window.location='./FacilinoTranslate.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		</div>	
 	</nav>
 	</section>

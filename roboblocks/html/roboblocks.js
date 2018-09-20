@@ -1350,39 +1350,7 @@
                     }
                 }
                 return name;
-            },  
-  customContextMenu: function(options) {
-    // Add option to create caller.
-    var option = {enabled: true};
-    var name = this.getFieldValue('NAME');
-    option.text = Blockly.Msg.PROCEDURES_CREATE_DO.replace('%1', name);
-    var xmlMutation = goog.dom.createDom('mutation');
-    xmlMutation.setAttribute('name', name);
-    for (var i = 0; i < this.arguments_.length; i++) {
-      var xmlArg = goog.dom.createDom('arg');
-      xmlArg.setAttribute('name', this.arguments_[i]);
-      xmlMutation.appendChild(xmlArg);
-    }
-    var xmlBlock = goog.dom.createDom('block', null, xmlMutation);
-    xmlBlock.setAttribute('type', this.callType_);
-    option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
-    options.push(option);
-
-    // Add options to create getters for each parameter.
-    if (!this.isCollapsed()) {
-      for (var i = 0; i < this.arguments_.length; i++) {
-        var option = {enabled: true};
-        var name = this.arguments_[i];
-        option.text = Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name);
-        var xmlField = goog.dom.createDom('field', null, name);
-        xmlField.setAttribute('name', 'VAR');
-        var xmlBlock = goog.dom.createDom('block', null, xmlField);
-        xmlBlock.setAttribute('type', 'variables_get');
-        option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
-        options.push(option);
-      }
-    }
-  },
+            },
   callType_: 'procedures_callnoreturn',
   onchange: function() {
                 if (this.last_procedure !== this.getFieldValue('NAME')) {
@@ -1626,7 +1594,6 @@
   },
   getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
   renameVar: Blockly.Blocks['procedures_defnoreturn'].renameVar,
-  customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
   callType_: 'procedures_callreturn'
 };
 
@@ -7427,7 +7394,7 @@
 			code_long_pressed = code_long_pressed.replace(/&quot;/g, '"');
 			code_short_pressed = code_short_pressed.replace(/&quot;/g, '"');
 
-			code+='if (digitalRead('+dropdown_pin+')==LOW) {\n    if (_buttonActive_'+dropdown_pin+'==false) {\n      _buttonActive_'+dropdown_pin+'=true;\n      _buttonTimer_'+dropdown_pin+'=millis();\n    }\n    if ((millis()-_buttonTimer_'+dropdown_pin+'>'+this.getFieldValue('TIME')+')&&(_longPressActive_'+dropdown_pin+'==false)){\n      _longPressActive_'+dropdown_pin+'=true;\n'+code_long_pressed+'\n}\n  }\n else {\n    if (_buttonActive_'+dropdown_pin+'== true){\n      if (_longPressActive_'+dropdown_pin+'==true){\n        _longPressActive_'+dropdown_pin+'=false;\n      }\n else  if (millis()-_buttonTimer_2>100){\n'+code_short_pressed+'\n}\n      _buttonActive_'+dropdown_pin+'=false;\n    }\n  }\n';
+			code+='if (digitalRead('+dropdown_pin+')==LOW) {\n    if (_buttonActive_'+dropdown_pin+'==false) {\n      _buttonActive_'+dropdown_pin+'=true;\n      _buttonTimer_'+dropdown_pin+'=millis();\n    }\n    if ((millis()-_buttonTimer_'+dropdown_pin+'>'+this.getFieldValue('TIME')+')&&(_longPressActive_'+dropdown_pin+'==false)){\n      _longPressActive_'+dropdown_pin+'=true;\n'+code_long_pressed+'\n}\n  }\n else {\n    if (_buttonActive_'+dropdown_pin+'== true){\n      if (_longPressActive_'+dropdown_pin+'==true){\n        _longPressActive_'+dropdown_pin+'=false;\n      }\n else  if (millis()-_buttonTimer_'+dropdown_pin+'>100){\n'+code_short_pressed+'\n}\n      _buttonActive_'+dropdown_pin+'=false;\n    }\n  }\n';
 			return code;
         };
         Blockly.Blocks.button_long_short = {
