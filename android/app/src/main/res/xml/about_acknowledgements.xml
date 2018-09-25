@@ -18,7 +18,7 @@
         android:key="about_static_field_acknowledgments_key2"
         android:persistent="false"
         android:selectable="false"
-        android:summary="Tonny Scheuring"
+        android:summary="Tonny Scheuring, Maxime Samara"
         android:title="French" />
     <Preference
         android:key="about_static_field_acknowledgments_key3"
