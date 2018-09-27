@@ -88,7 +88,7 @@ function reinjectInstruction(block,blockDiv,key) {
   el.parentNode.replaceChild(iDiv, el);
   RoboBlocks.locales.setKey(key,input.value);
   Facilino.locales.setKey(key,input.value);
-  window.langKeys[document.getElementById("language").value].keys[key]=input.value;
+  window.langKeys[key]=input.value;
   RoboBlocks.load({ zoom: 1 });
   Facilino.load({ zoom: 1 });
   injectInstruction(block,blockDiv);
@@ -111,7 +111,7 @@ function reinjectToolbox(blockDiv,key) {
   el.parentNode.replaceChild(iDiv, el);
   RoboBlocks.locales.setKey(key,input.value);
   Facilino.locales.setKey(key,input.value);
-  window.langKeys[document.getElementById("language").value].keys[key]=input.value;
+  window.langKeys[key]=input.value;
   RoboBlocks.load({ zoom: 1 });
   Facilino.load({ zoom: 1 });
   injectToolbox(blockDiv);

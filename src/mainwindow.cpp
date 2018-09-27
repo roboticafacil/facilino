@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     this->alert=false;
     signalMapper = new QSignalMapper(this);
     ui->setupUi(this);
@@ -129,6 +130,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&documentHistory,SIGNAL(canRedoChanged(bool)),this,SLOT(onRedoChanged(bool)));
     // Filter events to capture backspace key
     ui->webView->installEventFilter(this);
+    this->showMaximized();
 }
 
 MainWindow::~MainWindow() {
