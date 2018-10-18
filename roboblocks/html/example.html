@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <meta charset='utf-8'/>
-<script src="../../javascript/jquery/dist/jquery.min.js"></script>
-    <script src="../../javascript/underscore/underscore.js"></script>
-    <script src="../../javascript/blockly-bq/blockly_compressed.js"></script>
-    <script src="../../javascript/blockly-bq/blocks_compressed.js"></script>
-    <script src="../../javascript/blockly-bq/arduino_compressed.js"></script>
-    <script src="../../facilino.js"></script>
-    <script src="../../roboblocks_compressed.js"></script>
+<script src="javascript/jquery/dist/jquery.min.js"></script>
+    <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+    <script src="facilino.js"></script>
+    <script src="roboblocks_compressed.js"></script>
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -41,7 +41,7 @@ function loadFile(filePath) {
 
 function openFunction(bly) {
 $.ajax({
-    url: bly,
+    url: './doc/examples/'+bly,
     type: "GET",
     dataType: "xml",
 	async: false,
@@ -90,21 +90,10 @@ catch(e){ window.roboblocksLanguage = 'en-GB'; window.roboblocksProcessor='Ardui
 console.log(window.roboblocksLanguage);	
 console.log(window.roboblocksProcessor);
 console.log(window.example);
-$.ajax({
-    url: '../../lang/facilino.json',
-    type: "GET",
-    dataType: "text",
-	async: false,
-	crossDomain: true,
-    data: {
-    },
-    success: function (text) {
-        window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;
-    },
-    error: function () {
-        console.log("error");
-    }
-});
+$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',type: "GET",dataType: "text",async: false,crossDomain: true}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;}).error(function(){console.log('erere');});
+$.ajax({url: 'lang/facilino_en-GB.json',type: "GET",dataType: "text",async: false,crossDomain: true}).done(function(text) {window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;}).error(function(){console.log('hee');});
+		
+
 window.FacilinoLanguage=window.roboblocksLanguage;
 RoboBlocks.load({ zoom: 1 });
 Facilino.load({ zoom: 1});

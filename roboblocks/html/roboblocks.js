@@ -214,7 +214,7 @@
             var missingDoc = '';
 
             var categoryItem = function(type) {
-				if (!(type.includes('dyor_piezo_music_silencio')||type.includes('dyor_piezo_music_do')||type.includes('dyor_piezo_music_re')||type.includes('dyor_piezo_music_mi')||type.includes('dyor_piezo_music_fa')||type.includes('dyor_piezo_music_sol')||type.includes('dyor_piezo_music_la')||type.includes('dyor_piezo_music_si')))
+				if (!(type.includes('dyor_piezo_music_end')|| type.includes('dyor_piezo_music_silencio')||type.includes('dyor_piezo_music_do')||type.includes('dyor_piezo_music_re')||type.includes('dyor_piezo_music_mi')||type.includes('dyor_piezo_music_fa')||type.includes('dyor_piezo_music_sol')||type.includes('dyor_piezo_music_la')||type.includes('dyor_piezo_music_si')))
 				{
 					if (RoboBlocks.checkHelpUrl(type)===false)
                     missingDoc += type+'\n';
@@ -2710,7 +2710,7 @@
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
                 this.setTooltip(function() {
-                    return RoboBlocks.LANG_CONTROLS_FOR_TOOLTIP.replace('%1', thisBlock.getFieldValue('VAR'));
+                    return RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_TOOLTIP');
                 });
             },
             getVars: function() {
@@ -4102,14 +4102,6 @@
             var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_NONE) || '';
             var argument1 = Blockly.Arduino.valueToCode(this, 'B', Blockly.Arduino.ORDER_NONE) || '';
             var code = '';
-            /*var a = RoboBlocks.findPinMode(argument0);
-            code += a['code'];
-            argument0 = a['pin'];
-
-            a = RoboBlocks.findPinMode(argument1);
-            code += a['code'];
-            argument1 = a['pin'];
-			*/
 			code+= op+'('+argument0+','+argument1+')';
             
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -4119,7 +4111,7 @@
             // Basic arithmetic operator.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
             helpUrl: RoboBlocks.getHelpUrl('math_minmax'),
-			examples: ['math_arithmetic_example.bly'],
+			examples: ['minmax_example.bly'],
 			tags: ['math'],		
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
@@ -5429,7 +5421,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_TEXT'),
             tags: ['text'],
             helpUrl: RoboBlocks.getHelpUrl('character'),
-			examples: ['controls_setupLoop_example.bly'],
+			examples: ['ontrols_switch_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,		
 			keys: ['LANG_TEXT_CHAR_TOOLTIP'],
@@ -6069,7 +6061,7 @@
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_NUMBER_CAST')).appendField(new Blockly.FieldDropdown([
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'toInt()'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'),'toFloat()']
-                ]), "CAST");
+                ]), "CAST").setCheck(String);
                 //this.setInputsInline(true);
                 this.setOutput(true);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_NUMBER_CAST_TOOLTIP'));
@@ -6175,7 +6167,7 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
             helpUrl: RoboBlocks.getHelpUrl('variables_get_1Darray'),
 			tags: ['variables'],
-			examples: ['variables_example.bly'],							  
+			examples: ['array_example1.bly'],							  
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
 			keys: ['LANG_VARIABLES_GET','LANG_VARIABLES_ARRAY_INDEX','LANG_VARIABLES_GET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
@@ -6339,11 +6331,6 @@
             var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ASSIGNMENT) || '';
             var varName = this.getFieldValue('VAR') || '';
             var code = '';
-
-            var a = RoboBlocks.findPinMode(varValue);
-            code += a['code'];
-            varValue = a['pin'];
-
 			varName+='['+index+']';
             code += JST['variables_set']({
                 'varName': varName,
@@ -6357,7 +6344,7 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
             helpUrl: RoboBlocks.getHelpUrl('variables_set_1Darray'),
 			tags: ['variables'],
-			examples: ['variables_example.bly'],	
+			examples: ['array_example1.bly'],	
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			colour: RoboBlocks.LANG_COLOUR_VARIABLES,		
 			keys: ['LANG_VARIABLES_SET','LANG_VARIABLES_ARRAY_INDEX','LANG_VARIABLES_SET_AS','LANG_VARIABLES_SET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
@@ -6570,14 +6557,42 @@
 			var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
             var varName = this.getFieldValue('VAR') || '';
 			var array = this.getInputTargetBlock('VALUE');
+			var warning = null;
+			var count = 0;
             var code = '';
-            //console.log(varValue);
-			//code += varType + ' ' + varName+'['+this.getFieldValue('SIZE')+'];\n';
-            code += varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
-            RoboBlocks.variables[varName] = [varType, 'local','1DArray'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray'];
-
+            if (array.type==='math_1DArray_constructor')
+			{
+				count = array.itemCount_;
+				code += varType + ' ' + varName+'['+count+']='+varValue+';\n';
+			}
+			else if (array.type==='variables_get')
+			{
+				var variable = RoboBlocks.variables[array.getFieldValue('VAR')];
+				if (variable[2]==='1DArray')
+				{
+					varType=variable[0];
+					count=window.parseInt(variable[3]);
+					code += varType + ' ' + varName+'['+count+']={'+varValue+'[0]';
+					var i;
+					for (i=1;i<count;i++)
+					{
+						code+=','+varValue+'['+i+']';
+					}
+					code+='};\n';
+				}
+				else
+				{
+					warning = 'Incorrect variable assigment'; 
+				}
+			}
+			else
+			{
+				console.log(array.type);
+			}
+			RoboBlocks.variables[varName] = [varType, 'local','1DArray',count];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray',count];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray',count];
+			this.setWarningText(warning);
             return code;
         };
         Blockly.Blocks.variables_local_1DArray = {
@@ -6612,9 +6627,6 @@
             var varName = this.getFieldValue('VAR') || '';
             var code = '';
 
-            var a = RoboBlocks.findPinMode(varValue);
-            code += a['code'];
-            varValue = a['pin'];
 
             code += varType + ' ' + varName + '=' + varValue + ';\n';
 
@@ -6668,13 +6680,32 @@
             var varType = this.getFieldValue('VAR_TYPE');
             var varName = this.getFieldValue('VAR') || '';
 			var array = this.getInputTargetBlock('VALUE');
+			var count = array.itemCount_;
+			var warning = null;
             var code = '';
-		
+			if (array.type==='array_item')
+			{
+				count = array.itemCount_;
+			}
+			else if (array.type==='variables_get')
+			{
+				//variables_local_1DArray
+				var variable = RoboBlocks.variables[array.getFieldValue('VAR')];
+				if (variable[2]==='1DArray')
+				{
+					varType=variable[0];
+					count=variable[3];
+				}
+				else
+				{
+					warning = 'Incorrect variable assigment'; 
+				}
+			}
             code += varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
-            RoboBlocks.variables[varName] = [varType, 'local','1DArray'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray'];
-
+            RoboBlocks.variables[varName] = [varType, 'local','1DArray',count];
+            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray',count];
+            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray',count];
+			this.setWarningText(warning);
             return code;
         };
         Blockly.Blocks.variables_local_1DArray_type = {

@@ -8,7 +8,7 @@
 #include <QSettings>
 #include <QStandardPaths>
 
-const QString SettingsStore::index2board[SIZE_LIST] = {"ArduinoUno","ArduinoNano","ArduinoNano","ArduinoMega","ArduinoMega","ArduinoBt","ArduinoIntel","ESP8266","NodeMCU"};
+const QString SettingsStore::index2board[SIZE_LIST] = {"ArduinoUno","ArduinoNano","ArduinoNano","ArduinoNano","ArduinoMega","ArduinoMega","ArduinoBt","ArduinoIntel","ESP8266","NodeMCU"};
 
 
 SettingsStore::SettingsStore(const QString &fileName) {

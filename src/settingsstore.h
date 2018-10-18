@@ -8,7 +8,7 @@
 
 #define CONFIG_INI "config.ini"
 
-#define SIZE_LIST 9
+#define SIZE_LIST 10
 
 class SettingsStore : public QObject
 {
