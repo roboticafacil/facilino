@@ -34,8 +34,9 @@
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 	<script src="javascript/qtwebchannel/qwebchannel.js"></script>
+	<script src="javascript/blockly-bq/FieldButton.js"></script>
     <script src="facilino.js"></script>
-    <script src="roboblocks_compressed.js"></script>
+    <script src="roboblocks.js"></script>
 	
 	<script type="text/javascript">
 	if (window.webHelper === undefined ||window.webHelper===null)
@@ -47,12 +48,7 @@
     <!-- it's a good idea to initialize webchannel after DOM ready, if your code is going to manipulate the DOM -->
     document.addEventListener("DOMContentLoaded", function () {
 		try{
-			new QWebChannel(qt.webChannelTransport, function (channel) {
-			window.webHelper = channel.objects.webHelper;
-			//window.license='';
-			 //var _0x7a86=["\x6D\x79\x4C\x69\x63\x65\x6E\x73\x65","\x77\x65\x62\x48\x65\x6C\x70\x65\x72","\x6F\x62\x6A\x65\x63\x74\x73","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6F\x62\x6F\x74\x69\x63\x61\x66\x61\x63\x69\x6C\x2E\x65\x73\x2F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2F\x62\x6C\x6F\x63\x6B\x6C\x79\x2F\x6C\x6F\x67\x69\x6E\x5F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2E\x70\x68\x70\x3F\x6C\x69\x63\x65\x6E\x73\x65\x3D","\x6C\x69\x63\x65\x6E\x73\x65","","\x47\x45\x54","\x6A\x73\x6F\x6E","\x65\x72\x72\x6F\x72","\x6C\x65\x6E\x67\x74\x68","\x4C\x69\x63\x65\x6E\x73\x65\x20\x63\x6F\x75\x6C\x64\x20\x6E\x6F\x74\x20\x62\x65\x20\x76\x61\x6C\x69\x64\x61\x74\x65\x64\x21","\x61\x6A\x61\x78"];license= channel[_0x7a86[2]][_0x7a86[1]][_0x7a86[0]];$(function(){$[_0x7a86[11]]({url:_0x7a86[3]+ window[_0x7a86[4]],data:_0x7a86[5],type:_0x7a86[6],dataType:_0x7a86[7],async:true,success:function(_0xd47cx1,_0xd47cx2,_0xd47cx3){if(_0xd47cx1[1]=== _0x7a86[8]){delete window[_0x7a86[4]]}},error:function(_0xd47cx3,_0xd47cx2,_0xd47cx4){if(window[_0x7a86[4]][_0x7a86[9]]!= 0){alert(_0x7a86[10])};delete window[_0x7a86[4]]}})});
-			}
-			);
+			new QWebChannel(qt.webChannelTransport, function (channel) { window.webHelper = channel.objects.webHelper;});
 			}
 			catch(e) {}
 			
@@ -76,12 +72,17 @@
 		window.FacilinoProcessor=window.roboblocksProcessor;		
 	    //document.getElementById("doc").innerHTML = window.roboblocksLanguage;
 		//document.getElementById("doc").innerHTML = license;
-		$.ajax({url: 'lang/facilino.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
-		var file = "doc/"+window.roboblocksLanguage+"/index.html";
-		$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
-		$(function(){$("#doc").load(file);});
-        RoboBlocks.load({ zoom: 1 });
-		Facilino.load({ zoom: 1});
+		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
+		$.ajax({url: 'lang/facilino_en-GB.json',dataType: "text",async: false,}).done(function(text) {window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
+		var file = "index.html";
+		showDoc(file);
+		
+		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_CATEGORY_MATH','LANG_SUBCATEGORY_ARRAYS','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
+		window.toolboxNames = getToolboxNames(window.toolbox);
+		options = {zoom: 1};
+		
+        RoboBlocks.load(options);
+		Facilino.load(options);
         
 			
 			
@@ -91,16 +92,11 @@
 			  // New workspace for each test case
             var el = document.getElementById('blockly');
 			//console.log(Blockly.createToolbox());
-            Blockly.inject(el, {toolbox: Blockly.createToolbox()});
+            Blockly.inject(el, {toolbox: Blockly.createToolbox(window.toolboxNames)});
             // Create a default setup/loop block
             Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 			$('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
-		
-
-            /*$('.blocklyTreeRow').each( function (i,e) {
-                $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');
-            });*/
 
             // Update code
                 Blockly.getMainWorkspace().addChangeListener(function () {
@@ -120,8 +116,78 @@
 			//});
 			
 			var _0x9098=["\x6C\x69\x63\x65\x6E\x73\x65","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6F\x62\x6F\x74\x69\x63\x61\x66\x61\x63\x69\x6C\x2E\x65\x73\x2F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2F\x62\x6C\x6F\x63\x6B\x6C\x79\x2F\x6C\x6F\x67\x69\x6E\x5F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2E\x70\x68\x70\x3F\x6C\x69\x63\x65\x6E\x73\x65\x3D","","\x47\x45\x54","\x6A\x73\x6F\x6E","\x65\x72\x72\x6F\x72","\x6C\x65\x6E\x67\x74\x68","\x4C\x69\x63\x65\x6E\x73\x65\x20\x63\x6F\x75\x6C\x64\x20\x6E\x6F\x74\x20\x62\x65\x20\x76\x61\x6C\x69\x64\x61\x74\x65\x64\x21","\x61\x6A\x61\x78","\x74\x65\x73\x74"];function checkLicense(_0xc84dx2){window[_0x9098[0]]= _0xc84dx2;$(function(){$[_0x9098[8]]({url:_0x9098[1]+ window[_0x9098[0]],data:_0x9098[2],type:_0x9098[3],dataType:_0x9098[4],async:false,success:function(_0xc84dx3,_0xc84dx4,_0xc84dx5){if(_0xc84dx3[1]=== _0x9098[5]){delete window[_0x9098[0]]}},error:function(_0xc84dx5,_0xc84dx4,_0xc84dx6){if(window[_0x9098[0]][_0x9098[6]]!= 0){alert(_0x9098[7])};delete window[_0x9098[0]]}})});if(!window[_0x9098[0]]|| /^\s*$/[_0x9098[9]](window[_0x9098[0]])){return _0x9098[2]}else {return window[_0x9098[0]]}}
-			
-            
+
+		function showDoc(html_file)
+		{
+			var file="doc/"+window.roboblocksLanguage+"/"+html_file;
+			$.ajax({url:file,type:'HEAD',error: function(){file="doc/en-GB/index.html";},success: function(){}});
+			$(function(){$("#doc").load(file);});
+		}
+		function fileSelected(input){
+			if (input.length>0)
+			{
+				var file = input[0];
+				var reader = new FileReader();
+				reader.readAsText(file);
+				reader.onload = function(e){
+					var xmlData = $(reader.result);
+					Blockly.mainWorkspace.clear();
+					Blockly.Xml.domToWorkspace(xmlData[0],Blockly.getMainWorkspace());
+				};
+			}
+		}		
+        function imageSelected(input){
+			if (input.length>0)
+			{
+				var file = input[0];
+				var reader = new FileReader();
+				reader.addEventListener("load", function () {		
+					var img = new Image();
+					img.onload = function(){
+					  var height = img.height;
+					  var width = img.width;
+					  var canvas = document.getElementById('canvas');
+						var context = canvas.getContext('2d');
+						context.drawImage(img,0,0);
+						var imageData = context.getImageData(0,0,width,height);
+						var data = imageData.data;
+						var row = [];
+						var data1 =[];
+						var j=0;
+						var data_str='';
+						for (var i=0;i<data.length;i+=32)
+						{
+							row[0] = 0.34*data[i]+0.5*data[i+1]+0.16*data[i+2];
+							row[1] = 0.34*data[i+4]+0.5*data[i+5]+0.16*data[i+6];
+							row[2] = 0.34*data[i+8]+0.5*data[i+9]+0.16*data[i+10];
+							row[3] = 0.34*data[i+12]+0.5*data[i+13]+0.16*data[i+14];
+							row[4] = 0.34*data[i+16]+0.5*data[i+17]+0.16*data[i+18];
+							row[5] = 0.34*data[i+20]+0.5*data[i+21]+0.16*data[i+22];
+							row[6] = 0.34*data[i+24]+0.5*data[i+25]+0.16*data[i+26];
+							row[7] = 0.34*data[i+28]+0.5*data[i+29]+0.16*data[i+30];
+							data1[j]=((row[0]%2)<1? 128: 0) + ((row[1]%2)<1? 64:0) + ((row[2]%2)<1? 32:0) + ((row[3]%2)<1? 16:0) + ((row[4]%2)<1? 8:0) + ((row[5]%2)<1? 4:0) + ((row[6]%2)<1? 2:0) + ((row[7]%2)<1? 1:0);
+							j++;
+							if (j==8)
+							{
+								data_str+=  data1[0] + ',' + data1[1] + ','+ data1[2] + ','+ data1[3] + ','+ data1[4] + ','+ data1[5] + ','+ data1[6] + ','+ data1[7]+',';
+								j=0;
+							}
+						}
+						//console.log(data_str);
+						data_str=data_str.substring(0,data_str.length-1);
+						Blockly.currentInterestingBlock.data = JSON.stringify({name: file.name.substring(0,file.name.length-4), width: img.width, height: img.height, data: data_str});
+					}
+
+					img.src = reader.result;
+
+
+				  }, false);
+
+				  if (file) {
+					reader.readAsDataURL(file);
+				  }
+			}
+		}    
             // Show/hide code
             function toogleCode() {
                 if ($('#code').css('display') == 'none') {
@@ -264,6 +330,63 @@
 				dragging1 = false;
 			}
 		});
+		
+		function getToolboxNames(keys)
+		{
+			var toolboxNames = [];
+			keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});			
+			return toolboxNames;
+		}
+		
+		function showToolbox()
+		{
+			var menu=document.getElementById('toolbox_menu');
+			if (menu.style.display==='none')
+			{
+				menu.style.display='initial';
+				$("#toolboxP").attr("class","btn btn-sm btn-primary");
+			}
+			else
+			{
+				menu.style.display='none';
+				$("#toolboxP").attr("class","btn btn-sm btn-primary-outline");
+			}
+		}
+		function showHideCategory(key)
+		{
+			var found = window.toolbox.find(function(element) {return (element===key);});
+			if (found)
+			{
+				window.toolbox = window.toolbox.filter(function(item) { return item !== key});
+			}
+			else
+			{
+				window.toolbox.push(key);
+			}
+			window.toolboxNames=getToolboxNames(window.toolbox);
+			Blockly.getMainWorkspace().updateToolbox(Blockly.updateToolboxXml(toolboxNames));
+		}
+		
+		function getToolboxNames(keys)
+		{
+			var toolboxNames = [];
+			keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});			
+			return toolboxNames;
+		}
+		
+		function openExample(bly) {
+			$.ajax({
+				type: "GET" ,
+				url: 'doc/examples/'+bly,
+				dataType: "xml" , async: false,
+				success: function(xml) {
+					var txt = new XMLSerializer().serializeToString(xml);
+					Blockly.mainWorkspace.clear();
+					var xmlDOM = Blockly.Xml.textToDom(txt);
+					Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+				}
+			});
+		}
   </script>
 </body>
 </html>

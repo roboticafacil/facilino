@@ -25,7 +25,8 @@ function openFunction(bly) {
     $.ajax({
         type: "GET" ,
         url: bly ,
-        dataType: "xml" , async: false,
+        dataType: "xml" ,
+		async: false,
         success: function(xml) {
 			var txt = new XMLSerializer().serializeToString(xml);
 			Blockly.mainWorkspace.clear();
@@ -62,34 +63,27 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Mapping (advanced)</h3>
+<h3 id="up">Parse an decimal number on the serial port</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
-<script>injectInstruction('advanced_map','blocklyInstruction');</script>
+<script>injectInstruction('serial_parsefloat','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Linearly transforms (mapping) a value between two numbers "From [min - max]" to another value included between two other numbers "to [min - max]". Allows you to set a value to be within the specified linear setting.</p>
-<image src="doc/common/linear_fitting.png" title="linear_adjustment" alt="linear_adjustment"></image>
-<h4>Inputs</h4>
-<ul>
-  <li>Value: value to convert.</li>
-  <li>From (min): minimum value of the input range.</li>
-  <li>From (max): maximum value of the input range.</li>
-  <li>to (min): minimum value of the output range.</li>
-  <li>to (max): maximum value of the output range.</li>
-</ul>
+<p>This instruction parses a decimal number received on the serial port. All characters at the beginning of the text string other than digits 0 through 9, "." or the minus sign are ignored. Parsing ends when an invalid character is read. If no character has been received after a specified time, the function returns 0. The time can be set with the instruction:</p>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('serial_timeout','blocklyInstruction1');</script>
 <h4>Output</h4>
-Converted value.
+Parsed decimal number (float)
 <h4>Example</h4>
-In this example the analog-to-digital conversion is displayed with a range from -10 to 10 (originally the signal range is from 0 to 1023).
+This example shows how we can read decimal (floating) numbers through the USB port (console)..
 <div class="button_wrapper">
-<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/advanced_map_example.bly')">Open</button></p>
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/serial_parsefloat_example.bly')">Open</button></p>
 All changes will be lost!
 </div>
 <h5>Circuit</h5>
-<p><image src="doc/circuits/pot_example_bb.png" title="pot_example_bb" alt="pot_example_bb"></image></p>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example_bb" alt="nano_example_bb"></image>
 <h5>Facilino Code</h5>
 <div id='example'></div>
-<script>injectExample('advanced_map_example.bly','example');</script>
+<script>injectExample('serial_parsefloat_example.bly','example');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
 </body>
 </html>

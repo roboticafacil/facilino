@@ -45,8 +45,8 @@ padding-left:30px;
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 	<script src="javascript/blockly-bq/FieldButton.js"></script>
-    <script src="facilino_not_obfuscated.js"></script>
     <script src="roboblocks.js"></script>
+	<script src="facilino.js"></script>
 	<xml id='startBlocks' style='display: none'><block type='controls_setupLoop' deletable='true' x='20' y='5'></block></xml>
 
 	<div>
@@ -71,11 +71,26 @@ padding-left:30px;
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item dropdown open"><a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">
-                        
-                        File</a><div class="dropdown-menu"><button class="text-white dropdown-item display-4" onclick="resetWorkspace()" aria-expanded="false">New</button><button class="text-white dropdown-item display-4" onclick="document.getElementById('fileInput').click();" aria-expanded="false">Upload</button><input id="fileInput" type="file" style="display: none;" accept=".bly," onchange="fileSelected(this.files)"></input><button class="text-white dropdown-item display-4" onclick="butSave()" aria-expanded="false">Download</button><button class="text-white dropdown-item display-4" onclick="butExport()" aria-expanded="false">Export</button></div></li><li class="nav-item"><a class="nav-link link text-white display-4" aria-expanded="false"></a></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">
-                        
-                        Edit</a><div class="dropdown-menu"><button id="undo" class="text-white dropdown-item display-4" onclick="butUndo()" aria-expanded="false">Undo</button><button id="redo" class="text-white dropdown-item display-4" onclick="butRedo()" aria-expanded="false">Redo</button></div></li></ul>
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+				<li class="nav-item dropdown open">
+					<a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" aria-expanded="true">File</a>
+					<div class="dropdown-menu">
+						<button class="text-white dropdown-item display-4" onclick="resetWorkspace()" aria-expanded="false">New</button>
+						<button class="text-white dropdown-item display-4" onclick="document.getElementById('fileInput').click();" aria-expanded="false">Upload</button>
+						<input id="fileInput" type="file" style="display: none;" accept=".bly," onchange="fileSelected(this.files)"></input>
+						<button class="text-white dropdown-item display-4" onclick="butSave()" aria-expanded="false">Download</button>
+						<button class="text-white dropdown-item display-4" onclick="butExport()" aria-expanded="false">Export</button>
+					</div>
+				</li>
+				<li class="nav-item"><a class="nav-link link text-white display-4" aria-expanded="false"></a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link link text-white dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Edit</a>
+					<div class="dropdown-menu">
+						<button id="undo" class="text-white dropdown-item display-4" onclick="butUndo()" aria-expanded="false">Undo</button>
+						<button id="redo" class="text-white dropdown-item display-4" onclick="butRedo()" aria-expanded="false">Redo</button>
+					</div>
+				</li>
+			</ul>
             <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Language settings" onclick="showHideLanguage()"><span class="mbri-flag mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			<select id="language" class="text-black dropdown-toggle display-6 icon-menu" onchange="langChange(this.value)" style="display: none">
 		<option value="ca-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/catalonia.png)">Catal&agrave;</option>
@@ -102,9 +117,104 @@ padding-left:30px;
 		<option value="ESP32" class="text-black dropdown-item display-6">R32 (ESP32)</option>
 		</select>
 		<div class="navbar-buttons mbr-section-btn"><button id="licenseP" class="btn btn-sm btn-primary-outline display-4" title="Enter your license" onclick="showHideLicense()"><span class="mbri-key mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></div>
-		<input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();" style="display: none"/></p>
-			<div class="navbar-buttons mbr-section-btn"><button id="button_copy" class="btn btn-sm btn-primary-outline display-4" title="Copy code to clipboard" onclick="copyToClipboard()"><span class="mbri-share mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+		<input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();" style="display: none"/>
+		<div class="navbar-buttons mbr-section-btn"><button id="button_copy" class="btn btn-sm btn-primary-outline display-4" title="Copy code to clipboard" onclick="copyToClipboard()"><span class="mbri-share mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+		<div class="navbar-buttons mbr-section-btn"><button id="toolboxP" class="btn btn-sm btn-primary-outline display-4" title="Configure the toolbox" onclick="showToolbox()"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></div>
+		<div class="dropdown-menu text-white" id="toolbox_menu" style="display: none; background-color: rgb(35,35,35); position: absolute; left: 66%; ">Show/hide categories
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Control</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_INTERRUPTS')" aria-expanded="false"><span>Interrupt</span></button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_STATEMACHINE')" aria-expanded="false">State Machine</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Variables</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_ARRAYS')" aria-expanded="false">Arrays</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_EEPROM')" aria-expanded="false">EEPROM</button>
+				</div>
+			</div>
 			
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Basic &nbsp;I/O</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_BUTTON')" aria-expanded="false">Button</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_BUS')" aria-expanded="false">Bus</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_OTHER')" aria-expanded="false">Other</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Screen</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_LCD')" aria-expanded="false">LCD</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_MAX7219')" aria-expanded="false">LED Matrix</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATERGORY_WS2812')" aria-expanded="false">RGB LEDs</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_OLED')" aria-expanded="false">OLED</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Communication</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_BLUETOOTH')" aria-expanded="false">Bluetooth</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_WIFI')" aria-expanded="false">WiFi</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_IOT')" aria-expanded="false">IoT</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Sound</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_BUZZER')" aria-expanded="false">Buzzer</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_VOICE')" aria-expanded="false">Voice</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_MIC')" aria-expanded="false">Mic</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_MUSIC')" aria-expanded="false">Music</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_CATEGORY_DISTANCE')" aria-expanded="false">Distance</button>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Light</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_INFRARED')" aria-expanded="false">Infrared</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_COLOR')" aria-expanded="false">Colour</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Movement</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_MOTORS')" aria-expanded="false">Motors</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_ROBOTBASE')" aria-expanded="false">Robot base</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_ROBOTACC')" aria-expanded="false">Robot accessories</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_WALK')" aria-expanded="false">Robot walk</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">System</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_SYSTEM_CONTROL')" aria-expanded="false">Controller</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_SYSTEM_FILTER')" aria-expanded="false">Filtering</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Environment</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_TEMPERATURE')" aria-expanded="false">Temperature</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_HUMIDITY')" aria-expanded="false">Humidity</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_RAIN')" aria-expanded="false">Rain</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_GAS)" aria-expanded="false">Gas</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_MISC')" aria-expanded="false">Miscellaneous</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Web Interface</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_HTML')" aria-expanded="false">HTML</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATERGORY_ESPUI')" aria-expanded="false">User Interface</button>
+				</div>
+			</div>
+			<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_CATEGORY_DEPRECATED')" aria-expanded="false">Deprecated</button>
+		</div>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Create your own blocks" onclick="window.location='./FacilinoMyBlocks.html'"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Translate Facilino" onclick="window.location='./FacilinoTranslate.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		</div>	
@@ -162,21 +272,22 @@ padding-left:30px;
 		}
 		MyBlocks = JSON.parse(localStorage.getItem('MyBlocks'));
 		Blockly.Doc = [];
-        RoboBlocks.load({ zoom: 1 });
-		Facilino.load({ zoom: 1});
+		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
+		window.toolboxNames = getToolboxNames(window.toolbox);
+		//options = {zoom: 1, interrupts: {subcategory: 'LANG_SUBCATEGORY_INTERRUPTS', view:false}, ss: false, arrays: false, lcd: false, led_matrix: false, led_strip: false, oled: false, bluetooth: false, wifi: false, iot: false, buzzer: false, voice: false, mic: false, music: false, sonar: false, infrared: false, colour: false, motors: false, robot_base: false, robot_accessories: false, robot_walk: false, system_control: false, system_filtering: false, temperature: false, humidity: false, rain: false, gas: false, environment_other: false, html: false, web_ui: false, deprecated: false};
+		options = {zoom: 1};
+		RoboBlocks.load(options);
+		Facilino.load(options);
 		//MyBlocks
 		MyBlocks.forEach(function (block){
 			eval(block.code);
-			//console.log(block.code);
 		});
-		//console.log(Blockly.Blocks['block_type1']);
 		//	$.getScript( "my_blocks.js", function( data, textStatus, jqxhr ) {
 			  //eval(data);
 			  // New workspace for each test case
             var el = document.getElementById('blockly');
 			//console.log(Blockly.createToolbox());
-			
-            Blockly.inject(el, {toolbox: Blockly.createToolbox(), zoom: {controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}});
+            Blockly.inject(el, {toolbox: Blockly.createToolbox(toolboxNames), zoom: {controls: true, wheel: true, startScale: 1.0, maxScale: 3, minScale: 0.3, scaleSpeed: 1.2}});
             // Create a default setup/loop block
 			//Blockly.getMainWorkspace().clear();
             if (localStorage.getItem("saved")!=='')
@@ -613,6 +724,41 @@ padding-left:30px;
 				lic.style.display='none';
 		}
 		
+		function getToolboxNames(keys)
+		{
+			var toolboxNames = [];
+			keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});			
+			return toolboxNames;
+		}
+		
+		function showToolbox()
+		{
+			var menu=document.getElementById('toolbox_menu');
+			if (menu.style.display==='none')
+			{
+				menu.style.display='initial';
+				$("#toolboxP").attr("class","btn btn-sm btn-primary");
+			}
+			else
+			{
+				menu.style.display='none';
+				$("#toolboxP").attr("class","btn btn-sm btn-primary-outline");
+			}
+		}
+		function showHideCategory(key)
+		{
+			var found = window.toolbox.find(function(element) {return (element===key);});
+			if (found)
+			{
+				window.toolbox = window.toolbox.filter(function(item) { return item !== key});
+			}
+			else
+			{
+				window.toolbox.push(key);
+			}
+			window.toolboxNames=getToolboxNames(window.toolbox);
+			Blockly.getMainWorkspace().updateToolbox(Blockly.updateToolboxXml(toolboxNames));
+		}
 		function clearSelection() {
 			if ( document.selection ) {
 				document.selection.empty();

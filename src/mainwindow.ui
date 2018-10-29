@@ -106,7 +106,7 @@
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../../facilino_junior/src/Resources.qrc">
+                <iconset resource="Resources.qrc">
                  <normaloff>:/icons/icons/enter-16x16.png</normaloff>:/icons/icons/enter-16x16.png</iconset>
                </property>
               </widget>
@@ -288,7 +288,7 @@ pressed: { border: 1px };</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../facilino_junior/src/Resources.qrc">:/icons/icons/key.png</pixmap>
+         <pixmap resource="Resources.qrc">:/icons/icons/key.png</pixmap>
         </property>
        </widget>
       </item>
@@ -321,7 +321,7 @@ pressed: { border: 1px };</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../facilino_junior/src/Resources.qrc">:/icons/icons/chip-micro-24x24.png</pixmap>
+         <pixmap resource="Resources.qrc">:/icons/icons/chip-micro-24x24.png</pixmap>
         </property>
        </widget>
       </item>
@@ -401,7 +401,7 @@ pressed: { border: 1px };</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../../facilino_junior/src/Resources.qrc">:/icons/icons/usb-24x24.png</pixmap>
+         <pixmap resource="Resources.qrc">:/icons/icons/usb-24x24.png</pixmap>
         </property>
        </widget>
       </item>
@@ -468,11 +468,118 @@ pressed: { border: 1px };</string>
     <property name="title">
      <string>&amp;Tools</string>
     </property>
+    <widget class="QMenu" name="menuShow_hide_categories">
+     <property name="title">
+      <string>Show/hide categories</string>
+     </property>
+     <widget class="QMenu" name="menuControl">
+      <property name="title">
+       <string>Control</string>
+      </property>
+      <addaction name="actionInterrupts"/>
+      <addaction name="actionState_Machine"/>
+     </widget>
+     <widget class="QMenu" name="menuBasic_I_O">
+      <property name="title">
+       <string>Basic I/O</string>
+      </property>
+      <addaction name="actionButton"/>
+      <addaction name="actionBus"/>
+      <addaction name="actionOther"/>
+     </widget>
+     <widget class="QMenu" name="menuScreen">
+      <property name="title">
+       <string>Screen</string>
+      </property>
+      <addaction name="actionLCD"/>
+      <addaction name="actionLED_Matrix"/>
+      <addaction name="actionRGB_LEDs"/>
+      <addaction name="actionOLED"/>
+     </widget>
+     <widget class="QMenu" name="menuCommunication">
+      <property name="title">
+       <string>Communication</string>
+      </property>
+      <addaction name="actionBluetooth"/>
+      <addaction name="actionWiFI"/>
+      <addaction name="actionIoT"/>
+     </widget>
+     <widget class="QMenu" name="menuSound">
+      <property name="title">
+       <string>Sound</string>
+      </property>
+      <addaction name="actionBuzzer"/>
+      <addaction name="actionVoice"/>
+      <addaction name="actionMic"/>
+      <addaction name="actionMusic"/>
+     </widget>
+     <widget class="QMenu" name="menuLight">
+      <property name="title">
+       <string>Light</string>
+      </property>
+      <addaction name="actionInfrared"/>
+      <addaction name="actionColour"/>
+     </widget>
+     <widget class="QMenu" name="menuMovement">
+      <property name="title">
+       <string>Movement</string>
+      </property>
+      <addaction name="actionMotors"/>
+      <addaction name="actionRobot_base"/>
+      <addaction name="actionRobot_accessories"/>
+      <addaction name="actionRobot_walk"/>
+     </widget>
+     <widget class="QMenu" name="menuSystem">
+      <property name="title">
+       <string>System</string>
+      </property>
+      <addaction name="actionController"/>
+      <addaction name="actionFiltering"/>
+     </widget>
+     <widget class="QMenu" name="menuEnvironment">
+      <property name="title">
+       <string>Environment</string>
+      </property>
+      <addaction name="actionTemperature"/>
+      <addaction name="actionHumidity"/>
+      <addaction name="actionRain"/>
+      <addaction name="actionGas"/>
+      <addaction name="actionMiscellaneous"/>
+     </widget>
+     <widget class="QMenu" name="menuWeb_Interface">
+      <property name="title">
+       <string>Web Interface</string>
+      </property>
+      <addaction name="actionHTML"/>
+      <addaction name="actionUser_Interface"/>
+     </widget>
+     <widget class="QMenu" name="menuMath">
+      <property name="title">
+       <string>Math</string>
+      </property>
+      <addaction name="actionArrays"/>
+      <addaction name="actionCurve"/>
+     </widget>
+     <addaction name="menuControl"/>
+     <addaction name="menuMath"/>
+     <addaction name="menuBasic_I_O"/>
+     <addaction name="menuScreen"/>
+     <addaction name="menuCommunication"/>
+     <addaction name="menuSound"/>
+     <addaction name="actionDistance"/>
+     <addaction name="menuLight"/>
+     <addaction name="menuMovement"/>
+     <addaction name="menuSystem"/>
+     <addaction name="menuEnvironment"/>
+     <addaction name="menuWeb_Interface"/>
+     <addaction name="actionDeprecated"/>
+    </widget>
     <addaction name="actionMessages"/>
     <addaction name="actionShow_hide_monitor"/>
     <addaction name="actionShow_hide_code"/>
     <addaction name="actionShow_hide_doc"/>
     <addaction name="actionShow_hide_icon_labels"/>
+    <addaction name="menuShow_hide_categories"/>
     <addaction name="separator"/>
     <addaction name="actionZoomIn"/>
     <addaction name="actionZoomOut"/>
@@ -530,6 +637,8 @@ pressed: { border: 1px };</string>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
    <addaction name="separator"/>
+   <addaction name="actionView"/>
+   <addaction name="actionSearchDocumentation"/>
    <addaction name="actionSettings"/>
    <addaction name="separator"/>
    <addaction name="actionMy_Blocks"/>
@@ -582,9 +691,76 @@ pressed: { border: 1px };</string>
    <addaction name="actionupdate"/>
    <addaction name="actiondelete"/>
   </widget>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>240</width>
+     <height>454</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>240</width>
+     <height>454</height>
+    </size>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="toolTip">
+    <string>Show/hide</string>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="floating">
+    <bool>true</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::NoDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Show/hide</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <widget class="QTreeWidget" name="treeWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>240</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <column>
+      <property name="text">
+       <string>Categories</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+  </widget>
   <action name="actionVerify">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/check_alt_24x24.png</normaloff>:/icons/icons/check_alt_24x24.png</iconset>
    </property>
    <property name="text">
@@ -599,7 +775,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionUpload">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/arrow_right_alt1_24x24.png</normaloff>:/icons/icons/arrow_right_alt1_24x24.png</iconset>
    </property>
    <property name="text">
@@ -611,7 +787,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionOpen">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/upload_18x24.png</normaloff>:/icons/icons/upload_18x24.png</iconset>
    </property>
    <property name="text">
@@ -620,7 +796,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/download_18x24.png</normaloff>:/icons/icons/download_18x24.png</iconset>
    </property>
    <property name="text">
@@ -629,7 +805,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionNew">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/document_alt_stroke_18x24.png</normaloff>:/icons/icons/document_alt_stroke_18x24.png</iconset>
    </property>
    <property name="text">
@@ -638,7 +814,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/cog_24x24.png</normaloff>:/icons/icons/cog_24x24.png</iconset>
    </property>
    <property name="text">
@@ -717,7 +893,7 @@ pressed: { border: 1px };</string>
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/magnifying_glass_24x24.png</normaloff>:/icons/icons/magnifying_glass_24x24.png</iconset>
    </property>
    <property name="text">
@@ -798,7 +974,7 @@ pressed: { border: 1px };</string>
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/bar-chart-24x24.png</normaloff>:/icons/icons/bar-chart-24x24.png</iconset>
    </property>
    <property name="text">
@@ -847,7 +1023,7 @@ pressed: { border: 1px };</string>
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/MyBlocks.png</normaloff>:/icons/icons/MyBlocks.png</iconset>
    </property>
    <property name="text">
@@ -875,7 +1051,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actiondelete">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/cancel-button.png</normaloff>:/icons/icons/cancel-button.png</iconset>
    </property>
    <property name="text">
@@ -890,7 +1066,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionadd">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/add-button-inside-black-circle.png</normaloff>:/icons/icons/add-button-inside-black-circle.png</iconset>
    </property>
    <property name="text">
@@ -905,7 +1081,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionupdate">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/update-arrows.png</normaloff>:/icons/icons/update-arrows.png</iconset>
    </property>
    <property name="text">
@@ -960,7 +1136,7 @@ pressed: { border: 1px };</string>
   </action>
   <action name="actionCopy">
    <property name="icon">
-    <iconset resource="../../facilino_junior/src/Resources.qrc">
+    <iconset resource="Resources.qrc">
      <normaloff>:/icons/icons/copy.png</normaloff>:/icons/icons/copy.png</iconset>
    </property>
    <property name="text">
@@ -973,17 +1149,428 @@ pressed: { border: 1px };</string>
     <string>Ctrl+C</string>
    </property>
   </action>
+  <action name="actionInterrupts">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Interrupts</string>
+   </property>
+  </action>
+  <action name="actionState_Machine">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>State Machine</string>
+   </property>
+  </action>
+  <action name="actionArrays">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Arrays</string>
+   </property>
+  </action>
+  <action name="actionButton">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Button</string>
+   </property>
+  </action>
+  <action name="actionBus">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bus</string>
+   </property>
+  </action>
+  <action name="actionOther">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Other</string>
+   </property>
+  </action>
+  <action name="actionLCD">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>LCD</string>
+   </property>
+  </action>
+  <action name="actionLED_Matrix">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>LED Matrix</string>
+   </property>
+  </action>
+  <action name="actionRGB_LEDs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>RGB LEDs</string>
+   </property>
+  </action>
+  <action name="actionOLED">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>OLED</string>
+   </property>
+  </action>
+  <action name="actionBluetooth">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bluetooth</string>
+   </property>
+  </action>
+  <action name="actionWiFI">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>WiFi</string>
+   </property>
+  </action>
+  <action name="actionIoT">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>IoT</string>
+   </property>
+  </action>
+  <action name="actionBuzzer">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Buzzer</string>
+   </property>
+  </action>
+  <action name="actionVoice">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Voice</string>
+   </property>
+  </action>
+  <action name="actionMic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Mic</string>
+   </property>
+  </action>
+  <action name="actionMusic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Music</string>
+   </property>
+  </action>
+  <action name="actionDistance">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Distance</string>
+   </property>
+  </action>
+  <action name="actionInfrared">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Infrared</string>
+   </property>
+  </action>
+  <action name="actionColour">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Colour</string>
+   </property>
+  </action>
+  <action name="actionMotors">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Motors</string>
+   </property>
+  </action>
+  <action name="actionRobot_base">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Robot base</string>
+   </property>
+  </action>
+  <action name="actionRobot_accessories">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Robot accessories</string>
+   </property>
+  </action>
+  <action name="actionRobot_walk">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Robot walk</string>
+   </property>
+  </action>
+  <action name="actionController">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Controller</string>
+   </property>
+  </action>
+  <action name="actionFiltering">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Filtering</string>
+   </property>
+  </action>
+  <action name="actionTemperature">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Temperature</string>
+   </property>
+  </action>
+  <action name="actionHumidity">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Humidity</string>
+   </property>
+  </action>
+  <action name="actionRain">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Rain</string>
+   </property>
+  </action>
+  <action name="actionGas">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Gas</string>
+   </property>
+  </action>
+  <action name="actionMiscellaneous">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Miscellaneous</string>
+   </property>
+  </action>
+  <action name="actionHTML">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>HTML</string>
+   </property>
+  </action>
+  <action name="actionUser_Interface">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>User Interface</string>
+   </property>
+  </action>
+  <action name="actionDeprecated">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Deprecated</string>
+   </property>
+  </action>
+  <action name="actionView">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/icons/icons/eye1.png</normaloff>:/icons/icons/eye1.png</iconset>
+   </property>
+   <property name="text">
+    <string>View</string>
+   </property>
+   <property name="toolTip">
+    <string>Show/hide categories</string>
+   </property>
+  </action>
+  <action name="actionCurve">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Curve</string>
+   </property>
+  </action>
+  <action name="actionSearchDocumentation">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/icons/icons/search-in-folder.png</normaloff>:/icons/icons/search-in-folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+   <property name="toolTip">
+    <string>Search on the documentation</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>QBlocksWebView</class>
    <extends>QWidget</extends>
-   <header>qblockswebview.h</header>
+   <header location="global">qblockswebview.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionVerify</sender>

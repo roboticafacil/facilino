@@ -13,6 +13,9 @@
 #include <QUndoStack>
 #include <QSignalMapper>
 #include <QDomDocument>
+#include <QTreeWidgetItem>
+#include <QListWidget>
+#include <QLineEdit>
 
 namespace Ui {
 class MainWindow;
@@ -23,7 +26,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
@@ -36,6 +39,11 @@ private:
     QSerialPort *serial;
     QString dataString;
     QList<GraphWidget *> graphList;
+    QDockWidget *docDockWidget;
+    QListWidget *docList;
+    QListWidget *exampleList;
+    QPushButton * docSearchButton;
+    QLineEdit * docLineEdit;
     //QStringList documentHistory;
     QUndoStack documentHistory;
     QUndoCommand command;
@@ -53,6 +61,8 @@ private:
     QMap<QString,QString> categories;
     QDomDocument doc;
     QSignalMapper *signalMapper;
+    bool ignoreQTreeWidgetItemEvents;
+    QStringList toolboxCategories;
 
     void actionSaveAndSaveAs(bool askFileName, const QString &directory = "");
     void actionOpenInclude(const QString &title,
@@ -93,7 +103,11 @@ private:
     void updateLibraryMenu();
     void closeEvent(QCloseEvent *bar);
     void initCategories();
-
+    void addQTreeWidgetItemToParent(QTreeWidgetItem *item, QString name, QString data);
+    void toogleCategories(QString data);
+    void setToolboxCategories();
+    void setSearchDocWidget();
+    void parseXML(const QDomElement& root, const QString& baseName, QStringList& v);
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
@@ -140,7 +154,7 @@ private slots:
     void on_actionMy_Blocks_triggered();
     void on_actionMonitor_triggered();
     void on_actionMy_Blocks_2_triggered();
-    void on_block_triggered(const QString & block);
+    void mapBlock(const QString & block);
     //void on_actionblockMenuSelected_triggered();
     void on_actionNew_triggered();
     void checkLicense();
@@ -155,6 +169,48 @@ private slots:
     void on_actionupdate_triggered();
     void on_actiondelete_triggered();
     void on_actionCopy_triggered();
+    void on_actionInterrupts_triggered();
+    void on_actionState_Machine_triggered();
+    void on_actionArrays_triggered();
+    void on_actionCurve_triggered();
+    void on_actionButton_triggered();
+    void on_actionBus_triggered();
+    void on_actionOther_triggered();
+    void on_actionLCD_triggered();
+    void on_actionLED_Matrix_triggered();
+    void on_actionRGB_LEDs_triggered();
+    void on_actionOLED_triggered();
+    void on_actionBluetooth_triggered();
+    void on_actionWiFI_triggered();
+    void on_actionIoT_triggered();
+    void on_actionBuzzer_triggered();
+    void on_actionVoice_triggered();
+    void on_actionMic_triggered();
+    void on_actionMusic_triggered();
+    void on_actionColour_triggered();
+    void on_actionDistance_triggered();
+    void on_actionInfrared_triggered();
+    void on_actionMotors_triggered();
+    void on_actionRobot_base_triggered();
+    void on_actionRobot_accessories_triggered();
+    void on_actionRobot_walk_triggered();
+    void on_actionController_triggered();
+    void on_actionFiltering_triggered();
+    void on_actionTemperature_triggered();
+    void on_actionHumidity_triggered();
+    void on_actionRain_triggered();
+    void on_actionGas_triggered();
+    void on_actionMiscellaneous_triggered();
+    void on_actionHTML_triggered();
+    void on_actionUser_Interface_triggered();
+    void on_actionDeprecated_triggered();
+    void on_treeWidget_itemChanged(QTreeWidgetItem *item, int column);
+    void on_actionView_triggered();
+    void updateToolboxCategories();
+    void searchDoc();
+    void on_actionSearchDocumentation_triggered();
+    void onDocListItemClicked(QListWidgetItem* item);
+    void onExampleListItemClicked(QListWidgetItem* item);
 };
 
 #endif // MAINWINDOW_H

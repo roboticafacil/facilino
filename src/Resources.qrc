@@ -17,6 +17,9 @@
         <file>../icons/update-arrows.png</file>
         <file>../icons/key.png</file>
         <file>../icons/copy.png</file>
+        <file>../icons/eye1.png</file>
+        <file>../icons/search-in-folder.png</file>
+        <file>../icons/search-in-document-magnifying-glass.png</file>
     </qresource>
     <qresource prefix="/">
         <file>../icons/about-header.png</file>

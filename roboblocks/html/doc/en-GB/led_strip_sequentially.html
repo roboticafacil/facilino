@@ -25,7 +25,8 @@ function openFunction(bly) {
     $.ajax({
         type: "GET" ,
         url: bly ,
-        dataType: "xml" , async: false,
+        dataType: "xml" ,
+		async: false,
         success: function(xml) {
 			var txt = new XMLSerializer().serializeToString(xml);
 			Blockly.mainWorkspace.clear();
@@ -62,34 +63,57 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Mapping (advanced)</h3>
+<h3 id="up">Expression stream for a 7-RGB LEDs strip</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
-<script>injectInstruction('advanced_map','blocklyInstruction');</script>
+<script>injectInstruction('led_strip_sequentially','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Linearly transforms (mapping) a value between two numbers "From [min - max]" to another value included between two other numbers "to [min - max]". Allows you to set a value to be within the specified linear setting.</p>
-<image src="doc/common/linear_fitting.png" title="linear_adjustment" alt="linear_adjustment"></image>
+<p>Generates an expression stream. You can add as many expressions as desired by dragging items to the container. Use in combination with:</p>
+<div id='blocklyInstruction0'></div>
+<script>injectInstruction('led_strip_stream','blocklyInstruction0');</script>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('led_strip_predefined','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('led_strip_customized','blocklyInstruction2');</script>
+<h4>Requirements</h4>
+<p>Facilino's license.</p>
+<p>It requires to install NeoPixel library <a href="https://github.com/adafruit/Adafruit_NeoPixel" target="_blank">https://github.com/adafruit/Adafruit_NeoPixel</a></p>
+<h4>Mutator</h4>
+Add an expression by adding new item elements:
+<h5>Container</h5>
+<div id='blocklyInstruction3'></div>
+<script>injectInstruction('led_strip_sequentially_mutator','blocklyInstruction3');</script>
+<h5>Elements</h5>
+<div id='blocklyInstruction4'></div>
+<script>injectInstruction('led_strip_sequentially_item','blocklyInstruction4');</script>
 <h4>Inputs</h4>
 <ul>
-  <li>Value: value to convert.</li>
-  <li>From (min): minimum value of the input range.</li>
-  <li>From (max): maximum value of the input range.</li>
-  <li>to (min): minimum value of the output range.</li>
-  <li>to (max): maximum value of the output range.</li>
+  <li>Element: Expression to add.</li>
 </ul>
 <h4>Output</h4>
-Converted value.
-<h4>Example</h4>
-In this example the analog-to-digital conversion is displayed with a range from -10 to 10 (originally the signal range is from 0 to 1023).
+Generated expression stream.
+<h4>Example 1</h4>
+In this example, we show how to generate a expression stream for the 7-RGB LEDs strip turning ON and OFF some LEDs and changing their colour. The background task checkbox field is not activated, which implies that the next iteration of the loop will be executed once the stream sequence has been complete.
 <div class="button_wrapper">
-<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/advanced_map_example.bly')">Open</button></p>
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/led_strip_tutorial_example3.bly')">Open</button></p>
 All changes will be lost!
 </div>
 <h5>Circuit</h5>
-<p><image src="doc/circuits/pot_example_bb.png" title="pot_example_bb" alt="pot_example_bb"></image></p>
+<image src="doc/circuits/ws2812_example_bb.png" title="ws2812_example_bb" alt="ws2812_example_bb"></image>
 <h5>Facilino Code</h5>
 <div id='example'></div>
-<script>injectExample('advanced_map_example.bly','example');</script>
+<script>injectExample('led_strip_tutorial_example3.bly','example');</script>
+<h4>Example 2</h4>
+In this example, we show how to generate a expression stream for the 7-RGB LEDs strip turning ON and OFF some LEDs and changing their colour. The background task checkbox field is activated which implies that the next instruction will be exectuted inmediately. In this case, we toggle a built-in LED, so that the loop will be executed as fast as possible and the expression stream will be executed until the end of the sequence (since the instruction in in the loop, once finished will be executed again).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/led_strip_tutorial_example4.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/ws2812_example_bb.png" title="ws2812_example_bb" alt="ws2812_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example2'></div>
+<script>injectExample('led_strip_tutorial_example4.bly','example2');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
 </body>
 </html>

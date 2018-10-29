@@ -25,6 +25,7 @@ public:
     QString arduinoIdePath();
     QString defaultLanguage();
     QString examplesPath();
+    QString docPath();
     QString tmpDirName();
     QString tmpFileName();
     QString htmlIndex();
@@ -32,8 +33,13 @@ public:
     bool iconLabels();
     float zoomScale();
     QString license();
+    QStringList toolboxCategories();
+    QString getLastVersion();
 
     static const QString index2board[SIZE_LIST];
+    static const QString version;
+    static const QString allCommonToolboxes;
+    static const QString allAdditionalToolboxes;
 
     void copyDefaultSettings(const QString &fileName = CONFIG_INI,
                              bool overwrite = false);
@@ -48,6 +54,7 @@ public:
     void setHtmlIndex(const QString &value);
     void setZoomScale(float value);
     void setLicense(const QString &value);
+    void setToolboxCategories(const QStringList &categories);
 
 private:
     QString platform;

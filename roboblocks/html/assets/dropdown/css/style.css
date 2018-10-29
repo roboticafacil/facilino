@@ -128,7 +128,8 @@
       right: 1.1538em;
       top: 50%; }
     .nav-dropdown .dropdown-item:focus, .nav-dropdown .dropdown-item:hover {
-      background: none; }
+      background: none;
+	}
 
 @media (max-width: 767px) {
   .nav-dropdown.navbar-toggleable-sm {

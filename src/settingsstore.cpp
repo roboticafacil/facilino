@@ -9,6 +9,9 @@
 #include <QStandardPaths>
 
 const QString SettingsStore::index2board[SIZE_LIST] = {"ArduinoUno","ArduinoNano","ArduinoNano","ArduinoNano","ArduinoMega","ArduinoMega","ArduinoBt","ArduinoIntel","ESP8266","NodeMCU"};
+const QString SettingsStore::version = "1.4.0";
+const QString SettingsStore::allCommonToolboxes= "LANG_CATEGORY_PROCEDURES,LANG_SUBCATEGORY_CONTROL,LANG_CATEGORY_LOGIC,LANG_CATEGORY_MATH,LANG_CATEGORY_TEXT,LANG_CATEGORY_VARIABLES,LANG_SUBCATEGORY_ANALOG,LANG_SUBCATEGORY_DIGITAL,LANG_SUBCATEGORY_USB";
+const QString SettingsStore::allAdditionalToolboxes = "LANG_SUBCATEGORY_INTERRUPTS,LANG_SUBCATEGORY_STATEMACHINE,LANG_SUBCATEGORY_ARRAYS,LANG_CATEGORY_CURVE,LANG_SUBCATEGORY_BUTTON,LANG_SUBCATEGORY_BUS,LANG_SUBCATEGORY_OTHER,LANG_SUBCATEGORY_LCD,LANG_SUBCATEGORY_MAX7219,LANG_SUBCATERGORY_WS2812,LANG_SUBCATEGORY_OLED,LANG_SUBCATEGORY_BLUETOOTH,LANG_SUBCATEGORY_WIFI,LANG_SUBCATEGORY_IOT,LANG_SUBCATEGORY_BUZZER,LANG_SUBCATEGORY_VOICE,LANG_SUBCATEGORY_MIC,LANG_SUBCATEGORY_MUSIC,LANG_CATEGORY_DISTANCE,LANG_SUBCATEGORY_INFRARED,LANG_SUBCATEGORY_COLOR,LANG_SUBCATEGORY_MOTORS,LANG_SUBCATEGORY_ROBOTBASE,LANG_SUBCATEGORY_ROBOTACC,LANG_SUBCATEGORY_WALK,LANG_SUBCATEGORY_SYSTEM_CONTROL,LANG_SUBCATEGORY_SYSTEM_FILTER,LANG_SUBCATEGORY_TEMPERATURE,LANG_SUBCATEGORY_HUMIDITY,LANG_SUBCATEGORY_RAIN,LANG_SUBCATEGORY_GAS,LANG_SUBCATEGORY_MISC,LANG_SUBCATEGORY_HTML,LANG_SUBCATERGORY_ESPUI,LANG_CATEGORY_DEPRECATED";
 
 
 SettingsStore::SettingsStore(const QString &fileName) {
@@ -49,14 +52,14 @@ QString SettingsStore::arduinoBoardFacilino() {
 }
 
 QString SettingsStore::arduinoIdePath() {
-/*#ifdef Q_OS_LINUX
+#ifdef Q_OS_LINUX
     return relativePath("arduino_ide_path", "/usr/bin/arduino");
 #elif defined(Q_OS_WIN)
     return relativePath("arduino_ide_path", "C:\\Program Files (x86)\\Arduino\\arduino_debug.exe");
 #elif defined(Q_OS_MAC)
     return relativePath("arduino_ide_path", "Arduino.app");
-#endif*/
-    return relativePath("arduino_ide_path", "C:\\Program Files (x86)\\Arduino\\arduino_debug.exe");
+#endif
+    //return relativePath("arduino_ide_path", "C:\\Program Files (x86)\\Arduino\\arduino_debug.exe");
 }
 
 QString SettingsStore::defaultLanguage() {
@@ -70,6 +73,11 @@ QString SettingsStore::license() {
 QString SettingsStore::examplesPath() {
     return settings->value(platform + "examples_path",
                            "./html/doc/examples/").toString();
+}
+
+QString SettingsStore::docPath() {
+    return settings->value(platform + "doc_path",
+                           "./html/doc/").toString();
 }
 
 QString SettingsStore::tmpDirName() {
@@ -203,4 +211,15 @@ QString SettingsStore::relativePath(const QString &value,
     }
 
     return settingsValue;
+}
+
+QStringList SettingsStore::toolboxCategories()
+{
+    QStringList categories = settings->value(platform+"categories"+version,allAdditionalToolboxes).toString().split(',');
+    return categories;
+}
+
+void SettingsStore::setToolboxCategories(const QStringList &categories)
+{
+    settings->setValue(platform+"categories"+version,categories.join(","));
 }

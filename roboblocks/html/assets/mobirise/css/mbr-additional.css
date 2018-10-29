@@ -827,7 +827,14 @@ a.text-danger:hover,
 a.text-danger:focus {
   color: #7a6e45 !important;
 }
-a.text-white:hover,
+a.dropdown-item:hover
+{
+  background-color: #5f5f5f;
+}
+button.dropdown-item:hover
+{
+  background-color: #5f5f5f;
+},
 a.text-white:focus {
   color: #b3b3b3 !important;
 }

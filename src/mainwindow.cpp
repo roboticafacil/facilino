@@ -25,6 +25,7 @@
 #include <QUndoStack>
 #include <QDomDocument>
 #include <QClipboard>
+#include <QListWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,11 +34,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->alert=false;
     signalMapper = new QSignalMapper(this);
+    // Set environment
+    settings = new SettingsStore(CONFIG_INI);
     ui->setupUi(this);
+    setToolboxCategories();
     // Align last toolbar action to the right
     QWidget *empty = new QWidget(this);
     empty->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
     ui->mainToolBar->insertWidget(ui->actionMonitor, empty);
+    setSearchDocWidget();
 
     // Align last action to the right in the monitor toolbar
     QWidget *emptyMonitor = new QWidget(this);
@@ -57,16 +62,15 @@ MainWindow::MainWindow(QWidget *parent) :
     const QFont fixedFont = QFontDatabase::systemFont(QFontDatabase::FixedFont);
     ui->consoleText->setFont(fixedFont);
 
-    // Set environment
-    settings = new SettingsStore(CONFIG_INI);
+
     setArduinoBoard();
     xmlFileName = "";
     this->myblocks=false; //The standard Facilino programming view
-    serial = NULL;
+    serial = nullptr;
     //QWebSettings::globalSettings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, true);
     //ui->webView->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
     float zoomScale = settings->zoomScale();
-    ui->webView->setZoomFactor(zoomScale);
+    ui->webView->setZoomFactor((double)zoomScale);
 
     initCategories();
     //actionLicense();
@@ -82,7 +86,6 @@ MainWindow::MainWindow(QWidget *parent) :
     webHelper->setSourceChangeEnable(true);
     documentHistory.clear();
     documentHistory.setUndoLimit(0);  //No limit
-
 
 
     // Set timer to update list of available ports
@@ -372,7 +375,7 @@ void MainWindow::actionMonitor() {
 
 void MainWindow::actionMonitorSend() {
     // Send what's available in the console line edit
-    if (serial == NULL) return;
+    if (serial == nullptr) return;
 
     QString data = ui->consoleEdit->text();
     if (data.isEmpty()) return; // Nothing to send
@@ -587,7 +590,6 @@ void MainWindow::actionSettings() {
         // Reload blockly page
         if (htmlIndex != settings->htmlIndex()
                 || defaultLanguage != settings->defaultLanguage() || license!=settings->license()) {
-            QMessageBox::StandardButton reply;
             xmlLoadContent = getXml();
             loadBlockly();
             ui->licenseLabel->setText(tr("Checking license..."));
@@ -597,18 +599,6 @@ void MainWindow::actionSettings() {
             msg.setText(tr("Changes successfully applied!"));
             msg.exec();
             setXml(xmlLoadContent,true);
-
-            /*setXmlFileName("");
-            // Disable save as
-            ui->actionSave_as->setEnabled(false);
-            // Reset source change status
-            webHelper->resetSourceChanged();
-            reply = QMessageBox::question(this, tr("Settings changed!"), tr("Are you sure?"),QMessageBox::Yes|QMessageBox::No);
-            // Refresh workspace with new language
-            if (reply == QMessageBox::Yes)
-            {
-
-            }*/
             }
         }
 }
@@ -683,7 +673,10 @@ void MainWindow::loadBlockly() {
             SIGNAL(loadFinished(bool)),
             this,
             SLOT(actionLicense()));
-
+    connect(ui->webView->page(),
+            SIGNAL(loadFinished(bool)),
+            this,
+            SLOT(updateToolboxCategories()));
     QUrl url = QUrl::fromLocalFile(settings->htmlIndex());
     QUrlQuery query(url);
     query.addQueryItem("language",settings->defaultLanguage());
@@ -756,7 +749,7 @@ void MainWindow::serialPortClose() {
     ui->widgetConsole->hide();
     ui->consoleText->clear();
 
-    if (serial == NULL) return;
+    if (serial == nullptr) return;
 
     serial->close();
     serial->disconnect(serial, SIGNAL(readyRead()), this, SLOT(readSerial()));
@@ -770,7 +763,7 @@ void MainWindow::serialPortOpen() {
     // No available connections, nothing to do
     if (ui->serialPortBox->currentText() == "") return;
 
-    if (serial == NULL) {
+    if (serial == nullptr) {
         // Create serial connection
         serial = new QSerialPort(this);
     } else if (serial->isOpen()) {
@@ -1113,6 +1106,7 @@ void MainWindow::on_actionMy_Blocks_triggered()
         reply = QMessageBox::question(this, tr("My Blocks"), tr("Are you sure you want to change to My Blocks? All changes will be lost!"),
                                 QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes) {
+            docDockWidget->hide();
             this->switchToMyBlocks(true);
             QUrl url = QUrl::fromLocalFile(settings->htmlIndexMyBlocks());
             ui->webView->load(url);
@@ -1141,7 +1135,7 @@ void MainWindow::on_actionMy_Blocks_triggered()
 
 void MainWindow::on_actionMonitor_triggered()
 {
-
+    docDockWidget->hide();
 }
 
 void MainWindow::on_actionMy_Blocks_2_triggered()
@@ -1149,7 +1143,7 @@ void MainWindow::on_actionMy_Blocks_2_triggered()
     this->on_actionMy_Blocks_triggered();
 }
 
-void MainWindow::on_block_triggered(const QString &block)
+void MainWindow::mapBlock(const QString &block)
 {
     if (checkSourceChanged() == QMessageBox::Cancel) {
         return;
@@ -1346,7 +1340,7 @@ void MainWindow::updateLibraryMenu()
             menu->addAction(action);
             count++;
         }
-        connect(signalMapper, SIGNAL(mapped(const QString &)), this, SLOT(on_block_triggered(const QString &)));
+        connect(signalMapper, SIGNAL(mapped(const QString &)), this, SLOT(mapBlock()));
         ui->menuLibrary->addMenu(menu);
     }
     setXmlFileName("");
@@ -1571,4 +1565,532 @@ void MainWindow::on_actionCopy_triggered()
     QClipboard *clipboard = QApplication::clipboard();
     QString codeString = evaluateJavaScript("Blockly.Arduino.workspaceToCode();");
     clipboard->setText(codeString);
+}
+
+void MainWindow::toogleCategories(QString data)
+{
+    if (!toolboxCategories.contains(data))
+    {
+        toolboxCategories << data;
+        settings->setToolboxCategories(toolboxCategories);
+    }
+    else
+    {
+        toolboxCategories.removeOne(data);
+        settings->setToolboxCategories(toolboxCategories);
+    }
+    toolboxCategories.removeDuplicates();
+    updateToolboxCategories();
+}
+
+void MainWindow::on_actionInterrupts_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_INTERRUPTS");
+}
+
+void MainWindow::on_actionState_Machine_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_STATEMACHINE");
+}
+
+void MainWindow::on_actionArrays_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_ARRAYS");
+}
+
+void MainWindow::on_actionCurve_triggered()
+{
+    toogleCategories("LANG_CATEGORY_CURVE");
+}
+
+void MainWindow::on_actionButton_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_BUTTON");
+}
+
+void MainWindow::on_actionBus_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_BUS");
+}
+
+void MainWindow::on_actionOther_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_OTHER");
+}
+
+void MainWindow::on_actionLCD_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_LCD");
+}
+
+void MainWindow::on_actionLED_Matrix_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_MAX7219");
+}
+
+void MainWindow::on_actionRGB_LEDs_triggered()
+{
+    toogleCategories("LANG_SUBCATERGORY_WS2812");
+}
+
+void MainWindow::on_actionOLED_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_OLED");
+}
+
+void MainWindow::on_actionBluetooth_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_BLUETOOTH");
+}
+
+void MainWindow::on_actionWiFI_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_WIFI");
+}
+
+void MainWindow::on_actionIoT_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_IOT");
+}
+
+void MainWindow::on_actionBuzzer_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_BUZZER");
+}
+
+void MainWindow::on_actionVoice_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_VOICE");
+}
+
+void MainWindow::on_actionMic_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_MIC");
+}
+
+void MainWindow::on_actionMusic_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_MUSIC");
+}
+
+void MainWindow::on_actionColour_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_COLOR");
+}
+
+void MainWindow::on_actionDistance_triggered()
+{
+    toogleCategories("LANG_CATEGORY_DISTANCE");
+}
+
+void MainWindow::on_actionInfrared_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_INFRARED");
+}
+
+void MainWindow::on_actionMotors_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_MOTORS");
+}
+
+void MainWindow::on_actionRobot_base_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_ROBOTBASE");
+}
+
+void MainWindow::on_actionRobot_accessories_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_ROBOTACC");
+}
+
+void MainWindow::on_actionRobot_walk_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_WALK");
+}
+
+void MainWindow::on_actionController_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_SYSTEM_CONTROL");
+}
+
+void MainWindow::on_actionFiltering_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_SYSTEM_FILTER");
+}
+
+void MainWindow::on_actionTemperature_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_TEMPERATURE");
+}
+
+void MainWindow::on_actionHumidity_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_HUMIDITY");
+}
+
+void MainWindow::on_actionRain_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_RAIN");
+}
+
+void MainWindow::on_actionGas_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_GAS");
+}
+
+void MainWindow::on_actionMiscellaneous_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_MISC");
+}
+
+void MainWindow::on_actionHTML_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_HTML");
+}
+
+void MainWindow::on_actionUser_Interface_triggered()
+{
+    toogleCategories("LANG_SUBCATERGORY_ESPUI");
+}
+
+void MainWindow::on_actionDeprecated_triggered()
+{
+    toogleCategories("LANG_CATEGORY_DEPRECATED");
+}
+
+void MainWindow::on_treeWidget_itemChanged(QTreeWidgetItem *item, int column)
+{
+    if (!ignoreQTreeWidgetItemEvents)
+    {
+        if (item->checkState(column))
+        {
+            QString data =item->data(0,Qt::ItemDataRole::UserRole).toString();
+            if (!toolboxCategories.contains(data))
+            {
+                toolboxCategories << data;
+                settings->setToolboxCategories(toolboxCategories);
+            }
+        }
+        else
+        {
+            QString data =item->data(0,Qt::ItemDataRole::UserRole).toString();
+            if (toolboxCategories.contains(data))
+            {
+                toolboxCategories.removeOne(data);
+                settings->setToolboxCategories(toolboxCategories);
+            }
+        }
+        toolboxCategories.removeDuplicates();
+        updateToolboxCategories();
+    }
+}
+
+void MainWindow::updateToolboxCategories()
+{
+    QString jsLanguage = QString("window.toolbox = ['%1','%2']; Blockly.getMainWorkspace().updateToolbox(Blockly.updateToolboxXml(getToolboxNames(window.toolbox)));").arg(SettingsStore::allCommonToolboxes.split(",").join("','")).arg(toolboxCategories.join("','"));
+    ui->webView->page()->runJavaScript(jsLanguage);
+}
+
+void MainWindow::on_actionView_triggered()
+{
+    ui->dockWidget->show();
+    updateToolboxCategories();
+}
+
+void MainWindow::addQTreeWidgetItemToParent(QTreeWidgetItem *parent, QString name, QString data)
+{
+    QTreeWidgetItem *item = new QTreeWidgetItem(parent);
+    item->setText(0,name);
+    if (toolboxCategories.contains(data))
+    {
+        item->setCheckState(0,Qt::CheckState::Checked);
+    }
+    else
+    {
+        item->setCheckState(0,Qt::CheckState::Unchecked);
+    }
+        item->setData(0,Qt::ItemDataRole::UserRole,QVariant(QString(data)));
+}
+
+void MainWindow::setToolboxCategories()
+{
+    ui->dockWidget->hide();
+    toolboxCategories = settings->toolboxCategories();
+    //toolboxCategories = SettingsStore::allAdditionalToolboxes.split(',');
+    ignoreQTreeWidgetItemEvents=true;
+    ui->treeWidget->setColumnCount(1);
+    QTreeWidgetItem *controlItem = new QTreeWidgetItem(ui->treeWidget);
+    controlItem->setText(0,tr("Control"));
+    addQTreeWidgetItemToParent(controlItem,tr("Interrupts"),"LANG_SUBCATEGORY_INTERRUPTS");
+    ui->actionInterrupts->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_INTERRUPTS"));
+    addQTreeWidgetItemToParent(controlItem,tr("State Machine"),"LANG_SUBCATEGORY_STATEMACHINE");
+    ui->actionState_Machine->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_STATEMACHINE"));
+    QTreeWidgetItem *mathItem = new QTreeWidgetItem(ui->treeWidget);
+    mathItem->setText(0,tr("Math"));
+    addQTreeWidgetItemToParent(mathItem,tr("Arrays"),"LANG_SUBCATEGORY_ARRAYS");
+    ui->actionArrays->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_ARRAYS"));
+    addQTreeWidgetItemToParent(mathItem,tr("Curve"),"LANG_CATEGORY_CURVE");
+    ui->actionCurve->setChecked(toolboxCategories.contains("LANG_CATEGORY_CURVE"));
+    QTreeWidgetItem *basicIOItem = new QTreeWidgetItem(ui->treeWidget);
+    basicIOItem->setText(0,tr("Basic I/O"));
+    addQTreeWidgetItemToParent(basicIOItem,tr("Button"),"LANG_SUBCATEGORY_BUTTON");
+    ui->actionButton->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_BUTTON"));
+    addQTreeWidgetItemToParent(basicIOItem,tr("Bus"),"LANG_SUBCATEGORY_BUS");
+    ui->actionBus->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_BUS"));
+    addQTreeWidgetItemToParent(basicIOItem,tr("Other"),"LANG_SUBCATEGORY_OTHER");
+    ui->actionOther->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_OTHER"));
+    QTreeWidgetItem *screenItem = new QTreeWidgetItem(ui->treeWidget);
+    screenItem->setText(0,tr("Screen"));
+    addQTreeWidgetItemToParent(screenItem,tr("LCD"),"LANG_SUBCATEGORY_LCD");
+    ui->actionLCD->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_LCD"));
+    addQTreeWidgetItemToParent(screenItem,tr("LED Matrix"),"LANG_SUBCATEGORY_MAX7219");
+    ui->actionLED_Matrix->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_MAX7219"));
+    addQTreeWidgetItemToParent(screenItem,tr("RGB LEDs"),"LANG_SUBCATERGORY_WS2812");
+    ui->actionRGB_LEDs->setChecked(toolboxCategories.contains("LANG_SUBCATERGORY_WS2812"));
+    addQTreeWidgetItemToParent(screenItem,tr("OLED"),"LANG_SUBCATEGORY_OLED");
+    ui->actionOLED->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_OLED"));
+    QTreeWidgetItem *communicationItem = new QTreeWidgetItem(ui->treeWidget);
+    communicationItem->setText(0,tr("Communication"));
+    addQTreeWidgetItemToParent(communicationItem,tr("Bluetooth"),"LANG_SUBCATEGORY_BLUETOOTH");
+    ui->actionBluetooth->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_BLUETOOTH"));
+    addQTreeWidgetItemToParent(communicationItem,tr("WiFi"),"LANG_SUBCATEGORY_WIFI");
+    ui->actionWiFI->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_WIFI"));
+    addQTreeWidgetItemToParent(communicationItem,tr("IoT"),"LANG_SUBCATEGORY_IOT");
+    ui->actionIoT->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_IOT"));
+    QTreeWidgetItem *soundItem = new QTreeWidgetItem(ui->treeWidget);
+    soundItem->setText(0,tr("Sound"));
+    addQTreeWidgetItemToParent(soundItem,tr("Buzzer"),"LANG_SUBCATEGORY_BUZZER");
+    ui->actionBuzzer->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_BUZZER"));
+    addQTreeWidgetItemToParent(soundItem,tr("Voice"),"LANG_SUBCATEGORY_VOICE");
+    ui->actionVoice->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_VOICE"));
+    addQTreeWidgetItemToParent(soundItem,tr("Mic"),"LANG_SUBCATEGORY_MIC");
+    ui->actionMic->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_MIC"));
+    addQTreeWidgetItemToParent(soundItem,tr("Music"),"LANG_SUBCATEGORY_MUSIC");
+    ui->actionMusic->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_MUSIC"));
+    QTreeWidgetItem *distanceItem = new QTreeWidgetItem(ui->treeWidget);
+    distanceItem->setText(0,tr("Distance"));
+    if (toolboxCategories.contains("LANG_CATEGORY_DISTANCE"))
+    {
+        distanceItem->setCheckState(0,Qt::CheckState::Checked);
+    }
+    else
+    {
+        distanceItem->setCheckState(0,Qt::CheckState::Unchecked);
+    }
+    distanceItem->setData(0,Qt::ItemDataRole::UserRole,QVariant(QString("LANG_CATEGORY_DISTANCE")));
+    ui->actionDistance->setChecked(toolboxCategories.contains("LANG_CATEGORY_DISTANCE"));
+    QTreeWidgetItem *lightItem = new QTreeWidgetItem(ui->treeWidget);
+    lightItem->setText(0,tr("Light"));
+    addQTreeWidgetItemToParent(lightItem,tr("Infrared"),"LANG_SUBCATEGORY_INFRARED");
+    ui->actionInfrared->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_INFRARED"));
+    addQTreeWidgetItemToParent(lightItem,tr("Colour"),"LANG_SUBCATEGORY_COLOR");
+    ui->actionColour->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_COLOR"));
+    QTreeWidgetItem *movementItem = new QTreeWidgetItem(ui->treeWidget);
+    movementItem->setText(0,tr("Movement"));
+    addQTreeWidgetItemToParent(movementItem,tr("Motors"),"LANG_SUBCATEGORY_MOTORS");
+    ui->actionMotors->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_MOTORS"));
+    addQTreeWidgetItemToParent(movementItem,tr("Robot base"),"LANG_SUBCATEGORY_ROBOTBASE");
+    ui->actionRobot_base->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_ROBOTBASE"));
+    addQTreeWidgetItemToParent(movementItem,tr("Robot accessories"),"LANG_SUBCATEGORY_ROBOTACC");
+    ui->actionRobot_accessories->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_ROBOTACC"));
+    addQTreeWidgetItemToParent(movementItem,tr("Robot walk"),"LANG_SUBCATEGORY_WALK");
+    ui->actionRobot_walk->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_WALK"));
+    QTreeWidgetItem *systemItem = new QTreeWidgetItem(ui->treeWidget);
+    systemItem->setText(0,tr("System"));
+    addQTreeWidgetItemToParent(systemItem,tr("Controller"),"LANG_SUBCATEGORY_SYSTEM_CONTROL");
+    ui->actionController->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_SYSTEM_CONTROL"));
+    addQTreeWidgetItemToParent(systemItem,tr("Filtering"),"LANG_SUBCATEGORY_SYSTEM_FILTER");
+    ui->actionFiltering->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_SYSTEM_FILTER"));
+    QTreeWidgetItem *environmentItem = new QTreeWidgetItem(ui->treeWidget);
+    environmentItem->setText(0,tr("Environment"));
+    addQTreeWidgetItemToParent(environmentItem,tr("Temperature"),"LANG_SUBCATEGORY_TEMPERATURE");
+    ui->actionTemperature->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_TEMPERATURE"));
+    addQTreeWidgetItemToParent(environmentItem,tr("Humidity"),"LANG_SUBCATEGORY_HUMIDITY");
+    ui->actionHumidity->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_HUMIDITY"));
+    addQTreeWidgetItemToParent(environmentItem,tr("Rain"),"LANG_SUBCATEGORY_RAIN");
+    ui->actionRain->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_RAIN"));
+    addQTreeWidgetItemToParent(environmentItem,tr("Gas"),"LANG_SUBCATEGORY_GAS");
+    ui->actionGas->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_GAS"));
+    addQTreeWidgetItemToParent(environmentItem,tr("Miscellaneous"),"LANG_SUBCATEGORY_MISC");
+    ui->actionMiscellaneous->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_MISC"));
+    QTreeWidgetItem *webInterfaceItem = new QTreeWidgetItem(ui->treeWidget);
+    webInterfaceItem->setText(0,tr("Web Interface"));
+    addQTreeWidgetItemToParent(webInterfaceItem,tr("HTML"),"LANG_SUBCATEGORY_HTML");
+    ui->actionHTML->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_HTML"));
+    addQTreeWidgetItemToParent(webInterfaceItem,tr("User Interface"),"LANG_SUBCATERGORY_ESPUI");
+    ui->actionUser_Interface->setChecked(toolboxCategories.contains("LANG_SUBCATERGORY_ESPUI"));
+    QTreeWidgetItem *deprecatedItem = new QTreeWidgetItem(ui->treeWidget);
+    deprecatedItem->setText(0,tr("Deprecated"));
+    if (toolboxCategories.contains("LANG_CATEGORY_DEPRECATED"))
+    {
+        deprecatedItem->setCheckState(0,Qt::CheckState::Checked);
+    }
+    else
+    {
+        deprecatedItem->setCheckState(0,Qt::CheckState::Unchecked);
+    }
+    deprecatedItem->setData(0,Qt::ItemDataRole::UserRole,QVariant(QString("LANG_CATEGORY_DEPRECATED")));
+    ui->actionDeprecated->setChecked(toolboxCategories.contains("LANG_CATEGORY_DEPRECATED"));
+    ignoreQTreeWidgetItemEvents=false;
+}
+
+void MainWindow::setSearchDocWidget()
+{
+    docDockWidget = new QDockWidget(tr("Search on documentation and examples"),this);
+    docDockWidget->setAllowedAreas(Qt::RightDockWidgetArea);
+    docDockWidget->setFixedWidth(450);
+    docDockWidget->setFeatures(QDockWidget::DockWidgetClosable);
+    QWidget* docMultiWidgetV = new QWidget();
+    QWidget* docMultiWidgetH = new QWidget();
+    docSearchButton = new QPushButton(tr("Search"),this);
+    docLineEdit = new QLineEdit();
+    docList = new QListWidget(docDockWidget);
+    exampleList = new QListWidget(docDockWidget);
+    QHBoxLayout *docLayoutH = new QHBoxLayout();
+    docLayoutH->addWidget(docLineEdit);
+    docLayoutH->addWidget(docSearchButton);
+    docMultiWidgetH->setLayout(docLayoutH);
+    QVBoxLayout *docLayoutV = new QVBoxLayout();
+    docLayoutV->addWidget(docMultiWidgetH);
+    docLayoutV->addWidget(new QLabel(tr("Documentation")));
+    docLayoutV->addWidget(docList);
+    docLayoutV->addWidget(new QLabel(tr("Examples")));
+    docLayoutV->addWidget(exampleList);
+    docMultiWidgetV->setLayout(docLayoutV);
+    docDockWidget->hide();
+    docDockWidget->setWidget(docMultiWidgetV);
+    addDockWidget(Qt::RightDockWidgetArea, docDockWidget);
+    connect(docSearchButton,SIGNAL(released()),this,SLOT(searchDoc()));
+    connect(docList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onDocListItemClicked(QListWidgetItem*)));
+    connect(exampleList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onExampleListItemClicked(QListWidgetItem*)));
+}
+
+void MainWindow::parseXML(const QDomElement& root, const QString& baseName, QStringList& v)
+{
+  // Extract node value, if any
+  if (!baseName.isEmpty() && !root.firstChild().nodeValue().isEmpty()) { // the first child is the node text
+    v.push_back(baseName + "=" + root.firstChild().nodeValue());
+  }
+
+  // Parse children elements
+  for (auto element = root.firstChildElement(); !element.isNull(); element = element.nextSiblingElement()) {
+    parseXML(element, baseName + "." + element.tagName(), v);
+  }
+}
+
+void MainWindow::searchDoc()
+{
+    //SearchDoc
+    QString path = settings->docPath()+settings->defaultLanguage()+"/";
+    QString search_line = docLineEdit->text();
+    if (search_line.length()>0)
+    {
+        docSearchButton->setEnabled(false);
+        docLineEdit->setEnabled(false);
+        docList->clear();
+        exampleList->clear();
+        search_line.remove(",");
+        search_line.remove(".");
+        QStringList search_words = search_line.split(" ");
+        QDir directoryDoc(path);
+        QStringList files = directoryDoc.entryList(QStringList() << "*.html" << "*.HTML",QDir::Files);
+        QTextBrowser *doc = new QTextBrowser();
+        foreach(QString filename, files) {
+            doc->setSource(QUrl(QUrl::fromLocalFile(path+filename)));
+            QString text = doc->toPlainText();
+            foreach (QString word,search_words)
+            {
+                if (doc->toPlainText().contains(" "+word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
+                {
+                    QListWidgetItem* item = new QListWidgetItem(filename);
+                    item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
+                    docList->addItem(item);
+                    break;
+                }
+            }
+        }
+        delete doc;
+        path=settings->examplesPath();
+        QDir directoryExamples(path);
+        QString description;
+        QString description_tag=".description_"+settings->defaultLanguage()+"=";
+        QString keywords_tag=".keywords_"+settings->defaultLanguage()+"=";
+        //QStringList files = directory.entryList(QStringList() << "*.bly",QDir::Files);
+        files = directoryExamples.entryList(QStringList() << "*.bly",QDir::Files);
+        foreach(QString filename, files) {
+            QListWidgetItem* item = new QListWidgetItem(filename);
+            item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
+            exampleList->addItem(item);
+              /*QStringList v;
+              QDomDocument xml("xml");
+              QFile file(path+filename);
+              QString example_xml="";
+              if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+                      QTextStream stream(&file);
+                      while (!stream.atEnd()){
+                          example_xml+= stream.readLine();
+                      }
+              }
+              xml.setContent(example_xml);
+              parseXML(xml.documentElement(), "",v); // root has no base name, as indicated in expected output
+              QString description;
+              QString keywords;
+              foreach (QString tag,v)
+              {
+                  if (tag.contains(description_tag))
+                  {
+                      description=tag.replace(description_tag,"",Qt::CaseSensitivity::CaseInsensitive);
+                      break;
+                  }
+                  if (tag.contains(keywords_tag))
+                  {
+                      keywords=tag.replace(keywords_tag,"",Qt::CaseSensitivity::CaseInsensitive);
+                      break;
+                  }
+              }
+              keywords=keywords.replace(",",", ");
+              foreach (QString word,search_words)
+              {
+                  if (description.contains(" "+word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
+                  {
+                      QListWidgetItem* item = new QListWidgetItem(filename);
+                      item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
+                      exampleList->addItem(item);
+                      break;
+                  }
+                  if (keywords.contains(" "+word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
+                  {
+                      QListWidgetItem* item = new QListWidgetItem(filename);
+                      item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
+                      exampleList->addItem(item);
+                      break;
+                  }
+              }*/
+        }
+        docSearchButton->setEnabled(true);
+        docLineEdit->setEnabled(true);
+    }
+}
+
+void MainWindow::on_actionSearchDocumentation_triggered()
+{
+    if (!docDockWidget->isVisible())
+    {
+        docLineEdit->setText("");
+        docList->clear();
+        exampleList->clear();
+        docDockWidget->show();
+    }
+}
+
+void MainWindow::onDocListItemClicked(QListWidgetItem* item)
+{
+    QString jsLanguage = QString("showDoc('%1');").arg(item->data(Qt::ItemDataRole::UserRole).toString());
+    ui->webView->page()->runJavaScript(jsLanguage);
+}
+
+void MainWindow::onExampleListItemClicked(QListWidgetItem* item)
+{
+    QString jsLanguage = QString("openExample('%1');").arg(item->data(Qt::ItemDataRole::UserRole).toString());
+    ui->webView->page()->runJavaScript(jsLanguage);
 }

@@ -1,6 +1,6 @@
 # QT += core gui serialport widgets webenginewidgets
 QT += core gui serialport webchannel webenginewidgets widgets xml
-
+CONFIG += c++11
 # greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkit webkitwidgets
 
 TARGET = facilino

@@ -10,29 +10,28 @@
 #include <QOpenGLWidget>
 #include <QMessageBox>
 
-
-
 class QBlocksWebView : public QWebEngineView
 {
 public:
-    //QBlocksWebView();
+    QBlocksWebView();
     QBlocksWebView(QWidget *parent = 0);
-    //void wheelEvent(QWheelEvent *event);
-    bool event(QEvent * ev);
+
+    //bool event(QEvent * ev);
     void zoomIn();
     void zoomOut();
 
 protected:
-    bool eventFilter(QObject *obj, QEvent *ev);
+    //bool eventFilter(QObject *obj, QEvent *ev);
+    void wheelEvent(QWheelEvent *event);
 
 private:
-    QPointer<QOpenGLWidget> child_;
+    //QPointer<QOpenGLWidget> child_;
 
     void init();
     void doZoom(float scale);
 
-signals:
-    void delegateWheel(QWheelEvent *event);
+//signals:
+//    void delegateWheel(QWheelEvent *event);
 public slots:
 };
 

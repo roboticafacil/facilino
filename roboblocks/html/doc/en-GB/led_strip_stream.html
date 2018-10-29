@@ -25,7 +25,8 @@ function openFunction(bly) {
     $.ajax({
         type: "GET" ,
         url: bly ,
-        dataType: "xml" , async: false,
+        dataType: "xml" ,
+		async: false,
         success: function(xml) {
 			var txt = new XMLSerializer().serializeToString(xml);
 			Blockly.mainWorkspace.clear();
@@ -62,37 +63,53 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Concatenates text strings</h3>
+<h3 id="up">7-RGB LEDs strip stream</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
-<script>injectInstruction('text_join','blocklyInstruction');</script>
+<script>injectInstruction('led_strip_stream','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>This statement allows you to join (concatenate) text strings. Thanks to the mutator, we can create as many strings of text as you want. For example, you can combine text strings with numbers.</p>
-<h4>Mutator</h4>
-Add text by adding new elements:
-<h5>Container</h5>
+<p>Sets a stream with 'expressions' on a 7-RGB LEDs strip. You can set the time between expressions. This instruction waits for the stream to finish, but is can be also run in the background, which implies that the next instruction will be executed inmediately and the animated expressions will be executed in interrupt 0. Use in combination with:</p>
+<div id='blocklyInstruction0'></div>
+<script>injectInstruction('led_strip_sequentially','blocklyInstruction0');</script>
 <div id='blocklyInstruction1'></div>
-<script>injectInstruction('text_create_join_container','blocklyInstruction1');</script>
-<h5>Elements</h5>
+<script>injectInstruction('led_strip_predefined','blocklyInstruction1');</script>
 <div id='blocklyInstruction2'></div>
-<script>injectInstruction('text_create_join_item','blocklyInstruction2');</script>
+<script>injectInstruction('led_strip_customized','blocklyInstruction2');</script>
+<h4>Requirements</h4>
+<p>Facilino's license.</p>
+<p>It requires to install NeoPixel library <a href="https://github.com/adafruit/Adafruit_NeoPixel" target="_blank">https://github.com/adafruit/Adafruit_NeoPixel</a></p>
 <h4>Inputs</h4>
 <ul>
-  <li>Element: Element to concatenate.</li>
+   <li>PIN: 1-wire digital interface for data.</li>
+   <li>Expression stream: An 'expression' stream is a list of pre-defined or customized expressions.</li>
+   <li>Wait: Time to wait between expressions.</li>
 </ul>
-<h4>Output</h4>
-Generated text.
-<h4>Example</h4>
-This example shows how you can concatenate a single text string with a number.
+<h4>Checkbox Fields</h4>
+<ul>
+	<li>Background task: If selected the instruction is executed in the interrupt 0 routine (background task) and next instruction is exectued inmediately. Otherwise, the instruction will wait until the whole sequence of expressions is executed.
+</ul>
+<h4>Example 1</h4>
+In this example, we show how to generate a expression stream for the 7-RGB LEDs strip turning ON and OFF some LEDs and changing their colour. The background task checkbox field is not activated, which implies that the next iteration of the loop will be executed once the stream sequence has been complete.
 <div class="button_wrapper">
-<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/text_join_example.bly')">Open</button></p>
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/led_strip_tutorial_example3.bly')">Open</button></p>
 All changes will be lost!
 </div>
 <h5>Circuit</h5>
-<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<image src="doc/circuits/ws2812_example_bb.png" title="ws2812_example_bb" alt="ws2812_example_bb"></image>
 <h5>Facilino Code</h5>
 <div id='example'></div>
-<script>injectExample('text_join_example.bly','example');</script>
+<script>injectExample('led_strip_tutorial_example3.bly','example');</script>
+<h4>Example 2</h4>
+In this example, we show how to generate a expression stream for the 7-RGB LEDs strip turning ON and OFF some LEDs and changing their colour. The background task checkbox field is activated which implies that the next instruction will be exectuted inmediately. In this case, we toggle a built-in LED, so that the loop will be executed as fast as possible and the expression stream will be executed until the end of the sequence (since the instruction in in the loop, once finished will be executed again).
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/led_strip_tutorial_example4.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/ws2812_example_bb.png" title="ws2812_example_bb" alt="ws2812_example_bb"></image>
+<h5>Facilino Code</h5>
+<div id='example2'></div>
+<script>injectExample('led_strip_tutorial_example4.bly','example2');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
 </body>
 </html>
