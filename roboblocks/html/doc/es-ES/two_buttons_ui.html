@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Interfaz de usuario con dos botones</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('two_buttons_ui','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>Implementa una sencilla interfaz de usuario (UI) con dos botones. Uno de los botones se utiliza con la funcionalidad de 'Siguiente/Seleccionar', mientras que el otro botón se usa para 'Cancelar' (o 'Atrás'). La estructura de la interfaz de usuario es arbórea, con un 'Menú General' como el tronco principal y menús y opciones como ramas y hojas, respectivamente. La lógica para navegar a través de la interfaz es creada automáticamente por la instrucción en función de los menús y opciones creadas. Por defecto, el 'Menú General' se mostrará al principio. Los mennús y opciones son en realidad una lista circular, de forma que una vez alcanzado el último elemento, se mostrará el primero de la lista. Puede cambiarse de un elemento de la lista a otro mediante una pulsación corta con el botón 'Siguiente/Selecciona'. Una pulsación larga de ese botón seleccionará el menú u opción.</p>
+<p>Cuando un menú es seleccionado, se muestra la lista de los sub-menús (opciones). De nuevo, las diferentes opciones pueden mostrarse mediante pulsaciones cortas. Para seleccionar una opción, debes de mantener pulsado (pulsación larga) el botón 'Siguiente/Selecciona'. Se puede volver hacia atrás pulsando el botón 'Cancelar'.</p>
+<p>Usar en combinación de la siguiente instrucción</p>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('two_buttons_ui_option','blocklyInstruction1');</script>
+<h4>Requisitos</h4>
+Licencia de Facilino.
+<h4>Entradas</h4>
+<ul>
+  <li>Siguiente/Selecciona Pin: Pin (entrada digital) al que el botón de 'Siguiente/Selecciona' está conectado.</li>
+  <li>Cancelar Pin: Pin (entrada digital) al que el botón 'Cancelar' está conectado.</li>
+</ul>
+<h4>Campos</h4>
+<ul>
+  <li>Tiempo de refresco: El 'Menú General' se refresca cuando este tiempo ha transcurrido (p.e.: puede utilizarse para actualizar el valor de una medida de temperatura, señal a mostrar en un display...)</li> 
+</ul>
+<h4>Mutador</h4>
+Añade tantos menús como se necesiten.
+<h5>Contenedor</h5>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('two_buttons_ui_stack','blocklyInstruction2');</script>
+<h5>Elementos</h5>
+<div id='blocklyInstruction3'></div>
+<script>injectInstruction('two_buttons_ui_item','blocklyInstruction3');</script>
+<h4>Ejemplo</h4>
+En este ejemplo, implementamos una interfaz de usario (UI) básica con dos botones. Hay una vista general del UI que se mostrará cuando ningún botón ha sido presionado o cuando se cumple el tiempo de refresco. Dispone de tres menús: "Menu0", "Menu1" y "Menu2". Dependiendo del menú seleccionado, podemos acceder a las diferentes opciones y distinguir entre resaltado (cuando el nombre de la opción se muestra por la pantala) o seleccionado (cuando la opción ha sido seleccionada y la acción asociada a la misma debe ser ejecutada).
+<div class="button_wrapper">
+<p><button align="center" class="button" onclick="openFunction('doc/examples/buttons_ui.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/switches_example_bb.png" title="switches_example_bb" alt="switches_example_bb"></image>
+<h5>Codigo Facilino</h5>
+<div id='example'></div>
+<script>injectExample('buttons_ui.bly','example');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="acerca de" alt="acerca de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/es-ES/about.html');});"></image></p>
+</body>
+</html>

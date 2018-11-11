@@ -2,6 +2,10 @@
 QT += core gui serialport webchannel webenginewidgets widgets xml
 CONFIG += c++11
 # greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkit webkitwidgets
+contains(QT_MAJOR_VERSION,5): lessThan(QT_MINOR_VERSION,9)
+{
+DEFINES +=QT_OLD_VERSION_5_5
+}
 
 TARGET = facilino
 TEMPLATE = app
@@ -17,14 +21,16 @@ SOURCES += main.cpp\
     graphwidget.cpp \
     aboutdialog.cpp \
     jswebhelpers.cpp \
-    qblockswebview.cpp
+    qblockswebview.cpp \
+    filescore.cpp
 
 HEADERS += mainwindow.h \
     settingsdialog.h \
     settingsstore.h \
     graphwidget.h \
     aboutdialog.h \
-    jswebhelpers.h
+    jswebhelpers.h \
+    filescore.h \
     qblockswebview.h
 
 FORMS += mainwindow.ui \

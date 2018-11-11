@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">On Receive I2C</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('i2c_on_receive','blocklyInstruction');</script>
+<h4>Description</h4>
+<p>This instruction is used by I2C Slave to receive data from a I2C Master. The instruction executes the code in the statement when a I2C message is received. Data is available through an array variable 'I2C_data' that will be automatically created for you to be used within this instruction with all bytes received (max. 32 bytes). This instruction can only be used once per program (the last rendered instruction will be used in case of multiple copies of this instruction).</p>
+<h4>Fields</h4>
+<ul>
+<li>Address: Address of I2C slave. Maximum address value is 127.</li>
+</ul>
+<h4>Statements</h4>
+<ul>
+<li>Do: Code to exectute.</li>
+</ul>
+<h4>Variables</h4>
+<ul>
+<li>I2C_data: Contains received data. It's a byte array of size 32 bytes.</li>
+<li>numBytes: Number of bytes received. It's an integer variable.</li>
+</ul>
+<h4>Example</h4>
+This example shows the capabilities of the I2C communication. It represents a distributed network of MCUs. One of them is the Master that requests infrared readings of two independent I2C slaves (addresses 20 and 21). Received data is scaled into a servo position value (upto 180º) and transmitted to a servo controller slave (address 10) which is in charge of moving the servos.
+<p><small><b>Master Program</b></small></p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_master.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<p><small><b>Slave 10 Program</b></small></p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_slave_10.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<p><small><b>Slave 20 Program</b></small></p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_slave_20.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<p><small><b>Slave 21 Program</b></small></p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_slave_21.bly')">Open</button></p>
+All changes will be lost!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/example_i2c_bb.png" title="example_i2c_bb" alt="example_i2c_bb"></image>
+<h5>Facilino Code</h5>
+<p><small><b>Master Program</b></small></p>
+<div id='example1'></div>
+<script>injectExample('demo_i2c_master.bly','example1');</script>
+<p><small><b>Slave 10 Program</b></small></p>
+<div id='example2'></div>
+<script>injectExample('demo_i2c_slave_10.bly','example2');</script>
+<p><small><b>Slave 20 Program</b></small></p>
+<div id='example3'></div>
+<script>injectExample('demo_i2c_slave_20.bly','example3');</script>
+<p><small><b>Slave 21 Program</b></small></p>
+<div id='example4'></div>
+<script>injectExample('demo_i2c_slave_21.bly','example4');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+</body>
+</html>

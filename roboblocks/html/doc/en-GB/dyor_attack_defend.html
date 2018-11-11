@@ -68,7 +68,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('dyor_attack_defend','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Control the movements of the robot's arms generating an attack/defending movement. If moves the arms from the 'From' position to the 'to' position, waits the half of the indicated time and moves back to the 'From' position and waits the remainder of time. The motors can be detached after the attack/defending motion.</p>
+<p>Control the movements of the robot's arms generating an attack/defending movement. It moves the arms from the 'From' position to the 'to' position, waits the half of the indicated time and moves back to the 'From' position and waits the remainder of time. The motors can be detached after the attack/defending motion.</p>
 <p>Note that for ESP32 this library is required:</p>
 <a href="https://github.com/jkb-git/ESP32Servo" target="_blank">https://github.com/jkb-git/ESP32Servo</a>
 <h4>Requirements</h4>
@@ -76,7 +76,7 @@ Facilino's License.
 <h4>Inputs</h4>
 <ul>
   <li>Sword: PWM pin of the servo corresponding to the arm with the sword.</li>
-  <li>Right: PWM pin of the servo corresponding to the arm with the shield.</li>
+  <li>Shield: PWM pin of the servo corresponding to the arm with the shield.</li>
   <li>Time: Total amount of time (in milliseconds) of the attack/defending movement.
 </ul>
 <h4>Fields</h4>

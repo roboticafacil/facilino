@@ -79,7 +79,7 @@
 				"LANG_CONTROLS_BASE_DELAY_WAIT_SEC": "Esperar (s)",
 				"LANG_CONTROL_YIELD": "Cedir fluxe",
 				"LANG_CONTROL_YIELD_TOOLTIP": "Cedeix el fluxe principal a altres tasques",
-				"LANG_CONTROL_ESP_DEEP_SLEEP": "Son profunda (s)",
+				"LANG_CONTROL_ESP_DEEP_SLEEP": "Dormir profundament (s)",
 				"LANG_CONTROL_ESP_DEEP_SLEEP_TOOLTIP": "Fica la placa en un estat de son profunda durante els segons especificats amb un consumo mínim d'energía.",
 				"LANG_LED_MATRIX_DELAY_WAIT": "Esperar (ms)",
 				"LANG_LED_MATRIX_DELAY_SHIFT": "Desplaçament suau?",

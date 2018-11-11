@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "aboutdialog.h"
+#include "filescore.h"
 
 #include <QApplication>
 #include <QDebug>
@@ -1451,7 +1452,7 @@ void MainWindow::on_actiondelete_triggered()
             if (!blocksXml.contains(delete_block_name))
             {
                 QMessageBox msg;
-                msg.setText(tr("This block does not exist in the library and can't be delete it."));
+                msg.setText(tr("This block does not exist in the library and can't be deleted."));
                 msg.exec();
                 return;
             }
@@ -1978,6 +1979,12 @@ void MainWindow::parseXML(const QDomElement& root, const QString& baseName, QStr
   }
 }
 
+QString MainWindow::noAcute(QString str)
+{
+    str=str.replace("á","a").replace("é","e").replace("í","i").replace("ó","o").replace("ú","u").replace("è","e").replace("à","a").replace("ò","o");
+    return str;
+}
+
 void MainWindow::searchDoc()
 {
     //SearchDoc
@@ -1986,42 +1993,67 @@ void MainWindow::searchDoc()
     if (search_line.length()>0)
     {
         docSearchButton->setEnabled(false);
+        docSearchButton->setDisabled(true);
         docLineEdit->setEnabled(false);
+        docLineEdit->setDisabled(true);
+        docList->setEnabled(false);
+        docList->setDisabled(true);
+        exampleList->setEnabled(false);
+        exampleList->setDisabled(true);
         docList->clear();
         exampleList->clear();
         search_line.remove(",");
         search_line.remove(".");
+        search_line=noAcute(search_line);
         QStringList search_words = search_line.split(" ");
         QDir directoryDoc(path);
+        if (!directoryDoc.exists())
+        {
+            path = settings->docPath()+"en-GB/";
+            directoryDoc.setPath(path);
+        }
         QStringList files = directoryDoc.entryList(QStringList() << "*.html" << "*.HTML",QDir::Files);
         QTextBrowser *doc = new QTextBrowser();
+        QList<FileScore*> filesScored;
+        filesScored.clear();
         foreach(QString filename, files) {
             doc->setSource(QUrl(QUrl::fromLocalFile(path+filename)));
             QString text = doc->toPlainText();
+            text=noAcute(text);
+            QString title=text.split(" \n").at(0);
+            float score=0;
             foreach (QString word,search_words)
             {
-                if (doc->toPlainText().contains(" "+word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
+                if (text.contains(" "+word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
                 {
-                    QListWidgetItem* item = new QListWidgetItem(filename);
-                    item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
-                    docList->addItem(item);
-                    break;
+                    score++;
                 }
             }
+            if (score>0)
+            {
+                filesScored.append(new FileScore(filename,title,score));
+            }
+        }
+        qSort(filesScored.begin(),filesScored.end(),FileScore::greaterThan);
+        foreach (FileScore* file, filesScored)
+        {
+            QListWidgetItem* item = new QListWidgetItem(file->getTitle());
+            item->setData(Qt::ItemDataRole::UserRole,QVariant(file->getFilename()));
+            docList->addItem(item);
         }
         delete doc;
         path=settings->examplesPath();
         QDir directoryExamples(path);
-        QString description;
-        QString description_tag=".description_"+settings->defaultLanguage()+"=";
+        if (!directoryExamples.exists())
+        {
+            path = settings->examplesPath()+"en-GB/";
+            directoryExamples.setPath(path);
+        }
         QString keywords_tag=".keywords_"+settings->defaultLanguage()+"=";
-        //QStringList files = directory.entryList(QStringList() << "*.bly",QDir::Files);
         files = directoryExamples.entryList(QStringList() << "*.bly",QDir::Files);
+        filesScored.clear();
         foreach(QString filename, files) {
-            QListWidgetItem* item = new QListWidgetItem(filename);
-            item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
-            exampleList->addItem(item);
-              /*QStringList v;
+              QStringList v;
               QDomDocument xml("xml");
               QFile file(path+filename);
               QString example_xml="";
@@ -2033,42 +2065,51 @@ void MainWindow::searchDoc()
               }
               xml.setContent(example_xml);
               parseXML(xml.documentElement(), "",v); // root has no base name, as indicated in expected output
-              QString description;
               QString keywords;
               foreach (QString tag,v)
               {
-                  if (tag.contains(description_tag))
-                  {
-                      description=tag.replace(description_tag,"",Qt::CaseSensitivity::CaseInsensitive);
-                      break;
-                  }
                   if (tag.contains(keywords_tag))
                   {
                       keywords=tag.replace(keywords_tag,"",Qt::CaseSensitivity::CaseInsensitive);
                       break;
                   }
               }
-              keywords=keywords.replace(",",", ");
+              /*if (keywords.isEmpty())
+              {
+                  QMessageBox box;
+                  box.setText(filename+" is empty!");
+                  box.exec();
+              }*/
+              keywords=noAcute(keywords);
+              float score=0;
               foreach (QString word,search_words)
               {
-                  if (description.contains(" "+word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
+                  if (keywords.contains(word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
                   {
-                      QListWidgetItem* item = new QListWidgetItem(filename);
-                      item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
-                      exampleList->addItem(item);
-                      break;
+                      score++;
                   }
-                  if (keywords.contains(" "+word,Qt::CaseSensitivity::CaseInsensitive))  //Complete words
-                  {
-                      QListWidgetItem* item = new QListWidgetItem(filename);
-                      item->setData(Qt::ItemDataRole::UserRole,QVariant(filename));
-                      exampleList->addItem(item);
-                      break;
-                  }
-              }*/
+              }
+              if (score>0)
+              {
+                  score+=score/(float)(keywords.split(",").length());
+                  filesScored.append(new FileScore(filename,filename,score));
+              }
+        }
+        qSort(filesScored.begin(),filesScored.end(),FileScore::greaterThan);
+        foreach (FileScore* file, filesScored)
+        {
+            QListWidgetItem* item = new QListWidgetItem(file->getTitle());
+            item->setData(Qt::ItemDataRole::UserRole,QVariant(file->getFilename()));
+            exampleList->addItem(item);
         }
         docSearchButton->setEnabled(true);
+        docSearchButton->setDisabled(false);
         docLineEdit->setEnabled(true);
+        docLineEdit->setDisabled(false);
+        docList->setEnabled(true);
+        docList->setDisabled(false);
+        exampleList->setEnabled(true);
+        exampleList->setDisabled(false);
     }
 }
 

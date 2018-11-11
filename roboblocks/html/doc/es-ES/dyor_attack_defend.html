@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" ,
+		async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Movimiento de ataque/defensa con brazos</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('dyor_attack_defend','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>Controla el movimiento de los brazos del robot generando un movimiento de ataque/defensa. Mueve los brazos desde la posición 'Desde' hasta la posición 'hasta', espera la mitad del tiempo indicado y vuelve a la posición 'Desde', volviendo a esperar el resto del tiempo. Los motores pueden desconectarse una vez realizado el movimiento de ataque/defensa.</p>
+<p>Para los procesador ESP32 se requiere de la siguiente librería:</p>
+<a href="https://github.com/jkb-git/ESP32Servo" target="_blank">https://github.com/jkb-git/ESP32Servo</a>
+<h4>Requisitos</h4>
+Licencia de Facilino.
+<h4>Entradas</h4>
+<ul>
+  <li>Espada: Pin del servo asociado al brazo de la espada.</li>
+  <li>Escudo: Pin del servo asociado al brazo del escudo.</li>
+  <li>Tiempo: Total de tiempo (en milisegundos) para el movimiento de ataque y defensa.
+</ul>
+<h4>Campos</h4>
+<ul>
+  <li>Desde: Posición de partida del brazo.
+  <li>Hasta: Posición de llegada del brazo.
+  <li>Desconectar? Si se selecciona los motores se desconectarán al finalizar el movimiento.
+</ul>
+<h4>Ejemplo</h4>
+En este ejemplo se muestran cinco movimientos de ataque y defensa consecutivos, movimento los brazos desde una posición a otra.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/dyor_attack_defend.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/servos_example_bb.png" title="servos_example_bb" alt="servos_example_bb"></image>
+<h5>Código Facilino</h5>
+<div id='example1'></div>
+<script>injectExample('dyor_attack_defend.bly','example1');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+</body>
+</html>

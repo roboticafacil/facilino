@@ -108,6 +108,7 @@ private:
     void setToolboxCategories();
     void setSearchDocWidget();
     void parseXML(const QDomElement& root, const QString& baseName, QStringList& v);
+    QString noAcute(QString str);
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 

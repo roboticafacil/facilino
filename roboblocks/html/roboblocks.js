@@ -234,7 +234,7 @@
                 }
 
             }
-            console.log(missingDoc);
+            //console.log(missingDoc);
         };
 		
 		Blockly.getBlocks = function() {
@@ -7959,14 +7959,28 @@
 			  Blockly.Arduino.setups_['setup_wire']='Wire.begin();\n '; 
 			  if (this.getInputTargetBlock('VARIABLE')!==null)
 			  {
-				  if ((RoboBlocks.variables[variable][0]==='byte')||(RoboBlocks.variables[variable][0]==='char'))
-				    code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+','+RoboBlocks.variables[variable][3]+');\n ';
-				  else if (RoboBlocks.variables[variable][0]==='short')
-				    code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',2*'+RoboBlocks.variables[variable][3]+');\n ';
-				  else if (RoboBlocks.variables[variable][0]==='int')
-				    code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',4*'+RoboBlocks.variables[variable][3]+');\n ';
-				  else if (RoboBlocks.variables[variable][0]==='long')
-				    code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',8*'+RoboBlocks.variables[variable][3]+');\n ';
+				  if (RoboBlocks.variables[variable][2]==='variable')
+				  {
+					  if ((RoboBlocks.variables[variable][0]==='byte')||(RoboBlocks.variables[variable][0]==='char'))
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',1);\n ';
+					  else if (RoboBlocks.variables[variable][0]==='short')
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',2);\n ';
+					  else if (RoboBlocks.variables[variable][0]==='int')
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',4);\n ';
+					  else if (RoboBlocks.variables[variable][0]==='long')
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',8);\n ';
+				  }
+				  else if (RoboBlocks.variables[variable][2]==='1DArray')
+				  {
+					  if ((RoboBlocks.variables[variable][0]==='byte')||(RoboBlocks.variables[variable][0]==='char'))
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+','+RoboBlocks.variables[variable][3]+');\n ';
+					  else if (RoboBlocks.variables[variable][0]==='short')
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',2*'+RoboBlocks.variables[variable][3]+');\n ';
+					  else if (RoboBlocks.variables[variable][0]==='int')
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',4*'+RoboBlocks.variables[variable][3]+');\n ';
+					  else if (RoboBlocks.variables[variable][0]==='long')
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',8*'+RoboBlocks.variables[variable][3]+');\n ';
+				  }
 			  }
 			  return code;
 			};
@@ -8129,7 +8143,8 @@
 			};
 			
 			Blockly.Arduino['eeprom_read_byte'] = function(block) {
-			  var field_address = block.getFieldValue('ADDRESS');
+			  //var field_address = block.getFieldValue('ADDRESS');
+			  var field_address = Blockly.Arduino.valueToCode(this, 'ADDRESS', Blockly.Arduino.ORDER_ATOMIC);
 			  Blockly.Arduino.definitions_['define_eeprom_h']='#include <EEPROM.h>';
 			  var code='';
 			  code+='EEPROM.read('+field_address+')';
@@ -8148,15 +8163,15 @@
 				examples: [],
 				keys: ['LANG_EEPROM_READ_BYTE','LANG_EEPROM_ADDRESS','LANG_EEPROM_READ_BYTE_TOOLTIP'],
 				init: function() {
-					this.appendDummyInput()
+					this.appendValueInput('ADDRESS')
 						.setAlign(Blockly.ALIGN_RIGHT)
 						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_READ_BYTE'))
-						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_ADDRESS'))
-						.appendField(new Blockly.FieldTextInput("0",this.validator_), "ADDRESS");
+						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_ADDRESS'));
+						//.appendField(new Blockly.FieldTextInput("0",this.validator_), "ADDRESS");
 					this.setOutput(true,Number);
 					this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_EEPROM_READ_BYTE_TOOLTIP'));
-				},
+				}/*,
 				validator_: function(value) {
 					
 					var n = window.parseInt(value || 0);
@@ -8167,11 +8182,12 @@
 							retVal=n;
 					}
 					return retVal;
-				}
+				}*/
 			};
 			
 			Blockly.Arduino['eeprom_read_bytes'] = function(block) {
-			  var field_address = block.getFieldValue('ADDRESS');
+			  //var field_address = block.getFieldValue('ADDRESS');
+			  var field_address = Blockly.Arduino.valueToCode(this, 'ADDRESS', Blockly.Arduino.ORDER_ATOMIC);
 			  var variable = Blockly.Arduino.valueToCode(this, 'VARIABLE', Blockly.Arduino.ORDER_ATOMIC);
 			  var code='';
 			  Blockly.Arduino.definitions_['define_eeprom_h']='#include <EEPROM.h>';
@@ -8208,9 +8224,9 @@
 						.setAlign(Blockly.ALIGN_RIGHT)
 						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_READ_BYTES'))
 						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_READ_BYTES_WITH')).setCheck('Array');
-					this.appendDummyInput()
+					this.appendValueInput('ADDRESS')
 						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_ADDRESS'))
-						.appendField(new Blockly.FieldTextInput("0",Blockly.Blocks.i2c_read_byte.validator), "ADDRESS");
+						//.appendField(new Blockly.FieldTextInput("0",Blockly.Blocks.i2c_read_byte.validator), "ADDRESS");
 					this.setOutput(false);
 					this.setInputsInline(true);
 					this.setPreviousStatement(true,'code');
@@ -8221,7 +8237,8 @@
 			};
 			
 			Blockly.Arduino['eeprom_write_bytes'] = function(block) {
-			  var field_address = block.getFieldValue('ADDRESS');
+			  //var field_address = block.getFieldValue('ADDRESS');
+			  var field_address = Blockly.Arduino.valueToCode(this, 'ADDRESS', Blockly.Arduino.ORDER_ATOMIC);
 			  var data = Blockly.Arduino.valueToCode(this, 'DATA', Blockly.Arduino.ORDER_ATOMIC);
 			  var code='';
 			  Blockly.Arduino.definitions_['define_eeprom_h']='#include <EEPROM.h>';
@@ -8322,16 +8339,18 @@
 				examples: [],
 				keys: ['LANG_EEPROM_WRITE','LANG_EEPROM_ADDRESS','LANG_EEPROM_BYTES','LANG_EEPROM_WRITE_BYTES_TOOLTIP'],
 				init: function() {
-					this.appendValueInput('DATA')
+					this.appendValueInput('ADDRESS')
 						.setAlign(Blockly.ALIGN_RIGHT)
 						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_WRITE'))
-						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_ADDRESS'))
-						.appendField(new Blockly.FieldTextInput("0",Blockly.Blocks.i2c_read_byte.validator), "ADDRESS")
+						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_ADDRESS'));
+					this.appendValueInput('DATA')
+						//.appendField(new Blockly.FieldTextInput("0",Blockly.Blocks.i2c_read_byte.validator), "ADDRESS")
 						.appendField(RoboBlocks.locales.getKey('LANG_EEPROM_BYTES'))
 						.setCheck([Number,'Array']);
 					this.setOutput(false);
 					this.setPreviousStatement(true,'code');
 					this.setNextStatement(true,'code');
+					this.setInputsInline(true);
 					this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_EEPROM_WRITE_BYTES_TOOLTIP'));
 				}

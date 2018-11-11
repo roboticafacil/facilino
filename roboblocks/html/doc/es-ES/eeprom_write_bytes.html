@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Escribe octetos de memoria EEPROM</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('eeprom_write_bytes','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>Arduino incluye una memoria EEPROM para almacenar datos de forma permanente. Esta instrucción escribe octetos a partir de la dirección de memoria indicada y la variable tipo vector proporcionada. Dependiendo del tipo de variable, el número total de octetos a escribir puede variar. Así pues, si una variable tipo vector tiene una longitud de <em>n</em> elementos, entonces se leerán <em>n</em>x<b>sizeof</b>(<em>tipo variable</em>). El tamaño de un 'octeto' y 'caracter' es 1, el tamaño de un 'entero corto' es 2, el tamaño de un 'entero' es 4, el tamaño de un 'entero largo' es 8, el tamaño de un 'decimal' es 4.</p>
+<h4>Entradas</h4>
+<ul>
+<li>Dirección: Dirección del bloque de memoria. Dependiendo del MCU de Arduino, el tamaño de la memoria EEPROM puede variar, así pues se recomienda acceder a la documentación de Arduino para más información.</li>
+<li>Variable: Variable vector. La longitud y el tipo de variable determinan el núero total de octetos a escribir.</li>
+</ul>
+<h4>Ejemplo</h4>
+Este ejemplo muestra alguna de las funcionalidades de las instrucciones para el manejo de la memoria EEPROM. El ejemplo está dividido en dos programas diferentes. El primero escribe unos datos en la memoria EEPROM a partir de la dirección 0. Una vez el código se ha subido y ejecutado, podemos subir el código para el segundo ejemplo para leer los datos. En este sentido, el segundo ejemplo lee los cuatro primeros octetos (a partir de la dirección 0) y sus valores se almacenan en un vector y se muestran por la consola. Además, el dato en la dirección 0x04 se lee de forma individual y también se muestra.
+<p><small><b>Primer programa</b></small></p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_eeprom_write.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<p><small><b>Segundo programa</b></small></p>
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_eeprom_read.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<p><small><b>Primer programa</b></small></p>
+<div id='example1'></div>
+<script>injectExample('demo_eeprom_write.bly','example1');</script>
+<p><small><b>Segundo programa</b></small></p>
+<div id='example2'></div>
+<script>injectExample('demo_eeprom_read.bly','example2');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="acerca de" alt="acerca de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/es-ES/about.html');});"></image></p>
+</body>
+</html>

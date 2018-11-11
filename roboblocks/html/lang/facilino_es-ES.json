@@ -79,7 +79,7 @@
 				"LANG_CONTROLS_BASE_DELAY_WAIT_SEC": "Esperar [s]",
 				"LANG_CONTROL_YIELD": "Ceder flujo",
 				"LANG_CONTROL_YIELD_TOOLTIP": "Cede el flujo principal a otras tareas",
-				"LANG_CONTROL_ESP_DEEP_SLEEP": "Sueño profundo (s)",
+				"LANG_CONTROL_ESP_DEEP_SLEEP": "Dormir profundamente (s)",
 				"LANG_CONTROL_ESP_DEEP_SLEEP_TOOLTIP": "Pone la placa en un estado de sueño profundo durante los segundos especificados con consumo mínimo de energía.",
 				"LANG_LED_MATRIX_DELAY_WAIT": "Esperar [ms]",
 				"LANG_LED_MATRIX_DELAY_SHIFT": "¿Desplazamiento suave?",

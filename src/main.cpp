@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     // directory than the executable. In Linux, search also in /usr/share/.
     directories.append("./ts/");
     directories.append(a.applicationDirPath() + "/ts/");
-	directories.append("/usr/share/visualino/ts/");											   
+    directories.append("/usr/share/facilino/ts/");
     foreach (QString directory, directories) {
         bool loaded = appTranslator.load(tsFile, directory);
         if (loaded) {

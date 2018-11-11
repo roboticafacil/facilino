@@ -79,7 +79,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
   <li>Velocitat: Velocitat de transferència (bits per segon)</li>
 </ul>
 <h4>Exemple</h4>
-Aquest exemple mostra com usar la comunicació SPI per a llegir dades del sensor de presió baromètrica SCP1000. En particular, la temperatura es llegeix accedint al registre 0x21 (debeu ser desplaçat a l'esquerra 2 bits i borrats els dos bits menys significatius per a la lectura). Per a inicialitzar i configurar el sensor, els següents registres són escrits (0x02, 0x01 i 0x03), que debeun desplaçar-se a l'esquerra 2 bits i estableir a nivell alt el segon bit para l'escriptura.
+Aquest exemple mostra com usar la comunicació SPI per a llegir dades del sensor de presió baromètrica SCP1000. En particular, la temperatura es llegeix accedint al registre 0x21 (debeu ser desplaçat a l'esquerra 2 bits i borrats els dos bits menys significatius per a la lectura). Per a inicialitzar i configurar el sensor, els següents registres són escrits (0x02, 0x01 i 0x03), que debeun desplaçar-se a l'esquerra 2 bits i estableir a nivell alt el segon bit per a l'escriptura.
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/inout_spi_example.bly')">Obrir</button></p>
 Tots els canvis es perderàn!

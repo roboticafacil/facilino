@@ -1,11 +1,17 @@
 #include "qblockswebview.h"
 
+#ifndef QT_OLD_VERSION_5_5
 QBlocksWebView::QBlocksWebView() {
 }
-QBlocksWebView::QBlocksWebView(QWidget *parent): QWebEngineView(parent)//, child_(nullptr)
+
+QBlocksWebView::QBlocksWebView(QWidget *parent): QWebEngineView(parent)
+#else
+QBlocksWebView::QBlocksWebView(QWidget *parent): QWebEngineView(parent), child_(nullptr)
+#endif
 {
 }
 
+#ifndef QT_OLD_VERSION_5_5
 void QBlocksWebView::wheelEvent(QWheelEvent *event)
 {
     if (event->delta()>0)
@@ -14,8 +20,11 @@ void QBlocksWebView::wheelEvent(QWheelEvent *event)
         zoomOut();
     event->accept();
 }
+#endif
 
-/*bool QBlocksWebView::eventFilter(QObject *obj, QEvent *ev)
+
+#ifdef QT_OLD_VERSION_5_5
+bool QBlocksWebView::eventFilter(QObject *obj, QEvent *ev)
 {
         // emit delegatePaint on paint event of the last added QOpenGLWidget child
         if (obj == child_ && ev->type() == QEvent::Wheel) {
@@ -50,7 +59,8 @@ void QBlocksWebView::delegateWheel(QWheelEvent *event)
     // Zoom the WebView
     float scale = event->delta() / 120.0 / 10.0;
     doZoom(scale);
-}*/
+}
+#endif
 
 void QBlocksWebView::doZoom(float scale) {
     // Apply zoom (in: scale > 0, out: scale < 0)

@@ -62,12 +62,12 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Filtre para-banda</h3>
+<h3 id="up">Filtre per a-banda</h3>
 <h4>Instrucció</h4>
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('system_filter_bandstop','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Aquesta instrucció implementa un filtro para-banda de primer orden de Butterworth. Si la diferència de temps entre el temps actual i l'anterior és menor que Ts el filtre retorna l'eixida anterior, mentres que si la diferència és major el filtre actualitza l'eixida a partir del valor actual d'entrada i òbviament la freqüència de tall.</p>
+<p>Aquesta instrucció implementa un filtro per a-banda de primer orden de Butterworth. Si la diferència de temps entre el temps actual i l'anterior és menor que Ts el filtre retorna l'eixida anterior, mentres que si la diferència és major el filtre actualitza l'eixida a partir del valor actual d'entrada i òbviament la freqüència de tall.</p>
 <h4>Requisits</h4>
 Llicència de Facilino
 <h4>Camps</h4>
@@ -83,7 +83,7 @@ Llicència de Facilino
 <h4>Eixida</h4>
 Eixida filtrada.
 <h4>Exemple</h4>
-En aquest exemple es mostra com filtrar un senyal sorollós (composat per tres senyals senoidals a diferents freqüències) usant un filtre para-banda. En aquest exemple les freqüències de tall s'han establert en 35Hz i 45Hz corresponents al 35% i 45% de la meitat de la freqüència de mostreig (100Hz).
+En aquest exemple es mostra com filtrar un senyal sorollós (composat per tres senyals senoidals a diferents freqüències) usant un filtre per a-banda. En aquest exemple les freqüències de tall s'han establert en 35Hz i 45Hz corresponents al 35% i 45% de la meitat de la freqüència de mostreig (100Hz).
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/bandstop_filter_example.bly')">Obrir</button></p>
 Es perdran tots els canvis!
