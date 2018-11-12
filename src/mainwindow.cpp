@@ -1832,6 +1832,10 @@ void MainWindow::setToolboxCategories()
     ui->actionArrays->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_ARRAYS"));
     addQTreeWidgetItemToParent(mathItem,tr("Curve"),"LANG_CATEGORY_CURVE");
     ui->actionCurve->setChecked(toolboxCategories.contains("LANG_CATEGORY_CURVE"));
+    QTreeWidgetItem *variablesItem = new QTreeWidgetItem(ui->treeWidget);
+    variablesItem->setText(0,tr("Variables"));
+    addQTreeWidgetItemToParent(variablesItem,tr("EEPROM"),"LANG_SUBCATEGORY_EEPROM");
+    ui->actionEEPROM->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_EEPROM"));
     QTreeWidgetItem *basicIOItem = new QTreeWidgetItem(ui->treeWidget);
     basicIOItem->setText(0,tr("Basic I/O"));
     addQTreeWidgetItemToParent(basicIOItem,tr("Button"),"LANG_SUBCATEGORY_BUTTON");
@@ -2134,4 +2138,10 @@ void MainWindow::onExampleListItemClicked(QListWidgetItem* item)
 {
     QString jsLanguage = QString("openExample('%1');").arg(item->data(Qt::ItemDataRole::UserRole).toString());
     ui->webView->page()->runJavaScript(jsLanguage);
+}
+
+void MainWindow::on_actionEEPROM_triggered()
+{
+    ui->dockWidget->show();
+    updateToolboxCategories();
 }

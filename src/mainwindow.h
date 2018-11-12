@@ -212,6 +212,7 @@ private slots:
     void on_actionSearchDocumentation_triggered();
     void onDocListItemClicked(QListWidgetItem* item);
     void onExampleListItemClicked(QListWidgetItem* item);
+    void on_actionEEPROM_triggered();
 };
 
 #endif // MAINWINDOW_H

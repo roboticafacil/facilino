@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>Facilino</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/icons/facilino.ico</normaloff>:/icons/facilino.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <property name="spacing">
@@ -560,8 +564,15 @@ pressed: { border: 1px };</string>
       <addaction name="actionArrays"/>
       <addaction name="actionCurve"/>
      </widget>
+     <widget class="QMenu" name="menuVariables">
+      <property name="title">
+       <string>Variables</string>
+      </property>
+      <addaction name="actionEEPROM"/>
+     </widget>
      <addaction name="menuControl"/>
      <addaction name="menuMath"/>
+     <addaction name="menuVariables"/>
      <addaction name="menuBasic_I_O"/>
      <addaction name="menuScreen"/>
      <addaction name="menuCommunication"/>
@@ -1556,6 +1567,14 @@ pressed: { border: 1px };</string>
    </property>
    <property name="toolTip">
     <string>Search on the documentation</string>
+   </property>
+  </action>
+  <action name="actionEEPROM">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>EEPROM</string>
    </property>
   </action>
  </widget>
