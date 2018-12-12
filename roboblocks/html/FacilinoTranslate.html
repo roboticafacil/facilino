@@ -43,8 +43,8 @@ padding-left:30px;
 <script src="javascript/blockly-bq/blocks_compressed.js"></script>
 <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 <script src="javascript/blockly-bq/FieldButton.js"></script>
-<script src="facilino.js"></script>
 <script src="roboblocks_compressed.js"></script>
+<script src="facilino.js"></script>
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -95,7 +95,7 @@ function reinjectInstruction(block,blockDiv,key) {
 }
 function injectToolbox(blockDiv) {
 	var instructionPreview = document.getElementById(blockDiv);
-	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:false, collapse: false, toolbox: Blockly.createToolbox()});
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:false, collapse: false, toolbox: Blockly.createToolbox(window.toolboxNames)});
 	mainWorkspace.clear();
 	$('.blocklySvg, #'+blockDiv).height('400px');
 	window.dispatchEvent(new Event('resize'));
@@ -148,21 +148,22 @@ function reinjectToolbox(blockDiv,key) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Language settings" onclick="showHideLanguage()"><span class="mbri-flag mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			<select id="language" class="text-black dropdown-toggle display-6 icon-menu" onchange="langChange(this.value)" style="display: none">
-		<option value="ca-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/catalonia.png)">Catal&agrave;</option>
-		<option value="da-DK" class="text-black dropdown-item display-6" style="background-image:url(img/flags/denmark.png)">Dansk</option>
-		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
-		<option value="en-GB" class="text-black dropdown-item display-6" style="background-image:url(img/flags/united-kingdom.png)">English</option>
-		<option value="es-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol</option>
-		<option value="es-LT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/spain.png)">Espa&ntilde;ol (latino)</option>
-		<option value="eu-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/basque-country.png)">Euskera</option>
-		<option value="fr-FR" class="text-black dropdown-item display-6" style="background-image:url(img/flags/france.png)">Fran&ccedil;ais</option>
-		<option value="gl-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/galician.png)">Galego</option>
-		<option value="it-IT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/italy.png)">Italiano</option>
-		<option value="nl-NL" class="text-black dropdown-item display-6" style="background-image:url(img/flags/netherlands.png)">Nederlands</option>
-		<option value="nb-NO" class="text-black dropdown-item display-6" style="background-image:url(img/flags/norway.png)">Norsk</option>
-		<option value="pl-PL" class="text-black dropdown-item display-6" style="background-image:url(img/flags/poland.png)">Polski</option>
-		<option value="pt-PT" class="text-black dropdown-item display-6" style="background-image:url(img/flags/portugal.png)">Portugues</option>
-		<option value="ru-RU" class="text-black dropdown-item display-6" style="background-image:url(img/flags/russia.png)">&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</option>
+		<option value="ca-ES" class="text-black dropdown-item display-6">Catal&agrave;</option>
+		<option value="da-DK" class="text-black dropdown-item display-6">Dansk</option>
+		<option value="de-DE" class="text-black dropdown-item display-6">Deutsch</option>
+		<option value="en-GB" class="text-black dropdown-item display-6">English</option>
+		<option value="es-ES" class="text-black dropdown-item display-6">Espa&ntilde;ol</option>
+		<option value="es-LT" class="text-black dropdown-item display-6">Espa&ntilde;ol (latino)</option>
+		<option value="eu-ES" class="text-black dropdown-item display-6">Euskera</option>
+		<option value="fr-FR" class="text-black dropdown-item display-6">Fran&ccedil;ais</option>
+		<option value="gl-ES" class="text-black dropdown-item display-6">Galego</option>
+		<option value="it-IT" class="text-black dropdown-item display-6">Italiano</option>
+		<option value="nl-NL" class="text-black dropdown-item display-6">Nederlands</option>
+		<option value="nb-NO" class="text-black dropdown-item display-6">Norsk</option>
+		<option value="pl-PL" class="text-black dropdown-item display-6">Polski</option>
+		<option value="pt-PT" class="text-black dropdown-item display-6">Portugues</option>
+		<option value="ru-RU" class="text-black dropdown-item display-6">&#x420;&#x443;&#x441;&#x441;&#x43a;&#x438;&#x439;</option>
+		<option value="sv-SE" class="text-black dropdown-item display-6">Svenska</option>
 		</select>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_submit" class="btn btn-sm btn-primary-outline display-4" title="Download" onclick="submitData()"><span class="mbri-save mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_refresh" class="btn btn-sm btn-primary-outline display-4" title="Restore" onclick="restoreData()"><span class="mbri-refresh mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
@@ -238,8 +239,13 @@ function changeFunction() {
 	window.FacilinoLanguage = transLang;
 	//window.langKeys = window.dataLang.langs[transLang].keys;
 	//window.langKeysEng = window.dataLang.langs[window.origLang].keys;
-	RoboBlocks.load({ zoom: 1 });
-	Facilino.load({ zoom: 1});
+	
+	window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
+	window.toolboxNames = getToolboxNames(window.toolbox);
+	options = {zoom: 1};
+		
+	RoboBlocks.load(options);
+	Facilino.load(options);
 	var blocks = Blockly.getBlocks();
 	
 	
@@ -436,6 +442,13 @@ function showHideProcessor()
 		proc.style.display='initial';
 	else
 		proc.style.display='none';
+}
+
+function getToolboxNames(keys)
+{
+	var toolboxNames = [];
+	keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});			
+	return toolboxNames;
 }
 </script>
 </body>
