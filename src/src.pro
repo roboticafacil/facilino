@@ -2,10 +2,10 @@
 QT += core gui serialport webchannel webenginewidgets widgets xml
 CONFIG += c++11
 # greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkit webkitwidgets
-contains(QT_MAJOR_VERSION,5): lessThan(QT_MINOR_VERSION,9)
-{
-DEFINES +=QT_OLD_VERSION_5_5
-}
+#contains(QT_MAJOR_VERSION,5): lessThan(QT_MINOR_VERSION,9)
+#{
+#DEFINES +=QT_OLD_VERSION_5_5
+#}
 
 TARGET = facilino
 TEMPLATE = app
@@ -31,9 +31,7 @@ HEADERS += mainwindow.h \
 
 FORMS += mainwindow.ui \
     settingsdialog.ui \
-    aboutdialog.ui \
-    dyorcontroller.ui \
-    remoteselector.ui
+    aboutdialog.ui
 
 OTHER_FILES += ../config.ini ../ts/*.ts ../html/* ../icons/*
 
