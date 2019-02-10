@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->monitorToolBar->setVisible(false);
     ui->licenseLabel->setText("Checking license...");
     ui->license->setVisible(false);
-
+    this->boardChanged=false;
 
     // Hide graphs widget
     ui->graphsWidget->setVisible(false);
@@ -101,7 +101,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Hide MyBlocks toolbar
     this->switchToMyBlocks(false);
-
     ui->consoleText->document()->setMaximumBlockCount(100);
     //ui->messagesWidget->show();
     // Show/hide icon labels in the menu bar
@@ -128,6 +127,8 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(messageChanged(QString)),
             this,
             SLOT(onStatusMessageChanged(QString)));
+
+
     ui->actionUndo->setEnabled(false);
     ui->actionRedo->setEnabled(false);
     connect(&documentHistory,SIGNAL(canUndoChanged(bool)),this,SLOT(onUndoChanged(bool)));
@@ -584,7 +585,7 @@ void MainWindow::actionSettings() {
     QString license = settings->license();
     // Supported list of languages
     QStringList languageList;
-    languageList << "en-GB" << "es-ES" << "ca-ES" << "gl-ES" << "eu-ES" << "de-DE" << "fr-FR" << "it-IT" << "pt-PT" << "pl-PL" << "ru-RU" << "nb-NO" <<"da-DK" << "nl-NL";
+    languageList << "en-GB" << "es-ES" << "ca-ES" << "gl-ES" << "eu-ES" << "de-DE" << "fr-FR" << "it-IT" << "pt-PT" << "pl-PL" << "ru-RU" << "nb-NO" <<"da-DK" << "nl-NL" << "sv-SE";
     SettingsDialog settingsDialog(settings, languageList, this);
     int result = settingsDialog.exec();
     if (result && settingsDialog.changed()) {
@@ -697,9 +698,24 @@ void MainWindow::setArduinoBoard() {
 
 void MainWindow::onBoardChanged() {
     // Board changed, update settings
-    settings->setArduinoBoard(ui->boardBox->currentText());
-    settings->setArduinoBoardFacilino(SettingsStore::index2board[ui->boardBox->currentIndex()]);
-    loadBlockly();
+    if (!this->boardChanged)
+    {
+        settings->setArduinoBoard(ui->boardBox->currentText());
+        settings->setArduinoBoardFacilino(SettingsStore::index2board[ui->boardBox->currentIndex()]);
+        loadBlockly();
+        this->boardChanged=true;
+    }
+    else
+    {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, tr("Board changed"), tr("Are you sure you want to change the board? All code will be lost!"),QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            settings->setArduinoBoard(ui->boardBox->currentText());
+            settings->setArduinoBoardFacilino(SettingsStore::index2board[ui->boardBox->currentIndex()]);
+            loadBlockly();
+        }
+    }
 }
 
 void MainWindow::onLoadFinished(bool finished) {
@@ -2145,3 +2161,4 @@ void MainWindow::on_actionEEPROM_triggered()
     ui->dockWidget->show();
     updateToolboxCategories();
 }
+

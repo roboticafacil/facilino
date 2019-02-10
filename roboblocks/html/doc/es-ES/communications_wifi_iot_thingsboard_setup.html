@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Configurar ThingsBoard</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('communications_wifi_iot_thingsboard_setup','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>ThingsBoard es una plataforma de código abierto para IoT (Internet of Things o Internet de las Cosas) que te permite recoger, gestionar y visualizar datos para tu proyecto IoT. Puede ser instalado en una gran variedad de dispositivos desde Raspberry Pi a servidores en la nube. Puede probar una demo en <a href="https://demo.thingsboard.io">https://demo.thingsboard.io</a>. Para utilizar esta instrucción, necesitarás crear una cuenta para usar la plataforma. Los aspectos más importantes que necesitas conocer al respecto del uso de la plataforma se encuentran descritos en esta página web. <a href="https://thingsboard.io/docs/iot-video-tutorials/">https://thingsboard.io/docs/iot-video-tutorials/</a>.</p>. Instrucciones relacionadas:
+<div id='blocklyInstruction1'></div><script>injectInstruction('communications_wifi_iot_thingsboard_isconnected','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div><script>injectInstruction('communications_wifi_iot_thingsboard_reconnect','blocklyInstruction2');</script>
+<div id='blocklyInstruction3'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc','blocklyInstruction3');</script>
+<div id='blocklyInstruction4'></div><script>injectInstruction('communications_wifi_iot_thingsboard_send','blocklyInstruction4');</script>
+<h4>Requisitos</h4>
+<p>Licencia de Facilino.</p>
+<p>La tarjeta ESP8266 debe estar instalada en el gestor de tarjetas de Arduino IDE:</p>
+<p><image src="doc/common/esp8266_board_manager.png" title="esp8266_board_manager" alt="esp8266_board_manager"></image></p>
+<p>Estas instrucciones también requieren instalar la librería PubSubClient, que puede descargarse desde <a href="https://github.com/knolleary/pubsubclient">https://github.com/knolleary/pubsubclient</a>.</p>
+<h4>Entradas</h4>
+<ul>
+   <li>Nombre Dispositivo: Nombre que proporcionas a tu dispositivo.</li>
+   <li>Testigo: Testigo de acceso al dispositivo (el testigo de acceso se encuentra  en las credenciales del dispositivo).</li>
+</ul>
+<h4>Configuración del proyecto IoT en Thingsboard</h4>
+<p>En la mayoría de proyectos IoT, necesitarás crear 'Clientes', 'Dispositivos', 'Paneles' y 'Complementos'. Estos cuatro elementos se pueden encontrar en el panel de herramientas de Thingsboard bajo los nombres en inglés 'Customers', 'Devices', 'Dashboards' y 'Widgets'. Un 'Cliente' es aquel que está autorizado a usar un dispositivo específico. Puedes crear uno introduciendo tu nombre y el nombre de la escuela/empresa si es necesario. Un 'Cliente' es como un usuario, en el sentido en el que se permite a determinados clientes el uso de un dispositivo específico, mientras que otros 'Clientes' pueden usar otros dispositivos. El 'Dispositivo' es, normalmente tu tarjeta electrónica (NodeMCU, ESP32, Arduino WiFi, etc...) junto con alguna información relativa a la electrónica que maneja. Por ejemplo, para una estación del tiempo, puedes utilizar 'NodeMCU Temp' en caso de que disponga de un sensor de temperatura. Un 'Panel' es el lugar donde se muestra la información o se puede gestionar. En los paneles puedes agregar diferentes tipos de 'Complementos' para visualizar los datos. Cada 'Complemento' gestiona o visualiza la información de forma diferentes, así pues puedes tener un interruptor, una tabla, un gráfico, una perilla para ajustar el valor de una determinada variable, etc... En el 'Panel' puedes agregar tantos 'Complementos' como desees y organizarlos de la forma que más te guste. Puedes tener varios 'Paneles' que usan un mismo 'Complemento' para visualizar la misma información, pero éstos podrían estar configurados de forma diferente y por tanto la información podría visualizarse de forma ligeramente diferente (cambiando principalmente el estido de visualizar los datos). Nuestra sugerencia es que en los 'Paneles' muestres realmente sólo la información que necesitas mostrar. Puedes crear tus propios 'Complementos' o usar y configurar los ya existentes. Te sugerimos que mires los que hay y los adaptes a tus necesidades. Los 'Paneles' están vinculados a un 'Dispositivo' en particular, con lo que deberás indicar el nombre del dispositivo en el 'Panel'.</p>
+<p>Facilino puede manejar los 'Complementos' enviando/recibiendo información del 'Dispositivo' utilizando un procedimiento conocido como RPC (Remote Procedure Call o Llamada a Procedimiento Remoto), atributos o series temporales. Se recomienda ver las instrucciones específicas relacionadas con esta instrucción para ver los detalles específicos de qué tipo de información se puede gestionar o visualizar con Thingsboard.</p>
+
+<h4>Ejemplo</h4>
+Este ejemplo utiliza el procesador NodeMCU (ESP8266) para obtener valores de una perilla y un interruptor de Thingsboard. La información se utiliza para activar un relé conectado al pin D2. El valor de la perilla simplemente se lee y se muestra por la consola. Por otro lado, los valores de temperatura de un sensor digital de Temperatur y Humedad DHT11 se envían a Thingsboard para ser mostrados convenientemente en una gráfica.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/domotic_demo.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/read_temp_realy_iot_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<div id='example1'></div>
+<script>injectExample('domotic_demo.bly','example1');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="acerca de" alt="acerca de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/es-ES/about.html');});"></image></p>
+</body>
+</html>

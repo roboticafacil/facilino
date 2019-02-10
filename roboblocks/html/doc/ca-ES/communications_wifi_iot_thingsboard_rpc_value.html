@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Valor Remoto ThingsBoard (RPC)</h3>
+<h4>Instrucció</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc','blocklyInstruction');</script>
+<h4>Descripció</h4>
+<p>Devuelve el valor asociado a una llamada de procedimiento remoto (RPC) d'un conmutador o una perilla en un proyecto de Thingsboard. Esta instrucció sólo tiene validez dins del contexte de las instrucciones a ejectuar per a la RPC. Instrucció asociada:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc','blocklyInstruction1');</script>
+<h4>Requisits</h4>
+<p>Llicència de Facilino.</p>
+<h4>Salida</h4>
+Devuelve una valor binario si la RPC es un conmutador o un valor decimal si la RPC es una perilla.
+
+<h4>Exemple</h4>
+Este exemple utilitza el procesador NodeMCU (ESP8266) Per a obtindre valores d'una perilla i un interruptor de Thingsboard. La informació se utilitza per a activar un relé conectado al pin D2. El valor de la perilla simplemente se lee i se muestra por la consola. Por otro lado, los valores de temperatura d'un sensor digital de Temperatur i Humedad DHT11 se envían a Thingsboard per a ser mostrados convenientemente en una gráfica.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/domotic_demo.bly')">Obrir</button></p>
+Se perderán tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/read_temp_realy_iot_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Codi Facilino</h5>
+<div id='example1'></div>
+<script>injectExample('domotic_demo.bly','example1');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="al respecte de" alt="al respecte de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/ca-ES/about.html');});"></image></p>
+</body>
+</html>

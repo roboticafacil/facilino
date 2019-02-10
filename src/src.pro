@@ -10,10 +10,6 @@ DEFINES +=QT_OLD_VERSION_5_5
 TARGET = facilino
 TEMPLATE = app
 
-linux {
-    CONFIG += c++11
-}
-
 SOURCES += main.cpp\
         mainwindow.cpp \
     settingsdialog.cpp \
@@ -35,7 +31,9 @@ HEADERS += mainwindow.h \
 
 FORMS += mainwindow.ui \
     settingsdialog.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    dyorcontroller.ui \
+    remoteselector.ui
 
 OTHER_FILES += ../config.ini ../ts/*.ts ../html/* ../icons/*
 

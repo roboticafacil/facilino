@@ -17,7 +17,7 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(SettingsStore *settings,
                             const QStringList &languageList,
-                            QWidget *parent = 0);
+                            QWidget *parent = nullptr);
     ~SettingsDialog();
 
     bool changed();

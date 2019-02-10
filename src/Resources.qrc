@@ -20,6 +20,48 @@
         <file>../icons/eye1.png</file>
         <file>../icons/search-in-folder.png</file>
         <file>../icons/search-in-document-magnifying-glass.png</file>
+        <file>../icons/blueetooth-logo-2.png</file>
+        <file>../icons/robot.png</file>
+        <file>../icons/plug-silhouette-2.png</file>
+        <file>../icons/up-arrow.png</file>
+        <file>../icons/left-arrow.png</file>
+        <file>../icons/right-arrow.png</file>
+        <file>../icons/stop.png</file>
+        <file>../icons/ledmatrix_angry.png</file>
+        <file>../icons/ledmatrix_sad.png</file>
+        <file>../icons/ledmatrix_love.png</file>
+        <file>../icons/ledmatrix_stunned.png</file>
+        <file>../icons/ledmatrix_dragonball.png</file>
+        <file>../icons/ledmatrix_turtleschool.png</file>
+        <file>../icons/ledmatrix_bat.png</file>
+        <file>../icons/ledmatrix_batmask.png</file>
+        <file>../icons/ledmatrix_deathstar.png</file>
+        <file>../icons/down-arrow.png</file>
+        <file>../icons/ledmatrix_lightsaber.png</file>
+        <file>../icons/ledmatrix_wonderwoman.png</file>
+        <file>../icons/ledmatrix_creeper.png</file>
+        <file>../icons/ledmatrix_star.png</file>
+        <file>../icons/ledmatrix_happy.png</file>
+        <file>../icons/ledmatrix_sword.png</file>
+        <file>../icons/ledmatrix_minioneye.png</file>
+        <file>../icons/ledmatrix_spider.png</file>
+        <file>../icons/ledmatrix_pokeball.png</file>
+        <file>../icons/batman.png</file>
+        <file>../icons/beethoven.png</file>
+        <file>../icons/GOT.png</file>
+        <file>../icons/jackson.png</file>
+        <file>../icons/john_lennon.png</file>
+        <file>../icons/love_air.png</file>
+        <file>../icons/marley.png</file>
+        <file>../icons/minion.png</file>
+        <file>../icons/pikachu.png</file>
+        <file>../icons/seven_nation_army.png</file>
+        <file>../icons/spiderman.png</file>
+        <file>../icons/vader.png</file>
+        <file>../icons/wonderwoman.png</file>
+        <file>../icons/freddy.png</file>
+        <file>../icons/queen.png</file>
+        <file>../icons/goku.png</file>
     </qresource>
     <qresource prefix="/">
         <file>../icons/about-header.png</file>

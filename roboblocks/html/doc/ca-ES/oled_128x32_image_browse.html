@@ -68,7 +68,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('oled_128x32_image_browse','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Proporciona una imatge personalitzada (l'ample deu ser múltiple de 8). Esta instrucció transforma una imatge en blanc i negre en dades per a ser dibuixades en un dispositiu OLED 128x32 I2C. La imatge seleccionada será processada i codificada internament (com a metadades) en la propia instrucció, per tant, si la imatge original es modifica, el codi generat per la instrucció no cambiará llevat que es torne a seleccionar. Açò permet ser seleccionada una vegada, desar el codi de Facilino i usar-lo posteriormente sense necessitat de seleccionar la imatge cada vegada. El nom de la imatge no debe entrar en conflicte amb altres noms d'esta instrucció a no ser que la imatge seleccionada siga la mateixa. Usar junt amb:</p>
+<p>Proporciona una imatge personalitzada (l'ample deu ser múltiple de 8). Esta instrucció transforma una imatge en blanc i negre en dades per a ser dibuixades en un dispositiu OLED 128x32 I2C. La imatge seleccionada serà processada i codificada internament (com a metadades) en la propia instrucció, per tant, si la imatge original es modifica, el codi generat per la instrucció no canviará llevat que es torne a seleccionar. Açò permet ser seleccionada una vegada, desar el codi de Facilino i usar-lo posteriorment sense necessitat de seleccionar la imatge cada vegada. El nom de la imatge no deu entrar en conflicte amb altres noms d'esta instrucció a no ser que la imatge seleccionada siga la mateixa. Usar junt amb:</p>
 <p><div id='blocklyInstruction4'></div><script>injectInstruction('oled_128x32_set_image','blocklyInstruction4');</script>
 <div id='blocklyInstruction1'></div><script>injectInstruction('oled_128x32_set_small_icon','blocklyInstruction1');</script>
 <div id='blocklyInstruction2'></div><script>injectInstruction('oled_128x32_set_large_icon','blocklyInstruction2');</script>
@@ -84,7 +84,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </ul>
 <h4>Botons</h4>
 <ul>
-  <li>Seleccionar: Botó per a seleccionar el fitxer de la imatge (l'ample deber ser múltiple de 8) i la imatge deu ser en blanc i negre.</li>
+  <li>Seleccionar: Botó per a seleccionar el fitxer de la imatge (l'ample deu ser múltiple de 8) i la imatge deu ser en blanc i negre.</li>
 </ul>
 <h4>Exemple</h4>
 En este exemple demostratiu es mostren les capacitats de la pantalla OLED 128x32 relacionades amb escriure un texte, una imatge i dibuixar objectes geomètrics senzills:

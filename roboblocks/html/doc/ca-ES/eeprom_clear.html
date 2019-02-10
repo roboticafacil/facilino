@@ -62,14 +62,14 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Borra addreça EEPROM</h3>
+<h3 id="up">Borra memòria EEPROM</h3>
 <h4>Instrucció</h4>
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('eeprom_clear','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Arduino incluye una addreça EEPROM per a enmagatzemar dades de forma permanente. Esta instrucció borra tots els dades de la addreça. Usar amb precaución per a extender el ciclo de vida de la addreça EEPROM.</p>
+<p>Arduino inclou una memòria EEPROM per a enmagatzemar dades de forma permanent. Esta instrucció borra tots els dades de la memòria. Usar amb precaució per tal d'extendre el cicle de vida de la memòria EEPROM.</p>
 <h4>Exemple</h4>
-Aquest exemple mostra alguna de les funcionalidades de les instruccions per al manejo de la addreça EEPROM. El exemple està dividido en dos programas diferents. El primero escribe unos dades en la addreça EEPROM a partir de la dirección 0. Una vez el código se ha subido i ejecutado, podemos subir el código per al segundo exemple per a leer els dades. En este sentido, el segundo exemple lee els quatre primeros octets (a partir de la dirección 0) i sus valores se almacenan en un vector i es mostren per la consola. Además, el dato en la dirección 0x04 se lee de forma individual i també se mostra.
+Aquest exemple mostra alguna de les funcionalidades de les instruccions per al ús de la memòria EEPROM. L'exemple està dividit en dos programes diferents. El primer escriu unes dades en la memòria EEPROM a partir de la adreça 0. Una vez el codi s'ha pujat i executat, podem pujar el codi per al segon programa per a llegir les dades. En aquest sentit, el segon exemple llig els quatre primers octets (a partir de la adreça 0) i els seus valors s'enmagatzemen en un vector i es mostren per la consola. A més a més, el valor en la adreça 0x04 es llig de forma individual i també es mostra.
 <p><small><b>Primer programa</b></small></p>
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_eeprom_write.bly')">Obrir</button></p>
@@ -83,10 +83,10 @@ Es perdran tots els canvis!
 <h5>Circuit</h5>
 <image src="doc/circuits/nano_example_bb.png" title="nano_example" alt="nano_example"></image>
 <h5>Codi Facilino</h5>
-<p><small><b>Primer programa</b></small></p>
+<p><small><b>Codi primer programa</b></small></p>
 <div id='example1'></div>
 <script>injectExample('demo_eeprom_write.bly','example1');</script>
-<p><small><b>Segon programa</b></small></p>
+<p><small><b>Codi segon programa</b></small></p>
 <div id='example2'></div>
 <script>injectExample('demo_eeprom_read.bly','example2');</script>
 <p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="al respecte de" alt="al respecte de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/ca-ES/about.html');});"></image></p>

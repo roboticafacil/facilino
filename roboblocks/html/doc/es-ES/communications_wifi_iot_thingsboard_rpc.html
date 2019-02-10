@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({
+        type: "GET" ,
+        url: bly ,
+        dataType: "xml" , async: false,
+        success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+50)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) {
+  var instructionPreview = document.getElementById(exampleDiv);
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+instructionPreview.style.height = (bbox.height+25)+ 'px';
+instructionPreview.style.width = (bbox.width+25) + 'px';
+
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Leer ThingsBoard (RPC)</h3>
+<h4>Instrucción</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc','blocklyInstruction');</script>
+<h4>Descripción</h4>
+<p>Esta instrucción lee valores remotos usando RPCs (Remote Procedure Calls o Llamadas de Procedimientos Remotos) enviados desde Thingsboard por un 'Complemento' desde tu 'Dispostivo'. Puedes añadir un interruptor remoto que devuelve un valor binario o una manilla remota que devuelve un valor decimal. Para cada RPC debes de proporcionar el nombre de la RPC configurada en el 'Complemento' y puedes añadir instrucciones a ejecutar cuando se reciba la información o obtener el valor asociado a esta RPC utilizando la instrucción correspondiente (sólo tiene validez dentro del contexto del conjunto de instrucciones a ejecutar dentro de la RPC). La instrucción de configuración de ThingsBoard proporciona más detalles al respecto para configurar adecuadamente tu proyecto IoT:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('communications_wifi_iot_thingsboard_setup','blocklyInstruction1');</script>
+<h4>Requisitos</h4>
+<p>Licencia de Facilino.</p>
+<h4>Mutator</h4>
+<h5>Contenedor</h5>
+<div id='blocklyInstruction2'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc_stack','blocklyInstruction2');</script>
+<h5>Elementos</h5>
+<div id='blocklyInstruction3'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc_switch','blocklyInstruction3');</script>
+<div id='blocklyInstruction4'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc_knob','blocklyInstruction4');</script>
+<h4>Campos de Texto</h4>
+<ul>
+   <li>Nombre: Nombre de la RPC (tal y como se configura en el 'Complemento').</li>
+</ul>
+<h4>Instrucciones apilables</h4>
+<ul>
+	<li>Código: Código a ejecutar para cada RPC.</li>
+</ul>
+
+<h4>Ejemplo</h4>
+Este ejemplo utiliza el procesador NodeMCU (ESP8266) para obtener valores de una perilla y un interruptor de Thingsboard. La información se utiliza para activar un relé conectado al pin D2. El valor de la perilla simplemente se lee y se muestra por la consola. Por otro lado, los valores de temperatura de un sensor digital de Temperatur y Humedad DHT11 se envían a Thingsboard para ser mostrados convenientemente en una gráfica.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/domotic_demo.bly')">Abrir</button></p>
+Se perderán todos los cambios!
+</div>
+<h5>Circuito</h5>
+<image src="doc/circuits/read_temp_realy_iot_bb.png" title="nano_example" alt="nano_example"></image>
+<h5>Código Facilino</h5>
+<div id='example1'></div>
+<script>injectExample('domotic_demo.bly','example1');</script>
+<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/index.html");});'></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/es-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Quieres colaborar en traducir Facilino a tu idioma? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has encontrado algún fallo? Por favor, contacta con soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="acerca de" alt="acerca de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/es-ES/about.html');});"></image></p>
+</body>
+</html>

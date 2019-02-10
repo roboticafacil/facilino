@@ -17,6 +17,8 @@
 #include <QListWidget>
 #include <QLineEdit>
 
+class QGamepad;
+
 namespace Ui {
 class MainWindow;
 }
@@ -51,6 +53,7 @@ private:
     JsWebHelpers *webHelper;
     QWebChannel *channel;
     QTimer *licenseTimer;
+    QTimer *controllerTimer;
     bool sourceChanging;
     bool sourceChanged;
     int documentHistoryStep;
@@ -109,6 +112,7 @@ private:
     void setSearchDocWidget();
     void parseXML(const QDomElement& root, const QString& baseName, QStringList& v);
     QString noAcute(QString str);
+    bool boardChanged;
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 

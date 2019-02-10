@@ -67,8 +67,8 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('two_buttons_ui','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Implementa una senzilla interfície d'usuari (UI) amb dos botons. Uno dels botons s'utilitza amb la funcionalitat de 'Següent/Seleccionar', mentre que l'altre botó s'usa per a 'Cancel·lar' (o 'Enrere'). L'estructura de la interfície d'usuari és arbórea, amb un 'Menú General' com el tronc principal i menús i opcions com a branques i fulles, respectivament. La lògica per a navegar mitjançant de la interfície és creada automàticament per la instrucció en funció dels menús i opcions creats. Per defecte, el 'Menú General' es mostrarà al principi. Els menús i opcions són en realitat una llista circular, de forma que una vegada abastit l'último element, es mostrarà el primer de la llista. Pot cambiarse d'un element de la llista a un altre mitjançant una pulsació curta amb el botó 'Següent/Selecciona'. Una pulsació llarga d'eixe botó seleccionarà el menú u opció.</p>
-<p>Quan un menú és seleccionat, es mostra la llista dels sub-menús (opcions). De forma similar, les diferents opcions poden mostrar-se mitjançant pulsacions cortes. Per a seleccionar una opció, deus mantindre pulsat (pulsació llarga) el botó 'Següent/Selecciona'. Es pot tornar enrere pulsant el botó 'Cancel·lar'.</p>
+<p>Implementa una senzilla interfície d'usuari (UI) amb dos botons. Un dels botons s'utilitza amb la funcionalitat de 'Següent/Seleccionar', mentre que l'altre botó s'usa per a 'Cancel·lar' (o 'Enrere'). L'estructura de la interfície d'usuari és arbórea, amb un 'Menú General' com el tronc principal i menús i opcions com a branques i fulles, respectivament. La lògica per a navegar mitjançant de la interfície és creada automàticament per la instrucció en funció dels menús i opcions creats. Per defecte, el 'Menú General' es mostrarà al principi. Els menús i opcions són en realitat una llista circular, de forma que una vegada abastit l'últim element, es mostrarà el primer de la llista. Pot canviar-se d'un element de la llista a un altre mitjançant una pulsació curta amb el botó 'Següent/Selecciona'. Una pulsació llarga d'eixe botó seleccionarà el menú u opció.</p>
+<p>Quan un menú és seleccionat, es mostra la llista dels sub-menús (opcions). De forma similar, les diferents opcions poden mostrar-se mitjançant pulsacions curtes. Per a seleccionar una opció, deus mantindre pulsat (pulsació llarga) el botó 'Següent/Selecciona'. Es pot tornar enrere pulsant el botó 'Cancel·lar'.</p>
 <p>Usar en combinació de la següent instrucció</p>
 <div id='blocklyInstruction1'></div>
 <script>injectInstruction('two_buttons_ui_option','blocklyInstruction1');</script>
@@ -81,7 +81,7 @@ Llicència de Facilino.
 </ul>
 <h4>Camps</h4>
 <ul>
-  <li>Temps de refresc: El 'Menú General' es refresca quan este temps s'ha complit (p.e.: pot utilizar-se per a actualitzar el valor d'una mesura de temperatura, senyal a mostrar en una pantalla...)</li> 
+  <li>Temps de refresc: El 'Menú General' es refresca quan este temps s'ha complit (p.e.: pot utilitzar-se per a actualitzar el valor d'una mesura de temperatura, senyal a mostrar en una pantalla...)</li> 
 </ul>
 <h4>Mutador</h4>
 Afegeix tants menús com es necesiten.
@@ -99,7 +99,7 @@ Es perdran tots els canvis!
 </div>
 <h5>Circuit</h5>
 <image src="doc/circuits/switches_example_bb.png" title="switches_example_bb" alt="switches_example_bb"></image>
-<h5>Codigo Facilino</h5>
+<h5>Codi Facilino</h5>
 <div id='example'></div>
 <script>injectExample('buttons_ui.bly','example');</script>
 <p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="al respecte de" alt="al respecte de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/ca-ES/about.html');});"></image></p>

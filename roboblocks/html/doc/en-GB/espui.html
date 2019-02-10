@@ -67,7 +67,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('espui','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Defines the WiFi for the module ESP8266 or ESP32 processors. The user-interface is accessible from IP 192.168.4.1.</p>
+<p>Defines a web-base user interface (using WiFi) for the ESP8266 or ESP32 processors. The user-interface is accessible from IP 192.168.1.1 and can be set as a hot-spot.</p>
 <h4>Requirements</h4>
 <p>For the ESP8266 module, the instruction requires the ITEADLIB_Arduino_WeeESP8266 library to be installed <a href="https://github.com/itead/ITEADLIB_Arduino_WeeESP8266" target="_blank">https://github.com/itead/ITEADLIB_Arduino_WeeESP8266</a></p>
 <p><image src="doc/common/esp8266_module_library.png" title="esp8266_module_library" alt="esp8266_module_library"></image></p>
@@ -98,16 +98,16 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
    <li>RX: Arduino receive pin (connect to TX of ESP8266 module) [only for ESP8266 module].</li>
 </ul>
 <h4>Example</h4>
-This example uses the ESP8266 WiFi module with Arduino UNO. In the example the first configuration steps are made for the connection to the network and then in the main loop a text message is sent to a server at the IP address 192.168.1.100 through the port 49152 (Arduino is the client of the connection ). If a response is received from the server, the message is displayed on the console via the USB serial port.
+This example shows a simple user interface for remotely control an RGB LED with three buttons. The user-interface IP is 192.168.1.1 and the SSID for the hot-spot is "ESP8266_remote" (change accordingly to avoid conflict if others might be using this name).
 <div class="button_wrapper">
-<p><button align="center" class="button" onclick="openFunction('doc/examples/communications_wifi_def_example.bly')">Open</button></p>
+<p><button align="center" class="button" onclick="openFunction('doc/examples/esp8266_led_example.bly')">Open</button></p>
 All changes will be lost!
 </div>
 <h5>Circuit</h5>
-<image src="doc/circuits/esp8266_module_example_bb.png" title="esp8266_module_example_bb" alt="esp8266_module_example_bb"></image>
+<image src="doc/circuits/ledRGB_esp8266_example_bb.png" title="ledRGB_esp8266_example_bb" alt="ledRGB_esp8266_example_bb"></image>
 <h5>Facilino Code</h5>
 <div id='example1'></div>
-<script>injectExample('communications_wifi_def_example.bly','example1');</script>
+<script>injectExample('esp8266_led_example.bly','example1');</script>
 <p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
 </body>
 </html>

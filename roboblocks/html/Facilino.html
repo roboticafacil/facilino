@@ -45,8 +45,8 @@ padding-left:30px;
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 	<script src="javascript/blockly-bq/FieldButton.js"></script>
-    <script src="roboblocks_compressed.js"></script>
-	<script src="facilino.js"></script>
+    <script src="facilino.js"></script>
+	<script src="roboblocks_compressed.js"></script>
 	<xml id='startBlocks' style='display: none'><block type='controls_setupLoop' deletable='true' x='20' y='5'></block></xml>
 
 	<div>
@@ -348,9 +348,8 @@ padding-left:30px;
 			/*$('.blocklyTreeRow').each( function (i,e) {
                 $(e).prepend('<span class="treeLabelBlock"></span>');
             });*/
-
             // Update code
-			
+				
                 Blockly.getMainWorkspace().addChangeListener(function () {
 		$('#code').html('<code class="c++"><pre>'
 		  + escapeCode(Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace()))

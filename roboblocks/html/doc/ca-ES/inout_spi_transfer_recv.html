@@ -63,27 +63,27 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 </script>
 </head>
 <body>
-<h3 id="up">Envia i rep dades per la comunicació SPI</h3>
+<h3 id="up">Envia i rep dades mitjançant comunicació SPI</h3>
 <h4>Instrucció</h4>
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('inout_spi_transfer_recv','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Aquesta instrucció envia i rep dades mitjançant d'una comunicación SPI que ha sigut iniciada amb aquesta instrucció:</p>
+<p>Aquesta instrucció envia i rep dades mitjançant d'una comunicació SPI que ha sigut iniciada amb aquesta instrucció:</p>
 <div id='blocklyInstruction1'></div><script>injectInstruction('inout_spi_begin','blocklyInstruction1');</script>
 <p>i finalitzada amb aquesta instrucció:</p>
 <div id='blocklyInstruction2'></div><script>injectInstruction('inout_spi_end','blocklyInstruction2');</script>
 <h4>Desplegables</h4>
 <ul>
-  <li>Bytes: Sel·lecciona el nombre de bytes a transferir.</li>
+  <li>Octets: Selecciona el nombre d'octets a transferir.</li>
 </ul>
 <h4>Entrades</h4>
 <ul>
-  <li>Dada: Byte(s) a transferir.</li>
+  <li>Dada: Octet(s) a transferir.</li>
 </ul>
 <h4>Eixida</h4>
 Dades rebudes.
 <h4>Exemple</h4>
-Aquest exemple mostra com usar la comunicació SPI per a llegir dades del sensor de presió baromètrica SCP1000. En particular, la temperatura es llegeix accedint al registre 0x21 (debeu ser desplaçat a l'esquerra 2 bits i borrats els dos bits menys significatius per a la lectura). Per a inicialitzar i configurar el sensor, els següents registres són escrits (0x02, 0x01 i 0x03), que debeun desplaçar-se a l'esquerra 2 bits i estableir a nivell alt el segon bit per a l'escriptura.
+Aquest exemple mostra com usar la comunicació SPI per a llegir dades del sensor de presió baromètrica SCP1000. En particular, la temperatura es llegeix accedint al registre 0x21 (debeu ser desplaçat a l'esquerra 2 bits i borrats els dos bits menys significatius per a la lectura). Per a inicialitzar i configurar el sensor, els següents registres són escrits (0x02, 0x01 i 0x03), que deuen desplaçar-se a l'esquerra 2 bits i estableir a nivell alt el segon bit per a l'escriptura.
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/inout_spi_example.bly')">Obrir</button></p>
 Tots els canvis es perderàn!

@@ -67,54 +67,54 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('i2c_on_receive','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Esta instrucció deu ser usada per un esclavo I2C per a enviar dades a un maestro I2C (el maestro demanda información a enviar en la dirección indicada). La instrucció ejecuta el código dentro de la sección 'hacer' i retorna els dades requeridos. Els dades deuen estar almacenados en una variable (escalar o vector) o en una constant numérica. Esta instrucció sólo puede utilizarse una vez per programa, ya que si se dispone de múltiples copias d'esta instrucció, sólo se renderizará l'última de todas.</p>
+<p>Esta instrucció deu ser usada per un esclau I2C per a enviar dades a un mestre I2C (el mestre demanda informació a enviar en l'adreça indicada). La instrucció executa el codi dins de la secció 'fer' i retorna els dades requerides. Les dades deuen estar enmagatzemades en una variable (escalar o vector) o en una constant numèrica. Esta instrucció sols pot utilitzar-se una vegada per programa (si es disposa de múltiples còpies d'esta instrucció només es renderitzarà l'última de totes).</p>
 <h4>Camps</h4>
 <ul>
-<li>Dirección: Dirección del esclavo I2C. El valor màxim de la dirección es 127.</li>
+<li>Adreça: Adreça del esclau I2C. El valor màxim de l'adreça és 127.</li>
 </ul>
-<h4>Códig apilable</h4>
+<h4>Codi apilable</h4>
 <ul>
-<li>Hacer: Código a executar.</li>
+<li>Fer: Codi a executar.</li>
 </ul>
 <h4>Entrades</h4>
 <ul>
 <li>Enviar dades: Datos a enviar (deu ser una variable o una constant numérica).</li>
 </ul>
 <h4>Exemple</h4>
-Aquest exemple mostra les capacidadades de la comunicación I2C. Representa una red distribuida de MCUs. Una d'ellas actua com a maestro que solicita información de la lecturad'un sensor de infrarrojos de dos esclavos independientes (en les direcciones 20 i 21). Els dades recibidos se adaptan a l'escala de 0 a 180 per a ser transmitidos a un esclavo que realiza les funciones de controlador de servomotores (en la dirección 10) i que es el encargado de mover els servos.
-<p><small><b>Programa Maestro</b></small></p>
+Aquest exemple mostra les capacidadades de la comunicació I2C. Representa una red distribuïda de MCUs. Una d'ellas actua com a mestre que sol·licita informació de la lectura d'un sensor de infrarrojos de dos esclaus independientes (en les direcciones 20 i 21). Els dades rebudes s'adapten a l'escala de 0 a 180 per a ser transmitidos a un esclau que realiza les funciones de controlador de servomotores (en la direcció 10) i que es el encargado de mover els servos.
+<p><small><b>Programa Mestre</b></small></p>
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_master.bly')">Obrir</button></p>
 Es perdran tots els canvis!
 </div>
-<p><small><b>Programa Esclavo 10</b></small></p>
+<p><small><b>Programa Esclau 10</b></small></p>
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_slave_10.bly')">Obrir</button></p>
 Es perdran tots els canvis!
 </div>
-<p><small><b>Programa Esclavo 20</b></small></p>
+<p><small><b>Programa Esclau 20</b></small></p>
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_slave_20.bly')">Obrir</button></p>
 Es perdran tots els canvis!
 </div>
-<p><small><b>Programa Esclavo 21</b></small></p>
+<p><small><b>Programa Esclau 21</b></small></p>
 <div class="button_wrapper">
 <p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/demo_i2c_slave_21.bly')">Obrir</button></p>
 Es perdran tots els canvis!
 </div>
 <h5>Circuit</h5>
 <image src="doc/circuits/example_i2c_bb.png" title="example_i2c_bb" alt="example_i2c_bb"></image>
-<h5>Facilino Code</h5>
-<p><small><b>Master Program</b></small></p>
+<h5>Codi Facilino</h5>
+<p><small><b>Codi Mestre</b></small></p>
 <div id='example1'></div>
 <script>injectExample('demo_i2c_master.bly','example1');</script>
-<p><small><b>Slave 10 Program</b></small></p>
+<p><small><b>Codi Esclau 10</b></small></p>
 <div id='example2'></div>
 <script>injectExample('demo_i2c_slave_10.bly','example2');</script>
-<p><small><b>Slave 20 Program</b></small></p>
+<p><small><b>Codi Esclau 20</b></small></p>
 <div id='example3'></div>
 <script>injectExample('demo_i2c_slave_20.bly','example3');</script>
-<p><small><b>Slave 21 Program</b></small></p>
+<p><small><b>Codi Esclau 21</b></small></p>
 <div id='example4'></div>
 <script>injectExample('demo_i2c_slave_21.bly','example4');</script>
 <p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="al respecte de" alt="al respecte de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/ca-ES/about.html');});"></image></p>
