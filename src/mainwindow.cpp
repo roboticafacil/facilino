@@ -96,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start(5000);
     licenseTimer = new QTimer(this);
     connect(licenseTimer, SIGNAL(timeout()), this, SLOT(checkLicense()));
-    licenseTimer->start(1000);  //Initially waits 1sec for checking the license
+    licenseTimer->start(2000);  //Initially waits 1sec for checking the license
     //checkLicense();
 
     //Hide MyBlocks toolbar
@@ -173,14 +173,17 @@ void MainWindow::arduinoExec(const QString &action) {
     arguments << action;
     // Board parameter
     if (ui->boardBox->count() > 0) {
-        arguments << "--board" << ui->boardBox->currentText();
+        arguments << "--board" << SettingsStore::index2board[ui->boardBox->currentIndex()];
     }
+
     // Port parameter
     if (ui->serialPortBox->count() > 0) {
         arguments << "--port" << ui->serialPortBox->currentText();
     }
     //arguments << "--pref editor.external=false ";
     arguments << settings->tmpFileName();
+    ui->textBrowser->clear();
+    ui->textBrowser->append(QString("%1 %2").arg(settings->arduinoIdePath()).arg(arguments.join(" ")));
     process->start(settings->arduinoIdePath(), arguments);
 
     // Show messages
@@ -366,7 +369,7 @@ void MainWindow::actionMonitor() {
         ui->mainToolBar->setVisible(true);
         ui->monitorToolBar->setVisible(false);
     } else {
-        serialPortOpen();
+        serialPortOpen(SettingsStore::index2baudrate[ui->boardBox->currentIndex()]);
         ui->consoleEdit->setFocus();
         ui->actionMonitor->setChecked(true);
         // Hide main toolbar, show monitor toolbar
@@ -701,7 +704,7 @@ void MainWindow::onBoardChanged() {
     if (!this->boardChanged)
     {
         settings->setArduinoBoard(ui->boardBox->currentText());
-        settings->setArduinoBoardFacilino(SettingsStore::index2board[ui->boardBox->currentIndex()]);
+        settings->setArduinoBoardFacilino(SettingsStore::index2name[ui->boardBox->currentIndex()]);
         loadBlockly();
         this->boardChanged=true;
     }
@@ -736,7 +739,6 @@ void MainWindow::onProcessOutputUpdated() {
 }
 
 void MainWindow::onProcessStarted() {
-    ui->textBrowser->clear();
     ui->textBrowser->append(tr("Building..."));
 }
 
@@ -772,7 +774,7 @@ void MainWindow::serialPortClose() {
     serial->disconnect(serial, SIGNAL(readyRead()), this, SLOT(readSerial()));
 }
 
-void MainWindow::serialPortOpen() {
+void MainWindow::serialPortOpen(qint32 baudrate) {
     // Open serial connection
     ui->webView->hide();
     ui->widgetConsole->show();
@@ -789,7 +791,7 @@ void MainWindow::serialPortOpen() {
 
     // Set default connection parameters
     serial->setPortName(ui->serialPortBox->currentText());
-    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setBaudRate(baudrate);
     serial->setDataBits(QSerialPort::Data8);
     serial->setParity(QSerialPort::NoParity);
     serial->setStopBits(QSerialPort::OneStop);
@@ -914,7 +916,7 @@ QStringList MainWindow::portList() {
         portName.insert(0, "/dev/");
 #endif
 #ifdef Q_OS_OSX
-        portName.insert(0, "/dev/tty.");
+        portName.insert(0, "/dev/");
 #endif
         serialPorts.append(portName);
     }
@@ -1874,6 +1876,8 @@ void MainWindow::setToolboxCategories()
     communicationItem->setText(0,tr("Communication"));
     addQTreeWidgetItemToParent(communicationItem,tr("Bluetooth"),"LANG_SUBCATEGORY_BLUETOOTH");
     ui->actionBluetooth->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_BLUETOOTH"));
+    addQTreeWidgetItemToParent(communicationItem,tr("BLE"),"LANG_SUBCATEGORY_BLE");
+    ui->actionBLE->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_BLE"));
     addQTreeWidgetItemToParent(communicationItem,tr("WiFi"),"LANG_SUBCATEGORY_WIFI");
     ui->actionWiFI->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_WIFI"));
     addQTreeWidgetItemToParent(communicationItem,tr("IoT"),"LANG_SUBCATEGORY_IOT");
@@ -1906,6 +1910,8 @@ void MainWindow::setToolboxCategories()
     ui->actionInfrared->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_INFRARED"));
     addQTreeWidgetItemToParent(lightItem,tr("Colour"),"LANG_SUBCATEGORY_COLOR");
     ui->actionColour->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_COLOR"));
+    addQTreeWidgetItemToParent(lightItem,tr("LDR"),"LANG_SUBCATEGORY_LDR");
+    ui->actionLDR->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_LDR"));
     QTreeWidgetItem *movementItem = new QTreeWidgetItem(ui->treeWidget);
     movementItem->setText(0,tr("Movement"));
     addQTreeWidgetItemToParent(movementItem,tr("Motors"),"LANG_SUBCATEGORY_MOTORS");
@@ -2162,3 +2168,20 @@ void MainWindow::on_actionEEPROM_triggered()
     updateToolboxCategories();
 }
 
+
+void MainWindow::on_actionLDR_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_LDR");
+}
+
+void MainWindow::on_actionBLE_triggered()
+{
+    toogleCategories("LANG_SUBCATEGORY_BLE");
+}
+
+void MainWindow::on_actionReload_triggered()
+{
+    checkLicense();
+    QString jsLanguage = QString("UpdateCode();");
+    evaluateJavaScript(jsLanguage);
+}

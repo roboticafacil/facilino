@@ -114,8 +114,16 @@ padding-left:30px;
 			<select id="processor" class="text-black dropdown-toggle display-6 icon-menu" onchange="processorChange(this.value)" style="display: none">
 		<option value="ArduinoNano" class="text-black dropdown-item display-6">Arduino Nano</option>
 		<option value="ArduinoUno" class="text-black dropdown-item display-6">Arduino Uno</option>
+		<option value="ArduinoMega2560" class="text-black dropdown-item display-6">Arduino Mega 2560</option>
+		<option value="ArduinoMicro" class="text-black dropdown-item display-6">Arduino Micro</option>
+		<option value="ArduinoLilyPad" class="text-black dropdown-item display-6">Arduino LilyPAD</option>
+		<option value="ArduinoMini" class="text-black dropdown-item display-6">Arduino Mini</option>
+		<option value="ArduinoLeonardo" class="text-black dropdown-item display-6">Arduino Leonardo</option>
+		<option value="ESP8266" class="text-black dropdown-item display-6">ESP8266</option>
 		<option value="NodeMCU" class="text-black dropdown-item display-6">NodeMCU</option>
-		<option value="ESP32" class="text-black dropdown-item display-6">R32 (ESP32)</option>
+		<option value="ESP32" class="text-black dropdown-item display-6">ESP32</option>
+		<option value="WEMOS LOLIN32" class="text-black dropdown-item display-6">WeMos/Lolin ESP32</option>
+		<option value="WEMOS LOLIN32 SHIELD" class="text-black dropdown-item display-6">WeMos/Lolin ESP32 with Sensor Shield v5</option>
 		</select>
 		<div class="navbar-buttons mbr-section-btn"><button id="licenseP" class="btn btn-sm btn-primary-outline display-4" title="Enter your license" onclick="showHideLicense()"><span class="mbri-key mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></div>
 		<input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();" style="display: none"/>
@@ -127,6 +135,12 @@ padding-left:30px;
 				<div class="dropdown-menu dropdown-submenu">
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_INTERRUPTS')" aria-expanded="false"><span>Interrupt</span></button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_STATEMACHINE')" aria-expanded="false">State Machine</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Logic</a>
+				<div class="dropdown-menu dropdown-submenu">
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_BITWISE')" aria-expanded="false"><span>Bitwise</span></button>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -179,6 +193,7 @@ padding-left:30px;
 				<div class="dropdown-menu dropdown-submenu">
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_INFRARED')" aria-expanded="false">Infrared</button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_COLOR')" aria-expanded="false">Colour</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_LDR')" aria-expanded="false">LDR</button>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -273,7 +288,7 @@ padding-left:30px;
 		}
 		MyBlocks = JSON.parse(localStorage.getItem('MyBlocks'));
 		Blockly.Doc = [];
-		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
+		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_SUBCATEGORY_BITWISE','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_SUBCATEGORY_BLE','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_LDR','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
 		window.toolboxNames = getToolboxNames(window.toolbox);
 		//options = {zoom: 1, interrupts: {subcategory: 'LANG_SUBCATEGORY_INTERRUPTS', view:false}, ss: false, arrays: false, lcd: false, led_matrix: false, led_strip: false, oled: false, bluetooth: false, wifi: false, iot: false, buzzer: false, voice: false, mic: false, music: false, sonar: false, infrared: false, colour: false, motors: false, robot_base: false, robot_accessories: false, robot_walk: false, system_control: false, system_filtering: false, temperature: false, humidity: false, rain: false, gas: false, environment_other: false, html: false, web_ui: false, deprecated: false};
 		options = {zoom: 1};
@@ -350,7 +365,11 @@ padding-left:30px;
             });*/
             // Update code
 				
-                Blockly.getMainWorkspace().addChangeListener(function () {
+                Blockly.getMainWorkspace().addChangeListener(function (event) {
+				if (event.type== Blockly.Events.DELETE)
+				{
+					Facilino.removedBlocks(event.ids);
+				}
 		$('#code').html('<code class="c++"><pre>'
 		  + escapeCode(Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace()))
 		  + '</pre></code>');

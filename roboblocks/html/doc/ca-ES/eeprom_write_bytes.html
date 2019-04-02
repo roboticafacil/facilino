@@ -67,7 +67,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('eeprom_write_bytes','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Arduino inclou una memòria EEPROM per a enmagatzemar dades de forma permanent. Esta instrucció escriu octets a partir de l'adreça de memòria indicada i la variable tipus vector proporcionada. Depenent del tipus de variable, el nombre total d'octets a escriure pot variar. Així doncs, si una variable tipus vector te una longitud de <em>n</em> elements, aleshores es llegiran <em>n</em>x<b>sizeof</b>(<em>tipus variable</em>). El tamany d'un 'octet' i 'caracter' és 1, el tamany d'un 'sencer curt' és 2, el tamany d'un 'sencer' és 4, el tamany d'un 'sencer llarg' és 8, el tamany d'un 'decimal' és 4.</p>
+<p>Arduino inclou una memòria EEPROM per a enmagatzemar dades de forma permanent. Esta instrucció escriu octets a partir de l'adreça de memòria indicada i la variable tipus vector proporcionada. Depenent del tipus de variable, el nombre total d'octets a escriure pot variar. Així doncs, si una variable tipus vector te una longitud de <em>n</em> elements, aleshores es llegiran <em>n</em>x<b>sizeof</b>(<em>tipus variable</em>). El tamany d'un 'octet' i 'caracter' és 1, el tamany d'un 'sencer curt' és 2, el tamany d'un 'sencer' és 2, el tamany d'un 'sencer llarg' és 8, el tamany d'un 'decimal' és 4.</p>
 <h4>Entrades</h4>
 <ul>
 <li>Adreça: Adreça del bloc de memòria. Depenen del MCU d'Arduino, el tamany de la memòria EEPROM pot variar, així doncs es recomana accedir a la documentació d'Arduino per a més informació.</li>

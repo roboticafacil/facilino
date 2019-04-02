@@ -67,7 +67,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('eeprom_write_bytes','blocklyInstruction');</script>
 <h4>Descripción</h4>
-<p>Arduino incluye una memoria EEPROM para almacenar datos de forma permanente. Esta instrucción escribe octetos a partir de la dirección de memoria indicada y la variable tipo vector proporcionada. Dependiendo del tipo de variable, el número total de octetos a escribir puede variar. Así pues, si una variable tipo vector tiene una longitud de <em>n</em> elementos, entonces se leerán <em>n</em>x<b>sizeof</b>(<em>tipo variable</em>). El tamaño de un 'octeto' y 'caracter' es 1, el tamaño de un 'entero corto' es 2, el tamaño de un 'entero' es 4, el tamaño de un 'entero largo' es 8, el tamaño de un 'decimal' es 4.</p>
+<p>Arduino incluye una memoria EEPROM para almacenar datos de forma permanente. Esta instrucción escribe octetos a partir de la dirección de memoria indicada y la variable tipo vector proporcionada. Dependiendo del tipo de variable, el número total de octetos a escribir puede variar. Así pues, si una variable tipo vector tiene una longitud de <em>n</em> elementos, entonces se leerán <em>n</em>x<b>sizeof</b>(<em>tipo variable</em>). El tamaño de un 'octeto' y 'caracter' es 1, el tamaño de un 'entero corto' es 2, el tamaño de un 'entero' es 2, el tamaño de un 'entero largo' es 4, el tamaño de un 'decimal' es 4.</p>
 <h4>Entradas</h4>
 <ul>
 <li>Dirección: Dirección del bloque de memoria. Dependiendo del MCU de Arduino, el tamaño de la memoria EEPROM puede variar, así pues se recomienda acceder a la documentación de Arduino para más información.</li>

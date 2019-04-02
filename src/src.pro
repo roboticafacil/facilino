@@ -44,6 +44,8 @@ macx {
   INSTALLS_DESTDIR = $${OUT_PWD}/facilino.app/Contents/MacOS/
   ICON = ../icons/facilino.icns
   CONFIG += c++11
+  QMAKE_MAC_SDK = 10.11
+  QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.11
 }
 
 config.path = $${INSTALLS_DESTDIR}

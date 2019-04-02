@@ -67,7 +67,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('i2c_send_bytes','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>This instruction is used by I2C Master to send data to a I2C slave at the indicated address. The instruction uses the provided variable to determine the total amount of bytes to send (depending on the number of elements if it is an array variable and variable type).</p>
+<p>This instruction is used by I2C Master to send data to a I2C slave at the indicated address. The instruction uses the provided variable to determine the total amount of bytes to send (depending on the number of elements if it is an array variable and variable type). The size of 'byte' and 'char' is 1, the size of 'short int' is 2, the size of 'int' is 2, the size of 'long int' is 4, the size of 'float' is 4.</p>
 <h4>Inputs</h4>
 <ul>
 <li>Variable: Array variable with data to send.</li>

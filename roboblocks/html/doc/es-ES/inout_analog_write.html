@@ -2,12 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<!--<script src='../../javascript/blockly-bq/blockly_compressed.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/arduino_compressed.js'></script>-->
-<!--<script src='../../javascript/jquery/dist/jquery.min.js'></script>-->
-<!--<script src='../../lang/en.js'></script>-->
-<!--<script src='../../javascript/blockly-bq/blocks_compressed.js'></script>-->
-<!--<script src='../../blocks.js'></script>-->
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -72,12 +66,18 @@ $('#'+exampleDiv).width((bbox.width+25)+'px');
 <h4>Instrucción</h4>
 <div id='blocklyInstruction'></div><script>injectInstruction('inout_analog_write','blocklyInstruction');</script>
 <h4>Descripción</h4>
-<p>Escribe un valor analógico sobre un pin digital (con doble función PWM) con una frecuencia aproximada de 490Hz (los pines 5 y 6 tienen una frecuencia aproximada de 980Hz en las tarjetas Arduino Uno y similares). El valor de entrada está comprendido entre 0 y 255. El pin PWM puede ser indicado junto con la instrucción:</p>
+<p>Escribe un valor analógico sobre un pin digital (con doble función PWM) con una frecuencia aproximada de 490Hz (los pines 5 y 6 tienen una frecuencia aproximada de 980Hz en las tarjetas Arduino Uno y similares) en las tarjetas de Arduino y NodeMCU y configurable para los procesadores ESP32. El valor de entrada está comprendido entre 0 y 255 para Arduino porque utiliza una resolución de 8 bits y para procesadores ESP32 el valor del ciclo de trabajo está comprendido entre 0 y 2^bits_resolucion-1. El pin PWM puede ser indicado junto con la instrucción:</p>
 <div id='blocklyInstruction1'></div><script>injectInstruction('pin_pwm','blocklyInstruction1');</script>
 <h4>Entradas</h4>
 <ul>
   <li>Pin digital (PWM): Pin digital sobre el que generar la señal PWM.</li>
-  <li>Valor: valor de la señal analógica a generar (comprendido entre 0 y 255).</li>
+  <li>Valor: valor de la señal analógica a generar (comprendido entre 0 y 2^bits_resolucion-1).</li>
+</ul>
+En los procesadores ESP32 podemos determinar la frecuencia de la señal PWM, así como su resolución (el canal se selecciona automáticamente en función del pin de entrada). La frecuencia máxima es 40Mhz para una resolución de 1 bit, la frecuencia máxima disminuye con la resolución de forma que su valor es 80000000/(2^bits_resolucion), por ejemplo para una resolución de 8 bits, la frecuencia máxima es de 312.5Khz.
+<h4>Campos</h4>
+<ul>
+  <li>Frecuencia: Frecuencia en Hz para la señal PWM.</li>
+  <li>Resolución: Número de bits de resolución.</li>
 </ul>
 <h4>Ejemplo</h4>
 En este ejemplo se muestra cómo variar la velocidad de un motor en función del valor analógico de entrada leído, convertido después a un valor digital, escalado apropiadamente y convertido en una señal PWM para generar una señal 'analógica'.

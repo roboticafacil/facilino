@@ -67,7 +67,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('ESP_deep_sleep','blocklyInstruction');</script>
 <h4>Descripción</h4>
-<p>Provoca un sueño profundo para procesador, del cual se despertará transcurrido el tiempo indicado para ahorrar energía. Para que esta instrucción funcione adecuadamente el pin RST debe conectarse al pin D0.</p>
+<p>Provoca un sueño profundo para procesador, del cual se despertará transcurrido el tiempo indicado para ahorrar energía. Para que esta instrucción funcione adecuadamente el pin RST debe conectarse al pin D0 para el procesador ESP8266 (el procesador ESP32 no requiere esta conexión).</p>
 <h4>Requisitos</h4>
 <p>La tarjeta ESP8266 debe configurarse en el Gestor de Tarjetas de Arduino IDE:</p>
 <p><image src="doc/common/esp8266_board_manager.png" title="esp8266_board_manager" alt="esp8266_board_manager"></image></p>

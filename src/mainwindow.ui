@@ -59,9 +59,6 @@
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="sizeConstraint">
-         <enum>QLayout::SetNoConstraint</enum>
-        </property>
         <property name="leftMargin">
          <number>9</number>
         </property>
@@ -84,12 +81,6 @@
            <size>
             <width>0</width>
             <height>100</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
            </size>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -127,6 +118,22 @@
             </layout>
            </item>
            <item>
+            <widget class="QTextEdit" name="consoleText">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="lineWidth">
+              <number>1</number>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="acceptRichText">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QWidget" name="graphsWidget" native="true">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -147,22 +154,6 @@
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <item>
-               <widget class="QTextEdit" name="consoleText">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="lineWidth">
-                 <number>1</number>
-                </property>
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-                <property name="acceptRichText">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
              </layout>
             </widget>
            </item>
@@ -343,54 +334,82 @@ pressed: { border: 1px };</string>
         <property name="editable">
          <bool>false</bool>
         </property>
+        <property name="maxVisibleItems">
+         <number>20</number>
+        </property>
         <item>
          <property name="text">
-          <string>arduino:avr:uno</string>
+          <string>Arduino Uno</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>arduino:avr:nano:cpu=atmega328</string>
+          <string>Arduino Nano</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>arduino:avr:nano:cpu=atmega328old</string>
+          <string>Arduino Nano (old bootloader)</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>arduino:avr:nano:cpu=atmega168</string>
+          <string>Arduino Nano (ATmega186P)</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>arduino:avr:mega</string>
+          <string>Arduino Mega 2560</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>arduino:avr:diecimila</string>
+          <string>Arduino Micro</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>arduino:avr:bt</string>
+          <string>Arduino LilyPad (ATmega328V)</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Intel:arc32:arduino_101</string>
+          <string>Arduino LilyPad (ATmega168V)</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dio,UploadSpeed=115200,FlashSize=512K64,ResetMethod=ck,Debug=Disabled,DebugLevel=None____</string>
+          <string>Arduino Mini</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M3M</string>
+          <string>Arduino Leonardo</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Generic ESP8266 Module</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>NodeMCU 1.0 (ESP-12E)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Generic ESP32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>WEMOS LOLIN32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>WEMOS LOLIN32+Sensor Shield v5</string>
          </property>
         </item>
        </widget>
@@ -519,6 +538,7 @@ pressed: { border: 1px };</string>
       <addaction name="actionBluetooth"/>
       <addaction name="actionWiFI"/>
       <addaction name="actionIoT"/>
+      <addaction name="actionBLE"/>
      </widget>
      <widget class="QMenu" name="menuSound">
       <property name="title">
@@ -535,6 +555,7 @@ pressed: { border: 1px };</string>
       </property>
       <addaction name="actionInfrared"/>
       <addaction name="actionColour"/>
+      <addaction name="actionLDR"/>
      </widget>
      <widget class="QMenu" name="menuMovement">
       <property name="title">
@@ -659,6 +680,7 @@ pressed: { border: 1px };</string>
    <addaction name="separator"/>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
+   <addaction name="actionReload"/>
    <addaction name="separator"/>
    <addaction name="actionView"/>
    <addaction name="actionSearchDocumentation"/>
@@ -1549,7 +1571,7 @@ pressed: { border: 1px };</string>
   <action name="actionView">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/icons/icons/eye1.png</normaloff>:/icons/icons/eye1.png</iconset>
+     <normaloff>:/icons/icons/eye.png</normaloff>:/icons/icons/eye.png</iconset>
    </property>
    <property name="text">
     <string>View</string>
@@ -1587,6 +1609,46 @@ pressed: { border: 1px };</string>
    </property>
    <property name="text">
     <string>EEPROM</string>
+   </property>
+  </action>
+  <action name="actionLDR">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>LDR</string>
+   </property>
+   <property name="toolTip">
+    <string>LDR</string>
+   </property>
+  </action>
+  <action name="actionBLE">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>BLE</string>
+   </property>
+   <property name="toolTip">
+    <string>BLE</string>
+   </property>
+  </action>
+  <action name="actionReload">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/icons/icons/update-arrows.png</normaloff>:/icons/icons/update-arrows.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="toolTip">
+    <string>Reload page</string>
    </property>
   </action>
  </widget>

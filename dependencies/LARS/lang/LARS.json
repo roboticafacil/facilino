@@ -1,0 +1,46 @@
+{
+	"langs": 
+	{
+		"en-GB": 
+		{
+			"keys": 
+			{
+				"LANG_SUBCATEGORY_WALK": "Robot walk",
+				"LANG_MOVEMENT_LARS_ROBOT": "Define robot",
+				"LANG_MOVEMENT_LARS_FRH": "Hip 1",
+				"LANG_MOVEMENT_LARS_BRH": "Hip 2",
+				"LANG_MOVEMENT_LARS_BLH": "Hip 3",
+				"LANG_MOVEMENT_LARS_FLH": "Hip 4",
+				"LANG_MOVEMENT_LARS_FRL": "Leg 1",
+				"LANG_MOVEMENT_LARS_BRL": "Leg 2",
+				"LANG_MOVEMENT_LARS_BLL": "Leg 3",
+				"LANG_MOVEMENT_LARS_FLL": "Leg 4",
+				"LANG_LARS_INIT_TOOLTIP": "Defines the servo pins for a quadruped robot.",
+				"LANG_LARS_MOVEMENT": "Move robot",
+				"LANG_LARS_MOVEMENT_MOVEMENT": "Movement",
+				"LANG_LARS_MOVEMENT_HOME": "Home",
+				"LANG_LARS_MOVEMENT_WALK": "Walk",
+				"LANG_LARS_MOVEMENT_OMNIWALK": "Omni walk",
+				"LANG_LARS_MOVEMENT_TURN_LEFT": "Turn left",
+				"LANG_LARS_MOVEMENT_TURN_RIGHT": "Turn right",
+				"LANG_LARS_MOVEMENT_MOONWALK": "Moonwalk",
+				"LANG_LARS_MOVEMENT_DANCE": "Dance",
+				"LANG_LARS_MOVEMENT_UPDOWN": "Up-down",
+				"LANG_LARS_MOVEMENT_PUSHUP": "Push-up",
+				"LANG_LARS_MOVEMENT_HELLO": "Hello",
+				"LANG_LARS_MOVEMENT_WAVE": "Wave",
+				"LANG_LARS_MOVEMENT_LEG_NUMBER": "Leg number",
+				"LANG_LARS_MOVEMENT_STEPS": "Steps",
+				"LANG_LARS_MOVEMENT_PERIOD": "Period",
+				"LANG_LARS_MOVEMENT_DIR": "Direction",
+				"LANG_LARS_MOVEMENT_SIDE": "Side",
+				"LANG_LARS_MOVEMENT_TURN_FACTOR": "Turn factor",
+				"LANG_LARS_MOVEMENT_FORWARD": "Forward",
+				"LANG_LARS_MOVEMENT_BACKWARD": "Backward",
+				"LANG_LARS_MOVEMENT_YES": "Yes",
+				"LANG_LARS_MOVEMENT_NO": "No",
+				"LANG_LARS_MOVEMENT_TOOLTIP": "Generates movement primitives for a quadruped robot"
+			}
+		}
+	}
+}

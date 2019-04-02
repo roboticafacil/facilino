@@ -86,7 +86,7 @@ private:
                              bool clear = true);
     void setArduinoBoard();
     void setXmlFileName(const QString &fileName);
-    void serialPortOpen();
+    void serialPortOpen(qint32 baudrate);
     void serialPortClose();
     QStringList portList();
     int saveXml(const QString &xmlFilePath);
@@ -113,6 +113,7 @@ private:
     void parseXML(const QDomElement& root, const QString& baseName, QStringList& v);
     QString noAcute(QString str);
     bool boardChanged;
+    QString xmlReload;
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
@@ -217,6 +218,9 @@ private slots:
     void onDocListItemClicked(QListWidgetItem* item);
     void onExampleListItemClicked(QListWidgetItem* item);
     void on_actionEEPROM_triggered();
+    void on_actionLDR_triggered();
+    void on_actionBLE_triggered();
+    void on_actionReload_triggered();
 };
 
 #endif // MAINWINDOW_H

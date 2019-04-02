@@ -121,7 +121,8 @@
 		RoboBlocks.LANG_COLOUR_CONTROL_INTERRUPTS = '#3EB83E';
 		RoboBlocks.LANG_COLOUR_CONTROL_STATEMACHINE = '#39A539';
 		//RoboBlocks.LANG_COLOUR_CONTROL_TIME = '#339233';
-        RoboBlocks.LANG_COLOUR_LOGIC = '#42CE91';
+        RoboBlocks.LANG_COLOUR_LOGIC = '#42CE91';  //#39c576, #39c06a, #39bb60, #39b157
+		RoboBlocks.LANG_COLOUR_LOGIC_BITWISE = '#39C576';
         RoboBlocks.LANG_COLOUR_MATH = '#42CBCE';
         RoboBlocks.LANG_COLOUR_TEXT = '#42A3CE';
         RoboBlocks.LANG_COLOUR_COMMUNICATION = '#4263CE';
@@ -141,6 +142,7 @@
 		RoboBlocks.LANG_COLOUR_LIGHT= '#FF8A00';
 		RoboBlocks.LANG_COLOUR_LIGHT_INFRARED= '#FF8A00'; //D27201, BB6602, A55B03
 		RoboBlocks.LANG_COLOUR_LIGHT_COLOR= '#E87E00'; //D27201 , BB6602, A55B03
+		RoboBlocks.LANG_COLOUR_LIGHT_LDR='#D27201';
 		RoboBlocks.LANG_COLOUR_AMBIENT = '#99CCFF';  //78BBFE, 58ABFD, 389AFC, 188AFB
 		RoboBlocks.LANG_COLOUR_AMBIENT_TEMPERATURE = '#99CCFF';
 		RoboBlocks.LANG_COLOUR_AMBIENT_HUMIDITY = '#78BBFE';
@@ -166,15 +168,71 @@
 				}).done(function(text) {
 				profiles = $.parseJSON(text);
 				if (RoboBlocks.locales.processor==='ArduinoNano')
+				{
 					profiles['default'] = profiles.arduinoNano;
+					profiles['processor'] = 'ATmega328';
+				}
 				else if (RoboBlocks.locales.processor==='ArduinoUno')
+				{
 					profiles['default'] = profiles.arduinoUno;
+					profiles['processor'] = 'ATmega328';
+				}
+				else if (RoboBlocks.locales.processor==='ArduinoMega2560')
+				{
+					profiles['default'] = profiles.arduinoMega2560;
+					profiles['processor'] = 'ATmega2560';
+				}
+				else if (RoboBlocks.locales.processor==='ArduinoMicro')
+				{
+					profiles['default'] = profiles.arduinoMicro;
+					profiles['processor'] = 'ATmega32U4';
+				}
+				else if (RoboBlocks.locales.processor==='ArduinoLilyPad')
+				{
+					profiles['default'] = profiles.arduinoLilyPad;
+					profiles['processor'] = 'ATmega328';
+				}
+				else if (RoboBlocks.locales.processor==='ArduinoMini')
+				{
+					profiles['default'] = profiles.arduinoMini;
+					profiles['processor'] = 'ATmega328';
+				}
+				else if (RoboBlocks.locales.processor==='ArduinoLeonardo')
+				{
+					profiles['default'] = profiles.arduinoLeonardo;
+					profiles['processor'] = 'ATmega32U4';
+				}
+				else if (RoboBlocks.locales.processor==='ESP8266')
+				{
+					profiles['default'] = profiles.esp8266;
+					profiles['processor'] = 'ESP8266';
+				}
 				else if (RoboBlocks.locales.processor==='NodeMCU')
+				{
 					profiles['default'] = profiles.nodeMCU;
+					profiles['processor'] = 'ESP8266';
+				}
 				else if (RoboBlocks.locales.processor==='ESP32')
-					profiles['default'] = profiles.esp32_R32;
+				{
+					profiles['default'] = profiles.esp32;
+					profiles['processor'] = 'ESP32';
+				}
+				
+				else if (RoboBlocks.locales.processor==='WEMOS LOLIN32')
+				{
+					profiles['default'] = profiles.wemos_esp32;
+					profiles['processor'] = 'ESP32';
+				}
+				else if (RoboBlocks.locales.processor==='WEMOS LOLIN32 SHIELD')
+				{
+					profiles['default'] = profiles.wemos_esp32_sensor_shield;
+					profiles['processor'] = 'ESP32';
+				}
 				else 
+				{
 					profiles['default'] = profiles.arduinoNano;
+					profiles['processor'] = 'ATmega328';
+				}
 				});
 
         
@@ -604,10 +662,7 @@
                 __e = _.escape;
             with(obj) {
                 __p += 'do {\n' +
-                    ((__t = (branch)) == null ? '' : __t) +
-                    '\n} while (' +
-                    ((__t = (argument0)) == null ? '' : __t) +
-                    ');\n';
+                    ((__t = (branch)) == null ? '' : __t) + '\n} while (' + ((__t = (argument0)) == null ? '' : __t) + ');\n';
 
             }
             return __p
@@ -618,9 +673,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p +=
-                    ((__t = (content)) == null ? '' : __t) +
-                    '\n';
+                __p += ((__t = (content)) == null ? '' : __t) +'\n';
 
             }
             return __p
@@ -631,9 +684,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'else {\n' +
-                    ((__t = (branch)) == null ? '' : __t) +
-                    ' }';
+                __p += 'else {\n' + ((__t = (branch)) == null ? '' : __t) + ' }';
 
             }
             return __p
@@ -644,11 +695,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'else if (' +
-                    ((__t = (argument)) == null ? '' : __t) +
-                    ') {\n' +
-                    ((__t = (branch)) == null ? '' : __t) +
-                    ' }';
+                __p += 'else if (' + ((__t = (argument)) == null ? '' : __t) + ') {\n' + ((__t = (branch)) == null ? '' : __t) + ' }';
 
             }
             return __p
@@ -659,12 +706,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'if (' +
-                    ((__t = (argument)) == null ? '' : __t) +
-                    ') {\n' +
-                    ((__t = (branch)) == null ? '' : __t) +
-                    ' }';
-
+                __p += 'if (' + ((__t = (argument)) == null ? '' : __t) + ') {\n' + ((__t = (branch)) == null ? '' : __t) + ' }';
             }
             return __p
         };
@@ -674,9 +716,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p +=
-                    ((__t = (branch)) == null ? '' : __t) +
-                    '\n';
+                __p += ((__t = (branch)) == null ? '' : __t) + '\n';
 
             }
             return __p
@@ -687,12 +727,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'while (' +
-                    ((__t = (argument0)) == null ? '' : __t) +
-                    ') {\n' +
-                    ((__t = (branch)) == null ? '' : __t) +
-                    ' }\n';
-
+                __p += 'while (' + ((__t = (argument0)) == null ? '' : __t) + ') {\n' + ((__t = (branch)) == null ? '' : __t) + ' }\n';
             }
             return __p
         };
@@ -702,9 +737,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'analogRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
+                __p += 'analogRead(' + ((__t = (dropdown_pin)) == null ? '' : __t) + ')';
 
             }
             return __p
@@ -715,10 +748,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',INPUT);\n';
-
+                __p += 'pinMode(' + ((__t = (dropdown_pin)) == null ? '' : __t) + ',INPUT);\n';
             }
             return __p
         };
@@ -728,12 +758,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'analogWrite(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (value_num)) == null ? '' : __t) +
-                    ');\n';
-
+                __p += 'analogWrite(' + ((__t = (dropdown_pin)) == null ? '' : __t) + ',' + ((__t = (value_num)) == null ? '' : __t) + ');\n';
             }
             return __p
         };
@@ -743,9 +768,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',OUTPUT);\n';
+                __p += 'pinMode(' + ((__t = (dropdown_pin)) == null ? '' : __t) + ',OUTPUT);\n';
 
             }
             return __p
@@ -756,11 +779,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-				if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
-                  __p += 'digitalWrite(13,' +((__t = (dropdown_stat)) == null ? '' : __t) +');\n';
-				else if ((RoboBlocks.locales.processor==='ESP32')||(RoboBlocks.locales.processor==='NodeMCU'))
-				  __p += 'digitalWrite(2,' +((__t = (dropdown_stat)) == null ? '' : __t) +');\n';
-
+				__p += 'digitalWrite('+((__t = (pin)) == null ? '' : __t)+',' +((__t = (dropdown_stat)) == null ? '' : __t) +');\n';
             }
             return __p
         };
@@ -770,11 +789,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-				if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
-                  __p += 'pinMode(13,OUTPUT);\n';
-			    else if ((RoboBlocks.locales.processor==='ESP32')||(RoboBlocks.locales.processor==='NodeMCU'))
-				  __p += 'pinMode(2,OUTPUT);\n';
-
+				__p += 'pinMode('+((__t = (pin)) == null ? '' : __t)+',OUTPUT);\n';
             }
             return __p
         };
@@ -784,9 +799,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'digitalRead(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ')';
+                __p += 'digitalRead(' + ((__t = (dropdown_pin)) == null ? '' : __t) + ')';
 
             }
             return __p
@@ -797,9 +810,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',INPUT);\n';
+                __p += 'pinMode(' + ((__t = (dropdown_pin)) == null ? '' : __t) + ',INPUT);\n';
 
             }
             return __p
@@ -810,12 +821,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'digitalWrite(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (dropdown_stat)) == null ? '' : __t) +
-                    ');\n';
-
+                __p += 'digitalWrite(' +((__t = (dropdown_pin)) == null ? '' : __t) + ',' + ((__t = (dropdown_stat)) == null ? '' : __t) + ');\n';
             }
             return __p
         };
@@ -825,9 +831,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'pinMode(' +
-                    ((__t = (dropdown_pin)) == null ? '' : __t) +
-                    ',OUTPUT);\n';
+                __p += 'pinMode(' + ((__t = (dropdown_pin)) == null ? '' : __t) + ',OUTPUT);\n';
 
             }
             return __p
@@ -838,8 +842,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p +=
-                    ((__t = (bool_value)) == null ? '' : __t);
+                __p += ((__t = (bool_value)) == null ? '' : __t);
 
             }
             return __p
@@ -850,13 +853,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p +=
-                    ((__t = (argument0)) == null ? '' : __t) +
-                    ' ' +
-                    ((__t = (operator)) == null ? '' : __t) +
-                    ' ' +
-                    ((__t = (argument1)) == null ? '' : __t);
-
+                __p += ((__t = (argument0)) == null ? '' : __t) + ' ' + ((__t = (operator)) == null ? '' : __t) + ' ' + ((__t = (argument1)) == null ? '' : __t);
             }
             return __p
         };
@@ -866,9 +863,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += '!' +
-                    ((__t = (argument0)) == null ? '' : __t);
-
+                __p += '!' + ((__t = (argument0)) == null ? '' : __t);
             }
             return __p
         };
@@ -878,12 +873,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p +=
-                    ((__t = (argument0)) == null ? '' : __t) +
-                    ' ' +
-                    ((__t = (operator)) == null ? '' : __t) +
-                    ' ' +
-                    ((__t = (argument1)) == null ? '' : __t);
+                __p +=((__t = (argument0)) == null ? '' : __t) +' ' +((__t = (operator)) == null ? '' : __t) +' ' +((__t = (argument1)) == null ? '' : __t);
 
             }
             return __p
@@ -894,12 +884,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p +=
-                    ((__t = (argument0)) == null ? '' : __t) +
-                    '' +
-                    ((__t = (operator)) == null ? '' : __t) +
-                    '' +
-                    ((__t = (argument1)) == null ? '' : __t);
+                __p += ((__t = (argument0)) == null ? '' : __t) + '' +((__t = (operator)) == null ? '' : __t) +'' +((__t = (argument1)) == null ? '' : __t);
 
             }
             return __p
@@ -910,11 +895,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'pow(' +
-                    ((__t = (argument0)) == null ? '' : __t) +
-                    ',' +
-                    ((__t = (argument1)) == null ? '' : __t) +
-                    ')';
+                __p += 'pow(' +((__t = (argument0)) == null ? '' : __t) +',' +((__t = (argument1)) == null ? '' : __t) + ')';
 
             }
             return __p
@@ -1055,10 +1036,7 @@
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += 'Serial.begin(' +
-                    ((__t = (bitrate)) == null ? '' : __t) +
-                    ');\n';
-
+                __p += 'Serial.begin('+((__t = (bitrate)) == null ? '' : __t)+');\n';
             }
             return __p
         };
@@ -1609,8 +1587,7 @@
 		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 		keys: ['LANG_PROCEDURES_DEFRETURN_PROCEDURE','LANG_PROCEDURES_DEFRETURN_RETURN','LANG_PROCEDURES_DEFRETURN_TOOLTIP'],
 		init: function() {
-			var nameField = new Blockly.FieldTextInput('',
-				Blockly.Procedures.rename);
+			var nameField = new Blockly.FieldTextInput('',Blockly.Procedures.rename);
 			nameField.setSpellcheck(false);
 			this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_PROCEDURE')).appendField(nameField, 'NAME').appendField('', 'PARAMS');
 			//this.appendStatementInput('STACK').appendField(RoboBlocks.locales.getKey('LANG_PROCEDURES_DEFRETURN_DO'));
@@ -1703,9 +1680,6 @@
   renameVar: Blockly.Blocks['procedures_defnoreturn'].renameVar,
   callType_: 'procedures_callreturn'
 };
-
-		
-		
 
         // Source: src/blocks/procedures_ifreturn/procedures_ifreturn.js
         Blockly.Arduino.procedures_ifreturn = function() {
@@ -2408,7 +2382,6 @@
                     [RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_OPERATOR_WHILE'), 'WHILE'],
                     [RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL'), 'UNTIL']
                 ]), 'MODE');
-                // this.appendValueInput('WHILE').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_OPERATOR_WHILE'));
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_TOOLTIP'));
@@ -2513,7 +2486,7 @@
 			keys: ['LANG_CONTROLS_REPEAT','LANG_CONTROLS_REPEAT_TIMES','LANG_CONTROLS_REPEAT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendDummyInput('TO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_REPEAT')).appendField(new Blockly.FieldNumber('4','1','32767'),'TO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_REPEAT_TIMES')).setAlign(Blockly.ALIGN_RIGHT);
+                this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_REPEAT')).appendField(new Blockly.FieldNumber('4','1','32767'),'TO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_REPEAT_TIMES')).setAlign(Blockly.ALIGN_RIGHT);
                 this.appendStatementInput('DO').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_FOR_INPUT_DO')).setCheck('code');
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
@@ -2706,9 +2679,7 @@
 			keys: ['LANG_CONTROLS_IF_MSG_IF','LANG_CONTROLS_IF_MSG_THEN','LANG_CONTROLS_IF_TOOLTIP_1','LANG_CONTROLS_IF_ELSEIF_Field_ELSEIF','LANG_CONTROLS_IF_MSG_THEN','LANG_CONTROLS_IF_ELSE_Field_ELSE'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendValueInput('IF0')
-                    .setCheck(Boolean)
-                    .appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
+                this.appendValueInput('IF0').setCheck(Boolean).appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_IF'));
                 this.appendStatementInput('DO0').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_IF_MSG_THEN')).setAlign(Blockly.ALIGN_RIGHT).setCheck('code');
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
@@ -2947,7 +2918,7 @@
 			keys: ['LANG_CONTROLS_SWITCH','LANG_CONTROLS_SWITCH_CASE','LANG_CONTROLS_IF_MSG_THEN','LANG_CONTROLS_SWITCH_DEFAULT'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
-                this.appendValueInput('IF0').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH')).setAlign(Blockly.ALIGN_RIGHT);
+                this.appendValueInput('IF0').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_SWITCH')).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setMutator(new Blockly.Mutator(['controls_switch_case', 'controls_switch_default']));
@@ -3324,12 +3295,10 @@
 
 		Blockly.Blocks.controls_every_item = [];
 		
-		if ((RoboBlocks.locales.processor==='ESP32') || (RoboBlocks.locales.processor==='NodeMCU')|| (RoboBlocks.locales.processor===null))
+		if ((profiles['processor']==='ESP32')||(profiles['processor']==='ESP8266'))
 		{	
 			Blockly.Blocks.ESP_deep_sleep = [];
 		}
-		
-		// Source: src/blocks/controls_setupLoop/controls_setupLoop.js
 
         Blockly.Arduino.controls_setupLoop = function() {
             // Add statements to setup.
@@ -3372,6 +3341,60 @@
                 this.setNextStatement(false);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_SETUP_LOOP_TOOLTIP'));
             }
+        };
+		
+		Blockly.Arduino.controls_comment = function() {
+            // Add statements to setup.
+            var code='//'+this.getFieldValue('COMMENT')+'\n';
+            return code;
+        };
+        Blockly.Blocks.controls_comment = {
+            // Setup statements.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
+            helpUrl: RoboBlocks.getHelpUrl('controls_block'),
+			examples: ['controls_setupLoop_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_COMMENT_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
+				this.appendDummyInput('').appendField('//').appendField(new Blockly.FieldTextInput(''),'COMMENT');
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_COMMENT_TOOLTIP'));
+				this.contextMenu = false;
+            }
+        };
+		
+		Blockly.Arduino.controls_block = function() {
+            // Add statements to setup.
+            var code=Blockly.Arduino.statementToCode(this, 'BLOCK');
+            return code;
+        };
+        Blockly.Blocks.controls_block = {
+            // Setup statements.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
+            helpUrl: RoboBlocks.getHelpUrl('controls_block'),
+			examples: ['controls_setupLoop_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			colour: RoboBlocks.LANG_COLOUR_CONTROL,
+			keys: ['LANG_CONTROLS_BLOCK','LANG_CONTROLS_BLOCK_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_CONTROL);
+				this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_CONTROLS_BLOCK'));
+                this.appendStatementInput('BLOCK').setCheck('code');
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BLOCK_TOOLTIP'));
+            },
+			onchange: function(){
+				if (this.getInputTargetBlock('BLOCK')===null)
+				{
+					this.getInput('BLOCK').connection.connect(this.workspace.newBlock('controls_comment').previousConnection);
+				}
+			}
         };
 
 	// Source: src/blocks/advanced_map/advanced_map.js
@@ -3505,35 +3528,44 @@
             }
         };
         // Source: src/blocks/inout_analog_write/inout_analog_write.js
+		
         Blockly.Arduino.inout_analog_write = function() {
-            var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+            var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE);  //Do not change! It affects to the channel in ESP32
             var value_num = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.Arduino.ORDER_ATOMIC);
             var code = '';
-            var a = RoboBlocks.findPinMode(dropdown_pin);
-            code += a['code'];
-            dropdown_pin = a['pin'];
+			if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560')||(profiles['processor']==='ESP8266'))
+			{
+				var a = RoboBlocks.findPinMode(dropdown_pin);
+				code += a['code'];
+				dropdown_pin = a['pin'];
 
-            var b = RoboBlocks.findPinMode(value_num);
-            code += b['code'];
-            value_num = b['pin'];
+				var b = RoboBlocks.findPinMode(value_num);
+				code += b['code'];
+				value_num = b['pin'];
 
-
-            if (RoboBlocks.isVariable(dropdown_pin)) {
-                code += JST['inout_analog_write_setups']({
-                    'dropdown_pin': dropdown_pin,
-                    'value_num': value_num
-                });
-            } else {
-                Blockly.Arduino.setups_['setup_analog_write' + dropdown_pin] = JST['inout_analog_write_setups']({
-                    'dropdown_pin': dropdown_pin,
-                    'value_num': value_num
-                });
-            }
-
-            code += JST['inout_analog_write']({
-                'dropdown_pin': dropdown_pin,
-                'value_num': value_num
-            });
+				if (RoboBlocks.isVariable(dropdown_pin)) {
+					code += JST['inout_analog_write_setups']({'dropdown_pin': dropdown_pin,'value_num': value_num});
+				} else {
+					Blockly.Arduino.setups_['setup_analog_write' + dropdown_pin] = JST['inout_analog_write_setups']({'dropdown_pin': dropdown_pin,'value_num': value_num});
+				}
+				code += JST['inout_analog_write']({'dropdown_pin': dropdown_pin,'value_num': value_num});
+			}
+			else if (profiles['processor']==='ESP32')
+			{
+				var freq_num = this.getFieldValue('FREQ');
+				var res_num = this.getFieldValue('RES');
+				var channel = 0;
+				for (var i=0;i<profiles.default.pwm_channel.length;i++)
+				{
+					if (profiles.default.pwm_channel[i][0]===dropdown_pin)
+					{
+						channel=profiles.default.pwm_channel[i][1];
+						break;
+					}
+				}
+				Blockly.Arduino.setups_['ledc_'+dropdown_pin] = 'ledcSetup('+channel+','+freq_num+','+res_num+');\n  ledcAttachPin('+dropdown_pin+','+channel+');\n';
+				code += 'ledcWrite('+channel+','+value_num+');\n';	
+			}
             return code;
         };
         Blockly.Blocks.inout_analog_write = {
@@ -3547,27 +3579,31 @@
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_ANALOG);
                 this.appendValueInput('PIN').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE')).appendField(new Blockly.FieldImage("img/blocks/pwm_signal.svg",24*options.zoom, 24*options.zoom));
-                this.appendValueInput('NUM', Number).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE_VALUE')).appendField(new Blockly.FieldImage("img/blocks/analog_signal.svg",24*options.zoom, 24*options.zoom)).setCheck(Number);
+				if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ESP8266'))
+                this.appendValueInput('NUM', Number).appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE_VALUE')).setCheck(Number);
+				else if (profiles['processor']==='ESP32')
+					this.appendValueInput('NUM', Number).appendField(new Blockly.FieldNumber(1000,0,40000000),'FREQ').appendField('Hz').appendField(new Blockly.FieldNumber(8,1,16),'RES').appendField('bits').appendField(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE_VALUE')).setCheck(Number);
                 this.setInputsInline(true);
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE_TOOLTIP'));
             }
         };
+		
         // Source: src/blocks/inout_builtin_led/inout_builtin_led.js
         Blockly.Arduino.inout_builtin_led = function() {
             var dropdown_stat = this.getFieldValue('STAT');
 			var code = '';
-            Blockly.Arduino.setups_['setup_green_led_13'] = JST['inout_builtin_led_setups']({});
+			var pin = profiles.default.builtin;
+			Blockly.Arduino.setups_['setup_green_led_'+pin] = JST['inout_builtin_led_setups']({'pin': pin});
+			  
 			if (dropdown_stat==='TOGGLE')
 			{
-				code +='digitalWrite(13,!digitalRead(13));\n';
+				code +='digitalWrite('+pin+',!digitalRead('+pin+'));\n';
 			}
 			else
 			{
-              code = JST['inout_builtin_led']({
-                'dropdown_stat': dropdown_stat
-              });
+              code = JST['inout_builtin_led']({'pin': pin, 'dropdown_stat': dropdown_stat});
 			}
 
             return code;
@@ -4178,6 +4214,101 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_NEGATE_TOOLTIP'));
             }
         };
+		
+		Blockly.Arduino.logic_bitwise_operation = function() {
+		    var code = '';
+            var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
+            var argument1 = Blockly.Arduino.valueToCode(this, 'B', Blockly.Arduino.ORDER_ATOMIC) || '';
+			code = '(('+argument0+')'+this.getFieldValue('OP')+'('+argument1+'))';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+		
+        Blockly.Blocks.logic_bitwise_operation = {
+            // Logical operations: 'and', 'or'.
+			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
+            helpUrl: RoboBlocks.getHelpUrl('logic_bitwise_operation'),
+			examples: ['logic_operation_example.bly'],
+			tags: ['logic'],	
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
+			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
+			keys: ['LANG_LOGIC_BITWISE_OPERATION_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_LOGIC_BITWISE);
+                this.setOutput(true, Number);
+                this.appendValueInput('A').setCheck(Number);
+                this.appendValueInput('B').setCheck(Number).appendField(new Blockly.FieldDropdown([
+                    ['&', '&'],
+                    ['|', '|'],
+					['^', '^']
+                ]), 'OP');
+                this.setInputsInline(true);
+                // Assign 'this' to a variable for use in the tooltip closure below.
+                var thisBlock = this;
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_OPERATION_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.logic_bitwise_not = function() {
+		    var code = '';
+            var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
+			code = '(~'+argument0+')';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+		
+        Blockly.Blocks.logic_bitwise_not = {
+            // Logical operations: 'and', 'or'.
+			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
+            helpUrl: RoboBlocks.getHelpUrl('logic_bitwise_not'),
+			examples: ['logic_operation_example.bly'],
+			tags: ['logic'],	
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
+			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
+			keys: ['LANG_LOGIC_BITWISE_NOT_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_LOGIC_BITWISE);
+                this.setOutput(true, Number);
+                this.appendValueInput('A').appendField('~').setCheck(Number);
+                this.setInputsInline(true);
+                // Assign 'this' to a variable for use in the tooltip closure below.
+                var thisBlock = this;
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_NOT_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.logic_shift = function() {
+		    var code = '';
+            var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
+            var argument1 = Blockly.Arduino.valueToCode(this, 'B', Blockly.Arduino.ORDER_ATOMIC) || '';
+			code = '(('+argument0+')'+this.getFieldValue('OP')+'('+argument1+'))';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+		
+        Blockly.Blocks.logic_shift = {
+            // Logical operations: 'and', 'or'.
+			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
+            helpUrl: RoboBlocks.getHelpUrl('logic_shift'),
+			examples: ['logic_operation_example.bly'],
+			tags: ['logic'],	
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
+			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
+			keys: ['LANG_LOGIC_BITWISE_SHIFT_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_LOGIC_BITWISE);
+                this.setOutput(true, Number);
+                this.appendValueInput('A').setCheck(Number);
+                this.appendValueInput('B').setCheck(Number).appendField(new Blockly.FieldDropdown([
+                    ['<<', '<<'],
+                    ['>>', '>>']
+                ]), 'OP');
+                this.setInputsInline(true);
+                // Assign 'this' to a variable for use in the tooltip closure below.
+                var thisBlock = this;
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_SHIFT_TOOLTIP'));
+            }
+        };
 
         Blockly.Arduino.math_arithmetic = function() {
             // Basic arithmetic operators, and power.
@@ -4495,6 +4626,75 @@
 		//if (options.arrays)
 		{
 			
+			Blockly.Arduino.math_1DArray_get = function() {
+            // Array constructor.
+			var input = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_NONE);
+			var code = '';
+			if (input!==null)
+			{
+				code=input+'['+this.getFieldValue('INDEX')+']';
+			}
+			return [code,Blockly.Arduino.ORDER_NONE];
+			};
+
+		
+        Blockly.Blocks.math_1DArray_get = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('math_1DArray_get'),
+			tags: ['variables'],
+			examples: ['variables_global_volatile_type_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_MATH,
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_ARRAY_GET','LANG_MATH_ARRAY_GET_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+				this.appendValueInput('INPUT').appendField(RoboBlocks.locales.getKey('LANG_MATH_ARRAY_GET')).setAlign(Blockly.ALIGN_RIGHT).setCheck('Array');
+				this.appendDummyInput('').appendField('[').appendField(new Blockly.FieldTextInput('0', Blockly.Blocks.math_number.validator), 'INDEX').appendField(']').setAlign(Blockly.ALIGN_RIGHT);
+                this.setInputsInline(true);
+                this.setPreviousStatement(false);
+                this.setNextStatement(false);
+				this.setOutput(true,Number);
+				this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_ARRAY_GET_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.math_1DArray_set = function() {
+            // Array constructor.
+			var input = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_NONE);
+			var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
+			var code = '';
+			if (input!==null)
+			{
+				code=input+'['+this.getFieldValue('INDEX')+']='+value;
+			}
+			return [code,Blockly.Arduino.ORDER_NONE];
+			};
+
+		
+        Blockly.Blocks.math_1DArray_set = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('math_1DArray_set'),
+			tags: ['variables'],
+			examples: ['variables_global_volatile_type_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_MATH,
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_MATH_ARRAY_SET','LANG_MATH_ARRAY_SET_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+				this.appendValueInput('INPUT').appendField(RoboBlocks.locales.getKey('LANG_MATH_ARRAY_SET')).setAlign(Blockly.ALIGN_RIGHT).setCheck('Array');
+				this.appendValueInput('VALUE').appendField('[').appendField(new Blockly.FieldTextInput('0', Blockly.Blocks.math_number.validator), 'INDEX').appendField(']').appendField('=').setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
+                this.setInputsInline(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+				this.setOutput(false);
+				this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_ARRAY_SET_TOOLTIP'));
+            }
+        };
+			
 			Blockly.Arduino.math_1DArray_constructor2 = function() {
             // Array constructor.
 			var code='{';
@@ -4614,7 +4814,7 @@
 			examples: ['variables_global_volatile_type_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
-			keys: [],
+			keys: ['LANG_VARIABLES_ARRAY','LANG_VARIABLES_ARRAY_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_MATH);
 				this.appendDummyInput('ITEMS').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY'));
@@ -4726,6 +4926,289 @@
                 this.contextMenu = false;
             }
         };
+		
+		
+		Blockly.Arduino.math_1DArray_decode = function() {
+			var x = Blockly.Arduino.valueToCode(this, 'ARRAY', Blockly.Arduino.ORDER_NONE);
+			var code='';
+			code+='{\n';
+			code+='byte* pData=(byte*)('+x+');\n';
+			var i=0;
+			for (i=0;i<this.itemCount_;i++)
+			{
+				var item = Blockly.Arduino.valueToCode(this, 'ITEM'+i, Blockly.Arduino.ORDER_NONE);
+				var var_type = RoboBlocks.variables[item][0];
+				code+=item+'=('+var_type+')(*(('+var_type+'*)pData));\n';
+				if (i<(this.itemCount_-1))
+					code+='pData+=sizeof('+var_type+');\n';
+			}
+			code+='}\n';
+			return code;
+        };
+
+		
+        Blockly.Blocks.math_1DArray_decode = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('math_1DArray_decode'),
+			tags: ['variables'],
+			examples: ['variables_global_volatile_type_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_MATH,
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_VARIABLES_ARRAY_DECODE','LANG_VARIABLES_ARRAY_DECODE_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+				this.appendValueInput('ARRAY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_DECODE')).setCheck('Array');
+				this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_INTO'));
+                this.setInputsInline(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+				this.setOutput(false);
+				this.setMutator(new Blockly.Mutator(['math_1DArray_decode_item']));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_DECODE_TOOLTIP'));
+				this.itemCount_ = 0;
+            },
+            mutationToDom: function() {
+                if (!this.itemCount_) {
+                    return null;
+                }
+				var container = document.createElement('mutation');
+				if (this.itemCount_) {
+					container.setAttribute('item', this.itemCount_);
+				}
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                this.itemCount_ = window.parseInt(xmlElement.getAttribute('item'), 10);
+                for (var x = 0; x < this.itemCount_; x++){
+                    this.appendValueInput('ITEM'+x).setCheck('Variable');
+                }
+            },
+			decompose: function(workspace) {
+                var containerBlock = workspace.newBlock('math_1DArray_decode_decode');
+                containerBlock.initSvg();
+                var connection = containerBlock.getInput('STACK').connection;
+                for (var x = 0; x < this.itemCount_; x++) {
+                    var itemBlock = workspace.newBlock('math_1DArray_decode_item');
+                    itemBlock.initSvg();
+                    connection.connect(itemBlock.previousConnection);
+                    connection = itemBlock.nextConnection;
+                }
+                return containerBlock;
+            },
+            compose: function(containerBlock) {
+                // Disconnect all the task input blocks and remove the inputs.
+                for (var x = this.itemCount_-1; x >= 0; x--) {
+                    this.removeInput('ITEM' + x);
+                }
+                this.itemCount_ = 0;
+                // Rebuild the block's optional inputs.
+                var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+                while (clauseBlock) {
+                    switch (clauseBlock.type) {
+                        case 'math_1DArray_decode_item':
+                            var itemInput = this.appendValueInput('ITEM'+this.itemCount_).setCheck('Variable');
+                            this.itemCount_++;
+                            // Reconnect any child blocks.
+                            if (clauseBlock.valueConnection_) {
+                                itemInput.connection.connect(clauseBlock.valueConnection_);
+                            }
+                 
+                            break;
+                        default:
+                            throw 'Unknown block type.';
+                    }
+                    clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+                }
+            },
+            saveConnections: function(containerBlock) {
+                // Store a pointer to any connected child blocks.
+                var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+                var x = 0;
+                while (clauseBlock) {
+                    switch (clauseBlock.type) {
+                        case 'math_1DArray_decode_item':
+                            var itemInput = this.getInput('ITEM' + x);
+                            clauseBlock.valueConnection_ = itemInput && itemInput.connection.targetConnection;
+                            x++;
+                            break;
+                        default:
+                            throw 'Unknown block type.';
+                    }
+                    clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+                }
+            }
+        };
+		
+		 Blockly.Blocks.math_1DArray_decode_decode = {
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_VARIABLES_ARRAY_DECODE','LANG_VARIABLES_ARRAY_DECODE_TOOLTIP'],
+            // Task.
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_DECODE')).setAlign(Blockly.ALIGN_RIGHT);
+                this.appendStatementInput('STACK').setCheck('array_decode_item');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_DECODE_TOOLTIP'));
+                this.contextMenu = false;
+            }
+        };
+
+		Blockly.Blocks.math_1DArray_decode_item = {
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+            // Task item.
+			keys: ['LANG_VARIABLES_ARRAY_DECODE_ITEM'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_DECODE_ITEM')).setAlign(Blockly.ALIGN_RIGHT);
+                this.setPreviousStatement(true,'array_decode_item');
+                this.setNextStatement(true,'array_decode_item');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_DECODE_ITEM'));
+                this.contextMenu = false;
+            }
+        };
+		
+		Blockly.Arduino.math_1DArray_encode = function() {
+			var x = Blockly.Arduino.valueToCode(this, 'ARRAY', Blockly.Arduino.ORDER_NONE);
+			var code='';
+			Blockly.Arduino.definitions_['copyBytes']='void copyBytes(byte* dst, byte* src, int len) {\n    for (int i = 0; i < len; i++) {\n        *dst++ = *src++;\n    }\n}\n';
+			code+='{\n';
+			code+='byte* pData=(byte*)('+x+');\n';
+			var i=0;
+			for (i=0;i<this.itemCount_;i++)
+			{
+				var item = Blockly.Arduino.valueToCode(this, 'ITEM'+i, Blockly.Arduino.ORDER_NONE);
+				var var_type = RoboBlocks.variables[item][0];
+				code+='copyBytes(pData,(byte*)&'+item+',sizeof('+var_type+'));\n';
+				if (i<(this.itemCount_-1))
+					code+='pData+=sizeof('+var_type+');\n';
+			}
+			code+='}\n';
+			return code;
+        };
+
+		
+        Blockly.Blocks.math_1DArray_encode = {
+            // Variable setter.
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
+            helpUrl: RoboBlocks.getHelpUrl('math_1DArray_encode'),
+			tags: ['variables'],
+			examples: ['variables_global_volatile_type_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_MATH,
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_VARIABLES_ARRAY_DECODE','LANG_VARIABLES_ARRAY_ENCODE_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+				this.appendValueInput('ARRAY').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ENCODE')).setCheck('Array');
+				this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_WITH'));
+                this.setInputsInline(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+				this.setOutput(false);
+				this.setMutator(new Blockly.Mutator(['math_1DArray_encode_item']));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ENCODE_TOOLTIP'));
+				this.itemCount_ = 0;
+            },
+            mutationToDom: function() {
+                if (!this.itemCount_) {
+                    return null;
+                }
+				var container = document.createElement('mutation');
+				if (this.itemCount_) {
+					container.setAttribute('item', this.itemCount_);
+				}
+                return container;
+            },
+            domToMutation: function(xmlElement) {
+                this.itemCount_ = window.parseInt(xmlElement.getAttribute('item'), 10);
+                for (var x = 0; x < this.itemCount_; x++){
+                    this.appendValueInput('ITEM'+x).setCheck('Variable');
+                }
+            },
+			decompose: function(workspace) {
+                var containerBlock = workspace.newBlock('math_1DArray_encode_encode');
+                containerBlock.initSvg();
+                var connection = containerBlock.getInput('STACK').connection;
+                for (var x = 0; x < this.itemCount_; x++) {
+                    var itemBlock = workspace.newBlock('math_1DArray_encode_item');
+                    itemBlock.initSvg();
+                    connection.connect(itemBlock.previousConnection);
+                    connection = itemBlock.nextConnection;
+                }
+                return containerBlock;
+            },
+            compose: function(containerBlock) {
+                // Disconnect all the task input blocks and remove the inputs.
+                for (var x = this.itemCount_-1; x >= 0; x--) {
+                    this.removeInput('ITEM' + x);
+                }
+                this.itemCount_ = 0;
+                // Rebuild the block's optional inputs.
+                var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+                while (clauseBlock) {
+                    switch (clauseBlock.type) {
+                        case 'math_1DArray_encode_item':
+                            var itemInput = this.appendValueInput('ITEM'+this.itemCount_).setCheck('Variable');
+                            this.itemCount_++;
+                            // Reconnect any child blocks.
+                            if (clauseBlock.valueConnection_) {
+                                itemInput.connection.connect(clauseBlock.valueConnection_);
+                            }
+                 
+                            break;
+                        default:
+                            throw 'Unknown block type.';
+                    }
+                    clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+                }
+            },
+            saveConnections: function(containerBlock) {
+                // Store a pointer to any connected child blocks.
+                var clauseBlock = containerBlock.getInputTargetBlock('STACK');
+                var x = 0;
+                while (clauseBlock) {
+                    switch (clauseBlock.type) {
+                        case 'math_1DArray_encode_item':
+                            var itemInput = this.getInput('ITEM' + x);
+                            clauseBlock.valueConnection_ = itemInput && itemInput.connection.targetConnection;
+                            x++;
+                            break;
+                        default:
+                            throw 'Unknown block type.';
+                    }
+                    clauseBlock = clauseBlock.nextConnection && clauseBlock.nextConnection.targetBlock();
+                }
+            }
+        };
+		
+		 Blockly.Blocks.math_1DArray_encode_encode = {
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+			keys: ['LANG_VARIABLES_ARRAY_ENCODE','LANG_VARIABLES_ARRAY_ENCODE_TOOLTIP'],
+            // Task.
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ENCODE')).setAlign(Blockly.ALIGN_RIGHT);
+                this.appendStatementInput('STACK').setCheck('array_encode_item');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ENCODE_TOOLTIP'));
+                this.contextMenu = false;
+            }
+        };
+
+		Blockly.Blocks.math_1DArray_encode_item = {
+			colour: RoboBlocks.LANG_COLOUR_MATH,
+            // Task item.
+			keys: ['LANG_VARIABLES_ARRAY_ENCODE_ITEM'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_MATH);
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ENCODE_ITEM')).setAlign(Blockly.ALIGN_RIGHT);
+                this.setPreviousStatement(true,'array_encode_item');
+                this.setNextStatement(true,'array_encode_item');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_ARRAY_ENCODE_ITEM'));
+                this.contextMenu = false;
+            }
+        };
+		
 		}//options.arrays
 
         Blockly.Arduino.math_single = function() {
@@ -5304,15 +5787,44 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_PIN_TOOLTIP'));
             }
         };
+		
+		if (profiles['processor']==='ESP32')
+		{
+		Blockly.Arduino.pin_spi = function() {
+            var pin = this.getFieldValue('PIN') || '';
+            return [pin, Blockly.Arduino.ORDER_NONE];
+        };
+
+        Blockly.Blocks.pin_spi = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_DIGITAL'),
+            helpUrl: RoboBlocks.getHelpUrl('pin_pwm'),
+			examples: ['inout_analog_write_example.bly'],
+			tags: ['input','output'],			 
+			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
+			keys: ['LANG_VARIABLES_PIN_SPI','LANG_VARIABLES_PIN_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL);
+                this.appendDummyInput('').appendField(new Blockly.FieldImage("img/blocks/digital_signal.svg",24*options.zoom, 24*options.zoom))
+                    .appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_PIN_SPI'))
+                    .appendField(new Blockly.FieldDropdown(profiles.default.spi), 'PIN');
+
+                this.setInputsInline(true);
+                this.setOutput(true, Number);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_PIN_TOOLTIP'));
+            }
+        };
+		}
 
         // Source: src/blocks/serial_available/serial_available.js
         Blockly.Arduino.serial_available = function() {
             var branch = Blockly.Arduino.statementToCode(this, 'DO');
             branch = branch.replace(/&quot;/g, '"');
             // branch=branch.replace(/&amp;/g, '');
-			Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+			Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
+			if (profiles['processor']==='ATmega32U4')
+				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
             var code = JST['serial_available']({
                 'branch': branch
             });
@@ -5347,9 +5859,9 @@
             var a = RoboBlocks.findPinMode(content);
             code += a['code'];
             content = a['pin'];
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
+			if (profiles['processor']==='ATmega32U4')
+				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
             code += 'Serial.print(' + content+');\n';
             return code;
         };
@@ -5378,9 +5890,9 @@
             var a = RoboBlocks.findPinMode(content);
             code += a['code'];
             content = a['pin'];
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
+			if (profiles['processor']==='ATmega32U4')
+				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
             code += 'Serial.println(' + content+');\n';
             return code;
         };
@@ -5409,9 +5921,9 @@
             var a = RoboBlocks.findPinMode(content);
             code += a['code'];
             content = a['pin'];
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
+			if (profiles['processor']==='ATmega32U4')
+				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
             code += 'Serial.println(' + content+');\n';
 			code += 'Serial.print(" ");\n';
             return code;
@@ -5438,9 +5950,9 @@
 		// Source: src/blocks/serial_parseint/serial_parseint.js
 
         Blockly.Arduino.serial_parseint = function() {
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
+			if (profiles['processor']==='ATmega32U4')
+				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
             var code = 'Serial.parseInt()';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -5465,9 +5977,9 @@
         };
 		
 		Blockly.Arduino.serial_parsefloat = function() {
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
+			if (profiles['processor']==='ATmega32U4')
+				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
             var code = 'Serial.parseFloat()';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -5494,9 +6006,9 @@
 
         Blockly.Arduino.serial_read = function() {
 
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
+			if (profiles['processor']==='ATmega32U4')
+				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
             var code = 'Serial.read()';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -5524,9 +6036,7 @@
 
         Blockly.Arduino.serial_readstring = function() {
 
-            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({
-                'bitrate': profiles.default.serial
-            });
+            Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
             var code = 'Serial.readString()';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -5731,10 +6241,9 @@
 			keys: ['LANG_TEXT_APPEND_TO','LANG_TEXT_APPEND_APPENDTEXT','LANG_TEXT_APPEND_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
-                this.appendValueInput('VAR')
-                    // .appendField(new Blockly.FieldVariable(' '), 'VAR')
-                    .appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_TO'));
                 this.appendValueInput('TEXT').appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_APPENDTEXT'));
+				this.appendValueInput('VAR').appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_TO'));
+                
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setInputsInline(true);
@@ -5784,8 +6293,13 @@
 		
 		Blockly.Arduino.text_charAt = function() {
             var string = Blockly.Arduino.valueToCode(this, 'STRING', Blockly.Arduino.ORDER_NONE);
-			var pos = Blockly.Arduino.valueToCode(this, 'POS', Blockly.Arduino.ORDER_NONE);
-            var code = string+'.charAt('+pos+')';
+			var input = this.getInputTargetBlock('STRING');
+			var code='';
+			if (input!==null)
+			{
+				var pos = Blockly.Arduino.valueToCode(this, 'POS', Blockly.Arduino.ORDER_NONE);
+				code = string+'['+pos+']';
+			}
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -5799,10 +6313,8 @@
 			keys: ['LANG_TEXT_CHARAT','LANG_TEXT_CHARAT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
-                this.appendValueInput('STRING');
-                this.appendValueInput('POS')
-                    .appendField(RoboBlocks.locales.getKey('LANG_TEXT_CHARAT'))
-                    .setAlign(Blockly.ALIGN_RIGHT);
+                this.appendValueInput('STRING').setCheck([String,'Array']);
+                this.appendValueInput('POS').appendField(RoboBlocks.locales.getKey('LANG_TEXT_CHARAT')).setAlign(Blockly.ALIGN_RIGHT).setCheck(Number);
                 this.setInputsInline(true);
 
                 this.setOutput(true);
@@ -6060,9 +6572,9 @@
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('VALUE')
-                    .setCheck([String, Array])
+                    .setCheck(String)
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_INPUT_LENGTH'));
-                this.setOutput(true, Number);
+                this.setOutput(true,Number);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_TOOLTIP'));
             }
         };
@@ -6098,7 +6610,7 @@
                 this.appendValueInput('VALUE')
                     .setCheck(String)
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_INPUT_LOWER'));
-                this.setOutput(true, String);
+                this.setOutput(true,String);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_LOWER_TOOLTIP'));
             }
         };
@@ -6132,7 +6644,7 @@
                 this.appendValueInput('VALUE')
                     .setCheck(String)
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_INPUT_UPPER'));
-                this.setOutput(true, String);
+                this.setOutput(true,String);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_UPPER_TOOLTIP'));
             }
         };
@@ -6191,7 +6703,7 @@
 
                 this.setInputsInline(true);
 
-                this.setOutput(true);
+                this.setOutput(true,String);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_SUBSTRING_TOOLTIP'));
             }
         };
@@ -6235,7 +6747,7 @@
                 this.appendValueInput('STRING2').appendField(RoboBlocks.locales.getKey('LANG_TEXT_IN'));
 				this.appendDummyInput('').appendField(new Blockly.FieldDropdown([[RoboBlocks.locales.getKey('LANG_TEXT_FIRST'),'FIRST'],[RoboBlocks.locales.getKey('LANG_TEXT_LAST'),'LAST']]),'POSITION');
                 this.setInputsInline(true);
-                this.setOutput(true);
+                this.setOutput(true,Number);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_SEARCH_TOOLTIP'));
             }
         };
@@ -6270,7 +6782,7 @@
                 this.appendValueInput('STRING2').appendField(RoboBlocks.locales.getKey('LANG_TEXT_CONTAINS'));
                 this.appendValueInput('STRING1').appendField(RoboBlocks.locales.getKey('LANG_TEXT_EXPRESSION'));
 				this.setInputsInline(true);
-                this.setOutput(true);
+                this.setOutput(true,Boolean);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CONTAINS_TOOLTIP'));
             }
         };
@@ -6300,10 +6812,64 @@
                     .appendField(RoboBlocks.locales.getKey('LANG_TEXT_CAST')).appendField(new Blockly.FieldDropdown([
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_CHAR'),'char']
-                ]), "CAST");
+                ]), "CAST").setCheck(Number);
                 //this.setInputsInline(true);
-                this.setOutput(true);
+                this.setOutput(true,String);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CAST_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.text_to_csv = function() {
+            var value = Blockly.Arduino.valueToCode(this,'VALUE', Blockly.Arduino.ORDER_NONE);
+			var array_input = this.getInputTargetBlock('VALUE');
+			var l=this.getFieldValue('LENGTH');
+			var d=this.getFieldValue('DECIMAL');
+			var code ='';
+			if (array_input!==null)
+			{
+				if (array_input.type.includes('math_1DArray_constructor'))
+				{
+					Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]='String toCSV'+array_input.itemCount_+'(';
+					var i=0;
+					for (i=0;i<array_input.itemCount_;i++)
+					{
+						Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='float data'+i+',';
+					}
+					
+					Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='int l,int d){\n';
+					i=0;
+					Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='  char c[l+1];\n  String s="";\n  dtostrf(data'+i+',l,d,c);\n  s=String(c);\n';
+					for (i=1;i<array_input.itemCount_;i++)
+					{
+					Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='  dtostrf(data'+i+',l,d,c);\n  s+=","+String(c);\n';
+					}
+					Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='  s.replace(" ","");\n  return s;\n}\n';
+					code = 'toCSV('+value.substring(1,value.length-1)+','+l+','+d+')';
+				}
+				else if (array_input.type==='variables_get')
+				{
+					Blockly.Arduino.definitions_['define_toCSV']='String toCSV(float* data,int data_length,int l,int d){\n  char c[l+1];\n  String s="";\n  dtostrf(data[0],l,d,c);\n  s=String(c);\n  for(int i=1;i<data_length;i++){\n    dtostrf(data[i],l,d,c);\n    s+=","+String(c);\n  }\n  s.replace(" ","");\n  return s;\n}\n';
+					code = 'toCSV('+value+','+RoboBlocks.variables[value][3]+','+l+','+d+')';
+				}				
+			}
+            
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+
+        Blockly.Blocks.text_to_csv = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_TEXT'),
+			tags: ['text'],
+            helpUrl: RoboBlocks.getHelpUrl('text_to_csv'),
+			examples: ['text_to_csv_example.bly'],
+			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
+			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			keys: ['LANG_TEXT_FORMAT','LANG_TEXT_CSV','LANG_TEXT_CSV_LENGTH','LANG_TEXT_CSV_DECIMAL','LANG_TEXT_CSV_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
+                this.appendValueInput('VALUE').appendField(RoboBlocks.locales.getKey('LANG_TEXT_CSV')).appendField(RoboBlocks.locales.getKey('LANG_TEXT_FORMAT')).appendField(new Blockly.FieldNumber(8,1,20,1),'LENGTH').appendField('.').appendField(new Blockly.FieldNumber(2,1,10,1),'DECIMAL').setCheck('Array');
+                this.setOutput(true);
+				this.setInputsInline(false);
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CSV_TOOLTIP'));
             }
         };
 		
@@ -6330,7 +6896,7 @@
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_FLOAT'),'toFloat()']
                 ]), "CAST").setCheck(String);
                 //this.setInputsInline(true);
-                this.setOutput(true);
+                this.setOutput(true,Number);
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_NUMBER_CAST_TOOLTIP'));
             }
         };
@@ -7138,39 +7704,42 @@
 			var warning = null;
 			var count = 0;
             var code = '';
-            if (array.type.includes('math_1DArray_constructor'))
+			if (array!==null)
 			{
-				count = array.itemCount_;
-				code += varType + ' ' + varName+'['+count+']='+varValue+';\n';
-			}
-			else if (array.type==='variables_get')
-			{
-				var variable = RoboBlocks.variables[array.getFieldValue('VAR')];
-				if (variable[2]==='1DArray')
+				if (array.type.includes('math_1DArray_constructor'))
 				{
-					varType=variable[0];
-					count=window.parseInt(variable[3]);
-					code += varType + ' ' + varName+'['+count+']={'+varValue+'[0]';
-					var i;
-					for (i=1;i<count;i++)
+					count = array.itemCount_;
+					code += varType + ' ' + varName+'['+count+']='+varValue+';\n';
+				}
+				else if (array.type==='variables_get')
+				{
+					var variable = RoboBlocks.variables[array.getFieldValue('VAR')];
+					if (variable[2]==='1DArray')
 					{
-						code+=','+varValue+'['+i+']';
+						varType=variable[0];
+						count=window.parseInt(variable[3]);
+						code += varType + ' ' + varName+'['+count+']={'+varValue+'[0]';
+						var i;
+						for (i=1;i<count;i++)
+						{
+							code+=','+varValue+'['+i+']';
+						}
+						code+='};\n';
 					}
-					code+='};\n';
+					else
+					{
+						warning = 'Incorrect variable assigment'; 
+					}
 				}
 				else
 				{
-					warning = 'Incorrect variable assigment'; 
+					console.log(array.type);
 				}
+				RoboBlocks.variables[varName] = [varType, 'local','1DArray',count,count*4];
+				//RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray',count,count*4];
+				//RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray',count,count*4];
+				this.setWarningText(warning);
 			}
-			else
-			{
-				console.log(array.type);
-			}
-			RoboBlocks.variables[varName] = [varType, 'local','1DArray',count];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray',count];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray',count];
-			this.setWarningText(warning);
             return code;
         };
         Blockly.Blocks.variables_local_1DArray = {
@@ -7209,11 +7778,31 @@
 			if (array!==null)
 			{
 				var count = array.itemCount_;
+				var byte_count=count;
 				var warning = null;
 				
-				if (array.type==='array_item')
+				if (array.type.includes('math_1DArray_constructor'))
 				{
 					count = array.itemCount_;
+					if (varType==='int')
+					{
+						if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560'))
+							byte_count=count*2;
+						else if ((profiles['processor']==='ESP8266')||(profiles['processor']==='ESP32'))
+							byte_count=count*4;
+					}
+					else if (varType==='short')
+						byte_count=count*2;
+					else if (varType==='long')
+						byte_count=count*4;
+					else if (varType==='byte')
+						byte_count=count;
+					else if (varType==='bool')
+						byte_count=count;
+					else if (varType==='float')
+						byte_count=count*4;
+					else
+						byte_count=count;
 				}
 				else if (array.type==='variables_get')
 				{
@@ -7223,16 +7812,37 @@
 					{
 						varType=variable[0];
 						count=variable[3];
+						if (varType==='int')
+							if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560'))
+								byte_count=count*2;
+							else if ((profiles['processor']==='ESP8266')||(profiles['processor']==='ESP32'))
+								byte_count=count*4;
+						else if (varType==='short')
+							byte_count=count*2;
+						else if (varType==='long')
+							byte_count=count*4;
+						else if (varType==='byte')
+							byte_count=count;
+						else if (varType==='bool')
+							byte_count=count;
+						else if (varType==='float')
+							byte_count=count*4;
+						else
+							byte_count=count;
 					}
 					else
 					{
 						warning = 'Incorrect variable assigment'; 
 					}
 				}
+				else
+				{
+					console.log(array.type);
+				}
 				code += varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
-				RoboBlocks.variables[varName] = [varType, 'local','1DArray',count];
-				RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray',count];
-				RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray',count];
+				RoboBlocks.variables[varName] = [varType, 'local','1DArray',count,byte_count];
+				//RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'local','1DArray',count,byte_count];
+				//RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'local','1DArray',count,byte_count];
 				this.setWarningText(warning);
 			}
             return code;
@@ -7254,8 +7864,6 @@
                 appendField(new Blockly.FieldTextInput(''), 'VAR').
                 appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_LOCAL_TYPE')).
                 appendField(new Blockly.FieldDropdown([
-                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String'],
-					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_CHAR'), 'char'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
 					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_SHORT'), 'short'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
@@ -7282,13 +7890,14 @@
             var varName = this.getFieldValue('VAR') || '';
             var isFunction = false;
 			var array = this.getInputTargetBlock('VALUE');
-			
-			varType = 'int';
-            Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
-            RoboBlocks.variables[varName] = [varType, 'global','1DArray'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray'];
-
+			if (array!==null)
+			{
+				varType = 'int';
+				Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+				RoboBlocks.variables[varName] = [varType, 'global','1DArray'];
+				RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,array.itemCount_*4];
+				RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,array.itemCount_*4];
+			}
             return '';
         };
 		
@@ -7324,19 +7933,39 @@
             var varName = this.getFieldValue('VAR') || '';
             var isFunction = false;
 			var array = this.getInputTargetBlock('VALUE');
+			if (array!==null)
+			{
+				var varName = this.getFieldValue('VAR') || '';
+				var code = '';
+				var a = RoboBlocks.findPinMode(varValue);
+				code += a['code'];
+				varValue = a['pin'];
 
-            var varName = this.getFieldValue('VAR') || '';
-            var code = '';
-
-            var a = RoboBlocks.findPinMode(varValue);
-            code += a['code'];
-            varValue = a['pin'];
-
-            Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
-            
-            RoboBlocks.variables[varName] = [varType, 'global','1DArray'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray'];
+				Blockly.Arduino.definitions_['declare_var' + varName] = varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+				var byte_count=array.itemCount_;
+				if (varType==='int')
+				{
+					if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560'))
+							byte_count=array.itemCount_*2;
+					else if ((profiles['processor']==='ESP8266')||(profiles['processor']==='ESP32'))
+						byte_count=array.itemCount_*4;
+				}
+				else if (varType==='short')
+					byte_count=array.itemCount_*2;
+				else if (varType==='long')
+					byte_count=array.itemCount_*4;
+				else if (varType==='byte')
+					byte_count=array.itemCount_;
+				else if (varType==='bool')
+					byte_count=array.itemCount_;
+				else if (varType==='float')
+					byte_count=array.itemCount_*4;
+				else
+					byte_count=array.itemCount_;
+				RoboBlocks.variables[varName] = [varType, 'global','1DArray',array.itemCount_,byte_count];
+				RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,byte_count];
+				RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,byte_count];
+			}
             return '';
         };
 
@@ -7357,7 +7986,6 @@
                 appendField(new Blockly.FieldTextInput(''), 'VAR').
                 appendField(RoboBlocks.locales.getKey('LANG_VARIABLES_GLOBAL_TYPE')).
                 appendField(new Blockly.FieldDropdown([
-                    [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_STRING'), 'String'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER'), 'int'],
 					[RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_SHORT'), 'short'],
                     [RoboBlocks.locales.getKey('LANG_VARIABLES_TYPE_INTEGER_LONG'), 'long'],
@@ -7398,13 +8026,33 @@
             var a = RoboBlocks.findPinMode(varValue);
             code += a['code'];
             varValue = a['pin'];
-
-            Blockly.Arduino.definitions_['declare_var' + varName] = 'volatile ' + varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
-            
-            RoboBlocks.variables[varName] = ['volatile ' + varType, 'global','1DArray'];
-            RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray'];
-            RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray'];
-
+			if (array!==null)
+			{
+				Blockly.Arduino.definitions_['declare_var' + varName] = 'volatile ' + varType + ' ' + varName+'['+array.itemCount_+']='+varValue+';\n';
+				var byte_count=array.itemCount_;
+				if (varType==='int')
+				{
+					if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560'))
+						byte_count=array.itemCount_*2;
+					else if ((profiles['processor']==='ESP8266')||(profiles['processor']==='ESP32'))
+						byte_count=array.itemCount_*4;
+				}
+				else if (varType==='short')
+					byte_count=array.itemCount_*2;
+				else if (varType==='long')
+					byte_count=array.itemCount_*4;
+				else if (varType==='byte')
+					byte_count=array.itemCount_;
+				else if (varType==='bool')
+					byte_count=array.itemCount_;
+				else if (varType==='float')
+					byte_count=array.itemCount_*4;
+				else
+					byte_count=array.itemCount_;				
+				RoboBlocks.variables[varName] = ['volatile ' + varType, 'global','1DArray',array.itemCount_,byte_count];
+				RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,byte_count];
+				RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,byte_count];
+			}
             return '';
         };
 
@@ -7875,8 +8523,7 @@
         Blockly.Arduino.zum_piezo_buzzerav = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE) || '';
             var Buzztone = Blockly.Arduino.valueToCode(this, 'TONE', Blockly.Arduino.ORDER_ATOMIC);
-            var delay_time = Blockly.Arduino.valueToCode(this, 'DURA', Blockly.Arduino.ORDER_ATOMIC);
-
+            var delay_time = Blockly.Arduino.valueToCode(this, 'DURA', Blockly.Arduino.ORDER_ATOMIC);		
             var code = '';
             var a = RoboBlocks.findPinMode(dropdown_pin);
             code += a['code'];
@@ -7890,11 +8537,24 @@
             code += a['code'];
             delay_time = a['pin'];
 
-            code += JST['zum_piezo_buzzerav']({
-                'dropdown_pin': dropdown_pin,
-                'Buzztone': Buzztone,
-                'delay_time': delay_time
-            });
+			if (profiles['processor']==='ESP32')
+			{
+				var channel = 0;
+				for (var i=0;i<profiles.default.pwm_channel.length;i++)
+				{
+					if (profiles.default.pwm_channel[i][0]===dropdown_pin)
+					{
+						channel=profiles.default.pwm_channel[i][1];
+						break;
+					}
+				}
+				Blockly.Arduino.setups_['ledc_'+dropdown_pin] = 'ledcSetup('+channel+',0,8);\n  ledcAttachPin('+dropdown_pin+','+channel+');\n';				
+				code+='ledcWriteTone('+channel+','+Buzztone+');\ndelay('+delay_time+');\nledcWrite('+channel+',0);';
+			}
+			else
+			{
+				code += JST['zum_piezo_buzzerav']({'dropdown_pin': dropdown_pin,'Buzztone': Buzztone,'delay_time': delay_time});
+			}
 
             return code;
         };
@@ -7913,7 +8573,7 @@
                 this.appendValueInput('PIN')
                     .appendField(RoboBlocks.locales.getKey('LANG_ZUM_PIEZO_BUZZERAV'))
                     .appendField(new Blockly.FieldImage('img/blocks/buzzer.svg', 52*options.zoom, 35*options.zoom))
-                    .appendField(RoboBlocks.locales.getKey('LANG_ZUM_PIEZO_BUZZERAV_PIN'));
+                    .appendField(RoboBlocks.locales.getKey('LANG_ZUM_PIEZO_BUZZERAV_PIN')).setCheck(Number);
                 this.appendValueInput('TONE', Number)
                     .setCheck(Number)
                     .setAlign(Blockly.ALIGN_RIGHT)
@@ -7979,15 +8639,15 @@
         };
 		
 		
-		if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno')||(RoboBlocks.locales.processor==='NodeMCU'))
+		if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560')||(profiles['processor']==='ESP8266'))
 		{
 			Blockly.Arduino['i2c_read_byte'] = function(block) {
 			  var field_address = block.getFieldValue('ADDRESS');
 			  Blockly.Arduino.definitions_['define_wire_h']=JST['wire_definitions_include']({});
 			  Blockly.Arduino.definitions_['define_I2C_read_byte']='uint8_t I2C_read_byte(uint8_t address) {\n uint8_t data=0;\n Wire.requestFrom(address,1);\n if (Wire.available()){\n  data=Wire.read();\n }\n\n return data;\n \n }\n ';
-			  if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
+			  if (profiles['processor']==='ATmega')
 			  {  Blockly.Arduino.setups_['setup_wire']='Wire.begin();\n ';  }
-			  else if (RoboBlocks.locales.processor==='NodeMCU')
+			  else if (profiles['processor']==='ESP8266')
 			  {
 				   var sda_pin = Blockly.Arduino.valueToCode(this, 'SDA', Blockly.Arduino.ORDER_ATOMIC);
 				   var scl_pin = Blockly.Arduino.valueToCode(this, 'SCL', Blockly.Arduino.ORDER_ATOMIC);
@@ -8010,18 +8670,14 @@
 				examples: [],
 				keys: ['LANG_I2C_READ_BYTE','LANG_I2C_ADDRESS','LANG_I2C_READ_BYTE_TOOLTIP'],
 				init: function() {
-                                      {
-					this.appendDummyInput()
-						.setAlign(Blockly.ALIGN_RIGHT)
-						.appendField(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTE'))
-						.appendField(RoboBlocks.locales.getKey('LANG_I2C_ADDRESS'))
-						.appendField(new Blockly.FieldTextInput("0",this.validator_), "ADDRESS");
-                                      }
-                                      if (RoboBlocks.locales.processor==='NodeMCU')
-                                      {
-                                      this.appendValueInput('SDA').setAlign(Blockly.ALIGN_RIGHT).appendField('SDA').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
-                                      this.appendValueInput('SCL').setAlign(Blockly.ALIGN_RIGHT).appendField('SCL').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
-                                      }
+                    {
+					this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTE')).appendField(RoboBlocks.locales.getKey('LANG_I2C_ADDRESS')).appendField(new Blockly.FieldTextInput("0",this.validator_), "ADDRESS");
+                    }
+					if (profiles['processor']==='ESP32')
+					{
+					this.appendValueInput('SDA').setAlign(Blockly.ALIGN_RIGHT).appendField('SDA').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
+					this.appendValueInput('SCL').setAlign(Blockly.ALIGN_RIGHT).appendField('SCL').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
+					}
 					this.setOutput(true,Number);
 					this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_BUS);
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTE_TOOLTIP'));
@@ -8045,9 +8701,9 @@
 			  var code='';
 			  Blockly.Arduino.definitions_['define_wire_h']=JST['wire_definitions_include']({});
 			  Blockly.Arduino.definitions_['define_I2C_read_bytes']='void I2C_read_bytes(uint8_t address, uint8_t* variable, uint8_t bytes) {\n uint8_t i=0;\n Wire.requestFrom(address,bytes);\n while(Wire.available()){\n  variable[i]=Wire.read();\n  i++;\n }\n\n }\n ';
-			  if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
+			  if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560'))
 			  {  Blockly.Arduino.setups_['setup_wire']='Wire.begin();\n ';  }
-			  else if (RoboBlocks.locales.processor==='NodeMCU')
+			  else if (profiles['processor']==='ESP8266')
 			  {
 				   var sda_pin = Blockly.Arduino.valueToCode(this, 'SDA', Blockly.Arduino.ORDER_ATOMIC);
 				   var scl_pin = Blockly.Arduino.valueToCode(this, 'SCL', Blockly.Arduino.ORDER_ATOMIC);
@@ -8058,29 +8714,28 @@
 				  if (RoboBlocks.variables[variable][2]==='variable')
 				  {
 					  if ((RoboBlocks.variables[variable][0]==='byte')||(RoboBlocks.variables[variable][0]==='char'))
-						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',1);\n ';
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(byte));\n ';
 					  else if (RoboBlocks.variables[variable][0]==='short')
-						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',2);\n ';
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(short));\n ';
 					  else if (RoboBlocks.variables[variable][0]==='int')
-						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',4);\n ';
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(int));\n ';
 					  else if (RoboBlocks.variables[variable][0]==='long')
-						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',8);\n ';
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(long));\n ';
 				  }
 				  else if (RoboBlocks.variables[variable][2]==='1DArray')
 				  {
 					  if ((RoboBlocks.variables[variable][0]==='byte')||(RoboBlocks.variables[variable][0]==='char'))
 						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+','+RoboBlocks.variables[variable][3]+');\n ';
 					  else if (RoboBlocks.variables[variable][0]==='short')
-						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',2*'+RoboBlocks.variables[variable][3]+');\n ';
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(short)*'+RoboBlocks.variables[variable][3]+');\n ';
 					  else if (RoboBlocks.variables[variable][0]==='int')
-						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',4*'+RoboBlocks.variables[variable][3]+');\n ';
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(int)*'+RoboBlocks.variables[variable][3]+');\n ';
 					  else if (RoboBlocks.variables[variable][0]==='long')
-						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',8*'+RoboBlocks.variables[variable][3]+');\n ';
+						code+='I2C_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(long)*'+RoboBlocks.variables[variable][3]+');\n ';
 				  }
 			  }
 			  return code;
 			};
-
 
 			
 			Blockly.Blocks['i2c_read_bytes'] = {
@@ -8093,22 +8748,17 @@
 				examples: [],
 				keys: ['LANG_I2C_READ_BYTES','LANG_I2C_READ_BYTES_WITH','LANG_I2C_ADDRESS','LANG_I2C_READ_BYTES_TOOLTIP'],
 				init: function() {
-					this.appendValueInput('VARIABLE')
-						.setAlign(Blockly.ALIGN_RIGHT)
-						.appendField(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTES'))
-						.appendField(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTES_WITH')).setCheck('Array');
-					this.appendDummyInput()
-						.appendField(RoboBlocks.locales.getKey('LANG_I2C_ADDRESS'))
-						.appendField(new Blockly.FieldTextInput("0",Blockly.Blocks.i2c_read_byte.validator), "ADDRESS").setAlign(Blockly.ALIGN_RIGHT);
-                    if (RoboBlocks.locales.processor==='NodeMCU')
+					this.appendValueInput('VARIABLE').setAlign(Blockly.ALIGN_RIGHT).appendField(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTES')).appendField(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTES_WITH')).setCheck('Array');
+					this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_I2C_ADDRESS')).appendField(new Blockly.FieldTextInput("0",Blockly.Blocks.i2c_read_byte.validator), "ADDRESS").setAlign(Blockly.ALIGN_RIGHT);
+                    if (profiles['processor']==='ESP8266')
                     {
                         this.appendValueInput('SDA').setAlign(Blockly.ALIGN_RIGHT).appendField('SDA').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
                         this.appendValueInput('SCL').setAlign(Blockly.ALIGN_RIGHT).appendField('SCL').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
                     }
 					this.setOutput(false);
-                    if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
+                    if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560'))
                                       {    this.setInputsInline(true); }
-                    else if (RoboBlocks.locales.processor==='NodeMCU')
+                    else if (profiles['processor']==='ESP8266')
                                       {    this.setInputsInline(false); }
 					this.setPreviousStatement(true,'code');
 					this.setNextStatement(true,'code');
@@ -8126,9 +8776,9 @@
 				  var data_block = this.getInputTargetBlock('DATA');
 				  Blockly.Arduino.definitions_['define_wire_h']=JST['wire_definitions_include']({});
 				  Blockly.Arduino.definitions_['define_I2C_send_bytes']='void I2C_send_bytes(byte address, byte* val, int length)\n{\n  Wire.beginTransmission(address);\n  for (int i=0;i<length;i++)\n    Wire.write(val[i]);\n  Wire.endTransmission();\n}\n';
-				  if ((RoboBlocks.locales.processor==='ArduinoNano')||(RoboBlocks.locales.processor==='ArduinoUno'))
+				  if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560'))
 				  {  Blockly.Arduino.setups_['setup_wire']='Wire.begin();\n ';  }
-				  else if (RoboBlocks.locales.processor==='NodeMCU')
+				  else if (profiles['processor']==='ESP8266')
 				  {
 					   var sda_pin = Blockly.Arduino.valueToCode(this, 'SDA', Blockly.Arduino.ORDER_ATOMIC);
 					   var scl_pin = Blockly.Arduino.valueToCode(this, 'SCL', Blockly.Arduino.ORDER_ATOMIC);
@@ -8140,24 +8790,24 @@
 					  if (RoboBlocks.variables[data][2]==='variable')
 					  {
 						  if ((RoboBlocks.variables[data][0]==='byte')||(RoboBlocks.variables[data][0]==='char'))
-							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',1);\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',sizeof(byte));\n ';
 						  else if (RoboBlocks.variables[data][0]==='short')
-							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',2);\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',sizeof(short));\n ';
 						  else if (RoboBlocks.variables[data][0]==='int')
-							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',4);\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',sizeof(int));\n ';
 						  else if (RoboBlocks.variables[data][0]==='long')
-							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',8);\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',sizeof(long));\n ';
 					  }
 					  else if (RoboBlocks.variables[data][2]==='1DArray')
 					  {
 						  if ((RoboBlocks.variables[data][0]==='byte')||(RoboBlocks.variables[data][0]==='char'))
 							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+','+RoboBlocks.variables[data][3]+');\n ';
 						  else if (RoboBlocks.variables[data][0]==='short')
-							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',2*'+RoboBlocks.variables[data][3]+');\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',sizeof(short)*'+RoboBlocks.variables[data][3]+');\n ';
 						  else if (RoboBlocks.variables[data][0]==='int')
-							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',4*'+RoboBlocks.variables[data][3]+');\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',sizeof(int)*'+RoboBlocks.variables[data][3]+');\n ';
 						  else if (RoboBlocks.variables[data][0]==='long')
-							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',8*'+RoboBlocks.variables[data][3]+');\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&'+data+',sizeof(long)*'+RoboBlocks.variables[data][3]+');\n ';
 					  }
 				  }
 				  else if (data_block.type==='math_number')
@@ -8169,28 +8819,21 @@
 						  {
 							code+='{\n'
 							code+='byte _i2c_data='+data+';\n';
-							code+='I2C_send_bytes('+field_address+',&_i2c_data,1);\n ';
+							code+='I2C_send_bytes('+field_address+',&_i2c_data,sizeof(byte));\n ';
 							code+='}\n'
 						  }
 						  else if ((n>=128)&&(n<=65535))
 						  {
 							code+='{\n'
 							code+='short _i2c_data='+data+';\n';
-							code+='I2C_send_bytes('+field_address+',(byte*)&_i2c_data,2);\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&_i2c_data,sizeof(short));\n ';
 							code+='}\n'
 						  }
 						  else if ((n>=65536)&&(n<=4294967295))
 						  {
 							code+='{\n'
-							code+='int _i2c_data='+data+';\n';
-							code+='I2C_send_bytes('+field_address+',(byte*)&_i2c_data,4);\n ';
-							code+='}\n'
-						  }
-						  else if ((n>=4294967296)&&(n<=18446744073709551615))
-						  {
-							code+='{\n'
 							code+='long _i2c_data='+data+';\n';
-							code+='I2C_send_bytes('+field_address+',(byte*)&_i2c_data,8);\n ';
+							code+='I2C_send_bytes('+field_address+',(byte*)&_i2c_data,sizeof(long));\n ';
 							code+='}\n'
 						  }
 					  }
@@ -8216,7 +8859,7 @@
 						.appendField(new Blockly.FieldTextInput("0",Blockly.Blocks.i2c_read_byte.validator), "ADDRESS")
 						.appendField(RoboBlocks.locales.getKey('LANG_I2C_BYTES'))
 						.setCheck([Number,'Array']);
-                  if (RoboBlocks.locales.processor==='NodeMCU')
+                  if (profiles['processor']==='ESP8266')
                   {
                   this.appendValueInput('SDA').setAlign(Blockly.ALIGN_RIGHT).appendField('SDA').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
                   this.appendValueInput('SCL').setAlign(Blockly.ALIGN_RIGHT).appendField('SCL').appendField(new Blockly.FieldImage("img/blocks/digital_signal.png",24*options.zoom, 24*options.zoom)).setCheck(Number);
@@ -8313,13 +8956,13 @@
 				if ((RoboBlocks.variables[variable][0]==='byte')||(RoboBlocks.variables[variable][0]==='char'))
 					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+','+RoboBlocks.variables[variable][3]+');\n ';
 				else if (RoboBlocks.variables[variable][0]==='short')
-					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',2*'+RoboBlocks.variables[variable][3]+');\n ';
+					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(short)*'+RoboBlocks.variables[variable][3]+');\n ';
 				else if (RoboBlocks.variables[variable][0]==='int')
-					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',4*'+RoboBlocks.variables[variable][3]+');\n ';
+					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(int)*'+RoboBlocks.variables[variable][3]+');\n ';
 				else if (RoboBlocks.variables[variable][0]==='long')
-					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',8*'+RoboBlocks.variables[variable][3]+');\n ';
+					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(long)*'+RoboBlocks.variables[variable][3]+');\n ';
 				else if (RoboBlocks.variables[variable][0]==='float')
-					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',4*'+RoboBlocks.variables[variable][3]+');\n ';
+					code+='EEPROM_read_bytes('+field_address+',(byte*)&'+variable+',sizeof(float)*'+RoboBlocks.variables[variable][3]+');\n ';
 			  }
 			  return code;
 			};
@@ -8367,28 +9010,28 @@
 					  if (RoboBlocks.variables[data][2]==='variable')
 					  {
 						  if ((RoboBlocks.variables[data][0]==='byte')||(RoboBlocks.variables[data][0]==='char'))
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',1);\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(byte));\n ';
 						  else if (RoboBlocks.variables[data][0]==='short')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',2);\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(short));\n ';
 						  else if (RoboBlocks.variables[data][0]==='int')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',4);\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(int));\n ';
 						  else if (RoboBlocks.variables[data][0]==='long')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',8);\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(long));\n ';
 						  else if (RoboBlocks.variables[data][0]==='float')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',4);\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(float));\n ';
 					  }
 					  else if (RoboBlocks.variables[data][2]==='1DArray')
 					  {
 						  if ((RoboBlocks.variables[data][0]==='byte')||(RoboBlocks.variables[data][0]==='char'))
 							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+','+RoboBlocks.variables[data][3]+');\n ';
 						  else if (RoboBlocks.variables[data][0]==='short')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',2*'+RoboBlocks.variables[data][3]+');\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(short)*'+RoboBlocks.variables[data][3]+');\n ';
 						  else if (RoboBlocks.variables[data][0]==='int')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',4*'+RoboBlocks.variables[data][3]+');\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(int)*'+RoboBlocks.variables[data][3]+');\n ';
 						  else if (RoboBlocks.variables[data][0]==='long')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',8*'+RoboBlocks.variables[data][3]+');\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(long)*'+RoboBlocks.variables[data][3]+');\n ';
 						  else if (RoboBlocks.variables[data][0]==='float')
-							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',4*'+RoboBlocks.variables[data][3]+');\n ';
+							code+='EEPROM_write_bytes('+field_address+',(byte*)&'+data+',sizeof(float)*'+RoboBlocks.variables[data][3]+');\n ';
 					  }
 				  }
 				  else if (data_block.type==='math_number')
@@ -8414,30 +9057,30 @@
 							  {
 								code+='{\n'
 								code+='byte _eeprom_data='+data+';\n';
-								code+='EEPROM_write_bytes('+field_address+',&_eeprom_data,1);\n ';
+								code+='EEPROM_write_bytes('+field_address+',&_eeprom_data,sizeof(byte=);\n ';
 								code+='}\n'
 							  }
 							  else if ((n>=128)&&(n<=65535))
 							  {
 								code+='{\n'
 								code+='short _eeprom_data='+data+';\n';
-								code+='EEPROM_write_bytes('+field_address+',(byte*)&_eeprom_data,2);\n ';
+								code+='EEPROM_write_bytes('+field_address+',(byte*)&_eeprom_data,sizeof(short));\n ';
 								code+='}\n'
 							  }
 							  else if ((n>=65536)&&(n<=4294967295))
 							  {
 								code+='{\n'
-								code+='int _eeprom_data='+data+';\n';
-								code+='EEPROM_write_bytes('+field_address+',(byte*)&_eeprom_data,4);\n ';
+								code+='long _eeprom_data='+data+';\n';
+								code+='EEPROM_write_bytes('+field_address+',(byte*)&_eeprom_data,sizeof(long));\n ';
 								code+='}\n'
 							  }
-							  else if ((n>=4294967296)&&(n<=18446744073709551615))
+							  /*else if ((n>=4294967296)&&(n<=18446744073709551615))
 							  {
 								code+='{\n'
 								code+='long _eeprom_data='+data+';\n';
 								code+='EEPROM_write_bytes('+field_address+',(byte*)&_eeprom_data,8);\n ';
 								code+='}\n'
-							  }
+							  }*/
 						  }
 					  }
 				  }

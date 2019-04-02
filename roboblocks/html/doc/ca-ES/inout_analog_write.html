@@ -60,12 +60,18 @@ function injectExample(example,exampleDiv) {
 <h4>Instrucció</h4>
 <div id='blocklyInstruction'></div><script>injectInstruction('inout_analog_write','blocklyInstruction');</script>
 <h4>Descripció</h4>
-<p>Escriu un valor analògic sobre un pin digital (amb doble funció PWM) amb una freqüència aproximada de 490Hz (els pins 5 i 6 tenen una freqüència aproximada de 980Hz en les targetes Arduino Un i similars). El valor d'entrada està comprès entre 0 i 255. El pin PWM pot ser indicat juntament amb la instrucció:</p>
+<p>Escriu un valor analògic sobre un pin digital (amb doble funció PWM) amb una freqüència aproximada de 490Hz (els pins 5 i 6 tenen una freqüència aproximada de 980Hz en les targetes Arduino Uno i similars) en les targetes d'Arduino i NodeMCU i configurable per als processadors ESP32. El valor d'entrada està comprès entre 0 i 255 per a Arduino perque utilitza una resolució de 8 bits, mentre que per a processadors ESP32 el cicle de treball està comprés entre 0 i 2^bits_resolucio-1. El pin PWM pot ser indicat juntament amb la instrucció:</p>
 <div id='blocklyInstruction1'></div><script>injectInstruction('pin_pwm','blocklyInstruction1');</script>
 <h4>Entrades</h4>
 <ul>
   <li>Pin digital (PWM): Pin digital sobre el qual generar el senyal PWM.</li>
-  <li>Valor: valor del senyal analògic a generar (comprès entre 0 i 255).</li>
+  <li>Valor: valor del senyal analògic a generar (comprès entre 0 i 2^bits_resolucio-1).</li>
+</ul>
+En els procesadors ESP32 podem determinar la freqüència del senyal PWM, aixi com la seua resolució (el canal es selecciona automàticament en funció del pin d'entrada). La freqüència màxima és 40Mhz per a una resolució d'1 bit, la freqüència màxima disminueix amb la resolució de forma que eñ seu valor és 80000000/(2^bits_resolucio), per exemple per a una resolució de 8 bits, la freqüència màxima és de 312.5Khz.
+<h4>Camps</h4>
+<ul>
+  <li>Freqüència: Freqüència en Hz per al senyal PWM.</li>
+  <li>Resolució: Nombre de bits de resolució.</li>
 </ul>
 <h4>Exemple</h4>
 En aquest exemple es mostra com variar la velocitat d'un motor en funció del valor analògic d'entrada llegit, convertit després a un valor digital, escalat apropiadament i convertit en un senyal PWM per generar un senyal 'analògic'.

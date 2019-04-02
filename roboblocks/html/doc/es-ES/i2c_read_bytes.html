@@ -69,7 +69,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction1'></div>
 <script>injectInstruction('i2c_read_bytes','blocklyInstruction1');</script>
 <h4>Descripción</h4>
-<p>Esta instrucción se usa por un maestro del bus I2C para solicitar datos a un esclavo I2C en la dirección indicada. La instrucción para leer un sólo octeto devuelve la información, mientras que la instrucción para leer más de un octeto almacena la información recibida en la variable vector proporcionada. La cantidad de datos a leer depende del tamaño del vector y del tipo de variable.</p>
+<p>Esta instrucción se usa por un maestro del bus I2C para solicitar datos a un esclavo I2C en la dirección indicada. La instrucción para leer un sólo octeto devuelve la información, mientras que la instrucción para leer más de un octeto almacena la información recibida en la variable vector proporcionada. La cantidad de datos a leer depende del tamaño del vector y del tipo de variable. El tamaño de un 'octeto' y 'caracter' es 1, el tamaño de un 'entero corto' es 2, el tamaño de un 'entero' es 2, el tamaño de un 'entero largo' es 4, el tamaño de un 'decimal' es 4.</p>
 <h4>Entradas</h4>
 <ul>
 <li>Variable: Variable vector para almacenar datos (sólo en la instrucción para la lectura de múltiples octetos).</li>

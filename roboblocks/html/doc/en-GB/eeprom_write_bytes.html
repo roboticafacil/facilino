@@ -67,7 +67,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('eeprom_write_bytes','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Arduino includes an EEPROM memory to store data permanently. This instruction write bytes starting at the indicated address and data provided with the array variable. Depending on the type of variable, the total amount of data may change. So, if the variable has a length of <em>n</em> elements, then it will write <em>n</em>x<b>sizeof</b>(<em>variable type</em>). The size of 'byte' and 'char' is 1, the size of 'short int' is 2, the size of 'int' is 4, the size of 'long int' is 8, the size of 'float' is 4.</p>
+<p>Arduino includes an EEPROM memory to store data permanently. This instruction write bytes starting at the indicated address and data provided with the array variable. Depending on the type of variable, the total amount of data may change. So, if the variable has a length of <em>n</em> elements, then it will write <em>n</em>x<b>sizeof</b>(<em>variable type</em>). The size of 'byte' and 'char' is 1, the size of 'short int' is 2, the size of 'int' is 2, the size of 'long int' is 4, the size of 'float' is 4.</p>
 <h4>Inputs</h4>
 <ul>
 <li>Address: Addres of the memory block. Depending on the Arduino CPU the size of the EEPROM memory might be different, so refer to Arduino's documentation for further information.</li>

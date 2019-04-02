@@ -8,7 +8,7 @@
 
 #define CONFIG_INI "config.ini"
 
-#define SIZE_LIST 10
+#define SIZE_LIST 15
 
 class SettingsStore : public QObject
 {
@@ -37,6 +37,8 @@ public:
     QString getLastVersion();
 
     static const QString index2board[SIZE_LIST];
+    static const QString index2name[SIZE_LIST];
+    static const qint32 index2baudrate[SIZE_LIST];
     static const QString version;
     static const QString allCommonToolboxes;
     static const QString allAdditionalToolboxes;

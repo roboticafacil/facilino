@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map For LARS
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+LARS	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+init	KEYWORD2
+walk	KEYWORD2
+omniWalk	KEYWORD2
+turnL	KEYWORD2
+turnR	KEYWORD2
+moonwalk	KEYWORD2
+dance	KEYWORD2
+upDown	KEYWORD2
+pushUp	KEYWORD2
+hello	KEYWORD2
+home	KEYWORD2
+wav	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
