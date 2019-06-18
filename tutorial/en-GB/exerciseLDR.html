@@ -1,0 +1,142 @@
+<script>
+var currentSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Light Dependent Resistor (LDR)</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to read raw and calibrated values from an LDR sensor.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>Arduino multisensor shield.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<script>
+		window.roboblocksLanguage = 'en-GB';
+		window.roboblocksProcessor = 'WEMOS D1R32 SHIELD';
+		window.FacilinoLanguage = window.roboblocksLanguage; 
+		window.FacilinoProcessor = window.roboblocksProcessor;
+		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys; window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
+		RoboBlocks.load({ zoom: 1 });
+		Facilino.load({ zoom: 1});
+</script>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('ldr_read','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('ldr_read_calibrated','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('ldr_read_lux','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('ldr_max_lux','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('ldr_min_lux','blocklyInstruction5');</script></div>		
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Measuring Light</strong>. <button id="but1" type="button" onclick="showHide('solutions1','measuring_light_wemosD1R32.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Calibrated Measurement</strong>. <button id="but2" type="button" onclick="showHide('solutions2','calibrated_measurment_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+
+<script>
+function HideButton(el)
+{
+	if (localStorage.getItem("solutions")===undefined || localStorage.getItem("solutions")===null)
+	{
+		var y = document.getElementById(el);
+		y.style.display = "none";
+	}
+}
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+HideButton('but1'); HideButton('but2');
+</script>
+
+<div id="footer"></div>
+<script>$(function(){$('#footer').load('footer.html');});</script>
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/dropdown/js/script.min.js"></script>
+  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>

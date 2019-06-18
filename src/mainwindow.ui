@@ -399,17 +399,22 @@ pressed: { border: 1px };</string>
         </item>
         <item>
          <property name="text">
+          <string>WEMOS D1R2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Generic ESP32</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>WEMOS LOLIN32</string>
+          <string>WEMOS D1R32</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>WEMOS LOLIN32+Sensor Shield v5</string>
+          <string>WEMOS D1R32+Sensor Shield v5</string>
          </property>
         </item>
        </widget>

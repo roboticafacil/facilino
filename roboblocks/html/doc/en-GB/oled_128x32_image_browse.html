@@ -2,65 +2,9 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<style>.button_wrapper {
-  text-align: center;
-  color: red;
-}
-.button {
-  background-color: #2e2efe;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
- h4 { margin-top: 20px; }
- h5 { margin-top: 10px;}
-
-</style>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" ,
-		async: false,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-function injectInstruction(block,blockDiv) {
-	var instructionPreview = document.getElementById(blockDiv);
-	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
-	mainWorkspace.clear();
-	var block = mainWorkspace.newBlock(block);
-	block.initSvg();
-	block.render();
-	block.setMovable(false);
-	block.setDeletable(false);
-	block.moveBy(15, 10);
-	var bbox = block.getHeightWidth();
-	instructionPreview.style.height = (bbox.height+50)+ 'px';
-	instructionPreview.style.width = (bbox.width+50) + 'px';
-	window.dispatchEvent(new Event('resize'));
-}
-function injectExample(example,exampleDiv) {
-  var instructionPreview = document.getElementById(exampleDiv);
-	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
-	openFunction('doc/examples/'+example);
-	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
-instructionPreview.style.height = (bbox.height+25)+ 'px';
-instructionPreview.style.width = (bbox.width+25) + 'px';
-
-	window.dispatchEvent(new Event('resize'));
-}
-</script>
+<script src='doc/common/blocks_utils.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css">
+<script src='doc/en-GB/footer.js'></script>
 </head>
 <body>
 <h3 id="up">Provides custom image (OLED 128x32 I2C)</h3>
@@ -68,7 +12,7 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('oled_128x32_image_browse','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Provides a custom image (width must be multiple of 8). This instruction transforms a black and white image (or a grayscaled image) into image data to be drawn in a OLED 128x32 I2C device. Note that once the image is selected, it will be processed and internally coded in the instruction, so if the original image changes, the data generated with the instruction won't change. This allows you to select it once, save your Facilino code for later use without needing to select again the same file every time. Image name must not conflict with other names of this instructions, unless the selected image is the same. Use in combination of:</p>
+<p>Provides a custom image (width must be multiple of 8). This instruction transforms a black and white image (or a grayscaled image 8-bit depth) into image data to be drawn in a OLED 128x32 I2C device. Note that once the image is selected, it will be processed and internally coded in the instruction, so if the original image changes, the data generated with the instruction won't change. This allows you to select it once, save your Facilino code for later use without needing to select again the same file every time. Image name must not conflict with other names of this instructions, unless the selected image is the same. Use in combination of:</p>
 <p><div id='blocklyInstruction4'></div><script>injectInstruction('oled_128x32_set_image','blocklyInstruction4');</script>
 <div id='blocklyInstruction1'></div><script>injectInstruction('oled_128x32_set_small_icon','blocklyInstruction1');</script>
 <div id='blocklyInstruction2'></div><script>injectInstruction('oled_128x32_set_large_icon','blocklyInstruction2');</script>
@@ -97,6 +41,6 @@ All changes will be lost!
 <h5>Facilino Code</h5>
 <div id='example1'></div>
 <script>injectExample('oled_128x32_demo1.bly','example1');</script>
-<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
 </body>
 </html>

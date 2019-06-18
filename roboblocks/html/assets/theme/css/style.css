@@ -219,8 +219,8 @@ figure[mbr-media-size] {
     width: 100% !important; } }
 /*! Buttons */
 .mbr-section-btn {
-  margin-left: -.25rem;
-  margin-right: -.25rem;
+  margin-left: -0.4rem;
+  margin-right: -.4rem;
   font-size: 0; }
 
 nav .mbr-section-btn {

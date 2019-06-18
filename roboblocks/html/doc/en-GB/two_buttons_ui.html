@@ -2,64 +2,10 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<style>.button_wrapper {
-  text-align: center;
-  color: red;
-}
-.button {
-  background-color: #2e2efe;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
- h4 { margin-top: 20px; }
- h5 { margin-top: 10px;}
-
-</style>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" , async: false,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-function injectInstruction(block,blockDiv) {
-	var instructionPreview = document.getElementById(blockDiv);
-	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
-	mainWorkspace.clear();
-	var block = mainWorkspace.newBlock(block);
-	block.initSvg();
-	block.render();
-	block.setMovable(false);
-	block.setDeletable(false);
-	block.moveBy(15, 10);
-	var bbox = block.getHeightWidth();
-	instructionPreview.style.height = (bbox.height+50)+ 'px';
-	instructionPreview.style.width = (bbox.width+50) + 'px';
-	window.dispatchEvent(new Event('resize'));
-}
-function injectExample(example,exampleDiv) {
-  var instructionPreview = document.getElementById(exampleDiv);
-	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
-	openFunction('doc/examples/'+example);
-	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
-instructionPreview.style.height = (bbox.height+25)+ 'px';
-instructionPreview.style.width = (bbox.width+25) + 'px';
-
-	window.dispatchEvent(new Event('resize'));
-}
-</script>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css">
+<script src='doc/en-GB/footer.js'></script>
 </head>
 <body>
 <h3 id="up">User-interface with two buttons</h3>
@@ -67,41 +13,32 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('two_buttons_ui','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Implements a User-interface (UI) with two buttons. One of the buttons is used as 'Next/select' button, while the other button is used as 'Cancel' (or 'Back'). The structure of the UI is like a tree, with the 'General Menu' as the main trunk and menus and options as branches and leaves, respectively. The logic to navigate through this simplistic UI is automatically created with this instruction, where you can create as many menus and options as required. By default, the 'General Menu' view will be displayed at the beginning. Menus and sub-menus are indeed a circular list, meaning that once the last menu is reached, the next one will be the first one. This can be done with a short click to move to the next item of the list. A long click will select the corresponding menu or option.</p>
-<p>When a menu is selected, it starts displaying the sub-menus (options) list. Again, the different options can be displayed by pressing the 'Next' button (with a short click). To select an option, you have to hold the button (long click). You can always move back by pressing the 'Cancel' button.</p>
-<p>Use in combination with this instruction</p>
+<p class="instruction">Implements a User-interface (UI) with two buttons. One of the buttons is used as 'Next/select' button, while the other button is used as 'Cancel' (or 'Back'). The structure of the UI is like a tree, with the 'General Menu' as the main trunk and menus and options as branches and leaves, respectively. The logic to navigate through this simplistic UI is automatically created with this instruction, where you can create as many menus and options as required. By default, the 'General Menu' view will be displayed at the beginning. Menus and sub-menus are indeed a circular list, meaning that once the last menu is reached, the next one will be the first one. This can be done with a short click to move to the next item of the list. A long click will select the corresponding menu or option.</p>
+<p class="instruction">When a menu is selected, it starts displaying the sub-menus (options) list. Again, the different options can be displayed by pressing the 'Next' button (with a short click). To select an option, you have to hold the button (long click). You can always move back by pressing the 'Cancel' button.</p>
+<p class="instruction">Use in combination with this instruction</p>
 <div id='blocklyInstruction1'></div>
 <script>injectInstruction('two_buttons_ui_option','blocklyInstruction1');</script>
 <h4>Requirements</h4>
-Facilino's license.
+<p class="instruction">Facilino's license.</p>
 <h4>Inputs</h4>
-<ul>
+<ul class="instruction">
   <li>Next/Select Pin: Pin (digital input) to which the 'Next/Select' button is connected to.</li>
   <li>Cancel Pin: Pin (digital input) to which the 'Cancel' button is connected to.</li>
 </ul>
 <h4>Fields</h4>
-<ul>
+<ul class="instruction">
   <li>Refresh Time: The 'General Menu' is refreshed upon this time has been elapsed (i.e.: to update a temperature, signal value to show, etc...)</li> 
 </ul>
 <h4>Mutator</h4>
-Add as many menus as desired.
+<p class="instruction">Add as many menus as desired.</p>
 <h5>Container</h5>
 <div id='blocklyInstruction2'></div>
 <script>injectInstruction('two_buttons_ui_stack','blocklyInstruction2');</script>
 <h5>Elements</h5>
 <div id='blocklyInstruction3'></div>
 <script>injectInstruction('two_buttons_ui_item','blocklyInstruction3');</script>
-<h4>Example</h4>
-In this example, we implement a basic UI with two buttons. There's a general UI view that will be displayed when no button is pressed or the refreshed time has elapsed. There are three menus: "Menu0", "Menu1" and "Menu2". Depending on the selected menu, we can access to different options and distinguish between the option is highlighted (it means that the name of the option will be shown on the display) or selected (it means that the option has been actively selected and the corresponding action for that option will be executed).
-<div class="button_wrapper">
-<p><button align="center" class="button" onclick="openFunction('doc/examples/buttons_ui.bly')">Open</button></p>
-All changes will be lost!
-</div>
-<h5>Circuit</h5>
-<image src="doc/circuits/switches_example_bb.png" title="switches_example_bb" alt="switches_example_bb"></image>
-<h5>Facilino Code</h5>
-<div id='example'></div>
-<script>injectExample('buttons_ui.bly','example');</script>
-<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onclick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onclick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+<div id='examples'></div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<script>createExamples(['buttons_ui']);</script>
 </body>
 </html>

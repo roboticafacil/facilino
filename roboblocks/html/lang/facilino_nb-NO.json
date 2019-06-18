@@ -252,7 +252,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "Sett timeout for serie recepction (i millisekunder).",
 				"LANG_LCD_CLEAR": "LCD klart",
 				"LANG_LCD_CLEAR_TOOLTIP": "LCD klart",
-				"LANG_LCD_DEF": "LCD (2x16)",
+				"LANG_LCD_DEF": "LCD (16x2)",
 				"LANG_LCD_PINS": "LCD-Pins",
 				"LANG_LCD_DEF_TOOLTIP": "Blokker som definerer LCD",
 				"LANG_LCD_PRINT": "LCD: print",

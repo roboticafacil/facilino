@@ -230,7 +230,7 @@ nav .mbr-section-btn {
 /*! Btn icon margin */
 .btn .mbr-iconfont, .btn.btn-sm .mbr-iconfont {
   cursor: pointer;
-  margin-right: 0.5rem; }
+  margin-right: 0rem; }
 
 .btn.btn-md .mbr-iconfont, .btn.btn-md .mbr-iconfont {
   margin-right: 0.8rem; }

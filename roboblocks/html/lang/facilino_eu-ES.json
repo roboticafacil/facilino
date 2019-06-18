@@ -249,7 +249,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "denbora-muga (milisegundotan) serieko atakatik jasotzeko ezartzen du.",
 				"LANG_LCD_CLEAR": "LCD ezabatu",
 				"LANG_LCD_CLEAR_TOOLTIP": "LCD ezabatu",
-				"LANG_LCD_DEF": "LCD (2x16)",
+				"LANG_LCD_DEF": "LCD (16x2)",
 				"LANG_LCD_PINS": "LCD Pins",
 				"LANG_LCD_DEF_TOOLTIP": "LCDa definitzen duen blokea",
 				"LANG_LCD_PRINT": "LCD inprimitu ",

@@ -255,7 +255,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "Establece el tiempo de espera (en milisegundos) para la recepción de caracteres por el puerto serie.",
 				"LANG_LCD_CLEAR": "Borra LCD",
 				"LANG_LCD_CLEAR_TOOLTIP": "Borra la pantalla LCD",
-				"LANG_LCD_DEF": "LCD (2x16)",
+				"LANG_LCD_DEF": "LCD (16x2)",
 				"LANG_LCD_PINS": "Pines del LCD",
 				"LANG_LCD_DEF_TOOLTIP": "Define el LCD",
 				"LANG_LCD_PRINT": "LCD: Imprimir ",

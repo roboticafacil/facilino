@@ -354,7 +354,7 @@ body {
 }
 .display-4 {
   font-family: 'Rubik', sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 .display-4 > .mbr-iconfont {
   font-size: 1.6rem;
@@ -425,7 +425,7 @@ body {
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   padding: 0.6rem 1.5rem;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 .btn-md {
   font-weight: 500;
@@ -2451,12 +2451,12 @@ body {
   outline: none;
 }
 .cid-qAignIVLHL .btn {
-  padding: 0.4rem 0.8rem;
+  padding: 0.2rem 0.4rem;
   display: inline-flex;
   align-items: center;
 }
 .cid-qAignIVLHL .btn .mbr-iconfont {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .cid-qAignIVLHL .menu-logo {
   margin-right: auto;

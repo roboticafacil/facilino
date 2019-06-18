@@ -2,73 +2,19 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<style>.button_wrapper {
-  text-align: center;
-  color: red;
-}
-.button {
-  background-color: #2e2efe;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-</style>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" , async: false,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-function injectInstruction(block,blockDiv) {
-	var instructionPreview = document.getElementById(blockDiv);
-	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
-	mainWorkspace.clear();
-	var block = mainWorkspace.newBlock(block);
-	block.initSvg();
-	block.render();
-	block.setMovable(false);
-	block.setDeletable(false);
-	block.moveBy(15, 10);
-	var bbox = block.getHeightWidth();
-	instructionPreview.style.height = (bbox.height+50)+ 'px';
-	instructionPreview.style.width = (bbox.width+50) + 'px';
-	window.dispatchEvent(new Event('resize'));
-}
-function injectExample(example,exampleDiv) {
-  var instructionPreview = document.getElementById(exampleDiv);
-	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
-	openFunction('doc/examples/'+example);
-	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
-instructionPreview.style.height = (bbox.height+25)+ 'px';
-instructionPreview.style.width = (bbox.width+25) + 'px';
-
-	window.dispatchEvent(new Event('resize'));
-}
-</script>
+<script src='doc/common/blocks_utils.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css">
+<script src='doc/en-GB/footer.js'></script>
 </head>
 <body>
 <h3 id="up">Prints number with format</h3>
 <h4>Instruction</h4>
-<!-- <image src="doc/en-GB/img/advanced_conversion.png" title="advanced_conversion" alt="advanced_conversion"></image> -->
 <div id='blocklyInstruction'></div>
 <script>
 injectInstruction('advanced_conversion','blocklyInstruction');
 </script>
 <h4>Description</h4>
 <p>This instruction provides the specified format, decimal, hexadecimal, octal, or binary, to display (print) a number through the serial port. Use together with the instructions:</p>
-<!-- <p><image src="doc/en-GB/img/serial_print.png" title="serial_print" alt="serial_print"></image></p> -->
 <div id='blocklyInstruction1'></div>
 <script>
 injectInstruction('serial_print','blocklyInstruction1');
@@ -100,6 +46,6 @@ All changes will be lost!
 <script>
 injectExample('advanced_conversion_example.bly','blocklyExample');
 </script>
-<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image>	
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
 </body>
 </html>

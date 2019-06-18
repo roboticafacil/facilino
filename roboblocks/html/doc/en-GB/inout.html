@@ -1,4 +1,10 @@
 ﻿<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css">
+<script src='doc/en-GB/footer.js'></script>
+</head>
 <body>
 <h3 id="up">Basic I/O</h3>
 Set of instructions for handling basic inputs and outputs.
@@ -34,6 +40,6 @@ Set of instructions for handling basic inputs and outputs.
 <script>injectInstruction('joystick_mag','blocklyInstruction15');</script>
 <div id='blocklyInstruction16'></div>
 <script>injectInstruction(dyor_31_in_1_rele);</script>
-<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
 </body>
 </html>

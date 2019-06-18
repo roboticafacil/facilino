@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<style>
+.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+ h4 { margin-top: 20px; }
+ h5 { margin-top: 10px;}
+</style>
+<script>
+function openFunction(bly) {
+    $.ajax({type: "GET" ,url: bly ,dataType: "xml" , async: false,success: function(xml) {
+			var txt = new XMLSerializer().serializeToString(xml);
+			Blockly.mainWorkspace.clear();
+			var xmlDOM = Blockly.Xml.textToDom(txt);
+			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+        }
+    });
+}
+function injectInstruction(block,blockDiv) {
+	var instructionPreview = document.getElementById(blockDiv);
+	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+	mainWorkspace.clear();
+	var block = mainWorkspace.newBlock(block);
+	block.initSvg();
+	block.render();
+	block.setMovable(false);
+	block.setDeletable(false);
+	block.moveBy(15, 10);
+	var bbox = block.getHeightWidth();
+	instructionPreview.style.height = (bbox.height+25)+ 'px';
+	instructionPreview.style.width = (bbox.width+50) + 'px';
+	window.dispatchEvent(new Event('resize'));
+}
+function injectExample(example,exampleDiv) { 
+	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+	openFunction('doc/examples/'+example);
+	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+	$('#'+exampleDiv).height((bbox.height+25)+'px');
+	$('#'+exampleDiv).width((bbox.width+25)+'px');
+	window.dispatchEvent(new Event('resize'));
+}
+</script>
+</head>
+<body>
+<h3 id="up">Alarma sensor d'humitat DHT11/DHT21/DHT22</h3>
+<h4>Instrucció</h4>
+<div id='blocklyInstruction'></div><script>injectInstruction('ambient_humid_alarmDHT','blocklyInstruction');</script>
+<h4>Descripció</h4>
+<p>Comprova els nivells d'alarma del sensor d'humitat DHT11 / DHT21 / DHT22 i en cas d'activar una alarma, executa el codi corresponent. Els nivells d'alarma poden establir-se amb la instrucció:</p>
+<div id='blocklyInstruction1'></div><script>injectInstruction('ambient_humid_set_alarm','blocklyInstruction1');</script>
+<h4>Requisits</h4>
+<p>Aquesta instrucció requereix les llibreríes DHT Adafruit i Adafruit Unified Sensor instal·lades en Arduino IDE. Aquestes llibreríes estàn disponibles en: <a href="https://github.com/adafruit/DHT-sensor-library" target="_blank">https://github.com/adafruit/DHT-sensor-library</a> i <a href="https://github.com/adafruit/Adafruit_Sensor" target="_blank">https://github.com/adafruit/Adafruit_Sensor</a> i també mitjançant del Gestor de Llibreríes:</p>
+<image src="doc/common/DHT_install.png" title="DHT_install" alt="dht_install"></image>
+<image src="doc/common/Adafruit_Unified_Sensor.png" title="Adrafruit_Sensor_install" alt="Adrafruit_Sensor_install"></image>
+<h4>Entrades</h4>
+<ul>
+  <li>Pin: Pin a què està connectat el sensor.</li>
+</ul>
+<h4>instruccions apilables</h4>
+<ul>
+  <li>Humitat elevada: Conjunt d'instruccions a executar en cas de llegir una humitat superior al nivell d'alarma d'humitat elevada establert.</li>
+  <li>Humitat baixa: Conjunt d'instruccions a executar en cas de llegir una humitat inferior al nivell d'alarma d'humitat baixa establert.</li>
+</ul>
+<h4>Exemple</h4>
+En aquest exemple es mostra per consola missatges de nivell d'alarma d'humitat en cas de succeir.
+<div class="button_wrapper">
+<p><button align="center" class="button" style="cursor: pointer;" onclick="openFunction('doc/examples/ambient_humid_alarm_example.bly')">Obrir</button></p>
+Es perdran tots els canvis!
+</div>
+<h5>Circuit</h5>
+<image src="doc/circuits/dht11_example_bb.png" title="dht11_example_bb" alt="dht11_example_bb"></image>
+<h5>Codi Facilino</h5>
+<div id='example'></div><script>injectExample('ambient_humid_alarm_example.bly','example');</script>
+<p><image src="doc/common/home.png" title="inici" alt="home" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/index.html");});'></image> | <image src="doc/common/category.png" title="categoria" alt="category" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/categories.html");});'></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/ca-ES/settings.html");});'></image> | <image src="doc/common/language.png" title="language" alt="language" style="cursor: pointer;" onClick='alert("Vols col·laborar en traduir Facilino al teu idioma? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick='alert("Has trobat alguna errada? Per favor, contacta amb soporte@roboticafacil.es")'></image> | <image src="doc/common/info.png" title="al respecte de" alt="al respecte de" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/ca-ES/about.html');});"></image></p>
+</body>
+</html>

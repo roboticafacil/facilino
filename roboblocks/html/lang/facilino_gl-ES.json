@@ -250,7 +250,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "Establece o tempo de espera (en milisegundos) para a recepción de caracteres polo porto serie.",
 				"LANG_LCD_CLEAR": "Borrar LCD",
 				"LANG_LCD_CLEAR_TOOLTIP": "Borra a pantalla LCD",
-				"LANG_LCD_DEF": "LCD (2x16)",
+				"LANG_LCD_DEF": "LCD (16x2)",
 				"LANG_LCD_PINS": "Pines do LCD",
 				"LANG_LCD_DEF_TOOLTIP": "Define o LCD",
 				"LANG_LCD_PRINT": "LCD: Imprimir",

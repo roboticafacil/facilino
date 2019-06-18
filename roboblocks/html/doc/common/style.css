@@ -1,0 +1,145 @@
+.button_wrapper {
+  text-align: center;
+  color: red;
+}
+.button {
+  background-color: #2e2efe;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.datagrid table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+.datagrid {
+  font: normal 12px/150% Arial,Helvetica,sans-serif;
+  background: #fff;
+  overflow: hidden;
+  border: 1px solid #006699;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.datagrid table td, .datagrid table th {
+  padding: 3px 10px;
+}
+.datagrid table thead th {
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0.05,#006699),color-stop(1,#00557f));
+  background: -moz-linear-gradient(center top,#006699 5%,#00557f 100%);
+  background-color: #006699;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  border-left: 1px solid #0070a8;
+}
+.datagrid table thead th:first-child {
+  border: none;
+}
+.datagrid table tbody td {
+  color: #00496b;
+  border-left: 1px solid #e1eef4;
+  font-size: 12px;
+  font-weight: normal;
+}
+.datagrid table tbody .alt td {
+  background: #e1eef4;
+  color: #00496b;
+}
+.datagrid table tbody td:first-child {
+  border-left: none;
+}
+.datagrid table tbody tr:last-child td {
+  border-bottom: none;
+}
+.datagrid table tfoot td div {
+  border-top: 1px solid #006699;
+  background: #e1eef4;
+}
+.datagrid table tfoot td {
+  padding: 0;
+  font-size: 12px;
+}
+.datagrid table tfoot td div {
+  padding: 2px;
+}
+.datagrid table tfoot td ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+.datagrid table tfoot li {
+  display: inline;
+}
+.datagrid table tfoot li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 1px;
+  color: #ffffff;
+  border: 1px solid #006699;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0.05,#006699),color-stop(1,#00557f));
+  background: -moz-linear-gradient(center top,#006699 5%,#00557f 100%);
+  background-color: #006699;
+}
+.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover {
+  text-decoration: none;
+  border-color: #006699;
+  color: #ffffff;
+  background: none;
+  background-color: #00557f;
+}
+div.dhtmlx_window_active, div.dhx_modal_cover_dv {
+  position: fixed !important;
+}
+h4 { margin-top: 20px; }
+h5 { margin-top: 10px;}
+h6 { font-size: 12px;
+font-weight: bold;
+margin-top: 10px; }
+.components {
+	font-size: 12px;
+}
+
+.instruction {
+	font-size: 12px;
+}
+.connections {
+	font-size: 12px;
+}
+.not_circuit {
+	font-size: 12px;
+}
+.warning {
+	font-size: 12px;
+	color: #ff0000;
+}
+
+ol.examples {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+ol.examples > li {
+  counter-increment: customlistcounter;
+}
+
+ol.examples > li:before {
+  content: "Example " counter(customlistcounter);
+  font-weight: bold;
+  float: left;
+  width: 6em;
+}
+
+ol.examples:first-child {
+  counter-reset: customlistcounter;
+}

@@ -256,7 +256,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "Estableix el temps d'espera pera a la recepció de caràcters pel port sèrie.",
 				"LANG_LCD_CLEAR": "Esborrar LCD",
 				"LANG_LCD_CLEAR_TOOLTIP": "Neteja la pantalla LCD",
-				"LANG_LCD_DEF": "LCD (2x16)",
+				"LANG_LCD_DEF": "LCD (16x2)",
 				"LANG_LCD_PINS": "LCD Pins",
 				"LANG_LCD_DEF_TOOLTIP": "Defineix el LCD",
 				"LANG_LCD_PRINT": "LCD: Imprimir ",

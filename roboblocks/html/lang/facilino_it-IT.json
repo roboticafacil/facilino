@@ -250,7 +250,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "Imposta il timeout sulla ricezione da seriale (in millisecondi).",
 				"LANG_LCD_CLEAR": "Pulisci LCD",
 				"LANG_LCD_CLEAR_TOOLTIP": "Pulisce l'LCD",
-				"LANG_LCD_DEF": "LCD (2x16)",
+				"LANG_LCD_DEF": "LCD (16x2)",
 				"LANG_LCD_PINS": "LCD Pins",
 				"LANG_LCD_DEF_TOOLTIP": "Questo blocco definisce l'LCD",
 				"LANG_LCD_PRINT": "LCD: Stampa ",

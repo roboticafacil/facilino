@@ -1,6 +1,14 @@
 ﻿<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
 <body>
 <h3 id="up">Categories</h3>
+<div id="category_list"></div>
+<!--
 <p><image src="doc/en-GB/img/functions.png" title="functions" alt="functions" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/functions.html');});"></image></p>
 <p><image src="doc/en-GB/img/controls.png" title="controls" alt="controls" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/controls.html');});"></image></p>
 <p><image src="doc/en-GB/img/logic.png" title="logic" alt="logic" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/logic.html');});"></image></p>
@@ -16,6 +24,8 @@
 <p><image src="doc/en-GB/img/ambient.png" title="ambient" alt="ambient" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/ambient.html');});"></image></p>
 <p><image src="doc/en-GB/img/HTML.png" title="HTML" alt="HTML" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/HTML.html');});"></image></p>
 <p><image src="doc/en-GB/img/inout.png" title="inout" alt="inout" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/inout.html');});"></image></p>
-<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+-->
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<script>document.getElementById('category_list').innerHTML=getCategoryList();</script>
 </body>
 </html>

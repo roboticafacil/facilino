@@ -45,8 +45,8 @@ padding-left:30px;
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 	<script src="javascript/blockly-bq/FieldButton.js"></script>
-    <script src="facilino.js"></script>
-	<script src="roboblocks_compressed.js"></script>
+    <script src="facilino_not_obfuscated.js"></script>
+	<script src="roboblocks.js"></script>
 	<xml id='startBlocks' style='display: none'><block type='controls_setupLoop' deletable='true' x='20' y='5'></block></xml>
 
 	<div>
@@ -94,6 +94,7 @@ padding-left:30px;
             <div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Language settings" onclick="showHideLanguage()"><span class="mbri-flag mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 			<select id="language" class="text-black dropdown-toggle display-6 icon-menu" onchange="langChange(this.value)" style="display: none">
 		<option value="ca-ES" class="text-black dropdown-item display-6" style="background-image:url(img/flags/catalonia.png)">Catal&agrave;</option>
+		<option value="ch-CH" class="text-black dropdown-item display-6">中文</option>
 		<option value="da-DK" class="text-black dropdown-item display-6" style="background-image:url(img/flags/denmark.png)">Dansk</option>
 		<option value="de-DE" class="text-black dropdown-item display-6" style="background-image:url(img/flags/germany.png)">Deutsch</option>
 		<option value="en-GB" class="text-black dropdown-item display-6" style="background-image:url(img/flags/united-kingdom.png)">English</option>
@@ -121,9 +122,10 @@ padding-left:30px;
 		<option value="ArduinoLeonardo" class="text-black dropdown-item display-6">Arduino Leonardo</option>
 		<option value="ESP8266" class="text-black dropdown-item display-6">ESP8266</option>
 		<option value="NodeMCU" class="text-black dropdown-item display-6">NodeMCU</option>
+		<option value="WEMOS D1R2" class="text-black dropdown-item display-6">WeMos D1R2</option>
 		<option value="ESP32" class="text-black dropdown-item display-6">ESP32</option>
-		<option value="WEMOS LOLIN32" class="text-black dropdown-item display-6">WeMos/Lolin ESP32</option>
-		<option value="WEMOS LOLIN32 SHIELD" class="text-black dropdown-item display-6">WeMos/Lolin ESP32 with Sensor Shield v5</option>
+		<option value="WEMOS D1R32" class="text-black dropdown-item display-6">WeMos D1R32</option>
+		<option value="WEMOS D1R32 SHIELD" class="text-black dropdown-item display-6">WeMos D1R32 (Sensor Shield)</option>
 		</select>
 		<div class="navbar-buttons mbr-section-btn"><button id="licenseP" class="btn btn-sm btn-primary-outline display-4" title="Enter your license" onclick="showHideLicense()"><span class="mbri-key mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></div>
 		<input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();" style="display: none"/>
@@ -174,6 +176,7 @@ padding-left:30px;
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_BLUETOOTH')" aria-expanded="false">Bluetooth</button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_WIFI')" aria-expanded="false">WiFi</button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_IOT')" aria-expanded="false">IoT</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_IR')" aria-expanded="false">IR</button>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -194,6 +197,7 @@ padding-left:30px;
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_INFRARED')" aria-expanded="false">Infrared</button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_COLOR')" aria-expanded="false">Colour</button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_LDR')" aria-expanded="false">LDR</button>
+					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_DIMMER')" aria-expanded="false">Dimmer</button>
 				</div>
 			</div>
 			<div class="dropdown">
@@ -288,7 +292,7 @@ padding-left:30px;
 		}
 		MyBlocks = JSON.parse(localStorage.getItem('MyBlocks'));
 		Blockly.Doc = [];
-		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_SUBCATEGORY_BITWISE','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_SUBCATEGORY_BLE','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_LDR','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
+		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_SUBCATEGORY_BITWISE','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_SUBCATEGORY_IR','LANG_SUBCATEGORY_BLE','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_LDR','LANG_SUBCATEGORY_DIMMER','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
 		window.toolboxNames = getToolboxNames(window.toolbox);
 		//options = {zoom: 1, interrupts: {subcategory: 'LANG_SUBCATEGORY_INTERRUPTS', view:false}, ss: false, arrays: false, lcd: false, led_matrix: false, led_strip: false, oled: false, bluetooth: false, wifi: false, iot: false, buzzer: false, voice: false, mic: false, music: false, sonar: false, infrared: false, colour: false, motors: false, robot_base: false, robot_accessories: false, robot_walk: false, system_control: false, system_filtering: false, temperature: false, humidity: false, rain: false, gas: false, environment_other: false, html: false, web_ui: false, deprecated: false};
 		options = {zoom: 1};

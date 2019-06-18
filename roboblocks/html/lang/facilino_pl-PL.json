@@ -248,7 +248,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "Ustawia limit czasu dla szeregowego recepction (w milisekundach).",
 				"LANG_LCD_CLEAR": "Czyść LCD",
 				"LANG_LCD_CLEAR_TOOLTIP": "Wygasza segmenty LCD",
-				"LANG_LCD_DEF": "LCD (2x16)",
+				"LANG_LCD_DEF": "LCD (16x2)",
 				"LANG_LCD_PINS": "LCD Pins",
 				"LANG_LCD_DEF_TOOLTIP": "Blok definiujący wyświetlacz LCD",
 				"LANG_LCD_PRINT": "Wyświetl na LCD",

@@ -1,0 +1,121 @@
+<script>
+var currentSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Text</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to search, crop, append and compare text with Facilino.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong>Arduino Uno, Arduino multifunctional shield.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction0'></div><script>injectInstruction('text','blocklyInstruction0');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('text_append','blocklyInstruction7');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('text_charAt','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('text_join','blocklyInstruction8');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('text_length','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('text_substring','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('text_lower','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2a'></div><script>injectInstruction('text_search','blocklyInstruction2a');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4a'></div><script>injectInstruction('text_contains','blocklyInstruction4a');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercises">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Reverse string</strong>. Create a program that reads a string message over the serial port and prints the reserved message. <strong>Hint: </strong><i>First read a string message over the serial port using the </i>'read string'<i> instruction (check data availability on serial port). Afterwards, in a </i>for <i>loop, iterate over each of the characters of the message in reverse order (from n-1 to 0, being n the length of the string message) and append each of the characters to a string variable, so that after the </i>for<i> loop, you have the string reversed</i>. <button id="but1" type="button" onclick="showHide('solutions1','reverse_string.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Number of words</strong>. Create a program that reads a string message over the serial port and counts the number of separated words (prints a message "Number of words: xxx", being xxx the number of words). <strong>Hint: </strong><i>Implement a while loop and check if the message length is greater than 0. In the while loop, count the number of times a space character is found and (store the result in a variable "new_pos" and check if the difference with respect to the previous position "pos" is greater than zero). On each iteration of the while loop, crop the string message from "new_pos+1" to "n-1", being "n" the message length. To print the message with the number of words, use the instruction 'create text with' so you can concatenate a string and the result of the word count</i>.<button id="but2" type="button" onclick="showHide('solutions2','num_words.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Searching text</strong>. Create a program that makes the red LED (connected to pin D12) blink every time the user sends a message with the word 'Facilino' and makes the blue LED (connected to pin D13) blink every time the message contains the word 'Arduino'. <strong>Hint: </strong><i>Use the 'contains...expression' instruction in the text category</i>.<button id="but3" type="button" onclick="showHide('solutions3','searching_text.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1011" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1011'></div></div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise3'></div></div>
+		</div>
+	</section>
+
+<script>
+HideButton('but1'); HideButton('but2'); HideButton('but3');
+</script>

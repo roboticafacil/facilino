@@ -320,8 +320,8 @@ void MainWindow::actionGraph() {
     // Show/hide graph
     if (ui->consoleText->isVisible() == true) {
         // Show graph
-        ui->consoleText->setVisible(false);
         ui->graphsWidget->setVisible(true);
+        ui->consoleText->setVisible(false);
         ui->actionGraph->setChecked(true);
     } else {
         // Hide graph
@@ -588,7 +588,7 @@ void MainWindow::actionSettings() {
     QString license = settings->license();
     // Supported list of languages
     QStringList languageList;
-    languageList << "en-GB" << "es-ES" << "ca-ES" << "gl-ES" << "eu-ES" << "de-DE" << "fr-FR" << "it-IT" << "pt-PT" << "pl-PL" << "ru-RU" << "nb-NO" <<"da-DK" << "nl-NL" << "sv-SE";
+    languageList << "en-GB" << "es-ES" << "ca-ES" << "gl-ES" << "eu-ES" << "de-DE" << "fr-FR" << "it-IT" << "pt-PT" << "pl-PL" << "ru-RU" << "nb-NO" <<"da-DK" << "nl-NL" << "sv-SE" << "ch-CH";
     SettingsDialog settingsDialog(settings, languageList, this);
     int result = settingsDialog.exec();
     if (result && settingsDialog.changed()) {

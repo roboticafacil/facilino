@@ -246,7 +246,7 @@
 				"LANG_ADVANCED_SERIAL_TIMEOUT_TOOLTIP": "Устанавливает таймаут для последовательного recepction (в миллисекундах).",
 				"LANG_LCD_CLEAR": "ЖК очистить",
 				"LANG_LCD_CLEAR_TOOLTIP": "ЖК: Удалить символы с экрана",
-				"LANG_LCD_DEF": "ЖК-дисплей (2x16) ",
+				"LANG_LCD_DEF": "ЖК-дисплей (16x2) ",
 				"LANG_LCD_PINS": "LCD Pins",
 				"LANG_LCD_DEF_TOOLTIP": "Установка ЖК",
 				"LANG_LCD_PRINT": "ЖК: Печать",

@@ -2,64 +2,10 @@
 <html>
 <head>
 <meta charset='utf-8'/>
-<style>.button_wrapper {
-  text-align: center;
-  color: red;
-}
-.button {
-  background-color: #2e2efe;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
- h4 { margin-top: 20px; }
- h5 { margin-top: 10px;}
-
-</style>
-<script>
-function openFunction(bly) {
-    $.ajax({
-        type: "GET" ,
-        url: bly ,
-        dataType: "xml" , async: false,
-        success: function(xml) {
-			var txt = new XMLSerializer().serializeToString(xml);
-			Blockly.mainWorkspace.clear();
-			var xmlDOM = Blockly.Xml.textToDom(txt);
-			Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
-        }
-    });
-}
-function injectInstruction(block,blockDiv) {
-	var instructionPreview = document.getElementById(blockDiv);
-	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
-	mainWorkspace.clear();
-	var block = mainWorkspace.newBlock(block);
-	block.initSvg();
-	block.render();
-	block.setMovable(false);
-	block.setDeletable(false);
-	block.moveBy(15, 10);
-	var bbox = block.getHeightWidth();
-	instructionPreview.style.height = (bbox.height+50)+ 'px';
-	instructionPreview.style.width = (bbox.width+50) + 'px';
-	window.dispatchEvent(new Event('resize'));
-}
-function injectExample(example,exampleDiv) {
-  var instructionPreview = document.getElementById(exampleDiv);
-	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
-	openFunction('doc/examples/'+example);
-	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
-instructionPreview.style.height = (bbox.height+25)+ 'px';
-instructionPreview.style.width = (bbox.width+25) + 'px';
-
-	window.dispatchEvent(new Event('resize'));
-}
-</script>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css">
+<script src='doc/en-GB/footer.js'></script>
 </head>
 <body>
 <h3 id="up">Gas sensor calibrate R0</h3>
@@ -67,30 +13,21 @@ instructionPreview.style.width = (bbox.width+25) + 'px';
 <div id='blocklyInstruction'></div>
 <script>injectInstruction('ambient_gas_calibrate','blocklyInstruction');</script>
 <h4>Description</h4>
-<p>Gas sensors require to calibrate the value of sensor resistance in clean air, known as R0. This resistance can be calibrated by measuring the analog output, that is the ratio between R0 and RL (load resistance). For proper calibration, it is recommended to pre-heat the sensor at least for two hours before the calibration (connect the sensor to Vcc and Gnd). Once the calibration value is known, you can use this value to obtain calibrated values of the sensor, but this is usually done once per sensor under clean air conditions.</p>
+<p class="instruction">Gas sensors require to calibrate the value of sensor resistance in clean air, known as R0. This resistance can be calibrated by measuring the analog output, that is the ratio between R0 and RL (load resistance). For proper calibration, it is recommended to pre-heat the sensor at least for two hours before the calibration (connect the sensor to Vcc and Gnd). Once the calibration value is known, you can use this value to obtain calibrated values of the sensor, but this is usually done once per sensor under clean air conditions.</p>
 <h4>Requirements</h4>
 Facilino's license.
 <h4>Inputs</h4>
-<ul>
+<ul class="instruction">
   <li>PIN: Analog pin where the AO output is connected.</li>
 </ul>
 <h4>Dropdown list</h4>
-<ul>
+<ul class="instruction">
   <li>Sensor: Sensor type.</li>
 </ul>
 <h4>Output</h4>
-Value of the sensor resistance in kOhms.
-<h4>Example</h4>
-In this example we show how to calibrate a gas sensor. First, the program waits until you press a button so that pre-heating time has been accomplished. After that, calibrates the sensor and displays on the console the value of the resistance. Once calibrated, the sensor measurements can be obtained in ppm by selecting the appropriate gas type.
-<div class="button_wrapper">
-<p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction('doc/examples/gas_mq3_calibrated_example.bly')">Open</button></p>
-All changes will be lost!
-</div>
-<h5>Circuit</h5>
-<image src="doc/circuits/gas_mq3_calibrated_bb.png" title="gas_mq3_calibrated_bb" alt="gas_mq3_calibrated_bb"></image>
-<h5>Facilino Code</h5>
-<div id='example'></div>
-<script>injectExample('gas_mq3_calibrated_example.bly','example');</script>
-<p><image src="doc/common/home.png" title="home" alt="home" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/index.html');});"></image> | <image src="doc/common/category.png" title="category" alt="category" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/categories.html');});"></image> | <image src="doc/common/settings.png" title="settings" alt="settings" style="cursor: pointer;" onClick='$(function(){$("#doc").load("doc/en-GB/settings.html");});'></image> | <image src="doc/common/language.png" title="Language" alt="Language" style="cursor: pointer;" onClick="alert('Do you want to colaborate in translating Facilino to your language? Please, contact with soporte@roboticafacil.es')"></image> |<image src="doc/common/bug-fixing.png" title="bug-fixing" alt="bug-fixing" style="cursor: pointer;" onClick="alert('Have you found a bug? Please, contact with soporte@roboticafacil.es')"></image> | <image src="doc/common/info.png" title="about" alt="about" style="cursor: pointer;" onClick="$(function(){$('#doc').load('doc/en-GB/about.html');});"></image></p>
+<p class="instruction">Value of the sensor resistance in kOhms.</p>
+<div id='examples'></div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<script>createExamples(['gas_mq3_calibrated_example']);</script>
 </body>
 </html>
