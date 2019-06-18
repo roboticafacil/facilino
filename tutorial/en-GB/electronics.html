@@ -11,8 +11,8 @@
                 <div class="card-wrapper ">
                     <div class="card-img">
                         <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="electronics_basics.html" class="btn btn-primary display-4">Learn More</a></div>
-                        <a href="electronics_basics.html"><img src="assets/images/mbr-676x459.jpg" alt="Electronics basics" title=""></a>
+                        <div class="mbr-section-btn text-center"><a onclick="onElectronic('electronics_basics.html');" class="btn btn-primary display-4">Learn More</a></div>
+                        <a onclick="onElectronic('electronics_basics.html');"><img src="assets/images/mbr-676x459.jpg" alt="Electronics basics" title=""></a>
                     </div>
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style display-7">
@@ -26,8 +26,8 @@
                 <div class="card-wrapper">
                     <div class="card-img">
                         <div class="mbr-overlay"></div>
-                        <div class="mbr-section-btn text-center"><a href="digital_input.html" class="btn btn-primary display-4">Learn More</a></div>
-                        <a href="digital_input.html"><img src="assets/images/mbr-5-676x451.jpg" alt="Digital input" title=""></a>
+                        <div class="mbr-section-btn text-center"><a onclick="onElectronic('digital_input.html');" class="btn btn-primary display-4">Learn More</a></div>
+                        <a onclick="onElectronic('digital_input.html');"><img src="assets/images/mbr-5-676x451.jpg" alt="Digital input" title=""></a>
                     </div>
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style display-7">
@@ -274,3 +274,18 @@
 		</div>
     </div>
 </section>
+
+<script>
+	if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
+		localStorage.setItem('language', 'en-GB');
+	if (localStorage.getItem("processor")===undefined || localStorage.getItem("processor")===null)
+		localStorage.setItem('processor', 'ArduinoNano');
+	window.roboblocksLanguage = localStorage.getItem("language");
+	window.roboblocksProcessor = localStorage.getItem("processor");
+	$("#language").val(window.roboblocksLanguage);
+	$("#processor").val(window.roboblocksProcessor);
+	function onElectronic(html_file)
+	{
+		$(function(){var file= window.roboblocksLanguage+'/'+html_file; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='en-GB/'+html_file;},success: function(){}}); $('#main').load(file); location.href = "#menu";});
+	}
+</script>
