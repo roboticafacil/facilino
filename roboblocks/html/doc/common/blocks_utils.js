@@ -11,6 +11,7 @@ function openFunction(bly) {
         }
     });
 }
+
 function injectInstruction(block,blockDiv) {
 	var instructionPreview = document.getElementById(blockDiv);
 	var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});

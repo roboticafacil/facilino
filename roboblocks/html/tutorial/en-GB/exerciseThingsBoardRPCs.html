@@ -1,0 +1,164 @@
+<script>
+var currentSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						ThingsBoard RPCs</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to work with Remote Procedure Calls in ThingsBoard to read remote values.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong>Arduino Uno, Arduino multifunctional shield.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Preliminaries</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>A two-button User-Interface</strong> uses two buttons to be used as a <strong>Next/Select button</strong> and <strong>Cancel button</strong>, respectively. Every UI has a <strong>General Menu</strong>, in which we show the main UI with whatever information or data we consider relevant. For instance, we can <strong>print data over the console</strong> or <strong>show data on a LCD screen</strong>. A two-button UI can have different menus 'menu0', 'menu1', 'menu2', etc...representing concepts such as 'temperature', 'light', 'fan', etc... Each menu has different options, for instance 'Low', 'Medium', 'High' 'ON', 'OFF' (or whatever you consider more appropriate).</div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">In order to reduce the number of buttons in a UI, it is very convinient that some <strong>buttons can implement a double functionality</strong> when pressing buttons, so <strong>we can distinguish between long-press</strong> (long click) and <strong>short-press</strong> (normal click). In this sense, the Next/Select button must include this feature, so that the <strong>'Next' is implemented with a short-press</strong> and <strong>'Select' is implemented with a long-press</strong>.</div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>A two-button UI can be seen a tree</strong>, with the <strong>'General Menu' being the trunk</strong>, the <strong>'menus' are the branches</strong> and the <strong>'options' are the leaves</strong>. Every time the user moves along the tree, <strong>only one element is 'highlighted'</strong> or 'displayed' if it is shown on a screen. Usually, the <strong>names of the 'menus' and 'options' are displayed every time the user nagivates along the tree</strong>, so he knows in which part of the tree is currently positioned. </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>To move along the tree, the user will combine actions of 'Next', 'Select' and 'Cancel' accordingly</strong>. So from the 'General Menu' (the trunk of the tree), <strong>we can iterate over the branches using the 'Next' button</strong>. Once the last brach is reached, we can jump to the first branch again simply pushing the 'Next' button. Similarly, if we are displaying the options of a menu, <strong>the 'Next' button will iterate over the different options</strong>. The 'Select' action will move from the 'General Menu' to the first menu and if selected again will move to the first option. Every time the user presses the <strong>'Cancel' button it moves back from leaves to branches or from branches to main trunk</strong>, which means that it moves from 'options' to 'menus' and 'menus' to 'General Menu'.</div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('communications_wifi_def','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('communications_wifi_iot_thingsboard_setup','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('communications_wifi_iot_thingsboard_isconnected','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('communications_wifi_iot_thingsboard_reconnect','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('communications_wifi_iot_thingsboard_reconnect','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc','blocklyInstruction6');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('communications_wifi_iot_thingsboard_rpc_value','blocklyInstruction7');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercises">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Light Dimm</strong>. xxx <strong>Hint: </strong><i>xxxx </i>. <button  type="button" onclick="showHide('solutions1','xx.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Remotely Controlled RGB</strong>. xxx <button  type="button" onclick="showHide('solutions2','xx.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Remotely Controlled Melody</strong>. xxx<button  type="button" onclick="showHide('solutions3','xx.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+					<li><strong>Remotely Controlled LEDs</strong>. xxx<button id="but4" type="button" onclick="showHide('solutions4','xx.bly','exercise4');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise3'></div></div>
+		</div>
+	</section>
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4" style="display:none">
+		<div class="container">
+			<div class="media-container-row"><div id='exercise4'></div></div>
+		</div>
+	</section>
+
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3'); HideButton('but4');
+</script>

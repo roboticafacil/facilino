@@ -1,0 +1,192 @@
+﻿<html dir="ltr"><head></head><body dir="ltr"><section class="mbr-section content8 cid-qYmzVlsGY5" id="content8-81">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYfTBIeKhr" id="content4-41">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Entrada analogica</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">Descripción detallada de las entradas analógicas de un Arduino.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfUQ9R83W" id="content9-43">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Señal analógica</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Una <strong>señal analógica</strong> es una señal que <strong>puede tomar cualquier valor entre 0V y 5V</strong> (para Arduino Uno). Por lo tanto, la principal diferencia con respecto a una señal digital es que las señales digitales solo pueden tomar dos valores posibles, 0V o 5V, mientras que una señal analógica podría ser cualquier número real entre 0V y 5V, por ejemplo 1.2V.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfV9GmktA" id="content2-46">
+
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(De Wikipedia)</strong> Una señal analógica es un tipo de señal generada por algún tipo de fenómeno electromagnético; que es representable por una función matemática continua en la que es variable su amplitud y periodo (representando un dato de información) en función del tiempo. Algunas magnitudes físicas comúnmente portadoras de una señal de este tipo son eléctricas como la intensidad, la tensión y la potencia, pero también pueden ser hidráulicas como la presión y térmicas como la temperatura.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfVcAKW8E" id="content9-47">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Entradas analógicas</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfVm7gJFh" id="content1-48">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Una <strong>entrada analógica</strong> es <strong>una señal medida por el microcontrolador</strong> que corresponde a una señal analógica de un sensor <strong>con voltajes entre 0V y 5V</strong> . Sin embargo, los <strong>microcontroladores no comprenden los valores analógicos</strong> , solo pueden trabajar con valores digitales. Entonces, ¿cómo es esto posible? La respuesta es muy simple, <strong>utilizan un convertidor analógico-digital (ADC)</strong> para convertir un valor analógico en un número entero.</p><p>
+Lo único que debes saber es que Arduino lleva a cabo internamente un proceso de <strong>conversión lineal</strong> y que una tensión de 0 V se convierte en 0 y una tensión de 5 V se convierte en 1023.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYg0JVch6j" id="image3-4a">
+
+    
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:50%">
+                <img src="tutorial/assets/images/arduino-grafica-adc-443x318.png" width="1400" alt="arduino-grafica-adc" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYg0GaxWP3" id="content1-49">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p><span style="font-size:1rem">Asociado con la conversión analógica-digital, hay un fenómeno de cuantificación relacionado con la resolución ADC. La resolución ADC de Arduino Uno es de 10 bits, por eso 5V se convierte en 1023 = (2 ^ 10) -1. Esto implica que hay pérdida de información durante el proceso de conversión, porque un número real se transforma en un número entero. En otras palabras, no podrá distinguir entre dos valores analógicos cuya diferencia sea menor que 4.88mV = 5V / (2 ^ 10).</span></p><p><span style="font-size:1rem">¡Hagámoslo simple! Suponga que su resolución de ADC es solo de 2 bits, entonces, los únicos valores de rango de voltaje posibles que puede distinguir son (0V-1.25V), (1.25V-2.5V), (2.5V-3.75V) y (3.75V-5V) , porque la resolución de voltaje es claramente 1.25V = 5V / (2 ^ 2). La siguiente figura ilustra este fenómeno.</span><br></p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYg2h0AcRh" id="image3-4c">
+
+    
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:30%">
+                <img src="tutorial/assets/images/arduino-adc-aref-500x340.jpg" width="1400" alt="arduino-adc-aref" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYg2f4KWK2" id="content1-4b">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>El siguiente circuito muestra una medida de entrada analógica típica. Cuando la "señal externa" se alimenta con un voltaje entre 0V y 5V, la corriente fluye a través de R1 y R2, actuando como un divisor de voltaje.</p></div>
+        </div>
+    </div>
+</section>
+
+
+<section class="cid-qYg5xNGut7" id="image3-4d">
+
+    
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:58%">
+                <img src="tutorial/assets/images/analog-input1-1-512x512.png" width="1400" alt="entrada analogica" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYg5PXmp1V" id="content1-4e">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>La tensión entre ambas resistencias es Vout, que es medida por la entrada analógica con un valor Vout = R1 / (R1 + R2) * Vin = 0.9 * Vin. Hay una pequeña corriente que se circula por la entrada analógica, pero es despreciable en comparación con la corriente en R2.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones de Facilino</div>
+            <hr class="line" style="width:25%">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>Para leer el valor de una entrada analógica en Facilino necesitamos usar las siguientes instrucciones. La primera instrucción devuelve un valor entre 0 y MAX_ADC, siendo MAX_ADC = 2 ^ b-1 y b la resolución en bits del convertidor analógico-ditigal (ADC). En Arduino Uno MAX_ADC = 1023, mientras que para los procesadores ESP8266 y ESP32 MAX_ADC = 4095. La instrucción de lectura analógica requiere el uso de la segunda instrucción para indicar el número de pin analógico apropiado.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction1"></span></div><div id="blocklyInstruction1"></div><script>injectInstructionTooltip('inout_analog_read','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id="tooltipInstruction2"></span></div><div id="blocklyInstruction2"></div><script>injectInstructionTooltip('pin_analog','blocklyInstruction2','tooltipInstruction2');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section></body></html>

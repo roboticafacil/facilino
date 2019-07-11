@@ -1,0 +1,187 @@
+<script>
+var currentSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    USB Serial Instructions</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Learn how to print to the console and read from the console with the USB serial interface.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>A Multisensor shield.</li><li><strong>No</strong> wiring or additional electronics needed</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('serial_available','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('serial_println','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('serial_plot','blocklyInstruction3');</script></div>
+        <div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('serial_parseint','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('serial_parsefloat','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('serial_readstring','blocklyInstruction6');</script></div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Additional instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('inout_analog_read','blocklyInstruction7');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('pin_analog','blocklyInstruction8');</script></div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Hello world!</strong><p>At the start up, print the sentence "Hello world!" on the console.</p><button  type="button" onclick="showHide('solutions1','hello_world.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('hello_world.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Serial loopback</strong><p>Create a program that sends over the serial port data received on it (loopback).</p><strong>Hint: </strong><p><i> Use the 'read string' instruction.</i></p><button  type="button" onclick="showHide('solutions2','serial_loopback.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('serial_loopback.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Parsing integer numbers</strong><p>Modify the previous program so that it expects an integer number. Read it and print on the console the successor (add one to the read number).</p><strong>Hint: </strong><p><i>Use the 'read integer' instruction.</i></p><button  type="button" onclick="showHide('solutions3','parse_intengers.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('parse_intengers.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Parsing float numbers</strong><p>Modify the previous program so that it expects a float number . Read it and print on the console its negate value.</p><strong>Hint: </strong><p><i>Use the 'read float' instruction.</i></p><button id="but4" type="button" onclick="showHide('solutions4','parsing_float.bly','exercise4');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('parsing_float.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Plot a signal</strong>.<p>Using Arduino's plotter, plot the analog value of the potentiometer (connected to pin A0).</p><strong>Hint: </strong><p><i>Use the 'plot data' instruction.</i></p><button id="but5" type="button" onclick="showHide('solutions5','plotting_signals.bly','exercise5');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('plotting_signals.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+	<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 4</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise4'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions5" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 5</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise5'></div></div>
+		</div>
+	</section>
+	
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3'); HideButton('but4'); HideButton('but5');
+</script>

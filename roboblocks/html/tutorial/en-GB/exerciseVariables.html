@@ -1,0 +1,319 @@
+<script>
+var currentSolutions=0;
+</script>
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+
+		<div class="container">
+			<div class="media-container-row">
+				<div class="title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Variables</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to work with local and global variables and their types. Also learn how to work with array variables.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">All required Electronics are already integrated in the Multisensor Shield.</div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>A Multisensor Shield.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Preliminaries</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>The rice and the chessboard story.</strong> There's a famous legend about the origin of chess that goes like this. When the inventor of the game showed it to the emperor of India, the emperor was so impressed by the new game, that he said to the man "Name your reward!"</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">"Oh emperor, my wishes are simple. I only wish for this. Give me one grain of rice for the first square of the chessboard, two grains for the next square, four for the next, eight for the next and so on for all 64 squares, with each square having double the number of grains as the square before."</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">The emperor agreed, amazed that the man had asked for such a small reward - or so he thought. After a week, his treasurer came back and informed him that the reward would add up to an astronomical sum, far greater than all the rice that could conceivably be produced in many many centuries!</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Variable types</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title="">
+                
+            </div>
+    </figure>
+</section>
+
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>While for a person it is easy to interprete Variables or Symbols in their context, programms need pretermined "Types" to correctly use them. First of all you have a simple<strong> boolean</strong>, that can only take the values true/1 or false/0. You have full numbers, that vary in maximal and minimal value; <strong>byte, int &amp; long int</strong>. You have decimal numbers, that also include full numbers; <strong>float</strong>. You have alphabetical characters and extra symbols in a <strong>char</strong>. For a full word or a complete sentence, you have to combine multiple chars to a <strong>string</strong>.&nbsp;</p>
+			</div>
+    </div>
+</section>
+
+
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>Arduino</strong> has several variable types for storing numbers or text. The following table shows the most used variable types:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">    
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Type</th><th class="head-item mbr-fonts-style display-7">
+                      Bits</th><th class="head-item mbr-fonts-style display-7">
+					  Min. Value</th><th class="head-item mbr-fonts-style display-7">
+					  Max. Value</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr> 
+			  <td class="body-item mbr-fonts-style display-7">boolean</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">1</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">byte</td><td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">255</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">int</td><td class="body-item mbr-fonts-style display-7">16</td><td class="body-item mbr-fonts-style display-7">-32768</td><td class="body-item mbr-fonts-style display-7">32767</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">long int</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-2147483648</td><td class="body-item mbr-fonts-style display-7">2147483647</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">float</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-3.4028235E+38</td><td class="body-item mbr-fonts-style display-7">3.4028235E+38</td></tr><tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>ESP32</strong> has several variable types for storing numbers or text. The following table shows the most used variable types:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">    
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Type</th><th class="head-item mbr-fonts-style display-7">
+                      Bits</th><th class="head-item mbr-fonts-style display-7">
+					  Min. Value</th><th class="head-item mbr-fonts-style display-7">
+					  Max. Value</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr> 
+			  <td class="body-item mbr-fonts-style display-7">boolean</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">1</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">byte</td><td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">255</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">short int</td><td class="body-item mbr-fonts-style display-7">16</td><td class="body-item mbr-fonts-style display-7">-32768</td><td class="body-item mbr-fonts-style display-7">32767</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">int</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-2147483648</td><td class="body-item mbr-fonts-style display-7">2147483647</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">long int</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-2147483648</td><td class="body-item mbr-fonts-style display-7">2147483647</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">float</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-3.4028235E+38</td><td class="body-item mbr-fonts-style display-7">3.4028235E+38</td></tr><tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+          
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction1('variables_get','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction1('variables_set','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('variables_local','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('variables_local_type','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('variables_global','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('variables_global_type','blocklyInstruction6');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction1('variables_get_1Darray','blocklyInstruction7');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('variables_local_1DArray','blocklyInstruction8');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction9'></div><script>injectInstruction('variables_global_1DArray_type','blocklyInstruction9');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Additional instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction10'></div><script>injectInstruction('math_1DArray_constructor','blocklyInstruction10');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction11'></div><script>injectInstruction('math_1DArray_decode','blocklyInstruction11');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction12'></div><script>injectInstruction('math_1DArray_encode','blocklyInstruction12');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise8_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>How many rice grains in total?</strong><p>Compute the requested number of grains. Use different number representations to see which can represent the number. Show on the console the total amount computed when using integers, long integers and floats. All required Electronics are already integrated in the Multisensorshield.</p><strong>Hint: </strong><p><i>Implement a 'for' loop with 64 iterations and compute the powers of 2 (declare variables of appropriate type and initialize them to 1). At the end, print the results to see if they are correct.</i></p><button  type="button" onclick="showHide('solutions1','rice_grains.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('rice_grains.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Send Array Data</strong><p>Encode readings of analog inputs A0, A1 and A2 and send data over the USB serial.</p><strong>Hint: </strong><i><p>Build an array data of type 'short integer' with three elements and store each of the analog readings on scalar 'short integer' variables. Then, encode them on the array data and send them over the USB serial port</i>.</p><button  type="button" onclick="showHide('solutions2','send_array_data_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('send_array_data_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Store Array Data</strong><p>Decode data received from the USB serial port with byte values of three color channels. Use received data to regulate the color of RGB (pins D9-D11-D10, respectively).</p><strong>Hint: </strong><p><i>If there's data available on the serial port, declare an array data of type 'byte' with three elements with the read byte data from the USB serial. Access to each of the elements of the data to set the 'analog write' value for each LED channel.</i></p><button  type="button" onclick="showHide('solutions3','store_array_data_wemosD1R32.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('store_array_data_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3'></div></div>
+		</div>
+	</section>
+	
+
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3');
+</script>

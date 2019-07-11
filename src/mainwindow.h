@@ -5,6 +5,7 @@
 #include "jswebhelpers.h"
 #include "settingsdialog.h"
 #include "settingsstore.h"
+#include "tutorialdialog.h"
 
 #include <QMainWindow>
 #include <QProcess>
@@ -221,6 +222,7 @@ private slots:
     void on_actionLDR_triggered();
     void on_actionBLE_triggered();
     void on_actionReload_triggered();
+    void on_actionactionTutorial_triggered();
 };
 
 #endif // MAINWINDOW_H

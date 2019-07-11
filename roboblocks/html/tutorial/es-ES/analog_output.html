@@ -1,0 +1,131 @@
+﻿<html dir="ltr"><head></head><body dir="ltr"><section class="mbr-section content8 cid-qYmzZbbatW" id="content8-82">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYmzZFd6Tu" id="content4-83">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">Salida Analógica (PWM)</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">Descripción detallada de las salidas analógicas de un Arduino.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfUQ9R83W" id="content9-43">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Señal analógica</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Una <strong>señal analógica</strong> es una señal que <strong>puede tomar cualquier valor entre 0V y 5V</strong> (para Arduino Uno). Por lo tanto, la principal diferencia con respecto a una señal digital es que las señales digitales solo pueden tomar dos valores posibles, 0V o 5V, mientras que una señal analógica podría ser cualquier número real entre 0V y 5V, por ejemplo 1.2V.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfV9GmktA" id="content2-46">
+
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(De Wikipedia)</strong> Una señal analógica es un tipo de señal generada por algún tipo de fenómeno electromagnético; que es representable por una función matemática continua en la que es variable su amplitud y periodo (representando un dato de información) en función del tiempo. Algunas magnitudes físicas comúnmente portadoras de una señal de este tipo son eléctricas como la intensidad, la tensión y la potencia, pero también pueden ser hidráulicas como la presión y térmicas como la temperatura.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfVcAKW8E" id="content9-47">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Salidas Analógicas</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfVm7gJFh" id="content1-48">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>La creación de señales analógicas precisas puede ser un desafío para la mayoría de los microcontroladores. En lugar de usar un convertidor Digital a Analógico (DAC), comúnmente usan un método llamado Modulación de Ancho de Pulso o PWM.</p>
+<p><strong>PWM</strong>, es una técnica para obtener resultados analógicos con señales digitales. El control digital se usa para crear una onda cuadrada, una señal que cambia entre ALTO (5 V) y BAJO (0 V). Este patrón de encendido y apagado puede simular voltajes analógicos continuos entre 5V y 0V, cambiando la parte del tiempo que la señal encencidad frente al tiempo que la señal pasa apagada, cuando la frecuencia de conmutación es muy rápida. La duración del "tiempo de encendido" se denomina ancho de pulso, por tanto, para obtener valores analógicos variables, debes cambiar o modular ese ancho de pulso. Si repite este patrón de encendido / apagado lo suficientemente rápido con un LED, por ejemplo, el resultado es como si la señal fuera un voltaje constante entre 0 y 5v que controla el brillo del LED.</p>
+<p>En el siguiente gráfico, las líneas verdes representan un período de tiempo regular. Esta duración o período es la inversa de la frecuencia PWM. En otras palabras, con una frecuencia PWM del microcontrolador a aproximadamente 500Hz, las líneas verdes medirían 2 milisegundos cada una. La línea negra representa el valor de la señal digital PWM que conmuta (cambia) según indica la frecuencia marcada por la línea verde. El ciclo de trabajo es el porcentaje de tiempo que la señal permanece activa. La línea roja es el valor medio del tiempo que la señal negra permanece activa frente al tiempo que permance desactivada. Este valor es el percibido como una señal analógica por muchos dispositivos.</p>
+</div>
+        </div>
+    </div>
+</section>
+
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">  
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:40%">
+                <img src="tutorial/assets/images/pwm.png" width="1400" alt="pwm" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones de Facilino</div>
+            <hr class="line" style="width:25%">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>Para establecer el valor de una salida analógica en Facilino necesitamos usar las siguientes instrucciones. La primera instrucción requiere un pin digital con capacidades PWM y el ciclo de trabajo, un número entre 0 y 255 para una resolución de 8 bits. Cuando el ciclo de trabajo es 0, la señal permanece en 0V y cuando el ciclo de trabajo es 255, la señal permanece en 5V. Cualquier otro valor intermedio establecerá el ancho del tiempo de ENCENDIDO de la señal PWM. La instrucción Facilino para procesadores ESP permite además configurar la frecuencia PWM y la resolución. La segunda instrucción devuelve un pin PWM válido.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction1"></span></div><div id="blocklyInstruction1"></div><script>injectInstructionTooltip('inout_analog_write','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id="tooltipInstruction2"></span></div><div id="blocklyInstruction2"></div><script>injectInstructionTooltip('pin_pwm','blocklyInstruction2','tooltipInstruction2');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section></body></html>

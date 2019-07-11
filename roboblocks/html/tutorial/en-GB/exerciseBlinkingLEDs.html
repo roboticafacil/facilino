@@ -1,0 +1,204 @@
+<script>
+var currentSolutions=0;
+</script>
+<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Blinking LEDs</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Learn how to work with digital inputs and outputs with Facilino to make LEDs blink.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+</section>
+
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>Arduino multisensor shield.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<!--<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">-->
+<!-- <section class=""mbr-section article content1 cid-qYePlinsuB" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+                    <li><div><span id='tooltipInstruction1'></span><button id="helpBtn1" type="button" onclick="myHelpFcn('inout_analog_read');" class="btn-primary display-4 popup"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span></button></div><div id='blocklyInstruction1'></div><script>injectInstructionTooltip('inout_analog_read','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span><button id="helpBtn2" type="button" onclick="myHelpFcn('pin_analog');" class="btn-primary display-4 popup"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span></button></div><div id='blocklyInstruction2'></div><script>injectInstructionTooltip('pin_analog','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span><button id="helpBtn3" type="button" onclick="myHelpFcn('inout_digital_read');" class="btn-primary display-4 popup"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span></button></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('inout_digital_read','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span><button id="helpBtn4" type="button" onclick="myHelpFcn('inout_digital_write');" class="btn-primary display-4 popup"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span></button></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id='tooltipInstruction5'></span><button id="helpBtn5" type="button" onclick="myHelpFcn('inout_highlow');" class="btn-primary display-4 popup"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span></button></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('inout_highlow','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span><button id="helpBtn6" type="button" onclick="myHelpFcn('pin_digital');" class="btn-primary display-4 popup"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span></button></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction7'></span><button id="helpBtn7" type="button" onclick="myHelpFcn('pin_pwm');" class="btn-primary display-4 popup"><span class="mbri-info mbr-iconfont mbr-iconfont-btn"></span></button></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('pin_pwm','blocklyInstruction7','tooltipInstruction7');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>-->
+
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('inout_analog_read','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('pin_analog','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('inout_digital_read','blocklyInstruction3');</script></div>
+        <div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('inout_digital_write','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('inout_highlow','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('pin_digital','blocklyInstruction6');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('pin_pwm','blocklyInstruction7');</script></div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Additional instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('controls_if','blocklyInstruction8');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction9'></div><script>injectInstruction('base_delay','blocklyInstruction9');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction10'></div><script>injectInstruction('logic_compare','blocklyInstruction10');</script></div>
+        <div class="media-container-row"><div id='blocklyInstruction11'></div><script>injectInstruction('base_map','blocklyInstruction11');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction12'></div><script>injectInstruction('math_minmax','blocklyInstruction12');</script></div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Blinking LEDs with a fixed time</strong><p>Turn on and off red and blue LEDs of multisensor shield sequentially. They are connected to pins D12 (red) and 13 (blue). When one LED is on, the other LED must be off. The time delay between each sequence must be of 500ms.</p><strong>Hint: </strong><p><i>Repeat the sequence blue on and red off; wait 500ms; blue off and red on; wait 500ms.</i></p>
+					<button type="button" onclick="showHide('solutions1','Blinking_LEDs_I_wemosD1R32.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('Blinking_LEDs_I_wemosD1R32.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Blinking LEDs with varying frequency</strong><p>Following the ideas of previous exercise make LEDs wait an amount of time between 100ms and 1000ms depending on the potentiometer position (connected to pin A0).</p><strong>Hint: </strong><p><i>Use the 'map' instruction to cast the raw value of the potentiometer (between 0 and 4095) to 100 and 1000.</i></p>
+					<button type="button" onclick="showHide('solutions2','Blinking_LEDs_II_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('Blinking_LEDs_II_wemosD1R32.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Blinking LEDs with increasing frequency</strong><p>Following the ideas of previous exercise, now increase the blinking frequency (with a max. frequency of 10Hz) every time we push the push-button connected to pin D2.</p><strong>Hint: </strong><p><i>If the push-button D2 is LOW, then decrease the blinking time. Blinking time can be stored in a variable and when updated, we need to check that the minimum value is 50ms).</i></p>
+					<button type="button" onclick="showHide('solutions3','Blinking_LEDs_III_wemosD1R32.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('Blinking_LEDs_III_wemosD1R32.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                
+				</ol>
+            </div>
+        </div>
+    </div>
+	
+</section>
+	
+	<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3'></div></div>
+		</div>
+	</section>
+</section>
+
+<script>
+
+function myHelpFcn(block)
+{
+	doc = document.getElementById("doc");
+	doc.style.width = "100%"; 
+	doc.innerHTML=eval(Blockly.Blocks[block].helpUrl.replace(/<script>(.*)<\/script>/,"$1"));
+	modal.style.display = 'block';
+}
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+
+modal=document.getElementById("modal");
+span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+	modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target==modal) {
+	modal.style.display="none";
+  }
+}
+//for (i=0;i<numItems;i++)
+
+//HideButton('but1'); HideButton('but2'); HideButton('but3');
+</script>

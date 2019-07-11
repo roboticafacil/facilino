@@ -100,7 +100,11 @@
             $('.blocklySvg').width('100%');
 
             // Update code
-                Blockly.getMainWorkspace().addChangeListener(function () {
+                Blockly.getMainWorkspace().addChangeListener(function (event) {
+				if (event.type== Blockly.Events.DELETE)
+				{
+					Facilino.removedBlocks(event.ids);
+				}
 		$('#code').html('<code class="c++"><pre>'
 		  + escapeCode(Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace()))
 		  + '</pre></code>');

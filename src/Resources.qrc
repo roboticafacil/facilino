@@ -29,5 +29,6 @@
         <file>../icons/facilino_24x24.png</file>
         <file>../icons/facilino_128x128.png</file>
         <file>../icons/facilino.ico</file>
+        <file>../icons/tutorial.png</file>
     </qresource>
 </RCC>

@@ -1,0 +1,167 @@
+<script>
+var currentSolutions=0;
+</script>
+<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Flow control instructions</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to make decisions with 'if' statements and repeat blocks of instructions with 'while' loops.</h3>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">All required Electronics are already integrated in the Multisensor Shield.</div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>A Multisensor Shield.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('controls_if','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('dyor_controls_wait','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('base_delay','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction1('controls_flow_statements','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('controls_whileUntil','blocklyInstruction5');</script></div>
+		
+        
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Additional instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('zum_piezo_buzzerav','blocklyInstruction6');</script></div>        
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Hysteresis</strong><p>Implement a hysteresis effect to 'binarize' analog readings of potentiometer A0 position. If the value is higher than 2000 then the LED D12 must be on, while if the value is below 800, LED D12 must be off. Otherwise, the LED state doesn't change.</p><strong>Hint: </strong><p><i> Define a global boolean variable to determine the state of the LED D12 (HIGH or LOW). Then if the value of the potentiometer and the state of LED D12 is LOW then turn LED on and set the state to HIGH. Implement the same logic for the other case, but with opposite logic. That is if the value is below 800 and LED state is HIGH then turn off LED and set state to LOW.</i></p><button  type="button" onclick="showHide('solutions1','hysteresis_wemosD1R32.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('hysteresis_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					
+					<li><strong>Wait until and break loop</strong><p>At start up, wait for push-button D2 being pushed. Afterwards, start blinking LED D12 at a 1Hz frequency. In order to stop blinking use push-button D3 and repeat the sequence (wait-blink).</p><strong>Hint: </strong><p><i>Use the 'wait until' instruction with push-button begin LOW in the main loop. Then, use 'While' loop to implement the blinking routine. In order to stop blinking use the 'break out of loop' instruction if push-button D3 is LOW.</i></p><button  type="button" onclick="showHide('solutions2','wait_break_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('wait_break_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Alarm effect</strong><p>Generate an alarm effect with the buzzer (pin D5). The alarm effect consists of two varying tones. The first one generates increasing frequencies that will exponentially increase 3\% starting from 1318.51Hz to 1567.98Hz with a duration of 22ms. The second one generates increasing frequencies that will exponentially increase 4\% starting from 1318.51Hz to 2349.32Hz with a duration of 12ms.</p><strong>Hint: </strong><p><i>Use 'While' instructions to generate the exponentially increasing frequencies. Initialize the frequency to 1318.51Hz and repeat the 'Advanced Buzzer' instruction until the maximum frequency is reached. Set the current frequency and tone duration as indicated.</i></p><button  type="button" onclick="showHide('solutions3','alarm_effect_wemosD1R32.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('alarm_effect_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+							
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3'></div></div>
+		</div>
+	</section>
+
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3');
+</script>

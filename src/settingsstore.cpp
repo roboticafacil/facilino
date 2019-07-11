@@ -10,7 +10,6 @@
 #include <QtSerialPort>
 
 const QString SettingsStore::index2board[SIZE_LIST] = {"arduino:avr:uno","arduino:avr:nano:cpu=atmega328","arduino:avr:nano:cpu=atmega328old","arduino:avr:nano:cpu=atmega168","arduino:avr:mega","arduino:avr:micro","arduino:avr:lilypad:cpu=atmega328","arduino:avr:lilypad:cpu=atmega168","arduino:avr:mini","arduino:avr:leonardo","esp8266:esp8266:generic","esp8266:esp8266:nodemcuv2","esp8266:esp8266:generic","esp32:esp32:esp32","esp32:esp32:lolin32","esp32:esp32:lolin32"};
-//const QString SettingsStore::index2board[SIZE_LIST] = {"arduino:avr:uno","arduino:avr:nano:cpu=atmega328","arduino:avr:nano:cpu=atmega328old","arduino:avr:nano:cpu=atmega168","arduino:avr:mega","arduino:avr:micro","arduino:avr:lilypad:cpu=atmega328","arduino:avr:lilypad:cpu=atmega168","arduino:avr:mini","arduino:avr:leonardo","esp8266:esp8266:generic:CpuFrequency=80,FlashFreq=40,FlashMode=dio,UploadSpeed=115200,FlashSize=512K64,ResetMethod=ck,Debug=Disabled,DebugLevel=None____","esp8266:esp8266:nodemcuv2:CpuFrequency=80,UploadSpeed=115200,FlashSize=4M3M","esp32:esp32:esp32:PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none","esp32:esp32:lolin32:FlashFreq=80,PartitionScheme=default,UploadSpeed=921600","esp32:esp32:lolin32:FlashFreq=80,PartitionScheme=default,UploadSpeed=921600"};
 const QString SettingsStore::index2name[SIZE_LIST] = {"ArduinoUno","ArduinoNano","ArduinoNano","ArduinoNano","ArduinoMega2560","ArduinoMicro","ArduinoLilyPad","ArduinoLilyPad","ArduinoMini","ArduinoLeonardo","ESP8266","NodeMCU","WEMOS D1R2","ESP32","WEMOS D1R32","WEMOS D1R32 SHIELD"};
 const qint32 SettingsStore::index2baudrate[SIZE_LIST] = {QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200};
 const QString SettingsStore::version = "1.4.2";
@@ -96,6 +95,10 @@ QString SettingsStore::tmpFileName() {
 
 QString SettingsStore::htmlIndex() {
     return relativePath("html_index", "./html/index.html");
+}
+
+QString SettingsStore::htmlTutorialIndex() {
+    return relativePath("html_tutorial_index", "./html/FacilinoTutorial.html");
 }
 
 QString SettingsStore::htmlIndexMyBlocks() {

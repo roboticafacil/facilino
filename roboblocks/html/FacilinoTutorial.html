@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="tutorial/assets/images/facilino-cuadrado-fondo-transparente-128x128.png" type="image/x-icon">
+  <meta name="description" content="Arduino & ESP Tutorial with Facilino">
+  <title>Arduino & ESP Tutorial</title>
+  <link rel="stylesheet" href="tutorial/assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="tutorial/assets/tether/tether.min.css">
+  <link rel="stylesheet" href="tutorial/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="tutorial/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="tutorial/assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="tutorial/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="tutorial/assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="tutorial/assets/theme/css/style.css">
+  <link rel="stylesheet" href="tutorial/assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="stylesheet" href="tutorial/modal.css" type="text/css">
+  <link rel="stylesheet" href="tutorial/overlay.css" type="text/css">
+  <link rel="stylesheet" href="tutorial/popup.css" type="text/css">
+  <script src="tutorial/assets/web/assets/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="facilino.css">
+  <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
+  <script src="javascript/underscore/underscore.js"></script>
+    <script src="javascript/highlight/highlight.pack.js"></script>
+    <script src="javascript/blockly-bq/blockly_compressed.js"></script>
+    <script src="javascript/blockly-bq/blocks_compressed.js"></script>
+    <script src="javascript/blockly-bq/arduino_compressed.js"></script>
+	<script src="javascript/blockly-bq/FieldButton.js"></script>
+    <script src="facilino.js"></script>
+    <script src="roboblocks.js"></script>
+	<script src="javascript/qtwebchannel/qwebchannel.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+if (window.webHelper === undefined ||window.webHelper===null)
+{
+	window.webHelper = new Object();
+	window.webHelper.sourceChanged = function(){};
+}
+
+<!-- it's a good idea to initialize webchannel after DOM ready, if your code is going to manipulate the DOM -->
+document.addEventListener("DOMContentLoaded", function () {
+	try{
+		new QWebChannel(qt.webChannelTransport, function (channel) { window.webHelper = channel.objects.webHelper;});
+		}
+		catch(e) {}
+		
+});
+</script>
+<script>
+		if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
+			localStorage.setItem('language', 'en-GB');
+		if (localStorage.getItem("processor")===undefined || localStorage.getItem("processor")===null)
+			localStorage.setItem('processor', 'WEMOS D1R32 SHIELD');
+		window.roboblocksLanguage = localStorage.getItem("language");
+		window.roboblocksProcessor = localStorage.getItem("processor");
+		
+		function openFunction(bly) {
+			$.ajax({
+				type: "GET" ,
+				url: bly ,
+				dataType: "xml" , async: false,
+				success: function(xml) {
+					var txt = new XMLSerializer().serializeToString(xml);
+					Blockly.mainWorkspace.clear();
+					var xmlDOM = Blockly.Xml.textToDom(txt);
+					Blockly.Xml.domToWorkspace(xmlDOM,Blockly.getMainWorkspace());
+				}
+			});
+		}
+		function injectInstruction(block,blockDiv) {
+			var instructionPreview = document.getElementById(blockDiv);
+			var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+			mainWorkspace.clear();
+			var block = mainWorkspace.newBlock(block);
+			block.initSvg();
+			block.render();
+			block.setMovable(false);
+			block.setDeletable(false);
+			block.moveBy(15, 10);
+			var bbox = block.getHeightWidth();
+			instructionPreview.style.height = (bbox.height+25)+ 'px';
+			instructionPreview.style.width = (bbox.width+25) + 'px';
+			window.dispatchEvent(new Event('resize'));
+		}
+		
+		function injectInstruction1(block,blockDiv) {
+			var instructionPreview = document.getElementById(blockDiv);
+			var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+			mainWorkspace.clear();
+			var block = mainWorkspace.newBlock(block);
+			block.initSvg();
+			block.render();
+			block.setMovable(false);
+			block.setDeletable(false);
+			block.moveBy(15, 10);
+			var bbox = block.getHeightWidth();
+			instructionPreview.style.height = (bbox.height+25)+ 'px';
+			instructionPreview.style.width = (bbox.width+55) + 'px';
+			window.dispatchEvent(new Event('resize'));
+		}
+		
+		function injectInstructionTooltip(block,blockDiv,tooltipDiv) {
+			var instructionPreview = document.getElementById(blockDiv);
+			var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
+			mainWorkspace.clear();
+			var block = mainWorkspace.newBlock(block);
+			document.getElementById(tooltipDiv).innerHTML=block.tooltip;
+			block.initSvg();
+			block.render();
+			block.setMovable(false);
+			block.setDeletable(false);
+			block.moveBy(15, 10);
+			var bbox = block.getHeightWidth();
+			instructionPreview.style.height = (bbox.height+25)+ 'px';
+			instructionPreview.style.width = (bbox.width+25) + 'px';
+			window.dispatchEvent(new Event('resize'));
+		}
+		
+		function injectExample(exercise,exampleDiv) {
+			var instructionPreview = document.getElementById(exampleDiv);
+			var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+			openFunction('tutorial/exercises/'+exercise);
+			var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+			instructionPreview.style.height = (bbox.height+25)+ 'px';
+			instructionPreview.style.width = (bbox.width+25) + 'px';
+			window.dispatchEvent(new Event('resize'));
+		}
+
+
+		function showHide(el1,ex,el) {
+			var y = document.getElementById(el1);
+			if (y.style.display === "none") {
+				y.style.display = "block";
+				currentSolutions=currentSolutions+1;
+			} else {
+				y.style.display = "none";
+				currentSolutions=currentSolutions-1;
+			}
+			var solutions = document.getElementById('solutions');
+			if (currentSolutions>0)
+				solutions.style.display="block";
+			else
+				solutions.style.display="none";
+			var x = document.getElementById(el);
+			if (y.style.display === "block"){
+				var parent = x.parentNode;
+				parent.removeChild(x);
+				var div = document.createElement("div");
+				div.setAttribute("id",el);
+				parent.appendChild(div);
+				injectExample(ex,el);
+			}
+		}
+		
+		function HideButton(el)
+		{
+			if (localStorage.getItem("solutions")===undefined || localStorage.getItem("solutions")===null)
+			{
+				var y = document.getElementById(el);
+				y.style.display = "none";
+			}
+		}
+		
+		function onPageClicked(page)
+		{
+			window.open(page, '_blank');
+			if (window.webHelper.pageClicked !== undefined)
+				window.webHelper.pageClicked(page);
+		}
+		
+		function onFileDownloaded(file)
+		{
+			//window.open('tutorial/'+file, '_blank');
+			var anchor=document.createElement('a');
+			anchor.setAttribute('href','tutorial/exercises/'+file);
+			anchor.setAttribute('download',file);
+			document.body.appendChild(anchor);
+			anchor.click();
+			anchor.parentNode.removeChild(anchor);
+			if (window.webHelper.fileDownloaded !== undefined)
+				window.webHelper.fileDownloaded(file);
+		}
+		
+		window.FacilinoLanguage = window.roboblocksLanguage; 
+		window.FacilinoProcessor = window.roboblocksProcessor;
+		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
+		$.ajax({url: 'lang/facilino_en-GB.json',dataType: "text",async: false,}).done(function(text) {window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
+		RoboBlocks.load({ zoom: 1 });
+		Facilino.load({ zoom: 1});
+		
+</script>
+	<div id="menu"></div>
+<script>$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/menu.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/menu.html';},success: function(){}}); $('#menu').load(file);});</script>
+
+<div id="main"></div>
+<script>$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/home.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/home.html';},success: function(){}}); $('#main').load(file);});</script>
+
+
+
+<div id="footer"></div>
+<script>$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/footer.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/footer.html';},success: function(){}}); $('#footer').load(file);});</script>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+	<span class="close" id="close">&times;</span>
+	<p id="doc">Please, wait until data is loaded...</p>
+  </div>
+</div>
+
+  <script src="tutorial/assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="tutorial/assets/popper/popper.min.js"></script>
+  <script src="tutorial/assets/tether/tether.min.js"></script>
+  <script src="tutorial/assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="tutorial/assets/mbr-popup-btns/mbr-popup-btns.js"></script>
+  <script src="tutorial/assets/dropdown/js/script.min.js"></script>
+  <script src="tutorial/assets/touchswipe/jquery.touch-swipe.min.js"></script>
+  <script src="tutorial/assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="tutorial/assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>

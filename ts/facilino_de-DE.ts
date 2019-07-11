@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../src/aboutdialog.ui" line="42"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Facilino 1.4.2 (all rights reserved). Visit our store &lt;a href=&quot;https://roboticafacil.es&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;roboticafacil.es&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Developer: Leopoldo Armesto Ángel&lt;/p&gt;&lt;p&gt;It uses the following open source projects: &lt;a href=&quot;http://www.qt.io/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt 5&lt;/span&gt;&lt;/a&gt;, The Qt Company (LGPL license 2.1), &lt;a href=&quot;https://developers.google.com/blockly/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Google Blockly&lt;/span&gt;&lt;/a&gt; (MIT license), &lt;a href=&quot;https://github.com/bq/roboblocks&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Roboblocks&lt;/span&gt;&lt;/a&gt;, bq (LGPL license), &lt;a href=&quot;http://visualino.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Visualino&lt;/span&gt;&lt;/a&gt;, Victor Ruíz (MIT license).&lt;/p&gt;&lt;p&gt;Icons made by:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot; http://www.flaticon.com/authors/madebyoliver&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Madebyoliver&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.freepik.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Freepik&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/plainicon&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Plainicon&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/gregor-cresnar&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Gregor Cresnar&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/vectors-market&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Vectors Market&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot; http://www.flaticon.com/authors/google&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Google&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/dimitry-miroliubov&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Dimitry Miroliubov&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot; https://www.flaticon.com/authors/eleonor-wang&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Eleonor Wang&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;https://www.flaticon.com/authors/smashicons&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Smashicons&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;https://www.flaticon.com/authors/those-icons&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Those Icons&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Collaborators: Florentino Fernández Cueto, Lukas Bachschwell, Amador Matamales&lt;/p&gt;&lt;p&gt;Translations: Tonny Scheuring, Emanuela Del Dottore, Miguel Carlos de Castro Miguel, Zigor Aldazabal, Aske Klok, Joao Moura,Ruslan Bondar, Lukas Bachschwell, Joran Luitan, Maxime Samara, Janir Rodrigues&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Facilino 1.5.0 (all rights reserved). Visit our store &lt;a href=&quot;https://roboticafacil.es&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;roboticafacil.es&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Developer: Leopoldo Armesto Ángel&lt;/p&gt;&lt;p&gt;It uses the following open source projects: &lt;a href=&quot;http://www.qt.io/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt 5&lt;/span&gt;&lt;/a&gt;, The Qt Company (LGPL license 2.1), &lt;a href=&quot;https://developers.google.com/blockly/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Google Blockly&lt;/span&gt;&lt;/a&gt; (MIT license), &lt;a href=&quot;https://github.com/bq/roboblocks&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Roboblocks&lt;/span&gt;&lt;/a&gt;, bq (LGPL license), &lt;a href=&quot;http://visualino.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Visualino&lt;/span&gt;&lt;/a&gt;, Victor Ruíz (MIT license).&lt;/p&gt;&lt;p&gt;Icons made by:&lt;/p&gt;&lt;p&gt;&lt;a href=&quot; http://www.flaticon.com/authors/madebyoliver&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Madebyoliver&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.freepik.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Freepik&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/plainicon&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Plainicon&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/gregor-cresnar&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Gregor Cresnar&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/vectors-market&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Vectors Market&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot; http://www.flaticon.com/authors/google&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Google&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot; http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.flaticon.com/authors/dimitry-miroliubov&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Dimitry Miroliubov&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot; https://www.flaticon.com/authors/eleonor-wang&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Eleonor Wang&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;https://www.flaticon.com/authors/smashicons&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Smashicons&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;https://www.flaticon.com/authors/those-icons&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Those Icons&lt;/span&gt;&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Collaborators: Florentino Fernández Cueto, Lukas Bachschwell, Amador Matamales&lt;/p&gt;&lt;p&gt;Translations: Tonny Scheuring, Emanuela Del Dottore, Miguel Carlos de Castro Miguel, Zigor Aldazabal, Aske Klok, Joao Moura,Ruslan Bondar, Lukas Bachschwell, Joran Luitan, Maxime Samara, Janir Rodrigues, Dongmin Ma,Jamie Wubben&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -23,6 +23,13 @@
     <message>
         <source>toolBar</source>
         <translation type="obsolete">Werkzeugleiste</translation>
+    </message>
+</context>
+<context>
+    <name>Dialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="obsolete">Dialog</translation>
     </message>
 </context>
 <context>
@@ -39,8 +46,8 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="302"/>
-        <location filename="../src/mainwindow.cpp" line="1001"/>
-        <location filename="../src/mainwindow.cpp" line="1007"/>
+        <location filename="../src/mainwindow.cpp" line="1002"/>
+        <location filename="../src/mainwindow.cpp" line="1008"/>
         <source>Demo version</source>
         <translation>Demoversion</translation>
     </message>
@@ -172,79 +179,79 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="513"/>
-        <location filename="../src/mainwindow.ui" line="1585"/>
+        <location filename="../src/mainwindow.ui" line="1586"/>
         <source>Show/hide categories</source>
         <translation>Kategorien anzeigen/verbergen</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="517"/>
-        <location filename="../src/mainwindow.cpp" line="1842"/>
+        <location filename="../src/mainwindow.cpp" line="1843"/>
         <source>Control</source>
         <translation type="unfinished">Steuerung</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="524"/>
-        <location filename="../src/mainwindow.cpp" line="1858"/>
+        <location filename="../src/mainwindow.cpp" line="1859"/>
         <source>Basic I/O</source>
         <translation type="unfinished">Basic I/O</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="532"/>
-        <location filename="../src/mainwindow.cpp" line="1866"/>
+        <location filename="../src/mainwindow.cpp" line="1867"/>
         <source>Screen</source>
         <translation type="unfinished">Bildschirm</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="541"/>
-        <location filename="../src/mainwindow.cpp" line="1876"/>
+        <location filename="../src/mainwindow.cpp" line="1877"/>
         <source>Communication</source>
         <translation type="unfinished">Kommunikation</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="550"/>
-        <location filename="../src/mainwindow.cpp" line="1886"/>
+        <location filename="../src/mainwindow.cpp" line="1887"/>
         <source>Sound</source>
         <translation type="unfinished">Ton</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="559"/>
-        <location filename="../src/mainwindow.cpp" line="1908"/>
+        <location filename="../src/mainwindow.cpp" line="1909"/>
         <source>Light</source>
         <translation type="unfinished">Licht</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="567"/>
-        <location filename="../src/mainwindow.cpp" line="1916"/>
+        <location filename="../src/mainwindow.cpp" line="1917"/>
         <source>Movement</source>
         <translation type="unfinished">Bewegung</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="576"/>
-        <location filename="../src/mainwindow.cpp" line="1926"/>
+        <location filename="../src/mainwindow.cpp" line="1927"/>
         <source>System</source>
         <translation type="unfinished">System</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="583"/>
-        <location filename="../src/mainwindow.cpp" line="1932"/>
+        <location filename="../src/mainwindow.cpp" line="1933"/>
         <source>Environment</source>
         <translation type="unfinished">Umgebung</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="593"/>
-        <location filename="../src/mainwindow.cpp" line="1944"/>
+        <location filename="../src/mainwindow.cpp" line="1945"/>
         <source>Web Interface</source>
         <translation type="unfinished">Webinterface</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="600"/>
-        <location filename="../src/mainwindow.cpp" line="1848"/>
+        <location filename="../src/mainwindow.cpp" line="1849"/>
         <source>Math</source>
         <translation type="unfinished">Mathematik</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="607"/>
-        <location filename="../src/mainwindow.cpp" line="1854"/>
+        <location filename="../src/mainwindow.cpp" line="1855"/>
         <source>Variables</source>
         <translation type="unfinished"></translation>
     </message>
@@ -259,394 +266,399 @@
         <translation type="unfinished">Bibliothek</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="704"/>
-        <location filename="../src/mainwindow.ui" line="720"/>
+        <location filename="../src/mainwindow.ui" line="705"/>
+        <location filename="../src/mainwindow.ui" line="721"/>
         <source>toolBar</source>
         <translation type="unfinished">Werkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="770"/>
-        <location filename="../src/mainwindow.ui" line="782"/>
+        <location filename="../src/mainwindow.ui" line="771"/>
+        <location filename="../src/mainwindow.ui" line="783"/>
         <source>Show/hide</source>
         <translation type="unfinished">Anzeigen/Ausblenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="805"/>
+        <location filename="../src/mainwindow.ui" line="806"/>
         <source>Categories</source>
         <translation type="unfinished">Kategorien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="817"/>
-        <location filename="../src/mainwindow.ui" line="820"/>
-        <location filename="../src/mainwindow.ui" line="990"/>
+        <location filename="../src/mainwindow.ui" line="818"/>
+        <location filename="../src/mainwindow.ui" line="821"/>
+        <location filename="../src/mainwindow.ui" line="991"/>
         <source>Verify</source>
         <translation type="unfinished">Überprüfen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="823"/>
+        <location filename="../src/mainwindow.ui" line="824"/>
         <source>Ctrl+R</source>
         <translation type="unfinished">Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="832"/>
-        <location filename="../src/mainwindow.ui" line="835"/>
-        <location filename="../src/mainwindow.ui" line="900"/>
+        <location filename="../src/mainwindow.ui" line="833"/>
+        <location filename="../src/mainwindow.ui" line="836"/>
+        <location filename="../src/mainwindow.ui" line="901"/>
         <source>Upload</source>
         <translation type="unfinished">Hochladen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="844"/>
+        <location filename="../src/mainwindow.ui" line="845"/>
         <source>Open</source>
         <translation type="unfinished">Öffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="853"/>
-        <location filename="../src/mainwindow.cpp" line="228"/>
-        <location filename="../src/mainwindow.cpp" line="534"/>
-        <location filename="../src/mainwindow.cpp" line="538"/>
+        <location filename="../src/mainwindow.ui" line="854"/>
+        <location filename="../src/mainwindow.cpp" line="229"/>
+        <location filename="../src/mainwindow.cpp" line="535"/>
+        <location filename="../src/mainwindow.cpp" line="539"/>
         <source>Save</source>
         <translation type="unfinished">Speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="862"/>
+        <location filename="../src/mainwindow.ui" line="863"/>
         <source>New</source>
         <translation type="unfinished">Neu</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="871"/>
-        <location filename="../src/mainwindow.ui" line="908"/>
+        <location filename="../src/mainwindow.ui" line="872"/>
+        <location filename="../src/mainwindow.ui" line="909"/>
         <source>Preferences</source>
         <translation type="unfinished">Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="876"/>
-        <location filename="../src/mainwindow.ui" line="1096"/>
-        <location filename="../src/mainwindow.ui" line="1149"/>
+        <location filename="../src/mainwindow.ui" line="877"/>
+        <location filename="../src/mainwindow.ui" line="1097"/>
+        <location filename="../src/mainwindow.ui" line="1150"/>
         <source>&amp;New</source>
         <translation type="unfinished">&amp;Neu</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="879"/>
-        <location filename="../src/mainwindow.ui" line="1099"/>
-        <location filename="../src/mainwindow.ui" line="1152"/>
+        <location filename="../src/mainwindow.ui" line="880"/>
+        <location filename="../src/mainwindow.ui" line="1100"/>
+        <location filename="../src/mainwindow.ui" line="1153"/>
         <source>Ctrl+N</source>
         <translation type="unfinished">Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="884"/>
-        <location filename="../src/mainwindow.ui" line="1157"/>
+        <location filename="../src/mainwindow.ui" line="885"/>
+        <location filename="../src/mainwindow.ui" line="1158"/>
         <source>&amp;Open...</source>
         <translation type="unfinished">&amp;Öffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="887"/>
-        <location filename="../src/mainwindow.ui" line="1160"/>
+        <location filename="../src/mainwindow.ui" line="888"/>
+        <location filename="../src/mainwindow.ui" line="1161"/>
         <source>Ctrl+O</source>
         <translation type="unfinished">Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="892"/>
-        <location filename="../src/mainwindow.ui" line="1165"/>
+        <location filename="../src/mainwindow.ui" line="893"/>
+        <location filename="../src/mainwindow.ui" line="1166"/>
         <source>&amp;Save...</source>
         <translation type="unfinished">&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="895"/>
-        <location filename="../src/mainwindow.ui" line="1168"/>
+        <location filename="../src/mainwindow.ui" line="896"/>
+        <location filename="../src/mainwindow.ui" line="1169"/>
         <source>Ctrl+S</source>
         <translation type="unfinished">Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="903"/>
-        <location filename="../src/mainwindow.ui" line="1144"/>
+        <location filename="../src/mainwindow.ui" line="904"/>
+        <location filename="../src/mainwindow.ui" line="1145"/>
         <source>Ctrl+U</source>
         <translation type="unfinished">Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="911"/>
+        <location filename="../src/mainwindow.ui" line="912"/>
         <source>Ctrl+,</source>
         <translation type="unfinished">Ctrl+,</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="916"/>
+        <location filename="../src/mainwindow.ui" line="917"/>
         <source>Quit</source>
         <translation type="unfinished">Verlassen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="919"/>
-        <location filename="../src/mainwindow.ui" line="1176"/>
+        <location filename="../src/mainwindow.ui" line="920"/>
+        <location filename="../src/mainwindow.ui" line="1177"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished">Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="924"/>
+        <location filename="../src/mainwindow.ui" line="925"/>
         <source>About</source>
         <translation type="unfinished">Über</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="932"/>
+        <location filename="../src/mainwindow.ui" line="933"/>
         <source>Show/hide messages</source>
         <translation type="unfinished">Nachrichten anzeigen/verbergen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="950"/>
-        <location filename="../src/mainwindow.ui" line="953"/>
+        <location filename="../src/mainwindow.ui" line="951"/>
+        <location filename="../src/mainwindow.ui" line="954"/>
         <source>Monitor</source>
         <translation type="unfinished">Monitor</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="961"/>
+        <location filename="../src/mainwindow.ui" line="962"/>
         <source>Show/hide monitor</source>
         <translation type="unfinished">Monitor ein-/ausblenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="964"/>
+        <location filename="../src/mainwindow.ui" line="965"/>
         <source>Ctrl+Shift+M</source>
         <translation type="unfinished">Ctrl+Shift+M</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="969"/>
+        <location filename="../src/mainwindow.ui" line="970"/>
         <source>Sketch (.ino)</source>
         <translation type="unfinished">Sketch (.ino)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="977"/>
-        <location filename="../src/mainwindow.ui" line="1184"/>
+        <location filename="../src/mainwindow.ui" line="978"/>
+        <location filename="../src/mainwindow.ui" line="1185"/>
         <source>Save as...</source>
         <translation type="unfinished">Speichern als...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="982"/>
+        <location filename="../src/mainwindow.ui" line="983"/>
         <source>Include...</source>
         <translation type="unfinished">Umfassen...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="985"/>
+        <location filename="../src/mainwindow.ui" line="986"/>
         <source>Include</source>
         <translation type="unfinished">Umfassen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="995"/>
+        <location filename="../src/mainwindow.ui" line="996"/>
         <source>Show/hide code</source>
         <translation type="unfinished">Code anzeigen/verbergen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1006"/>
+        <location filename="../src/mainwindow.ui" line="1007"/>
         <source>Show/hide icon labels</source>
         <translation type="unfinished">Symbolbeschriftungen ein-/ausblenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1011"/>
+        <location filename="../src/mainwindow.ui" line="1012"/>
         <source>List of examples</source>
         <translation type="unfinished">Liste der Beispiele</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1016"/>
+        <location filename="../src/mainwindow.ui" line="1017"/>
         <source>Examples...</source>
         <translation type="unfinished">Beispiele...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1031"/>
+        <location filename="../src/mainwindow.ui" line="1032"/>
         <source>Graph</source>
         <translation type="unfinished">Graph</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1036"/>
+        <location filename="../src/mainwindow.ui" line="1037"/>
         <source>Zoom +</source>
         <translation type="unfinished">Zoomen +</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1039"/>
+        <location filename="../src/mainwindow.ui" line="1040"/>
         <source>Ctrl++</source>
         <translation type="unfinished">Ctrl++</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1044"/>
+        <location filename="../src/mainwindow.ui" line="1045"/>
         <source>Zoom -</source>
         <translation type="unfinished">Zoomen -</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1047"/>
+        <location filename="../src/mainwindow.ui" line="1048"/>
         <source>Ctrl+-</source>
         <translation type="unfinished">Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1052"/>
+        <location filename="../src/mainwindow.ui" line="1053"/>
         <source>Undo</source>
         <translation type="unfinished">Rückgängig</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1055"/>
+        <location filename="../src/mainwindow.ui" line="1056"/>
         <source>Ctrl+Z</source>
         <translation type="unfinished">Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1060"/>
+        <location filename="../src/mainwindow.ui" line="1061"/>
         <source>Redo</source>
         <translation type="unfinished">Noch einmal</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1063"/>
+        <location filename="../src/mainwindow.ui" line="1064"/>
         <source>Ctrl+Y</source>
         <translation type="unfinished">Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1068"/>
+        <location filename="../src/mainwindow.ui" line="1069"/>
         <source>Show/hide doc</source>
         <translation type="unfinished">Dokument anzeigen/ausblenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1080"/>
-        <location filename="../src/mainwindow.ui" line="1091"/>
-        <location filename="../src/mainwindow.cpp" line="1125"/>
-        <location filename="../src/mainwindow.cpp" line="1138"/>
-        <location filename="../src/mainwindow.cpp" line="1246"/>
-        <location filename="../src/mainwindow.cpp" line="1268"/>
-        <location filename="../src/mainwindow.cpp" line="1406"/>
-        <location filename="../src/mainwindow.cpp" line="1428"/>
-        <location filename="../src/mainwindow.cpp" line="1451"/>
+        <location filename="../src/mainwindow.ui" line="1081"/>
+        <location filename="../src/mainwindow.ui" line="1092"/>
+        <location filename="../src/mainwindow.cpp" line="1126"/>
+        <location filename="../src/mainwindow.cpp" line="1139"/>
+        <location filename="../src/mainwindow.cpp" line="1247"/>
+        <location filename="../src/mainwindow.cpp" line="1269"/>
+        <location filename="../src/mainwindow.cpp" line="1407"/>
+        <location filename="../src/mainwindow.cpp" line="1429"/>
+        <location filename="../src/mainwindow.cpp" line="1452"/>
         <source>My Blocks</source>
         <translation type="unfinished">Meine Blöcke</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1083"/>
+        <location filename="../src/mainwindow.ui" line="1084"/>
         <source>Create your custom blocks</source>
         <translation type="unfinished">Erstellen Sie Ihre benutzerdefinierten Blöcke</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1108"/>
-        <location filename="../src/mainwindow.ui" line="1111"/>
+        <location filename="../src/mainwindow.ui" line="1109"/>
+        <location filename="../src/mainwindow.ui" line="1112"/>
         <source>Delete</source>
         <translation type="unfinished">Löschen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1114"/>
+        <location filename="../src/mainwindow.ui" line="1115"/>
         <source>Ctrl+D</source>
         <translation type="unfinished">Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1123"/>
-        <location filename="../src/mainwindow.ui" line="1126"/>
+        <location filename="../src/mainwindow.ui" line="1124"/>
+        <location filename="../src/mainwindow.ui" line="1127"/>
         <source>Add</source>
         <translation type="unfinished">Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1129"/>
+        <location filename="../src/mainwindow.ui" line="1130"/>
         <source>Ctrl+A</source>
         <translation type="unfinished">Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1138"/>
-        <location filename="../src/mainwindow.ui" line="1141"/>
+        <location filename="../src/mainwindow.ui" line="1139"/>
+        <location filename="../src/mainwindow.ui" line="1142"/>
         <source>Update</source>
         <translation type="unfinished">Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1173"/>
+        <location filename="../src/mainwindow.ui" line="1174"/>
         <source>&amp;Quit</source>
         <translation type="unfinished">&amp;Verlassen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1193"/>
+        <location filename="../src/mainwindow.ui" line="1194"/>
         <source>Copy</source>
         <translation type="unfinished">Kopieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1196"/>
+        <location filename="../src/mainwindow.ui" line="1197"/>
         <source>Copy to clipboard</source>
         <translation type="unfinished">In die Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1199"/>
+        <location filename="../src/mainwindow.ui" line="1200"/>
         <source>Ctrl+C</source>
         <translation type="unfinished">Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1210"/>
-        <location filename="../src/mainwindow.cpp" line="1843"/>
+        <location filename="../src/mainwindow.ui" line="1211"/>
+        <location filename="../src/mainwindow.cpp" line="1844"/>
         <source>Interrupts</source>
         <translation type="unfinished">Interrupt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1221"/>
-        <location filename="../src/mainwindow.cpp" line="1845"/>
+        <location filename="../src/mainwindow.ui" line="1222"/>
+        <location filename="../src/mainwindow.cpp" line="1846"/>
         <source>State Machine</source>
         <translation type="unfinished">Zustandsmaschine</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1232"/>
-        <location filename="../src/mainwindow.cpp" line="1849"/>
+        <location filename="../src/mainwindow.ui" line="1233"/>
+        <location filename="../src/mainwindow.cpp" line="1850"/>
         <source>Arrays</source>
         <translation type="unfinished">Arrays</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1243"/>
-        <location filename="../src/mainwindow.cpp" line="1859"/>
+        <location filename="../src/mainwindow.ui" line="1244"/>
+        <location filename="../src/mainwindow.cpp" line="1860"/>
         <source>Button</source>
         <translation type="unfinished">Taste</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1254"/>
-        <location filename="../src/mainwindow.cpp" line="1861"/>
+        <location filename="../src/mainwindow.ui" line="1255"/>
+        <location filename="../src/mainwindow.cpp" line="1862"/>
         <source>Bus</source>
         <translation type="unfinished">Bus</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1265"/>
-        <location filename="../src/mainwindow.cpp" line="1863"/>
+        <location filename="../src/mainwindow.ui" line="1266"/>
+        <location filename="../src/mainwindow.cpp" line="1864"/>
         <source>Other</source>
         <translation type="unfinished">Andere</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1276"/>
-        <location filename="../src/mainwindow.cpp" line="1867"/>
+        <location filename="../src/mainwindow.ui" line="1277"/>
+        <location filename="../src/mainwindow.cpp" line="1868"/>
         <source>LCD</source>
         <translation type="unfinished">LCD</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1287"/>
-        <location filename="../src/mainwindow.cpp" line="1869"/>
+        <location filename="../src/mainwindow.ui" line="1288"/>
+        <location filename="../src/mainwindow.cpp" line="1870"/>
         <source>LED Matrix</source>
         <translation type="unfinished">LED-Matrix</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1298"/>
-        <location filename="../src/mainwindow.cpp" line="1871"/>
+        <location filename="../src/mainwindow.ui" line="1299"/>
+        <location filename="../src/mainwindow.cpp" line="1872"/>
         <source>RGB LEDs</source>
         <translation type="unfinished">RGB LEDs</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1309"/>
-        <location filename="../src/mainwindow.cpp" line="1873"/>
+        <location filename="../src/mainwindow.ui" line="1310"/>
+        <location filename="../src/mainwindow.cpp" line="1874"/>
         <source>OLED</source>
         <translation type="unfinished">OLED</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1320"/>
-        <location filename="../src/mainwindow.cpp" line="1877"/>
+        <location filename="../src/mainwindow.ui" line="1321"/>
+        <location filename="../src/mainwindow.cpp" line="1878"/>
         <source>Bluetooth</source>
         <translation type="unfinished">Bluetooth</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1641"/>
-        <location filename="../src/mainwindow.ui" line="1644"/>
-        <location filename="../src/mainwindow.cpp" line="1879"/>
+        <location filename="../src/mainwindow.ui" line="1642"/>
+        <location filename="../src/mainwindow.ui" line="1645"/>
+        <location filename="../src/mainwindow.cpp" line="1880"/>
         <source>BLE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1653"/>
+        <location filename="../src/mainwindow.ui" line="1654"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1656"/>
+        <location filename="../src/mainwindow.ui" line="1657"/>
         <source>Reload page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1331"/>
-        <location filename="../src/mainwindow.cpp" line="1881"/>
+        <location filename="../src/mainwindow.ui" line="1666"/>
+        <source>Tutorial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="1332"/>
+        <location filename="../src/mainwindow.cpp" line="1882"/>
         <source>WiFi</source>
         <translation type="unfinished">WiFi</translation>
     </message>
@@ -666,296 +678,296 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1342"/>
-        <location filename="../src/mainwindow.cpp" line="1883"/>
+        <location filename="../src/mainwindow.ui" line="1343"/>
+        <location filename="../src/mainwindow.cpp" line="1884"/>
         <source>IoT</source>
         <translation type="unfinished">IoT</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1353"/>
-        <location filename="../src/mainwindow.cpp" line="1887"/>
+        <location filename="../src/mainwindow.ui" line="1354"/>
+        <location filename="../src/mainwindow.cpp" line="1888"/>
         <source>Buzzer</source>
         <translation type="unfinished">Summer</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1364"/>
-        <location filename="../src/mainwindow.cpp" line="1889"/>
+        <location filename="../src/mainwindow.ui" line="1365"/>
+        <location filename="../src/mainwindow.cpp" line="1890"/>
         <source>Voice</source>
         <translation type="unfinished">Stimme</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1375"/>
-        <location filename="../src/mainwindow.cpp" line="1891"/>
+        <location filename="../src/mainwindow.ui" line="1376"/>
+        <location filename="../src/mainwindow.cpp" line="1892"/>
         <source>Mic</source>
         <translation type="unfinished">Mic</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1386"/>
-        <location filename="../src/mainwindow.cpp" line="1893"/>
+        <location filename="../src/mainwindow.ui" line="1387"/>
+        <location filename="../src/mainwindow.cpp" line="1894"/>
         <source>Music</source>
         <translation type="unfinished">Musik</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1397"/>
-        <location filename="../src/mainwindow.cpp" line="1896"/>
+        <location filename="../src/mainwindow.ui" line="1398"/>
+        <location filename="../src/mainwindow.cpp" line="1897"/>
         <source>Distance</source>
         <translation type="unfinished">Entfernung</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1408"/>
-        <location filename="../src/mainwindow.cpp" line="1909"/>
+        <location filename="../src/mainwindow.ui" line="1409"/>
+        <location filename="../src/mainwindow.cpp" line="1910"/>
         <source>Infrared</source>
         <translation type="unfinished">Infrarot</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1419"/>
-        <location filename="../src/mainwindow.cpp" line="1911"/>
+        <location filename="../src/mainwindow.ui" line="1420"/>
+        <location filename="../src/mainwindow.cpp" line="1912"/>
         <source>Colour</source>
         <translation type="unfinished">Farbe</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1430"/>
-        <location filename="../src/mainwindow.cpp" line="1917"/>
+        <location filename="../src/mainwindow.ui" line="1431"/>
+        <location filename="../src/mainwindow.cpp" line="1918"/>
         <source>Motors</source>
         <translation type="unfinished">Motoren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1441"/>
-        <location filename="../src/mainwindow.cpp" line="1919"/>
+        <location filename="../src/mainwindow.ui" line="1442"/>
+        <location filename="../src/mainwindow.cpp" line="1920"/>
         <source>Robot base</source>
         <translation type="unfinished">Roboterbasis</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1452"/>
-        <location filename="../src/mainwindow.cpp" line="1921"/>
+        <location filename="../src/mainwindow.ui" line="1453"/>
+        <location filename="../src/mainwindow.cpp" line="1922"/>
         <source>Robot accessories</source>
         <translation type="unfinished">Roboterzubehör</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1463"/>
-        <location filename="../src/mainwindow.cpp" line="1923"/>
+        <location filename="../src/mainwindow.ui" line="1464"/>
+        <location filename="../src/mainwindow.cpp" line="1924"/>
         <source>Robot walk</source>
         <translation type="unfinished">Roboter-Fuß</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1474"/>
-        <location filename="../src/mainwindow.cpp" line="1927"/>
+        <location filename="../src/mainwindow.ui" line="1475"/>
+        <location filename="../src/mainwindow.cpp" line="1928"/>
         <source>Controller</source>
         <translation type="unfinished">Kontroller</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1485"/>
-        <location filename="../src/mainwindow.cpp" line="1929"/>
+        <location filename="../src/mainwindow.ui" line="1486"/>
+        <location filename="../src/mainwindow.cpp" line="1930"/>
         <source>Filtering</source>
         <translation type="unfinished">Filterung</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1496"/>
-        <location filename="../src/mainwindow.cpp" line="1933"/>
+        <location filename="../src/mainwindow.ui" line="1497"/>
+        <location filename="../src/mainwindow.cpp" line="1934"/>
         <source>Temperature</source>
         <translation type="unfinished">Temperatur</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1507"/>
-        <location filename="../src/mainwindow.cpp" line="1935"/>
+        <location filename="../src/mainwindow.ui" line="1508"/>
+        <location filename="../src/mainwindow.cpp" line="1936"/>
         <source>Humidity</source>
         <translation type="unfinished">Feuchtigkeit</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1518"/>
-        <location filename="../src/mainwindow.cpp" line="1937"/>
+        <location filename="../src/mainwindow.ui" line="1519"/>
+        <location filename="../src/mainwindow.cpp" line="1938"/>
         <source>Rain</source>
         <translation type="unfinished">Regen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1529"/>
-        <location filename="../src/mainwindow.cpp" line="1939"/>
+        <location filename="../src/mainwindow.ui" line="1530"/>
+        <location filename="../src/mainwindow.cpp" line="1940"/>
         <source>Gas</source>
         <translation type="unfinished">Gas</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1540"/>
-        <location filename="../src/mainwindow.cpp" line="1941"/>
+        <location filename="../src/mainwindow.ui" line="1541"/>
+        <location filename="../src/mainwindow.cpp" line="1942"/>
         <source>Miscellaneous</source>
         <translation type="unfinished">Verschiedenes</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1551"/>
-        <location filename="../src/mainwindow.cpp" line="1945"/>
+        <location filename="../src/mainwindow.ui" line="1552"/>
+        <location filename="../src/mainwindow.cpp" line="1946"/>
         <source>HTML</source>
         <translation type="unfinished">HTML</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1562"/>
-        <location filename="../src/mainwindow.cpp" line="1947"/>
+        <location filename="../src/mainwindow.ui" line="1563"/>
+        <location filename="../src/mainwindow.cpp" line="1948"/>
         <source>User Interface</source>
         <translation type="unfinished">Benutzeroberfläche</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1573"/>
-        <location filename="../src/mainwindow.cpp" line="1950"/>
+        <location filename="../src/mainwindow.ui" line="1574"/>
+        <location filename="../src/mainwindow.cpp" line="1951"/>
         <source>Deprecated</source>
         <translation type="unfinished">Veraltet</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1582"/>
+        <location filename="../src/mainwindow.ui" line="1583"/>
         <source>View</source>
         <translation type="unfinished">Aussicht</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1596"/>
-        <location filename="../src/mainwindow.cpp" line="1851"/>
+        <location filename="../src/mainwindow.ui" line="1597"/>
+        <location filename="../src/mainwindow.cpp" line="1852"/>
         <source>Curve</source>
         <translation type="unfinished">Kurve</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1605"/>
-        <location filename="../src/mainwindow.cpp" line="1972"/>
+        <location filename="../src/mainwindow.ui" line="1606"/>
+        <location filename="../src/mainwindow.cpp" line="1973"/>
         <source>Search</source>
         <translation type="unfinished">Suche</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1608"/>
+        <location filename="../src/mainwindow.ui" line="1609"/>
         <source>Search on the documentation</source>
         <translation type="unfinished">Suchen Sie in der Dokumentation</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1616"/>
-        <location filename="../src/mainwindow.cpp" line="1855"/>
+        <location filename="../src/mainwindow.ui" line="1617"/>
+        <location filename="../src/mainwindow.cpp" line="1856"/>
         <source>EEPROM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1627"/>
-        <location filename="../src/mainwindow.ui" line="1630"/>
-        <location filename="../src/mainwindow.cpp" line="1913"/>
+        <location filename="../src/mainwindow.ui" line="1628"/>
+        <location filename="../src/mainwindow.ui" line="1631"/>
+        <location filename="../src/mainwindow.cpp" line="1914"/>
         <source>LDR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="218"/>
-        <location filename="../src/mainwindow.cpp" line="1984"/>
+        <location filename="../src/mainwindow.cpp" line="219"/>
+        <location filename="../src/mainwindow.cpp" line="1985"/>
         <source>Examples</source>
         <translation type="unfinished">Beispiele</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="232"/>
+        <location filename="../src/mainwindow.cpp" line="233"/>
         <source>Export</source>
         <translation type="unfinished">Export</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="244"/>
-        <location filename="../src/mainwindow.cpp" line="553"/>
+        <location filename="../src/mainwindow.cpp" line="245"/>
+        <location filename="../src/mainwindow.cpp" line="554"/>
         <source>Couldn&apos;t open file to save content: %1.</source>
         <translation type="unfinished">Datei konnte nicht geöffnet werden, um Inhalt zu speichern:% 1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="250"/>
+        <location filename="../src/mainwindow.cpp" line="251"/>
         <source>Done exporting: %1.</source>
         <translation type="unfinished">Fertig Export:%1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="346"/>
+        <location filename="../src/mainwindow.cpp" line="347"/>
         <source>Include file</source>
         <translation type="unfinished">Datei einschließen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="442"/>
+        <location filename="../src/mainwindow.cpp" line="443"/>
         <source>Open file</source>
         <translation type="unfinished">Datei öffnen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="460"/>
+        <location filename="../src/mainwindow.cpp" line="461"/>
         <source>Blockly Files %1</source>
         <translation type="unfinished">Blockly Files %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="480"/>
+        <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Couldn&apos;t open file to read content: %1.</source>
         <translation type="unfinished">Datei konnte nicht geöffnet werden, um Inhalt zu lesen:%1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="561"/>
+        <location filename="../src/mainwindow.cpp" line="562"/>
         <source>Done saving.</source>
         <translation type="unfinished">Speichern abgeschlossen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="600"/>
+        <location filename="../src/mainwindow.cpp" line="601"/>
         <source>Checking license...</source>
         <translation type="unfinished">Lizenz wird geprüft ...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="604"/>
+        <location filename="../src/mainwindow.cpp" line="605"/>
         <source>Changes successfully applied!</source>
         <translation type="unfinished">Änderungen erfolgreich übernommen!</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="714"/>
+        <location filename="../src/mainwindow.cpp" line="715"/>
         <source>Board changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="714"/>
+        <location filename="../src/mainwindow.cpp" line="715"/>
         <source>Are you sure you want to change the board? All code will be lost!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="734"/>
+        <location filename="../src/mainwindow.cpp" line="735"/>
         <source>Finished.</source>
         <translation type="unfinished">Fertig.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="742"/>
+        <location filename="../src/mainwindow.cpp" line="743"/>
         <source>Building...</source>
         <translation type="unfinished">Kompilieren...</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="996"/>
+        <location filename="../src/mainwindow.cpp" line="997"/>
         <source>License Active</source>
         <translation type="unfinished">Lizenz aktiv</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1058"/>
+        <location filename="../src/mainwindow.cpp" line="1059"/>
         <source>There could be unsaved changes that could be lost. Do you want to save them before continuing?</source>
         <translation type="unfinished">Es können ungespeicherte Änderungen vorhanden sein, die verloren gehen könnten. Möchten Sie sie speichern, bevor Sie fortfahren?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1125"/>
+        <location filename="../src/mainwindow.cpp" line="1126"/>
         <source>Are you sure you want to change to My Blocks? All changes will be lost!</source>
         <translation type="unfinished">Möchten Sie wirklich zu Meine Blöcke wechseln? Alle Änderungen gehen verloren!</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1138"/>
+        <location filename="../src/mainwindow.cpp" line="1139"/>
         <source>Are you sure you want to exit from My Blocks? All changes will be lost!</source>
         <translation type="unfinished">Sind Sie sicher, dass Sie Meine Blöcke verlassen möchten? Alle Änderungen gehen verloren!</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1246"/>
+        <location filename="../src/mainwindow.cpp" line="1247"/>
         <source>Are you sure you want to add this block to the library?</source>
         <translation type="unfinished">Möchten Sie diesen Block wirklich zur Bibliothek hinzufügen?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1268"/>
+        <location filename="../src/mainwindow.cpp" line="1269"/>
         <source>This block already exists in the library. Do you want to update it?</source>
         <translation type="unfinished">Dieser Block ist bereits in der Bibliothek vorhanden. Möchten Sie es aktualisieren?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1406"/>
+        <location filename="../src/mainwindow.cpp" line="1407"/>
         <source>Are you sure you want to update this block from the library?</source>
         <translation type="unfinished">Möchten Sie diesen Block wirklich aus der Bibliothek aktualisieren?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1428"/>
+        <location filename="../src/mainwindow.cpp" line="1429"/>
         <source>This block does not exist in the library. Do you want to add it?</source>
         <translation type="unfinished">Dieser Block existiert nicht in der Bibliothek. Möchten Sie es hinzufügen?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1451"/>
+        <location filename="../src/mainwindow.cpp" line="1452"/>
         <source>Are you sure you want to delete this block from the library?</source>
         <translation type="unfinished">Möchten Sie diesen Block wirklich aus der Bibliothek löschen?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1473"/>
+        <location filename="../src/mainwindow.cpp" line="1474"/>
         <source>This block does not exist in the library and can&apos;t be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -964,12 +976,12 @@
         <translation type="obsolete">Dieser Block ist nicht in der Bibliothek vorhanden und kann nicht gelöscht werden.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1966"/>
+        <location filename="../src/mainwindow.cpp" line="1967"/>
         <source>Search on documentation and examples</source>
         <translation type="unfinished">Suchen Sie nach Dokumentation und Beispielen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1982"/>
+        <location filename="../src/mainwindow.cpp" line="1983"/>
         <source>Documentation</source>
         <translation type="unfinished">Dokumentation</translation>
     </message>
@@ -1014,6 +1026,18 @@
     <message>
         <location filename="../src/settingsdialog.cpp" line="103"/>
         <source>Are you sure? This will erase your current preferences and replace them with the defaults.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TutorialDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="obsolete">Dialog</translation>
+    </message>
+    <message>
+        <location filename="../src/tutorialdialog.ui" line="20"/>
+        <source>Facilino Tutorial</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

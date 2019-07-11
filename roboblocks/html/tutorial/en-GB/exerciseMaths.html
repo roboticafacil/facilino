@@ -1,0 +1,169 @@
+<script>
+var currentSolutions=0;
+</script>
+ 
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Maths</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to use math instructions to perform arithmetic operations, minumum and maximum and even to generate a sinusoidal wave.</h3>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">All required Electronics are already integrated in the Multisensor Shield.</div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>A Multisensor Shield.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('math_number','blocklyInstruction1');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('math_arithmetic','blocklyInstruction2');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('base_map','blocklyInstruction3');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('math_minmax','blocklyInstruction4');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('math_random','blocklyInstruction5');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('math_sinusoid','blocklyInstruction6');</script></div>
+		
+		
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Additional instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('text_join','blocklyInstruction7');</script></div>
+		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('base_us','blocklyInstruction8');</script></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Binary digits</strong><p>Compute the number of digits required to represent an integer number in a binary representation. Implement a function that accepts as input argument an integer number and returns the number of digits. Use, for instance number '123'.</p><strong>Hint: </strong><p><i> In a </i>while<i> loop, check if the number is greater or equal than the base 2 powers (starting from 2). Each time that this is true, a digits counter must be increased (initialized at 1).</i></p><button  type="button" onclick="showHide('solutions1','binary_digits.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('binary_digits.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Minimum and maximum</strong><p>Using the potentiometer (connected to pin A0) measurements, compute the minimum and maximum values in volts (the value must be comprised between 0 and 5 volts). At initialisation, turn on red LED (connected to pin D12) and perform the maximum and minimun computations until the switch SW1 (connected to pin D2) is pushed. Once pushed, turn off the red LED and show on the console the minimum and maximum values of all registered measurements.</p><strong>Hint: </strong><p><i>In a </i>while <i>loop, read the analog measurement in A0 and convert it into a number between 0 and 5 (using the </i>map<i> instruction). Use the </i>min <i>and </i>max<i> instructions to compute the corresponding minimum and maximum and save the results in two different variables (the variable storing the minimum value must be initialised with 5, while the variable for the maximum must be initialised with 0).</i></p><button  type="button" onclick="showHide('solutions2','min_max_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('min_max_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Sinusoidal Wave</strong><p>Create a sinusoidal wave with 1Hz and amplitude of &#x221A;2, using the presented instructions. And plot it in the Console with Serial Plot Data.</p><button  type="button" onclick="showHide('solutions3','sinusoidal_wave.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('sinusoidal_wave.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3'></div></div>
+		</div>
+	</section>
+
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3');
+</script>

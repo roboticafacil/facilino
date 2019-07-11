@@ -1,0 +1,127 @@
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section>
+
+<section class="mbr-section content4 cid-qYeJCaSSuj" id="content4-3j">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Digital Input</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">An Arduino's digital inputs detailed description</h3>  
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYeKwEITxI" id="content9-3l">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Digital Signals</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYeKEJ6czk" id="content1-3m">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p><strong>Digital signals</strong> can only take two possible values <strong>HIGH</strong> or <strong>LOW</strong>. We refer to LOW when the voltage of a signal is closed to <strong>0V</strong>, while HIGH implies that the voltage of the signal is close to <strong>5V</strong> (for Arduino Uno).</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYeLgA0KKx" id="content2-3n">
+
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(From Wikipedia)</strong>&nbsp;A digital signal is a signal that is being used to represent data as a sequence of discrete values; at any given time it can only take on one of a finite number of values.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Digital Inputs</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYeLOL75iu" id="content1-3o">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p><strong>A digital input</strong> is usually understood from Arduino's point of view as the type of signal such that <strong>a sensor sets the voltage</strong> value of the signal<strong> to 5V or 0V</strong> and <strong>it is interpreted as HIGH or LOW</strong>. Some sensors only provide 3.3V, which is also compatible with Arduino and its read as HIGH.</p><p>In the following example, when the switch SW1 is closed, the voltage measured in Arduino's "Digital input" pin is 0V, while if the switch is open, then the voltage value measured is 5V (using an internal pull-up resistor).</p><p><strong>When the switch is closed</strong> the <strong>current will flow through resistor R1</strong>, because the switch forces to be one of the resistor ends to be 0V and the voltage drop at the resistor will be 5V. The current will be about<span style="font-size: 1rem;">&nbsp;0.5mA</span><span style="font-size: 1rem;">, because &nbsp;</span><span style="font-size: 1rem;">5V/10KOhms=0.5mA. The current flow sourcing from the "Digital input" is very small.</span></p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYeOLFZQcw" id="image3-3q">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 36%;">
+                <img src="tutorial/assets/images/digital-input1-600x600.png" width="1400" alt="digital input" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYePlinsuB" id="content1-3r">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>When the switch is open there's a very small current flow sinking to the digital input. The voltage at the "Digital Input" pin is clearly 5V, because of the small value of the current.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYeRU5oXMt" id="image3-3s">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 36%;">
+                <img src="tutorial/assets/images/digital-input2-600x600.png" width="1400" alt="digital input2" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Coding with Facilino</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>In order to read the value of a digital input in Facilino we need to use the following instructions. The first instruction returns HIGH or LOW depending on the input state. It requires the use of the second instruction to indicate the appropriate pin number.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('inout_digital_read','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction2','tooltipInstruction2');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section>

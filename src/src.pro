@@ -18,7 +18,10 @@ SOURCES += main.cpp\
     aboutdialog.cpp \
     jswebhelpers.cpp \
     qblockswebview.cpp \
-    filescore.cpp
+    filescore.cpp \
+    tutorialdialog.cpp \
+    webview.cpp \
+    jswebtutorialhelpers.cpp
 
 HEADERS += mainwindow.h \
     settingsdialog.h \
@@ -27,11 +30,15 @@ HEADERS += mainwindow.h \
     aboutdialog.h \
     jswebhelpers.h \
     filescore.h \
-    qblockswebview.h
+    qblockswebview.h \
+    tutorialdialog.h \
+    webview.h \
+    jswebtutorialhelpers.h
 
 FORMS += mainwindow.ui \
     settingsdialog.ui \
-    aboutdialog.ui
+    aboutdialog.ui \
+    tutorialdialog.ui
 
 OTHER_FILES += ../config.ini ../ts/*.ts ../html/* ../icons/*
 
