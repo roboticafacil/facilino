@@ -1,0 +1,128 @@
+﻿<html dir="ltr"><head></head><body dir="ltr"><section class="mbr-section content8 cid-qYmzRXmNQG" id="content8-80">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYfOtZbFWn" id="content4-3z">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Salida Digital</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">Descripción detallada de las salidas digitales de un Arduino.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfOj751da" id="content9-3y">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Señales Digitales</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfN1vM6s0" id="content1-3u">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p><strong>Las señales digitales</strong> solo pueden tomar dos valores posibles <strong>ALTOS</strong> o <strong>BAJOS</strong> . Nos referimos a BAJO cuando el voltaje de una señal es próximo a <strong>0 V</strong> , mientras que ALTO implica que el voltaje de la señal está cerca de <strong>5</strong> <strong>V</strong> (para Arduino Uno).</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfO9NtyVq" id="content2-3w">
+
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(De Wikipedia)</strong> Una señal digital es una señal que se utiliza para representar datos como una secuencia de valores discretos; en un momento dado, solo puede tomar uno de un número finito de valores.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfObqmySF" id="content9-3x">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Salidas Digitales</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfPnLLBsY" id="content1-40">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Una <strong>salida digital</strong> solo puede tener dos estados posibles <strong>BAJO</strong> o <strong>ALTO</strong> . Cuando se configura una salida digital a un <strong>estado BAJO</strong> , el voltaje en <strong>su pin correspondiente será de 0 V</strong> , mientras que el ajuste de la salida a un <strong>estado ALTO</strong> hará que el pin digital tenga un <strong>voltaje de 5V</strong> . </p><p>En el siguiente ejemplo, cuando configuramos la salida digital en un estado <strong>ALTO</strong> , el pin tendrá 5 V, la corriente (flecha en negro) circula través de la resistencia R2 y el <em>diodo</em> entre la base del transistor Q1 (B) y el emisor (E). ). Esto hace que el transistor Q1 se comporte en el modo de <em>cortocircuito</em> entre el colector (C) y el emisor (E). Como consecuencia, hay un flujo de corriente a través de R1 que <strong>hace</strong> que <strong>el LED se encienda</strong> . Como la tensión en C es de casi 0 V, la resistencia R1 mantendrá aproximadamente 4,3 V, considerando que la caída de tensión típica en un diodo es de 0,7 V. Si la salida digital está configurada en un estado <strong>BAJO</strong> , no habrá flujo de corriente a través del diodo BE en Q1, lo que hará que el transistor esté en modo de circuito abierto. Por lo tanto, no habrá ninguna corriente que circule a través de R1, lo que a su vez hará <strong>que el LED se apague</strong> . </p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYfN1XRnh1" id="image3-3v">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:36%">
+                <img src="tutorial/assets/images/arduino-output1-600x600.png" width="1400" alt="salida arduino" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones de Facilino</div>
+            <hr class="line" style="width:25%">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>Para escribir en una salida digital con Facilino necesitamos usar las siguientes instrucciones. La primera instrucción establece el valor para el pin digital. Requiere el uso de la segunda instrucción para indicar el número de pin apropiado y un valor de estado que puede ser una entrada booleana con valores HIGH o LOW. Por ejemplo, podríamos usar la tercera instrucción para establecer dicho valor.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction1"></span></div><div id="blocklyInstruction1"></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id="tooltipInstruction2"></span></div><div id="blocklyInstruction2"></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id="tooltipInstruction3"></span></div><div id="blocklyInstruction3"></div><script>injectInstructionTooltip('inout_highlow','blocklyInstruction3','tooltipInstruction3');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section></body></html>
