@@ -10,7 +10,7 @@ var currentSolutions=0;
 						Logic</h2>
 					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
 						Learn how to work with logic instructions with Facilino, including Boolean and bitwise operations.</h3>
-					
+
 				</div>
 			</div>
 		</div>
@@ -22,7 +22,45 @@ var currentSolutions=0;
     <figure class="mbr-figure container">
             <div class="image-block" style="width: 50%;">
                 <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
-                
+
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>An Arduino or ESP board, i.e.: <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-uno-r3/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-nano-v3-0-compatible/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a> or <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/wemos-esp32-d1-r32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>A <a onclick="onPageClicked('https://roboticafacil.es/en/prod/multisensor-shield/');" style="color:#1ec6c6" target="_blank">Multisensor shield</a> or two LEDs (red and blue connected to pins D12 and D13) and two push-buttons connected to pins D2 and D3.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Boolean Logic</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">As you know, <a onclick="onHomeFile('digital_input.html');" style="color:#1ec6c6">binary digital signals</a> can only take two possible values 0V or 5V. A binary variable is very similar to that, because it can only take two possible values TRUE or FALSE, usually denoted as 1 or 0. <a onclick="onPageClicked('https://en.wikipedia.org/wiki/Boolean_algebra');" style="color:#1ec6c6" target="_blank">Boolean algebra</a> is the part of albegra working with binary variables, that is the rules and symbols for working with binary variables. It was formalised by <a onclick="onPageClicked('https://en.wikipedia.org/wiki/George_Boole');" style="color:#1ec6c6" target="_blank">George Boole</a>, introducing the logic relations describing the equivalent relations as in numeric algebra.</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 20%;">
+                <img src="tutorial/assets/images/George_Boole.jpg" width="1400" alt="George Boole" title=""></img>
+
             </div>
     </figure>
 </section>
@@ -30,19 +68,136 @@ var currentSolutions=0;
 <section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
     <div class="container">
         <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">All required Electronics are already integrated in the Multisensor Shield.</div>
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">There are three basic operations: <strong>AND</strong> (conjuntion), <strong>OR</strong> (disjunction) and <strong>NOT</strong> (negation). An AND operation accepts two values and returns 1 if, and only if, both of them are 1. An OR operation accepts two values and returns 1 whenever any of them is 1. A NOT operation accepts only one value and returns the opposite of the input, that is 0 if it is 1 or 1 if it is 0 (clearly the negation of a negated value is equivalent to the original value). There are other useful operations, like the <strong>XOR</strong> or exclusive OR. This is an operation that takes two binary digits and returns 0 if they are the same and 1 if they are different.</div>
         </div>
     </div>
 </section>
 
-
-<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
     <div class="container">
         <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>A Multisensor Shield.</li></ul></blockquote>
-            </div>
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>In addition to this, there are identities when combining these basic operations, that are known as <a onclick="onPageClicked('https://en.wikipedia.org/wiki/De_Morgan%27s_laws');" style="color:#1ec6c6" target="_blank">De Morgan's Law</a>:</p><p>X AND Y=NOT(NOT(X) OR NOT(Y))</p><p>X OR Y=NOT(NOT(X) AND NOT(Y))</p></div>
         </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Bits and Numbers</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>Computers don't understand numbers the way we do</strong>. Neither microcontrollers such as Arduino and ESP. <strong>Instead, they do understand bits</strong>. A bit is the basic unit of information. As you may know, a bit only is able to store two values or states: 0 or 1. So in order to represent bigger numbers with need groups of bits, in the same way we use decimal representation with digits from 0 to 9, every time we need to represent a bigger number, let's say bigger than 9, we increase a digit on the left side using 1 and set the rest of digits to 0, that's it, we create 10. In binary representation it is exactly the same way, we need to increase with a new digit on the left side with a 1 and set all of other digits with 0s. Therefore, we can represent the following decimal numbers with an equivalent binary representation (we have included a small 'b' to denote the binary representation):</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Decimal Number</th><th class="head-item mbr-fonts-style display-7">
+                      Required Bits</th><th class="head-item mbr-fonts-style display-7">
+					  					Binary Representation</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr>
+			  <td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">0b</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">1b</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">2</td><td class="body-item mbr-fonts-style display-7">2</td><td class="body-item mbr-fonts-style display-7">10b</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">3</td><td class="body-item mbr-fonts-style display-7">2</td><td class="body-item mbr-fonts-style display-7">11b</td></tr><tr>
+			  			<td class="body-item mbr-fonts-style display-7">4</td><td class="body-item mbr-fonts-style display-7">3</td><td class="body-item mbr-fonts-style display-7">100b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">7</td><td class="body-item mbr-fonts-style display-7">3</td><td class="body-item mbr-fonts-style display-7">111b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">4</td><td class="body-item mbr-fonts-style display-7">1000b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">15</td><td class="body-item mbr-fonts-style display-7">4</td><td class="body-item mbr-fonts-style display-7">1111b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">16</td><td class="body-item mbr-fonts-style display-7">5</td><td class="body-item mbr-fonts-style display-7">10000b</td></tr><tr>
+							</tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">In microcontrollers, when we use a number it is usually stored in memory and that requires a given amount of bits. Typically, we store data in groups of 8-bit representations (<strong>byte</strong>), 16-bit representation (<strong>word or int</strong>) or 32-bit representation (<strong>double word or long int</strong>). Therefore, a byte can store upto 2^8 numbers, that is from 0 to 255. A word, can represent numbers from 0 to 65535 and a double word can represent from 0 to 4294967295. Yes, this might be big, but sometimes we need even more. Sometimes we need to represent negative numbers. The convention here is to use the most significant bit or MSB (the bit on the left) to represent the negation sign.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Bitwise operations</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Now, you know a little bit about numbers and bits, you might be interested in knowing that bitwise operations can be done with numbers. This might be useful to check whether or not a bit is 1 or 0, because this bit is representing some kind of useful information for a given data. Yes, we know this is going to deep on how data is represented, but believe us when we say that there are many applications and reasons for that. Just an example, an easy way to check if your data being transmitted propperly is to use an error check system. One of the simplest ways of doing that is to perform an XOR operation on sent data and then send a last byte with the result of this XOR operation. When the receiver receives the data, uses the same XOR operation on data and if the resuts match, then it is very likely that the data is correct and has not been corrupted.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">In summary, we can use Boolean operations at bit level, such as <strong>Bitwise AND</strong>, <strong>Bitwise OR</strong>, <strong>Bitwise Negation</strong> or <strong>Bitwise XOR</strong>. Here we provide with some examples:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 60%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Operand 1</th><th class="head-item mbr-fonts-style display-7">
+											Operand 2</th><th class="head-item mbr-fonts-style display-7">
+                      Bitwise Operation</th><th class="head-item mbr-fonts-style display-7">
+					  					Result</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr>
+			  		  <td class="body-item mbr-fonts-style display-7">7 (111b)</td><td class="body-item mbr-fonts-style display-7">4 (100b)</td><td class="body-item mbr-fonts-style display-7">AND<br>OR<br>XOR</td><td class="body-item mbr-fonts-style display-7">4 (100b)<br>7 (111b)<br>3 (011b)</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">11 (1011b)</td><td class="body-item mbr-fonts-style display-7">5 (0101b)</td><td class="body-item mbr-fonts-style display-7">AND<br>OR<br>XOR</td><td class="body-item mbr-fonts-style display-7">1 (0001b)<br>15 (1111b)<br>14 (1110b)</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">25 (011001b)</td><td class="body-item mbr-fonts-style display-7">47 (101111b)</td><td class="body-item mbr-fonts-style display-7">AND<br>OR<br>XOR</td><td class="body-item mbr-fonts-style display-7">9 (001001b)<br>63 (111111b)<br>54 (110110b)</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">100 (01100100b)</td><td class="body-item mbr-fonts-style display-7">200 (11001000b)</td><td class="body-item mbr-fonts-style display-7">AND<br>OR<br>XOR</td><td class="body-item mbr-fonts-style display-7">64 (1000000b)<br>236 (11101100b)<br>172 (10101100b)</td></tr><tr>
+							</tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
     </div>
 </section>
 
@@ -57,12 +212,18 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('logic_compare','blocklyInstruction1');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('logic_operation','blocklyInstruction2');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('logic_negate','blocklyInstruction3');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('logic_bitwise_operation','blocklyInstruction4');</script></div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('logic_compare','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('logic_operation','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('logic_negate','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('logic_bitwise_operation','blocklyInstruction4','tooltipInstruction4');</script></li>
+                </ol>
+            </div>
+		</div>
     </div>
 </section>
 
@@ -77,21 +238,32 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('variables_local','blocklyInstruction5');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction1('variables_get','blocklyInstruction6');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('inout_digital_read','blocklyInstruction7');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('inout_digital_write','blocklyInstruction8');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction9'></div><script>injectInstruction('pin_digital','blocklyInstruction9');</script></div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('variables_local','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip1('variables_get','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('inout_digital_read','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('inout_analog_read','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('pin_analog','blocklyInstruction11','tooltipInstruction11');</script></li>
+				  <li><div><span id='tooltipInstruction12'></span></div><div  id='blocklyInstruction12'></div><script>injectInstructionTooltip('controls_if','blocklyInstruction12','tooltipInstruction12');</script></li>
+					<li><div><span id='tooltipInstruction13'></span></div><div  id='blocklyInstruction13'></div><script>injectInstructionTooltip('serial_available','blocklyInstruction13','tooltipInstruction13');</script></li>
+				  <li><div><span id='tooltipInstruction14'></span></div><div  id='blocklyInstruction14'></div><script>injectInstructionTooltip('serial_parseint','blocklyInstruction14','tooltipInstruction14');</script></li>
+				  </ol>
+            </div>
+		</div>
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise1">
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <div class="section-text align-center mbr-fonts-style display-5">Basic Exercises</div>
             <hr class="line" style="width: 25%;">
         </div>
         </div>
@@ -102,13 +274,46 @@ var currentSolutions=0;
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><strong>AND and OR Operations</strong><p>Implement binary operations using the button switches (connected to pins D2 and D3) and the red and blue LEDs (connected to pin D12 and D13). The aim is to implement the following logic operations: RED=&not;(SW1&and;SW2)  (this is equivalent to AND Operation), BLUE=&not;(SW1&or;SW2) (this is equivalent to OR operation). All required Electronics are already integrated in the Multisensorshield, the wemos Microcontroller just has to be inserted.</p><button  type="button" onclick="showHide('solutions1','and_or_wemosD1R32.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+                    <li><strong>Set LED when pushed</strong><p>Following the ideas of basic exercise 3 of <a onclick="onHomeFile('exerciseBlinkingLEDs.html');" style="color:#1ec6c6">Set LED when not pushed</a>, we want to set the LED connected to pin D12 when we push the push-button (connected to pin D2).</p><strong>Hint: </strong><p>Use the 'DigitalRead' instruction to get the value and its returned value to the 'not' instruction to negate its value. The resulting value must be used as the state input of the 'DigitalWrite' instruction.</p><button  type="button" onclick="showHide('solutions1b','negate_led_wemosD1R32.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('negate_led_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>AND operation</strong></p>Implement Boolean operation using the two push-buttons (connected to pins D2 and D3) and the red LED (connected to pin D12). When both of them are pushed, the pin of the LED must be set to HIGH.</p> <strong>Hint: </strong><p><i> Considering push-button D2 as PB1 and push-button D3 as PB2, the resulting operation for setting the LED state is LED=NOT(PB1) AND NOT(PB2).</i></p><button  type="button" onclick="showHide('solutions2b','and_wemosD1R32.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Equivalent AND operation</strong><p>Now, using De Morgan's Law, find an equivalent implementation of previous exercise but with less operations.</p><strong>Hint: </strong><i><p>In this case, you need to implement LED=NOT(PB1 OR PB2).</i></p><button  type="button" onclick="showHide('solutions3b','and_equivalent_wemosD1R32.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and_equivalent_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Simple comparison</strong><p>Set the LED connected to pin D12 to HIGH when the value read from the analog pin A0 (potentiometer) is higher than 512.</p><strong>Hint: </strong><i><p>Use the '>' instruction to compare the number return by the instruction 'AnalogRead' and the constant number 512. The result of this operation can be used as input decision of an 'If' instruction to decide whether or not to set the LED.</i></p><button  type="button" onclick="showHide('solutions4b','simple_comparison_wemosD1R32.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('simple_comparison_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Intermediate Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>AND and OR Operations</strong><p>Implement binary operations using the button switches (connected to pins D2 and D3) and the red and blue LEDs (connected to pin D12 and D13). The aim is to implement the following logic operations: RED=NO(PB1 AND PB2), BLUE=NO(PB1 OR PB2).</p><button  type="button" onclick="showHide('solutions1i','and_or_wemosD1R32.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
 					<a onclick="onFileDownloaded('and_or_wemosD1R32.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Even or Odd (Bitwise And)</strong></p>Turn on LED D12 whenever we introduce an even number on the USB serial console. Turn on LED D13 when it's odd.</p> <strong>Hint: </strong><p><i> Use a bitwise 'and' to mask the number with '1'. If the result is greater than zero then the number is odd.</i></p><button  type="button" onclick="showHide('solutions2','bitwise_and_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<li><strong>Even or Odd (Bitwise And)</strong></p>Turn on LED D12 whenever we introduce an even number on the USB serial console. Turn on LED D13 when it's odd.</p> <strong>Hint: </strong><p><i> Use a bitwise 'and' to mask the number with '1'. If the result is greater than zero then the number is odd. To parse an integer number Intermediate Exercise 1 in <a onclick="onHomeFile('exerciseUSBSerial.html');" style="color:#1ec6c6">USB Serial Communication</a>.</i></p><button  type="button" onclick="showHide('solutions2i','bitwise_and_wemosD1R32.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
 					<a onclick="onFileDownloaded('bitwise_and_wemosD1R32.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Comparison</strong><p>Read the analog input A0 corresponding to the potentiometer position. Divide the analog read range into 4 sub-ranges and turn on LEDs D12 and D13 based on the binary codification of each range.</p><strong>Hint: </strong><i><p>If the number is between 0 and 1023, then both LEDs must be off, if the value is between 1024 and 2047 then LED D12 must be on and D13 off, if the value is between 2048 and 3071 then LED D13 must be on and D12 off. Otherwise, both LEDs must be on.</i></p><button  type="button" onclick="showHide('solutions3','comparison_wemosD1R32.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<li><strong>Comparison</strong><p>Read the analog input A0 corresponding to the potentiometer position. Divide the analog read range into 4 sub-ranges and turn on LEDs D12 and D13 based on the binary codification of each range.</p><strong>Hint: </strong><i><p>If the number is between 0 and 1023, then both LEDs must be off, if the value is between 1024 and 2047 then LED D12 must be on and D13 off, if the value is between 2048 and 3071 then LED D13 must be on and D12 off. Otherwise, both LEDs must be on. <strong>Remember that for ESP processor the range for analog inputs is from 0 to 4096, while if you use Arduino, the range is from 0 to 1023.</strong></i></p><button  type="button" onclick="showHide('solutions3i','comparison_wemosD1R32.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
 					<a onclick="onFileDownloaded('comparison_wemosD1R32.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
                 </ol>
@@ -127,41 +332,85 @@ var currentSolutions=0;
         </div>
 </section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 1</strong>
+					<strong>Basic Exercise 1</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise1'></div></div>
+			<div class="media-container-row"><div id='exercise1b'></div></div>
 		</div>
 	</section>
-	
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 2</strong>
+					<strong>Basic Exercise 2</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise2'></div></div>
+			<div class="media-container-row"><div id='exercise2b'></div></div>
 		</div>
 	</section>
-	
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 3</strong>
+					<strong>Basic Exercise 3</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise3'></div></div>
+			<div class="media-container-row"><div id='exercise3b'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Basic Exercise 4</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise4b'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div></div>
 		</div>
 	</section>
 </section>
 <script>
 var solutions = document.getElementById('solutions');
 solutions.style.display="none";
-//HideButton('but1'); HideButton('but2'); HideButton('but3'); 
+//HideButton('but1'); HideButton('but2'); HideButton('but3');
 </script>

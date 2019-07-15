@@ -1,0 +1,141 @@
+﻿<section class="menu cid-qYel1cLOUC" id="menu" once="menu">
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+		</button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+					<img src="tutorial/assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="facilino-cuadrado-fondo-transparente" title="" style="height:3.8rem"></span> 
+					<span class="navbar-caption-wrap "><a class="navbar-caption text-white display-4" href="index.html">Tutorial de Arduino y ESP con Facilino</a></span>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+				<li class="nav-item">
+                    <a class="nav-link link text-white display-4" onclick="onHome();">
+                        <span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span> Inici</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link link text-white display-6" onclick="onElectronics();">
+                        Electrònica</a>
+                </li>
+				<!--<li class="nav-item">
+                    <a class="nav-link link text-white display-6" onclick="onFacilino();">
+                        Facilino</a>
+                </li>-->
+				<li class="nav-item">
+                    <a class="nav-link link text-white display-6" ;="" onclick="onExercises()">
+                        Exercisis</a>
+                </li>
+				<li class="nav-item"><input style="margin-left: 0.25em;" type="image" src="tutorial/assets/images/spain.png" onclick="langChange('es-ES')"/>
+				</li>
+				<li class="nav-item"><input style="margin-left: 0.25em" type="image" src="tutorial/assets/images/english.png" onclick="langChange('en-GB')"/>
+				</li>
+				<li class="nav-item">
+				<button class="btn btn-sm btn-primary-outline display-4" title="Configuración de hardware" onclick="showHideProcessor()"><span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button>
+		<select id="processor" class="text-black dropdown-toggle display-6 icon-menu" style="display:none" onchange="processorChange(this.value)">
+		<option value="ArduinoNano" class="text-black dropdown-item display-6">Arduino Nano</option>
+		<option value="ArduinoUno" class="text-black dropdown-item display-6">Arduino Uno</option>
+		<option value="ArduinoMega2560" class="text-black dropdown-item display-6">Arduino Mega 2560</option>
+		<option value="ArduinoMicro" class="text-black dropdown-item display-6">Arduino Micro</option>
+		<option value="ArduinoLilyPad" class="text-black dropdown-item display-6">Arduino LilyPAD</option>
+		<option value="ArduinoMini" class="text-black dropdown-item display-6">Arduino Mini</option>
+		<option value="ArduinoLeonardo" class="text-black dropdown-item display-6">Arduino leonardo</option>
+		<option value="ESP8266" class="text-black dropdown-item display-6">ESP8266</option>
+		<option value="NodeMCU" class="text-black dropdown-item display-6">NodeMCU</option>
+		<option value="WEMOS D1R2" class="text-black dropdown-item display-6">WeMos D1R2</option>
+		<option value="ESP32" class="text-black dropdown-item display-6">ESP32</option>
+		<option value="WEMOS D1R32" class="text-black dropdown-item display-6">WeMos D1R32</option>
+		<option value="WEMOS D1R32 SHIELD" class="text-black dropdown-item display-6">WeMos D1R32 (Sensor Shield)</option>
+		</select>
+				</li>
+				</ul>
+        </div>
+		<script language="JavaScript">
+		if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
+			localStorage.setItem('language', 'en-GB');
+		if (localStorage.getItem("processor")===undefined || localStorage.getItem("processor")===null)
+			localStorage.setItem('processor', 'WEMOS D1R32 SHIELD');
+		window.roboblocksLanguage = localStorage.getItem("language");
+		window.roboblocksProcessor = localStorage.getItem("processor");
+		$("#language").val(window.roboblocksLanguage);
+		$("#processor").val(window.roboblocksProcessor);
+		function onHome()
+		{
+			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/home.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/home.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
+		}
+		
+		function onElectronics()
+		{
+			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/electronics.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/electronics.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
+		}
+		
+		function onFacilino()
+		{
+			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/facilino_programming.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/facilino_programming.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
+		}
+		
+		function onExercises()
+		{
+			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/exercises.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/exercises.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
+		}
+
+		function langChange(lang)
+		{
+			localStorage.setItem('language',lang);
+			window.location.reload();
+		}
+		
+		function processorChange(processor)
+		{
+			localStorage.setItem('processor',processor);
+			window.location.reload();
+		}
+		function showHideLanguage()
+		{
+			var lang=document.getElementById('language');
+			//console.log(lang.style.display);
+			if (lang.style.display==='none')
+				lang.style.display='initial';
+			else
+				lang.style.display='none';
+		}
+		
+		function showHideProcessor()
+		{
+			var proc=document.getElementById('processor');
+			if (proc.style.display==='none')
+				proc.style.display='initial';
+			else
+				proc.style.display='none';
+		}
+		</script>
+		<!--<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Configuraciones de idioma" onclick="showHideLanguage()"><span class="mbri-flag mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+			<select id="language" class="text-black dropdown-toggle display-6 icon-menu" style="display:none" onchange="langChange(this.value)">
+		<option value="ca-ES" class="text-black dropdown-item display-6">Català</option>
+		<option value="da-DK" class="text-black dropdown-item display-6">Dansk</option>
+		<option value="de-DE" class="text-black dropdown-item display-6">Deutsch</option>
+		<option value="en-GB" class="text-black dropdown-item display-6">Inglés</option>
+		<option value="es-ES" class="text-black dropdown-item display-6">Español</option>
+		<option value="eu-ES" class="text-black dropdown-item display-6">Euskera</option>
+		<option value="fr-FR" class="text-black dropdown-item display-6">Français</option>
+		<option value="gl-ES" class="text-black dropdown-item display-6">Galego</option>
+		<option value="it-IT" class="text-black dropdown-item display-6">Italiano</option>
+		<option value="nl-NL" class="text-black dropdown-item display-6">Nederlands</option>
+		<option value="nb-NO" class="text-black dropdown-item display-6">Norsk</option>
+		<option value="pl-PL" class="text-black dropdown-item display-6">Polski</option>
+		<option value="pt-PT" class="text-black dropdown-item display-6">Portugueses</option>
+		<option value="ru-RU" class="text-black dropdown-item display-6">Русский</option>
+		<option value="sv-SE" class="text-black dropdown-item display-6">Svenska</option>
+		<option value="ch-CH" class="text-black dropdown-item display-6">中文</option>
+		</select>-->
+		
+		
+    </nav>
+</section></body></html>

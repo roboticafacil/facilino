@@ -1,0 +1,125 @@
+﻿<html dir="ltr"><head></head><body dir="ltr"><section class="mbr-section content8 cid-qYmzZbbatW" id="content8-82">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYmzZFd6Tu" id="content4-83">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">Eixida Analògica (PWM)</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">Descripció detallada de les eixides analògiques d'un Arduino.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfUQ9R83W" id="content9-43">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Senyal analògic</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+	<div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Un <strong>senyal analògic</strong> és un senyal que <strong>pot tenir qualsevol valor entre 0V i 5V</strong> (per a Arduino Uno). Per tant, la principal diferència respecte a un senyal digital és que els senyals digitals sols poden prendre dos valors possibles, 0V o 5V, mentre que un senyal analògic podria ser qualsevol número real entre 0V i 5V, per exemple 1.2V.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfV9GmktA" id="content2-46">
+	<div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(De Vikipedia)</strong> Un senyal analògic és un tipus de senyal generat per algun tipus de fenomen electromagnètic; que és representable per una funció matemàtica contínua en el que és variable en amplitud i període (en representar les dades de la informació) en funció del temps. Algunes magnituds físiques comunment portadores d’un senyal d’aquest tipus elèctric com la intensitat, la tensió i la potència, però també poden ser hidràuliques com la pressió i tèrmiques com a temperatura.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfVcAKW8E" id="content9-47">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Eixides Analògiques</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfVm7gJFh" id="content1-48">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>La creació de senyals analògics precisos pot ser un desafiament per a la majoria dels microcontroladors. En lloc d'utilitzar un convertidor Digital a Analògic (DAC), comunment fan servir un mètode anomenat Modulació d'Ample de Pols o PWM.</p>
+<p><strong>PWM</strong>, és una tècnica per a obtenir senyals analògiques amb senyals digitals. El control digital el fa servir per a crear una ona quadrada, un senyal que canvia entre ALT (5 V) i BAIX (0 V). Aquest patró d'encesa i apagada pot simular voltatges analògics continus entre 5V i 0V, canviant la part del temps que el senyal encencidad enfront amb temps amb una freqüència de commutació molt ràpida. La durada del "temps d'encés" s'anomena amplada de pols, per tant, per obtenir valors analògics variables, has de canviar o modular aquest ample de pols. Si es repeteix aquest patró d'encés/apagat prou ràpid amb un LED, per exemple, el resultat és com si el senyal fos un voltatge constant entre 0 i 5v que controla la brillantor del LED.</p>
+<p>En el següent gràfic, les línies verdes representen un període de temps regular. Aquesta durada o període és la inversa de la freqüència PWM. En altres paraules, amb una freqüència PWM del microcontrolador a aproximadament 500Hz, les línies verdes mesurarien 2 mil·lisegons cadascuna. La línia negra representa el valor del senyal digital PWM que commuta (canvia) segons indica la freqüència marcada per la línia verda. El cicle de treball és el percentatge de temps que el senyal està activa. La línia roja és el valor mitjà del temps que el senyal negre està actiu front al temps que està desactivada. Aquest valor és el percebut com un senyal analògic per molts dispositius.</p>
+</div>
+        </div>
+    </div>
+</section>
+
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">  
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:40%">
+                <img src="tutorial/assets/images/pwm.png" width="1400" alt="pwm" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instruccions de Facilino</div>
+            <hr class="line" style="width:25%">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>Per establir el valor d'una eixida analògica en Facilino necessitem fer servir aquestes instruccions. La primera instrucció requereix d'un pin digital amb capacitats PWM i el cicle de treball, un nombre entre 0 i 255 per a una resolució de 8 bits. Quan el cicle de treball és 0, el senyal és de 0V i quan el cicle de treball és 255, el senyal és de 5V. Qualsevol altre valor intermedi estableix l'amplada del temps d'encés del senyal PWM. La instrucció Facilino per a processadors ESP permet, a més a més, configurar la freqüència PWM i la resolució. La segona instrucció retorna un pin PWM vàlid.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction1"></span></div><div id="blocklyInstruction1"></div><script>injectInstructionTooltip('inout_analog_write','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id="tooltipInstruction2"></span></div><div id="blocklyInstruction2"></div><script>injectInstructionTooltip('pin_pwm','blocklyInstruction2','tooltipInstruction2');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section></body></html>
