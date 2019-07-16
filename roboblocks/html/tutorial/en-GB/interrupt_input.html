@@ -1,0 +1,147 @@
+<section class="mbr-section content8 cid-qYmA6Zo62s" id="content8-85">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYmA8aWTqj" id="content4-86">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">Interrupt Input</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">An Arduino's interrupt inputs detailed description</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYgfq9gspk" id="content9-4j">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Interrupts</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYgfMS2fzW" id="content1-4l">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p><strong>Interrupts</strong> are certain signals that will interrupt the current program flow so that a higher priority task or a break can be executed. microcontroller programms work normaly in a <strong>linear order</strong>, that <strong>loops</strong> upon completion. Usually most microcontrollers include different kind of interrupts to allow the user to jump between task to have a more useful and natural workflow.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 40%;">
+                <img src="tutorial/assets/images/interrupts.png" width="1400" alt="interrupts" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYgfq9gspk" id="content9-4j">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Timer Interrupts</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYgfMS2fzW" id="content1-4l">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+			<p><strong>Timers</strong> are included in most microcontrollers to measure time or execute tasks periodically. Timers include registers where to store the current timer counter value. This value is updated with the microcontroller clock signal together with a prescaler (to make the update signal slower, because clock ticks are usually too fast). When the timer counter reaches pre-defined value, this triggers an interrupt so a specific task can be executed. To control the period where the interrupt is executed, you need to modify the pre-defined value.</p></div>
+		</div>
+	</div>
+</section>
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 70%;">
+                <img src="tutorial/assets/images/timer_signal.png" width="1400" alt="timer" title="">
+                
+            </div>
+    </figure>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYgfq9gspk" id="content9-4j">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    External Interrupts</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYgfMS2fzW" id="content1-4l">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+			<p><strong>External</strong> interrupts can generate an interrupt on the work flow on specific pins. The interrupt can be triggered when the pin attached to the interrupt is set to a given level (HIGH or LOW) or at the falling or rising edges of the signal, that is, transitions between HIGH to LOW (falling) or LOW to HIGH (rising).</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 40%;">
+                <img src="tutorial/assets/images/interrupt_signal.jpg" width="1400" alt="interrupt_signal" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Coding with Facilino</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>In order to generate timer-based interrupts, Facilino uses a multi-task instruction that allows you to execute tasks periodically with a minimum period of 1ms using the first instruction. This instruction is a mutable instruction, which means that you can add as many tasks are desired. <strong>Caution: </strong>When working with timers, you must consider the fact that other libraries, might be using that timer too, so executing time-consuming tasks inside this instruction could generate a lot of problems and things won't work as expected. This a common issue arised due to sharing a common resource and Facilino does its best to overcome part of these situations, but there might be cases in which there might be problems. </p><p>The second instruction is used to run code at indicated interrupt signal mode (low, change, rising edge or falling edge). Again, using this type of instruction it might affect to execution of other instructions, due to the execution of the code inside the statement input. Ideally, this code should be fast to execute.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('dyor_task','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('attachInterrupt','blocklyInstruction2','tooltipInstruction2');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section>

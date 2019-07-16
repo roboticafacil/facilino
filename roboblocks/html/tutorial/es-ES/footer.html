@@ -1,0 +1,54 @@
+﻿<html dir="ltr"><head></head><body dir="ltr"><section class="cid-qYrSHhW5Ux" id="footer7-ai" once="">
+
+    <div class="container">
+        <div class="media-container-row align-center mbr-white">
+            <div class="row row-links">
+                <ul class="foot-menu">
+					<li class="foot-menu-item mbr-fonts-style display-7"><a class="text-white mbr-bold" onclick="onAbout();">Acerca de nosotros</a></li>
+					<li class="foot-menu-item mbr-fonts-style display-7"><a class="text-white mbr-bold" onclick="onPageClicked(&#39;https://roboticafacil.es/en/download&#39;);">Obtener Facilino</a></li>
+					<!-- <li class="foot-menu-item mbr-fonts-style display-7"><a class="text-white mbr-bold" onclick="onFeedback();">Feedback</a></li>-->
+					<li class="foot-menu-item mbr-fonts-style display-7"><a class="text-white mbr-bold" onclick="onPageClicked(&#39;https://roboticafacil.es&#39;);">Tienda</a></li>
+				</ul>
+            </div>
+            <div class="row social-row">
+                <div class="social-list align-right pb-2">
+
+                <div class="soc-item">
+                        <a onclick="onPageClicked(&#39;https://twitter.com/RoboticaFacil&#39;);">
+                            <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
+                        </a>
+                    </div><div class="soc-item">
+                        <a onclick="onPageClicked(&#39;https://www.facebook.com/Robótica-Fácil-1183498285099194&#39;);">
+                            <span class="mbr-iconfont mbr-iconfont-social socicon-facebook socicon"></span>
+                        </a>
+                    </div></div>
+            </div>
+            <div class="row row-copirayt">
+                <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">
+                    © Copyright 2019 Robótica Fácil - Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </div>
+	<script language="JavaScript">
+		if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
+			localStorage.setItem('language', 'en-GB');
+		if (localStorage.getItem("processor")===undefined || localStorage.getItem("processor")===null)
+			localStorage.setItem('processor', 'ArduinoNano');
+		window.roboblocksLanguage = localStorage.getItem("language");
+		window.roboblocksProcessor = localStorage.getItem("processor");
+		$("#language").val(window.roboblocksLanguage);
+		$("#processor").val(window.roboblocksProcessor);
+		function onAbout()
+		{
+			$(function(){var file= 'tutorial/'+window.roboblocksLanguage+'/about.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/about.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
+		}
+		
+		/*function onFeedback()
+		{
+			$(function(){var file= 'tutorial/'+window.roboblocksLanguage+'/feedback.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/feedback.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
+		}*/
+		
+		</script>
+</section>
+</body></html>

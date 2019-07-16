@@ -1,0 +1,305 @@
+<script>
+var currentSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    USB Serial Instructions</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Learn how to print to the console and read from the console with the USB serial interface.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>An Arduino or ESP board, i.e.: <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-uno-r3/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-nano-v3-0-compatible/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/wemos-esp32-d1-r32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>A <a onclick="onPageClicked('https://roboticafacil.es/en/prod/multisensor-shield/');" style="color:#1ec6c6" target="_blank">Multisensor shield</a>, a potentiometer connected to pin A0 or any analog sensor to play around.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    USB Serial Monitor</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Arduino and ESP boards can be programmed using the USB port. However this is not the only purpose for this port, because it can be used to transmit data between your PC and the board. You can transmit any data from your board using 'Print' instructions in Facilino or send data from your PC and read and use that data in your board using 'Read' instructions. In order to do so, we use the Serial Monitor, this is an integrated console application inside Facilino. You can also use Arduino IDE monitor application or any other serial console application that suits you. </p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 6%;">
+                <img src="tutorial/assets/images/monitor.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>The aim of a serial monitor (or console) application is to display all characters received from a serial port and to provide means for sending data. In order to succeed with that, you usually need to setup your baudrate (speed at which data is transmitted) and other communication parameters. This might depend on your board configuration. Facilino sets the default baurdrate for you at the beginning of your code whenever you use a USB serial instruction and this depends on the selected hardware. For Arduino boards, the default baudrate is 9600bps (bits per second). This might quite fast, but indeed is not one of the fastest ones. ESP processors transmit data through the serial port at 115200bps! Facilino Monitor configures this speed automatically for you depending on the selected hardware, but if you use Arduino IDE or any other serial monitor, you will need to properly configure this value.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 90%;">
+                <img src="tutorial/assets/images/monitor_display.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Once you click on the 'Monitor' icon in Facilino, it will automatically open the serial port and start displaying whatever data is send. In order send data, you need to write on the top text input and press enter. You can also show graph plots if you use the 'Graph' icon on the top left corner. This will allow you to monitor data varying over the time. This is still a feature that needs to be improved, so maybe, it is easier for you to understand plot data if you use the Arduino IDE Serial Plotter.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('serial_available','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('serial_println','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('serial_plot','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('serial_parseint','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('serial_parsefloat','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('serial_readstring','blocklyInstruction6','tooltipInstruction6');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Additional instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('inout_analog_read','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('pin_analog','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip('base_delay','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('math_arithmetic','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('math_single','blocklyInstruction11','tooltipInstruction11');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Basic Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Hello world!</strong><p>At the start up, print the sentence "Hello world!" on the console.</p><strong>Hint: </strong><p><i> Use the 'Print Line' instruction and add the text with the sentence "Hello world!".</i></p><button  type="button" onclick="showHide('solutions1b','hello_world.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('hello_world.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Hello world again!</strong><p>Now, print the sentence "Hello world!" on the console at the start up and then the sentence "Hello world again!" in the main loop.</p><strong>Hint: </strong><p><i> Use the 'wait' instruction to give some time after using the 'Print Line' instruction.</i></p><button  type="button" onclick="showHide('solutions2b','hello_world_again.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('hello_world_again.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Read potentiometer values</strong><p>Create a program that sends over the serial port data measured with the potentiometer (connected to pin A0).</p><strong>Hint: </strong><p><i> Use the 'Print Line' instruction, but new instead of using text, you can use the values returned from the 'AnalogRead' instruction. You can use a 'Wait' instruction to control the frequency the values are printed (i.e.: 100ms).</i></p><button  type="button" onclick="showHide('solutions3b','read_potentiometer.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('read_potentiometer.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Serial loopback</strong><p>Create a program that sends over the serial port data received on it (loopback).</p><strong>Hint: </strong><p><i> If there's data available on the serial port, then use the 'Read String' instruction and send it back with the 'Print Line' instruction.</i></p><button  type="button" onclick="showHide('solutions4b','serial_loopback.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('serial_loopback.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Plot a signal</strong>.<p>Using Arduino's plotter, plot the analog value of the potentiometer (connected to pin A0).</p><strong>Hint: </strong><p><i>Use the 'plot data' instruction to plot the value return by the 'AnalogRead' instruction and select the pin A0 with the 'Analog PIN' instruction. Use a delay of 50ms with the 'Wait (ms)' instruction, so that the samples are spaced at that sampling period.</i></p><button id="but5" type="button" onclick="showHide('solutions5b','plotting_signals.bly','exercise5b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('plotting_signals.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Intermediate Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+					<li><strong>Parsing integer numbers</strong><p>Create a program that read from the serial USB port an integer number. Once you read the number add one to it and print it back to the console.</p><strong>Hint: </strong><p><i>Use the 'read integer' instruction instead the 'Read String'. Use the 'math arithmetic' instruction to add one to the number.</i></p><button  type="button" onclick="showHide('solutions1i','parse_intengers.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('parse_intengers.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Parsing float numbers</strong><p>Modify the previous program so that it expects a float number. The difference is that now, we can use it to perform floating point operations. For instance, you can use it to print on the console its negate value.</p><strong>Hint: </strong><p><i>Use the 'Read Float' instruction and the negation instruction (is one of the listed options in the 'floating point operations' (by default is shown 'square root' as first option).</i></p><button id="but4" type="button" onclick="showHide('solutions2i','parsing_float.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('parsing_float.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+	<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Basic Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Basic Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Basic Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Basic Exercise 4</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise4b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Basic Exercise 5</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise4b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div></div>
+		</div>
+	</section>
+	
+	
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3'); HideButton('but4'); HideButton('but5');
+</script>

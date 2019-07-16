@@ -1,0 +1,131 @@
+<section class="mbr-section content8 cid-qYmzZbbatW" id="content8-82">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYmzZFd6Tu" id="content4-83">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">Analog Output (PWM)</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">An Arduino's analog outputs detailed description</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfUQ9R83W" id="content9-43">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Analog signal</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>An <strong>analog signal</strong> is a signal that <strong>can take any value between 0V and 5V</strong> (for Arduino Uno). Therefore, the main difference with respect to a digital signal is that digital signals can only take two possible values, 0V or 5V, while an analog signal could be any real number between 0V and 5V, for example 1.2V.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfV9GmktA" id="content2-46">
+
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(From Wikipedia)</strong>&nbsp;An analog signal is any continuous signal for which the time varying feature (variable) of the signal is a representation of some other time varying quantity, i.e., analogous to another time varying signal.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfVcAKW8E" id="content9-47">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Analog Outputs</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfVm7gJFh" id="content1-48">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Creating accurate precise analog signals can be a challenge for most of microcontrollers. Instead of using a Digital-to-Analog converter (DAC), they commonly use a method called Pulse Width Modulation or PWM.</p>
+<p><strong>PWM</strong>, is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between HIGH (5V) and LOW (0V). This on-off pattern can simulate analog continous voltages in between full 5V and 0V by changing the portion of the time the signal spends on versus the time that the signal spends off. The duration of "on time" is called the pulse width. To get varying analog values, you change, or modulate, that pulse width. If you repeat this on-off pattern fast enough with an LED for example, the result is as if the signal is a steady voltage between 0 and 5v controlling the brightness of the LED.</p>
+<p>In the graphic below, the green lines represent a regular time period. This duration or period is the inverse of the PWM frequency. In other words, with a microcontroller PWM frequency at about 500Hz, the green lines would measure 2 milliseconds each. The black line is the PWM signal, switching at the indicated frequency. The ductycicle is the percentage that the signal stays HIGH with respect to the time that stays LOW. The mean value of that signal is the red line, which is the analog signal <i>seen</i> by many devices.</p>
+</div>
+        </div>
+    </div>
+</section>
+
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">  
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 40%;">
+                <img src="tutorial/assets/images/pwm.png" width="1400" alt="pwm" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Coding with Facilino</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>In order to set the value of an analog output in Facilino we need to use the following instructions. The first instruction requires a digital pin with PWM capabilities and the dutycicle, a number between 0 and 255 for a 8-bit resolution. When the dutycicle is 0 the signal stays at 0V and when the dutycicle is  255 the signal constant stays at 5V. Any other value in between will set the width of the ON time of the PWM signal. Facilino instruction for ESP processors allows to set the PWM frequency and the resolution. The second instruction returns a valid PWM pin.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('inout_analog_write','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('pin_pwm','blocklyInstruction2','tooltipInstruction2');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section>

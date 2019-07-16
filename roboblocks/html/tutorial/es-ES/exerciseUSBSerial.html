@@ -1,0 +1,305 @@
+<script>
+var currentSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+
+
+<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Comunicación Serie USB</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Aprende a imprimir en la consola y lee desde la consola con la interfaz serie USB.</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a>, un potenciómetro conectado al pin A0 o cualquier sensor analógico con el que poder <i>jugar</i>.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Monitor Serie (Consola)</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Las tarjetas de Arduino y ESP pueden ser programadas utilizando el puerto USB. Sin embargo, esta no es la única funcionalidad, porque puede ser usado para transmitir (enviar y recibir) datos entre el ordenador (PC) y la tarjeta. Puedes transmitir datos usando la instrucción 'Imprime por puerto serie con salto de línea' en Facilino o envia datos desde tu ordenador utilizando las instrucciones de 'Lee ...'. El monitor serie permite visualizar la inforamción recibida, así como enviar datos, y está integrada en Facilino, aunque puedes utilizar el monitor de Arduino IDE o cualquier otra aplicación de consola que prefieras.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 6%;">
+                <img src="tutorial/assets/images/monitor.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>El propósito del monitor serie (o consola) es mostrar todos los caracteres que se reciben por el puerto serioe y proporcionar las forma de enviar datos. Pero antes, debemos asegurarnos que la comunicación entre el PC y la tarjeta es la correcta, particularmente la velocidad de transmisión (es la velocidad a la que los datos se transmiten), pero también otros parámetros. Todo esto depende de la configuración de la tarjeta. Facilino establece que la velocidad por defecto para las tarjetas de Arduino es de 9600 baudios (9600 bits por segundo). Esto puede parecer rápido, pero hay velocidades mucho mayores, como las utilizadas por en los procesadores ESP, cuya velocidad alcanza los 115200 baudios! El monitor serie de Facilino configura todos estos aspectos de velocidad automáticamente, dependiendo de la tarjeta seleccionada, pero si usas Arduino IDE o cualquier otro monitor serie, deberás tenerlo en consideración.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 90%;">
+                <img src="tutorial/assets/images/monitor_display.png" width="1400" alt="Multifunction" title=""></img>
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYfUXHWAEF" id="content1-44">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Al hacer 'clic' sobre el icono del Monitor de Facilino, se abre automáticamente la comunicación serie del puerto USB y empezará a mostrar cualquier dato que enviemos. Para enviar datos, necesitas escribir en el campo de texto, en la parte superior y pulsar 'enter'. Puedes también mostrar gráficos si pulsas sobre el icono 'Gráfico' en la esquina izquierda superior. Esto te permite visualizar datos que cambian con el tiempo, si bien esta característica todavía necesita ser mejorada en algunos aspectos y quizás utilizar el Serial Plotter de Arduino IDE.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('serial_available','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('serial_println','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('serial_plot','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('serial_parseint','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('serial_parsefloat','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('serial_readstring','blocklyInstruction6','tooltipInstruction6');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('inout_analog_read','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('pin_analog','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip('base_delay','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('math_arithmetic','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('math_single','blocklyInstruction11','tooltipInstruction11');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Hola mundo!</strong><p>Al arrancar la tarjeta, debe mostrar la frase 'Hola mundo!' y que aparezca en el monitor serie.</p><strong>Pista: </strong><p><i> Usa la instrucción 'Imprime por puerto serie con salto de línea' y añade el texto con la frase 'Hola mundo!'.</i></p><button  type="button" onclick="showHide('solutions1b','hello_world.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('hello_world.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Hola mundo otra vez!</strong><p>Ahora, imprime la frase 'Hola mundo!' y que aparezca en el monitor serie al inicio y después la frase 'Hola mundo otra vez!' en el bucle principal.</p><strong>Pista: </strong><p><i> Usa la instrución 'Esperar' para que transcurra un tiempo después de usar la instrucción de imprimir.</i></p><button  type="button" onclick="showHide('solutions2b','hello_world_again.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('hello_world_again.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Leer valores del potenciómetro</strong><p>Crea un programa que envía datos de los valores medidos de la señal analógica del potenciómetro (conectado al pin A0). Los datos se envían por el puerto serie y que los puedes visualizar en el monitor serie.</p><strong>Pista: </strong><p><i> Usa la instrucción de 'Imprimir', pero esta vez en vez de usar texto, debes utilizar el valor devuelto por la instrucción de lectura analógica. Puedes usar la instrucción para esperar un tiempo para controlar la frecuencia a la que se muestran los valores (por ejemplo 100ms).</i></p><button  type="button" onclick="showHide('solutions3b','read_potentiometer.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('read_potentiometer.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Repetición Serie</strong><p>Crea un programa que envíeo por el puerto serie los datos que recibe (en inglés esto se conoce como <i>loopback</i>).</p><strong>Pista: </strong><p><i> Si hay atos disponibles en el puerto serie, utiliza la instrucción de 'Lee cadena...' e imprimela utilizando la instrucción de imprimir con salto de línea.</i></p><button  type="button" onclick="showHide('solutions4b','serial_loopback.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('serial_loopback.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Grafica una señal</strong>.<p>Utilizando la herramienta para graficar señales (de Facilino o Arduino IDE) muestra cómo varía el valor analógico del poteniciómetro (conectado al pin A0) con el tiempo.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Dibuja datos...' junto con la instrucción de lectura de un pin analógico. Utiliza un retardo de 50ms con la instrucción de 'Esperar (ms)' para que las muestras estén equiespaciadas en el tiempo.</i></p><button id="but5" type="button" onclick="showHide('solutions5b','plotting_signals.bly','exercise5b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('plotting_signals.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+					<li><strong>Interpreta números enteros</strong><p>Crea un programa que lea por el puerto serie un número entero (al enviar los datos desde el monitor serie de Facilino o Arduino IDE en realidad se envía un texto, pero Facilino puede interpretar el texto y considerarlo como un número para, por ejemplo, realizar operaciones matemáticas). Una vez leas el número, añádele una unidad y muestra por el monitor serie el resultado.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Leer entero...' y la instrucción de operación aritmética para añadir una unidad.</i></p><button  type="button" onclick="showHide('solutions1i','parse_intengers.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('parse_intengers.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Interpreta números decimales</strong><p>Modifica el programa anterior de forma que interprete un número decimal. La diferencia es que ahora podéis realizar operaciones con números decimales. Por ejemplo, puedes usarlo para imprimir en el monitor serie el valor negativo del valor leído.</p><strong>Pista: </strong><p><i>Usa a instrucción 'Leer decimal' y la operación de negación (es una de las opciones que aparecen en la instrucción que realiza operaciones matemáticas como la raíz cuadrada.</i></p><button id="but4" type="button" onclick="showHide('solutions2i','parsing_float.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('parsing_float.bly');">
+					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+	<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Soluciones</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 4</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise4b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 5</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise4b'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div></div>
+		</div>
+	</section>
+	
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div></div>
+		</div>
+	</section>
+	
+	
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3'); HideButton('but4'); HideButton('but5');
+</script>

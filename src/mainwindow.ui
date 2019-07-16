@@ -689,6 +689,7 @@ pressed: { border: 1px };</string>
    <addaction name="separator"/>
    <addaction name="actionView"/>
    <addaction name="actionSearchDocumentation"/>
+   <addaction name="actionactionTutorial"/>
    <addaction name="actionSettings"/>
    <addaction name="separator"/>
    <addaction name="actionMy_Blocks"/>
@@ -1654,6 +1655,15 @@ pressed: { border: 1px };</string>
    </property>
    <property name="toolTip">
     <string>Reload page</string>
+   </property>
+  </action>
+  <action name="actionactionTutorial">
+   <property name="icon">
+    <iconset theme="Tutorial" resource="Resources.qrc">
+     <normaloff>:/icons/tutorial.png</normaloff>:/icons/tutorial.png</iconset>
+   </property>
+   <property name="text">
+    <string>Tutorial</string>
    </property>
   </action>
  </widget>

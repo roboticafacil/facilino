@@ -1,0 +1,418 @@
+<script>
+var currentSolutions=0;
+</script>
+<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Lógica</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a trabajar con instrucciones lógicas con Facilino, incluidas las operaciones booleanas y bit a bit.</h3>
+
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
+
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o dos LEDs (rojo y azul conectados a los pines D12 y D13) y dos <a onclick="onPageClicked('https://roboticafacil.es/prod/pulsador-ky-004/');" style="color:#1ec6c6" target="_blank">pulsadores</a> conectados a los pin D2 y D3.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Lógica Booleana</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Como sabes, las <a onclick="onHomeFile('digital_input.html');" style="color:#1ec6c6">señales digitales binarias</a> pueden tomar sólo dos posibles valores 0V o 5V. Una variable binaria es muy similar, ya que sólo puede tomar valores de VERDADERO o FALSO, normalmente lo representamos como 1 o 0. El <a onclick="onPageClicked('https://en.wikipedia.org/wiki/Boolean_algebra');" style="color:#1ec6c6" target="_blank">Algebra Booleana</a> es la parte del algebra que trabaja con variables binarias, esto es, la que define las reglas y la representaión de variables binarias. Fue formalizado por <a onclick="onPageClicked('https://en.wikipedia.org/wiki/George_Boole');" style="color:#1ec6c6" target="_blank">George Boole</a>, que introdujo las relaciones equivalentes al álgebra numérica.</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 20%;">
+                <img src="tutorial/assets/images/George_Boole.jpg" width="1400" alt="George Boole" title=""></img>
+
+            </div>
+    </figure>
+</section>
+
+
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Hay tres operaciones básicas: <strong>Y</strong> (conjunción), <strong>O</strong> (disjunción) y <strong>NO</strong> (negación). Una operación Y acepta dos variables binarias y devuelve 1 si, y sólo si,  las dos son 1. Una operación O acepta dos variables y devuelve 1 cuando cualquier de las variables es 1. Una operación NO acepta sólo un valor y devuelve el valor contrario, estos es 0 si es 1 y 1 si es 0 (evidentemente la negación de la negación es equivalente al valor original). Hay otras operaciones útiles, como por ejemplo la <strong>XOR</strong> o O EXCLUSIVA. Esta operación acepta dos variables binarias y devuelve 0 si son iguales y 1 si son diferentes.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Además, hay idendidades cuando combinamos algunas de estas operaciones básicas. Se conocen como la <a onclick="onPageClicked('https://en.wikipedia.org/wiki/De_Morgan%27s_laws');" style="color:#1ec6c6" target="_blank">Ley de De Morgan</a>:</p><p>A Y B=NO(NO(A) O NO(B))</p><p>A O B=NO(NO(A) Y NO(B))</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Bits y Números</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>Los ordenadores no entienden los números de la forma en la que nosotros lo hacemos</strong>. Tampoco los microcontroladores como Arduino o ESP. <strong>Ellos sólo entienden bits</strong>. Un bit es la unidad básica de la información. Como quizás sepas, sólo puede almacenar dos valores: 0 o 1. Así pues, para poder representar números más grandes se requieren grupos de bits, de la misma forma que al usar la representación decimal con los dígitos del 0 al 9. Cada vez que necesitamos representar un número más grande, añadimos un dígito más a la izquierda y el resto los ponemos a 0. Así pues, del 9, añadirmos un 1 a la izquierda y el 9 lo transformamos en 0 para crear el 10. En la representación binaria hacemos exactamente lo mismo. Para representar un número más grande añadimos un dígito con un 1 a la izquierda y el resto los ponemos a 0. Por ejemplo, podemos representar los siguientes números con su representación en binario equivalente (hemos incluido una 'b' para indicar que la representación es en binario):</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Número Decimal</th><th class="head-item mbr-fonts-style display-7">
+                      Bits Requeridos</th><th class="head-item mbr-fonts-style display-7">
+					  					Representación Binaria</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr>
+			  <td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">0b</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">1b</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">2</td><td class="body-item mbr-fonts-style display-7">2</td><td class="body-item mbr-fonts-style display-7">10b</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">3</td><td class="body-item mbr-fonts-style display-7">2</td><td class="body-item mbr-fonts-style display-7">11b</td></tr><tr>
+			  			<td class="body-item mbr-fonts-style display-7">4</td><td class="body-item mbr-fonts-style display-7">3</td><td class="body-item mbr-fonts-style display-7">100b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">7</td><td class="body-item mbr-fonts-style display-7">3</td><td class="body-item mbr-fonts-style display-7">111b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">4</td><td class="body-item mbr-fonts-style display-7">1000b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">15</td><td class="body-item mbr-fonts-style display-7">4</td><td class="body-item mbr-fonts-style display-7">1111b</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">16</td><td class="body-item mbr-fonts-style display-7">5</td><td class="body-item mbr-fonts-style display-7">10000b</td></tr><tr>
+							</tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">En los microcontroladores, cuando usamos un número que se almacena en memoria, esto suele requerir una cantidad de bits necesaria para poder almacenarlo. Típicamente, almacenamos los datos en grupos de 8-bits (<strong>byte</strong>), 16-bits (<strong>palabra o entero</strong>) o 32-bits (<strong>doble palabra o entero largo</strong>). Así pues, un byte puede almacenar hasta 2^8 números, esto es del 0 al 255. Una palabra puede representar los números desde el 0 al 65535 y una doble palabra puede representar los números desde el 0 al 4294967295. Sí, puede parecer mucho, pero en realidad a veces necesitamos almacenar números más grandes. A veces, también necesitamos representar números negativos. La forma en la que suele hacerse esto es utilizar el bit más significativo (MSB), el de más a la izquierda, para representar el signo menos.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Operaciones Bit a Bit</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Ahora, ya sabes un poco al respecto de números y bits, puede que te interese saber en operaciones bit a bit con números. Esto puede ser útil para determinar o no si un bit es un 1 o un 0, porque ese bit representa una información útil para ese dato. Sí, sabemos que es pretender ir demasiado lejos en cómo los datos se representan, pero creenos cuando decimos que existen muchas aplicaciones y motivos para querer hacer esto. Por ejemplo, una forma sencilla de comprobar que cuando transmitirmos datos todo es correcto es utilizar un sistem de comprobación de errores. Uno de los más sencillos es realizar una operación XOR sobre todos los datos y al final del todo, enviar el resultado de la operación. Si el que receibe los datos realiza la misma operación y comprueba que el resultado de la operación XOR es la misma, entonces podemos estar casi 100% seguros de que no ha habido errores de transmisión.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">En resumen, utilizamos las operaciones Booleanas a nivel de bit tales como <strong>Y bit a bit</strong>, <strong>O bit a bit</strong>, <strong>NO bit a bit</strong> o <strong>XOR bit a bit</strong>. Aquí proporcionamos algunos ejemplos:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 60%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Operando 1</th><th class="head-item mbr-fonts-style display-7">
+											Operando 2</th><th class="head-item mbr-fonts-style display-7">
+                      Operación Bit a Bit</th><th class="head-item mbr-fonts-style display-7">
+					  					Resultado</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr>
+			  		  <td class="body-item mbr-fonts-style display-7">7 (111b)</td><td class="body-item mbr-fonts-style display-7">4 (100b)</td><td class="body-item mbr-fonts-style display-7">Y<br>O<br>XOR</td><td class="body-item mbr-fonts-style display-7">4 (100b)<br>7 (111b)<br>3 (011b)</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">11 (1011b)</td><td class="body-item mbr-fonts-style display-7">5 (0101b)</td><td class="body-item mbr-fonts-style display-7">Y<br>O<br>XOR</td><td class="body-item mbr-fonts-style display-7">1 (0001b)<br>15 (1111b)<br>14 (1110b)</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">25 (011001b)</td><td class="body-item mbr-fonts-style display-7">47 (101111b)</td><td class="body-item mbr-fonts-style display-7">Y<br>O<br>XOR</td><td class="body-item mbr-fonts-style display-7">9 (001001b)<br>63 (111111b)<br>54 (110110b)</td></tr><tr>
+							<td class="body-item mbr-fonts-style display-7">100 (01100100b)</td><td class="body-item mbr-fonts-style display-7">200 (11001000b)</td><td class="body-item mbr-fonts-style display-7">Y<br>O<br>XOR</td><td class="body-item mbr-fonts-style display-7">64 (1000000b)<br>236 (11101100b)<br>172 (10101100b)</td></tr><tr>
+							</tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('logic_compare','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('logic_operation','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('logic_negate','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('logic_bitwise_operation','blocklyInstruction4','tooltipInstruction4');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('variables_local','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip1('variables_get','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('inout_digital_read','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('inout_analog_read','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('pin_analog','blocklyInstruction11','tooltipInstruction11');</script></li>
+					<li><div><span id='tooltipInstruction12'></span></div><div  id='blocklyInstruction12'></div><script>injectInstructionTooltip('controls_if','blocklyInstruction12','tooltipInstruction12');</script></li>
+          <li><div><span id='tooltipInstruction13'></span></div><div  id='blocklyInstruction13'></div><script>injectInstructionTooltip('serial_available','blocklyInstruction13','tooltipInstruction13');</script></li>
+				  <li><div><span id='tooltipInstruction14'></span></div><div  id='blocklyInstruction14'></div><script>injectInstructionTooltip('serial_parseint','blocklyInstruction14','tooltipInstruction14');</script></li>
+				      </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Enciende el LED al pulsar</strong><p>Siguiendo con las ideas del ejercicio básico 3 <a onclick="onHomeFile('exerciseBlinkingLEDs.html');" style="color:#1ec6c6">Enciende el LED cuando no se pulsa el pulsador</a>, queremos encender el LED conectado al pin D12 cuando pulsamos el pulsador conectado al pin D2.</p><strong>Pista: </strong><p>Usa la instrucción 'Lee pin digital...' para obtener el valor del pulsador y realiza la operación NO para negar su valor. El resultado debes utilizarlo como la entrada de estado de la instrucción 'Escribe en el pin...'</p><button  type="button" onclick="showHide('solutions1b','negate_led_wemosD1R32.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('negate_led_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Operación Y</strong></p>Implementa la operación Booleana usando dos pulsadores (conectados a los pines D2 y D3) y el LED rojo (conectado al pin D12). Cuando ambos se pulsen, debemos poner el estado del LED en ALTO.</p> <strong>Pista: </strong><p><i> Si consideramos al pulsador D2 como PB1 y al pulsador D3 como PB2, el resultado de la operación para encender el LED debe ser LED=NO(PB1) Y NO(PB2).</i></p><button  type="button" onclick="showHide('solutions2b','and_wemosD1R32.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Operación Y equivalente</strong><p>Ahora, usando las Leyes de De Morgan, encuentra una implementación equivalente del ejercicio anterior pero con menos operaciones.</p><strong>Pista: </strong><i><p>En este caso, necesitas implementar LED=NO(PB1 O PB2).</i></p><button  type="button" onclick="showHide('solutions3b','and_equivalent_wemosD1R32.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and_equivalent_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Comparación simple</strong><p>Enciende el LED conectado al pin D12 cuando el valor leído desde el pin A0 (potenciómetro) es mayor que 512.</p><strong>Pista: </strong><i><p>Usa la instrucción '>' para comparar el número devuelto por la instrucción 'Lee pin analógico' y el número 512. El resultado de esta operación puede ser usado como entrada de la instrucción 'Si' para decidir encender el LED o no.</i></p><button  type="button" onclick="showHide('solutions4b','simple_comparison_wemosD1R32.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('simple_comparison_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Operaciones Y y O</strong><p>Implementa las operaciones Y o O usando los pulsadores conectados a los pines D2 y D3 y los LEDs rojo y azul conectados a los pines D12 y D13. <strong>Pista: </strong><p><i>El objetivo es implementar las siguientes operaciones lógicas: ROJO=NO(PB1 Y PB2), AZUL=NO(PB1 O PB2).</i></p><button  type="button" onclick="showHide('solutions1i','and_or_wemosD1R32.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and_or_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Par o impar (Y bit a bit)</strong></p>Enciende el LED rojo conectado al pin D12 cuando cuando por el puerto serie recibamos un dato par. Enciende el LED azul conectado al pin D13 cuando sea impar.</p> <strong>Pista: </strong><p><i> Utilizar una operación Y bit a bit del número recibido y el número 1. Si el resultado es mayor que cero, entonces es impar. Para leer un entero por el puerto USB mira el Ejercicio Intermedio 1 en <a onclick="onHomeFile('exerciseUSBSerial.html');" style="color:#1ec6c6">Comunicación Serie USB</a></i></p><button  type="button" onclick="showHide('solutions2i','bitwise_and_wemosD1R32.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('bitwise_and_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Comparación</strong><p>Lee el valor de la entrada analógica A0 correspondiente al potenciómetro. Divide el rango total en 4 sub-rangos de forma que los LEDs D12 y D13 muestran el número del rango en representación binaria (D12 es el bit menos significativo). </p><strong>Pista: </strong><i><p>Si el número está entre 0 y 1023, entonces los dos LEDs están apagados, si el valor está entre 1024 y 2047 entonces el LED D12 debe estar encendido y el D13 apagado, si el valor está entre 2048 y 3071 entonces el LED D13 debe estar encendido y el D12 apagado. En caso contrario, los dos LEDs deben estar encendidos. <strong>Recuerda que el rango de la lectura analógica en los procesadores ESP es de 0 a 4096, por eso estos sub-rangos. En el caso de utilizar Arduino, el rango es de 0 a 1023.</strong></i></p><button  type="button" onclick="showHide('solutions3i','comparison_wemosD1R32.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('comparison_wemosD1R32.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Solutiones</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1b'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2b'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3b'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Básico 4</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise4b'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div></div>
+		</div>
+	</section>
+</section>
+<script>
+var solutions = document.getElementById('solutions');
+solutions.style.display="none";
+//HideButton('but1'); HideButton('but2'); HideButton('but3');
+</script>

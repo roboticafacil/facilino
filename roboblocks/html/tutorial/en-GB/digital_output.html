@@ -1,0 +1,128 @@
+<section class="mbr-section content8 cid-qYmzRXmNQG" id="content8-80">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYfOtZbFWn" id="content4-3z">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Digital Output</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">An Arduino's digital outputs detailed description</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfOj751da" id="content9-3y">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Digital Signals</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfN1vM6s0" id="content1-3u">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p><strong>Digital signals</strong> can only take two possible values <strong>HIGH</strong> or <strong>LOW</strong>. We refer to LOW when the voltage of a signal is closed to <strong>0V</strong>, while HIGH implies that the voltage of the signal is close to <strong>5V</strong> (for Arduino Uno).</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfO9NtyVq" id="content2-3w">
+
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote> <strong>(From Wikipedia)</strong>&nbsp;A digital signal is a signal that is being used to represent data as a sequence of discrete values; at any given time it can only take on one of a finite number of values.</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYfObqmySF" id="content9-3x">
+    
+     
+
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Digital Outputs</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYfPnLLBsY" id="content1-40">
+    
+     
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>A <strong>digital output</strong> can only have two possible states <strong>LOW</strong> or <strong>HIGH</strong>. When setting a digital output to a <strong>LOW state</strong>, the voltage at <strong>its corresponding pin will be 0V</strong>, while setting the output to a <strong>HIGH state</strong> will make the digital pin to have a <strong>voltage of 5V</strong>. </p><p>In the following example, when we set the Digital Output to a <strong>HIGH</strong> state will make the pin to have 5V, the current (arrow in black) flows through resistor R2 and the <em>diod</em>e between the Q1 transistor base (B) and emitter (E). This causes transistor Q1 to behave in <em>shortcircuit</em> mode between colector (C) and emitter (E). As a consequence, there's a current flow through R1 which <strong>makes the LED to light on</strong>. As the voltage in C is nearly 0V, the resistor R1 will hold approximately 4.3V, considering that the typical voltage voltage drop in a diode is 0.7V. If the digital output is set to a <strong>LOW</strong> state, there will be no current flow through the B-E diode in Q1, which will make the transistor to be in opercircuit mode. Therefore, the won't be any current flowing through R1, which in turns will <strong>make the LED to switch off</strong>.&nbsp;</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYfN1XRnh1" id="image3-3v">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 36%;">
+                <img src="tutorial/assets/images/arduino-output1-600x600.png" width="1400" alt="arduino output" title="">
+                
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Coding with Facilino</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>In order to write on a digital output with Facilino we need to use the following instructions. The first instruction set the value for the digital pin. It requires the use of the second instruction to indicate the appropriate pin number and a state value which can be a boolean input with values HIGH or LOW. For instance, we could use the third instruction to set such value.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('inout_highlow','blocklyInstruction3','tooltipInstruction3');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section>

@@ -1,0 +1,121 @@
+﻿<html dir="ltr"><head></head><body dir="ltr"><section class="mbr-section content8 cid-qYmADorwq5" id="content8-8n">
+
+    
+
+    <div class="container">
+        <div class="media-container-row title">
+            <div class="col-12 col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section content4 cid-qYmAtSBfME" id="content4-8i">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">Resistencia Dependiente de la Luz (LDR)</h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">¡Aprende lo básico sobre los LDR y haz que perciban la luz!</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYgfq9gspk" id="content9-4j">
+    
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Resistencia dependiente de la luz</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+ 
+ <section class="mbr-section article content1 cid-qYgfMS2fzW" id="content1-4l">
+    
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Una <strong>resistencia dependiente de la luz</strong>, abreviado como <strong>LDR</strong> , o también referenciada como fotorresistencia, es una <strong>resistencia variable controlada por luz</strong>. Su resistencia depende de la cantidad de luz visible recibida. Se utilizan para crear una señal analógica para controlar diferentes procesos. La curva que relaciona el voltaje con la lumnina es <strong>no lineal</strong>, quiere decir que incrementos proporcionales de luminancia no se corresponden a los mismos incrementos en la señal medida.</p> 
+			<p> </p>
+<p>Una resistencia de dependencia de luz (LDR) está hecha de un semiconductor de alta resistencia. En la oscuridad, un fotorresistor puede tener una resistencia tan alta como varios MΩ (megaohms), mientras que en luz normal, el fotoresistor puede tener una resistencia tan baja como unos pocos cientos de Ω (ohmios). Si la luz incidente en un fotoresistor excede una cierta frecuencia e intensidad, los fotones absorbidos por el semiconductor dan, a los electrones unidos al átomo, energía suficiente para saltar fuera de sus restricciones físicas. Los electrones libres resultantes conducen la electricidad, disminuyendo así la resistencia. El rango de resistencia y la sensibilidad de un fotoresistor pueden diferir sustancialmente entre dispositivos diferentes. Además, los fotorresistores pueden reaccionar de manera sustancialmente diferente a los fotones dentro de ciertas bandas de longitud de onda. El <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked(&#39;https://roboticafacil.es/en/prod/light-sensor-ldr-ky018/&#39;);">módulo LDR KY-018 de sensor de luz</a> incluye una resistencia interna que actúa como un divisor de voltaje, proporcionando una señal analógica para interactuar con su microcontrolador.</p>
+		</div>
+</div></div></section>
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">  
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:40%">
+                <img src="tutorial/assets/images/LDR_Symbol.png" width="1400" alt="Símbolo LDR" title="">
+            </div>
+    </figure>
+</section>
+
+ <section class="mbr-section article content1 cid-qYgfMS2fzW" id="content1-4l">
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Para leer la cantidad de luz en un microcontrolador, necesitarás un circuito como se muestra, donde se usa una resistencia fija para actuar como divisor de voltaje (como el potenciómetro). En este caso, la señal recibida ya no es la posición de la aguja (como en el caso del potenciómetro), sino que depende de forma no lineal de la intensidad de la luz.</p>
+			<p>Aquí, mostramos la curva entre los valores de lectura (usando un ADC de 10 bits en Arduino Uno) y la luminancia equivalente, medida en lux.</p>
+		</div>
+		</div>
+	</div>
+</section>
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">  
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:45%">
+                <img src="tutorial/assets/images/LDR_C.jpg" width="1400" alt="circuito ldr" title="">
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYgqzf0KVG" id="image3-4p">  
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width:50%">
+                <img src="tutorial/assets/images/ldr_lux_raw.png" width="1400" alt="ldr_lux_calibration" title="">
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYeLRzC83g" id="content9-3p">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones de Facilino</div>
+            <hr class="line" style="width:25%">
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7" style="color:#767676"><p>Facilino proporciona varias instrucciones para trabajar con LDRs. La primera instrucción devuelve el valor leído desde la LDR (genera el mismo código que la instrucción de lectura analógica en la <a style="color:#1ec6c6" onclick="onElectronic(&#39;analog_input.html&#39;);">Sección de </a><a style="color:#1ec6c6" onclick="onElectronic(&#39;analog_input.html&#39;);">entrada analógica</a>). La segunda instrucción devuelve el valor calibrado en porcentaje (un número entre 0% y 100%). Esto dependerá del máximo y mínimo lux establecido con las instrucciones tercera y cuarta. La quinta instrucción devuelve el valor calibrado en lux.</p></div>
+		</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction1"></span></div><div id="blocklyInstruction1"></div><script>injectInstructionTooltip('ldr_read','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id="tooltipInstruction2"></span></div><div id="blocklyInstruction2"></div><script>injectInstructionTooltip('ldr_read_calibrated','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id="tooltipInstruction3"></span></div><div id="blocklyInstruction3"></div><script>injectInstructionTooltip('ldr_max_lux','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id="tooltipInstruction4"></span></div><div id="blocklyInstruction4"></div><script>injectInstructionTooltip('ldr_min_lux','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id="tooltipInstruction5"></span></div><div id="blocklyInstruction5"></div><script>injectInstructionTooltip('ldr_read_lux','blocklyInstruction5','tooltipInstruction5');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section content8 cid-qYmzL0VMMM" id="content8-7z">
+</section></body></html>

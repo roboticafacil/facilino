@@ -27,6 +27,7 @@
 #include <QDomDocument>
 #include <QClipboard>
 #include <QListWidget>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -588,7 +589,7 @@ void MainWindow::actionSettings() {
     QString license = settings->license();
     // Supported list of languages
     QStringList languageList;
-    languageList << "en-GB" << "es-ES" << "ca-ES" << "gl-ES" << "eu-ES" << "de-DE" << "fr-FR" << "it-IT" << "pt-PT" << "pl-PL" << "ru-RU" << "nb-NO" <<"da-DK" << "nl-NL" << "sv-SE" << "ch-CH";
+    languageList << "en-GB" << "es-ES" << "ca-ES" << "gl-ES" << "eu-ES" << "de-DE" << "fr-FR" << "it-IT" << "pt-PT" << "pl-PL" << "ru-RU" << "nb-NO" <<"da-DK" << "nl-NL" << "sv-SE" << "zh-CN";
     SettingsDialog settingsDialog(settings, languageList, this);
     int result = settingsDialog.exec();
     if (result && settingsDialog.changed()) {
@@ -2184,4 +2185,13 @@ void MainWindow::on_actionReload_triggered()
     checkLicense();
     QString jsLanguage = QString("UpdateCode();");
     evaluateJavaScript(jsLanguage);
+}
+
+void MainWindow::on_actionactionTutorial_triggered()
+{
+    TutorialDialog tutorialDialog(settings,this);
+    int result = tutorialDialog.exec();
+    if (result) {
+
+    }
 }
