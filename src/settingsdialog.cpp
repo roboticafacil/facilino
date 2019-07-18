@@ -16,7 +16,11 @@ SettingsDialog::SettingsDialog(SettingsStore *settings,
     ui->setupUi(this);
 
     // Set values
+#ifdef ARDUINO_CLI
+    ui->arduinoIdePathEdit->setText(settings->arduinoCLIPath());
+#elif
     ui->arduinoIdePathEdit->setText(settings->arduinoIdePath());
+#endif
 
     // Set values for list of languages. languageList must be in
     // "languageCode-countryCode" format (e.g. "en-US").
@@ -59,7 +63,11 @@ bool SettingsDialog::changed() {
 
 void SettingsDialog::accept() {
     // Save settings to file and close dialog
+#ifdef ARDUINO_CLI
+    if (ui->arduinoIdePathEdit->text() != settings->arduinoCLIPath()) {
+#elif
     if (ui->arduinoIdePathEdit->text() != settings->arduinoIdePath()) {
+#endif
         settings->setArduinoIdePath(ui->arduinoIdePathEdit->text());
         settingsChanged = true;
     }
@@ -86,11 +94,11 @@ void SettingsDialog::reject() {
 
 void SettingsDialog::arduinoIdePathOpenDialog() {
     // Show open file dialog
-    QString newPath = QFileDialog::getOpenFileName(
-                this,
-                tr("Arduino IDE"),
-                settings->arduinoIdePath()
-                );
+#ifdef ARDUINO_CLI
+    QString newPath = QFileDialog::getOpenFileName(this,tr("Arduino CLI"),settings->arduinoCLIPath());
+#elif
+    QString newPath = QFileDialog::getOpenFileName(this,tr("Arduino IDE"),settings->arduinoIdePath());
+#endif
     if (!newPath.isNull()) ui->arduinoIdePathEdit->setText(newPath);
 }
 

@@ -34,6 +34,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
+#ifdef ARDUINO_CLI
+    QProcess *processUpload;
+    QStringList argumentsUpload;
+    bool upload;
+#endif
     QProcess *process;
     SettingsStore *settings;
     QString xmlFileName;
@@ -152,6 +157,11 @@ public slots:
     void onProcessFinished(int exitCode);
     void onProcessOutputUpdated();
     void onProcessStarted();
+#ifdef ARDUINO_CLI
+    void onProcessUploadFinished(int exitCode);
+    void onProcessUploadOutputUpdated();
+    void onProcessUploadStarted();
+#endif
     void onSourceChanged();
     void onStatusMessageChanged(const QString &message);
     void readSerial();

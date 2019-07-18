@@ -54,9 +54,22 @@ QString SettingsStore::arduinoBoardFacilino() {
     return settings->value(platform + "arduino_board_facilino","ArduinoNano").toString();
 }
 
+
+#ifdef ARDUINO_CLI
+QString SettingsStore::arduinoCLIPath() {
+#ifdef Q_OS_LINUX
+    return relativePath("arduino_cli_path", "/usr/local/bin/arduino-cli");
+#elif defined(Q_OS_WIN)
+    return relativePath("arduino_cli_path", "C:\\Facilino\arduino-cli.exe");
+#elif defined(Q_OS_MAC)
+    return relativePath("arduino_cli_path", "Arduino.app");
+#endif
+}
+#elif
 QString SettingsStore::arduinoIdePath() {
 #ifdef Q_OS_LINUX
-    return relativePath("arduino_ide_path", "/usr/bin/arduino");
+    //return relativePath("arduino_ide_path", "/usr/bin/arduino");
+    return relativePath("arduino_ide_path", "/usr/local/bin/arduino");
 #elif defined(Q_OS_WIN)
     return relativePath("arduino_ide_path", "C:\\Program Files (x86)\\Arduino\\arduino_debug.exe");
     //return relativePath("arduino_ide_path", ".\\arduino\\arduino-1.8.8\\arduino_debug.exe");
@@ -66,6 +79,7 @@ QString SettingsStore::arduinoIdePath() {
 #endif
     //return relativePath("arduino_ide_path", "C:\\Program Files (x86)\\Arduino\\arduino_debug.exe");
 }
+#endif
 
 QString SettingsStore::defaultLanguage() {
     return settings->value(platform + "language", "en-GB").toString();
@@ -86,7 +100,7 @@ QString SettingsStore::docPath() {
 }
 
 QString SettingsStore::tmpDirName() {
-    return relativePath("tmp_dir_name", "temp/");
+    return relativePath("tmp_dir_name", "temp");
 }
 
 QString SettingsStore::tmpFileName() {

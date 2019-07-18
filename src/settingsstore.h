@@ -22,7 +22,11 @@ public:
 
     QString arduinoBoard();
     QString arduinoBoardFacilino();
+#ifdef ARDUINO_CLI
+    QString arduinoCLIPath();
+#elif
     QString arduinoIdePath();
+#endif
     QString defaultLanguage();
     QString examplesPath();
     QString docPath();

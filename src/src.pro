@@ -6,7 +6,7 @@ CONFIG += c++11
 #{
 #DEFINES +=QT_OLD_VERSION_5_5
 #}
-
+DEFINES +=ARDUINO_CLI
 TARGET = facilino
 TEMPLATE = app
 

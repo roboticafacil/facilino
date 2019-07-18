@@ -110,26 +110,22 @@ MainWindow::MainWindow(QWidget *parent) :
     // Set process
     process = new QProcess();
     process->setProcessChannelMode(QProcess::MergedChannels);
-    connect(process,
-            SIGNAL(started()),
-            this,
-            SLOT(onProcessStarted()));
-    connect(process,
-            SIGNAL(readyReadStandardOutput()),
-            this,
-            SLOT(onProcessOutputUpdated()));
-    connect(process,
-            SIGNAL(finished(int)),
-            this,
-            SLOT(onProcessFinished(int)));
-
+    connect(process,SIGNAL(started()),this,SLOT(onProcessStarted()));
+    connect(process,SIGNAL(readyReadStandardOutput()),this,SLOT(onProcessOutputUpdated()));
+    connect(process,SIGNAL(finished(int)),this,SLOT(onProcessFinished(int)));
+#ifdef ARDUINO_CLI
+    processUpload = new QProcess();
+    upload=false;
+    processUpload->setProcessChannelMode(QProcess::MergedChannels);
+    connect(processUpload,SIGNAL(started()),this,SLOT(onProcessUploadStarted()));
+    connect(processUpload,SIGNAL(readyReadStandardOutput()),this,SLOT(onProcessUploadOutputUpdated()));
+    connect(processUpload,SIGNAL(finished(int)),this,SLOT(onProcessUploadFinished(int)));
+#endif
     // Show opened file name in status bar
     connect(statusBar(),
             SIGNAL(messageChanged(QString)),
             this,
             SLOT(onStatusMessageChanged(QString)));
-
-
     ui->actionUndo->setEnabled(false);
     ui->actionRedo->setEnabled(false);
     connect(&documentHistory,SIGNAL(canUndoChanged(bool)),this,SLOT(onUndoChanged(bool)));
@@ -149,7 +145,10 @@ MainWindow::~MainWindow() {
 
 void MainWindow::arduinoExec(const QString &action) {
     QStringList arguments;
-
+#ifdef ARDUINO_CLI
+    argumentsUpload.clear();
+    upload=false;
+#endif
     // Check if temp path exists
     QDir dir(settings->tmpDirName());
     if (dir.exists() == false) {
@@ -171,21 +170,56 @@ void MainWindow::arduinoExec(const QString &action) {
     tmpFile.close();
 
     // Verify code
+    #ifdef ARDUINO_CLI
+    arguments << "compile";
+    argumentsUpload <<"upload";
+#elif
     arguments << action;
+#endif
     // Board parameter
     if (ui->boardBox->count() > 0) {
+#ifdef ARDUINO_CLI
+        arguments << "--fqbn" << SettingsStore::index2board[ui->boardBox->currentIndex()];
+        argumentsUpload << "--fqbn" << SettingsStore::index2board[ui->boardBox->currentIndex()];
+#elif
         arguments << "--board" << SettingsStore::index2board[ui->boardBox->currentIndex()];
+#endif
     }
-
     // Port parameter
     if (ui->serialPortBox->count() > 0) {
+#ifdef ARDUINO_CLI
+        argumentsUpload << "-p" << ui->serialPortBox->currentText();
+#elif
         arguments << "--port" << ui->serialPortBox->currentText();
+#endif
     }
     //arguments << "--pref editor.external=false ";
+#ifdef ARDUINO_CLI
+    arguments << settings->tmpDirName();
+    argumentsUpload << settings->tmpDirName();
+#elif
     arguments << settings->tmpFileName();
+#endif
     ui->textBrowser->clear();
+#ifdef ARDUINO_CLI
+    if (QString::compare(action,"upload",Qt::CaseSensitive)==0)
+    {
+        upload=(ui->serialPortBox->count()>0);
+        ui->textBrowser->append(QString("%1 %2").arg(settings->arduinoCLIPath()).arg(arguments.join(" ")));
+        process->start(settings->arduinoCLIPath(), arguments);
+
+    }
+    else
+    {
+        ui->textBrowser->append(QString("%1 %2").arg(settings->arduinoCLIPath()).arg(arguments.join(" ")));
+        upload=false;
+        process->start(settings->arduinoCLIPath(), arguments);
+    }
+#elif
     ui->textBrowser->append(QString("%1 %2").arg(settings->arduinoIdePath()).arg(arguments.join(" ")));
     process->start(settings->arduinoIdePath(), arguments);
+#endif
+
 
     // Show messages
     ui->messagesWidget->show();
@@ -512,12 +546,21 @@ void MainWindow::actionQuit() {
 
 void MainWindow::actionUpload() {
     // Upload sketch
+#ifdef ARDUINO_CLI
+    arduinoExec("compile");
+    arduinoExec("upload");
+#elif
     arduinoExec("--upload");
+#endif
 }
 
 void MainWindow::actionVerify() {
     // Build sketch
-    arduinoExec("--verify");
+    #ifdef ARDUINO_CLI
+        arduinoExec("compile");
+    #elif
+        arduinoExec("--verify");
+    #endif
 }
 
 void MainWindow::actionSaveAndSaveAs(bool askFileName,
@@ -733,6 +776,14 @@ void MainWindow::onLoadFinished(bool finished) {
 
 void MainWindow::onProcessFinished(int exitCode) {
     ui->textBrowser->append(tr("Finished."));
+#ifdef ARDUINO_CLI
+    ui->textBrowser->append(QString("%1").arg(upload));
+    if (upload)
+    {
+        ui->textBrowser->append(QString("%1 %2").arg(settings->arduinoCLIPath()).arg(argumentsUpload.join(" ")));
+        processUpload->start(settings->arduinoCLIPath(),argumentsUpload);
+    }
+#endif
 }
 
 void MainWindow::onProcessOutputUpdated() {
@@ -742,6 +793,21 @@ void MainWindow::onProcessOutputUpdated() {
 void MainWindow::onProcessStarted() {
     ui->textBrowser->append(tr("Building..."));
 }
+
+#ifdef ARDUINO_CLI
+void MainWindow::onProcessUploadFinished(int exitCode) {
+    ui->textBrowser->append(tr("Finished."));
+    upload=false;
+}
+
+void MainWindow::onProcessUploadOutputUpdated() {
+    ui->textBrowser->append(QString(processUpload->readAllStandardOutput()));
+}
+
+void MainWindow::onProcessUploadStarted() {
+    ui->textBrowser->append(tr("Uploading..."));
+}
+#endif
 
 void MainWindow::onStatusMessageChanged(const QString &message) {
     // This was used to display the file name when no other message was shown
