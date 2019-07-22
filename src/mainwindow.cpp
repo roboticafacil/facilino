@@ -173,7 +173,7 @@ void MainWindow::arduinoExec(const QString &action) {
     #ifdef ARDUINO_CLI
     arguments << "compile";
     argumentsUpload <<"upload";
-#elif
+#else
     arguments << action;
 #endif
     // Board parameter
@@ -181,7 +181,7 @@ void MainWindow::arduinoExec(const QString &action) {
 #ifdef ARDUINO_CLI
         arguments << "--fqbn" << SettingsStore::index2board[ui->boardBox->currentIndex()];
         argumentsUpload << "--fqbn" << SettingsStore::index2board[ui->boardBox->currentIndex()];
-#elif
+#else
         arguments << "--board" << SettingsStore::index2board[ui->boardBox->currentIndex()];
 #endif
     }
@@ -189,7 +189,7 @@ void MainWindow::arduinoExec(const QString &action) {
     if (ui->serialPortBox->count() > 0) {
 #ifdef ARDUINO_CLI
         argumentsUpload << "-p" << ui->serialPortBox->currentText();
-#elif
+#else
         arguments << "--port" << ui->serialPortBox->currentText();
 #endif
     }
@@ -197,7 +197,7 @@ void MainWindow::arduinoExec(const QString &action) {
 #ifdef ARDUINO_CLI
     arguments << settings->tmpDirName();
     argumentsUpload << settings->tmpDirName();
-#elif
+#else
     arguments << settings->tmpFileName();
 #endif
     ui->textBrowser->clear();
@@ -215,7 +215,7 @@ void MainWindow::arduinoExec(const QString &action) {
         upload=false;
         process->start(settings->arduinoCLIPath(), arguments);
     }
-#elif
+#else
     ui->textBrowser->append(QString("%1 %2").arg(settings->arduinoIdePath()).arg(arguments.join(" ")));
     process->start(settings->arduinoIdePath(), arguments);
 #endif
@@ -549,7 +549,7 @@ void MainWindow::actionUpload() {
 #ifdef ARDUINO_CLI
     arduinoExec("compile");
     arduinoExec("upload");
-#elif
+#else
     arduinoExec("--upload");
 #endif
 }
@@ -558,7 +558,7 @@ void MainWindow::actionVerify() {
     // Build sketch
     #ifdef ARDUINO_CLI
         arduinoExec("compile");
-    #elif
+    #else
         arduinoExec("--verify");
     #endif
 }

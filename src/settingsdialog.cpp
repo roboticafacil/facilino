@@ -18,7 +18,7 @@ SettingsDialog::SettingsDialog(SettingsStore *settings,
     // Set values
 #ifdef ARDUINO_CLI
     ui->arduinoIdePathEdit->setText(settings->arduinoCLIPath());
-#elif
+#else
     ui->arduinoIdePathEdit->setText(settings->arduinoIdePath());
 #endif
 
@@ -65,7 +65,7 @@ void SettingsDialog::accept() {
     // Save settings to file and close dialog
 #ifdef ARDUINO_CLI
     if (ui->arduinoIdePathEdit->text() != settings->arduinoCLIPath()) {
-#elif
+#else
     if (ui->arduinoIdePathEdit->text() != settings->arduinoIdePath()) {
 #endif
         settings->setArduinoIdePath(ui->arduinoIdePathEdit->text());
@@ -96,7 +96,7 @@ void SettingsDialog::arduinoIdePathOpenDialog() {
     // Show open file dialog
 #ifdef ARDUINO_CLI
     QString newPath = QFileDialog::getOpenFileName(this,tr("Arduino CLI"),settings->arduinoCLIPath());
-#elif
+#else
     QString newPath = QFileDialog::getOpenFileName(this,tr("Arduino IDE"),settings->arduinoIdePath());
 #endif
     if (!newPath.isNull()) ui->arduinoIdePathEdit->setText(newPath);

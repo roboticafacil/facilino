@@ -65,7 +65,7 @@ QString SettingsStore::arduinoCLIPath() {
     return relativePath("arduino_cli_path", "Arduino.app");
 #endif
 }
-#elif
+#else
 QString SettingsStore::arduinoIdePath() {
 #ifdef Q_OS_LINUX
     //return relativePath("arduino_ide_path", "/usr/bin/arduino");

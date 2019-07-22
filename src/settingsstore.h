@@ -24,7 +24,7 @@ public:
     QString arduinoBoardFacilino();
 #ifdef ARDUINO_CLI
     QString arduinoCLIPath();
-#elif
+#else
     QString arduinoIdePath();
 #endif
     QString defaultLanguage();
