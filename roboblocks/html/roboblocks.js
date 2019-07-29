@@ -6177,7 +6177,7 @@
             // Create a string made up of any number of elements of any type.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_COMMUNICATION'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_USB'),
-			helpUrl: RoboBlocks.getHelpUrl('text_join'),
+			helpUrl: RoboBlocks.getHelpUrl('plot_join'),
 			examples: ['plot_join_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,	
@@ -6268,7 +6268,7 @@
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_PLOT_CREATE_JOIN_TITLE_JOIN'));
-                this.appendStatementInput('STACK').setCheck('text_join');
+                this.appendStatementInput('STACK').setCheck('plot_join');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_PLOT_CREATE_JOIN_TOOLTIP'));
                 this.contextMenu = false;
             }
@@ -6282,8 +6282,8 @@
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION);
                 this.appendDummyInput()
                     .appendField(RoboBlocks.locales.getKey('LANG_PLOT_CREATE_JOIN_ITEM_TITLE_ITEM'));
-                this.setPreviousStatement(true,'text_join');
-                this.setNextStatement(true,'text_join');
+                this.setPreviousStatement(true,'plot_join');
+                this.setNextStatement(true,'plot_join');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_PLOT_CREATE_JOIN_ITEM_TOOLTIP'));
                 this.contextMenu = false;
             }
