@@ -1,5 +1,5 @@
 ﻿<html dir="ltr"><head></head><body dir="ltr">  <section class="features18 popup-btn-cards cid-qYa5rQWOty" id="features">
-    
+
     <div class="container">
 		<h3></h3>
         <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">
@@ -8,9 +8,9 @@
             Aprende desde cero a programar Arduino y ESP con Facilino con muchos tutoriales y ejercicios.</h3>
 		<h3 class="mbr-section-subtitle display-5 align-center mbr-fonts-style mbr-light">
 			Prepárate y comienza a crear robots y dispositivos inteligentes para IoT.</h3>
-			
+
 		<div class="row pt-5 ">
-			
+
 			<div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper ">
                     <div class="card-img">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-			
+
 			<div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper">
                     <div class="card-img">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-			
+
 			<div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper ">
                     <div class="card-img">
@@ -56,8 +56,8 @@
                             Aprenderás algunos términos, antecedentes y estadísticas interesantes sobre IoT.</p>
                     </div>
                 </div>
-            </div>	
-				
+            </div>
+
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper ">
                     <div class="card-img">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-			
+
 			<div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper ">
                     <div class="card-img">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-			
+
 			<div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper ">
                     <div class="card-img">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-		
+
         </div>
     </div>
 </section>
@@ -121,6 +121,7 @@
 	$("#processor").val(window.roboblocksProcessor);
 	function onHomeFile(html_file)
 	{
+    window.title=html_file+'_'+window.roboblocksLanguage;
 		$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/'+html_file; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/'+'en-GB/'+html_file;},success: function(){}}); $('#main').load(file); location.href = "#menu";});
 	}
 </script></body></html>

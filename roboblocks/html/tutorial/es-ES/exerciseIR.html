@@ -1,0 +1,263 @@
+<script>
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Control Remoto por Infrarrojos (IR)</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a recibir códigos IR desde tu control remoto (IR) para enviar órdenes a tu dispositivo.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>,
+									<a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>,
+									<a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o un receptor de infrarrojos, un control remoto IR, un <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/rgb-led-ky016/';);">LED RGB</a>
+										(rojo, verde y azul conectado a los pines D9, D11 y D10, respectivamente) y un <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/ky-006-buzzer/');">zumbador</a>
+										 conectado al pin D5.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_RGB_IR_buzzer_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_RGB_IR_buzzer_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction1"></span></div><div id="blocklyInstruction1"></div><script>injectInstructionTooltip('ir_available','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id="tooltipInstruction2"></span></div><div id="blocklyInstruction2"></div><script>injectInstructionTooltip('ir_read_code','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id="tooltipInstruction3"></span></div><div id="blocklyInstruction3"></div><script>injectInstructionTooltip('communications_ir_command','blocklyInstruction3','tooltipInstruction3');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction4"></span></div><div id="blocklyInstruction4"></div><script>injectInstructionTooltip('zum_piezo_buzzerav','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id="tooltipInstruction5"></span></div><div id="blocklyInstruction5"></div><script>injectInstructionTooltip('rgb_led','blocklyInstruction5','tooltipInstruction5');</script></li>
+				  </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Códigos IR</strong><p>Imprime los códigos infrarrojos recibidos en la consola para obtener información de cada uno de los botones que pulses.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Código IR disponible' para verificar la disponibilidad de un código IR y luego, si está disponible, imprime el valor del código.</i></p>
+										<button  type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','ir_codes'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','ir_codes'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+										<a onclick="onFileDownloaded('ir_codes'+window.board+'.bly');">
+											<button  type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a>
+										</li>
+									<li><strong>Canales IR I</strong><p>Imprime el mensaje '¡Canal presionado!'al presionar los botones correspondientes a los números de canal del 0 al 9.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Código IR disponible' para verificar la disponibilidad de un código IR y luego, si el número de código es menor que 9, imprime el mensaje.</i></p>
+										<button  type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','ir_channels'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','ir_channels'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+										<a onclick="onFileDownloaded('ir_channels'+window.board+'.bly');">
+											<button  type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+									<li><strong>Canales IR II</strong><p>Ahora, mejora el ejercicio anterior para imprimir también un mensaje cuando se presiona el botón de apagado (código 12 en nuestro caso).</p><strong>Pista: </strong><p><i>Ahora, debes almacenar el código en una variable y extender la instrucción 'si' para verificar si el número de código es menor que 9 para imprimir el mensaje del canal o si es igual a 12 para imprimir un mensaje de apagado.</i></p>
+										<button  type="button" title="Código Facilino" onclick="showHideBasic('solutions3b','ir_channels2'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions3b','ir_channels2'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+										<a onclick="onFileDownloaded('ir_channels2'+window.board+'.bly');">
+										<button  type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width:100%">
+          <hr class="line" style="width:25%">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width:25%">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise1b"></div><div id="exercise1bc"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise2b"></div><div id="exercise2bc"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio básico 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise3b"></div><div id="exercise3bc"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>IR 'Piano'</strong><p>Genera un tono de música basado en el código infrarrojo recibido para crear un piano controlado a distancia.</p><strong>Pista:</strong><p><i>Usa la instrucción 'Zumbador Avanzado' para convertir el número del código en una distancia de medio tono. Puedes establecer como frecuencia inicial 220Hz.</i></p>
+											<button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','ir_piano'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+											<a onclick="onFileDownloaded('ir_piano'+window.board+'.bly');">
+											<button  type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Comandos IR</strong><p>Establece el color de un LED RGB según el código infrarrojo recibido. Si se presiona el botón de apagado, el LED RGB debe estar apagado, mientras que si se presiona '1', '2' o '3', se debe poner el LED RGB en rojo, verde y azul, respectivamente.</p><strong>Pista:</strong><p><i>Usa la instrucción 'Comando IR' para crear cuatro casos, con los códigos '12', '1', '2' y '3'. En cada caso, usa la instrucción 'RGB LED' para establecer el color correspondiente.</i></p>
+						<button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','ir_commands'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('ir_commands'+window.board+'.bly');">
+						<button  type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width:100%">
+					<hr class="line" style="width:25%">
+					<div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+					<hr class="line" style="width:25%">
+			</div>
+			</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Intermedio 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise1i"></div><div id="exercise1ic"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Intermedio 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise2i"></div><div id="exercise2ic"></div></div>
+	</div>
+</section>
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_RGB_IR_buzzer_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_RGB_IR_buzzer_bb.png';
+</script>

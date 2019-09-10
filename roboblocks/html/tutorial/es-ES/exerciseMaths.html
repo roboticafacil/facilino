@@ -1,0 +1,291 @@
+<script>
+  var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Matemáticas</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a usar instrucciones matemáticas para realizar operaciones aritméticas, mínimo y máximo e incluso para generar una onda senoidal.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o un LED rojo conectado al pin D12, un potenciómetro conectado al pin A0 y un <a onclick="onPageClicked('https://roboticafacil.es/prod/pulsador-ky-004/');" style="color:#1ec6c6" target="_blank">pulsador</a> conectado al pin D2.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_LEDs_pushbuttons_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_LEDs_pushbuttons_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+								<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip1('math_number','blocklyInstruction1','tooltipInstruction1');</script></li>
+								<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip1('math_arithmetic','blocklyInstruction2','tooltipInstruction2');</script></li>
+								<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip1('math_single','blocklyInstruction3','tooltipInstruction3');</script></li>
+								<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip1('math_modulo','blocklyInstruction4','tooltipInstruction4');</script></li>
+								<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('base_map','blocklyInstruction5','tooltipInstruction5');</script></li>
+								<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('math_minmax','blocklyInstruction6','tooltipInstruction6');</script></li>
+								<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip1('math_random','blocklyInstruction7','tooltipInstruction7');</script></li>
+								<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('math_sinusoid','blocklyInstruction8','tooltipInstruction8');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Addicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip1('text_join','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('base_us','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<!-- <li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('text_join','blocklyInstruction11','tooltipInstruction11');</script></li> -->
+				  </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                  <li><strong>Multiplicar dos números</strong><p>Crea un simple programa que toma dos números y calcula el resultado de su multiplicación (los números son en representación Decimal y se obtienen a partir de los valores interpretados por el monitor serie). El resultado de la operación debe mostrarse por el monitor serie.</p><strong>Pista: </strong><p><i>Usa las instrucciones para interpretar un decimal y con la instrucción para realizar una operación aritmética calcula la multiplicación.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','multiply.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+  					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','multiply.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+            <a onclick="onFileDownloaded('multiply.bly');">
+  					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+              <li><strong>Resto de una división</strong><p>Ahora calcula el resto de una división de dos números enteros (obtenidos desde el monitor serie, siendo el primer número introducido el dividendo y el segundo número el divisor).</p><strong>Pista: </strong><p><i>Usar la instrucción para el cálculo del 'modulo' con el símbolo '%' para calcular el resto de una división entre dos números. Debe siempre devolver un número entre 0 y N-1, siendo N el divisor.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','modulo.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+            &nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','modulo.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+      <a onclick="onFileDownloaded('modulo.bly');">
+      <button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+									<li><strong>Distancia al origen</strong><p>Calcula la distancia al origen de un punto dado por sus coordenadas X e Y (introducido por el usuario a través del monitor serie).</p><strong>Pista: </strong><p><i>Usa la instrucción para interpretar números decimales para obtener los valores, después calcula el producto de cada uno de los números por sí mismo (es lo mismo que elevar al cuadrado) y suma el resultado de ambos productos y calcula su raíz cuadrada, siendo éste el valor a mostrar por el monitor serie</i>.</p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions3b','distance_origin.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+				&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions3b','distance_origin.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+        <a onclick="onFileDownloaded('distance_origin.bly');">
+				<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Escalado lineal</strong><p>Escala los valores leídos desde el potenciómetro, conectado al pin A0, de forma que su rango esté comprendido entre 0 y 100 y dibuja el valor para que se muestre por el Plotter de Arduino.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Mapea' para realizar la operación de escalo lineal.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions4b','linear_scaling'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions4b','linear_scaling'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('linear_scaling'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 4</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Digitos Binarios</strong><p>Calcula el número de digitos necesarios para representar un número entero en su prepresentación binaria. Implementar una función que acepta como argumento de entrada el número entero y devuelve el número de dígitos. Usar, por ejemplo el número '123'.</p><strong>Pista: </strong><p><i> En un bucle </i>Mientras<i>, comprobar si el número es mayor o igual que la base en potencias de 2 (empezando por 2). Cada vez que eso sea cierto, el contador de dígitos debe aumentar (inicializado a 1).</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','binary_digits.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions1i','binary_digits.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('binary_digits.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Minimo y máximo</strong><p>Usando las medidas obtenidas del potenciómetro (conectado al pin A0), calcular los valores máximo y mínimo de los mismos (los valores estarán escalados para estar entre 0 y 100). Al iniciar, enciende el LED rojo (conectado al pin D12) y realiza los cálculos para obtener el máximo y mínimo histórico hasta que se pulse el pulsador conectado al pin D2. Una vez pulsado, apagad el LED rojo y mostrar por consola los valores del máximo y mínimo de todas las medidas registradas.</p><strong>Pista: </strong><p><i>En un bucle </i>Mientras<i>, leer la señal analógica del pin A0 y convertir el valor en un número entre 0 y 100 usando la instrucción </i>mapea<i>. Usa las instrucciones </i>min <i>y </i>max<i> para calcular el valor mínimo y máximo obtenidos hasta el momento y almacena los resultados en dos variables diferentes (la variable que almacena el mínimo se inicializa a 100, mientras que la variable que almacena el máximo se inicializa a 0).</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','min_max'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions2i','min_max'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('min_max'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Onda Senoidal</strong><p>Crea una onda senoidal con una frecuencia de 1Hz, una amplitud de &#x221A;2, usando la instrucción 'senoidal'. Dibuja la señal usando el Serial Plotter de Arduino.</p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions3i','sinusoidal_wave.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions3i','sinusoidal_wave.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('sinusoidal_wave.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width: 100%;">
+					<hr class="line" style="width: 25%;">
+					<div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+					<hr class="line" style="width: 25%;">
+			</div>
+			</div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+		</div>
+	</section>
+
+<script>
+  var solutions_basic = document.getElementById('solutions_basic');
+  var solutions_intermediate = document.getElementById('solutions_intermediate');
+  solutions_basic.style.display="none";
+  solutions_intermediate.style.display="none";
+  var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LED_pushbutton_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LED_pushbutton_bb.png';
+</script>

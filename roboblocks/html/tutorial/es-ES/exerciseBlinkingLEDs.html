@@ -1,7 +1,8 @@
 <script>
-var currentSolutions=0;
+  var currentBasicSolutions=0;
+  var currentIntermediateSolutions=0;
 </script>
-<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+<section class="mbr-section content8 cid-qYnID8HJTn" id=" title">
 
 <section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
 
@@ -9,25 +10,15 @@ var currentSolutions=0;
 
     <div class="container">
         <div class="media-container-row">
-            <div class="title col-12 col-md-8">
+            <div class=" title col-12 col-md-8">
                 <h2 class="align-center pb-3 mbr-fonts-style display-2">
                     Parpadeo de LEDs</h2>
                 <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
                     Aprende a trabajar con entradas y salidas digitales con Facilino para hacer que los LED parpadeen.</h3>
-
             </div>
         </div>
     </div>
 </section>
-</section>
-
-<section class="cid-qYh0wSah5G" id="image3-50">
-    <figure class="mbr-figure container">
-            <div class="image-block" style="width: 50%;">
-                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
-
-            </div>
-    </figure>
 </section>
 
 <section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
@@ -40,9 +31,35 @@ var currentSolutions=0;
     </div>
 </section>
 
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_pushbutton_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_pushbutton_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
 
 
-<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u" style="page-break-before: always">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
@@ -89,7 +106,7 @@ var currentSolutions=0;
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh5KdWW4b">
+<section class="mbr-section article content9 cid-qYh5KdWW4b" style="page-break-before: always">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
@@ -116,7 +133,7 @@ var currentSolutions=0;
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC">
+<section class="mbr-section article content9 cid-qYh0wTdIZC" style="page-break-before: always">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
@@ -130,32 +147,102 @@ var currentSolutions=0;
     <div class="container">
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-                <ol>
+                <ol id="exercises_basic">
                     <li><strong>Enciende un LED</strong><p>Al inicio, enciende el LED conectado al pin D12, pon su estado en ALTO (sí, ya sabemos que esto no es muy impresionante, pero es el principio).</p><strong>Pista: </strong><p><i>Usa la instrucción 'Escribe en el pin digital...' y pon su estado en ALTO.</i></p>
-					<button type="button" onclick="showHide('solutions1b','set_led_setup_wemosD1R32.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('set_led_setup_wemosD1R32.bly');">
+					<button type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','set_led_setup'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+          &nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','set_led_setup'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('set_led_setup'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
 					<li><strong>Estado de un pulsador</strong><p>En el bucle principal, muestra el valor del estado del pulsador (conectado al pin D2). Si su valor es ALTO deberías ver un '1', mientras que si su valor es BAJO, el valor debería ser un '0'.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Lee pin digital' y muestra el valor por consola utilizando la instrucción 'Imprimir por puerto serie con salto de línea' (mira el <a onclick="onHomeFile('exerciseUSBSerial.html');" style="color:#1ec6c6">Ejercicio Comunicación Serie USB</a>). Puede que necesites incluir una instrucción de 'Esperar (ms)' para evitar imprimir demasiados valores.</i></p>
-					<button type="button" onclick="showHide('solutions2b','read_pushbutton.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('read_pushbutton.bly');">
+					<button type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','read_pushbutton'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+          &nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','read_pushbutton'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('read_pushbutton'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
 					<li><strong>Enciende el LED cuando no se pulsa el pulsador</strong><p>Cuando pulsamos el pulsador conectado al pin D2 su valor es BAJO, mientras que si no está pulsado, el valor es ALTO. Encender el LED conectado al pin D12 cuando no pulsamos el pulsador.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Lee pin digital' para obtener el estado del pulsador y utilizar ese valor como entrada en la instrucción 'Escribe en el pin digital...'.</i></p>
-					<button type="button" onclick="showHide('solutions3b','set_led_wemosD1R32.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('set_led_wemosD1R32.bly');">
+					<button type="button" title="Código Facilino" onclick="showHideBasic('solutions3b','set_led'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+          &nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions3b','set_led'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('set_led'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Parpadeo de LED</strong><p>Haz parpadear el LED rojo conectado al pin D12. La frecuencia de parpadero debe ser de 1Hz (una vez por segundo).</p><strong>Pista: </strong><p><i>Repita la secuencia 'Escribe en el pin digital...' con el LED en estado ALTO, espera 500ms, pon el LED en estado BAJO y vuelve a esperar 500ms.</i></p>
-					<button type="button" onclick="showHide('solutions4b','blinking_LED_wemosD1R32.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('blinking_LED_wemosD1R32.bly');">
+          <li ><strong>Parpadeo de LED</strong><p>Haz parpadear el LED rojo conectado al pin D12. La frecuencia de parpadero debe ser de 1Hz (una vez por segundo).</p><strong>Pista: </strong><p><i>Repita la secuencia 'Escribe en el pin digital...' con el LED en estado ALTO, espera 500ms, pon el LED en estado BAJO y vuelve a esperar 500ms.</i></p>
+					<button type="button" title="Código Facilino" onclick="showHideBasic('solutions4b','blinking_LED'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+          &nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions4b','blinking_LED'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('blinking_LED'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Parpadep de LEDs</strong><p>Ahora debes encender y apagar los LEDs conectados a los pines D12 (rojo) y D13 (azul) de forma alternativa. Cuando uno está en estado ALTO, el otro debe estar en estado BAJO y viceversa. El tiempo de parpadeo de cada LED debe ser de 1Hz (una vez por segundo).</p><strong>Pista: </strong><p><i>Repite la secuencia azul ALTO, rojo BAJO, espera 500ms, azul BAJO, rojo ALTO y espera 500ms.</i></p>
-					<button type="button" onclick="showHide('solutions5b','Blinking_LEDs_I_wemosD1R32.bly','exercise5b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('Blinking_LEDs_I_wemosD1R32.bly');">
+					<li><strong>Parpadeo de LEDs</strong><p>Ahora debes encender y apagar los LEDs conectados a los pines D12 (rojo) y D13 (azul) de forma alternativa. Cuando uno está en estado ALTO, el otro debe estar en estado BAJO y viceversa. El tiempo de parpadeo de cada LED debe ser de 1Hz (una vez por segundo).</p><strong>Pista: </strong><p><i>Repite la secuencia azul ALTO, rojo BAJO, espera 500ms, azul BAJO, rojo ALTO y espera 500ms.</i></p>
+					<button type="button" title="Código Facilino" onclick="showHideBasic('solutions5b','Blinking_LEDs_I'+window.board+'.bly','exercise5b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+          &nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions5b','Blinking_LEDs_I'+window.board+'.bly','exercise5b','exercise5bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('Blinking_LEDs_I'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
 
 				</ol>
             </div>
         </div>
     </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 1</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 2</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 3</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 4</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions5b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 5</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise5b'></div><div id='exercise5bc'></div></div>
+  </div>
 </section>
 
 <section class="mbr-section article content9 cid-qYh0wTdIZC">
@@ -172,20 +259,22 @@ var currentSolutions=0;
     <div class="container">
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-                <ol>
-					<li><strong>Parpadeo de LEDs con frecuencia variable</strong><p>Siguiendo las ideas de los ejercicios anteriores haz que la espera de los LEDs sea un tiempo entre 100ms y 1000ms en función del valor del potenciómetro (conectado al pin A0).</p><strong>Pista: </strong><p><i>Usa la instrucción 'Mapea' para ajustar los valores devueltos por la instrucción 'Lee el pin analógico...' a los valores 100 y 1000. En los procesadores ESP, el valor devuelto por la instrucción de la señal analógica es un valor entre 0 y 4095 que debemos mapear entre 100 y 1000. Utilizar este valor como entrada de la instrucción 'Esperar (ms)'.</i></p>
-					<button type="button" onclick="showHide('solutions1i','Blinking_LEDs_II_wemosD1R32.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('Blinking_LEDs_II_wemosD1R32.bly');">
+                <ol id="exercises_intermediate">
+					<li><strong>Parpadeo de LEDs con frecuencia variable</strong><p>Siguiendo las ideas de los ejercicios anteriores haz que la espera de los LEDs sea un tiempo entre 100ms y 1000ms en función del valor del potenciómetro (conectado al pin A0).</p><strong>Pista: </strong><p><i>Usa la instrucción 'Mapea' para ajustar los valores devueltos por la instrucción 'Lee el pin analógico...' a los valores 100 y 1000. En los procesadores ESP, el valor devuelto por la instrucción de la señal analógica es un valor entre 0 y 4095 (Wemos D1 R32) o 0 y 1023 (Arduino Uno) que debemos mapear entre 100 y 1000. Utilizar este valor como entrada de la instrucción 'Esperar (ms)'.</i></p>
+					<button type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','Blinking_LEDs_II'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions1i','Blinking_LEDs_II'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('Blinking_LEDs_II'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
 					<li><strong>Parpadeo de LEDs con incremento de frecuencia</strong><p>Siguiendo las ideas del ejercicio anterior, ahora incrementa la frecuencia de parpadeo cada vez que pulsemos el pulsador (la máxima frecuencia de parpadeo debe ser de 10Hz, es decir 10 veces por segundo).</p><strong>Pista: </strong><p><i>Ahora, necesitamos una variable para almacenar el tiempo de espera del parpadeo. Crea una variable y asigna el nombre </i>BlinkTime<i> y un valor inicial de 500. Si el valor leído en el pin D2 del pulsador es BAJO entonces debemos primero realizar una operación aritmética para decrementar el valor del tiempo de espera (restamos el valor 50). Además, el resultado debe ser como mínimo de 50, para que la frecuencia máxima sea de 10Hz. El nuevo tiempo debemos guardarlo en la variable anteriormente creada.</i></p>
-					<button type="button" onclick="showHide('solutions2i','Blinking_LEDs_III_wemosD1R32.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('Blinking_LEDs_III_wemosD1R32.bly');">
+					<button type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','Blinking_LEDs_III'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions2i','Blinking_LEDs_III'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('Blinking_LEDs_III'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
 					<li><strong>Realmente parpadea?</strong><p>Ahora, si haces que el led rojo parpadee tan rápido que no lo percibes el parpadeo, verás que permanece siempre encendido. Además, dependiendo del tiempo en el que el LED esté en estado ALTO frente al tiempo en el que esté en estado BAJO afectará al nivel de intensidad del LED (observaremos que si el tiempo de encendido es pequeño comparado al de apagado que el LED apenas brilla). Haz que el LED conectado al pin D12 brille con un 10% de su intensidad.</p><strong>Pista: </strong><p><i>La clave está ahora en utilizar diferentes retardos para el momento en el que el LED permanece en estado ALTO (por ejemplo 1ms) frente al tiempo en el que permanece en estado BAJO (por ejemplo 9ms). De hecho, este es el principio de funcionamiento de las <a onclick="onHomeFile('analog_output.html')" style="color:#1ec6c6">señales PWM</a>.</i></p>
-					<button type="button" onclick="showHide('solutions3i','blinking_led_fast_wemosD1R32.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('blinking_led_fast_wemosD1R32.bly');">
+					<button type="button" title="Código Facilino" onclick="showHideIntermediate('solutions3i','blinking_led_fast'+window.board+'.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions3i','blinking_led_fast'+window.board+'.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('blinking_led_fast'+window.board+'.bly');">
 					<button type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-
 				</ol>
             </div>
         </div>
@@ -193,129 +282,58 @@ var currentSolutions=0;
 </section>
 
 
-	<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
-    <div class="container">
-        <div class="inner-container" style="width: 100%;">
-            <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Soluciones</div>
-            <hr class="line" style="width: 25%;">
-        </div>
-        </div>
-	</section>
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 1</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise1b'></div></div>
-		</div>
-	</section>
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Intermedio 1</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+  </div>
+</section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 2</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise2b'></div></div>
-		</div>
-	</section>
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Intermedio 2</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+  </div>
+</section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 3</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise3b'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 4</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise4b'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions5b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 5</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise5b'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Intermedio 1</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise1i'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Intermedio 2</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise2i'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Intermedio 3</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise3i'></div></div>
-		</div>
-	</section>
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Intermedio 3</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+  </div>
 </section>
 
 <script>
-
-function myHelpFcn(block)
-{
-	doc = document.getElementById("doc");
-	doc.style.width = "100%";
-	doc.innerHTML=eval(Blockly.Blocks[block].helpUrl.replace(/<script>(.*)<\/script>/,"$1"));
-	modal.style.display = 'block';
-}
-var solutions = document.getElementById('solutions');
-solutions.style.display="none";
-
-modal=document.getElementById("modal");
-span = document.getElementsByClassName("close")[0];
-
-span.onclick = function() {
-	modal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target==modal) {
-	modal.style.display="none";
-  }
-}
-//for (i=0;i<numItems;i++)
-
-//HideButton('but1'); HideButton('but2'); HideButton('but3');
+  var solutions_basic = document.getElementById('solutions_basic');
+  var solutions_intermediate = document.getElementById('solutions_intermediate');
+  solutions_basic.style.display="none";
+  solutions_intermediate.style.display="none";
+  var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_pushbutton_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_pushbutton_bb.png';
 </script>

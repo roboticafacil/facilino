@@ -1,12 +1,13 @@
 <script>
-var currentSolutions=0;
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
 </script>
 
 <section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
 	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
 		<div class="container">
 			<div class="media-container-row">
-				<div class="title col-12 col-md-8">
+				<div class=" title col-12 col-md-8">
 					<h2 class="align-center pb-3 mbr-fonts-style display-2">
 						Web Server User-Interface (UI)</h2>
 					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
@@ -17,11 +18,20 @@ var currentSolutions=0;
 	</section>
 </section>
 
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Under construction</strong>This page is still under construction, we're sorry for the inconveniences!</blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="cid-qYh0wSah5G" id="image3-50">
     <figure class="mbr-figure container">
             <div class="image-block" style="width: 50%;">
-                <img src="tutorial/assets/images/multifunctional_shield_keyes.png" width="1400" alt="Multifunction" title="">
-                
+                <img src="tutorial/assets/images/construction.jpg" width="1400" alt="construction" title=""></img>
             </div>
     </figure>
 </section>
@@ -47,76 +57,20 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('espui','blocklyInstruction1');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('espui_button','blocklyInstruction2');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('espui_label','blocklyInstruction3');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('espui_label_print','blocklyInstruction4');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('espui_switcher','blocklyInstruction5');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('espui_slider','blocklyInstruction6');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('espui_slider_value','blocklyInstruction7');</script></div>
-	</div>
-</section>
-
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercises">
-    <div class="container">
-        <div class="inner-container" style="width: 100%;">
-            <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
-            <hr class="line" style="width: 25%;">
-        </div>
-        </div>
-</section>
-
-<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
-                <ol>
-                    <li><strong>Web-server UI for Temperature and Humidity monitoring</strong>. xxx. <strong>Hint: </strong><i>xxx</i>. <button  type="button" onclick="showHide('solutions1','xxx.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
-					<li><strong>Web-server UI for Moving a Servo</strong>. xxxx<button  type="button" onclick="showHide('solutions2','xxx.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
-					<li><strong>Web-server UI remotely controlled relay</strong>. xxxx<button  type="button" onclick="showHide('solutions3','xxx.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
-					<li><strong>Web-server UI Remotely controlled RGB LED</strong>. xxxx<button id="but4" type="button" onclick="showHide('solutions4','xxx.bly','exercise4');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button></li>
-				</ol>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('espui','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('espui_button','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip1('espui_label','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('espui_label_print','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('espui_switcher','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('espui_slider','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('espui_slider_value','blocklyInstruction7','tooltipInstruction7');</script></li>
+                </ol>
             </div>
-        </div>
+		</div>
     </div>
 </section>
-
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
-    <div class="container">
-        <div class="inner-container" style="width: 100%;">
-            <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
-            <hr class="line" style="width: 25%;">
-        </div>
-    </div>
-</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
-		<div class="container">
-			<div class="media-container-row"><div id='exercise1'></div></div>
-		</div>
-	</section>
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
-		<div class="container">
-			<div class="media-container-row"><div id='exercise2'></div></div>
-		</div>
-	</section>
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
-		<div class="container">
-			<div class="media-container-row"><div id='exercise3'></div></div>
-		</div>
-	</section>
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4" style="display:none">
-		<div class="container">
-			<div class="media-container-row"><div id='exercise4'></div></div>
-		</div>
-	</section>
-
-<script>
-var solutions = document.getElementById('solutions');
-solutions.style.display="none";
-//HideButton('but1'); HideButton('but2'); HideButton('but3'); HideButton('but4');
-</script>

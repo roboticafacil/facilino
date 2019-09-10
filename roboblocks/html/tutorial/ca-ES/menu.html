@@ -11,7 +11,7 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-					<img src="tutorial/assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="facilino-cuadrado-fondo-transparente" title="" style="height:3.8rem"></span> 
+					<img src="tutorial/assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="facilino-cuadrado-fondo-transparente" title="" style="height:3.8rem"></span>
 					<span class="navbar-caption-wrap "><a class="navbar-caption text-white display-4" href="index.html">Tutorial de Arduino y ESP con Facilino</a></span>
             </div>
         </div>
@@ -38,23 +38,13 @@
 				<li class="nav-item"><input style="margin-left: 0.25em" type="image" src="tutorial/assets/images/english.png" onclick="langChange('en-GB')"/>
 				</li>
 				<li class="nav-item">
-				<button class="btn btn-sm btn-primary-outline display-4" title="Configuración de hardware" onclick="showHideProcessor()"><span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button>
+				<button class="btn btn-sm btn-primary-outline display-4" title="Configuración de hardware" onclick="showHideProcessor()" style=" padding-left: 6px;padding-right: 0px;margin-right: 0px;margin-left: 6px;"><span class="mbri-setting3 mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button>
 		<select id="processor" class="text-black dropdown-toggle display-6 icon-menu" style="display:none" onchange="processorChange(this.value)">
-		<option value="ArduinoNano" class="text-black dropdown-item display-6">Arduino Nano</option>
 		<option value="ArduinoUno" class="text-black dropdown-item display-6">Arduino Uno</option>
-		<option value="ArduinoMega2560" class="text-black dropdown-item display-6">Arduino Mega 2560</option>
-		<option value="ArduinoMicro" class="text-black dropdown-item display-6">Arduino Micro</option>
-		<option value="ArduinoLilyPad" class="text-black dropdown-item display-6">Arduino LilyPAD</option>
-		<option value="ArduinoMini" class="text-black dropdown-item display-6">Arduino Mini</option>
-		<option value="ArduinoLeonardo" class="text-black dropdown-item display-6">Arduino leonardo</option>
-		<option value="ESP8266" class="text-black dropdown-item display-6">ESP8266</option>
-		<option value="NodeMCU" class="text-black dropdown-item display-6">NodeMCU</option>
-		<option value="WEMOS D1R2" class="text-black dropdown-item display-6">WeMos D1R2</option>
-		<option value="ESP32" class="text-black dropdown-item display-6">ESP32</option>
-		<option value="WEMOS D1R32" class="text-black dropdown-item display-6">WeMos D1R32</option>
 		<option value="WEMOS D1R32 SHIELD" class="text-black dropdown-item display-6">WeMos D1R32 (Sensor Shield)</option>
 		</select>
 				</li>
+        <li class="nav-item"><button class="btn btn-sm btn-primary-outline display-4" title="Imprimeix" onclick="print()" style=" padding-left: 6px;padding-right: 0px;margin-right: 0px;margin-left: 6px;"><span class="mbri-print mbr-iconfont mbr-iconfont-btn" style="color: rgb(255,148,0);"></span></button></li>
 				</ul>
         </div>
 		<script language="JavaScript">
@@ -66,21 +56,32 @@
 		window.roboblocksProcessor = localStorage.getItem("processor");
 		$("#language").val(window.roboblocksLanguage);
 		$("#processor").val(window.roboblocksProcessor);
-		function onHome()
+    if (window.roboblocksProcessor==='WEMOS D1R32 SHIELD')
+    {
+      window.board='_wemosD1R32';
+    }
+    else if (window.roboblocksProcessor==='ArduinoUno')
+    {
+      window.board='_uno';
+    }
+    else {
+      window.board='_wemosD1R32';
+    }
+    function onHome()
 		{
 			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/home.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/home.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
 		}
-		
+
 		function onElectronics()
 		{
 			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/electronics.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/electronics.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
 		}
-		
+
 		function onFacilino()
 		{
 			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/facilino_programming.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/facilino_programming.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
 		}
-		
+
 		function onExercises()
 		{
 			$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/exercises.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/exercises.html';},success: function(){}}); $('#main').load(file); location.href = "#menu";});
@@ -91,7 +92,7 @@
 			localStorage.setItem('language',lang);
 			window.location.reload();
 		}
-		
+
 		function processorChange(processor)
 		{
 			localStorage.setItem('processor',processor);
@@ -106,7 +107,7 @@
 			else
 				lang.style.display='none';
 		}
-		
+
 		function showHideProcessor()
 		{
 			var proc=document.getElementById('processor');
@@ -135,7 +136,7 @@
 		<option value="sv-SE" class="text-black dropdown-item display-6">Svenska</option>
 		<option value="ch-CH" class="text-black dropdown-item display-6">中文</option>
 		</select>-->
-		
-		
+
+
     </nav>
 </section></body></html>

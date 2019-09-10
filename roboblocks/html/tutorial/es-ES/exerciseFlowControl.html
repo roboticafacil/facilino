@@ -1,0 +1,263 @@
+<script>
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+<section class="mbr-section content8 cid-qYnID8HJTn" id=" title">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Control de Flujo</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a cómo tomar decisiones con instrucciones condicionales y repita bloques de instrucciones de bucle.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o dos LEDs (rojo y azul conectados a los pines D12 y D13) y dos <a onclick="onPageClicked('https://roboticafacil.es/prod/pulsador-ky-004/');" style="color:#1ec6c6" target="_blank">pulsadores</a> conectados a los pin D2 y D3.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_LEDs_pushbuttons_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_LEDs_pushbuttons_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('controls_repeat','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('controls_for','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('controls_if','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('base_delay','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('controls_flow_statements','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('controls_whileUntil','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction6a'></span></div><div  id='blocklyInstruction6a'></div><script>injectInstructionTooltip('dyor_controls_wait','blocklyInstruction6a','tooltipInstruction6a');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('variables_local','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip1('variables_get','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip1('variables_set','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('text_join','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('zum_piezo_buzzerav','blocklyInstruction11','tooltipInstruction11');</script></li>
+				  </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Repitiendo una secuencia</strong><p>Las enseñanzas antiguas de la escuela solían castigarte haciéndote repetir la misma frase muchas veces en la pizzara. Ahora, los tiempos son diferentes y puedes utilizar tu Arduino para imprimirla tantas veces como quieras. Imprime en la consola 'No eruptaré en clase' 100 veces.</p><p><strong>Pista: </strong></p><p><i> Usa la instrucción de repetir para este propósito.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','repeat_sentence.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','repeat_sentence.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('repeat_sentence.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Repitiendo una sencuencia numerada</strong><p>Ahora, haz los mismo que antes, pero las frases deben estar numeradas empezando por el 1.</p><strong>Pista: </strong><p><i>Usa una variable e incrementa su valor dentro del bucle. Puedes utilizar la instrucción 'Crear texto con' para unir el número con la frase.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','repeat_numbered_sentence.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','repeat_numbered_sentence.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('repeat_numbered_sentence.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Histéresis</strong><p>Implementa un efecto de histéresis para 'binarizar' las medidas analógicas de la posición del potenciómetro A0. Si la medida es mayor que 2000 (Wemos D1 R32) o 500 (Arduino Uno), entonces el LED D12 debe estar en ALTO, mientras que si la medida está por debajo de 800 (Wemos D1 R32) o 200 (Arduino Uno), el LED D12 debe estar en BAJO. De lo contrario, el estado del LED no cambia.</p><strong>Pista: </strong><p><i> Define una variable global Booleana para determinar el estado del LED D12 (ALTO o BAJO). Después, si el valor del potenciómetro está por encima de 2000 (Wemos D1R32) o 500 (Arduino Uno) y el estado del LED es BAJO, entonces activa el LED y pon la variable de estado a ALTO. Si el valor del potenciómetro está por debajo de 800 y el estado es ALTO, entoces por el LED a BAJO y la variable de estado también.</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','hysteresis'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+											&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions1i','hysteresis'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('hysteresis'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+					<li><strong>Espera hasta y salir del bucle</strong><p>Al principio, espera a que el pulsador D2 sea pulsado. Después, haz que parpadee el LED D12 a una frecuencia de 1 Hz. Para hacer parar el parpadeo, debes pulsar D3 y esto saldrá de esa secuencia y volverá a esperar a que pulsemos D2 para repetir de nuevo la misma operación.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Espera hasta' a que se pulse el pulsador D2 (condición de espera a que esté en BAJO) en el bucle principal. Entonces, usa la instrucción 'Mientras' para implementar el bucle en el que parpadeará el LED. Para parar el parpadeo usa la instrucción 'Interrumpir bucle' si se pulsa el pulsador D3 (es decir que su valor leído es BAJO).</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','wait_break'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions2i','wait_break'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('wait_break'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Efecto Alarma</strong><p>Genera un efecto alarma con el zumbador de sonido (pin D5). El efecto alarma consisten en variar los tonos a los que vibra el zumbador. Primero, se genera una frecuencia ascendente que aumenta exponencialmente un 3% en cada iteración, empezando por la frecuencia 1318.51Hz hasta 1567.98Hz con una duración de 22ms de pitido en cada iteración. Después, se vuelve a incrementar la frecuencia, pero esta vez aumenta un 4%, empezando desde 1318.51Hz hasta 2349.32Hz con una duración del pitido de 12ms.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Mientras' para generar el aumento exponencial de las frecuencias. Inicializa una variable con la frecuencia a  1318.51Hz y usa la instrucción 'Zumbador Avanzado' para generar la frecuencia correspondiente con la duración indicada en cada caso. Para generar el aumento exponencial de la frecuencia debes multiplicar por 1.03 o 1.04 según el caso el valor de la frecuencia actual y almacenarlo en la variable de frecuencia.</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions3i','alarm_effect'+window.board+'.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('alarm_effect'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width: 100%;">
+					<hr class="line" style="width: 25%;">
+					<div class="section-text align-center mbr-fonts-style display-5">Solución Intermedia</div>
+					<hr class="line" style="width: 25%;">
+			</div>
+			</div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+		</div>
+	</section>
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_LEDs_pushbuttons_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_LEDs_pushbuttons_bb.png';
+</script>

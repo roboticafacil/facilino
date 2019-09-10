@@ -1,0 +1,375 @@
+<script>
+	var currentBasicSolutions=0;
+  var currentIntermediateSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						LEDs RGB</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a cómo configurar el color de un LED RGB y atenúe la luz utilizando una señal PWM.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o un <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/modulo-rgb-led-ky-016/');">LED RGB</a> (rojo, verde, azul conectado a los pines D9, D11 y D10, respectivamente).</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_RGB_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_RGB_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Colores RGB</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Los colores pueden representarse de múltiples formas. Una de las más comunes es la codificación RGB que corresponde a la combinación de colores como consecuencia de combinar luz de color rojo (R), verde (G) y azul (B). Según la combinación de estos colores, podemos generar una gran variedad de los mismos. Con una resolución de 8 bits por canal, que corresponden hasta 256 niveles de intensidad de color en cada uno de los canales, podemos generar hasta 256<sup>3</sup>=‭16.777.216 combinaciones de colores. En la mayoría de programas de edición gráfica podéis seleccionar un color a través de una paleta de colores para obtener el código RGB de ese color. También podéis acceder <a onclick="onPageClicked('https://www.rapidtables.com/web/color/RGB_Color.html');" style="color:#1ec6c6" target="_blank">aquí</a> para seleccionar/generar diferentes tipos de colores (además disponéis de tablas con los colores más comunes).‬</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Colores del Arcoiris</div>
+            <hr class="line" style="width: 25%;"></hr>
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>VIBGYOR</strong> es un acrónimo para Violeta (Violet), Añil (Indigo), Azul (Blue), Verde (Green), Amarillo (Yellow), Naranja (Orange) y Rojo (Red). Estos son los siete colores del arcoiris y nos referiremos a ellos como VIBGYOR. La siguiente tabla muestra y sus correspondientes valores RGB.</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Descripción del color</th><th class="head-item mbr-fonts-style display-7">
+                      Valores RGB</th><th class="head-item mbr-fonts-style display-7">
+					  					Color</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr>
+			  <td class="body-item mbr-fonts-style display-7">Violeta</td><td class="body-item mbr-fonts-style display-7">148,0,211</td><td class="body-item mbr-fonts-style display-7" style="background-color: #9400d3;"></td></tr><tr>
+				<td class="body-item mbr-fonts-style display-7">Añil</td><td class="body-item mbr-fonts-style display-7">75,0,130</td><td class="body-item mbr-fonts-style display-7" style="background-color: #4B0082;"></td></tr><tr>
+				<td class="body-item mbr-fonts-style display-7">Azul</td><td class="body-item mbr-fonts-style display-7">0,0,255</td><td class="body-item mbr-fonts-style display-7" style="background-color: #0000FF;"></td></tr><tr>
+				<td class="body-item mbr-fonts-style display-7">Verde</td><td class="body-item mbr-fonts-style display-7">0,255,0</td><td class="body-item mbr-fonts-style display-7" style="background-color: #00FF00;"></td></tr><tr>
+				<td class="body-item mbr-fonts-style display-7">Amarillo</td><td class="body-item mbr-fonts-style display-7">255,255,0</td><td class="body-item mbr-fonts-style display-7" style="background-color: #FFFF00;"></td></tr><tr>
+				<td class="body-item mbr-fonts-style display-7">Naranja</td><td class="body-item mbr-fonts-style display-7">255,127,0</td><td class="body-item mbr-fonts-style display-7" style="background-color: #FF7F00;"></td></tr><tr>
+				<td class="body-item mbr-fonts-style display-7">Rojo</td><td class="body-item mbr-fonts-style display-7">255,0 ,0</td><td class="body-item mbr-fonts-style display-7" style="background-color: #FF0000;"></td></tr><tr>
+							</tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('rgb_led','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('inout_analog_write','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('pin_pwm','blocklyInstruction3','tooltipInstruction3');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+									<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction4','tooltipInstruction4');</script></li>
+									<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('inout_highlow','blocklyInstruction5','tooltipInstruction5');</script></li>
+									<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction6','tooltipInstruction6');</script></li>
+									<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('math_random','blocklyInstruction7','tooltipInstruction7');</script></li>
+									<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('math_to_number','blocklyInstruction8','tooltipInstruction8');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Establece LEDs individualmente</strong><p>Al inicio, enciende y apaga cada uno de los LEDs conectados al LED RGB usado la instrucción de salida digital convencional.</p><strong>Pista: </strong><p><i>Usa la instrucción 'Escribe en PIN digital' y establece el valor a ALTO o BAJO en cada uno de los LEDs.</i></p>
+					<button type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','rgb_digital_write_individual'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','rgb_digital_write_individual'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('rgb_digital_write_individual'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Más colores</strong><p>Ahora, crea más colores combinando los canales. Por ejemplo, puedes crear el color amarillo encendiendo el rojo y el verde. Crea un nuevo programa en el que puedes crear el amarillo (rojo y verde), violeta (rojo y azul) y cian (verde y azul)</p><strong>Pista: </strong><p><i>Usa de nuevo la instrucción 'Escribe en PIN digital' pero ahora necesitas enceder varios LEDs a la vez, y antes de cambiar de color, debes apagar aquellos que no necesites. Por favor, ten en consideración que el verde está conectado al D11 y el azul al D10.</i></p>
+					<button type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','rgb_led_yellow_violet_cyan'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','rgb_led_yellow_violet_cyan'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('rgb_led_yellow_violet_cyan'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Alternar Colores</strong><p>Usando el LED RBG, alternar los colores Rojo, Verde y Azul con el nivel máximo de intensidad. Establece una espera en entre cada color de 1000ms.</p><strong> Pista: </strong><p><i>Usa la instrucción 'RGB Led' y seleccionar los colores indicados.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions3b','alternate_colors'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions3b','alternate_colors'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('alternate_colors'+window.board+'.bly');"><button type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Color Aleatorio</strong><p>Genera un color aleatorio usando el LED RGB cada segundo.</p><strong> Pista: </strong><p><i>Usa la instrucción 'aleatorio' para crear un número entre 0 y 255 en cada uno de los canales analógicos (instrucción 'Escribe en PIN digital' con ciclo de trabajo)</i>.</p> <button  type="button" title="Facilino code" onclick="showHideBasic('solutions4b','random_color'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions4b','random_color'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('random_color'+window.board+'.bly');"><button type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Color del arcoiris</strong><p>Regula el nivel de intensidad de luz de un LED RGB de forma que se generen los colores del arcoiris en una secuencia.</p><strong> Pista: </strong><p><i>Usa la instrucción 'Escribir en PIN digital' con ciclo de trabajo para establecer el color según se indica en la tabla de los colores del arcoiris.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions5b','rainbow_simple'+window.board+'.bly','exercise5b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions5b','rainbow_simple'+window.board+'.bly','exercise5b','exercise5bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('rainbow_simple'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básica</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 1</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 2</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 3</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 4</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions5b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 5</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise5b'></div><div id='exercise5bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+					<li><strong>Regular Intensidad de luz</strong><p>Regula la intensidad de luz del LED rojo, de forma que varía de 0 a intensidad máxima en un bucle. Repite este proceso para los otros LEDs también.</p><strong> Pista: </strong><p><i>Usa la instrucción 'Escribir en PIN digital' con ciclo de trabajo desde 0 hasta 255 en el canal del LED rojo.</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','light_dimm'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions1i','light_dimm'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('light_dimm'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Transición de Rojo a Amarillo</strong><p>Implementa una función que realiza una transición de color, de un color a otro. Por simplicidad, primero empieza a realizar la transición en dos canales, rojo y verde, para cambiar del rojo (R=250,G=0) al amarillo (R=255,G=255) y luego, del amarillo al rojo. La función realiza un bucle con 100 iteraciones en las que cambia progresivamente los colores, desde los valores iniciales en los canales rojo y verde hasta los valores finalescon un retardo de 10ms en cada iteración.</p><strong> Pista: </strong><p><i>Define una función y añade cinco argumentos de entrada: 'Red1', 'Green1', 'Red2', 'Green2' y 'time'. El argumento de entrada 'time' es del tipo Entero, mientras que el resto de argumentos son del tipo Octeto. Calcula el incremento en cada una de las iteraciones como: deltaR=(float)(Red2-Red1)/100 y deltaG=(float)(Green2-Green1)/100, siendo 'deltaR' y 'deltaG' variables del tipo Decimal y la diferencia entre los colores se debe convertir a un número Decimal, para evitar perder resolución utilizando la instrucción 'A número'. Después con la instrucción 'Contar con', calcular el valor para los canales rojo y verde como: Red=(byte)(deltaR*i+Red1) and Green=(byte)(deltaG*i+Green1), siendo i el número de iteración, de 1 a 100 del bucle. Establece el ciclo de trabajo de cada canal y espera la cantidad de tiempo indicada.</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','rg_led_color_fade'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions2i','rg_led_color_fade'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('rg_led_color_fade'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Transición Arcoiris</strong><p>Ahora, amplía el ejercicio anterior de forma que se realice una transición en los tres canales: rojo, verde y azul. Genera los colores del arcoiris con un efecto de transición entre ellos.</p><strong> Pista: </strong><p><i>Añade más argumentos de entrada que incluyan 'Blue1' y 'Blue2' y realiza los cálculos correspondientes del incremento de color en cada iteración con fórmulas similares a las del ejercicio anterior.</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions3i','rainbow_fade'+window.board+'.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions3i','rainbow_fade'+window.board+'.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('rainbow_fade'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Descargar" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+		</div>
+	</section>
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_RGB_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_RGB_bb.png';
+</script>

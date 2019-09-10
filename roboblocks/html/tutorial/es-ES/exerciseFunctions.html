@@ -1,0 +1,435 @@
+<script>
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id=" title">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Funciones y Procedimientos</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a implementar funciones y procedimientos para reusar el código y llamarlo a cualquier parte del programa.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o dos LEDs (rojo y azul conectados a los pines D12 y D13), un potenciómetro conectado a A0 y un <a onclick="onPageClicked('https://roboticafacil.es/prod/zumbador-ky-006/');" style="color:#1ec6c6" target="_blank">zumbador pasivo</a> conectado a D5.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_buzzer_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_buzzer_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                   Preliminares</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Los <strong>procedimientos</strong> son muy convenientes en aquellas situaciones en las que necesitas ejecutar un conjunto de instrucciones varias veces. Por lo genreal, se ahorra espacio, es decir, en la memoria de programa, es un buen estilo de programación en aquello lugares en los que se requiera un procedimiento. Una <strong>función </strong>son como los procedimientos, pero devuelven un valor como resultado de haber ejecutado un código. Ambos, procedimientos y funciones pueden disponer de varios <i>argumentos de entrada</i> de diferentes tipos, como por ejemplo, entereos, cadenas de texto, etc. Las funciones disponen de un argumento de salida en el que debemos devolver algún valor según el tipo indicado.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Código Morse</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">El <strong>código Morse</strong> es un método de transmisión de información de texto como una serie de tonos de encendido y apagado, luces o clics que pueden ser entendidos directamente por un oyente u observador experto sin equipo especial. <strong>El código Morse tiene dos tipo de códigos: raya y punto</strong>. El <strong>punto requiere una unidad </strong> de la base de tiempo (depende del que envía), mienstras que la <strong>raya requiere de tres unidades</strong> de base de tiempo. El <strong>tiempo (sin luz o sonido) entre rayas o puntos consecutivos es de una unidad</strong> de la base de tiempo, mienstras que el <strong>tiempo entre dos letras diferentes es de tres unidades</strong> de la base de tiempos y el tiempo entre palabras es de siete unidades de la base de tiempos. La siguiente tabla muestra la convención internacional para el código Morse:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 62%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Signo</th><th class="head-item mbr-fonts-style display-7">
+                      Código</th><th class="head-item mbr-fonts-style display-7">
+                      Signo</th><th class="head-item mbr-fonts-style display-7">
+                      Código</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+			  <td class="body-item mbr-fonts-style display-7">A</td><td class="body-item mbr-fonts-style display-7">· —</td><td class="body-item mbr-fonts-style display-7">T</td><td class="body-item mbr-fonts-style display-7">—</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">B</td><td class="body-item mbr-fonts-style display-7">— · · ·</td><td class="body-item mbr-fonts-style display-7">U</td><td class="body-item mbr-fonts-style display-7">· · —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">C</td><td class="body-item mbr-fonts-style display-7">— · — ·</td><td class="body-item mbr-fonts-style display-7">V</td><td class="body-item mbr-fonts-style display-7">· · · —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">D</td><td class="body-item mbr-fonts-style display-7">— · ·</td><td class="body-item mbr-fonts-style display-7">W</td><td class="body-item mbr-fonts-style display-7">· — —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">E</td><td class="body-item mbr-fonts-style display-7">·</td><td class="body-item mbr-fonts-style display-7">X</td><td class="body-item mbr-fonts-style display-7">— · · —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">F</td><td class="body-item mbr-fonts-style display-7">· · — ·</td><td class="body-item mbr-fonts-style display-7">Y</td><td class="body-item mbr-fonts-style display-7">— · — —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">G</td><td class="body-item mbr-fonts-style display-7">— — ·</td><td class="body-item mbr-fonts-style display-7">Z</td><td class="body-item mbr-fonts-style display-7">— — · ·</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">H</td><td class="body-item mbr-fonts-style display-7">· · · ·</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">— — — — —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">I</td><td class="body-item mbr-fonts-style display-7">· ·</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">· — — — —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">J</td><td class="body-item mbr-fonts-style display-7">· — — —</td><td class="body-item mbr-fonts-style display-7">2</td><td class="body-item mbr-fonts-style display-7">· · — — —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">K</td><td class="body-item mbr-fonts-style display-7">— · —</td><td class="body-item mbr-fonts-style display-7">3</td><td class="body-item mbr-fonts-style display-7">· · · — —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">L</td><td class="body-item mbr-fonts-style display-7">· — · ·</td><td class="body-item mbr-fonts-style display-7">4</td><td class="body-item mbr-fonts-style display-7">· · · · —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">M</td><td class="body-item mbr-fonts-style display-7">— —</td><td class="body-item mbr-fonts-style display-7">5</td><td class="body-item mbr-fonts-style display-7">· · · · ·</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">N</td><td class="body-item mbr-fonts-style display-7">— ·</td><td class="body-item mbr-fonts-style display-7">6</td><td class="body-item mbr-fonts-style display-7">— · · · ·</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">O</td><td class="body-item mbr-fonts-style display-7">— — —</td><td class="body-item mbr-fonts-style display-7">7</td><td class="body-item mbr-fonts-style display-7">— — · · ·</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">P</td><td class="body-item mbr-fonts-style display-7">· — — ·</td><td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">— — — · ·</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">Q</td><td class="body-item mbr-fonts-style display-7">— — · —</td><td class="body-item mbr-fonts-style display-7">9</td><td class="body-item mbr-fonts-style display-7">— — — — ·</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">R</td><td class="body-item mbr-fonts-style display-7">· — ·</td><td class="body-item mbr-fonts-style display-7">.</td><td class="body-item mbr-fonts-style display-7">· — · — · —</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">S</td><td class="body-item mbr-fonts-style display-7">· · ·</td><td class="body-item mbr-fonts-style display-7">,</td><td class="body-item mbr-fonts-style display-7">— · — · — —</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Encriptación</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>Encriptación</strong> El cifrado de Atbash utiliza un simple sistema de cifrado desarrollado en los tiempo Bíblicos; consiste en codificar las letras del alfabeto al revés de forma que cada letra se transforma por otra letra en la misma posición del alfabeto pero en sentido inverso, es decir, empezando del revés. La implementación original (aprox. 500 AC) se desarrolló para el alfabeto Hebreo y en el antiguo testamento existen algunas referencias a este primitivo sistema de cifrado. El cifrado de Atbash ha sido asociado a varias formas de misticismo. En los tiempos modernos, se conoce como codificación de alfabeto inversa.</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 62%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7" colspan="4">
+                      Tabla de Encriptación Atbash</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+			  <td class="body-item mbr-fonts-style display-7">a&#8594;z</td><td class="body-item mbr-fonts-style display-7">b&#8594;y</td><td class="body-item mbr-fonts-style display-7">c&#8594;x</td><td class="body-item mbr-fonts-style display-7">d&#8594;w</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">e&#8594;v</td><td class="body-item mbr-fonts-style display-7">f&#8594;u</td><td class="body-item mbr-fonts-style display-7">g&#8594;t</td><td class="body-item mbr-fonts-style display-7">h&#8594;s</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">i&#8594;r</td><td class="body-item mbr-fonts-style display-7">j&#8594;q</td><td class="body-item mbr-fonts-style display-7">k&#8594;p</td><td class="body-item mbr-fonts-style display-7">l&#8594;o</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">m&#8594;n</td><td class="body-item mbr-fonts-style display-7">n&#8594;m</td><td class="body-item mbr-fonts-style display-7">o&#8594;l</td><td class="body-item mbr-fonts-style display-7">p&#8594;k</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">q&#8594;j</td><td class="body-item mbr-fonts-style display-7">r&#8594;i</td><td class="body-item mbr-fonts-style display-7">s&#8594;h</td><td class="body-item mbr-fonts-style display-7">t&#8594;g</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">u&#8594;f</td><td class="body-item mbr-fonts-style display-7">v&#8594;e</td><td class="body-item mbr-fonts-style display-7">w&#8594;d</td><td class="body-item mbr-fonts-style display-7">x&#8594;c</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">y&#8594;b</td><td class="body-item mbr-fonts-style display-7">z&#8594;a</td></tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('procedures_defnoreturn','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('procedures_defreturn','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip1('procedures_callnoreturn','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip1('procedures_callreturn','blocklyInstruction4','tooltipInstruction4');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('serial_available','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('serial_parseint','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('variables_local','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction7a'></span></div><div  id='blocklyInstruction7a'></div><script>injectInstructionTooltip('variables_local_type','blocklyInstruction7a','tooltipInstruction7a');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip1('variables_get','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction8a'></span></div><div  id='blocklyInstruction8a'></div><script>injectInstructionTooltip1('variables_set','blocklyInstruction8a','tooltipInstruction8a');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip1('controls_for','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction9a'></span></div><div  id='blocklyInstruction9a'></div><script>injectInstructionTooltip1('controls_repeat','blocklyInstruction9a','tooltipInstruction9a');</script></li>
+					<li><div><span id='tooltipInstruction9b'></span></div><div  id='blocklyInstruction9b'></div><script>injectInstructionTooltip1('controls_whileUntil','blocklyInstruction9b','tooltipInstruction9b');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction11','tooltipInstruction11');</script></li>
+					<li><div><span id='tooltipInstruction11a'></span></div><div  id='blocklyInstruction11a'></div><script>injectInstructionTooltip('math_arithmetic','blocklyInstruction11a','tooltipInstruction11a');</script></li>
+					<li><div><span id='tooltipInstruction12'></span></div><div  id='blocklyInstruction12'></div><script>injectInstructionTooltip('text_append','blocklyInstruction12','tooltipInstruction12');</script></li>
+					<li><div><span id='tooltipInstruction13'></span></div><div  id='blocklyInstruction13'></div><script>injectInstructionTooltip('text_length','blocklyInstruction13','tooltipInstruction13');</script></li>
+					<li><div><span id='tooltipInstruction14'></span></div><div  id='blocklyInstruction14'></div><script>injectInstructionTooltip('text_charAt','blocklyInstruction14','tooltipInstruction14');</script></li>
+					<li><div><span id='tooltipInstruction15'></span></div><div  id='blocklyInstruction15'></div><script>injectInstructionTooltip('text_to_text','blocklyInstruction15','tooltipInstruction15');</script></li>
+				  </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Parpadea un LED cuantas veces quieras</strong><p>Implementa un prodecimiento en el que un LED, conectado al pin D12, parpadee tantas veces como se indique a través de su único argumento de entrada (tipo entero) con una frecuencia de 1Hz. Después, en el bucle principal, interpreta un entero recibido por el puerto serie USB y llama al procedimiento para hacer parpadear al LED.</p><strong>Pista: </strong><p><i>Añade un argumento de entrada del tipo entero, con nombre, por ejemplo 'n' y dentro del procedimiento, cuenta desde '1' hasta 'n' dentro de un bucle. Dentro de ese bucle, haz parpadear el LED a la frecuencia indicada, con un retardo de  500ms entre las instrucciones para poner el LED a ALTO y BAJO. Para interpretar un número entero desde el puerto serie observa el Ejercicio Intermedio 1 en <a onclick="onHomeFile('exerciseUSBSerial.html');" style="color:#1ec6c6">Comunicación Serie USB</a></i>.</p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','blink_as_you_wish'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+				&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','blink_as_you_wish'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+				<a onclick="onFileDownloaded('blink_as_you_wish'+window.board+'.bly');">
+				<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+								<li><strong>Parpadea un LED como quieras</strong><p>Ahora, mejora el ejercicio anterior para que el procedimiento incluya también un argumento de entrada con el tiempo de retardo del LED. </p><strong>Pista: </strong><p><i>Ahora, necesitas añadir un segundo argumento del tipo entero y reemplazar la constante '500' del ejercicio anterior por el valor del tiempo correspondiente según indica la variable (segundo argumento de entrada). Ahora, en el monitor serie, <strong>debes introducir dos números consecutivos</strong> cada vez que quieras hacer parpadear el LED</i>.</p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','blink_as_you_wish2'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','blink_as_you_wish2'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('blink_as_you_wish2'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+					<li><strong>Suma dos números</strong><p>Implementa una función que toma como argumentos de entradas dos números y devuelve la suma de los mismos. Interpreta dos números enteros recibidos por el monitor serie y llama a la función para realizar la suma. Muestra el resultado de la suma por el monitor serie.</p><strong>Pista: </strong><p><i>Crea una función con dos argumentos de entrada del tipo entero y devuevle la suma de los mismos en la sección 'devuelve'. Cuando introduzcas dos números, puede que en ocasiones, el programa devuelva 0 incluso si no tecleeas nada. Esto se debe a que se reciben caracteres adicionales (como fin de línea, etc...) que se interpretan como un 0</i>.</p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions3b','sum.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions3b','sum.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('sum.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Media de la lectura analógica</strong><p>Implementa una función que realiza la media de 30 medidas consecutivas de la entrada analógica A0 correspondiente al potenciómetro. La función debe devolver el valor medio (el argumento de salida debe ser del tipo decimal). Llama a la función en el bucle principal y dibuja el valro medio por el monitor serie utilizando el Plotter de Arduino.</p><strong>Pista: </strong><p><i>Crea una función sin argumentos de entrada y un argumento de salida del tipo decimal. Dentro de la función repite 30 veces la medición y acumula sus valores en una variable del tipo decimal. Posteriormente, devuelve el valor resultante dividiendo el resultado entre 30 (para realizar la media)</i>.</p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions4b','mean_analogA0'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions4b','mean_analogA0'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('mean_analogA0'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 4</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>S.O.S Básico.</strong><p>Implementa dos procedimientos: <i>dash</i> y <i>dot</i>. Los procedimientos encenderán y apagarán el LED azul conectado al pin D13. El tiempo base de las funciones será de 200ms. Trata de transmitir un mensaje de S.O.S. en código Morse según se indica al principio, en la tabla del Código Morse. Después de transmitir el mensaje, puedes hacer una pausa grande, por ejemplo de 10000ms y repetir de nuevo el mensaje.</p><strong>Pista: </strong><p><i>la secuencia para el punto es: enciende el LED, espera 200ms, apaga el LED y espera 200ms. De forma similar, la secuencia para el procedimiento raya es: enciende el LED, espera 600ms, apaga el LED y espera 200ms. Observa que, por simplicidad, se ha incluido el tiempo de espera entre puntos y rayas, lo que implica que el tiempo entre letras debe ser de 400ms (porque ya se incluyen 200ms al final de los procedimientos)</i>.</p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','sos_basic'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+				&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions1i','sos_basic'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+				<a onclick="onFileDownloaded('sos_basic'+window.board+'.bly');">
+				<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+								<li><strong>S.O.S.</strong><p>Siguiendo las ideas del ejercicio anterior, implementa dos procedimientos que aceptan el número de repeticiones para cada <i>punto</i> y <i>raya</i>. Ahora, en vez de hacer parpadear el LED, haz que pite el zumbador de sonido (conectado al pin D5).</p><strong>Pista: </strong><p><i>Añade un argumento de entrada del tipo entero repite la secuencia anterior dentro de un bucle </i>Contar con...<i>. Ahora, el zumbador de sonido debe esperar según se indica en la base de tiempos una vez para los puntos y tres veces para las rayas. En ambos casos, el tiempo de espera una vez ha dejado de pitar es de una unidad el tiempo base (200ms). Usad, por ejemplo, una frecuencia de 1500Hz para el zumbador de sonido para realizar el pitido</i>.</p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','sos'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions2i','sos'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('sos'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+					<li><strong>Encriptar</strong><p>Implementa una <strong>función que acepta un mensaje de entrada del tipo cadena de texto</strong> y <strong>devuelve una cadena de texto</strong>. La función debe encriptar el mensaje de la entrada según se indica en la tabla de encriptación de Atbash y devolver el resultado en el argumento de salida. Llama a la función con el mensaje que se lea desde el monitor serie y muestra (imprime) el resultado de vuelta por el propio monitor.</p><strong>Pista: </strong><p><i>Dentro de la función, implenta un bucle del tipo </i>Mientras<i>, que itera por cada uno de los caracteres de la cadena de texto (extrae cada uno de los caracteres de la cadena de texto y realiza una operación como se indica). Haz que new_c&#8592;'z'-c+'a', siendo </i>c<i> el caracter leído y </i>new_c</i> el caracter codificado que debes añadir al final de una cadena de texto (vacía al inicio) y que será lo que se devuelva como resultado de ejecutar la función</i>.</p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions3i','encrypt.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions3i','encrypt.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('encrypt.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width: 100%;">
+					<hr class="line" style="width: 25%;">
+					<div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+					<hr class="line" style="width: 25%;">
+			</div>
+			</div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+		</div>
+	</section>
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_buzzer_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_buzzer_bb.png';
+</script>

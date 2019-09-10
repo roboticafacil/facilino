@@ -1,11 +1,12 @@
 <script>
-var currentSolutions=0;
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
 </script>
-<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+<section class="mbr-section content8 cid-qYnID8HJTn" id=" title">
 	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
 		<div class="container">
 			<div class="media-container-row">
-				<div class="title col-12 col-md-8">
+				<div class=" title col-12 col-md-8">
 					<h2 class="align-center pb-3 mbr-fonts-style display-2">
 						Lógica</h2>
 					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
@@ -17,16 +18,6 @@ var currentSolutions=0;
 	</section>
 </section>
 
-
-<section class="cid-qYh0wSah5G" id="image3-50">
-    <figure class="mbr-figure container">
-            <div class="image-block" style="width: 50%;">
-                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
-
-            </div>
-    </figure>
-</section>
-
 <section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
     <div class="container">
         <div class="media-container-row">
@@ -35,6 +26,33 @@ var currentSolutions=0;
             </div>
         </div>
     </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_LEDs_pushbuttons_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_LEDs_pushbuttons_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
 </section>
 
 <section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
@@ -276,22 +294,80 @@ var currentSolutions=0;
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><strong>Enciende el LED al pulsar</strong><p>Siguiendo con las ideas del ejercicio básico 3 <a onclick="onHomeFile('exerciseBlinkingLEDs.html');" style="color:#1ec6c6">Enciende el LED cuando no se pulsa el pulsador</a>, queremos encender el LED conectado al pin D12 cuando pulsamos el pulsador conectado al pin D2.</p><strong>Pista: </strong><p>Usa la instrucción 'Lee pin digital...' para obtener el valor del pulsador y realiza la operación NO para negar su valor. El resultado debes utilizarlo como la entrada de estado de la instrucción 'Escribe en el pin...'</p><button  type="button" onclick="showHide('solutions1b','negate_led_wemosD1R32.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('negate_led_wemosD1R32.bly');">
+                    <li><strong>Enciende el LED al pulsar</strong><p>Siguiendo con las ideas del ejercicio básico 3 <a onclick="onHomeFile('exerciseBlinkingLEDs.html');" style="color:#1ec6c6">Enciende el LED cuando no se pulsa el pulsador</a>, queremos encender el LED conectado al pin D12 cuando pulsamos el pulsador conectado al pin D2.</p><strong>Pista: </strong><p>Usa la instrucción 'Lee pin digital...' para obtener el valor del pulsador y realiza la operación NO para negar su valor. El resultado debes utilizarlo como la entrada de estado de la instrucción 'Escribe en el pin...'</p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','negate_led'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','negate_led'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('negate_led'+window.board+'.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Operación Y</strong></p>Implementa la operación Booleana usando dos pulsadores (conectados a los pines D2 y D3) y el LED rojo (conectado al pin D12). Cuando ambos se pulsen, debemos poner el estado del LED en ALTO.</p> <strong>Pista: </strong><p><i> Si consideramos al pulsador D2 como PB1 y al pulsador D3 como PB2, el resultado de la operación para encender el LED debe ser LED=NO(PB1) Y NO(PB2).</i></p><button  type="button" onclick="showHide('solutions2b','and_wemosD1R32.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('and_wemosD1R32.bly');">
+					<li><strong>Operación Y</strong><p>Implementa la operación Booleana usando dos pulsadores (conectados a los pines D2 y D3) y el LED rojo (conectado al pin D12). Cuando ambos se pulsen, debemos poner el estado del LED en ALTO.<p> <strong>Pista: </strong><p><i> Si consideramos al pulsador D2 como PB1 y al pulsador D3 como PB2, el resultado de la operación para encender el LED debe ser LED=NO(PB1) Y NO(PB2).</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','and'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','and'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and'+window.board+'.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Operación Y equivalente</strong><p>Ahora, usando las Leyes de De Morgan, encuentra una implementación equivalente del ejercicio anterior pero con menos operaciones.</p><strong>Pista: </strong><i><p>En este caso, necesitas implementar LED=NO(PB1 O PB2).</i></p><button  type="button" onclick="showHide('solutions3b','and_equivalent_wemosD1R32.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('and_equivalent_wemosD1R32.bly');">
+					<li><strong>Operación Y equivalente</strong><p>Ahora, usando las Leyes de De Morgan, encuentra una implementación equivalente del ejercicio anterior pero con menos operaciones.</p><strong>Pista: </strong><i><p>En este caso, necesitas implementar LED=NO(PB1 O PB2).</i><p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions3b','and_equivalent'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions3b','and_equivalent'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and_equivalent'+window.board+'.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Comparación simple</strong><p>Enciende el LED conectado al pin D12 cuando el valor leído desde el pin A0 (potenciómetro) es mayor que 512.</p><strong>Pista: </strong><i><p>Usa la instrucción '>' para comparar el número devuelto por la instrucción 'Lee pin analógico' y el número 512. El resultado de esta operación puede ser usado como entrada de la instrucción 'Si' para decidir encender el LED o no.</i></p><button  type="button" onclick="showHide('solutions4b','simple_comparison_wemosD1R32.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('simple_comparison_wemosD1R32.bly');">
+					<li><strong>Comparación simple</strong><p>Enciende el LED conectado al pin D12 cuando el valor leído desde el pin A0 (potenciómetro) es mayor que 512.</p><strong>Pista: </strong><i><p>Usa la instrucción '>' para comparar el número devuelto por la instrucción 'Lee pin analógico' y el número 512. El resultado de esta operación puede ser usado como entrada de la instrucción 'Si' para decidir encender el LED o no.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions4b','simple_comparison'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions4b','simple_comparison'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('simple_comparison'+window.board+'.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
                 </ol>
             </div>
         </div>
     </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 1</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 2</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 3</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Básico 4</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+  </div>
 </section>
 
 <section class="mbr-section article content9 cid-qYh0wTdIZC">
@@ -309,14 +385,17 @@ var currentSolutions=0;
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><strong>Operaciones Y y O</strong><p>Implementa las operaciones Y o O usando los pulsadores conectados a los pines D2 y D3 y los LEDs rojo y azul conectados a los pines D12 y D13. <strong>Pista: </strong><p><i>El objetivo es implementar las siguientes operaciones lógicas: ROJO=NO(PB1 Y PB2), AZUL=NO(PB1 O PB2).</i></p><button  type="button" onclick="showHide('solutions1i','and_or_wemosD1R32.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('and_or_wemosD1R32.bly');">
+                    <li><strong>Operaciones Y y O</strong><p>Implementa las operaciones Y o O usando los pulsadores conectados a los pines D2 y D3 y los LEDs rojo y azul conectados a los pines D12 y D13.</p> <strong>Pista: </strong><p><i>El objetivo es implementar las siguientes operaciones lógicas: ROJO=NO(PB1 Y PB2), AZUL=NO(PB1 O PB2).</i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','and_or'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions1i','and_or'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('and_or'+window.board+'.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Par o impar (Y bit a bit)</strong></p>Enciende el LED rojo conectado al pin D12 cuando cuando por el puerto serie recibamos un dato par. Enciende el LED azul conectado al pin D13 cuando sea impar.</p> <strong>Pista: </strong><p><i> Utilizar una operación Y bit a bit del número recibido y el número 1. Si el resultado es mayor que cero, entonces es impar. Para leer un entero por el puerto USB mira el Ejercicio Intermedio 1 en <a onclick="onHomeFile('exerciseUSBSerial.html');" style="color:#1ec6c6">Comunicación Serie USB</a></i></p><button  type="button" onclick="showHide('solutions2i','bitwise_and_wemosD1R32.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('bitwise_and_wemosD1R32.bly');">
+					<li><strong>Par o impar (Y bit a bit)</strong><p>Enciende el LED rojo conectado al pin D12 cuando cuando por el puerto serie recibamos un dato par. Enciende el LED azul conectado al pin D13 cuando sea impar.</p> <strong>Pista: </strong><p><i> Utilizar una operación Y bit a bit del número recibido y el número 1. Si el resultado es mayor que cero, entonces es impar. Para leer un entero por el puerto USB mira el Ejercicio Intermedio 1 en <a onclick="onHomeFile('exerciseUSBSerial.html');" style="color:#1ec6c6">Comunicación Serie USB</a></i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','bitwise_and'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions2i','bitwise_and'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('bitwise_and'+window.board+'.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Comparación</strong><p>Lee el valor de la entrada analógica A0 correspondiente al potenciómetro. Divide el rango total en 4 sub-rangos de forma que los LEDs D12 y D13 muestran el número del rango en representación binaria (D12 es el bit menos significativo). </p><strong>Pista: </strong><i><p>Si el número está entre 0 y 1023, entonces los dos LEDs están apagados, si el valor está entre 1024 y 2047 entonces el LED D12 debe estar encendido y el D13 apagado, si el valor está entre 2048 y 3071 entonces el LED D13 debe estar encendido y el D12 apagado. En caso contrario, los dos LEDs deben estar encendidos. <strong>Recuerda que el rango de la lectura analógica en los procesadores ESP es de 0 a 4096, por eso estos sub-rangos. En el caso de utilizar Arduino, el rango es de 0 a 1023.</strong></i></p><button  type="button" onclick="showHide('solutions3i','comparison_wemosD1R32.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('comparison_wemosD1R32.bly');">
+					<li><strong>Comparación</strong><p>Lee el valor de la entrada analógica A0 correspondiente al potenciómetro. Divide el rango total en 4 sub-rangos de forma que los LEDs D12 y D13 muestran el número del rango en representación binaria (D12 es el bit menos significativo). </p><strong>Pista: </strong><i><p>Si el número está entre 0 y 1023, entonces los dos LEDs están apagados, si el valor está entre 1024 y 2047 entonces el LED D12 debe estar encendido y el D13 apagado, si el valor está entre 2048 y 3071 entonces el LED D13 debe estar encendido y el D12 apagado. En caso contrario, los dos LEDs deben estar encendidos. <strong>Recuerda que el rango de la lectura analógica en los procesadores ESP es de 0 a 4096, por eso estos sub-rangos. En el caso de utilizar Arduino, el rango es de 0 a 1023.</strong></i></p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions3i','comparison'+window.board+'.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions3i','comparison'+window.board+'.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('comparison'+window.board+'.bly');">
 					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
                 </ol>
             </div>
@@ -324,95 +403,59 @@ var currentSolutions=0;
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
-    <div class="container">
-        <div class="inner-container" style="width: 100%;">
-            <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Solutiones</div>
-            <hr class="line" style="width: 25%;">
-        </div>
-        </div>
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
 </section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 1</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise1b'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 2</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise2b'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 3</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise3b'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Básico 4</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise4b'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Intermedio 1</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise1i'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Intermedio 2</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise2i'></div></div>
-		</div>
-	</section>
-
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Ejercicio Intermedio 3</strong>
-				</div>
-			</div>
-			<div class="media-container-row"><div id='exercise3i'></div></div>
-		</div>
-	</section>
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Intermedio 1</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+  </div>
 </section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Intermedio 2</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Ejercicio Intermedio 3</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+  </div>
+</section>
+
+
 <script>
-var solutions = document.getElementById('solutions');
-solutions.style.display="none";
-//HideButton('but1'); HideButton('but2'); HideButton('but3');
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_LEDs_pushbuttons_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_LEDs_pushbuttons_bb.png';
 </script>

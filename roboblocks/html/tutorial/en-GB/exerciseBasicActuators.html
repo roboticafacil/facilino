@@ -1,0 +1,270 @@
+<script>
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Relay and Servo Actuators</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to control with a relay and move a standard servo.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>An Arduino or ESP board, i.e.: <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-uno-r3/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-nano-v3-0-compatible/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a> or <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/wemos-esp32-d1-r32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>A <a onclick="onPageClicked('https://roboticafacil.es/en/prod/multisensor-shield/');" style="color:#1ec6c6" target="_blank">Multisensor shield</a> and a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/relay-module-ky-019/');">Relay module</a> connected to pin D7 and a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/sg90-micro-servo/');">SG90 servo motor</a> connected to pin D8. If you don't use the multisensor shield, you need a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/push-button-ky-004/');">pushbutton</a> connected to pin D2 and a potentiometerconnected to pin A0.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_servo_relay_fan_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Modules</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_servo_relay_fan_pot_pushbutton_modules_bb.png" width="1400" alt="Modules" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Protoboard</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_servo_relay_fan_pot_pushbutton_bb.png" width="1400" alt="Protoboard" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('dyor_31_in_1_rele','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('dyor_servo_move','blocklyInstruction2','tooltipInstruction2');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+									<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('button_case','blocklyInstruction3','tooltipInstruction3');</script></li>
+									<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('math_sinusoid','blocklyInstruction4','tooltipInstruction4');</script></li>
+								</ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Basic Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Fan Control with a Relay</strong><p>With a relay connected to pin D7 and a pushbutton connected to pin D2, activate the relay each time you press the pushbutton. You can control a PC fan with a relay so that every time you push the button, the fan will start spinning.</p><strong>Hint: </strong><p><i>Use the 'Pushbutton' instruction so that every time it is on a pressed state, you set the relay to HIGH, otherwise, you set the relay to LOW.</i></p>
+					<button type="button" title="Facilino code" onclick="showHideBasic('solutions1b','relay_button'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions1b','relay_button'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('relay_button'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Fan Control with a Relay and Potentiometer</strong><p>With a relay connected to pin D7 and a potentiometer connected to pin A0, activate the relay if the potentiometer value is above 800 (in Arduino) or 3200 (in ESP).</p><strong>Hint: </strong><p><i>Use an 'if' instruction to detect the case where the potentiometer value is above 800 (or 3200).</i></p>
+					<button type="button" title="Facilino code" onclick="showHideBasic('solutions2b','relay_pot'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions2b','relay_pot'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('relay_pot'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Moving a servo</strong><p>Move a servo to its 0º position and 3000ms move it to its 180º and back again to 0º after 3000ms. You can attach a blade waved by the servo to produce a air flow similar to a fan waved by hand.</p><strong> Hint: </strong><p><i>Use the servo instruction to set it to 0º or 180º and the proper delays in the main loop.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions3b','servo'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions3b','servo'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('servo'+window.board+'.bly');"><button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Servo Sweep</strong><p>Make a servo sweep of all possible positions between 0º and 180º with a 10º step (increment) each 500ms. Once the last position is reached, move back to 0º in a rapid movement of just 500ms.</p><strong> Hint: </strong><p><i>Use a 'for' instruction to loop between 0 and 18. On each iteration set the servo position based on the loop iteration times 10. Once the loop is done, then move to 0º.</i></p> <button  type="button" title="Facilino code" onclick="showHideBasic('solutions4b','servo_sweep'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions4b','servo_sweep'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('servo_sweep'+window.board+'.bly');"><button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Basic Solutions</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 1</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 2</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 3</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 4</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Intermediate Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Temperature Control with a Relay</strong><p>Now, following the ideas of exercise 2, use a temperature sensor DHT11 connected to pin D4 and if the temperature is above 25ºC, then activate the relay, which connects a fan to decrease the temperature.</p><strong> Hint: </strong><p><i>Replace the 'AnalogRead' instruction of a 'Temperature Read' one. You need to set proper temperature conditions for this example to work.</i></p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions1i','temperature_control_relay'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions1i','temperature_control_relay'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+										<a onclick="onFileDownloaded('temperature_control_relay'+window.board+'.bly');">
+									<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+									<li><strong>Servo Wave</strong><p>Generate a sinusoidal wave with a servo so that the position varies between 45º and 135º (this might be helpful for walking patterns in some robots or for generating a air flow to decrease temperature with a blade attache to the servo emulating a fan waved in hand).</p><strong> Hint: </strong><p><i>Use the 'Sinusoid' instruction so that the amplitud is 45, the frequency should be slow, say 0.1Hz and the offset 90º (the phase is not that relevant in this case).</i></p>
+										<button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions2i','servo_wave'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions2i','servo_wave'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+										<a onclick="onFileDownloaded('servo_wave'+window.board+'.bly');">
+										<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+								</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Intermediate Solutions</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_servo_relay_fan_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_servo_relay_fan_pot_pushbutton_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_servo_relay_fan_pot_pushbutton_bb.png';
+</script>

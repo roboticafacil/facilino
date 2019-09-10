@@ -1,50 +1,58 @@
 <script>
-var currentSolutions=0;
+  var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
 </script>
- 
+
 <section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
 	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
 		<div class="container">
 			<div class="media-container-row">
-				<div class="title col-12 col-md-8">
+				<div class=" title col-12 col-md-8">
 					<h2 class="align-center pb-3 mbr-fonts-style display-2">
 						Maths</h2>
 					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
 						Learn how to use math instructions to perform arithmetic operations, minumum and maximum and even to generate a sinusoidal wave.</h3>
-					
 				</div>
 			</div>
 		</div>
 	</section>
 </section>
 
-
-<section class="cid-qYh0wSah5G" id="image3-50">
-    <figure class="mbr-figure container">
-            <div class="image-block" style="width: 50%;">
-                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
-                
-            </div>
-    </figure>
-</section>
-
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">All required Electronics are already integrated in the Multisensor Shield.</div>
-        </div>
-    </div>
-</section>
-
-
 <section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
     <div class="container">
         <div class="media-container-row">
             <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>A Multisensor Shield.</li></ul></blockquote>
+                <blockquote><strong>Required material. </strong><ul><li>An Arduino or ESP board, i.e.: <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-uno-r3/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-nano-v3-0-compatible/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a> or <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/wemos-esp32-d1-r32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>A <a onclick="onPageClicked('https://roboticafacil.es/en/prod/multisensor-shield/');" style="color:#1ec6c6" target="_blank">Multisensor shield</a> or a red LED connected to pin D12, a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/push-button-ky-004/');">pushbutton</a> connected to pin D2, a potentiometer connected to A0.</li></ul></blockquote>
             </div>
         </div>
     </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Modules</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LED_pushbutton_modules_bb.png" width="1400" alt="Modules" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Protoboard</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LED_pushbutton_bb.png" width="1400" alt="Protoboard" title=""></img>
+            </div>
+    </figure>
 </section>
 
 <section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
@@ -58,17 +66,23 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('math_number','blocklyInstruction1');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('math_arithmetic','blocklyInstruction2');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('base_map','blocklyInstruction3');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('math_minmax','blocklyInstruction4');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('math_random','blocklyInstruction5');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('math_sinusoid','blocklyInstruction6');</script></div>
-		
-		
-	</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+								<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip1('math_number','blocklyInstruction1','tooltipInstruction1');</script></li>
+								<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip1('math_arithmetic','blocklyInstruction2','tooltipInstruction2');</script></li>
+								<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip1('math_single','blocklyInstruction3','tooltipInstruction3');</script></li>
+								<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip1('math_modulo','blocklyInstruction4','tooltipInstruction4');</script></li>
+								<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('base_map','blocklyInstruction5','tooltipInstruction5');</script></li>
+								<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('math_minmax','blocklyInstruction6','tooltipInstruction6');</script></li>
+								<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip1('math_random','blocklyInstruction7','tooltipInstruction7');</script></li>
+								<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('math_sinusoid','blocklyInstruction8','tooltipInstruction8');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
 </section>
 
 <section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
@@ -82,18 +96,25 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('text_join','blocklyInstruction7');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('base_us','blocklyInstruction8');</script></div>
-	</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip1('text_join','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('base_us','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<!-- <li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('text_join','blocklyInstruction11','tooltipInstruction11');</script></li> -->
+				  </ol>
+            </div>
+		</div>
+    </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <div class="section-text align-center mbr-fonts-style display-5">Basic Exercises</div>
             <hr class="line" style="width: 25%;">
         </div>
         </div>
@@ -104,66 +125,167 @@ var currentSolutions=0;
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><strong>Binary digits</strong><p>Compute the number of digits required to represent an integer number in a binary representation. Implement a function that accepts as input argument an integer number and returns the number of digits. Use, for instance number '123'.</p><strong>Hint: </strong><p><i> In a </i>while<i> loop, check if the number is greater or equal than the base 2 powers (starting from 2). Each time that this is true, a digits counter must be increased (initialized at 1).</i></p><button  type="button" onclick="showHide('solutions1','binary_digits.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('binary_digits.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Minimum and maximum</strong><p>Using the potentiometer (connected to pin A0) measurements, compute the minimum and maximum values in volts (the value must be comprised between 0 and 5 volts). At initialisation, turn on red LED (connected to pin D12) and perform the maximum and minimun computations until the switch SW1 (connected to pin D2) is pushed. Once pushed, turn off the red LED and show on the console the minimum and maximum values of all registered measurements.</p><strong>Hint: </strong><p><i>In a </i>while <i>loop, read the analog measurement in A0 and convert it into a number between 0 and 5 (using the </i>map<i> instruction). Use the </i>min <i>and </i>max<i> instructions to compute the corresponding minimum and maximum and save the results in two different variables (the variable storing the minimum value must be initialised with 5, while the variable for the maximum must be initialised with 0).</i></p><button  type="button" onclick="showHide('solutions2','min_max_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('min_max_wemosD1R32.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Sinusoidal Wave</strong><p>Create a sinusoidal wave with 1Hz and amplitude of &#x221A;2, using the presented instructions. And plot it in the Console with Serial Plot Data.</p><button  type="button" onclick="showHide('solutions3','sinusoidal_wave.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('sinusoidal_wave.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                  <li><strong>Multiply two numbers</strong><p>Create a simple program that takes two numbers (introduced by the user using the serial montior) and multiplies them (floating point operation). Resulting operation must be shown in the serial monitor.</p><strong>Hint: </strong><p><i>Use the parse decimal instructions to get the numbers within the arithmetic instruction to perform the multiplication.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions1b','multiply.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+            &nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions1b','multiply.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+            <a onclick="onFileDownloaded('multiply.bly');">
+  					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+              <li><strong>Reminder of a division</strong><p>Now compute the reminder of a divition of two integer numbers (use the serial monitor to introduce the numbers, being the first number introduced the dividend and the second one the divisor).</p><strong>Hint: </strong><p><i>Use the 'modulo' operation to compute the reminder of the division between the numbers. It must always return a value between 0 and N-1, begin N the divisor.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions2b','modulo.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+      &nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions2b','modulo.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+      <a onclick="onFileDownloaded('modulo.bly');">
+      <button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+									<li><strong>Distance to the origin</strong><p>Compute the distance to the origin of a number given the coordinates X and Y (introduced by the user using the serial monitor).</p><strong>Hint: </strong><p><i>Use the parse decimal instructions to get the numbers and store them on floating point variables. Then, square the value of each coordinate and sum them up. Compute the squared root of the resulting operation and print the value to the serial monitor.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions3b','distance_origin.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+                  &nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions3b','distance_origin.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+        <a onclick="onFileDownloaded('distance_origin.bly');">
+				<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Linear scaling</strong><p>Scale the values from the potentiometer connected to pin A0 so that their range is from 0 to 100 and plot the resulting scaled value on the Serial Plotter.</p><strong>Hint: </strong><p><i>Use the 'map' instruction to perform the scaling.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions4b','linear_scaling'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+            &nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions4b','linear_scaling'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('linear_scaling'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Basic Solutions</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 4</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Intermediate Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Binary digits</strong><p>Compute the number of digits required to represent an integer number in a binary representation. Implement a function that accepts as input argument an integer number and returns the number of digits. Use, for instance number '123'.</p><strong>Hint: </strong><p><i> In a </i>while<i> loop, check if the number is greater or equal than the base 2 powers (starting from 2). Each time that this is true, a digits counter must be increased (initialized at 1).</i></p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions1i','binary_digits.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions1i','binary_digits.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('binary_digits.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Minimum and maximum</strong><p>Using the potentiometer (connected to pin A0) measurements, compute the minimum and maximum values in volts (the value must be comprised between 0 and 100). At initialisation, turn on red LED (connected to pin D12) and perform the maximum and minimun computations until the switch SW1 (connected to pin D2) is pushed. Once pushed, turn off the red LED and show on the console the minimum and maximum values of all registered measurements.</p><strong>Hint: </strong><p><i>In a </i>while <i>loop, read the analog measurement in A0 and convert it into a number between 0 and 5 (using the </i>map<i> instruction). Use the </i>min <i>and </i>max<i> instructions to compute the corresponding minimum and maximum and save the results in two different variables (the variable storing the minimum value must be initialised with 100, while the variable for the maximum must be initialised with 0).</i></p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions2i','min_max'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions2i','min_max'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('min_max'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Sinusoidal Wave</strong><p>Create a sinusoidal wave with 1Hz and amplitude of &#x221A;2, using the presented instructions. And plot it in the Console with Serial Plot Data.</p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions3i','sinusoidal_wave.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions3i','sinusoidal_wave.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+          <a onclick="onFileDownloaded('sinusoidal_wave.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
 				</ol>
             </div>
         </div>
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
-    <div class="container">
-        <div class="inner-container" style="width: 100%;">
-            <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
-            <hr class="line" style="width: 25%;">
-        </div>
-    </div>
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width: 100%;">
+					<hr class="line" style="width: 25%;">
+					<div class="section-text align-center mbr-fonts-style display-5">Intermediate Solutions</div>
+					<hr class="line" style="width: 25%;">
+			</div>
+			</div>
 </section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 1</strong>
+					<strong>Intermediate Exercise 1</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise1'></div></div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
 		</div>
 	</section>
-	
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 2</strong>
+					<strong>Intermediate Exercise 2</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise2'></div></div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
 		</div>
 	</section>
-	
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 3</strong>
+					<strong>Intermediate Exercise 3</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise3'></div></div>
+			<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
 		</div>
 	</section>
 
 <script>
-var solutions = document.getElementById('solutions');
-solutions.style.display="none";
-//HideButton('but1'); HideButton('but2'); HideButton('but3');
+  var solutions_basic = document.getElementById('solutions_basic');
+  var solutions_intermediate = document.getElementById('solutions_intermediate');
+  solutions_basic.style.display="none";
+  solutions_intermediate.style.display="none";
+  var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LED_pushbutton_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LED_pushbutton_bb.png';
 </script>

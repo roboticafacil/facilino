@@ -2403,7 +2403,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   position: relative;
   overflow: hidden;
   border-bottom-right-radius: 0;
@@ -2423,6 +2422,8 @@ body {
   left: 0;
   justify-content: center;
   align-items: center;
+  height: 20%;
+  transform: translateY(375%);
 }
 .cid-qYa5rQWOty .card-wrapper .card-img img {
   width: 100%;
@@ -5256,7 +5257,7 @@ body {
 .cid-table {
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 .cid-table .mbr-section-subtitle {
   color: #767676;
@@ -5284,7 +5285,7 @@ body {
   margin-top: 6px;
   border: 1px solid #cccccc;
   margin-bottom: 0;
-  
+
 }
 .cid-table table th {
   border-top: none;

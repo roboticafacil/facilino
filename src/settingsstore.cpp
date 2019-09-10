@@ -12,7 +12,7 @@
 const QString SettingsStore::index2board[SIZE_LIST] = {"arduino:avr:uno","arduino:avr:nano:cpu=atmega328","arduino:avr:nano:cpu=atmega328old","arduino:avr:nano:cpu=atmega168","arduino:avr:mega","arduino:avr:micro","arduino:avr:lilypad:cpu=atmega328","arduino:avr:lilypad:cpu=atmega168","arduino:avr:mini","arduino:avr:leonardo","esp8266:esp8266:generic","esp8266:esp8266:nodemcuv2","esp8266:esp8266:generic","esp32:esp32:esp32","esp32:esp32:lolin32","esp32:esp32:lolin32"};
 const QString SettingsStore::index2name[SIZE_LIST] = {"ArduinoUno","ArduinoNano","ArduinoNano","ArduinoNano","ArduinoMega2560","ArduinoMicro","ArduinoLilyPad","ArduinoLilyPad","ArduinoMini","ArduinoLeonardo","ESP8266","NodeMCU","WEMOS D1R2","ESP32","WEMOS D1R32","WEMOS D1R32 SHIELD"};
 const qint32 SettingsStore::index2baudrate[SIZE_LIST] = {QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud9600,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200,QSerialPort::Baud115200};
-const QString SettingsStore::version = "1.4.2";
+const QString SettingsStore::version = "1.5.0";
 const QString SettingsStore::allCommonToolboxes= "LANG_CATEGORY_PROCEDURES,LANG_SUBCATEGORY_CONTROL,LANG_CATEGORY_LOGIC,LANG_CATEGORY_MATH,LANG_CATEGORY_TEXT,LANG_CATEGORY_VARIABLES,LANG_SUBCATEGORY_ANALOG,LANG_SUBCATEGORY_DIGITAL,LANG_SUBCATEGORY_USB";
 const QString SettingsStore::allAdditionalToolboxes = "LANG_SUBCATEGORY_INTERRUPTS,LANG_SUBCATEGORY_STATEMACHINE,LANG_SUBCATEGORY_ARRAYS,LANG_CATEGORY_CURVE,LANG_SUBCATEGORY_BUTTON,LANG_SUBCATEGORY_BUS,LANG_SUBCATEGORY_OTHER,LANG_SUBCATEGORY_LCD,LANG_SUBCATEGORY_MAX7219,LANG_SUBCATERGORY_WS2812,LANG_SUBCATEGORY_OLED,LANG_SUBCATEGORY_BLUETOOTH,LANG_SUBCATEGORY_WIFI,LANG_SUBCATEGORY_IOT,LANG_SUBCATEGORY_BLE,LANG_SUBCATEGORY_BUZZER,LANG_SUBCATEGORY_VOICE,LANG_SUBCATEGORY_MIC,LANG_SUBCATEGORY_MUSIC,LANG_CATEGORY_DISTANCE,LANG_SUBCATEGORY_INFRARED,LANG_SUBCATEGORY_COLOR,LANG_SUBCATEGORY_LDR,LANG_SUBCATEGORY_MOTORS,LANG_SUBCATEGORY_ROBOTBASE,LANG_SUBCATEGORY_ROBOTACC,LANG_SUBCATEGORY_WALK,LANG_SUBCATEGORY_SYSTEM_CONTROL,LANG_SUBCATEGORY_SYSTEM_FILTER,LANG_SUBCATEGORY_TEMPERATURE,LANG_SUBCATEGORY_HUMIDITY,LANG_SUBCATEGORY_RAIN,LANG_SUBCATEGORY_GAS,LANG_SUBCATEGORY_MISC,LANG_SUBCATEGORY_HTML,LANG_SUBCATERGORY_ESPUI,LANG_CATEGORY_DEPRECATED";
 
@@ -60,7 +60,7 @@ QString SettingsStore::arduinoCLIPath() {
 #ifdef Q_OS_LINUX
     return relativePath("arduino_cli_path", "/usr/local/bin/arduino-cli");
 #elif defined(Q_OS_WIN)
-    return relativePath("arduino_cli_path", "C:\\Facilino\arduino-cli.exe");
+    return relativePath("arduino_cli_path", "arduino-cli.exe");
 #elif defined(Q_OS_MAC)
     return relativePath("arduino_cli_path", "Arduino.app");
 #endif

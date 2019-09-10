@@ -1,31 +1,58 @@
 <script>
-var currentSolutions=0;
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
 </script>
 
 <section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
 	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
 		<div class="container">
 			<div class="media-container-row">
-				<div class="title col-12 col-md-8">
+				<div class=" title col-12 col-md-8">
 					<h2 class="align-center pb-3 mbr-fonts-style display-2">
 						Sound Buzzer</h2>
 					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
-						Learn how to generate predefined sounds, melodies and even melodies that run in the background meanwhile you can do other stuff.</h3>
+						Learn how to generate predefined sounds, melodies and even melodies that run in a background task.</h3>
 				</div>
 			</div>
 		</div>
 	</section>
 </section>
 
-
 <section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
     <div class="container">
         <div class="media-container-row">
             <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>Arduino multisensor shield.</li></ul></blockquote>
+                <blockquote><strong>Required material. </strong><ul><li>An Arduino or ESP board, i.e.: <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-uno-r3/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-nano-v3-0-compatible/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a> or <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/wemos-esp32-d1-r32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>A <a onclick="onPageClicked('https://roboticafacil.es/en/prod/multisensor-shield/');" style="color:#1ec6c6" target="_blank">Multisensor shield</a> or two push-buttons connected to pins D2 and D3 and a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/ky-006-buzzer/');">buzzer</a> connected to pin D5.</li></ul></blockquote>
             </div>
         </div>
     </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Modules</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pushbuttons_buzzer_modules_bb.png" width="1400" alt="Modules" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Protoboard</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pushbuttons_buzzer_bb.png" width="1400" alt="Protoboard" title=""></img>
+            </div>
+    </figure>
 </section>
 
 <section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
@@ -39,18 +66,26 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('dyor_piezo_buzzer_predef_sounds','blocklyInstruction1');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('dyor_piezo_buzzer_melody','blocklyInstruction2');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction('dyor_piezo_buzzer_predef_melody','blocklyInstruction3');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction('dyor_piezo_buzzer_stop_melody','blocklyInstruction4');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('dyor_piezo_buzzer_isplaying_melody','blocklyInstruction5');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('dyor_piezo_music_end','blocklyInstruction6');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('dyor_piezo_music_silencio_negra','blocklyInstruction7');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('dyor_piezo_music_do_redonda','blocklyInstruction8');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction9'></div><script>injectInstruction('dyor_piezo_music_do_semicorchea_va','blocklyInstruction9');</script></div>
-	</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('dyor_piezo_buzzer','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_notone','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_predef_sounds','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_melody','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_predef_melody','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_stop_melody','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_isplaying_melody','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('dyor_piezo_music_end','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip('dyor_piezo_music_silencio_negra','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('dyor_piezo_music_do_redonda','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('dyor_piezo_music_do_semicorchea_va','blocklyInstruction11','tooltipInstruction11');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
 </section>
 
 <section class="mbr-section article content9 cid-qYh5KdWW4b">
@@ -64,17 +99,23 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction10'></div><script>injectInstruction('button_case','blocklyInstruction10');</script></div>
-	</div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction12'></span></div><div  id='blocklyInstruction12'></div><script>injectInstructionTooltip('button_case','blocklyInstruction12','tooltipInstruction12');</script></li>
+				  </ol>
+            </div>
+		</div>
+    </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <div class="section-text align-center mbr-fonts-style display-5">Basic Exercises</div>
             <hr class="line" style="width: 25%;">
         </div>
         </div>
@@ -85,63 +126,150 @@ var currentSolutions=0;
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><strong>Predefined Sounds</strong><p>Generate a connection sound when the switch button D2 is pressed and a disconnection sound when released. The Sound created is up to you. </p><strong>Hint:&nbsp;</strong><p><i>Predetermine bolean variables, that remember the state the button is in. Always add a little delay of your loop because sensors and actuaters need some time to react.</i></p> <button  type="button" onclick="showHide('solutions1','predefined_sounds_wemosD1R32.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button><a onclick="onFileDownloaded('predefined_sounds_wemosD1R32.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Custom Melodies</strong><p>Generate the melody "Close Encounters ot the Third Kind". Wait for the Button D2 to start reproducing the melody.</p><strong>Hint:&nbsp;</strong><p><i>Use the individual notes to create the customized melody.</i></p> <button  type="button" onclick="showHide('solutions2','custom_melodies_wemosD1R32.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button><a onclick="onFileDownloaded('custom_melodies_wemosD1R32.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					<li><strong>Predefined Melodies on a Background Task</strong><p>Generate a predefined melody on a backgroung task that can be interrupted anytime. The melody will start on pushing the switch button D2 and interrupted when switch button D3 is pressed.&nbsp;</p> <button  type="button" onclick="showHide('solutions3','predefined_melody_background_task_wemosD1R32.bly','exercise3');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button><a onclick="onFileDownloaded('predefined_melody_background_task_wemosD1R32.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                    <li><strong>Playing with notes</strong><p>Reproduce some simple music notes, i.e.: play all notes from A4 to C5 with a quarter duration at the setup.</p><strong>Hint: </strong><p><i>Use the 'Buzzer' instruction.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions1b','music_notes'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions1b','music_notes'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('music_notes'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Combining notes and no tones</strong><p>Now, use the 'No Tone' instruction just after each note and see the difference.</p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions2b','music_notes_no_tone'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions2b','music_notes_no_tone'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('music_notes_no_tone'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Playing with notes with ties</strong><p>Now, instead of using the 'No Tone' instruction check the 'tie' option and see the difference.</p> <strong>Hint: </strong><p><i> When activating the 'tie' option, notes are not interrupted before playing the next note.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions3b','music_notes_tie'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions3b','music_notes_no_tone'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('music_notes_tie'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Basic Solutions</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Intermediate Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Predefined Sounds</strong><p>Generate a connection sound when the switch button D2 is pressed and a disconnection sound when released. The Sound created is up to you. </p><strong>Hint:&nbsp;</strong><p><i>Predetermine bolean variables, that remember the state the button is in. Always add a little delay of your loop because sensors and actuaters need some time to react.</i></p> <button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions1i','predefined_sounds'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+											&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions1i','predefined_sounds'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+											<a onclick="onFileDownloaded('predefined_sounds'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Custom Melodies</strong><p>Generate the melody "Close Encounters ot the Third Kind". Wait for the Button D2 to start reproducing the melody.</p><strong>Hint:&nbsp;</strong><p><i>Use the individual notes to create the customized melody.</i></p> <button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions2i','custom_melodies'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('custom_melodies'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Predefined Melodies on a Background Task</strong><p>Generate a predefined melody on a backgroung task that can be interrupted anytime. The melody will start on pushing the switch button D2 and interrupted when switch button D3 is pressed.&nbsp;</p> <button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions3i','predefined_melody_background_task'+window.board+'.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('predefined_melody_background_task'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
 				</ol>
             </div>
         </div>
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
-    <div class="container">
-        <div class="inner-container" style="width: 100%;">
-            <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
-            <hr class="line" style="width: 25%;">
-        </div>
-    </div>
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width: 100%;">
+					<hr class="line" style="width: 25%;">
+					<div class="section-text align-center mbr-fonts-style display-5">Intermediate Solutions</div>
+					<hr class="line" style="width: 25%;">
+			</div>
+			</div>
 </section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 1</strong>
-				</div>
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Intermediate Exercise 1</strong>
 			</div>
-			<div class="media-container-row"><div id='exercise1'></div></div>
 		</div>
-	</section>
-	
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 2</strong>
-				</div>
+		<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Intermediate Exercise 2</strong>
 			</div>
-			<div class="media-container-row"><div id='exercise2'></div></div>
 		</div>
-	</section>
-	
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3" style="display:none">
-		<div class="container">
-			<div class="media-container-row">
-				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 3</strong>
-				</div>
+		<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Intermediate Exercise 3</strong>
 			</div>
-			<div class="media-container-row"><div id='exercise3'></div></div>
 		</div>
-	</section>
+		<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+	</div>
+</section>
 
 <script>
-var solutions = document.getElementById('solutions');
-solutions.style.display="none";
-//HideButton('but1'); HideButton('but2'); HideButton('but3');
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pushbuttons_buzzer_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pushbuttons_buzzer_bb.png';
 </script>

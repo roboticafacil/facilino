@@ -1,0 +1,358 @@
+<script>
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Gas Sensor</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Learn how to detect smoke and alcohol from a MQ2 gas sensor.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>An Arduino or ESP board, i.e.: <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-uno-r3/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-nano-v3-0-compatible/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a> or <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/wemos-esp32-d1-r32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>A <a onclick="onPageClicked('https://roboticafacil.es/en/prod/multisensor-shield/');" style="color:#1ec6c6" target="_blank">Multisensor shield</a> and a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/gas-sensor/');">MQ2 Gas Sensor</a> (any of them will work), where its analog output is connected to pin A3 and its digital output is connected to D8. If you don't use the multisensor shield, you need a red LED (connected to pin D12), a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/ky-006-buzzer/');">passive buzzer</a> connected to pin D5 and a <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/push-button-ky-004/');">pushbutton</a> connected to pin D2.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_gas_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Modules</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_gas_LED_pushbutton_buzzer_modules_bb.png" width="1400" alt="Modules" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Protoboard</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_gas_LED_pushbutton_buzzer_bb.png" width="1400" alt="Protoboard" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    MQ-x Gas Sensors Schematic</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Gas sensors provide two different types of outputs: an analog output and a digital output. The analog output is proportional to a voltage divisor between an internal resistor, Rs, which varies based on the gas concentration and gas type; and a load resistor, RL, which is fixed to 1KOhms. The higher the gas concentration, the smaller the value of the internal resistor. The analog signal, is then compared with the output of an adjustable potentiometer. When the value of the analog (measured) signal is higher than the one specified with the potentiometer, then the digital output will be LOW and an internal LED will light up.</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/MQx-Series-Gas-Sensor-Module-Schematic.png" width="1400" alt="MQx" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    MQ-x Gas Sensors Calibration</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Gas sensors need to warm-up before providing stable values on the analog signal. They, internally have a heating resistor to warm-up the sensor, so, once it is powered-up the sensor will be warming-up. Raw measurement <strong>do not </strong> provide a calibrated measurement in terms of gas concentration. Instead, their measurement is relative to the internal resistor value at clean air and it is unit less. This might vary depending on the sensor type and also varies depending on the conditions where the gas sensor is located. As a consequence, calibration it is recommended when you are seeking for a precise measurement, or just because, you want to understand the implications of having a calibrated sensor and a non-calibrated sensor in order to detect a specific gas, because the concentration values might be significantly different and have no physical meaning. According to specification of the manufacturer, each sensor has a sensivity curve that we need to use for a spcefic gas type and sensor. For instance, the MQ2 sensitivity curve is as follows:</div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 50%;">
+                <img src="tutorial/assets/images/mq2_sensitivity.png" width="1400" alt="MQx" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">The flat, black line, corresponds to the clean-air conditions. This is approximately a ratio between Rs/R0 of 9.83 according to the sensitivity curve, being the Rs the resistance of the gas sensor and R0 the resistance at clean air. The analog values read from the sensor are indeed a consequence of a voltage divider between Rs and RL, being RL=1KOhms (internally used in the gas sensor module). Therefore, the actual Rs value can be obtained from the analog measurements as: Rs=RL*(Vcc-Vo)/Vo, being Vcc=5V and Vo the analog measured value. As a consequence, in order to calibrate, we need to measure the value of Rs in clean air conditions and due to the sensor sensivity curve and get the value of R0 as R0=RL*(Vcc-Vo)/(9.83*Vo).</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    MQ-x Gas Sensors Concentration</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">Once we have obtained the value of R0, we can use it to obtain calibrated measurments of gas concentration. This depends on the gas type, as shown in the sensitivity curve above. Each of the curves are indeed approximately linear in log-scale which means that the actual gas concentration can be easily derived. First, let's annotate the end-points of the line for each gas in log-scale, for instance, for alcohol, we have first point x<sub>1</sub>=log<sub>10</sub>200 and y<sub>1</sub>=log<sub>10</sub>2.9, while for the second point, we have x<sub>2</sub>=log<sub>10</sub>10000 and y<sub>2</sub>=log<sub>10</sub>0.65. Thus, the line slope is defined as m=(y<sub>2</sub>-y<sub>1</sub>)/(x<sub>2</sub>-x<sub>1</sub>). Based on that, the gas concentration can obtained from: log<sub>10</sub>ppm=(log<sub>10</sub>(Rs/R0)-y<sub>1</sub>)/m+x<sub>1</sub>).</div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Worked instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('ambient_gas_analog_read','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('ambient_gas_digital_read','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip('ambient_gas_calibrate','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip('ambient_gas_read_calibrated','blocklyInstruction4','tooltipInstruction4');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Additional instructions</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+									<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('inout_analog_read','blocklyInstruction5','tooltipInstruction5');</script></li>
+									<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('pin_analog','blocklyInstruction6','tooltipInstruction6');</script></li>
+									<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('inout_digital_read','blocklyInstruction7','tooltipInstruction7');</script></li>
+									<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction8','tooltipInstruction8');</script></li>
+									<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip('serial_plot','blocklyInstruction9','tooltipInstruction9');</script></li>
+									<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_notone','blocklyInstruction10','tooltipInstruction10');</script></li>
+									<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('dyor_piezo_buzzer_predef_sounds','blocklyInstruction11','tooltipInstruction11');</script></li>
+								</ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Basic Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>Plotting relative gas concentration values</strong><p>Using the Arduino Plotter, show the measured raw values from the gas sensor (its analog output is connected to pin A3).</p><strong>Hint: </strong><p><i>Use the 'Serial Plot Data' instruction to plot the values and the 'AnalogRead' instruction to read the values from the analog pin A3. You should appreciate that the signal value decreases meanwhile the sensor is heating up. When the signal is at a steady state, this means that the sensor is warmed-up. Once is warmed-up, you can annotate the values at clean air and with the presence of a gas (to be used in the following exercises).</i></p>
+					<button type="button" title="Facilino code" onclick="showHideBasic('solutions1b','gas_raw_analog'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions1b','gas_raw_analog'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('gas_raw_analog'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Basic Gas Detector</strong><p>Now, considering that you have annotated values for which there's no precesen of gas and values where there's a high gas concentration, you can create a basic detector by turning on red LED connected to pin D12. The gas sensor is connected to pin A3 as before.</p><strong>Hint: </strong><p><i>Use an 'if' instruction to detect cases where the values are lower than the 'no gas' threshold and cases where the values are higher than the 'gas' threshold. When you put the sensor close to the gas, the LED should light up. When you remove the gas precense, it takes a time to decrease the value, so the LED will remain ON for a while, until the read values are below the threshold.</i></p>
+					<button type="button" title="Facilino code" onclick="showHideBasic('solutions2b','gas_basic_detector'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions2b','gas_basic_detector'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('gas_basic_detector'+window.board+'.bly');">
+					<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Digital Gas Detector</strong><p>Now, adjust the potentiometer so that digital output provides a signal indication of the gas precense. Light on and off the LED connected to pin D12 accordingly based on the digital input (you can connected to A3 too, but make sure that the wire is connected to the digital output of the sensor).</p><strong> Hint: </strong><p><i>The sensor provides HIGH when there's no gas detected, which implies that you need to negate the digital read from A3 to set the LED D12. Once the potentiometer is adjusted, you should see a similar behaviour as before.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions3b','gas_digital_detector'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions3b','gas_digital_detector'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('gas_digital_detector'+window.board+'.bly');"><button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Digital Gas Alarm</strong><p>Now, in addition to turning on and off a LED, you will set an alarming sound with the buzzer when a gas is detected.</p><strong> Hint: </strong><p><i>Use an 'if' instruction to distinguish between the 'gas detected' case and the 'no gas' case. In the 'gas detected' case, you can use a 'Buzzer' instruction with 'Mode 1' predefined sound and a delay of 200ms. When no gas is detected, use the 'Buzzer ... no tone' instruction to stop the sound.</i></p> <button  type="button" title="Facilino code" onclick="showHideBasic('solutions4b','gas_digital_alarm'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions4b','gas_digital_alarm'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded('gas_digital_alarm'+window.board+'.bly');"><button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Basic Solutions</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 1</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 2</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 3</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+  <div class="container">
+    <div class="media-container-row">
+      <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+        <strong>Basic Exercise 4</strong>
+      </div>
+    </div>
+    <div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+  </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise9_1">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Intermediate Exercises</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Calibrating a Gas Sensor</strong><p>Calibrate the gas sensor and obtain the value of the R0 resistor at clean air. Wait the pushbutton (connected to pin D2) to start the calibration procedure once the signal is stable.</p><strong> Hint: </strong><p><i>First, in the setup, you can wait meanwhile the value of the digital pin D2 is HIGH with a 'While' instruction and print the values of the measured analog input A3 (connected to analog output pin of the sensor). Then, start the calibration procedure using the instruction 'Calibrate R0' (select the appropriate sensor type) and print the resulting value on the serial monitor.</i></p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions1i','gas_calibration'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										<a onclick="onFileDownloaded('gas_calibration'+window.board+'.bly');">
+									<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+									<li><strong>Alcohol Meter</strong>. <p>Now, with the previous obtained value, measure the concentration of alcohol in ppm.</p><strong> Hint: </strong><p><i>Now use the 'Read gas (ppm)' instruction to obtained the calibrated value. Select the appropriate sensor and gas type.</i></p>
+										<button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions2i','alcohol_meter'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										<a onclick="onFileDownloaded('alcohol_meter'+window.board+'.bly');">
+										<button type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+								</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Intermediate Solutions</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_gas_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_gas_LED_pushbutton_buzzer_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_gas_LED_pushbutton_buzzer_bb.png';
+</script>

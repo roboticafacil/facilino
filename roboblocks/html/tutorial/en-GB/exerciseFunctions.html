@@ -1,48 +1,76 @@
 <script>
-var currentSolutions=0;
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
 </script>
 
-<section class="mbr-section content8 cid-qYnID8HJTn" id="title">
+<section class="mbr-section content8 cid-qYnID8HJTn" id=" title">
 	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
 		<div class="container">
 			<div class="media-container-row">
-				<div class="title col-12 col-md-8">
+				<div class=" title col-12 col-md-8">
 					<h2 class="align-center pb-3 mbr-fonts-style display-2">
 						Function and Procedures</h2>
 					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
 						Learn how to implement functions and procedures to resue part of your code and call it at any part of your program.</h3>
-					
+
 				</div>
 			</div>
 		</div>
 	</section>
 </section>
 
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Required material. </strong><ul><li>An Arduino or ESP board, i.e.: <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-uno-r3/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/en/prod/arduino-nano-v3-0-compatible/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a> or <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/en/prod/wemos-esp32-d1-r32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>A <a onclick="onPageClicked('https://roboticafacil.es/en/prod/multisensor-shield/');" style="color:#1ec6c6" target="_blank">Multisensor shield</a> or two LEDs (red and blue connected to pins D12 and D13), a potentiometer connected to A0 and a <a onclick="onPageClicked('https://roboticafacil.es/en/prod/ky-006-buzzer/');" style="color:#1ec6c6" target="_blank">passive buzzer</a> connected to D5.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="cid-qYh0wSah5G" id="image3-50">
     <figure class="mbr-figure container">
-            <div class="image-block" style="width: 50%;">
-                <img src="tutorial/assets/images/Electronics/wemosD1_shield.png" width="1400" alt="Multifunction" title=""></img>
-                
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
             </div>
     </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Modules</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_buzzer_modules_bb.png" width="1400" alt="Modules" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Protoboard</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_buzzer_bb.png" width="1400" alt="Protoboard" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                   Preliminaries</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
 </section>
 
 <section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
     <div class="container">
         <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">All required Electronics are already integrated in the Multisensor Shield.</div>
-        </div>
-    </div>
-</section>
-
-
-<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
-    <div class="container">
-        <div class="media-container-row">
-            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-                <blockquote><strong>Required material. </strong><ul><li>Arduino Uno (and compatible) or Wemos D1R2/D1R32.</li><li>A Multisensor Shield.</li></ul></blockquote>
-            </div>
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>Procedures</strong> are very convinient whenever you need to execute a set of instructions several times. It, generally, saves space in terms of the code require to execute a program, and it is a good programming style to use them whenever they are useful. <strong>Functions </strong>are just like procedures, but they return a value as a result of a code execution. Both, procedures and functions can have several <i>input arguments</i> of different types (i.e.: integers, strings, etc.). Functions have a mandatory return output argument of the indicated type.</div>
         </div>
     </div>
 </section>
@@ -52,7 +80,7 @@ var currentSolutions=0;
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
             <div class="section-text align-center mbr-fonts-style display-5">
-                    Preliminaries</div>
+                    Morse Code</div>
             <hr class="line" style="width: 25%;">
         </div>
         </div>
@@ -69,7 +97,7 @@ var currentSolutions=0;
 <section class="section-table cid-table" id="table1-62">
   <div class="container container-table" style="width: 62%">
       <div class="table-wrapper">
-        <div class="container">    
+        <div class="container">
         </div>
         <div class="container scroll">
           <table class="table" cellspacing="0">
@@ -82,7 +110,7 @@ var currentSolutions=0;
                       Code</th></tr>
             </thead>
             <tbody>
-            <tr> 
+            <tr>
 			  <td class="body-item mbr-fonts-style display-7">A</td><td class="body-item mbr-fonts-style display-7">· —</td><td class="body-item mbr-fonts-style display-7">T</td><td class="body-item mbr-fonts-style display-7">—</td></tr><tr>
               <td class="body-item mbr-fonts-style display-7">B</td><td class="body-item mbr-fonts-style display-7">— · · ·</td><td class="body-item mbr-fonts-style display-7">U</td><td class="body-item mbr-fonts-style display-7">· · —</td></tr><tr>
               <td class="body-item mbr-fonts-style display-7">C</td><td class="body-item mbr-fonts-style display-7">— · — ·</td><td class="body-item mbr-fonts-style display-7">V</td><td class="body-item mbr-fonts-style display-7">· · · —</td></tr><tr>
@@ -105,7 +133,7 @@ var currentSolutions=0;
           </table>
         </div>
         <div class="container table-info-container">
-          
+
         </div>
       </div>
     </div>
@@ -133,7 +161,7 @@ var currentSolutions=0;
 <section class="section-table cid-table" id="table1-62">
   <div class="container container-table" style="width: 62%">
       <div class="table-wrapper">
-        <div class="container">    
+        <div class="container">
         </div>
         <div class="container scroll">
           <table class="table" cellspacing="0">
@@ -143,7 +171,7 @@ var currentSolutions=0;
                       Atbash Encryption Table</th></tr>
             </thead>
             <tbody>
-            <tr> 
+            <tr>
 			  <td class="body-item mbr-fonts-style display-7">a&#8594;z</td><td class="body-item mbr-fonts-style display-7">b&#8594;y</td><td class="body-item mbr-fonts-style display-7">c&#8594;x</td><td class="body-item mbr-fonts-style display-7">d&#8594;w</td></tr><tr>
               <td class="body-item mbr-fonts-style display-7">e&#8594;v</td><td class="body-item mbr-fonts-style display-7">f&#8594;u</td><td class="body-item mbr-fonts-style display-7">g&#8594;t</td><td class="body-item mbr-fonts-style display-7">h&#8594;s</td></tr><tr>
               <td class="body-item mbr-fonts-style display-7">i&#8594;r</td><td class="body-item mbr-fonts-style display-7">j&#8594;q</td><td class="body-item mbr-fonts-style display-7">k&#8594;p</td><td class="body-item mbr-fonts-style display-7">l&#8594;o</td></tr><tr>
@@ -154,7 +182,7 @@ var currentSolutions=0;
           </table>
         </div>
         <div class="container table-info-container">
-          
+
         </div>
       </div>
     </div>
@@ -171,12 +199,18 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction1'></div><script>injectInstruction('procedures_defnoreturn','blocklyInstruction1');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction2'></div><script>injectInstruction('procedures_defreturn','blocklyInstruction2');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction3'></div><script>injectInstruction1('procedures_callnoreturn','blocklyInstruction3');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction4'></div><script>injectInstruction1('procedures_callreturn','blocklyInstruction4');</script></div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip('procedures_defnoreturn','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip('procedures_defreturn','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip1('procedures_callnoreturn','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip1('procedures_callreturn','blocklyInstruction4','tooltipInstruction4');</script></li>
+                </ol>
+            </div>
+		</div>
     </div>
 </section>
 
@@ -191,23 +225,41 @@ var currentSolutions=0;
         </div>
 </section>
 
-<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
     <div class="container">
-		<div class="media-container-row"><div id='blocklyInstruction5'></div><script>injectInstruction('text_append','blocklyInstruction5');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction6'></div><script>injectInstruction('text_length','blocklyInstruction6');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction7'></div><script>injectInstruction('text_charAt','blocklyInstruction7');</script></div>
-		<div class="media-container-row"><div id='blocklyInstruction8'></div><script>injectInstruction('text_to_text','blocklyInstruction8');</script></div>
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('serial_available','blocklyInstruction5','tooltipInstruction5');</script></li>
+					<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('serial_parseint','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip('variables_local','blocklyInstruction7','tooltipInstruction7');</script></li>
+					<li><div><span id='tooltipInstruction7a'></span></div><div  id='blocklyInstruction7a'></div><script>injectInstructionTooltip('variables_local_type','blocklyInstruction7a','tooltipInstruction7a');</script></li>
+					<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip1('variables_get','blocklyInstruction8','tooltipInstruction8');</script></li>
+					<li><div><span id='tooltipInstruction8a'></span></div><div  id='blocklyInstruction8a'></div><script>injectInstructionTooltip1('variables_set','blocklyInstruction8a','tooltipInstruction8a');</script></li>
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip1('controls_for','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction9a'></span></div><div  id='blocklyInstruction9a'></div><script>injectInstructionTooltip1('controls_repeat','blocklyInstruction9a','tooltipInstruction9a');</script></li>
+					<li><div><span id='tooltipInstruction9b'></span></div><div  id='blocklyInstruction9b'></div><script>injectInstructionTooltip1('controls_whileUntil','blocklyInstruction9b','tooltipInstruction9b');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('inout_digital_write','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('pin_digital','blocklyInstruction11','tooltipInstruction11');</script></li>
+					<li><div><span id='tooltipInstruction11a'></span></div><div  id='blocklyInstruction11a'></div><script>injectInstructionTooltip('math_arithmetic','blocklyInstruction11a','tooltipInstruction11a');</script></li>
+					<li><div><span id='tooltipInstruction12'></span></div><div  id='blocklyInstruction12'></div><script>injectInstructionTooltip('text_append','blocklyInstruction12','tooltipInstruction12');</script></li>
+					<li><div><span id='tooltipInstruction13'></span></div><div  id='blocklyInstruction13'></div><script>injectInstructionTooltip('text_length','blocklyInstruction13','tooltipInstruction13');</script></li>
+					<li><div><span id='tooltipInstruction14'></span></div><div  id='blocklyInstruction14'></div><script>injectInstructionTooltip('text_charAt','blocklyInstruction14','tooltipInstruction14');</script></li>
+					<li><div><span id='tooltipInstruction15'></span></div><div  id='blocklyInstruction15'></div><script>injectInstructionTooltip('text_to_text','blocklyInstruction15','tooltipInstruction15');</script></li>
+				  </ol>
+            </div>
+		</div>
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="exercise7_1">
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Exercises</div>
+            <div class="section-text align-center mbr-fonts-style display-5">Basic Exercises</div>
             <hr class="line" style="width: 25%;">
         </div>
-    </div>
+        </div>
 </section>
 
 <section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
@@ -215,53 +267,170 @@ var currentSolutions=0;
         <div class="media-container-row">
             <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
                 <ol>
-                    <li><strong>S.O.S.</strong><p>Implement two functions: <i>dash</i> and <i>dot</i>. The dash and dot functions will turn on and off blue LED (connected to pin D13). The base time for the dash and dot functions will be fixed to 200ms. Try to transmite and S.O.S message based on the table in the Preliminaries (after the message has been transmitted, you can repeat it if you make a long pause, say of 10000ms). All required Electronics are already integrated in the Multisensorshield.</p><strong>Hint: </strong><p><i>The sequence for the dot function is: turn on LED, wait 200ms, turn off LED and wait 200ms. Similarly, the sequence for the dash function is turn on LED, wait 600ms, turn off LED and wait 200ms. Note that, for simplicity, the time needed between consecutive dashes and dots is included, which implies that the time between letters will be 400ms</i>. Add an integer parameter and repeat the dash and dot sequence inside a </i>for<i> loop instruction.</i></p><button  type="button" onclick="showHide('solutions1','sos_wemosD1R32.bly','exercise1');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('sos_wemosD1R32.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
-					
-					<li><strong>Encrypt</strong><p>Implement a <strong>function that accepts a string message</strong> (as input argument) and <strong>returns a string</strong>. The function must encrypt a message based on the Atbash encryption table.</p><strong>Hint: </strong><p><i>Inside the function, implement a </i>while<i> loop, that iterates over the characters of the string. Then perform new_c&#8592;'z'-c+'a', being </i>c<i> the read character and </i>new_c</i> the character to append to the output string.</i></p><button  type="button" onclick="showHide('solutions2','encrypt.bly','exercise2');" class="btn-primary display-4"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span></button>
-					<a onclick="onFileDownloaded('encrypt.bly');">
-					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+									<li><strong>Blink a LED as you wish I</strong><p>Implement a procedure that blinks the LED connected at pin D12 as many times as indicated by an input argument of type 'int' with a blinking frequency of 1Hz. Then, in the main loop, parse an integer received from the USB serial port and call the procedure to make the LED blink.</p><strong>Hint: </strong><p><i>Add an input argument of type 'int', let's say 'n' and use it inside the procedure to count from '1' to 'n' in a loop. Inside the loop make the LED blink, setting its state to HIGH and LOW with a delay of 500ms. To parse an integer number Intermediate Exercise 1 in <a onclick="onHomeFile('exerciseUSBSerial.html');" style="color:#1ec6c6">USB Serial Communication</a></i>.</p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions1b','blink_as_you_wish'+window.board+'.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+				&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions1b','blink_as_you_wish'+window.board+'.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+				<a onclick="onFileDownloaded('blink_as_you_wish'+window.board+'.bly');">
+				<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+								<li><strong>Blink a LED as you wish II</strong><p>Now, extend the previous procedure so that the delay time is also an input argument. </p><strong>Hint: </strong><p><i>Now, you need to add a second input argument of type 'int' and replace the constant '500' from the previous exercise with the corresponding time value variable (second input argument). Now, in the serial monitor, <strong>you need to enter two consecutive numbers</strong> every time you what to make the LED blink</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions2b','blink_as_you_wish2'+window.board+'.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+									&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions2b','sos'+window.board+'.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('sos'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+					<li><strong>Sum two numbers</strong><p>Implement a function that takes two input arguments and returns the sum of them. Parse two integer numbers received from the serial monitor and call the function to perform the sum. Print back on the serial monitor the result of the sum.</p><strong>Hint: </strong><p><i>Create a function with two input arguments of type 'int' and return the sum of them in 'return' section. When you introduce two numbers, you may notice that the program eventually returns 0 even if you don't type anything. This is because is receiving additional characters and interpreting them as 0.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions3b','sum.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions3b','sum.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('sum.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Mean analog read</strong><p>Implement a function that performs 30 consecutive measurements of the analog input A0 corresponding to the potentiometer. The function must return the mean value (output argument is a 'float'). Call the function in the main loop to plot the mean value on the Arduino Plotter.</p><strong>Hint: </strong><p><i>Create a function without input arguments and a floating point output argument. Inside the function repeat 30 times the measurement and accumulate the readings on a 'float' variable. After that, you can return the resulting value divided by 30.</i></p><button  type="button" title="Facilino code" onclick="showHideBasic('solutions4b','mean_analogA0'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideBasicCode('solutions4b','mean_analogA0'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('mean_analogA0'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
                 </ol>
             </div>
         </div>
     </div>
 </section>
 
-<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions">
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Basic Solutions</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Basic Exercise 4</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-5">Solutions</div>
+            <div class="section-text align-center mbr-fonts-style display-5">Intermediate Exercises</div>
             <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Basic S.O.S.</strong><p>Implement two functions: <i>dash</i> and <i>dot</i>. The dash and dot functions will turn on and off blue LED (connected to pin D13). The base time for the dash and dot functions will be fixed to 200ms. Try to transmite and S.O.S message based on the table in the Preliminaries (after the message has been transmitted, you can repeat it if you make a long pause, say of 10000ms). All required Electronics are already integrated in the Multisensorshield.</p><strong>Hint: </strong><p><i>The sequence for the dot function is: turn on LED, wait 200ms, turn off LED and wait 200ms. Similarly, the sequence for the dash function is turn on LED, wait 600ms, turn off LED and wait 200ms. Note that, for simplicity, the time needed between consecutive dashes and dots is included, which implies that the time between letters will be 400ms</i>.</p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions1i','sos_basic'+window.board+'.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+										&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions1i','sos_basic'+window.board+'.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+				<a onclick="onFileDownloaded('sos_basic'+window.board+'.bly');">
+				<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+								<li><strong>S.O.S.</strong><p>Following the ideas of the previous exercise, implement two functions that accepts the number of repetitions on each of the <i>dot</i> and <i>dash</i> functions. Now, instead of make the LEDs blink, make the sound buzzer (connected to pin D5) beep.</p><strong>Hint: </strong><p><i>Add an integer parameter and repeat the dash and dot sequence inside a </i>for<i> loop instruction. Now, the sound buzzer must wait the base time for dots and three times the base time for dashes. In both base, the waiting time once has stop beeping is the base time. Use a tone of 1500Hz for the beep.</i></p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions2i','sos'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+									&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions2i','sos'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('sos'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+					<li><strong>Encrypt</strong><p>Implement a <strong>function that accepts a string message</strong> (as input argument) and <strong>returns a string</strong>. The function must encrypt a message based on the Atbash encryption table.</p><strong>Hint: </strong><p><i>Inside the function, implement a </i>while<i> loop, that iterates over the characters of the string. Then perform new_c&#8592;'z'-c+'a', being </i>c<i> the read character and </i>new_c<i> the character to append to the output string.</i></p><button  type="button" title="Facilino code" onclick="showHideIntermediate('solutions3i','encrypt.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						&nbsp;<button type="button"  class="btn-primary display-4" title="Arduino code" onclick="showHideIntermediateCode('solutions3i','encrypt.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('encrypt.bly');">
+					<button  type="button" class="btn-primary display-4" title="Download" ><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
         </div>
     </div>
 </section>
 
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1" style="display:none">
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width: 100%;">
+					<hr class="line" style="width: 25%;">
+					<div class="section-text align-center mbr-fonts-style display-5">Intermediate Solutions</div>
+					<hr class="line" style="width: 25%;">
+			</div>
+			</div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 1</strong>
+					<strong>Intermediate Exercise 1</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise1'></div></div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
 		</div>
 	</section>
-	
-	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2" style="display:none">
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
 		<div class="container">
 			<div class="media-container-row">
 				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
-					<strong>Exercise 2</strong>
+					<strong>Intermediate Exercise 2</strong>
 				</div>
 			</div>
-			<div class="media-container-row"><div id='exercise2'></div></div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Intermediate Exercise 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
 		</div>
 	</section>
 
 <script>
-var solutions = document.getElementById('solutions');
-solutions.style.display="none";
-//HideButton('but1'); HideButton('but2');
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_buzzer_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_buzzer_bb.png';
 </script>

@@ -11,5 +11,10 @@ win32 {
   QMAKE_EXTRA_TARGETS += first
 }
 
+win64 {
+  first.commands = lupdate $$PWD/../facilino.pro && lrelease $$PWD/../facilino.pro
+  QMAKE_EXTRA_TARGETS += first
+}
+
 
 QMAKE_CLEAN += *.qm

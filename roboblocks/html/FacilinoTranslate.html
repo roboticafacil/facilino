@@ -43,8 +43,8 @@ padding-left:30px;
 <script src="javascript/blockly-bq/blocks_compressed.js"></script>
 <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 <script src="javascript/blockly-bq/FieldButton.js"></script>
-<script src="roboblocks_compressed.js"></script>
-<script src="facilino.js"></script>
+<script src="roboblocks_compressed_new.js"></script>
+<script src="facilino_new.js"></script>
 <style>.button_wrapper {
   text-align: center;
   color: red;
@@ -99,7 +99,7 @@ function injectToolbox(blockDiv) {
 	mainWorkspace.clear();
 	$('.blocklySvg, #'+blockDiv).height('400px');
 	window.dispatchEvent(new Event('resize'));
-	
+
 	//$('.blocklySvg, #blockly_categories').width('100%');
 	//$('.blocklySvg, #blockly_categories').float('left');
 }
@@ -182,7 +182,7 @@ if (localStorage.getItem("language")===undefined || localStorage.getItem("langua
 window.roboblocksLanguage = localStorage.getItem("language");
 //window.roboblocksProcessor = localStorage.getItem("processor");
 window.roboblocksProcessor = null;
-window.FacilinoLanguage = window.roboblocksLanguage; 
+window.FacilinoLanguage = window.roboblocksLanguage;
 //window.FacilinoProcessor = window.roboblocksProcessor;
 window.FacilinoProcessor = null;
 $("#language").val(window.roboblocksLanguage);
@@ -204,11 +204,11 @@ document.getElementById("language").onchange = function() {restoreData();};
 changeFunction();
 function readTranslationFile(transLang)
 {
-	$.ajax({url: 'lang/facilino_en-GB.json',dataType: "text",async: false,}).done(function(text) {window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys; 
+	$.ajax({url: 'lang/facilino_en-GB.json',dataType: "text",async: false,}).done(function(text) {window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;
 	$.ajax({url: 'lang/facilino_'+transLang+'.json',dataType: "text",async: false,}).done(function(text1) {
 
 	window.langKeys = $.parseJSON(text1).langs[transLang].keys;
-	
+
 	$.each(window.langKeysEng, function (key, text) {
 		var tblRow = "";
 		if (window.langKeys==undefined)
@@ -228,8 +228,8 @@ function readTranslationFile(transLang)
 		if (key.indexOf("_SUBCATEGORY_") !== -1)
 			window.subcat_keys[key] = {orig: window.langKeysEng[key], translation: window.langKeys[key]};
 	});
-	
-	
+
+
 	});
 	});
 }
@@ -240,22 +240,22 @@ function changeFunction() {
 	window.FacilinoLanguage = transLang;
 	//window.langKeys = window.dataLang.langs[transLang].keys;
 	//window.langKeysEng = window.dataLang.langs[window.origLang].keys;
-	
+
 	window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
 	window.toolboxNames = getToolboxNames(window.toolbox);
 	options = {zoom: 1};
-		
+
 	RoboBlocks.load(options);
 	Facilino.load(options);
 	var blocks = Blockly.getBlocks();
-	
-	
+
+
 	var all_div_old = document.getElementById("all");
 	var all_div = document.createElement('div');
 	all_div.setAttribute("id","all");
 	//document.body.appendChild(all_div);
 	document.body.replaceChild(all_div, all_div_old);
-	
+
 	all_div.appendChild(document.createElement('p'));
 	var cat_div = document.createElement('h3');
 	cat_div.setAttribute("id","cat_div");
@@ -273,7 +273,7 @@ function changeFunction() {
 	var cat_counter=1;
 	var row   = cat_tab.insertRow(0);
 	row.insertCell(0).innerHTML  = "<th><b>English Text</b></th>";
-	row.insertCell(1).innerHTML  = "<th><b>Translation</b></th>"; 
+	row.insertCell(1).innerHTML  = "<th><b>Translation</b></th>";
 	for (category in blocks) {
 		if (blocks.hasOwnProperty(category)) {
 			var row   = cat_tab.insertRow(cat_counter);
@@ -313,14 +313,14 @@ function changeFunction() {
 			}
 		}
 	}
-	
+
 	//all_div.appendChild(subcat_tab);
 	all_div.appendChild(cat_tab);
 	all_div.appendChild(document.createElement('p'));
-	
+
 	var categoryItem = function(type) {
 		var inst_title_div = document.createElement('h5');
-		
+
 		inst_title_div.innerHTML = type;
 		all_div.appendChild(inst_title_div);
 		var iDiv = document.createElement('div');
@@ -347,7 +347,7 @@ function changeFunction() {
 				cell2.innerHTML = "<input type=\"text\" style=\"width: "+(window.innerWidth/2)+"px;\" id=\""+key+"\" name=\""+key+"\" value=\""+window.langKeys[key]+"\" onchange=\"reinjectInstruction('"+type+"','"+iDiv.id+"','"+key+"')\"/>";
 			});
     };
-	
+
 	var instcat_div = document.createElement('h3');
 	instcat_div.innerHTML = "Instructions";
 	all_div.appendChild(instcat_div);
@@ -374,9 +374,9 @@ function submitData(){
 }
 
 function restoreData(){
-	//var element = document.getElementById("all"); 
+	//var element = document.getElementById("all");
 	//if (element !== null)
-	//  element.parentNode.removeChild(element); 
+	//  element.parentNode.removeChild(element);
 	readTranslationFile(document.getElementById("language").value);
 	changeFunction();
 }
@@ -393,9 +393,9 @@ function updateData(){
 		//console.log(document.getElementById(key));
 	}
 	//localStorage.setItem('dataLang',window.dataLang);
-	var element = document.getElementById("all"); 
+	var element = document.getElementById("all");
 	if (element !== null)
-	  element.parentNode.removeChild(element); 
+	  element.parentNode.removeChild(element);
 	changeFunction();
 }
 
@@ -411,7 +411,7 @@ function saveFile (name, type, data) {
     setTimeout(function(){  // fixes firefox html removal bug
         window.URL.revokeObjectURL(url);
         a.remove();
-    }, 500);  
+    }, 500);
 }
 
 function langChange(lang)
@@ -448,7 +448,7 @@ function showHideProcessor()
 function getToolboxNames(keys)
 {
 	var toolboxNames = [];
-	keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});			
+	keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});
 	return toolboxNames;
 }
 </script>

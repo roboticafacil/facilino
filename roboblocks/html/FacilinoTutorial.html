@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="tutorial/modal.css" type="text/css">
   <link rel="stylesheet" href="tutorial/overlay.css" type="text/css">
   <link rel="stylesheet" href="tutorial/popup.css" type="text/css">
+  <link rel="stylesheet" href="tutorial/print.css" type="text/css">
   <script src="tutorial/assets/web/assets/jquery/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="facilino.css">
   <link rel="stylesheet" type="text/css" href="javascript/highlight/styles/default.css">
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		new QWebChannel(qt.webChannelTransport, function (channel) { window.webHelper = channel.objects.webHelper;});
 		}
 		catch(e) {}
-		
+
 });
 </script>
 <script>
@@ -56,7 +57,18 @@ document.addEventListener("DOMContentLoaded", function () {
 			localStorage.setItem('processor', 'WEMOS D1R32 SHIELD');
 		window.roboblocksLanguage = localStorage.getItem("language");
 		window.roboblocksProcessor = localStorage.getItem("processor");
-		
+    if (window.roboblocksProcessor==='WEMOS D1R32 SHIELD')
+    {
+      window.board='_wemosD1R32';
+    }
+    else if (window.roboblocksProcessor==='ArduinoUno')
+    {
+      window.board='_uno';
+    }
+    else {
+      window.board='_wemosD1R32';
+    }
+
 		function openFunction(bly) {
 			$.ajax({
 				type: "GET" ,
@@ -85,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			instructionPreview.style.width = (bbox.width+25) + 'px';
 			window.dispatchEvent(new Event('resize'));
 		}
-		
+
 		function injectInstruction1(block,blockDiv) {
 			var instructionPreview = document.getElementById(blockDiv);
 			var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
@@ -101,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			instructionPreview.style.width = (bbox.width+55) + 'px';
 			window.dispatchEvent(new Event('resize'));
 		}
-		
+
 		function injectInstructionTooltip(block,blockDiv,tooltipDiv) {
 			var instructionPreview = document.getElementById(blockDiv);
 			var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
@@ -118,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			instructionPreview.style.width = (bbox.width+25) + 'px';
 			window.dispatchEvent(new Event('resize'));
 		}
-		
+
 		function injectInstructionTooltip1(block,blockDiv,tooltipDiv) {
 			var instructionPreview = document.getElementById(blockDiv);
 			var mainWorkspace = Blockly.inject(blockDiv, {readOnly:true, collapse: false});
@@ -135,17 +147,43 @@ document.addEventListener("DOMContentLoaded", function () {
 			instructionPreview.style.width = (bbox.width+55) + 'px';
 			window.dispatchEvent(new Event('resize'));
 		}
-		
+
 		function injectExample(exercise,exampleDiv) {
-			var instructionPreview = document.getElementById(exampleDiv);
-			var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+      var instructionPreview = document.getElementById(exampleDiv);
+      var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
 			openFunction('tutorial/exercises/'+exercise);
-			var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
+      var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
 			instructionPreview.style.height = (bbox.height+25)+ 'px';
-			instructionPreview.style.width = (bbox.width+25) + 'px';
-			window.dispatchEvent(new Event('resize'));
+      instructionPreview.style.width = (bbox.width+25) + 'px';
+      window.dispatchEvent(new Event('resize'));
 		}
 
+    function injectExampleCode(exercise,exampleDiv,exampleDivCode) {
+      var instructionPreview = document.getElementById(exampleDiv);
+      var instructionPreviewCode = document.getElementById(exampleDivCode);
+      instructionPreview.style="width: 0%;";
+      instructionPreviewCode.style="width: 100%; margin-left: 3em; margin-right: 3em; line-height: 1.1em;";
+      var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
+			openFunction('tutorial/exercises/'+exercise);
+      instructionPreviewCode.innerHTML="<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+escapeCode(Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace()))+"<br/>";
+		}
+
+    function escapeCode(code) {
+        var str = code;
+        str = str.replace(/</g, "&lt;");
+        str = str.replace(/>/g, "&gt;");
+        str = str.replace(/\/\*.*\*?\n/g,"");
+        str = str.replace(/\n/g, "<br/>&nbsp;&nbsp;&nbsp;&nbsp;");
+        var len = str.length;
+        while(true)
+        {
+          str = str.replace("<br/>&nbsp;&nbsp;&nbsp;&nbsp;<br/>", "<br/>");
+          if (str.length==len)
+            break;
+          len=str.length;
+        }
+        return str;
+    }
 
 		function showHide(el1,ex,el) {
 			var y = document.getElementById(el1);
@@ -171,7 +209,144 @@ document.addEventListener("DOMContentLoaded", function () {
 				injectExample(ex,el);
 			}
 		}
-		
+
+    function showHideBasic(el1,ex,el) {
+      var solutions_basic = document.getElementById('solutions_basic');
+      solutions_basic.style.display="block";
+      if (currentBasicSolutions>0)
+      {
+        var x = document.getElementById('solutions'+currentBasicSolutions+'b');
+        x.style.display = "none";
+      }
+      currentBasicSolutions=el1.substring(el1.length-2,el1.length-1);
+      var y = document.getElementById(el1);
+			y.style.display = "block";
+      var yc = document.getElementById(el+'c');
+			yc.style.display = "none";
+			var x = document.getElementById(el);
+			if (y.style.display === "block"){
+				var parent = x.parentNode;
+				parent.removeChild(x);
+				var div = document.createElement("div");
+				div.setAttribute("id",el);
+				parent.appendChild(div);
+				injectExample(ex,el);
+        location.hash = "#solutions_basic";
+			}
+		}
+
+    function showHideBasicCode(el1,ex,el,elc) {
+      var solutions_basic = document.getElementById('solutions_basic');
+      solutions_basic.style.display="block";
+      if (currentBasicSolutions>0)
+      {
+        var x = document.getElementById('solutions'+currentBasicSolutions+'b');
+        x.style.display = "none";
+      }
+      currentBasicSolutions=el1.substring(el1.length-2,el1.length-1);
+      var y = document.getElementById(el1);
+			y.style.display = "block";
+			var x = document.getElementById(el);
+      var xCode = document.getElementById(elc);
+			if (y.style.display === "block"){
+				var parent = x.parentNode;
+				parent.removeChild(x);
+        var parentCode = xCode.parentNode;
+        parentCode.removeChild(xCode);
+        var div = document.createElement("div");
+        var divCode = document.createElement("div");
+        div.setAttribute("id",el);
+        divCode.setAttribute("id",elc);
+				parent.appendChild(div);
+        parentCode.appendChild(divCode);
+        injectExampleCode(ex,el,elc);
+        location.hash = "#solutions_basic";
+			}
+		}
+
+    function showHideIntermediate(el1,ex,el) {
+      var solutions_intermediate = document.getElementById('solutions_intermediate');
+      solutions_intermediate.style.display="block";
+      if (currentIntermediateSolutions>0)
+      {
+        var x = document.getElementById('solutions'+currentIntermediateSolutions+'i');
+        x.style.display = "none";
+      }
+      currentIntermediateSolutions=el1.substring(el1.length-2,el1.length-1);
+      var y = document.getElementById(el1);
+			y.style.display = "block";
+      var yc = document.getElementById(el+'c');
+			yc.style.display = "none";
+			var x = document.getElementById(el);
+			if (y.style.display === "block"){
+				var parent = x.parentNode;
+				parent.removeChild(x);
+				var div = document.createElement("div");
+				div.setAttribute("id",el);
+				parent.appendChild(div);
+				injectExample(ex,el);
+        location.hash = "#solutions_intermediate";
+			}
+		}
+
+    function showHideIntermediateCode(el1,ex,el,elc) {
+      var solutions_intermediate = document.getElementById('solutions_intermediate');
+      solutions_intermediate.style.display="block";
+      if (currentIntermediateSolutions>0)
+      {
+        var x = document.getElementById('solutions'+currentIntermediateSolutions+'i');
+        x.style.display = "none";
+      }
+      currentIntermediateSolutions=el1.substring(el1.length-2,el1.length-1);
+      var y = document.getElementById(el1);
+			y.style.display = "block";
+			var x = document.getElementById(el);
+      var xCode = document.getElementById(elc);
+			if (y.style.display === "block"){
+				var parent = x.parentNode;
+				parent.removeChild(x);
+        var parentCode = xCode.parentNode;
+        parentCode.removeChild(xCode);
+        var div = document.createElement("div");
+        var divCode = document.createElement("div");
+        div.setAttribute("id",el);
+        divCode.setAttribute("id",elc);
+				parent.appendChild(div);
+        parentCode.appendChild(divCode);
+        injectExampleCode(ex,el,elc);
+        location.hash = "#solutions_intermediate";
+			}
+		}
+
+    function showAllCode(sol_div,ex_div,showHideFnc) {
+      var solutions_basic = document.getElementById(sol_div);
+      var exercises_basic = document.getElementById(ex_div);
+      if (solutions_basic && exercises_basic)
+      {
+        solutions_basic.style.display="block";
+        var exercises_list = exercises_basic.getElementsByTagName('li');
+        for (var i=0;i<exercises_list.length;i++){
+          var button_list = exercises_list[i].getElementsByTagName('button');
+          var str = button_list[0].getAttribute('onclick');
+          str=str.replace(showHideFnc+'(','');
+          str=str.replace(');','');
+          var str_list = str.split(',');
+          for (var j=0;j<str_list.length;j++)
+            str_list[j]=eval(str_list[j]);
+          var sol = document.getElementById(str_list[0]);
+          var example_div = document.getElementById(str_list[2]);
+          sol.style.display = "block";
+          example_div.style.display = "block";
+          var parent = example_div.parentNode;
+          parent.removeChild(example_div);
+          var div = document.createElement("div");
+          div.setAttribute("id",str_list[2]);
+          parent.appendChild(div);
+          injectExample(str_list[1],str_list[2]);
+        }
+      }
+		}
+
 		function HideButton(el)
 		{
 			if (localStorage.getItem("solutions")===undefined || localStorage.getItem("solutions")===null)
@@ -180,16 +355,17 @@ document.addEventListener("DOMContentLoaded", function () {
 				y.style.display = "none";
 			}
 		}
-		
+
 		function onPageClicked(page)
 		{
 			window.open(page, '_blank');
 			if (window.webHelper.pageClicked !== undefined)
 				window.webHelper.pageClicked(page);
 		}
-		
+
 		function onFileDownloaded(file)
 		{
+      console.log(file);
 			//window.open('tutorial/'+file, '_blank');
 			var anchor=document.createElement('a');
 			anchor.setAttribute('href','tutorial/exercises/'+file);
@@ -200,14 +376,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (window.webHelper.fileDownloaded !== undefined)
 				window.webHelper.fileDownloaded(file);
 		}
-		
-		window.FacilinoLanguage = window.roboblocksLanguage; 
+
+		window.FacilinoLanguage = window.roboblocksLanguage;
 		window.FacilinoProcessor = window.roboblocksProcessor;
 		$.ajax({url: 'lang/facilino_'+window.roboblocksLanguage+'.json',dataType: "text",async: false,}).done(function(text) {window.langKeys = $.parseJSON(text).langs[window.roboblocksLanguage].keys;});
 		$.ajax({url: 'lang/facilino_en-GB.json',dataType: "text",async: false,}).done(function(text) {window.langKeysEng = $.parseJSON(text).langs['en-GB'].keys;});
 		RoboBlocks.load({ zoom: 1 });
 		Facilino.load({ zoom: 1});
-		
+
 </script>
 	<div id="menu"></div>
 <script>$(function(){var file='tutorial/'+ window.roboblocksLanguage+'/menu.html'; $.ajax({url:file,async:false,type:"HEAD",error: function(){file='tutorial/en-GB/menu.html';},success: function(){}}); $('#menu').load(file);});</script>
@@ -236,7 +412,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <script src="tutorial/assets/touchswipe/jquery.touch-swipe.min.js"></script>
   <script src="tutorial/assets/smoothscroll/smooth-scroll.js"></script>
   <script src="tutorial/assets/theme/js/script.js"></script>
-  
-  
+
+
 </body>
 </html>

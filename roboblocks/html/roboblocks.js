@@ -1175,8 +1175,7 @@
             with(obj) {
                 __p +=
                     ((__t = (argument0)) == null ? '' : __t) +
-                    '.toLowerCase()';
-
+                    '.toLowerCase();\n';
             }
             return __p
         };
@@ -1188,8 +1187,7 @@
             with(obj) {
                 __p +=
                     ((__t = (argument0)) == null ? '' : __t) +
-                    '.toUpperCase()';
-
+                    '.toUpperCase();\n';
             }
             return __p
         };
@@ -4275,7 +4273,7 @@
 			tags: ['logic'],						
 			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,		
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
-			keys: ['LANG_LOGIC_COMPARE_TOOLTIP_EQ','LANG_LOGIC_COMPARE_TOOLTIP_NEQ','LANG_LOGIC_COMPARE_TOOLTIP_LT','LANG_LOGIC_COMPARE_TOOLTIP_LTE','LANG_LOGIC_COMPARE_TOOLTIP_GT','LANG_LOGIC_COMPARE_TOOLTIP_GTE'],
+			keys: ['LANG_LOGIC_COMPARE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_LOGIC);
                 this.setOutput(true, Boolean);
@@ -4285,7 +4283,7 @@
                 this.setInputsInline(true);
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_COMPARE_TOOLTIP_EQ')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_COMPARE_TOOLTIP_NEQ')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_COMPARE_TOOLTIP_LT')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_COMPARE_TOOLTIP_LTE')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_COMPARE_TOOLTIP_GT')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_COMPARE_TOOLTIP_GTE'));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_COMPARE_TOOLTIP'));
             }
         };
 
@@ -4345,7 +4343,7 @@
 			tags: ['logic'],	
 			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
-			keys: ['LANG_LOGIC_OPERATION_AND','LANG_LOGIC_OPERATION_OR','LANG_LOGIC_OPERATION_XOR','LANG_LOGIC_OPERATION_XNOR','LANG_LOGIC_OPERATION_IMPLIES','LANG_LOGIC_OPERATION_TOOLTIP_AND','LANG_LOGIC_OPERATION_TOOLTIP_OR','LANG_LOGIC_OPERATION_TOOLTIP_XOR','LANG_LOGIC_OPERATION_TOOLTIP_XNOR','LANG_LOGIC_OPERATION_TOOLTIP_IMPLIES'],
+			keys: ['LANG_LOGIC_OPERATION_AND','LANG_LOGIC_OPERATION_OR','LANG_LOGIC_OPERATION_XOR','LANG_LOGIC_OPERATION_XNOR','LANG_LOGIC_OPERATION_IMPLIES','LANG_LOGIC_OPERATION_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_LOGIC);
                 this.setOutput(true, Boolean);
@@ -4360,7 +4358,7 @@
                 this.setInputsInline(true);
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_TOOLTIP_AND')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_TOOLTIP_AND')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_TOOLTIP_XOR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_TOOLTIP_XNOR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_TOOLTIP_IMPLIES'));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_TOOLTIP'));
             }
         };	
 		
@@ -5520,7 +5518,7 @@
 			tags: ['math'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
-			keys: ['LANG_MATH_SINGLE_OP_ROOT','LANG_MATH_SINGLE_OP_ABSOLUTE','LANG_MATH_SINGLE_TOOLTIP_ROOT','LANG_MATH_SINGLE_TOOLTIP_ABS','LANG_MATH_SINGLE_TOOLTIP_NEG','LANG_MATH_SINGLE_TOOLTIP_LN','LANG_MATH_SINGLE_TOOLTIP_LOG10','LANG_MATH_SINGLE_TOOLTIP_EXP','LANG_MATH_SINGLE_TOOLTIP_POW10'],
+			keys: ['LANG_MATH_SINGLE_OP_ROOT','LANG_MATH_SINGLE_OP_ABSOLUTE','LANG_MATH_SINGLE_TOOLTIP'],
             init: function() {
                 this.setColour(this.colour);
                 this.setOutput(true, Number);
@@ -5543,7 +5541,7 @@
                     ]), 'OP');
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
-                this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP_ROOT')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP_ABS')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP_NEG')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP_LN')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP_LOG10')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP_EXP')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP_POW10'));
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP'));
             }
         };
 		
@@ -6092,7 +6090,18 @@
             Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
 			if (profiles['processor']==='ATmega32U4')
 				Blockly.Arduino.setups_['setup_serial_while'] = 'while(!Serial);\n';
-            code += 'Serial.println(' + content+');\n';
+			if ((profiles['processor']==='ESP32')||(profiles['processor']==='ESP8266'))
+			{
+				/*if (this.getInputTargetBlock('CONTENT').type==='ir_read_code')
+				{
+					Blockly.Arduino.definitions_['IRutils_h']='#include <IRutils.h>';
+					code+='serialPrintUint64('+content+',HEX);\n';
+				}
+				else*/
+					code += 'Serial.println(' + content+');\n';
+			}
+			else
+				code += 'Serial.println(' + content+');\n';
             return code;
         };
 
@@ -6999,11 +7008,9 @@
             code += a['code'];
             argument0 = a['pin'];
 
-            code += JST['text_lower']({
-                'argument0': argument0
-            });
+            code += JST['text_lower']({'argument0': argument0});
 
-            return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
+            return code;
         };
 
         Blockly.Blocks.text_lower = {
@@ -7014,13 +7021,15 @@
 			examples: ['text_length_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,
-			keys: ['LANG_TEXT_LENGTH_INPUT_LOWER','LANG_TEXT_LENGTH_LOWER_TOOLTIP'],
+			keys: ['LANG_TEXT_LENGTH_INPUT_LOWER','LANG_TEXT_SET','LANG_TEXT_LENGTH_LOWER_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
-                this.appendValueInput('VALUE')
-                    .setCheck(String)
-                    .appendField(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_INPUT_LOWER'));
-                this.setOutput(true,String);
+                this.appendValueInput('VALUE').setCheck(String).appendField(RoboBlocks.locales.getKey('LANG_TEXT_SET'));
+				this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_INPUT_LOWER'));
+                //this.setOutput(true,String);
+				this.setInputsInline(true);
+				this.setPreviousStatement(true,'code');
+				this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_LOWER_TOOLTIP'));
             }
         };
@@ -7033,11 +7042,9 @@
             code += a['code'];
             argument0 = a['pin'];
 
-            code += JST['text_upper']({
-                'argument0': argument0
-            });
+            code += JST['text_upper']({'argument0': argument0});
 
-            return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
+            return code;
         };
 
         Blockly.Blocks.text_upper = {
@@ -7048,13 +7055,15 @@
 			examples: ['text_length_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
 			colour: RoboBlocks.LANG_COLOUR_TEXT,
-			keys: ['LANG_TEXT_LENGTH_INPUT_UPPER','LANG_TEXT_LENGTH_UPPER_TOOLTIP'],
+			keys: ['LANG_TEXT_LENGTH_INPUT_UPPER','LANG_TEXT_SET','LANG_TEXT_LENGTH_UPPER_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
-                this.appendValueInput('VALUE')
-                    .setCheck(String)
-                    .appendField(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_INPUT_UPPER'));
-                this.setOutput(true,String);
+                this.appendValueInput('VALUE').setCheck(String).appendField(RoboBlocks.locales.getKey('LANG_TEXT_SET'));
+				this.appendDummyInput('').appendField(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_INPUT_UPPER'));
+                //this.setOutput(true,String);
+				this.setInputsInline(true);
+				this.setPreviousStatement(true,'code');
+				this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_UPPER_TOOLTIP'));
             }
         };
@@ -7174,7 +7183,7 @@
             code += a['code'];
             string2 = a['pin'];
 			
-			code = '('+string2+'.indexOf('+string1+')>0)';
+			code = '('+string2+'.indexOf('+string1+')>=0)';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
@@ -7379,7 +7388,7 @@
 							var block =this.getParent();
 							while(block!==null)
 							{
-								console.log(block);
+								//console.log(block);
 								if (block.type==='communications_wifi_iot_thingsboard_rpc')
 								{
 									in_get_instruction=true;

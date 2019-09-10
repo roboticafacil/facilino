@@ -1,0 +1,300 @@
+<script>
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Resistencia Dependiente de la Luz (LDR)</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a a leer valores sin procesar y calibrados de un sensor LDR.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>,
+									<a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>,
+									<a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>,
+									<a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una
+										<a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o un <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked(&#39;https://roboticafacil.es/prod/sensor-luz-ldr-ky-018/&#39;);">sensor de luz LDR</a> conectado al pin A1 y un
+											<a style="color:#1ec6c6" target="_blank" onclick="onPageClicked(&#39;https://roboticafacil.es/prod/modulo-rgb-led-ky-016/&#39;);">LED RGB</a> (rojo, verde y azul conectado a los pines D9, D11 y D10, respectivamente).</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_RGB_ldr_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_RGB_ldr_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction1"></span></div><div id="blocklyInstruction1"></div><script>injectInstructionTooltip('ldr_read','blocklyInstruction1','tooltipInstruction1');</script></li>
+					<li><div><span id="tooltipInstruction2"></span></div><div id="blocklyInstruction2"></div><script>injectInstructionTooltip1('ldr_read_calibrated','blocklyInstruction2','tooltipInstruction2');</script></li>
+					<li><div><span id="tooltipInstruction3"></span></div><div id="blocklyInstruction3"></div><script>injectInstructionTooltip1('ldr_read_lux','blocklyInstruction3','tooltipInstruction3');</script></li>
+					<li><div><span id="tooltipInstruction4"></span></div><div id="blocklyInstruction4"></div><script>injectInstructionTooltip1('ldr_max_lux','blocklyInstruction4','tooltipInstruction4');</script></li>
+					<li><div><span id="tooltipInstruction5"></span></div><div id="blocklyInstruction5"></div><script>injectInstructionTooltip1('ldr_min_lux','blocklyInstruction5','tooltipInstruction5');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id="tooltipInstruction6"></span></div><div id="blocklyInstruction6"></div><script>injectInstructionTooltip('advanced_map','blocklyInstruction6','tooltipInstruction6');</script></li>
+					<li><div><span id="tooltipInstruction7"></span></div><div id="blocklyInstruction7"></div><script>injectInstructionTooltip('inout_analog_write','blocklyInstruction7','tooltipInstruction7');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Medición de luz I</strong><p>Imprime los valores de las mediciones sin procesar de un sensor LDR conectado al pin A1.</p><strong>Pista:</strong><p><i>Imprime el valor analógico de la señal conectada a A1 correspondiente al LDR. Incluye un retardo de 100 ms.</i></p>
+				<button type="button" title="Código Facilino" class="btn-primary display-4" onclick="showHideBasic(&#39;solutions1b&#39;,&#39;measuring_light&#39;+window.board+&#39;.bly&#39;,&#39;exercise1b&#39;);"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+				 <button type="button" class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode(&#39;solutions1b&#39;,&#39;measuring_light&#39;+window.board+&#39;.bly&#39;,&#39;exercise1b&#39;,&#39;exercise1bc&#39;);"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+				<a onclick="onFileDownloaded(&#39;measuring_light&#39;+window.board+&#39;.bly&#39;);">
+				<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				<li><strong>Medición de luz II</strong><p>Imprime "Too much light" o "Too dark" si hay demasiada luz o si está demasiado oscuro. El caso donde el valor de lectura es mayor que 1000 (Wemos D1 R32) o 250 (Arduino Uno) corresponde a que hay demasiada luz, mientras que cuando está demasiado oscuro el valor de lectura es menor que 600 (Wemos D1 R32) o 150 (Arduino Uno).</p><strong>Pista:</strong><p><i>Ahora, almacena el valor de lectura en una variable y con una instrucción 'si', verifica si se produce una condición de 'demasiada luz' o 'muy oscuro' (los <strong>valores pueden ser diferentes dependiendo de las condiciones de iluminación</strong>).</i></p>
+					<button type="button" title="Código Facilino" class="btn-primary display-4" onclick="showHideBasic(&#39;solutions2b&#39;,&#39;measuring_light2&#39;+window.board+&#39;.bly&#39;,&#39;exercise2b&#39;);"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					 <button type="button" class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode(&#39;solutions2b&#39;,&#39;measuring_light2&#39;+window.board+&#39;.bly&#39;,&#39;exercise2b&#39;,&#39;exercise2bc&#39;);"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded(&#39;measuring_light2&#39;+window.board+&#39;.bly&#39;);">
+					<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Medición de luz III</strong><p>Ahora, siguiendo las ideas del ejercicio anterior, establece un color blanco en el LED RGB (conectado a los pines D9, D10 y D11) cuando esté demasiado oscuro y apaga (establece el LED RGB en negro) cuando hay demasiada luz.</p> <strong>Pista:</strong><p><i>Ahora, en lugar de imprimir mensajes, debes configurar los pines D9, D10 y D11 en ALTO o BAJO dependiendo de las condiciones de luz.</i></p>
+						<button type="button" title="Código Facilino" class="btn-primary display-4" onclick="showHideBasic(&#39;solutions3b&#39;,&#39;measuring_light3&#39;+window.board+&#39;.bly&#39;,&#39;exercise3b&#39;);"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+						 <button type="button" class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode(&#39;solutions3b&#39;,&#39;measuring_light3&#39;+window.board+&#39;.bly&#39;,&#39;exercise3b&#39;,&#39;exercise3bc&#39;);"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+						<a onclick="onFileDownloaded(&#39;measuring_light3&#39;+window.board+&#39;.bly&#39;);">
+						<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+						<li><strong>Control LED</strong><p>Ahora, basándose en ejercicios anteriores, establece la intensidad de la luz LED RGB proporcional a la luz medida.</p> <strong>Pista:</strong><p><i>Usa la instrucción 'Mapea' para generar una conversión lineal entre la luz medida y la señal PWM que se aplicará a cada uno de los canales de LED RGB.</i></p>
+							<button type="button" title="Código Facilino" class="btn-primary display-4" onclick="showHideBasic(&#39;solutions4b&#39;,&#39;led_control&#39;+window.board+&#39;.bly&#39;,&#39;exercise4b&#39;);"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+							 <button type="button" class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode(&#39;solutions4b&#39;,&#39;led_control&#39;+window.board+&#39;.bly&#39;,&#39;exercise4b&#39;,&#39;exercise4bc&#39;);"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+							<a onclick="onFileDownloaded(&#39;led_control&#39;+window.board+&#39;.bly&#39;);">
+							<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width:100%">
+          <hr class="line" style="width:25%">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width:25%">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise1b"></div><div id="exercise1bc"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise2b"></div><div id="exercise2bc"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise3b"></div><div id="exercise3bc"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 4</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise4b"></div><div id="exercise4bc"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width:100%">
+            <hr class="line" style="width:25%">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width:25%">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Medida Calibrada I</strong><p>Imprime valores para mediciones sin procesar y mediciones calibradas en porcentaje y lux.</p><strong>Pista:</strong><p><i>El sensor solo envía un valor analógico al microcontrolador, ahora tenemos que convertir esa señal analógica a luminancia lineal medida en porcentaje o logarítmica medida en Lux utilizando las instrucciones calibradas.</i></p>
+									<button type="button" title="Código Facilino" class="btn-primary display-4" onclick="showHideIntermediate(&#39;solutions1i&#39;,&#39;calibrated_measurement&#39;+window.board+&#39;.bly&#39;,&#39;exercise1i&#39;);"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+									 <button type="button" class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode(&#39;solutions1i&#39;,&#39;calibrated_measurement&#39;+window.board+&#39;.bly&#39;,&#39;exercise1i&#39;,&#39;exercise1ic&#39;);"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+									<a onclick="onFileDownloaded(&#39;calibrated_measurement&#39;+window.board+&#39;.bly&#39;);">
+									<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+									<li><strong>Medida calibrada II</strong><p>Ahora, en base al ejercicio anterior, establece los valores mínimos y máximos de Lux para que los valores de porcentaje ahora se ajusten correctamente.</p><strong>Pista:</strong><p><i>Necesitas usar las instrucciones 'Set Max. Lux 'y' Set Min. Lux' para establecer los valores correspondientes en la sección 'Inicio'.</i></p>
+									<button type="button" title="Código Facilino" class="btn-primary display-4" onclick="showHideIntermediate(&#39;solutions2i&#39;,&#39;calibrated_measurement2&#39;+window.board+&#39;.bly&#39;,&#39;exercise2i&#39;);"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+									 <button type="button" class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode(&#39;solutions2i&#39;,&#39;calibrated_measurement2&#39;+window.board+&#39;.bly&#39;,&#39;exercise2i&#39;,&#39;exercise2ic&#39;);"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+									<a onclick="onFileDownloaded(&#39;calibrated_measurement2&#39;+window.board+&#39;.bly&#39;);">
+									<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+									<li><strong>Control LED calibrado</strong><p>Ahora, en base al ejercicio anterior, establece los valores mínimos y máximos de Lux para que los valores de porcentaje ahora se ajusten correctamente y se usen para controlar la intensidad de la luz LED RGB como en el Ejercicio 4.</p><strong>Pista:</strong><p><i>Necesitas almacenar el valor de luminancia calibrado (porcentaje) en una variable y asignarlo a otra variable para que el 100% sea 0 y el 0% sea 255.</i></p>
+									<button type="button" title="Código Facilino" class="btn-primary display-4" onclick="showHideIntermediate(&#39;solutions3i&#39;,&#39;led_control2&#39;+window.board+&#39;.bly&#39;,&#39;exercise3i&#39;);"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+									 <button type="button" class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode(&#39;solutions3i&#39;,&#39;led_control2&#39;+window.board+&#39;.bly&#39;,&#39;exercise3i&#39;,&#39;exercise3ic&#39;);"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+									<a onclick="onFileDownloaded(&#39;led_control2&#39;+window.board+&#39;.bly&#39;);">
+									<button type="button" class="btn-primary display-4" title="Descargar"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+				</ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width:100%">
+					<hr class="line" style="width:25%">
+					<div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+					<hr class="line" style="width:25%">
+			</div>
+			</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Intermedio 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise1i"></div><div id="exercise1ic"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Intermedio 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise2i"></div><div id="exercise2ic"></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Intermedio 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id="exercise3i"></div><div id="exercise3ic"></div></div>
+	</div>
+</section>
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_RGB_ldr_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_RGB_ldr_bb.png';
+</script>

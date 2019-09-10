@@ -1,0 +1,476 @@
+<script>
+	var currentBasicSolutions=0;
+	var currentIntermediateSolutions=0;
+</script>
+<section class="mbr-section content8 cid-qYnID8HJTn" id="content8-93">
+	<section class="mbr-section content4 cid-qYh0wRA9Kt" id="content4-4z">
+
+		<div class="container">
+			<div class="media-container-row">
+				<div class=" title col-12 col-md-8">
+					<h2 class="align-center pb-3 mbr-fonts-style display-2">
+						Variables</h2>
+					<h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+						Aprende a cómo trabajar con variables locales y globales y sus diferentes tipos. Aprende también a trabajar con variables en vectores.</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+
+<section class="mbr-section article content1 cid-qYh0wSDsTN" id="content2-51">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+                <blockquote><strong>Material requerido. </strong><ul><li>Tarjeta de Arduino o ESP, por ejemplo: <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-arduino-uno-r3usb/');" style="color:#1ec6c6" target="_blank">Arduino Uno</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/arduino-nano3/');" style="color:#1ec6c6" target="_blank">Arduino Nano</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-d1-r2/');">Wemos D1 R2</a>, <a style="color:#1ec6c6" target="_blank" onclick="onPageClicked('https://roboticafacil.es/prod/wemos-esp32/');">Wemos D1 R32</a>, <a onclick="onPageClicked('https://roboticafacil.es/prod/nodemcu-v3-esp8266-wifi/');" style="color:#1ec6c6" target="_blank">NodeMCU</a>, etc...</li><li>Una <a onclick="onPageClicked('https://roboticafacil.es/prod/tarjeta-multifuncion-arduino-uno/');" style="color:#1ec6c6" target="_blank">tarjeta  multisensor</a> o dos LEDs (rojo y azul conectados a los pines D12 y D13), un potenciómetro conectado a A0 y una <a onclick="onPageClicked('https://roboticafacil.es/prod/sensor-luz-ldr-ky-018/');" style="color:#1ec6c6" target="_blank">LDR</a> conectado al pin A1 y un sensor de temperatura LM35 conectado al pin A2.</li></ul></blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Multisensor</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_bb.png" width="1400" alt="Multisensor" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Módulos</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_modules" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_ldr_lm35_modules_bb.png" width="1400" alt="Módulos" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="cid-qYh0wSah5G" id="image3-50">
+    <figure class="mbr-figure container">
+            <div class="mbr-text align-center mbr-fonts-style display-5">Prototipo</div>
+            <div class="image-block mbr-fonts-style display-7" style="width: 50%;">
+                <img id="schematic_proto" src="tutorial/assets/images/Electronics/multisensor_wemosD1R32_pot_LEDs_ldr_lm35_bb.png" width="1400" alt="Prototipo" title=""></img>
+            </div>
+    </figure>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Alcance de las Variables</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Cuando guardamos algo en una caja, podemos sacarlo siempre que queramos. Las <strong>variables son como las cajas</strong>, las usamos para almacenar datos de nuestro programa que podemos leer en cualquier momento. Pero hay un aspecto importante a considerar: sólo podemos sacar algo de una caja o guardar algo en una caja si ésta está a nuestro alcance, esto es, si podemos alcanzar la caja. De forma similar, <strong>las variables tienen un alcance: puede ser local o global</strong>. Las variables globales están siempre accesibles, mientras que las variables locales sólo están disponibles dentro del contexto de la variable. Por tanto, una variable global es como una caja que siempre llevamos encima, pero las variables locales son como cajas que guardamos en una habitación, que sólo podemos acceder a ellas si estamos dentro de la habitación, pero no desde fuera.</p>
+			</div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>El alcance de una variable local se delimita al contexto donde ha sido declarada. En Facilino, <strong>cualquier instruccion que acepta, dentro de un contenedor, otras instrucciones, es el contexto de la variable</strong>. Por ejemplo, la instrucción 'Inicio/Repetir' tiene dos contextos, el contexto de 'Inicio' y el contexto de 'Repetir'; una instrucción 'Contar con' tiene su propio contexto dentro del contenedor del bucle, y así...</p>
+			</div>
+    </div>
+</section>
+
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Tipos de Variables</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Mientras que una persona puede fácilmente interpretar variables o símbolos en un contexto determinado, los programas necesitan predeterminar "Tipos" para usarlas correctamente. Primero, disponemos de una simple variable del tipo <strong> Booleano</strong>, que sólo puede ser vedadero o 1 o falso o 0. Para representar números, podemos utilizar diferentes tipos de variables en función de su valor máximo o mínimo como: <strong>byte, entero o entero largo</strong>. Para representar números con decimales, es decir, números reales lo podemos hacer usando una variable del tipo <strong>decimal</strong>. Podemos almacenar letras y símbolos especiales en variables del tipo <strong>caracter</strong>, mientras que para almacenar una palabra o una expresión, necesitamos combinar múltiples caracteres en una <strong>cadena de caracteres o texto</strong>.&nbsp;</p>
+			</div>
+    </div>
+</section>
+
+
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>Arduino</strong> dispone de diferentes tipos de variables para texto, números y números booleanos. La siguiente tabla muestra las variables más usadas y el tamaño que ocupan en memoria:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Tipo</th><th class="head-item mbr-fonts-style display-7">
+                      Bits</th><th class="head-item mbr-fonts-style display-7">
+					  Valor Mín.</th><th class="head-item mbr-fonts-style display-7">
+					  Valor Máx.</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr>
+			  <td class="body-item mbr-fonts-style display-7">Booleano</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">1</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">byte</td><td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">255</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">Entero</td><td class="body-item mbr-fonts-style display-7">16</td><td class="body-item mbr-fonts-style display-7">-32768</td><td class="body-item mbr-fonts-style display-7">32767</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">Entero Largo</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-2147483648</td><td class="body-item mbr-fonts-style display-7">2147483647</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">Decimal</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-3.4028235E+38</td><td class="body-item mbr-fonts-style display-7">3.4028235E+38</td></tr><tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">El <strong>ESP32</strong> tiene diferente tipos de variables para almacenar texto, números o booleanos. La siguiente tabla muestra las variables más usadas y el espacio que ocupan en memoria:</div>
+        </div>
+    </div>
+</section>
+
+<section class="section-table cid-table" id="table1-62">
+  <div class="container container-table" style="width: 40%">
+      <div class="table-wrapper">
+        <div class="container">
+        </div>
+        <div class="container scroll">
+          <table class="table" cellspacing="0">
+            <thead>
+              <tr class="table-heads ">
+              <th class="head-item mbr-fonts-style display-7">
+                      Tipo</th><th class="head-item mbr-fonts-style display-7">
+                      Bits</th><th class="head-item mbr-fonts-style display-7">
+					  Valor Mín.</th><th class="head-item mbr-fonts-style display-7">
+					  Valor Máx.</th><th class="head-item mbr-fonts-style display-7">
+            </thead>
+            <tbody>
+            <tr>
+			  <td class="body-item mbr-fonts-style display-7">Booleano</td><td class="body-item mbr-fonts-style display-7">1</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">1</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">byte</td><td class="body-item mbr-fonts-style display-7">8</td><td class="body-item mbr-fonts-style display-7">0</td><td class="body-item mbr-fonts-style display-7">255</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">Entero corto</td><td class="body-item mbr-fonts-style display-7">16</td><td class="body-item mbr-fonts-style display-7">-32768</td><td class="body-item mbr-fonts-style display-7">32767</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">Entero</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-2147483648</td><td class="body-item mbr-fonts-style display-7">2147483647</td></tr><tr>
+              <td class="body-item mbr-fonts-style display-7">Entero Largo</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-2147483648</td><td class="body-item mbr-fonts-style display-7">2147483647</td></tr><tr>
+			  <td class="body-item mbr-fonts-style display-7">Decimal</td><td class="body-item mbr-fonts-style display-7">32</td><td class="body-item mbr-fonts-style display-7">-3.4028235E+38</td><td class="body-item mbr-fonts-style display-7">3.4028235E+38</td></tr><tr></tbody>
+          </table>
+        </div>
+        <div class="container table-info-container">
+
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Vector de Variables</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><p>Cuando necesitamos almacenar gran cantidad de datos, no es práctico crear miles y miles de variables, cada una con un nombre diferentes para almacenar la información. Es mucho más práctico almacenar los datos en una variable del tipo vector, bajo un único nombre. Cada elemento del vector puede ser accedido de forma individual, y uno de los aspectos más importantes, es que están ordenados de forma ordenada según su posición en memoria, siendo el primer elemento el elemento 0. En Facilino, podemos crear vectores de datos, pero se declaran de forma estática por adelantado, es decir, que debemos saber el tamaño del vector por adelantado y éste no cambia. Para declarar el tamaño de una variable del tipo vector, podemos usar un constructor del vector, en el que indicamos cuantos elementos puede almacenar el vector.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    La Leyenda del Ajedrez</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7"><strong>La leyenda del tablero de ajedrez y los granos de arroz.</strong> Existe una famosa leyenda sobre el origen del ajedrez que es más o menos como os contamos ahora... Cuando el inventor del juego del ajedrez mostró al emperador de la India el juego, éste estaba tan impresionado que le dijo al hombre que pidiera lo que quisiera en compensación por aquel maravilloso juego.</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">"Oh emperador, mi deseo es simple. Sólo deseo esto: Dadme un grano de arroz en la primera casilla del tablero, dos en la siguiente, cuatro en la siguiente, ocho... y así para las 64 casillas que tiene el tablero, duplicando la cantidad de la casilla anterior."</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="content1-5w">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">El emperador aceptó y de hecho quedó sorprendido por aquel simple deseo como recompensa- o así creía él... Después de una semana, el tesorero vino para informarle que la recompensa implicaba una suma astronómica de granos de arroz, muchos más de los que pudieran producirse en varios siglos!</div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b" id="content9-5u">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Trabajadas</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+								<li><div><span id='tooltipInstruction1'></span></div><div  id='blocklyInstruction1'></div><script>injectInstructionTooltip1('variables_get','blocklyInstruction1','tooltipInstruction1');</script></li>
+								<li><div><span id='tooltipInstruction2'></span></div><div  id='blocklyInstruction2'></div><script>injectInstructionTooltip1('variables_set','blocklyInstruction2','tooltipInstruction2');</script></li>
+								<li><div><span id='tooltipInstruction3'></span></div><div  id='blocklyInstruction3'></div><script>injectInstructionTooltip1('variables_local','blocklyInstruction3','tooltipInstruction3');</script></li>
+								<li><div><span id='tooltipInstruction4'></span></div><div  id='blocklyInstruction4'></div><script>injectInstructionTooltip1('variables_local_type','blocklyInstruction4','tooltipInstruction4');</script></li>
+								<li><div><span id='tooltipInstruction5'></span></div><div  id='blocklyInstruction5'></div><script>injectInstructionTooltip('variables_global','blocklyInstruction5','tooltipInstruction5');</script></li>
+								<li><div><span id='tooltipInstruction6'></span></div><div  id='blocklyInstruction6'></div><script>injectInstructionTooltip('variables_global_type','blocklyInstruction6','tooltipInstruction6');</script></li>
+								<li><div><span id='tooltipInstruction7'></span></div><div  id='blocklyInstruction7'></div><script>injectInstructionTooltip1('variables_get_1Darray','blocklyInstruction7','tooltipInstruction7');</script></li>
+								<li><div><span id='tooltipInstruction8'></span></div><div  id='blocklyInstruction8'></div><script>injectInstructionTooltip('variables_local_1DArray','blocklyInstruction8','tooltipInstruction8');</script></li>
+                </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh5KdWW4b">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">
+                    Instrucciones Adicionales</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-5w">
+    <div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol id="workedInstructions">
+					<li><div><span id='tooltipInstruction9'></span></div><div  id='blocklyInstruction9'></div><script>injectInstructionTooltip1('math_1DArray_decode','blocklyInstruction9','tooltipInstruction9');</script></li>
+					<li><div><span id='tooltipInstruction10'></span></div><div  id='blocklyInstruction10'></div><script>injectInstructionTooltip('math_1DArray_encode','blocklyInstruction10','tooltipInstruction10');</script></li>
+					<li><div><span id='tooltipInstruction11'></span></div><div  id='blocklyInstruction11'></div><script>injectInstructionTooltip('text_join','blocklyInstruction11','tooltipInstruction11');</script></li>
+				  </ol>
+            </div>
+		</div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Básicos</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+									<li><strong>Variable local</strong><p>Implementa un programa que imprima el valor de una variable local al 'Inicio' e imprima otra variable local (con el mismo nombre) en la sección 'Repetir'.</p><strong>Pista: </strong><p><i>Crea una variable local dentro del 'Inicio', asígnale un valro e imprime el valor por el monitor serie. Después, crea otra variable local en la sección 'Inicio' con el mismo nombre y asígnale un valor diferente. Podrás comprobar que esto no produce ningún error de compilación.</i>.</p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions1b','local_variable.bly','exercise1b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+				&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions1b','local_variable.bly','exercise1b','exercise1bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+				<a onclick="onFileDownloaded('local_variable.bly');">
+				<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+								<li><strong>Variable global</strong><p>Ahora, crea un programa que declare una variable global en el  'Inicio' y use esa variable en la sección de 'Repetir'.</p><strong>Pista: </strong><p><i>Ahora debes usar la instrucción con la palabra clave GLOBAL, declara la variable una sola vez, normalmente en el 'Inicio'.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions2b','global_variable.bly','exercise2b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions2b','global_variable.bly','exercise2b','exercise2bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('global_variable.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+
+					<li><strong>Conexto de una variable</strong><p>Crea una variable global con el nombre 'iteration' (en la sección 'Inicio') e inicializa la variable a 5. En el bucle principal, haz que el LED rojo conectado al pin D12 parpadee 10 veces usado un bucle 'Contar con...'. Dentro del bucle, declara una variable local con el nombre 'iteration' y asigna su valor a la iteración actual (1, 2, ..., 10). Después de que haya parpadeado 10 veces el LED D12, haz que parpadee el LED D13 tantas veces como tenga el valor de la variable 'iteration' usando otro bucle 'Contrar con...', siendo en este caso la segunda entrada 'hasta' el valor de la variable 'iteration'. Cúántas veces parpadea el LED azul?</p><strong>Pista: </strong><p><i>La variable local sólo tiene validez dentro del contexto en el que ha sido declarada, es decir, dentro del primer bucle. Fuera de ese contexto, la variable a usar es siempre la variable global. Puedes mostrar por la consola el valor de la variable 'iteration' justo antes, dentro y después del bucle para conocer su valor.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions3b','variable_context'+window.board+'.bly','exercise3b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions3b','variable_context'+window.board+'.bly','exercise3b','exercise3bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('variable_context'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Media móvil</strong><p>Siguiento con las ideas del Ejercicio Básico 4 en <a onclick="onHomeFile('exerciseFunctions.html');" style="color:#1ec6c6">Funciones y procedimientos</a>, implementa una media móvil con los valores leídos con el potenciómetro conectado al pin A0. La diferencia ahora, con respecto al Ejercicio Básico 4 en <a onclick="onHomeFile('exerciseFunctions.html');" style="color:#1ec6c6">Funciones y procedimientos</a>, es que sólo una medida se debe de leear en cada nueva iteración. Para simplificar, podemos usar las 10 últimas medidas que almacenamos en un vector con el objetivo de calcular la media (orignialmente eran 30). En cada iteración el elemento más antiguo del vector se eliminará mientras que un único valor de medida será añadido al principio del vector. La media móvil implica que basándose en el resultado de la media en la iteración anterior, se puede calcular la nueva media utilizando el valor del elemento más antiguo y el más nuevo, véase <a href="https://es.wikipedia.org/wiki/Media_m%C3%B3vil" target="_blank">Media móvil</a>. </p><strong>Pista: </strong><p><i>Crea un vector con 10 valores iniciales (del tipo Decimal). Crea también una variable del tipo Decimal para almacenar el valor de la media en la iteración anterior, inicializada a 0 (a falta de mayor información). El valor más antiguo será el elemento en la posición 9 del vector, mientras que el más nuevo será el que almacenaremos en la posición 0. En el bucle principal, primero guárdate en una variable el valor más antiguo, es decir, el elemento de la posición 9; después, desplaza los valores del vector, de forma que el 8 pase al 9, el 7 al 8 y así hasta el 0 al 1; después, mide el valor de la señal del potenciómetro y almacena su valor en la posición 0; y finalmente, calcula la media móvil usando la media anterior según indica la fórmula de la media móvil.</i></p><button  type="button" title="Código Facilino" onclick="showHideBasic('solutions4b','moving_average'+window.board+'.bly','exercise4b');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideBasicCode('solutions4b','moving_average'+window.board+'.bly','exercise4b','exercise4bc');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('moving_average'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_basic">
+  <div class="container">
+      <div class="inner-container" style="width: 100%;">
+          <hr class="line" style="width: 25%;">
+          <div class="section-text align-center mbr-fonts-style display-5">Soluciones Básicas</div>
+          <hr class="line" style="width: 25%;">
+      </div>
+      </div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 1</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise1b'></div><div id='exercise1bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 2</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise2b'></div><div id='exercise2bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 3</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise3b'></div><div id='exercise3bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions4b" style="display:none">
+	<div class="container">
+		<div class="media-container-row">
+			<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+				<strong>Ejercicio Básico 4</strong>
+			</div>
+		</div>
+		<div class="media-container-row"><div id='exercise4b'></div><div id='exercise4bc'></div></div>
+	</div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC">
+    <div class="container">
+        <div class="inner-container" style="width: 100%;">
+            <hr class="line" style="width: 25%;">
+            <div class="section-text align-center mbr-fonts-style display-5">Ejercicios Intermedios</div>
+            <hr class="line" style="width: 25%;">
+        </div>
+        </div>
+</section>
+
+<section class="mbr-section article content11 cid-qYh0wTJYr3" id="content11-53">
+    <div class="container">
+        <div class="media-container-row">
+            <div class="mbr-text counter-container col-12 col-md-8 mbr-fonts-style display-7">
+                <ol>
+                    <li><strong>¿Cuántos granos de arroz en total?</strong><p>Calcula el número de granos de arroz requeridos, según indica la leyenda. Usa diferentes representaciones para ver si pueden contenter la cantidad de granos requeridos. Muestra su valor por el monitor serie para comprobar si es correcto con el cálculo del tipo Entero, Entero Largo y Decimal. </p><strong>Pista: </strong><p><i>Implementa un bucle 'Cuenta con...' con las 64 iteraciones y calcula las potencias de 2 con diferentes tipos de variables (declaradas adecuadametne e inicializadas a 1). Al final, muestra los resultados por la consola para ver si son correctos</i>.</p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions1i','rice_grains.bly','exercise1i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions1i','rice_grains.bly','exercise1i','exercise1ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('rice_grains.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Enviar datos de un vector</strong><p>Codifica las medidas analógicas de las entradas A0, A1 y A2 y envía los datos por el puerto serie USB.</p><strong>Pista: </strong><i><p>Construye un vector del tipo 'Entero corto' con tres elementos y almacena cada una de las lecturas analógicas en variables del tipo 'Entero corto'. Luego, puedes codificar las variables y enviarlas por el puerto serie USB</i>.</p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions2i','send_array_data'+window.board+'.bly','exercise2i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions2i','send_array_data'+window.board+'.bly','exercise2i','exercise2ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('send_array_data'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+					<li><strong>Almacena datos en un vector</strong><p>Decodifica los datos recibidos por el puerto serie USB como tres bytes correspondientes a los canales de color de un LED RGB conectado a los pines D9-D11-D10, respectivamente, para el rojo, verde y azul.</p><strong>Pista: </strong><p><i>En el caso de que haya datos disponibles por el puerto serie, declara un vector del tipo 'byte' con los tres elementos leídos desde el puerto USB serie. Accede a cada uno de los elementos para establecer el valor del ciclo de trabajo para cada uno de los canales del LED RGB</i>.</p><button  type="button" title="Código Facilino" onclick="showHideIntermediate('solutions3i','store_array_data'+window.board+'.bly','exercise3i');" class="btn-primary display-4"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn"></span></button>
+					&nbsp;<button type="button"  class="btn-primary display-4" title="Código Arduino" onclick="showHideIntermediateCode('solutions3i','store_array_data'+window.board+'.bly','exercise3i','exercise3ic');"><span class="mbri-align-justify mbr-iconfont mbr-iconfont-btn"></span></button>
+					<a onclick="onFileDownloaded('store_array_data'+window.board+'.bly');">
+					<button  type="button" class="btn-primary display-4"><span class="mbri-save mbr-iconfont mbr-iconfont-btn"></span></button></a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article content9 cid-qYh0wTdIZC" id="solutions_intermediate">
+	<div class="container">
+			<div class="inner-container" style="width: 100%;">
+					<hr class="line" style="width: 25%;">
+					<div class="section-text align-center mbr-fonts-style display-5">Soluciones Intermedias</div>
+					<hr class="line" style="width: 25%;">
+			</div>
+			</div>
+</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions1i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 1</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise1i'></div><div id='exercise1ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions2i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 2</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise2i'></div><div id='exercise2ic'></div></div>
+		</div>
+	</section>
+
+	<section class="mbr-section article content1 cid-qYh5PFH3xX" id="solutions3i" style="display:none">
+		<div class="container">
+			<div class="media-container-row">
+				<div class="mbr-text col-12 col-md-8 mbr-fonts-style display-7">
+					<strong>Ejercicio Intermedio 3</strong>
+				</div>
+			</div>
+			<div class="media-container-row"><div id='exercise3i'></div><div id='exercise3ic'></div></div>
+		</div>
+	</section>
+
+
+<script>
+	var solutions_basic = document.getElementById('solutions_basic');
+	var solutions_intermediate = document.getElementById('solutions_intermediate');
+	solutions_basic.style.display="none";
+	solutions_intermediate.style.display="none";
+	var sch=document.getElementById('schematic');
+  sch.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_bb.png';
+  var sch_modules=document.getElementById('schematic_modules');
+  sch_modules.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_ldr_lm35_modules_bb.png';
+  var sch_proto=document.getElementById('schematic_proto');
+  sch_proto.src='tutorial/assets/images/Electronics/multisensor'+window.board+'_pot_LEDs_ldr_lm35_bb.png';
+</script>
