@@ -9,7 +9,7 @@
     	<meta name="keywords" content="facilino,robot,arduino,dyor" />
     	<meta name="author" content="Robotica Facil"/>
     	<title>Facilino</title>
-    	
+
 		<link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -37,7 +37,7 @@ padding-left:30px;
   <script src="assets/dropdown/js/script.min.js"></script>
   <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/theme/js/script.js"></script>
-  
+
 	<script src="javascript/jquery/dist/jquery.min.js"></script>
     <script src="javascript/underscore/underscore.js"></script>
     <script src="javascript/highlight/highlight.pack.js"></script>
@@ -45,8 +45,8 @@ padding-left:30px;
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 	<script src="javascript/blockly-bq/FieldButton.js"></script>
-    <script src="facilino_not_obfuscated.js"></script>
-	<script src="roboblocks.js"></script>
+    <script src="facilino.js"></script>
+	<script src="roboblocks_compressed.js"></script>
 	<xml id='startBlocks' style='display: none'><block type='controls_setupLoop' deletable='true' x='20' y='5'></block></xml>
 
 	<div>
@@ -68,8 +68,6 @@ padding-left:30px;
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://roboticafacil.es/facilino/blockly/Facilino.html" target="_blank"><h2>&nbsp;&nbsp;Facilino</h2></a></span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://roboticafacil.es/facilino_junior/blockly/FacilinoJunior.html" target="_blank"><h2>&nbsp;&nbsp;Facilino Junior</h2></a></span>
-                
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -122,6 +120,7 @@ padding-left:30px;
 		<option value="ArduinoMicro" class="text-black dropdown-item display-6">Arduino Micro</option>
 		<option value="ArduinoLilyPad" class="text-black dropdown-item display-6">Arduino LilyPAD</option>
 		<option value="ArduinoMini" class="text-black dropdown-item display-6">Arduino Mini</option>
+		<option value="ArduinoPro" class="text-black dropdown-item display-6">Arduino Pro Mini</option>
 		<option value="ArduinoLeonardo" class="text-black dropdown-item display-6">Arduino Leonardo</option>
 		<option value="ESP8266" class="text-black dropdown-item display-6">ESP8266</option>
 		<option value="NodeMCU" class="text-black dropdown-item display-6">NodeMCU</option>
@@ -155,7 +154,7 @@ padding-left:30px;
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_EEPROM')" aria-expanded="false">EEPROM</button>
 				</div>
 			</div>
-			
+
 			<div class="dropdown">
 				<a class="text-white dropdown-item dropdown-toggle display-4" aria-expanded="false" data-toggle="dropdown-submenu">Basic &nbsp;I/O</a>
 				<div class="dropdown-menu dropdown-submenu">
@@ -240,7 +239,7 @@ padding-left:30px;
 		</div>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Create your own blocks" onclick="window.location='./FacilinoMyBlocks.html'"><span class="mbri-extension mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Translate Facilino" onclick="window.location='./FacilinoTranslate.html'"><span class="mbri-globe mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
-		</div>	
+		</div>
 	</nav>
 	</section>
 	</div>
@@ -260,7 +259,7 @@ padding-left:30px;
 		</div>
     </div>
 	<div><input type="file" id="importFile" style="display:none" accept=".png," onchange="imageSelected(this.files)"></input><canvas id="canvas" width="578" height="400" style="display:none"></div>
-	
+
     <script language="JavaScript">
 		if (localStorage.getItem("language")===undefined || localStorage.getItem("language")===null)
 			localStorage.setItem('language', 'en-GB');
@@ -279,11 +278,11 @@ padding-left:30px;
 		$("#processor").val(window.roboblocksProcessor);
 		$("#license_text").val(lic);
 		checkLicense(lic);
-	    window.FacilinoLanguage = window.roboblocksLanguage; 
+	    window.FacilinoLanguage = window.roboblocksLanguage;
 		window.FacilinoProcessor = window.roboblocksProcessor;
 		var ev = document.createEvent('Event');
 		ev.initEvent('resize', true, true);
-		
+
 	    //document.getElementById("doc").innerHTML = window.roboblocksLanguage;
 		//document.getElementById("doc").innerHTML = license;
 		var file = "doc/"+window.roboblocksLanguage+"/index.html";
@@ -317,9 +316,9 @@ padding-left:30px;
 			  Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 			$('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
-			
+
 			$("#redo").hide();
-			
+
 			if (localStorage.getItem("saved")!=='')
 			{
 			  Blockly.getMainWorkspace().clear();
@@ -332,13 +331,13 @@ padding-left:30px;
 			History.limit=200;
 			History.updating=false;
 			History.stack[0]=Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
-			
+
 			if (localStorage.getItem("saved")=='')
               Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
 			$('.blocklySvg, #blockly').height('100%');
             $('.blocklySvg').width('100%');
-			
-	
+
+
 	    /*var colors = [
                 "",
 				RoboBlocks.LANG_COLOUR_PROCEDURES,
@@ -360,9 +359,9 @@ padding-left:30px;
 				RoboBlocks.LANG_COLOUR_DEPRECATED
 		];
 		colors.push(Blockly.createToolboxColours());*/
-		
-		
-		
+
+
+
 
             /*$('.blocklyTreeRow').each( function (i,e) {
                 $(e).prepend('<span class="treeLabelBlock" style="background-color:' + colors[i] + '"></span>');
@@ -371,9 +370,9 @@ padding-left:30px;
                 $(e).prepend('<span class="treeLabelBlock"></span>');
             });*/
             // Update code
-				
+
                 Blockly.getMainWorkspace().addChangeListener(function (event) {
-				if (event.type== Blockly.Events.DELETE)
+				if (event.type===Blockly.Events.DELETE)
 				{
 					Facilino.removedBlocks(event.ids);
 				}
@@ -413,7 +412,7 @@ padding-left:30px;
 			}
 		});
 			//});
-            
+
             // Show/hide code
             function escapeCode(code) {
                 var str = code;
@@ -429,13 +428,13 @@ padding-left:30px;
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),Blockly.getMainWorkspace());
             }
-			
+
 		var dragging = false;
 		var dragging1 = false;
-			
+
 		$('#dragbar').mousedown(function(e){
 			e.preventDefault();
-       
+
 			dragging = true;
 			var code = $('#code_doc');
 			var ghostbar = $('<div>',
@@ -446,16 +445,16 @@ padding-left:30px;
                                 left: code.offset().left
                                }
                         }).appendTo('body');
-       
+
 				$(document).mousemove(function(e){
 					ghostbar.css("left",e.pageX+2);
 				});
-       
+
 		});
-		
+
 		$('#dragbar1').mousedown(function(e){
 			e.preventDefault();
-       
+
 			dragging1 = true;
 			var doc = $('#doc');
 			var ghostbar = $('<div>',
@@ -466,21 +465,21 @@ padding-left:30px;
                                 left: doc.offset().left
                                }
                         }).appendTo('body');
-       
+
 				$(document).mousemove(function(e){
 					ghostbar.css("top",e.pageY+2);
 				});
-       
+
 		});
 
 		$(document).mouseup(function(e){
-			if (dragging) 
+			if (dragging)
 			{
 				var percentage = (e.pageX / window.innerWidth) * 100;
 				var mainPercentage = 100-percentage;
-           
+
 				//$('#console').text("side:" + percentage + " main:" + mainPercentage);
-				
+
 				$('#blockly').css("width",percentage + "%");
 				$('#code_doc').css("width",mainPercentage + "%");
 				$('#ghostbar').remove();
@@ -488,14 +487,14 @@ padding-left:30px;
 				Blockly.svgResize(Blockly.getMainWorkspace());
 				dragging = false;
 			}
-			
-			if (dragging1) 
+
+			if (dragging1)
 			{
 				var percentage = (e.pageY / window.innerHeight) * 100;
 				var mainPercentage = 100-percentage;
-           
+
 				//$('#console').text("side:" + percentage + " main:" + mainPercentage);
-           
+
 				$('#code').css("height",percentage + "%");
 				$('#doc').css("height",mainPercentage + "%");
 				$('#ghostbar1').remove();
@@ -503,7 +502,7 @@ padding-left:30px;
 				dragging1 = false;
 			}
 		});
-		
+
 		function fileSelected(input){
 			if (input.length>0)
 			{
@@ -517,13 +516,13 @@ padding-left:30px;
 				};
 			}
 		}
-		
+
 		function imageSelected(input){
 			if (input.length>0)
 			{
 				var file = input[0];
 				var reader = new FileReader();
-				reader.addEventListener("load", function () {		
+				reader.addEventListener("load", function () {
 					var img = new Image();
 					img.onload = function(){
 					  var height = img.height;
@@ -570,7 +569,7 @@ padding-left:30px;
 				  }
 			}
 		}
-		
+
 		function toogleCode() {
 			if ($('#code').css('display') == 'none') {
 				// Show
@@ -594,7 +593,7 @@ padding-left:30px;
 				  $('#doc').width('100%');
 				  $('#doc').height('100%');
 				}
-				
+
 			}
 			// Resize workspace
 			//Blockly.fireUiEvent(window,"resize");
@@ -602,7 +601,7 @@ padding-left:30px;
 			//$('.blocklySvg, #blockly').height('100%');
 			//$('.blocklySvg').width('100%');
 		}
-		
+
 		function toogleDoc() {
 			if ($('#doc').css('display') == 'none') {
 				// Show
@@ -633,7 +632,7 @@ padding-left:30px;
 			//$('.blocklySvg, #blockly').height('100%');
 			//$('.blocklySvg').width('100%');
 		}
-		
+
 		function butSave()
 		{
 			var link = document.createElement('a');
@@ -643,7 +642,7 @@ padding-left:30px;
 			document.body.appendChild(link);
 			link.click();
 		}
-		
+
 		function butExport()
 		{
 			var link = document.createElement('a');
@@ -653,7 +652,7 @@ padding-left:30px;
 			document.body.appendChild(link);
 			link.click();
 		}
-		
+
 		function checkLicenseFcn()
 		{
 			var lic = $("#license_text").val();
@@ -661,7 +660,7 @@ padding-left:30px;
 			checkLicense(lic);
 			localStorage.setItem("license",lic);
 		}
-		
+
 		function butUndo()
 		{
 			if (History.position>0){
@@ -679,7 +678,7 @@ padding-left:30px;
 				//console.log('Undo: '+History.position);
 			}
 		}
-		
+
 		function butRedo()
 		{
 			if (History.position<(History.stack.length-1))
@@ -698,21 +697,21 @@ padding-left:30px;
 				//console.log('Redo: '+History.position);
 			}
 		}
-		
+
 		function langChange(lang)
 		{
 			localStorage.setItem('language',lang);
 			window.location.reload();
 		}
-		
+
 		function processorChange(processor)
 		{
 			localStorage.setItem('processor',processor);
 			window.location.reload();
 		}
-		
+
 		function copyToClipboard()
-		{ 
+		{
 			var r = document.createRange();
 			r.selectNode(document.getElementById("code"));
 			window.getSelection().addRange(r);
@@ -721,7 +720,7 @@ padding-left:30px;
 			window.getSelection().addRange(r);
 			clearSelection();
 		}
-		
+
 		function showHideLanguage()
 		{
 			var lang=document.getElementById('language');
@@ -731,7 +730,7 @@ padding-left:30px;
 			else
 				lang.style.display='none';
 		}
-		
+
 		function showHideProcessor()
 		{
 			var proc=document.getElementById('processor');
@@ -740,7 +739,7 @@ padding-left:30px;
 			else
 				proc.style.display='none';
 		}
-		
+
 		function showHideLicense()
 		{
 			var lic=document.getElementById('license_text');
@@ -749,14 +748,14 @@ padding-left:30px;
 			else
 				lic.style.display='none';
 		}
-		
+
 		function getToolboxNames(keys)
 		{
 			var toolboxNames = [];
-			keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});			
+			keys.forEach(function (key){toolboxNames.push(window.langKeys[key]);});
 			return toolboxNames;
 		}
-		
+
 		function showToolbox()
 		{
 			var menu=document.getElementById('toolbox_menu');
@@ -792,9 +791,9 @@ padding-left:30px;
 				window.getSelection().removeAllRanges();
 			}
 		}
-		
+
 		function checkLicense(lic){delete window["\x6C\x69\x63\x65\x6E\x73\x65"];$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79\x2D\x6F\x75\x74\x6C\x69\x6E\x65");if(lic["\x6C\x65\x6E\x67\x74\x68"]== 13){$(function(){$["\x61\x6A\x61\x78"]({url:"\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x6F\x62\x6F\x74\x69\x63\x61\x66\x61\x63\x69\x6C\x2E\x65\x73\x2F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2F\x62\x6C\x6F\x63\x6B\x6C\x79\x2F\x6C\x6F\x67\x69\x6E\x5F\x66\x61\x63\x69\x6C\x69\x6E\x6F\x2E\x70\x68\x70\x3F\x6C\x69\x63\x65\x6E\x73\x65\x3D"+ lic,data:"",type:"\x47\x45\x54",dataType:"\x6A\x73\x6F\x6E",async:true,success:function(data,textStatus,jqXHR){if(data[1]=== "\x6F\x6B"){window["\x6C\x69\x63\x65\x6E\x73\x65"]= lic;$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79")}else {if(data[1]=== "\x65\x72\x72\x6F\x72"){delete window["\x6C\x69\x63\x65\x6E\x73\x65"];$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79\x2D\x6F\x75\x74\x6C\x69\x6E\x65");alert("\x57\x72\x6F\x6E\x67\x20\x6C\x69\x63\x65\x6E\x73\x65\x21")}}},error:function(jqXHR,textStatus,errorThrown){if(lic["\x6C\x65\x6E\x67\x74\x68"]!= 0){alert("\x4C\x69\x63\x65\x6E\x73\x65\x20\x63\x6F\x75\x6C\x64\x20\x6E\x6F\x74\x20\x62\x65\x20\x76\x61\x6C\x69\x64\x61\x74\x65\x64\x21\x20\x50\x6C\x65\x61\x73\x65\x20\x63\x68\x65\x63\x6B\x20\x66\x69\x72\x65\x77\x61\x6C\x6C\x20\x73\x65\x74\x74\x69\x6E\x67\x73")};delete window["\x6C\x69\x63\x65\x6E\x73\x65"];$("\x23\x6C\x69\x63\x65\x6E\x73\x65\x50")["\x61\x74\x74\x72"]("\x63\x6C\x61\x73\x73","\x62\x74\x6E\x20\x62\x74\x6E\x2D\x73\x6D\x20\x62\x74\x6E\x2D\x70\x72\x69\x6D\x61\x72\x79\x2D\x6F\x75\x74\x6C\x69\x6E\x65")}})})}}
-		
+
 		</script>
 </body>
 </html>

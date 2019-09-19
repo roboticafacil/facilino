@@ -33,8 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
-    this->alert=false;
+this->alert=false;
     signalMapper = new QSignalMapper(this);
     // Set environment
     settings = new SettingsStore(CONFIG_INI);

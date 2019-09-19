@@ -199,6 +199,11 @@
 					profiles['default'] = profiles.arduinoMini;
 					profiles['processor'] = 'ATmega328';
 				}
+				else if (RoboBlocks.locales.processor==='ArduinoPro')
+				{
+					profiles['default'] = profiles.arduinoPro;
+					profiles['processor'] = 'ATmega328';
+				}
 				else if (RoboBlocks.locales.processor==='ArduinoLeonardo')
 				{
 					profiles['default'] = profiles.arduinoLeonardo;
