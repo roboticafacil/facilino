@@ -4,4 +4,5 @@ blocks_not_obfuscated.js
 dbConfig.php
 checkLicense.txt
 login_facilino.php
+login_facilino_orig.php
 version.php

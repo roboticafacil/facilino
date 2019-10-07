@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Block</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('controls_block','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">This instruction adds a comment on the generated code as well as encansulates the code inside the container (generated code include brackets that might be usefull to create different contexts for variables). Also, if you collapse the block instruction, will appear just the comment and the remainder of blocks will be occluded, but it does not affect to the code generation, and thus it is usefull to generate compact Facilino code.</h4>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_comment_example']);</script>-->
+</body>
+</html>

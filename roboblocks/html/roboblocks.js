@@ -17,32 +17,32 @@
             languages: [],
 			processor: ''
         };*/
-		
+
 		RoboBlocks.locales = {
             defaultLanguage: {},
 			processor: ''
         };
-		
-		
+
+
         /*RoboBlocks.locales.getLang = function() {
             return this.defaultLanguage.lngCode;
         };*/
-		
+
 		RoboBlocks.locales.setLang = function(lang) {
 			this.defaultLanguage = lang;
 		}
         RoboBlocks.locales.getKey = function(key) {
             return this.defaultLanguage[key] || this.EngLanguage[key];
         };
-		
+
 		RoboBlocks.locales.setKey = function(key,value) {
             this.defaultLanguage[key]=value;
         };
-		
+
 		RoboBlocks.getHelpUrl = function (block) {
 			return '<script>$(function(){var file = "doc/"+roboblocksLanguage+"/'+block+'.html"; $.ajax({url:file,async:false,type:"HEAD",error: function(){file="doc/en-GB/'+block+'.html";},success: function(){}}); $("#doc").load(file);});</script>';
 		}
-		
+
         RoboBlocks.locales.initialize = function() {
             /*var lang = options.lang || window.roboblocksLanguage || 'en-GB';
 			var languages;
@@ -54,7 +54,7 @@
 				}).done(function(text) {
 				languages = $.parseJSON(text);
 				defaultLanguage = languages.langs[lang].keys;
-                
+
 				});
 			this.languages=languages.langs;
 			this.defaultLanguage=defaultLanguage;
@@ -64,7 +64,7 @@
 			this.processor = options.proc || window.FacilinoProcessor || 'ArduinoNano';
 			return this;
         };
-            
+
 
         // Source: src/constants.js
         /* global RoboBlocks, Blockly*/
@@ -104,7 +104,7 @@
         // RGB block colors
 		RoboBlocks.LANG_COLOUR_DISTANCE = '#D04141';
 		RoboBlocks.LANG_COLOUR_DISTANCE_ULTRASOUND = '#D04141'; //BD3939, AB3131, 992929, 872121
-        RoboBlocks.LANG_COLOUR_SOUND = '#CC7B44'; 
+        RoboBlocks.LANG_COLOUR_SOUND = '#CC7B44';
 		RoboBlocks.LANG_COLOUR_SOUND_BUZZER = '#CC7B44';
 		RoboBlocks.LANG_COLOUR_SOUND_VOICE = '#B46B3A';
 		RoboBlocks.LANG_COLOUR_SOUND_MIC = '#9D5C30';
@@ -229,7 +229,7 @@
 					profiles['default'] = profiles.esp32;
 					profiles['processor'] = 'ESP32';
 				}
-				
+
 				else if (RoboBlocks.locales.processor==='WEMOS D1R32')
 				{
 					profiles['default'] = profiles.wemosD1R32;
@@ -240,7 +240,7 @@
 					profiles['default'] = profiles.wemosD1R32_shield;
 					profiles['processor'] = 'ESP32';
 				}
-				else 
+				else
 				{
 					profiles['default'] = profiles.arduinoNano;
 					profiles['processor'] = 'ATmega328';
@@ -249,34 +249,34 @@
 				});
 
 		RoboBlocks.profiles=profiles;
-        
+
 		RoboBlocks.checkHelpUrl = function (block) {
-			var file = 'doc/'+roboblocksLanguage+'/'+block+'.html'; 
-			var found=false; 
-			
+			var file = 'doc/'+roboblocksLanguage+'/'+block+'.html';
+			var found=false;
+
 			$.ajax({
 				url:file,
 				async:false,
 				type:"HEAD",
 				error: function(){
-					$found=false; 
-					console.log('Checking '+block+' block in '+file); 
+					$found=false;
+					console.log('Checking '+block+' block in '+file);
 					console.log(block+' not found');
 				},
 				success: function(){
-					$found=true; 
+					$found=true;
 					//console.log(block+' found');
 				}
 			});
 		}
-		
+
         Blockly.findMissingDoc = function() {
 
             var blocks = {};
 			//var ignore = ['dyor_piezo_music_silencio_redonda','dyor_piezo_music_do_redonda','dyor_piezo_music_re_redonda','dyor_piezo_music_mi_redonda','dyor_piezo_music_fa_redonda','dyor_piezo_music_sol_redonda','dyor_piezo_music_la_redonda','dyor_piezo_music_si_redonda','dyor_piezo_music_silencio_blanca','dyor_piezo_music_do_blanca','dyor_piezo_music_re_blanca','dyor_piezo_music_mi_blanca','dyor_piezo_music_fa_blanca','dyor_piezo_music_sol_blanca','dyor_piezo_music_la_blanca','dyor_piezo_music_si_blanca','dyor_piezo_music_silencio_negra','dyor_piezo_music_do_negra','dyor_piezo_music_re_negra','dyor_piezo_music_mi_negra','dyor_piezo_music_fa_negra','dyor_piezo_music_sol_negra','dyor_piezo_music_la_negra','dyor_piezo_music_si_negra','dyor_piezo_music_silencio_corchea','dyor_piezo_music_do_corchea','dyor_piezo_music_re_corchea','dyor_piezo_music_mi_corchea','dyor_piezo_music_fa_corchea','dyor_piezo_music_sol_corchea','dyor_piezo_music_la_corchea','dyor_piezo_music_si_corchea','dyor_piezo_music_silencio_semicorchea','dyor_piezo_music_do_semicorchea','dyor_piezo_music_re_semicorchea','dyor_piezo_music_mi_semicorchea','dyor_piezo_music_fa_semicorchea','dyor_piezo_music_sol_semicorchea','dyor_piezo_music_la_semicorchea','dyor_piezo_music_si_semicorchea','dyor_piezo_music_end','HIPPIE_adv_movement2','dyor_piezo_music_silencio_redondap','dyor_piezo_music_silencio_blancap','dyor_piezo_music_silencio_negrap','dyor_piezo_music_silencio_corcheap','dyor_piezo_music_silencio_semicorcheap','dyor_piezo_music_do_redondap_vb','dyor_piezo_music_do_redonda_vb','dyor_piezo_music_do_blancap_vb','dyor_piezo_music_do_blanca_vb','dyor_piezo_music_do_negrap_vb','dyor_piezo_music_do_negra_vb','dyor_piezo_music_do_corcheap_vb','dyor_piezo_music_do_corchea_vb','dyor_piezo_music_do_semicorcheap_vb','dyor_piezo_music_do_semicorchea_vb','dyor_piezo_music_dos_redondap_vb','dyor_piezo_music_dos_redonda_vb','dyor_piezo_music_dos_blancap_vb','dyor_piezo_music_dos_blanca_vb','dyor_piezo_music_dos_negrap_vb','dyor_piezo_music_dos_negra_vb','dyor_piezo_music_dos_corcheap_vb','dyor_piezo_music_dos_corchea_vb','dyor_piezo_music_dos_semicorcheap_vb','dyor_piezo_music_dos_semicorchea_vb','dyor_piezo_music_reb_redondap_vb','dyor_piezo_music_reb_redonda_vb','dyor_piezo_music_reb_blancap_vb','dyor_piezo_music_reb_blanca_vb','dyor_piezo_music_reb_negrap_vb','dyor_piezo_music_reb_negra_vb','dyor_piezo_music_reb_corcheap_vb','dyor_piezo_music_reb_corchea_vb','dyor_piezo_music_reb_semicorcheap_vb','dyor_piezo_music_reb_semicorchea_vb','dyor_piezo_music_re_redondap_vb','dyor_piezo_music_re_redonda_vb','dyor_piezo_music_re_blancap_vb','dyor_piezo_music_re_blanca_vb','dyor_piezo_music_re_negrap_vb','dyor_piezo_music_re_negra_vb','dyor_piezo_music_re_corcheap_vb','dyor_piezo_music_re_corchea_vb','dyor_piezo_music_re_semicorcheap_vb','dyor_piezo_music_re_semicorchea_vb','dyor_piezo_music_res_redondap_vb','dyor_piezo_music_res_redonda_vb','dyor_piezo_music_res_blancap_vb','dyor_piezo_music_res_blanca_vb','dyor_piezo_music_res_negrap_vb','dyor_piezo_music_res_negra_vb','dyor_piezo_music_res_corcheap_vb'];
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
                     var category = this.Blocks[block].category;
@@ -308,13 +308,13 @@
             }
             //console.log(missingDoc);
         };
-		
+
 		Blockly.getBlocks = function() {
 
             var blocks = { };
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object) {
                     var category = this.Blocks[block].category;
@@ -329,14 +329,14 @@
             }
 			return blocks;
 		};
-		
+
 		/*Blockly.createToolbox = function() {
 
             var blocks = { };
 			var colours = { };
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
                     var category = this.Blocks[block].category;
@@ -378,14 +378,14 @@
 
             return toolbox;
         };*/
-		
+
 		Blockly.createToolbox = function(toolboxNames) {
 
             var blocks = { };
 			var colours = { };
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
                     var category = this.Blocks[block].category;
@@ -457,15 +457,15 @@
 
             return toolbox;
         };
-		
-		
+
+
 		Blockly.updateToolboxXml = function(show_cat) {
 
             var blocks = { };
 			var colours = { };
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
                     var category = this.Blocks[block].category;
@@ -537,13 +537,13 @@
 
             return toolbox;
         };
-		
+
 		Blockly.createToolboxColours = function() {
 
             var blocks = {};
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
                     var category = this.Blocks[block].category;
@@ -557,16 +557,16 @@
             //return blocks[category];
 			return blocks;
         };
-		
-		
-		
+
+
+
 		Blockly.getInstructionList = function() {
 
             var blocks = { };
 			var colours = { };
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
                     var category = this.Blocks[block].category;
@@ -633,7 +633,7 @@
 
             return instruction_list;
         };
-		
+
 		Blockly.exportAllBlocks = function() {
 
             var blocks = {};
@@ -642,7 +642,7 @@
 			var flags = [];
 
             for (var block in this.Blocks) {
-                // important check that this is objects own property 
+                // important check that this is objects own property
                 // not from prototype prop inherited
                 if (this.Blocks.hasOwnProperty(block) && this.Blocks[block] instanceof Object && this.Blocks[block].category) {
                     var category = this.Blocks[block].category;
@@ -667,7 +667,7 @@
 
             var block_xml = '';
 			var block_name;
-			
+
 			var textFile = 'file:///C:/Users/leoaran/Dropbox/DYOR/DYOR/Facilino/src/facilino/roboblocks/html/phantom_script.bat';
 			makeTextFile = function (text) {
 			var data = new Blob([text], {type: 'text/plain'});
@@ -679,7 +679,7 @@
 			textFile = window.URL.createObjectURL(data);
 			return textFile;
 			};
-			
+
 			var blockItem = function(type) {
 				//try{
                 block_xml = '<block type="' + type + '" deletable="true"></block>';
@@ -695,7 +695,7 @@
 				//}
 				//catch(err){ }
             };
-			
+
 			function openFunction(bly) {
 			$.ajax({
 				type: "GET" ,
@@ -719,7 +719,7 @@
 				async: false
 			});
 			}
-			
+
 			//var txt = new ActiveXObject("Scripting.FileSystemObject");
             //var s = txt.CreateTextFile("raster.txt", true);
 			var txt = '';
@@ -738,11 +738,11 @@
 			}
 			for (example in examples)
 				openFunction('doc/examples/'+examples[example]);
-			
+
 			window.open(makeTextFile(txt),"_blank");
 			//s.Close();
 			return block_xml;
-        };								 	
+        };
         // Source: tmp/jst.js
         // Source: tmp/jst.js
         this["JST"] = this["JST"] || {};
@@ -1014,7 +1014,7 @@
             }
             return __p;
 		}
-		
+
 		this["JST"]["math_random_seedOut"] = function (obj) {
 			obj || (obj = {});
             var __t, __p = '',
@@ -1172,7 +1172,7 @@
             }
             return __p
         };
-		
+
 		this["JST"]["text_lower"] = function(obj) {
             obj || (obj = {});
             var __t, __p = '',
@@ -1184,7 +1184,7 @@
             }
             return __p
         };
-		
+
 		this["JST"]["text_upper"] = function(obj) {
             obj || (obj = {});
             var __t, __p = '',
@@ -1245,13 +1245,13 @@
             }
             return __p
         };*/
-		
+
 		this["JST"]["wire_definitions_include"] = function(obj) {
             obj || (obj = {});
             var __t, __p = '',
                 __e = _.escape;
             with(obj) {
-                __p += '#include <Wire.h>';			
+                __p += '#include <Wire.h>';
             }
             return __p
         };
@@ -1260,7 +1260,7 @@
 
 
 	// Source: src/blocks/procedures_callnoreturn/procedures_callnoreturn.js
-		
+
 	Blockly.Blocks.procedures_defnoreturn = {
 		category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'),
 		helpUrl: RoboBlocks.getHelpUrl('procedures_defnoreturn'),
@@ -1268,7 +1268,7 @@
 		category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 		keys: ['LANG_PROCEDURES_DEFNORETURN_PROCEDURE','LANG_PROCEDURES_DEFNORETURN_TOOLTIP','LANG_PROCEDURES_DEFNORETURN_DO'],
-		init: function() {    	
+		init: function() {
 		this.setColour(RoboBlocks.LANG_COLOUR_PROCEDURES);
 		var name = new Blockly.FieldTextInput('',Blockly.Procedures.rename);
 		name.setSpellcheck(false);
@@ -1332,7 +1332,7 @@
     } finally {
       Blockly.Events.enable();
     }
-  },  
+  },
   mutationToDom: function(opt_paramIds) {
     var container = document.createElement('mutation');
     if (opt_paramIds) {
@@ -1345,7 +1345,7 @@
         parameter.setAttribute('paramId', this.paramIds_[i]);
       }
       container.appendChild(parameter);
-	  
+
 	  parameter = document.createElement('arg_type');
 	  try{
 	  parameter.setAttribute('name', this.type_arguments_[i]);
@@ -1364,7 +1364,7 @@
       container.setAttribute('statements', 'false');
     }
     return container;
-  },  
+  },
   domToMutation: function(xmlElement) {
     this.arguments_ = [];
     for (var i = 0, childNode; childNode = xmlElement.childNodes[i]; i++) {
@@ -1385,7 +1385,7 @@
 
     // Show or hide the statement input.
     this.setStatements_(xmlElement.getAttribute('statements') !== 'false');
-  },  
+  },
   decompose: function(workspace) {
     var containerBlock = workspace.newBlock('procedures_mutatorcontainer');
     containerBlock.initSvg();
@@ -1415,7 +1415,7 @@
 	//Blockly.Procedures.mutateCallers(this.getFieldValue('NAME'), this.workspace, this.arguments_, null);
     //Blockly.Procedures.mutateCallers(this.getFieldValue('TYPE'), this.workspace, this.type_arguments_, null);
     return containerBlock;
-  },    
+  },
   compose: function(containerBlock) {
     // Parameter list.
     this.arguments_ = [];
@@ -1535,7 +1535,7 @@
                 }
             }
 };
-		
+
 		Blockly.Blocks['procedures_mutatorcontainer'] = {
 		colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 		keys: ['LANG_PROCEDURES_MUTATORCONTAINER_Field'],
@@ -1551,7 +1551,7 @@
     this.contextMenu = false;
   }
 };
-	
+
 		Blockly.Blocks['procedures_mutatorarg'] = {
 			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 			keys: ['LANG_PROCEDURES_MUTATORARG_Field'],
@@ -1630,7 +1630,7 @@
             Blockly.Arduino.definitions_[funcName] = code;
             return null;
         };
-		
+
         // Source: src/blocks/procedures_defreturn/procedures_defreturn.js
         Blockly.Arduino.procedures_defreturn = function() {
             // Define a procedure with a return value.
@@ -1667,7 +1667,7 @@
             Blockly.Arduino.definitions_[funcName] = code;
             return null;
         };
-		
+
 		Blockly.Blocks.procedures_defreturn = {
 		category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Procedures are handled specially.
         helpUrl: RoboBlocks.getHelpUrl('procedures_defreturn'),
@@ -1792,8 +1792,8 @@
             code += '}\n';
             return code;
         };
-		
-		
+
+
 
         Blockly.Blocks.procedures_ifreturn = {
             // Conditionally return value from a procedure.
@@ -1932,8 +1932,8 @@
                 }
             }
         };
-		
-		
+
+
 		Blockly.Arduino.procedures_callnoreturn = function() {
             // Call a procedure with a return value.
             var funcName = this.getFieldValue('PROCEDURES');
@@ -1959,7 +1959,7 @@
             // Variable getter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_PROCEDURES'), // Variables are handled specially.
             helpUrl: RoboBlocks.getHelpUrl('procedures_callnoreturn'),
-			examples: ['procedures_callnoreturn_example.bly'],	
+			examples: ['procedures_callnoreturn_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 			colour: RoboBlocks.LANG_COLOUR_PROCEDURES,
 			keys: ['LANG_PROCEDURES_CALLNORETURN_TOOLTIP','LANG_PROCEDURES_DEFNORETURN_PROCEDURE','LANG_PROCEDURES_CALL_WITHOUT_DEFINITION'],
@@ -2179,7 +2179,7 @@
                 }
             }
         };
-		
+
         // Source: src/blocks/procedures_callreturn/procedures_callreturn.js
         Blockly.Arduino.procedures_callreturn = function() {
             // Call a procedure with a return value.
@@ -2428,8 +2428,8 @@
                 }
             }
         };
-		
-		
+
+
         Blockly.Arduino.controls_doWhile = function() {
             // Do while/until loop.
             var argument0 = Blockly.Arduino.valueToCode(this, 'WHILE', Blockly.Arduino.ORDER_NONE) || '';
@@ -2454,13 +2454,13 @@
             });
             return code;
         };
-		
+
         Blockly.Blocks.controls_doWhile = {
             // Do/while loop.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
             helpUrl: RoboBlocks.getHelpUrl('controls_doWhile'),
-			examples: ['controls_doWhile_example1.bly','controls_doWhile_example2.bly'],	
+			examples: ['controls_doWhile_example1.bly','controls_doWhile_example2.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			keys: ['LANG_CONTROLS_DOWHILE_OPERATOR_DO','LANG_CONTROLS_WHILEUNTIL_OPERATOR_WHILE','LANG_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL','LANG_CONTROLS_DOWHILE_TOOLTIP'],
@@ -2476,7 +2476,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_DOWHILE_TOOLTIP'));
             }
         };
-		
+
 		// Source: src/blocks/controls_flow_statements/controls_flow_statements.js
         Blockly.Arduino.controls_flow_statements = function() {
             // Flow statements: continue, break.
@@ -2494,7 +2494,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
             helpUrl: RoboBlocks.getHelpUrl('controls_flow_statements'),
-			examples: ['controls_flow_statements_example1.bly','controls_flow_statements_example2.bly'],		
+			examples: ['controls_flow_statements_example1.bly','controls_flow_statements_example2.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			keys: ['LANG_CONTROLS_FLOW_STATEMENTS_OPERATOR_BREAK','LANG_CONTROLS_FLOW_STATEMENTS_OPERATOR_CONTINUE','LANG_CONTROLS_FLOW_STATEMENTS_INPUT_OFLOOP','LANG_CONTROLS_FLOW_STATEMENTS_WARNING','LANG_CONTROLS_FLOW_STATEMENTS_TOOLTIP_BREAK','LANG_CONTROLS_FLOW_STATEMENTS_TOOLTIP_CONTINUE'],
@@ -2542,7 +2542,7 @@
                 }
             }
         };
-		
+
 		Blockly.Arduino.controls_repeat = function() {
             var argument1 = this.getFieldValue('TO')
             var branch = Blockly.Arduino.statementToCode(this, 'DO');
@@ -3201,7 +3201,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
             helpUrl: RoboBlocks.getHelpUrl('controls_whileUntil'),
-			examples: ['controls_whileUntil_example.bly','controls_whileUntil1_example.bly'],	
+			examples: ['controls_whileUntil_example.bly','controls_whileUntil1_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			keys: ['LANG_CONTROLS_WHILEUNTIL_OPERATOR_WHILE','LANG_CONTROLS_WHILEUNTIL_OPERATOR_UNTIL','LANG_CONTROLS_DOWHILE_OPERATOR_DO','LANG_CONTROLS_WHILEUNTIL_TOOLTIP_WHILE','LANG_CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL'],
@@ -3219,7 +3219,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_TOOLTIP_WHILE')+' '+RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_OR')+' '+RoboBlocks.locales.getKey('LANG_CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL'));
             }
         };
-		
+
         // Source: src/blocks/inout_analog_read/inout_analog_read.js
         Blockly.Arduino.inout_analog_read = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE);
@@ -3243,8 +3243,8 @@
             });
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
-		
-		
+
+
         Blockly.Blocks.inout_analog_read = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ANALOG'),
@@ -3261,7 +3261,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_READ_TOOLTIP'));
             }
         };
-		
+
         // Source: src/blocks/base_delay/base_delay.js
         // global Blockly, JST, RoboBlocks
 
@@ -3272,7 +3272,7 @@
             var a = RoboBlocks.findPinMode(delay_time);
             code += a['code'];
             delay_time = a['pin'];
-			
+
 			code += 'delay('+delay_time+');\n';
             return code;
         };
@@ -3296,14 +3296,14 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.base_delay_sec = function() {
             var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC);
             var code = '';
             var a = RoboBlocks.findPinMode(delay_time);
             code += a['code'];
             delay_time = a['pin'];
-			
+
 			code += 'delay(1000*'+delay_time+');\n';
             return code;
         };
@@ -3327,7 +3327,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_DELAY_SEC_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.base_millis = function() {
             var code = 'millis()';
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -3348,7 +3348,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_BASE_MILLIS_TOOLTIP'));
             }
         };
-		
+
 			Blockly.Arduino.base_us = function() {
             var code = 'micros()';
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -3371,15 +3371,15 @@
         };
 
 		Blockly.Blocks.dyor_controls_wait = [];
-		
+
         Blockly.Blocks.controls_every = [];
 
         Blockly.Blocks.controls_every_container = [];
 
 		Blockly.Blocks.controls_every_item = [];
-		
+
 		if ((profiles['processor']==='ESP32')||(profiles['processor']==='ESP8266'))
-		{	
+		{
 			Blockly.Blocks.ESP_deep_sleep = [];
 		}
 
@@ -3390,7 +3390,7 @@
 
 			if (Blockly.Arduino.setups_['setup_int0_']) {
               branch += Blockly.Arduino.setups_['setup_int0_']
-            }	    
+            }
 
             Blockly.Arduino.setups_['X_SETUP'] = JST['controls_setupLoop']({
                 'branch': branch
@@ -3429,7 +3429,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_SETUP_LOOP_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.controls_comment = function() {
             // Add statements to setup.
             var code='//'+this.getFieldValue('COMMENT')+'\n';
@@ -3439,8 +3439,8 @@
             // Setup statements.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
-            helpUrl: RoboBlocks.getHelpUrl('controls_block'),
-			examples: ['controls_setupLoop_example.bly'],
+            helpUrl: RoboBlocks.getHelpUrl('controls_comment'),
+			examples: ['controls_comment_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			keys: ['LANG_CONTROLS_COMMENT_TOOLTIP'],
@@ -3450,13 +3450,12 @@
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_COMMENT_TOOLTIP'));
-				this.contextMenu = false;
             }
         };
-		
+
 		Blockly.Arduino.controls_block = function() {
             // Add statements to setup.
-            var code=Blockly.Arduino.statementToCode(this, 'BLOCK');
+            var code='{\n'+Blockly.Arduino.statementToCode(this, 'BLOCK')+'}\n';
             return code;
         };
         Blockly.Blocks.controls_block = {
@@ -3464,7 +3463,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_CONTROLS'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_CONTROL'),
             helpUrl: RoboBlocks.getHelpUrl('controls_block'),
-			examples: ['controls_setupLoop_example.bly'],
+			examples: ['controls_block_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			colour: RoboBlocks.LANG_COLOUR_CONTROL,
 			keys: ['LANG_CONTROLS_BLOCK','LANG_CONTROLS_BLOCK_TOOLTIP'],
@@ -3485,8 +3484,8 @@
         };
 
 	// Source: src/blocks/advanced_map/advanced_map.js
-        // global Blockly, JST, RoboBlocks 
-        // jshint sub:true 
+        // global Blockly, JST, RoboBlocks
+        // jshint sub:true
 
         Blockly.Arduino.advanced_map = function() {
             var num = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.Arduino.ORDER_NONE);
@@ -3518,7 +3517,7 @@
 
 
             code += 'map('+num+','+from_min+','+from_max+','+to_min+','+to_max+')';
-			
+
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -3599,9 +3598,9 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_BASE_MAP_TOOLTIP'));
             }
         };
-		
+
         // Source: src/blocks/inout_analog_write/inout_analog_write.js
-		
+
         Blockly.Arduino.inout_analog_write = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE);  //Do not change! It affects to the channel in ESP32
             var value_num = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.Arduino.ORDER_ATOMIC);
@@ -3626,7 +3625,7 @@
 			else if (profiles['processor']==='ESP32')
 			{
 				var freq_num = this.getFieldValue('FREQ');
-				var res_num = this.getFieldValue('RES');		
+				var res_num = this.getFieldValue('RES');
 				Facilino.PWMChannelsIDs[this.id]=dropdown_pin;
 				var unique = [];
 				this.uniqueVariables = [];
@@ -3635,7 +3634,7 @@
 				});
 				var channel = unique.indexOf(dropdown_pin);
 				Blockly.Arduino.setups_['ledc_'+dropdown_pin] = 'ledcSetup('+channel+','+freq_num+','+res_num+');\n  ledcAttachPin('+dropdown_pin+','+channel+');\n';
-				code += 'ledcWrite('+channel+','+value_num+');\n';	
+				code += 'ledcWrite('+channel+','+value_num+');\n';
 			}
             return code;
         };
@@ -3660,14 +3659,14 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_ANALOG_WRITE_TOOLTIP'));
             }
         };
-		
+
         // Source: src/blocks/inout_builtin_led/inout_builtin_led.js
         Blockly.Arduino.inout_builtin_led = function() {
             var dropdown_stat = this.getFieldValue('STAT');
 			var code = '';
 			var pin = profiles.default.builtin;
 			Blockly.Arduino.setups_['setup_green_led_'+pin] = JST['inout_builtin_led_setups']({'pin': pin});
-			  
+
 			if (dropdown_stat==='TOGGLE')
 			{
 				code +='digitalWrite('+pin+',!digitalRead('+pin+'));\n';
@@ -3695,7 +3694,7 @@
                     .appendField(new Blockly.FieldDropdown([
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_ON') || 'ON', 'HIGH'],
                         [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_OFF') || 'OFF', 'LOW'],
-                        [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_TOGGLE') || 'TOGGLE', 'TOGGLE']																											 
+                        [RoboBlocks.locales.getKey('LANG_ADVANCED_BUILTIN_LED_TOGGLE') || 'TOGGLE', 'TOGGLE']
                     ]), 'STAT');
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
@@ -3781,7 +3780,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_INOUT_DIGITAL_WRITE_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.inout_digital_mode = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE);
             var dropdown_mode = this.getFieldValue('MODE');
@@ -3850,7 +3849,7 @@
 
 		//if (options.lcd)
 		{
-        
+
 
         // Source: src/blocks/lcd_def/lcd_def.js
 
@@ -3888,7 +3887,7 @@
             },
 			isNotDuplicable: true
         };
-		
+
 		Blockly.Arduino.lcd_def1 = function() {
             Blockly.Arduino.definitions_['define_liquid_crystals1'] = '#include <LiquidCrystal_I2C.h>';
             Blockly.Arduino.definitions_['declare_var_LCD'] = 'LiquidCrystal_I2C _lcd(0x27,16,2);\n';
@@ -3915,7 +3914,7 @@
             },
 			isNotDuplicable: true
         };
-		
+
 		Blockly.Arduino.lcd_clear = function() {
 			var code = '_lcd.clear();\n';
             return code;
@@ -3947,7 +3946,7 @@
 					this.setWarningText('This block instruction requires to define the LCD pin connections');
 				  else
 					this.setWarningText(null);
-				  
+
 			  }
         };
 
@@ -3960,12 +3959,12 @@
 
             if (this.getFieldValue('POS') === 'TRUE')
                 code += '_lcd.setCursor('+ycoor+','+xcoor+');\n';
-			code += '_lcd.print(' +val+');\n';	
-			
+			code += '_lcd.print(' +val+');\n';
+
             code = code.replace(/&quot;/g, '"');
             return code;
         };
-		
+
 		/*Blockly.Arduino.lcd_print = function() {
             var val = Blockly.Arduino.valueToCode(this, 'VAL', Blockly.Arduino.ORDER_ATOMIC);
             var xcoor = this.getFieldValue('XCOOR');
@@ -3974,12 +3973,12 @@
 
             if (this.getFieldValue('POS') === 'TRUE')
                 code += '_lcd.setCursor('+ycoor+','+xcoor+');\n';
-			code += '_lcd.print(' +val+');\n';	
-			
+			code += '_lcd.print(' +val+');\n';
+
             code = code.replace(/&quot;/g, '"');
             return code;
         };*/
-		
+
 
         Blockly.Blocks.lcd_print = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_SCREEN'),
@@ -4081,7 +4080,7 @@
 					this.setWarningText(null);
             }
         };
-		
+
 		Blockly.Arduino.lcd_scroll = function() {
             var val = Blockly.Arduino.valueToCode(this, 'VAL', Blockly.Arduino.ORDER_ATOMIC);
 			var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC);
@@ -4196,10 +4195,10 @@
 					this.setWarningText('This block instruction requires to define the LCD pin connections');
 				  else
 					this.setWarningText(null);
-				  
+
 			  }
         };
-		
+
 		}
 
         // Source: src/blocks/logic_boolean/logic_boolean.js
@@ -4214,8 +4213,8 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
             helpUrl: RoboBlocks.getHelpUrl('logic_boolean'),
 			examples: ['logic_boolean_example.bly'],
-			tags: ['logic'],					
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,	
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			keys: ['LANG_LOGIC_BOOLEAN_TRUE','LANG_LOGIC_BOOLEAN_FALSE'],
             init: function() {
@@ -4275,8 +4274,8 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
             helpUrl: RoboBlocks.getHelpUrl('logic_compare'),
 			examples: ['logic_compare_example.bly'],
-			tags: ['logic'],						
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,		
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			keys: ['LANG_LOGIC_COMPARE_TOOLTIP'],
             init: function() {
@@ -4313,7 +4312,7 @@
             //     'argument0': argument0,
             //     'argument1': argument1
             // });
-						  
+
             var a = RoboBlocks.findPinMode(argument0);
             code += a['code'];
             argument0 = a['pin'];
@@ -4339,14 +4338,14 @@
 			}
             return [code, order];
         };
-		
+
         Blockly.Blocks.logic_operation = {
             // Logical operations: 'and', 'or'.
 			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
             helpUrl: RoboBlocks.getHelpUrl('logic_operation'),
 			examples: ['logic_operation_example.bly'],
-			tags: ['logic'],	
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			keys: ['LANG_LOGIC_OPERATION_AND','LANG_LOGIC_OPERATION_OR','LANG_LOGIC_OPERATION_XOR','LANG_LOGIC_OPERATION_XNOR','LANG_LOGIC_OPERATION_IMPLIES','LANG_LOGIC_OPERATION_TOOLTIP'],
             init: function() {
@@ -4365,8 +4364,8 @@
                 var thisBlock = this;
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_OPERATION_TOOLTIP'));
             }
-        };	
-		
+        };
+
         Blockly.Arduino.logic_negate = function() {
             // Negation.
             var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
@@ -4390,8 +4389,8 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
             helpUrl: RoboBlocks.getHelpUrl('logic_negate'),
 			examples: ['logic_negate_example.bly'],
-			tags: ['logic'],							
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,	
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			keys: ['LANG_LOGIC_NEGATE_INPUT_NOT','LANG_LOGIC_NEGATE_TOOLTIP'],
             init: function() {
@@ -4403,7 +4402,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_NEGATE_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.logic_to_boolean = function() {
             // Negation.
             var num = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.ORDER_NONE);
@@ -4417,9 +4416,9 @@
             // Negation.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
             helpUrl: RoboBlocks.getHelpUrl('logic_to_boolean'),
-			examples: ['logic_negate_example.bly'],
-			tags: ['logic'],							
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,	
+			examples: ['logic_to_boolean_example.bly'],
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			keys: ['LANG_LOGIC_TO_BOOLEAN','LANG_LOGIC_TO_BOOLEAN_TOOLTIP'],
             init: function() {
@@ -4429,7 +4428,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_TO_BOOLEAN_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.logic_bitwise_operation = function() {
 		    var code = '';
             var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
@@ -4437,15 +4436,15 @@
 			code = '(('+argument0+')'+this.getFieldValue('OP')+'('+argument1+'))';
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
-		
+
         Blockly.Blocks.logic_bitwise_operation = {
             // Logical operations: 'and', 'or'.
 			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
             helpUrl: RoboBlocks.getHelpUrl('logic_bitwise_operation'),
 			examples: ['logic_operation_example.bly'],
-			tags: ['logic'],	
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
 			keys: ['LANG_LOGIC_BITWISE_OPERATION_TOOLTIP'],
             init: function() {
@@ -4463,22 +4462,22 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_OPERATION_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.logic_bitwise_not = function() {
 		    var code = '';
             var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
 			code = '(~'+argument0+')';
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
-		
+
         Blockly.Blocks.logic_bitwise_not = {
             // Logical operations: 'and', 'or'.
 			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
             helpUrl: RoboBlocks.getHelpUrl('logic_bitwise_not'),
 			examples: ['logic_operation_example.bly'],
-			tags: ['logic'],	
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
 			keys: ['LANG_LOGIC_BITWISE_NOT_TOOLTIP'],
             init: function() {
@@ -4491,7 +4490,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_NOT_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.logic_shift = function() {
 		    var code = '';
             var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
@@ -4499,15 +4498,15 @@
 			code = '(('+argument0+')'+this.getFieldValue('OP')+'('+argument1+'))';
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
-		
+
         Blockly.Blocks.logic_shift = {
             // Logical operations: 'and', 'or'.
 			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
             helpUrl: RoboBlocks.getHelpUrl('logic_shift'),
 			examples: ['logic_operation_example.bly'],
-			tags: ['logic'],	
-			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,				
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
 			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
 			keys: ['LANG_LOGIC_BITWISE_SHIFT_TOOLTIP'],
             init: function() {
@@ -4572,7 +4571,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
             helpUrl: RoboBlocks.getHelpUrl('math_arithmetic'),
 			examples: ['math_arithmetic_example.bly'],
-			tags: ['math'],		
+			tags: ['math'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_MATH_ARITHMETIC_TOOLTIP'],
@@ -4606,8 +4605,8 @@
             DIVIDE: RoboBlocks.locales.getKey('LANG_MATH_ARITHMETIC_TOOLTIP_DIVIDE'),
             POWER: RoboBlocks.locales.getKey('LANG_MATH_ARITHMETIC_TOOLTIP_POWER')
         };
-		
-		
+
+
 		Blockly.Arduino.math_minmax = function() {
             // Basic arithmetic operators, and power.
             var op = this.getFieldValue('OP');
@@ -4615,16 +4614,16 @@
             var argument1 = Blockly.Arduino.valueToCode(this, 'B', Blockly.Arduino.ORDER_NONE) || '';
             var code = '';
 			code+= op+'('+argument0+','+argument1+')';
-            
+
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
-		
+
         Blockly.Blocks.math_minmax = {
             // Basic arithmetic operator.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
             helpUrl: RoboBlocks.getHelpUrl('math_minmax'),
 			examples: ['minmax_example.bly'],
-			tags: ['math'],		
+			tags: ['math'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_MATH_MINMAX_TOOLTIP'],
@@ -4640,7 +4639,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_MINMAX_TOOLTIP'));
             }
         };
-		
+
         // Source: src/blocks/math_array/math_array.js
 
         // Source: src/blocks/math_modulo/math_modulo.js
@@ -4672,7 +4671,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
             helpUrl: RoboBlocks.getHelpUrl('math_modulo'),
 			examples: ['math_arithmetic_example.bly'],
-			tags: ['math'],								
+			tags: ['math'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_MATH_MODULO_TOOLTIP'],
@@ -4706,7 +4705,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'), // Variables are handled specially.
             helpUrl: RoboBlocks.getHelpUrl('math_number'),
 			examples: ['math_number_example.bly'],
-			tags: ['math'],					
+			tags: ['math'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_MATH_NUMBER_TOOLTIP'],
@@ -4724,7 +4723,7 @@
             var n = window.parseFloat(text || 0);
             return window.isNaN(n) ? null : String(n);
         };
-		
+
 
         // Source: src/blocks/math_random/math_random.js
         Blockly.Arduino.math_random = function() {
@@ -4738,12 +4737,12 @@
             a = RoboBlocks.findPinMode(value_dmax);
             code += a['code'];
             value_dmax = a['pin'];
-			
+
 			Blockly.Arduino.definitions_['define_random_bitOut'] = JST['math_random_bitOut']({});
 			Blockly.Arduino.definitions_['define_random_seedOut'] = JST['math_random_seedOut']({});
-			
+
 			Blockly.Arduino.setups_['setup_randomseed'] = 'unsigned long seed =seedOut(31);\n  randomSeed(seed);\n';
-			
+
             code += JST['math_random']({
                 'value_num': value_num,
                 'value_dmax': value_dmax
@@ -4755,7 +4754,7 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
             helpUrl: RoboBlocks.getHelpUrl('math_random'),
 			examples: ['math_random_example.bly'],
-			tags: ['math'],							
+			tags: ['math'],
 			category_colour: RoboBlocks.LANG_COLOUR_MATH,
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_ADVANCED_MATH_RANDOM','LANG_ADVANCED_MATH_RANDOM_AND','LANG_ADVANCED_MATH_RANDOM_TOOLTIP'],
@@ -4805,7 +4804,7 @@
             }
         };
 
-        // Source: src/blocks/math_single/math_single.js		 
+        // Source: src/blocks/math_single/math_single.js
 		Blockly.Arduino.math_sinusoid = function() {
             var amplitude = Blockly.Arduino.valueToCode(this, 'AMPLITUDE', Blockly.Arduino.ORDER_NONE);
 			var freq= Blockly.Arduino.valueToCode(this, 'FREQ', Blockly.Arduino.ORDER_NONE);
@@ -4837,10 +4836,10 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_MATH_SINUSOID_TOOLTIP'));
             }
         };
-		
+
 		//if (options.arrays)
 		{
-			
+
 			Blockly.Arduino.math_1DArray_get = function() {
             // Array constructor.
 			var input = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_NONE);
@@ -4852,7 +4851,7 @@
 			return [code,Blockly.Arduino.ORDER_NONE];
 			};
 
-		
+
         Blockly.Blocks.math_1DArray_get = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -4874,7 +4873,7 @@
 				this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_ARRAY_GET_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.math_1DArray_set = function() {
             // Array constructor.
 			var input = Blockly.Arduino.valueToCode(this, 'INPUT', Blockly.Arduino.ORDER_NONE);
@@ -4887,7 +4886,7 @@
 			return [code,Blockly.Arduino.ORDER_NONE];
 			};
 
-		
+
         Blockly.Blocks.math_1DArray_set = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -4909,7 +4908,7 @@
 				this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_ARRAY_SET_TOOLTIP'));
             }
         };
-			
+
 			Blockly.Arduino.math_1DArray_constructor2 = function() {
             // Array constructor.
 			var code='{';
@@ -4918,7 +4917,7 @@
 			return [code,Blockly.Arduino.ORDER_NONE];
 			};
 
-		
+
         Blockly.Blocks.math_1DArray_constructor2 = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -4940,7 +4939,7 @@
 				this.itemCount_ = 2;
             }
         };
-		
+
 		Blockly.Arduino.math_1DArray_constructor3 = function() {
             // Array constructor.
 			var code='{';
@@ -4949,7 +4948,7 @@
 			return [code,Blockly.Arduino.ORDER_NONE];
 			};
 
-		
+
         Blockly.Blocks.math_1DArray_constructor3 = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -4971,7 +4970,7 @@
 				this.itemCount_ = 3;
             }
         };
-		
+
 		Blockly.Arduino.math_1DArray_constructor4 = function() {
             // Array constructor.
 			var code='{';
@@ -4980,7 +4979,7 @@
 			return [code,Blockly.Arduino.ORDER_NONE];
 			};
 
-		
+
         Blockly.Blocks.math_1DArray_constructor4 = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -5002,7 +5001,7 @@
 				this.itemCount_ = 4;
             }
         };
-			
+
 		Blockly.Arduino.math_1DArray_constructor = function() {
             // Array constructor.
 			var code='{';
@@ -5019,7 +5018,7 @@
 			return [code,Blockly.Arduino.ORDER_NONE];
         };
 
-		
+
         Blockly.Blocks.math_1DArray_constructor = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -5086,7 +5085,7 @@
                             if (clauseBlock.valueConnection_) {
                                 itemInput.connection.connect(clauseBlock.valueConnection_);
                             }
-                 
+
                             break;
                         default:
                             throw 'Unknown block type.';
@@ -5114,7 +5113,7 @@
                 }
             }
         };
-		
+
 		 Blockly.Blocks.math_1DArray_constructor_constructor = {
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_VARIABLES_ARRAY','LANG_VARIABLES_ARRAY_TOOLTIP'],
@@ -5141,8 +5140,8 @@
                 this.contextMenu = false;
             }
         };
-		
-		
+
+
 		Blockly.Arduino.math_1DArray_decode = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'ARRAY', Blockly.Arduino.ORDER_NONE);
 			var code='';
@@ -5161,7 +5160,7 @@
 			return code;
         };
 
-		
+
         Blockly.Blocks.math_1DArray_decode = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -5229,7 +5228,7 @@
                             if (clauseBlock.valueConnection_) {
                                 itemInput.connection.connect(clauseBlock.valueConnection_);
                             }
-                 
+
                             break;
                         default:
                             throw 'Unknown block type.';
@@ -5255,7 +5254,7 @@
                 }
             }
         };
-		
+
 		 Blockly.Blocks.math_1DArray_decode_decode = {
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_VARIABLES_ARRAY_DECODE','LANG_VARIABLES_ARRAY_DECODE_TOOLTIP'],
@@ -5282,7 +5281,7 @@
                 this.contextMenu = false;
             }
         };
-		
+
 		Blockly.Arduino.math_1DArray_encode = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'ARRAY', Blockly.Arduino.ORDER_NONE);
 			var code='';
@@ -5302,7 +5301,7 @@
 			return code;
         };
 
-		
+
         Blockly.Blocks.math_1DArray_encode = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_MATH'),
@@ -5370,7 +5369,7 @@
                             if (clauseBlock.valueConnection_) {
                                 itemInput.connection.connect(clauseBlock.valueConnection_);
                             }
-                 
+
                             break;
                         default:
                             throw 'Unknown block type.';
@@ -5396,7 +5395,7 @@
                 }
             }
         };
-		
+
 		 Blockly.Blocks.math_1DArray_encode_encode = {
 			colour: RoboBlocks.LANG_COLOUR_MATH,
 			keys: ['LANG_VARIABLES_ARRAY_ENCODE','LANG_VARIABLES_ARRAY_ENCODE_TOOLTIP'],
@@ -5423,7 +5422,7 @@
                 this.contextMenu = false;
             }
         };
-		
+
 		}//options.arrays
 
         Blockly.Arduino.math_single = function() {
@@ -5549,7 +5548,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_MATH_SINGLE_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.math_linear_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_linear_function'] = 'float linear(float x, float a, float b){\n return a+b*x;\n}\n';
@@ -5579,7 +5578,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_quadratic_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_quadratic_function'] = 'float quadratic(float x, float a, float b, float c){\n return a+b*x+c*x*x;\n}\n';
@@ -5609,7 +5608,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_cubic_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_cubic_function'] = 'float cubic(float x, float a, float b, float c, float d){\n return a+b*x+c*x*x+d*x*x*x;\n}\n';
@@ -5639,7 +5638,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_reciprocal_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_reciprocal_function'] = 'float reciprocal(float x, float a, float b){\n return 1.0/(a+b*x);\n}\n';
@@ -5669,7 +5668,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_reciprocal_quadratic_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_reciprocal_quadratic_function'] = 'float reciprocal_quadratic(float x, float a, float b, float c){\n return 1.0/(a+b*x+c*x*x);\n}\n';
@@ -5699,7 +5698,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_gaussian_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_gaussian_function'] = 'float gaussian(float x, float a, float b, float c){\n return a*exp(-(x-b)*(x-b)/(2*c*c));\n}\n';
@@ -5729,7 +5728,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_rational_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_rational_function'] = 'float rational(float x, float a, float b, float c, float d){\n return (a+b*x)/(1.0+c*x+d*x*x);\n}\n';
@@ -5759,7 +5758,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_geometric_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_geometric_function'] = 'float geometric(float x, float a, float b){\n return a*pow(x,b*x);\n}\n';
@@ -5789,7 +5788,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_power_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_power_function'] = 'float power(float x, float a, float b){\n return a*pow(b,x);\n}\n';
@@ -5819,7 +5818,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_root_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_root_function'] = 'float root(float x, float a, float b){\n return a*pow(b,1.0/x);\n}\n';
@@ -5849,7 +5848,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_sinusoidal_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_sinusoidal_function'] = 'float sinusoidal(float x, float a, float b, float c, float d){\n return a+b*cos(c*x+d);\n}\n';
@@ -5879,7 +5878,7 @@
 				this.itemCount_ = 0;
             }
         };
-		
+
 		Blockly.Arduino.math_trunc_fourier_function = function() {
 			var x = Blockly.Arduino.valueToCode(this, 'x', Blockly.Arduino.ORDER_NONE);
 			Blockly.Arduino.definitions_['define_trunc_fourier_function'] = 'float trunc_fourier(float x, float a, float b, float c, float d){\n return a*cos(x+d)+b*cos(2*x+d)+c*cos(3*x+d);\n}\n';
@@ -5974,7 +5973,7 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_DIGITAL'),
             helpUrl: RoboBlocks.getHelpUrl('pin_pwm'),
 			examples: ['inout_analog_write_example.bly'],
-			tags: ['input','output'],			 
+			tags: ['input','output'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
 			keys: ['LANG_VARIABLES_PIN_PWM','LANG_VARIABLES_PIN_PWM_TOOLTIP'],
@@ -5989,7 +5988,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_VARIABLES_PIN_PWM_TOOLTIP'));
             }
         };
-		
+
 		/*if (profiles['processor']==='ESP32')
 		{
 		Blockly.Arduino.pin_spi = function() {
@@ -6002,7 +6001,7 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_DIGITAL'),
             helpUrl: RoboBlocks.getHelpUrl('pin_pwm'),
 			examples: ['inout_analog_write_example.bly'],
-			tags: ['input','output'],			 
+			tags: ['input','output'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 			colour: RoboBlocks.LANG_COLOUR_ADVANCED_DIGITAL,
 			keys: ['LANG_VARIABLES_PIN_SPI','LANG_VARIABLES_PIN_TOOLTIP'],
@@ -6038,7 +6037,7 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_USB'),
             helpUrl: RoboBlocks.getHelpUrl('serial_available'),
             tags: ['serial','communication'],
-            examples: ['serial_available_example.bly'],  
+            examples: ['serial_available_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION_USB,
 			keys: ['LANG_ADVANCED_SERIAL_AVAILABLE','LANG_CONTROLS_REPEAT_INPUT_DO','LANG_ADVANCED_SERIAL_AVAILABLE_TOOLTIP'],
@@ -6127,7 +6126,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_PRINTLN_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.serial_plot = function() {
             var content = Blockly.Arduino.valueToCode(this, 'CONTENT', Blockly.Arduino.ORDER_ATOMIC);
             var code = '';
@@ -6158,7 +6157,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_PLOT_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.plot_join = function() {
 			// Create a string made up of any number of elements of any type.
             var code = '';
@@ -6194,7 +6193,7 @@
 			helpUrl: RoboBlocks.getHelpUrl('plot_join'),
 			examples: ['plot_join_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
-			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,	
+			colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
 			keys: ['LANG_PLOT_JOIN_Field_CREATEWITH','LANG_PLOT_JOIN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_COMMUNICATION);
@@ -6302,9 +6301,9 @@
                 this.contextMenu = false;
             }
         };
-		
-		
-		
+
+
+
 		// Source: src/blocks/serial_parseint/serial_parseint.js
 
         Blockly.Arduino.serial_parseint = function() {
@@ -6333,7 +6332,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_PARSEINT_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.serial_parsefloat = function() {
             Blockly.Arduino.setups_['setup_serial'] = JST['serial_setups']({'bitrate': profiles.default.serial});
 			if (profiles['processor']==='ATmega32U4')
@@ -6416,7 +6415,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_ADVANCED_SERIAL_READSTRING_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Blocks.serial_write = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_COMMUNICATION'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_USB'),
@@ -6553,7 +6552,7 @@
         // Source: src/blocks/serial_special/serial_special.js
 
         Blockly.Arduino.serial_special = function() {
-            var code = '\''+this.getFieldValue('CHAR')+'\'';			   
+            var code = '\''+this.getFieldValue('CHAR')+'\'';
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -6596,7 +6595,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text'),
 			examples: ['controls_setupLoop_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,		
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_TEXT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -6608,7 +6607,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_TEXT_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.character = function() {
             // Text value.
             var code = '\''+this.getFieldValue('TEXT')+'\'';
@@ -6622,7 +6621,7 @@
             helpUrl: RoboBlocks.getHelpUrl('character'),
 			examples: ['ontrols_switch_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,		
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_CHAR_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -6661,13 +6660,13 @@
             helpUrl: RoboBlocks.getHelpUrl('text_append'),
 			examples: ['text_append_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_APPEND_TO','LANG_TEXT_APPEND_APPENDTEXT','LANG_TEXT_APPEND_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
                 this.appendValueInput('TEXT').appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_APPENDTEXT'));
 				this.appendValueInput('VAR').appendField(RoboBlocks.locales.getKey('LANG_TEXT_APPEND_TO'));
-                
+
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setInputsInline(true);
@@ -6714,7 +6713,7 @@
             }
         };
         // Source: src/blocks/text_equalsIgnoreCase/text_equalsIgnoreCase.js
-		
+
 		Blockly.Arduino.text_charAt = function() {
             var string = Blockly.Arduino.valueToCode(this, 'STRING', Blockly.Arduino.ORDER_NONE);
 			var input = this.getInputTargetBlock('STRING');
@@ -6733,7 +6732,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_charAt'),
 			examples: ['text_equalsIgnoreCase_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_CHARAT','LANG_TEXT_CHARAT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -6776,7 +6775,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_equalsIgnoreCase'),
 			examples: ['text_equalsIgnoreCase_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_EQUALSIGNORECASE_EQUAL','LANG_TEXT_EQUALSIGNORECASE_QUESTION','LANG_TEXT_EQUALSIGNORECASE_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -6843,7 +6842,7 @@
 			helpUrl: RoboBlocks.getHelpUrl('text_join'),
 			examples: ['text_join_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_JOIN_Field_CREATEWITH','LANG_TEXT_JOIN_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -7003,8 +7002,8 @@
             }
         };
         // Source: src/blocks/text_substring/text_substring.js
-        
-		
+
+
 		Blockly.Arduino.text_lower = function() {
             // String length.
             var argument0 = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '';
@@ -7038,7 +7037,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_LOWER_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.text_upper = function() {
             // String length.
             var argument0 = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '';
@@ -7072,7 +7071,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_LENGTH_UPPER_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.text_substring = function() {
             var string1 = Blockly.Arduino.valueToCode(this, 'STRING1', Blockly.Arduino.ORDER_NONE);
             var from = Blockly.Arduino.valueToCode(this, 'FROM', Blockly.Arduino.ORDER_NONE);
@@ -7105,7 +7104,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_substring'),
 			examples: ['text_substring_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_SUBSTRING','LANG_TEXT_SUBSTRING_FROM','LANG_TEXT_SUBSTRING_TO','LANG_TEXT_SUBSTRING_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -7140,11 +7139,11 @@
             var a = RoboBlocks.findPinMode(string1);
             code += a['code'];
             string1 = a['pin'];
-			
+
 			a = RoboBlocks.findPinMode(string2);
             code += a['code'];
             string2 = a['pin'];
-			
+
 			if (position==='FIRST')
 			{
 				code = string2+'.indexOf('+string1+')';
@@ -7163,7 +7162,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_search'),
 			examples: ['text_search_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_SEARCH','LANG_TEXT_IN','LANG_TEXT_FIRST','LANG_TEXT_LAST','LANG_TEXT_SEARCH_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -7175,7 +7174,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_SEARCH_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.text_contains = function() {
             var string1 = Blockly.Arduino.valueToCode(this, 'STRING1', Blockly.Arduino.ORDER_NONE);
 			var string2 = Blockly.Arduino.valueToCode(this, 'STRING2', Blockly.Arduino.ORDER_NONE);
@@ -7183,11 +7182,11 @@
             var a = RoboBlocks.findPinMode(string1);
             code += a['code'];
             string1 = a['pin'];
-			
+
 			a = RoboBlocks.findPinMode(string2);
             code += a['code'];
             string2 = a['pin'];
-			
+
 			code = '('+string2+'.indexOf('+string1+')>=0)';
 
             return [code, Blockly.Arduino.ORDER_ATOMIC];
@@ -7199,7 +7198,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_contains'),
 			examples: ['text_contains_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_CONTAINS','LANG_TEXT_EXPRESSION','LANG_TEXT_CONTAINS_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -7210,7 +7209,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CONTAINS_TOOLTIP'));
             }
         };
-		
+
 	Blockly.Arduino.text_to_text = function() {
             var value = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
 	    var dropdown_cast = this.getFieldValue('CAST') || '';
@@ -7228,7 +7227,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_to_text'),
 			examples: ['text_to_text_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_CAST','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_CHAR','LANG_TEXT_CAST_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -7242,7 +7241,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CAST_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.text_to_csv = function() {
             var value = Blockly.Arduino.valueToCode(this,'VALUE', Blockly.Arduino.ORDER_NONE);
 			var array_input = this.getInputTargetBlock('VALUE');
@@ -7259,7 +7258,7 @@
 					{
 						Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='float data'+i+',';
 					}
-					
+
 					Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='int l,int d){\n';
 					i=0;
 					Blockly.Arduino.definitions_['define_toCSV'+array_input.itemCount_]+='  char c[l+1];\n  String s="";\n  dtostrf(data'+i+',l,d,c);\n  s=String(c);\n';
@@ -7274,9 +7273,9 @@
 				{
 					Blockly.Arduino.definitions_['define_toCSV']='String toCSV(float* data,int data_length,int l,int d){\n  char c[l+1];\n  String s="";\n  dtostrf(data[0],l,d,c);\n  s=String(c);\n  for(int i=1;i<data_length;i++){\n    dtostrf(data[i],l,d,c);\n    s+=","+String(c);\n  }\n  s.replace(" ","");\n  return s;\n}\n';
 					code = 'toCSV('+value+','+RoboBlocks.variables[value][3]+','+l+','+d+')';
-				}				
+				}
 			}
-            
+
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -7286,7 +7285,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_to_csv'),
 			examples: ['text_to_csv_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_FORMAT','LANG_TEXT_CSV','LANG_TEXT_CSV_LENGTH','LANG_TEXT_CSV_DECIMAL','LANG_TEXT_CSV_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -7296,7 +7295,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_TEXT_CSV_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.text_to_number = function() {
             var str = Blockly.Arduino.valueToCode(this, 'STRING', Blockly.Arduino.ORDER_NONE);
 			var dropdown_cast = this.getFieldValue('CAST') || '';
@@ -7310,7 +7309,7 @@
             helpUrl: RoboBlocks.getHelpUrl('text_to_number'),
 			examples: ['text_to_text_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_TEXT,
-			colour: RoboBlocks.LANG_COLOUR_TEXT,	
+			colour: RoboBlocks.LANG_COLOUR_TEXT,
 			keys: ['LANG_TEXT_NUMBER_CAST','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_CHAR'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_TEXT);
@@ -7340,9 +7339,9 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
             helpUrl: RoboBlocks.getHelpUrl('variables_get'),
 			tags: ['variables'],
-			examples: ['variables_example.bly'],							  
+			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_GET','LANG_VARIABLES_GET_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -7431,7 +7430,7 @@
                 return false;
             }
         };
-		
+
 		Blockly.Arduino.variables_set = function() {
             // Variable setter.
             var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_ASSIGNMENT) || '';
@@ -7452,9 +7451,9 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
             helpUrl: RoboBlocks.getHelpUrl('variables_set'),
 			tags: ['variables'],
-			examples: ['variables_example.bly'],	
+			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,		
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_SET','LANG_VARIABLES_SET_AS','LANG_VARIABLES_SET_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -7520,7 +7519,7 @@
                 return false;
             }
         };
-        
+
         // Source: src/blocks/variables_local/variables_local.js
         Blockly.Arduino.variables_local = function() {
             // Variable setter.
@@ -7599,7 +7598,7 @@
 			tags: ['variables'],
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_LOCAL','LANG_VARIABLES_LOCAL_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -7675,8 +7674,8 @@
                 }
             }
         };
-		
-		
+
+
 		Blockly.Arduino.variables_local_type = function() {
             // Variable setter.
             var varType = this.getFieldValue('VAR_TYPE');
@@ -7700,7 +7699,7 @@
 			tags: ['variables'],
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_LOCAL','LANG_VARIABLES_LOCAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_INTEGER_SHORT','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_LOCAL_TOOLTIP2'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -7730,7 +7729,7 @@
             validName: Blockly.Blocks.variables_local.validName,
 			onchange: Blockly.Blocks.variables_local.onchange
         };
-		
+
 		// Source: src/blocks/variables_global/variables_global.js
         Blockly.Arduino.variables_global = function() {
             // Variable setter.
@@ -7811,9 +7810,9 @@
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
             helpUrl: RoboBlocks.getHelpUrl('variables_global'),
 			tags: ['variables'],
-			examples: ['variables_example.bly'],	
+			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_GLOBAL','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_GLOBAL_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -7829,8 +7828,8 @@
             validName: Blockly.Blocks.variables_local.validName,
             onchange: Blockly.Blocks.variables_local.onchange
         };
-		
-		
+
+
         // Source: src/blocks/variables_global_type/variables_global_type.js
         Blockly.Arduino.variables_global_type = function() {
             // Variable setter.
@@ -7863,7 +7862,7 @@
 			tags: ['variables'],
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_GLOBAL','LANG_VARIABLES_GLOBAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_INTEGER_SHORT','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_GLOBAL_TOOLTIP2'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -7899,8 +7898,8 @@
             onchange: Blockly.Blocks.variables_local.onchange,
 			validName: Blockly.Blocks.variables_local.validName
         };
-		
-        
+
+
 		Blockly.Arduino.variables_global_volatile_type = function() {
             // Variable setter.
             var varType = this.getFieldValue('VAR_TYPE');
@@ -7965,11 +7964,11 @@
             isVariable: Blockly.Blocks.variables_local.isVariable,
             onchange: Blockly.Blocks.variables_local.onchange,
 			validName: Blockly.Blocks.variables_local.validName
-        };	
-		
+        };
+
 		//if (options.arrays)
 		{
-			
+
 		Blockly.Arduino.variables_get_1Darray = function() {
             // Variable setter.
             var varName = this.getFieldValue('VAR') || '';
@@ -7986,9 +7985,9 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
             helpUrl: RoboBlocks.getHelpUrl('variables_get_1Darray'),
 			tags: ['variables'],
-			examples: ['array_example1.bly'],							  
+			examples: ['array_example1.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_GET','LANG_VARIABLES_ARRAY_INDEX','LANG_VARIABLES_GET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -8014,7 +8013,7 @@
                      // Block has been deleted.
                      return;
                  }
-				 
+
                  this.last_variable=this.getFieldValue('VAR');
 				 this.last_index=this.getFieldValue('INDEX');
                  if (!this.last_variables){
@@ -8054,7 +8053,7 @@
                 return false;
             }
         };
-		
+
 		Blockly.Arduino.variables_set_1Darray = function() {
             // Variable setter.
 			var index = Blockly.Arduino.valueToCode(this, 'INDEX', Blockly.Arduino.ORDER_NONE) || '';
@@ -8074,9 +8073,9 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
             helpUrl: RoboBlocks.getHelpUrl('variables_set_1Darray'),
 			tags: ['variables'],
-			examples: ['array_example1.bly'],	
+			examples: ['array_example1.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,		
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_SET','LANG_VARIABLES_ARRAY_INDEX','LANG_VARIABLES_SET_AS','LANG_VARIABLES_SET_TOOLTIP','LANG_VARIABLES_CALL_WITHOUT_DEFINITION'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -8158,7 +8157,7 @@
 					}
 					else
 					{
-						warning = 'Incorrect variable assigment'; 
+						warning = 'Incorrect variable assigment';
 					}
 				}
 				else
@@ -8180,7 +8179,7 @@
 			tags: ['variables'],
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_ARRAY_LOCAL','LANG_VARIABLES_LOCAL_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -8196,7 +8195,7 @@
             validName: Blockly.Blocks.variables_local.validName,
 			onchange: Blockly.Blocks.variables_local.onchange
         };
-		
+
 		// Source: src/blocks/variables_local_type/variables_local_type.js
         Blockly.Arduino.variables_local_1DArray_type = function() {
             // Variable setter.
@@ -8210,7 +8209,7 @@
 				var count = array.itemCount_;
 				var byte_count=count;
 				var warning = null;
-				
+
 				if (array.type.includes('math_1DArray_constructor'))
 				{
 					count = array.itemCount_;
@@ -8262,7 +8261,7 @@
 					}
 					else
 					{
-						warning = 'Incorrect variable assigment'; 
+						warning = 'Incorrect variable assigment';
 					}
 				}
 				else
@@ -8285,7 +8284,7 @@
 			tags: ['variables'],
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_ARRAY_LOCAL','LANG_VARIABLES_LOCAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_INTEGER_SHORT','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_LOCAL_TOOLTIP2'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -8312,7 +8311,7 @@
             validName: Blockly.Blocks.variables_local.validName,
 			onchange: Blockly.Blocks.variables_local.onchange
         };
-		
+
 		Blockly.Arduino.variables_global_1DArray = function() {
             // Variable setter.
 			var varValue = Blockly.Arduino.valueToCode(this, 'VALUE', Blockly.Arduino.ORDER_NONE);
@@ -8330,16 +8329,16 @@
 			}
             return '';
         };
-		
+
 		Blockly.Blocks.variables_global_1DArray = {
             // Variable setter.
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'), // Variables are handled specially.
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_ARRAYS'),
             helpUrl: RoboBlocks.getHelpUrl('variables_global_1DArray'),
 			tags: ['variables'],
-			examples: ['variables_example.bly'],	
+			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_ARRAY_GLOBAL','LANG_VARIABLES_ARRAY_GLOBAL_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -8355,7 +8354,7 @@
             validName: Blockly.Blocks.variables_local.validName,
             onchange: Blockly.Blocks.variables_local.onchange
         };
-		
+
 		Blockly.Arduino.variables_global_1DArray_type = function() {
             // Variable setter.
             var varType = this.getFieldValue('VAR_TYPE');
@@ -8407,7 +8406,7 @@
 			tags: ['variables'],
 			examples: ['variables_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
-			colour: RoboBlocks.LANG_COLOUR_VARIABLES,	
+			colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 			keys: ['LANG_VARIABLES_ARRAY_GLOBAL','LANG_VARIABLES_GLOBAL_TYPE','LANG_VARIABLES_TYPE_STRING','LANG_VARIABLES_TYPE_INTEGER','LANG_VARIABLES_TYPE_INTEGER_LONG','LANG_VARIABLES_TYPE_INTEGER_SHORT','LANG_VARIABLES_TYPE_BYTE','LANG_VARIABLES_TYPE_BOOL','LANG_VARIABLES_TYPE_FLOAT','LANG_VARIABLES_GLOBAL_EQUALS','LANG_VARIABLES_ARRAY_GLOBAL_TOOLTIP2'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_VARIABLES);
@@ -8441,7 +8440,7 @@
             onchange: Blockly.Blocks.variables_local.onchange,
 			validName: Blockly.Blocks.variables_local.validName
         };
-		
+
 		Blockly.Arduino.variables_global_volatile_1DArray_type = function() {
             // Variable setter.
             var varType = this.getFieldValue('VAR_TYPE');
@@ -8478,7 +8477,7 @@
 				else if (varType==='float')
 					byte_count=array.itemCount_*4;
 				else
-					byte_count=array.itemCount_;				
+					byte_count=array.itemCount_;
 				RoboBlocks.variables[varName] = ['volatile ' + varType, 'global','1DArray',array.itemCount_,byte_count];
 				RoboBlocks.variables['analogRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,byte_count];
 				RoboBlocks.variables['digitalRead(' + varName + ')'] = [varType, 'global','1DArray',array.itemCount_,byte_count];
@@ -8570,7 +8569,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_CONTROLS_EXECUTE_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.button = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE);
             var code = '';
@@ -8655,7 +8654,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_BUTTON_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.button_long_short = function() {
             var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_NONE);
             var code = '';
@@ -8668,7 +8667,7 @@
 			} else {
 					Blockly.Arduino.setups_['setup_button_' + dropdown_pin] = 'pinMode(' +dropdown_pin+',INPUT);\n';
 			}
-			
+
 			Blockly.Arduino.definitions_['declare_var_button_active_'+dropdown_pin]='boolean _buttonActive_'+dropdown_pin+'=false;\n';
 			Blockly.Arduino.definitions_['declare_var_long_press_active_'+dropdown_pin]='boolean _longPressActive_'+dropdown_pin+'=false;\n';
 			Blockly.Arduino.definitions_['declare_var_button_timer_'+dropdown_pin]='long _buttonTimer_'+dropdown_pin+'=0;\n';
@@ -8679,7 +8678,7 @@
 
 			code_long_pressed = code_long_pressed.replace(/&quot;/g, '"');
 			code_short_pressed = code_short_pressed.replace(/&quot;/g, '"');
-			
+
 			var block =this.getParent();
 			var in_interrupt_instruction=false;
 			while(block!==null)
@@ -8709,11 +8708,11 @@
 			{
 				code+='if (digitalRead('+dropdown_pin+')==LOW) {\n    if (_buttonActive_'+dropdown_pin+'==false) {\n      _buttonActive_'+dropdown_pin+'=true;\n      _buttonTimer_'+dropdown_pin+'=millis();\n    }\n    if (((millis()-_buttonTimer_'+dropdown_pin+'>'+this.getFieldValue('TIME')+'))&&(_longPressActive_'+dropdown_pin+'==false)){\n      _longPressActive_'+dropdown_pin+'=true;\n'+code_long_pressed+'\n}\n  }\n else {\n    if (_buttonActive_'+dropdown_pin+'== true){\n      if (_longPressActive_'+dropdown_pin+'==true){\n        _longPressActive_'+dropdown_pin+'=false;\n      }\n else  if ((millis()-_buttonTimer_'+dropdown_pin+')>100){\n'+code_short_pressed+'\n}\n      _buttonActive_'+dropdown_pin+'=false;\n    }\n  }\n';
 			}
-			
 
-			
 
-			
+
+
+
 			return code;
         };
         Blockly.Blocks.button_long_short = {
@@ -8751,11 +8750,11 @@
             var a = RoboBlocks.findPinMode(dropdown_pin);
             code += a['code'];
             dropdown_pin = a['pin'];
-				
-													   
+
+
 			pullup='INPUT_PULLUP';
-		 
-									
+
+
             if (RoboBlocks.isVariable(dropdown_pin)) {
                 code += 'pinMode(' +dropdown_pin+',INPUT_PULLUP);\n';
             } else {
@@ -8783,7 +8782,7 @@
 				this.setInputsInline(false);
             }
         };
-		
+
 		Blockly.Arduino.inout_spi_begin = function() {
             var baudrate = Blockly.Arduino.valueToCode(this, 'BAUDRATE', Blockly.Arduino.ORDER_ATOMIC);
 			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
@@ -8811,7 +8810,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_BEGIN_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.inout_spi_transfer = function() {
 			var data = Blockly.Arduino.valueToCode(this, 'DATA', Blockly.Arduino.ORDER_ATOMIC);
 			var mode = this.getFieldValue('MODE');
@@ -8865,7 +8864,7 @@
             helpUrl: RoboBlocks.getHelpUrl('inout_spi_transfer_recv'),
 			examples: ['inout_spi_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
-			colour: RoboBlocks.LANG_COLOUR_ADVANCED_BUS,	
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_BUS,
 			keys: ['LANG_SPI_TRANSFER','LANG_SPI_TRANSFER_ONE_BYTE','LANG_SPI_TRANSFER_TWO_BYTES','LANG_SPI_TRANSFER_RECV_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_BUS);
@@ -8879,7 +8878,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_SPI_TRANSFER_RECV_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.inout_spi_end = function() {
 			Blockly.Arduino.definitions_['include_spi'] = '#include <SPI.h>\n';
             var code = 'SPI.endTransaction();\n';
@@ -8893,7 +8892,7 @@
             helpUrl: RoboBlocks.getHelpUrl('inout_spi_end'),
 			examples: ['inout_spi_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
-			colour: RoboBlocks.LANG_COLOUR_ADVANCED_BUS,	
+			colour: RoboBlocks.LANG_COLOUR_ADVANCED_BUS,
 			keys: ['LANG_SPI_END','LANG_SPI_END_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_BUS);
@@ -8908,7 +8907,7 @@
 		Blockly.Arduino.joystick_dir = function() {
             var pinx = Blockly.Arduino.valueToCode(this, 'PINX', Blockly.Arduino.ORDER_NONE);
             var piny = Blockly.Arduino.valueToCode(this, 'PINY', Blockly.Arduino.ORDER_NONE);
-																										 
+
             var code = '';
 
             var a = RoboBlocks.findPinMode(pinx);
@@ -8933,7 +8932,7 @@
 			keys: ['LANG_BQ_JOYSTICK_DIR','LANG_BQ_JOYSTICK_PIN_X','LANG_BQ_JOYSTICK_PIN_Y','LANG_BQ_JOYSTICK_DIR_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
-                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_DIR')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 52*options.zoom, 24*options.zoom));										 
+                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_DIR')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 52*options.zoom, 24*options.zoom));
                 this.appendValueInput('PINX').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_X')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.svg', 22*options.zoom, 22*options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(['ANALOG_PIN',Number]);
                 this.appendValueInput('PINY').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_Y')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.svg', 22*options.zoom, 22*options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(['ANALOG_PIN',Number]);
                 this.setOutput(true, Number);
@@ -8942,7 +8941,7 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_DIR_TOOLTIP'));
             }
         };
-		
+
 		Blockly.Arduino.joystick_mag = function() {
             var pinx = Blockly.Arduino.valueToCode(this, 'PINX', Blockly.Arduino.ORDER_ATOMIC);
             var piny = Blockly.Arduino.valueToCode(this, 'PINY', Blockly.Arduino.ORDER_ATOMIC);
@@ -8954,7 +8953,7 @@
             a = RoboBlocks.findPinMode(piny);
             code += a['code'];
             piny = a['pin'];
-            code = 'min(100,0.1953125*sqrt(pow((float)(analogRead('+pinx+')-512),2)+pow((float)(analogRead('+piny+')-512),2)))';  
+            code = 'min(100,0.1953125*sqrt(pow((float)(analogRead('+pinx+')-512),2)+pow((float)(analogRead('+piny+')-512),2)))';
             return [code, Blockly.Arduino.ORDER_ATOMIC];
         };
 
@@ -8971,7 +8970,7 @@
                 this.setColour(RoboBlocks.LANG_COLOUR_ADVANCED_OTHER);
                 this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_MAG')).appendField(new Blockly.FieldImage('img/blocks/joystick.png', 52*options.zoom, 24*options.zoom));
                 this.appendValueInput('PINX').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_X')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.svg', 22*options.zoom, 22*options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(['ANALOG_PIN',Number]);
-                this.appendValueInput('PINY').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_Y')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.svg', 22*options.zoom, 22*options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(['ANALOG_PIN',Number]);																		   
+                this.appendValueInput('PINY').appendField(RoboBlocks.locales.getKey('LANG_BQ_JOYSTICK_PIN_Y')).appendField(new Blockly.FieldImage('img/blocks/analog_signal.svg', 22*options.zoom, 22*options.zoom)).setAlign(Blockly.ALIGN_RIGHT).setCheck(['ANALOG_PIN',Number]);
                 this.setOutput(true, Number);
                 // this.setPreviousStatement(true, null);
                 // this.setNextStatement(true, null);
@@ -8986,7 +8985,7 @@
 	    var a = RoboBlocks.findPinMode(dropdown_pin);
             code += a['code'];
             dropdown_pin = a['pin'];
-			
+
 			if (RoboBlocks.isVariable(dropdown_pin)) {
                 code += JST['inout_digital_write_setups']({
                     'dropdown_pin': dropdown_pin
@@ -9007,7 +9006,7 @@
         };
 
         Blockly.Blocks.dyor_31_in_1_rele = {
-            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),	
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_OTHER'),
             tags: ['input','output','rele'],
             helpUrl: RoboBlocks.getHelpUrl('dyor_31_in_1_rele'),
@@ -9025,8 +9024,8 @@
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_RELE_TOOLTIP'));
             }
         };
-		
-		
+
+
 		if ((profiles['processor']==='ATmega328')||(profiles['processor']==='ATmega32U4')||(profiles['processor']==='ATmega2560')||(profiles['processor']==='ESP8266'))
 		{
 			Blockly.Arduino['i2c_read_byte'] = function(block) {
@@ -9047,9 +9046,9 @@
 			};
 
 
-			
+
 			Blockly.Blocks['i2c_read_byte'] = {
-				category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),	
+				category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
 				subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BUS'),
 				category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 				colour: RoboBlocks.LANG_COLOUR_ADVANCED_BUS,
@@ -9071,7 +9070,7 @@
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTE_TOOLTIP'));
 				},
 				validator_: function(value) {
-					
+
 					var n = window.parseInt(value || 0);
 					var retVal=null;
 					if (!window.isNaN(n))
@@ -9082,7 +9081,7 @@
 					return retVal;
 				}
 			};
-			
+
 			Blockly.Arduino['i2c_read_bytes'] = function(block) {
 			  var field_address = block.getFieldValue('ADDRESS');
 			  var variable = Blockly.Arduino.valueToCode(this, 'VARIABLE', Blockly.Arduino.ORDER_ATOMIC);
@@ -9125,9 +9124,9 @@
 			  return code;
 			};
 
-			
+
 			Blockly.Blocks['i2c_read_bytes'] = {
-				category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),	
+				category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
 				subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BUS'),
 				category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 				colour: RoboBlocks.LANG_COLOUR_ADVANCED_BUS,
@@ -9154,7 +9153,7 @@
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_I2C_READ_BYTES_TOOLTIP'));
 				}
 			};
-			
+
 			Blockly.Arduino['i2c_send_bytes'] = function(block) {
 			  var field_address = block.getFieldValue('ADDRESS');
 			  var data = Blockly.Arduino.valueToCode(this, 'DATA', Blockly.Arduino.ORDER_ATOMIC);
@@ -9172,7 +9171,7 @@
 					   var scl_pin = Blockly.Arduino.valueToCode(this, 'SCL', Blockly.Arduino.ORDER_ATOMIC);
 					  Blockly.Arduino.setups_['setup_wire']='Wire.begin('+sda_pin+','+scl_pin+');\n ';
 				  }
-						  
+
 				  if (data_block.type==='variables_get')
 				  {
 					  if (RoboBlocks.variables[data][2]==='variable')
@@ -9229,9 +9228,9 @@
 			  }
 			  return code;
 			};
-			
+
 			Blockly.Blocks['i2c_send_bytes'] = {
-				category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),	
+				category: RoboBlocks.locales.getKey('LANG_CATEGORY_ADVANCED'),
 				subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BUS'),
 				category_colour: RoboBlocks.LANG_COLOUR_ADVANCED,
 				colour: RoboBlocks.LANG_COLOUR_ADVANCED_BUS,
@@ -9259,7 +9258,7 @@
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_I2C_SEND_BYTES_TOOLTIP'));
 				}
 			};
-			
+
 			Blockly.Arduino['eeprom_clear'] = function(block) {
 			  var field_address = block.getFieldValue('ADDRESS');
 			  var data = Blockly.Arduino.valueToCode(this, 'DATA', Blockly.Arduino.ORDER_ATOMIC);
@@ -9269,7 +9268,7 @@
 			  code+='EEPROM_clear();\n';
 			  return code;
 			};
-			
+
 			Blockly.Blocks['eeprom_clear'] = {
 				category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),
 				subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_EEPROM'),
@@ -9288,7 +9287,7 @@
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_EEPROM_CLEAR_TOOLTIP'));
 				}
 			};
-			
+
 			Blockly.Arduino['eeprom_read_byte'] = function(block) {
 			  //var field_address = block.getFieldValue('ADDRESS');
 			  var field_address = Blockly.Arduino.valueToCode(this, 'ADDRESS', Blockly.Arduino.ORDER_ATOMIC);
@@ -9299,9 +9298,9 @@
 			};
 
 
-			
+
 			Blockly.Blocks['eeprom_read_byte'] = {
-				category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),	
+				category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),
 				subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_EEPROM'),
 				category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 				colour: RoboBlocks.LANG_COLOUR_VARIABLES,
@@ -9320,7 +9319,7 @@
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_EEPROM_READ_BYTE_TOOLTIP'));
 				}/*,
 				validator_: function(value) {
-					
+
 					var n = window.parseInt(value || 0);
 					var retVal=null;
 					if (!window.isNaN(n))
@@ -9331,7 +9330,7 @@
 					return retVal;
 				}*/
 			};
-			
+
 			Blockly.Arduino['eeprom_read_bytes'] = function(block) {
 			  //var field_address = block.getFieldValue('ADDRESS');
 			  var field_address = Blockly.Arduino.valueToCode(this, 'ADDRESS', Blockly.Arduino.ORDER_ATOMIC);
@@ -9356,9 +9355,9 @@
 			};
 
 
-			
+
 			Blockly.Blocks['eeprom_read_bytes'] = {
-				category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),	
+				category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),
 				subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_EEPROM'),
 				category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 				colour: RoboBlocks.LANG_COLOUR_VARIABLES,
@@ -9382,7 +9381,7 @@
 					this.setTooltip(RoboBlocks.locales.getKey('LANG_EEPROM_READ_BYTES_TOOLTIP'));
 				}
 			};
-			
+
 			Blockly.Arduino['eeprom_write_bytes'] = function(block) {
 			  //var field_address = block.getFieldValue('ADDRESS');
 			  var field_address = Blockly.Arduino.valueToCode(this, 'ADDRESS', Blockly.Arduino.ORDER_ATOMIC);
@@ -9475,9 +9474,9 @@
 			  }
 			  return code;
 			};
-			
+
 			Blockly.Blocks['eeprom_write_bytes'] = {
-				category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),	
+				category: RoboBlocks.locales.getKey('LANG_CATEGORY_VARIABLES'),
 				subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_EEPROM'),
 				category_colour: RoboBlocks.LANG_COLOUR_VARIABLES,
 				colour: RoboBlocks.LANG_COLOUR_VARIABLES,
