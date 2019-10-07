@@ -8,18 +8,21 @@
 <script src='doc/en-GB/footer.js'></script>
 </head>
 <body>
-<h3 id="up">Convert Number to Boolean</h3>
+<h3 id="up">Set Element of an Array</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
-<script>injectInstruction('logic_to_boolean','blocklyInstruction');</script>
+<script>injectInstruction('math_1DArray_set','blocklyInstruction');</script>
 <h4>Description</h4>
-<p class="instruction">This instruction is useful to convert numbers to a boolean variables.</h4>
+<p class="instruction">This instruction sets the value of an element of an array at the indicated position. The first element of an array variable is position 0.</h4>
 <h4>Inputs</h4>
 <ul class="instruction">
-  <li>Number: Number to convert into a boolean.</li>.
+  <li>Array: Array variable.</li>
+  <li>Number: Value to set.</li>
 </ul>
-<h4>Output</h4>
-<p class="instruction">Returns true if a number is bigger than 0 and false otherwise.</p>
+<h4>Numeric field</h4>
+<ul class="instruction">
+  <li>Index: Position of the element in the array.</li>
+</ul>
 <div id='examples'>No examples yet available!</div>
 <p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
 <!-- <script>createExamples(['controls_comment_example']);</script>-->

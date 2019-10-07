@@ -8,18 +8,19 @@
 <script src='doc/en-GB/footer.js'></script>
 </head>
 <body>
-<h3 id="up">Convert Number to Boolean</h3>
+<h3 id="up">Logial Shift</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
-<script>injectInstruction('logic_to_boolean','blocklyInstruction');</script>
+<script>injectInstruction('logic_shift','blocklyInstruction');</script>
 <h4>Description</h4>
-<p class="instruction">This instruction is useful to convert numbers to a boolean variables.</h4>
+<p class="instruction">This instruction performs a bitwise shift of the given amount of bits on a number. Shifting a number is equivalent to multiply the number by 2^n, being n the number of number of bits to shift.</h4>
 <h4>Inputs</h4>
 <ul class="instruction">
-  <li>Number: Number to convert into a boolean.</li>.
+  <li>First operand: Number to shift.</li>
+  <li>Second operand: Amount of bits to shift.</li>
 </ul>
 <h4>Output</h4>
-<p class="instruction">Returns true if a number is bigger than 0 and false otherwise.</p>
+<p class="instruction">Returns a number with the resulting shifting operation.</p>
 <div id='examples'>No examples yet available!</div>
 <p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
 <!-- <script>createExamples(['controls_comment_example']);</script>-->

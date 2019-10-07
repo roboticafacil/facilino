@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Decodes an Array into Items</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('math_1DArray_decode','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">This instruction decodes the elements of an array into several items (copies chunks of memory data of the original array into the items). By clicking on the 'star' icon, you can add items. The size of the variables used in each of the items affects to the decoding process as follows: the array is treated as a byte array (no matter the original type of the array variable) and then, each of the items points to contiguous chunks of data memory. Thus, if the items are 1-byte  sized, the instruction is equivalent to copy them, byte by byte; but if items are 2-byte or 4-byte sized variables, then the instruction copies the values considering the size of the items. This is useful when you decode the array (usually a telegram) into several items.</h4>
+<h4>Inputs</h4>
+<ul class="instruction">
+  <li>Array: Array variable.</li>
+  <li>Items: Items to decode.</li>
+</ul>
+<h4>Mutator</h4>
+<h5>Container</h5>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('math_1DArray_decode_decode','blocklyInstruction1');</script>
+<h5>Container</h5>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('math_1DArray_decode_item','blocklyInstruction2');</script>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_comment_example']);</script>-->
+</body>
+</html>
