@@ -132,7 +132,8 @@ function createExample(name,num,total)
 	if (examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier)
 	{
 		var mainWorkspace = Blockly.inject(myExampleCode, {readOnly:true, collapse: false});
-		openFunction('doc/examples/'+name+'_'+examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier+'.bly');
+    //console.log('doc/examples/'+name+'_'+examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier+'.bly');
+    openFunction('doc/examples/'+name+'_'+examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier+'.bly');
 	}
 	else
 	{
@@ -225,7 +226,13 @@ components['lcd_i2c']={};
 components['lcd_i2c'].name='LCD I2C Screen';
 components['lcd_i2c'].url='https://roboticafacil.es/prod/pantalla-lcd-i2c/';
 
+components['rgb_leds7']={};
+components['rgb_leds7'].name='RGB LED (round) with 7 LEDs';
+components['rgb_leds7'].url='https://roboticafacil.es/prod/anillo-ws2812/';
 
+components['rgb_leds3']={};
+components['rgb_leds3'].name='RGB LED strip';
+components['rgb_leds3'].url='https://roboticafacil.es/prod/tira-de-3-rgb-leds/';
 
 
 var circuits={};
@@ -487,6 +494,46 @@ circuits['lcd_i2c'].ESP32.components=[components['WemosD1R32'],components['lcd_i
 circuits['lcd_i2c'].ESP32.connections=['LCD connected to I2C (SDA and SCL)'];
 circuits['lcd_i2c'].ESP32.code_modifier='wemosD1R32';
 
+circuits['ws2812']={};
+circuits['ws2812'].ATmega328={};
+circuits['ws2812'].ATmega328.image='ws2812_nano.png';
+circuits['ws2812'].ATmega328.components=[components['ArduinoNano'],components['ArduinoNanoShield'],components['rgb_leds7']];
+circuits['ws2812'].ATmega328.connections=['RGB LEDs connected to D2'];
+circuits['ws2812'].ATmega32U4={};
+circuits['ws2812'].ATmega32U4.image='ws2812_leonardo.png';
+circuits['ws2812'].ATmega32U4.components=[components['ArduinoLeonardo'],components['rgb_leds7']];
+circuits['ws2812'].ATmega32U4.connections=['RGB LEDs connected to D2'];
+circuits['ws2812'].ESP8266={};
+circuits['ws2812'].ESP8266.image='ws2812_nodemcu.png';
+circuits['ws2812'].ESP8266.components=[components['NodeMCU'],components['NodeMCUShield'],components['rgb_leds7']];
+circuits['ws2812'].ESP8266.connections=['RGB LEDs connected to D2'];
+circuits['ws2812'].ESP8266.code_modifier='nodemcu';
+circuits['ws2812'].ESP32={};
+circuits['ws2812'].ESP32.image='ws2812_wemosD1R32.png';
+circuits['ws2812'].ESP32.components=[components['WemosD1R32'],components['rgb_leds7']];
+circuits['ws2812'].ESP32.connections=['RGB LEDs connected to IO26 (D2)'];
+circuits['ws2812'].ESP32.code_modifier='wemosD1R32';
+
+circuits['ws2812_3leds']={};
+circuits['ws2812_3leds'].ATmega328={};
+circuits['ws2812_3leds'].ATmega328.image='ws2812_3leds_nano.png';
+circuits['ws2812_3leds'].ATmega328.components=[components['ArduinoNano'],components['ArduinoNanoShield'],components['rgb_leds3']];
+circuits['ws2812_3leds'].ATmega328.connections=['RGB LEDs connected to D2'];
+circuits['ws2812_3leds'].ATmega32U4={};
+circuits['ws2812_3leds'].ATmega32U4.image='ws2812_3leds_leonardo.png';
+circuits['ws2812_3leds'].ATmega32U4.components=[components['ArduinoLeonardo'],components['rgb_leds3']];
+circuits['ws2812_3leds'].ATmega32U4.connections=['RGB LEDs connected to D2'];
+circuits['ws2812_3leds'].ESP8266={};
+circuits['ws2812_3leds'].ESP8266.image='ws2812_3leds_nodemcu.png';
+circuits['ws2812_3leds'].ESP8266.components=[components['NodeMCU'],components['NodeMCUShield'],components['rgb_leds3']];
+circuits['ws2812_3leds'].ESP8266.connections=['RGB LEDs connected to D2'];
+circuits['ws2812_3leds'].ESP8266.code_modifier='nodemcu';
+circuits['ws2812_3leds'].ESP32={};
+circuits['ws2812_3leds'].ESP32.image='ws2812_3leds_wemosD1R32.png';
+circuits['ws2812_3leds'].ESP32.components=[components['WemosD1R32'],components['rgb_leds3']];
+circuits['ws2812_3leds'].ESP32.connections=['RGB LEDs connected to IO26 (D2)'];
+circuits['ws2812_3leds'].ESP32.code_modifier='wemosD1R32';
+
 var examples={};
 
 examples['controls_setupLoop_example']={};
@@ -701,3 +748,13 @@ examples['controls_lcd_clear1_example']={};
 examples['controls_lcd_clear1_example'].title='LCD I2C Clear and Set Cursor';
 examples['controls_lcd_clear1_example'].desc='This example shows a circuit with an LCD connected to I2C. The code in the example shows the phrase "Hello" in the first row and "world!" on the second row of the LCD.';
 examples['controls_lcd_clear1_example'].circuit=circuits['lcd_i2c'];
+
+examples['led_strip_demo']={};
+examples['led_strip_demo'].title='RGB LED Strip (round with 7 LEDs)';
+examples['led_strip_demo'].desc='In this example, we shown activate and deactivate the pixels of a 7-RGB LEDs strip (the pixel in the middle is set fixed to a different colour). The brightness of the pixels varies progresively.';
+examples['led_strip_demo'].circuit=circuits['ws2812'];
+
+examples['led_strip2_demo']={};
+examples['led_strip2_demo'].title='RGB LED Strip';
+examples['led_strip2_demo'].desc='In this example, we shown a coloured sequence of LEDs using a 3 LED RGB strip.';
+examples['led_strip2_demo'].circuit=circuits['ws2812_3leds'];
