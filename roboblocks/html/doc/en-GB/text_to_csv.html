@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Array to CSV</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('text_to_csv','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">Converts an array into a string with CSV (comma separated value) format.</h4>
+<h4>Inputs</h4>
+<ul class="instruction">
+  <li>Array: Array variable.</li>
+  <li>Items: Items to encode.</li>
+</ul>
+<h4 >Numeric Fields</h4>
+<ul class="instruction">
+  <li>Length: Length of the string (minimum number of characters).</li>
+  <li>Precision: Number of digits after the decimal symbol.</li>
+</ul>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('math_1DArray_encode_item','blocklyInstruction2');</script>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_comment_example']);</script>-->
+</body>
+</html>

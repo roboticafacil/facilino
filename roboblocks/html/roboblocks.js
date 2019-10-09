@@ -3900,7 +3900,7 @@
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_LCD'),
             tags: ['lcd','screen'],
             helpUrl: RoboBlocks.getHelpUrl('lcd_def1'),
-            examples: ['lcd_def_example.bly'],
+            examples: ['lcd_def1_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_SCREEN,
 			colour: RoboBlocks.LANG_COLOUR_SCREEN_LCD,
 			keys: ['LANG_LCD_DEF1','LANG_LCD_DEF_TOOLTIP'],
@@ -3951,34 +3951,43 @@
         };
 
         // Source: src/blocks/lcd_print/lcd_print.js
-        Blockly.Arduino.lcd_print = function() {
-            var val = Blockly.Arduino.valueToCode(this, 'VAL', Blockly.Arduino.ORDER_ATOMIC);
+
+        Blockly.Arduino.lcd_cursor = function() {
             var xcoor = Blockly.Arduino.valueToCode(this, 'XCOOR', Blockly.Arduino.ORDER_ATOMIC);
             var ycoor = Blockly.Arduino.valueToCode(this, 'YCOOR', Blockly.Arduino.ORDER_ATOMIC);
             var code = '';
-
-            if (this.getFieldValue('POS') === 'TRUE')
-                code += '_lcd.setCursor('+ycoor+','+xcoor+');\n';
-			code += '_lcd.print(' +val+');\n';
-
-            code = code.replace(/&quot;/g, '"');
+            code += '_lcd.setCursor('+ycoor+','+xcoor+');\n';
             return code;
         };
 
-		/*Blockly.Arduino.lcd_print = function() {
+        Blockly.Blocks.lcd_cursor = {
+            category: RoboBlocks.locales.getKey('LANG_CATEGORY_SCREEN'),
+			      subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_LCD'),
+            tags: ['lcd','screen'],
+            helpUrl: RoboBlocks.getHelpUrl('lcd_cursor'),
+			      category_colour: RoboBlocks.LANG_COLOUR_SCREEN,
+			      colour: RoboBlocks.LANG_COLOUR_SCREEN_LCD,
+		      keys: ['LANG_LCD_CURSOR','LANG_LCD_ROW','LANG_LCD_COLUMN','LANG_LCD_CURSOR_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_SCREEN_LCD);
+                this.appendValueInput('XCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_CURSOR')).appendField(new Blockly.FieldImage('img/blocks/lcd.svg', 52*options.zoom, 24*options.zoom)).appendField(RoboBlocks.locales.getKey('LANG_LCD_ROW')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
+                this.appendValueInput('YCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_COLUMN')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
+                this.setInputsInline(true);
+                this.setPreviousStatement(true,'code');
+                this.setNextStatement(true,'code');
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_CURSOR_TOOLTIP'));
+            }
+        };
+
+
+        Blockly.Arduino.lcd_print = function() {
             var val = Blockly.Arduino.valueToCode(this, 'VAL', Blockly.Arduino.ORDER_ATOMIC);
-            var xcoor = this.getFieldValue('XCOOR');
-            var ycoor = this.getFieldValue('YCOOR');
             var code = '';
 
-            if (this.getFieldValue('POS') === 'TRUE')
-                code += '_lcd.setCursor('+ycoor+','+xcoor+');\n';
-			code += '_lcd.print(' +val+');\n';
-
+            code += '_lcd.print(' +val+');\n';
             code = code.replace(/&quot;/g, '"');
             return code;
-        };*/
-
+        };
 
         Blockly.Blocks.lcd_print = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_SCREEN'),
@@ -3988,67 +3997,14 @@
             examples: ['lcd_print_example1.bly','lcd_print_example2.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_SCREEN,
 			colour: RoboBlocks.LANG_COLOUR_SCREEN_LCD,
-			keys: ['LANG_LCD_PRINT','LANG_LCD_PRINT_POSITION','LANG_LCD_PRINT_TOOLTIP'],
+			keys: ['LANG_LCD_PRINT','LANG_LCD_PRINT_TOOLTIP'],
             init: function() {
                 this.setColour(RoboBlocks.LANG_COLOUR_SCREEN_LCD);
                 this.appendValueInput('VAL').appendField(RoboBlocks.locales.getKey('LANG_LCD_PRINT')).appendField(new Blockly.FieldImage('img/blocks/lcd.svg', 52*options.zoom, 24*options.zoom));
-                // .appendField(new Blockly.FieldImage('img/blocks/bqmod03.png', 52*options.zoom, 20*options.zoom));
-                this.appendDummyInput().appendField(RoboBlocks.locales.getKey('LANG_LCD_PRINT_POSITION')).appendField(new Blockly.FieldCheckbox('FALSE'), 'POS').setAlign(Blockly.ALIGN_RIGHT);
-                this.last_pos = this.getFieldValue('POS');
-                this.getPosition();
                 this.setInputsInline(false);
                 this.setPreviousStatement(true,'code');
                 this.setNextStatement(true,'code');
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LCD_PRINT_TOOLTIP'));
-            },
-            getPosition: function() {
-				try {
-                    //this.removeInput('POSXY');
-					this.removeInput('XCOOR');
-					this.removeInput('YCOOR');
-                } catch (e) {}
-                if (this.getFieldValue('POS') === 'TRUE') {
-					/*if (this.getInput('POSXY')!==undefined)
-						this.appendDummyInput('POSXY').appendField(RoboBlocks.locales.getKey('LANG_LCD_ROW')).appendField(new Blockly.FieldNumber(0,0,1),'XCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_COLUMN')).appendField(new Blockly.FieldNumber(0,0,15),'YCOOR').setAlign(Blockly.ALIGN_RIGHT);*/
-					this.appendValueInput('XCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_ROW')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
-					this.appendValueInput('YCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_COLUMN')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
-                }
-				/*else
-				{
-					this.removeInput('POSXY')
-				}*/
-            },
-            onchange: function() {
-				if (this.getFieldValue('POS')!==this.last_pos)
-				{
-					//this.appendDummyInput('POSXY').appendField('row').appendField(new Blockly.FieldNumber(0,0,1),'XCOOR').appendField('column').appendField(new Blockly.FieldNumber(0,0,15),'YCOOR').setAlign(Blockly.ALIGN_RIGHT);
-					this.getPosition();
-					this.last_pos = this.getFieldValue('POS');
-				}
-				this.last_pos = this.getFieldValue('POS');
-				var Blocks=Blockly.getMainWorkspace().getAllBlocks();
-				  var block_found = Blocks.find(function (block){return (block.type=='lcd_def' || block.type=='lcd_def1');});
-				  if (block_found===undefined)
-					this.setWarningText('This block instruction requires to define the LCD pin connections');
-				  else
-					this.setWarningText(null);
-            },
-            mutationToDom: function() {
-                var container = document.createElement('mutation');
-                if (this.getFieldValue('POS') === 'TRUE') {
-                    container.setAttribute('fixed', true);
-                } else if (this.getFieldValue('POS') === 'FALSE') {
-                    container.setAttribute('fixed', false);
-                }
-                return container;
-            },
-            domToMutation: function(xmlElement) {
-                this.setFieldValue(xmlElement.getAttribute('fixed'), 'POS');
-                if (this.getFieldValue('POS') === 'TRUE') {
-                    this.appendValueInput('XCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_ROW')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
-					this.appendValueInput('YCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_COLUMN')).setCheck(Number).setAlign(Blockly.ALIGN_RIGHT);
-					//this.appendDummyInput('POSXY').appendField(RoboBlocks.locales.getKey('LANG_LCD_ROW')).appendField(new Blockly.FieldNumber(0,0,1),'XCOOR').appendField(RoboBlocks.locales.getKey('LANG_LCD_COLUMN')).appendField(new Blockly.FieldNumber(0,0,15),'YCOOR').setAlign(Blockly.ALIGN_RIGHT);
-                }
             }
         };
 

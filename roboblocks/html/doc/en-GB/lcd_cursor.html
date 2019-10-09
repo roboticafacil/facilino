@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Sets the LCD cursor to print</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('lcd_cursor','blocklyInstruction');</script>
+<h4>Description</h4>
+<p>Sets the position of the cursor for the text to be displayed. Requires to previously define the connections to the LCD with one of these instructions:</p>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('lcd_def','blocklyInstruction1');</script>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('lcd_def1','blocklyInstruction2');</script>
+<h4>Inputs</h4>
+<ul>
+  <li>Row: In the case of selecting 'set text position' determines row 0 or 1 corresponding to the first or second row of the LCD.</li>
+  <li>Column: In the case of selecting 'set text position' determines the column (0 or 15) in which the first character of the text string to be displayed is to be positioned.</li>
+</ul>
+<div id='examples'></div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<script>createExamples(['controls_lcd_clear1_example']);</script>
+</body>
+</html>

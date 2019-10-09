@@ -117,7 +117,7 @@ function createExample(name,num,total)
 		myExampleGrafcet.appendChild(myExampleGrafcetImg);
 		myExample.appendChild(myExampleGrafcet);
 	}
-	
+
 	var myExampleCircuit=document.createElement('div');
 	myExampleCircuit.innerHTML=getCircuitHTML(examples[name].circuit[RoboBlocks.profiles['processor']]);
 	myExample.appendChild(myExampleCircuit);
@@ -128,7 +128,7 @@ function createExample(name,num,total)
 	var myExampleCode=document.createElement('div');
 	myExampleFacilino.appendChild(myExampleCode);
 	myExample.appendChild(myExampleFacilino);
-	
+
 	if (examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier)
 	{
 		var mainWorkspace = Blockly.inject(myExampleCode, {readOnly:true, collapse: false});
@@ -205,9 +205,9 @@ components['switch']={};
 components['switch'].name='KY-004 switch module';
 components['switch'].url='https://roboticafacil.es/prod/pulsador-ky-004/';
 
-components['guva-s12sd']={};
-components['guva-s12sd'].name='GUVA-S12SD UV sensor';
-components['guva-s12sd'].url='https://roboticafacil.es/prod/sensor-uv-guva-s12sd/';
+components['guva_s12sd']={};
+components['guva_s12sd'].name='GUVA-S12SD UV sensor';
+components['guva_s12sd'].url='https://roboticafacil.es/prod/sensor-uv-guva-s12sd/';
 
 components['mq3']={};
 components['mq3'].name='MQ3 Gas sensor';
@@ -220,6 +220,10 @@ components['relay'].url='https://roboticafacil.es/prod/modulo-rele-ky-019/';
 components['smartcar_motor']={};
 components['smartcar_motor'].name='Smart car DC motor';
 components['smartcar_motor'].url='https://roboticafacil.es/prod/motorrueda-smart-car/';
+
+components['lcd_i2c']={};
+components['lcd_i2c'].name='LCD I2C Screen';
+components['lcd_i2c'].url='https://roboticafacil.es/prod/pantalla-lcd-i2c/';
 
 
 
@@ -367,19 +371,19 @@ circuits['Switches'].ESP32.code_modifier='wemosD1R32';
 circuits['GUVA_S12SD']={};
 circuits['GUVA_S12SD'].ATmega328={};
 circuits['GUVA_S12SD'].ATmega328.image='s12sd_example_nano.png';
-circuits['GUVA_S12SD'].ATmega328.components=[components['ArduinoNano'],components['ArduinoNanoShield'],components['guva-s12sd']];
+circuits['GUVA_S12SD'].ATmega328.components=[components['ArduinoNano'],components['ArduinoNanoShield'],components['guva_s12sd']];
 circuits['GUVA_S12SD'].ATmega328.connections=['GUVA-S12SD connected to A0'];
 circuits['GUVA_S12SD'].ATmega32U4={};
 circuits['GUVA_S12SD'].ATmega32U4.image='s12sd_example_leonardo.png';
-circuits['GUVA_S12SD'].ATmega32U4.components=[components['ArduinoLeonardo'],components['ArduinoSensorShield'],components['guva-s12sd']];
+circuits['GUVA_S12SD'].ATmega32U4.components=[components['ArduinoLeonardo'],components['ArduinoSensorShield'],components['guva_s12sd']];
 circuits['GUVA_S12SD'].ATmega32U4.connections=['GUVA-S12SD connected to A0'];
 circuits['GUVA_S12SD'].ESP8266={};
 circuits['GUVA_S12SD'].ESP8266.image='s12sd_example_nodemcu.png';
-circuits['GUVA_S12SD'].ESP8266.components=[components['NodeMCU'],components['NodeMCUShield'],components['guva-s12sd']];
+circuits['GUVA_S12SD'].ESP8266.components=[components['NodeMCU'],components['NodeMCUShield'],components['guva_s12sd']];
 circuits['GUVA_S12SD'].ESP8266.connections=['GUVA-S12SD connected to A0'];
 circuits['GUVA_S12SD'].ESP32={};
 circuits['GUVA_S12SD'].ESP32.image='s12sd_example_wemosD1R32.png';
-circuits['GUVA_S12SD'].ESP32.components=[components['WemosD1R32'],components['ArduinoSensorShield'],components['guva-s12sd']];
+circuits['GUVA_S12SD'].ESP32.components=[components['WemosD1R32'],components['ArduinoSensorShield'],components['guva_s12sd']];
 circuits['GUVA_S12SD'].ESP32.connections=['GUVA-S12SD connected to A0 (GPIO2)'];
 
 circuits['gas_mq3']={};
@@ -463,6 +467,25 @@ circuits['semaphore_leds'].ESP32.components=[components['WemosD1R32'],components
 circuits['semaphore_leds'].ESP32.connections=['Green LED connected to D5 (GPIO14)','Ambar LED connected to D6 (GPIO12)','Red LED connected to D7 (GPIO13)'];
 circuits['semaphore_leds'].ESP32.code_modifier='wemosD1R32';
 
+circuits['lcd_i2c']={};
+circuits['lcd_i2c'].ATmega328={};
+circuits['lcd_i2c'].ATmega328.image='lcd_i2c_nano.png';
+circuits['lcd_i2c'].ATmega328.components=[components['ArduinoNano'],components['ArduinoNanoShield'],components['lcd_i2c']];
+circuits['lcd_i2c'].ATmega328.connections=['LCD connected to I2C (SDA and SCL)'];
+circuits['lcd_i2c'].ATmega32U4={};
+circuits['lcd_i2c'].ATmega32U4.image='lcd_i2c_leonardo.png';
+circuits['lcd_i2c'].ATmega32U4.components=[components['ArduinoLeonardo'],components['lcd_i2c']];
+circuits['lcd_i2c'].ATmega32U4.connections=['LCD connected to I2C (SDA and SCL)'];
+circuits['lcd_i2c'].ESP8266={};
+circuits['lcd_i2c'].ESP8266.image='lcd_i2c_nodemcu.png';
+circuits['lcd_i2c'].ESP8266.components=[components['NodeMCU'],components['NodeMCUShield'],components['lcd_i2c']];
+circuits['lcd_i2c'].ESP8266.connections=['LCD connected to I2C (SDA and SCL)'];
+circuits['lcd_i2c'].ESP8266.code_modifier='nodemcu';
+circuits['lcd_i2c'].ESP32={};
+circuits['lcd_i2c'].ESP32.image='lcd_i2c_wemosD1R32.png';
+circuits['lcd_i2c'].ESP32.components=[components['WemosD1R32'],components['lcd_i2c']];
+circuits['lcd_i2c'].ESP32.connections=['LCD connected to I2C (SDA and SCL)'];
+circuits['lcd_i2c'].ESP32.code_modifier='wemosD1R32';
 
 var examples={};
 
@@ -669,3 +692,12 @@ examples['bandpass_filter_example'].title='Band-pass filter';
 examples['bandpass_filter_example'].desc='This example shows how to filter a noisy signal (composed of three sinousoids) using a band-pass filter. In this example, the cut-off frequencies are set to 35Hz and 45Hz, corresponding to 35% and 45% of the half of the sampling frequency (100Hz).';
 examples['bandpass_filter_example'].circuit=circuits['Simple'];
 
+examples['controls_lcd1_example']={};
+examples['controls_lcd1_example'].title='LCD I2C';
+examples['controls_lcd1_example'].desc='This example shows an I2C LCD screen. The code in the example shows the phrase \'Hello world!\' on the LCD.';
+examples['controls_lcd1_example'].circuit=circuits['lcd_i2c'];
+
+examples['controls_lcd_clear1_example']={};
+examples['controls_lcd_clear1_example'].title='LCD I2C Clear and Set Cursor';
+examples['controls_lcd_clear1_example'].desc='This example shows a circuit with an LCD connected to I2C. The code in the example shows the phrase "Hello" in the first row and "world!" on the second row of the LCD.';
+examples['controls_lcd_clear1_example'].circuit=circuits['lcd_i2c'];
