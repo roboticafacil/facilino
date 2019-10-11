@@ -234,6 +234,10 @@ components['rgb_leds3']={};
 components['rgb_leds3'].name='RGB LED strip';
 components['rgb_leds3'].url='https://roboticafacil.es/prod/tira-de-3-rgb-leds/';
 
+components['tcrt5000']={};
+components['tcrt5000'].name='TCRT 5000 Infrared sensor';
+components['tcrt5000'].ulr='https://roboticafacil.es/prod/tcrt5000/';
+
 
 var circuits={};
 circuits['Simple']={};
@@ -534,6 +538,26 @@ circuits['ws2812_3leds'].ESP32.components=[components['WemosD1R32'],components['
 circuits['ws2812_3leds'].ESP32.connections=['RGB LEDs connected to IO26 (D2)'];
 circuits['ws2812_3leds'].ESP32.code_modifier='wemosD1R32';
 
+circuits['tcrt5000']={};
+circuits['tcrt5000'].ATmega328={};
+circuits['tcrt5000'].ATmega328.image='tcrt5000_nano.png';
+circuits['tcrt5000'].ATmega328.components=[components['ArduinoNano'],components['ArduinoNanoShield'],components['tcrt5000']];
+circuits['tcrt5000'].ATmega328.connections=['TCRT5000 output connected to D12','TCRT5000 analog output connected to A0'];
+circuits['tcrt5000'].ATmega32U4={};
+circuits['tcrt5000'].ATmega32U4.image='tcrt5000_leonardo.png';
+circuits['tcrt5000'].ATmega32U4.components=[components['ArduinoLeonardo'],components['ArduinoSensorShield'],components['tcrt5000']];
+circuits['tcrt5000'].ATmega32U4.connections=['TCRT5000 digital output connected to D12','TCRT5000 analog output connected to A0'];
+circuits['tcrt5000'].ESP8266={};
+circuits['tcrt5000'].ESP8266.image='tcrt5000_nodemcu.png';
+circuits['tcrt5000'].ESP8266.components=[components['NodeMCU'],components['NodeMCUShield'],components['tcrt5000']];
+circuits['tcrt5000'].ESP8266.connections=['TCRT5000 digital output connected to D2 (GPIO4)','TCRT5000 analog output connected to A0'];
+circuits['tcrt5000'].ESP8266.code_modifier='nodemcu';
+circuits['tcrt5000'].ESP32={};
+circuits['tcrt5000'].ESP32.image='tcrt5000_wemosD1R32.png';
+circuits['tcrt5000'].ESP32.components=[components['WemosD1R32'],components['ArduinoSensorShield'],components['tcrt5000']];
+circuits['tcrt5000'].ESP32.connections=['TCRT5000 digital output connected to D12 (GPIO19)','TCRT5000 analog output connected to A0 (GPIO2)'];
+circuits['tcrt5000'].ESP32.code_modifier='wemosD1R32';
+
 var examples={};
 
 examples['controls_setupLoop_example']={};
@@ -758,3 +782,13 @@ examples['led_strip2_demo']={};
 examples['led_strip2_demo'].title='RGB LED Strip';
 examples['led_strip2_demo'].desc='In this example, we shown a coloured sequence of LEDs using a 3 LED RGB strip.';
 examples['led_strip2_demo'].circuit=circuits['ws2812_3leds'];
+
+examples['serial_plot_example']={};
+examples['serial_plot_example'].title='Serial Plot';
+examples['serial_plot_example'].desc='This example plots values from TCRT5000 sensor on the console (plot view).';
+examples['serial_plot_example'].circuit=circuits['tcrt5000'];
+
+examples['plot_join_example']={};
+examples['plot_join_example'].title='Multiple Plot';
+examples['plot_join_example'].desc='This example plots values from TCRT5000 sensor on the console (plot view). The analog and digital signals have been scaled to have the same units.';
+examples['plot_join_example'].circuit=circuits['tcrt5000'];

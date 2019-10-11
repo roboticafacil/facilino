@@ -6375,7 +6375,7 @@
 		Blockly.Blocks.serial_write = {
             category: RoboBlocks.locales.getKey('LANG_CATEGORY_COMMUNICATION'),
 			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_USB'),
-            helpUrl: RoboBlocks.getHelpUrl('serial_print'),
+            helpUrl: RoboBlocks.getHelpUrl('serial_write'),
             tags: ['serial','communication'],
             examples: ['serial_print_example.bly'],
 			category_colour: RoboBlocks.LANG_COLOUR_COMMUNICATION,
