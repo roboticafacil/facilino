@@ -3377,6 +3377,12 @@
         Blockly.Blocks.controls_every_container = [];
 
 		Blockly.Blocks.controls_every_item = [];
+		
+		Blockly.Blocks.controls_alternate = [];
+
+        Blockly.Blocks.controls_alternate_container = [];
+
+		Blockly.Blocks.controls_alternate_item = [];
 
 		if ((profiles['processor']==='ESP32')||(profiles['processor']==='ESP8266'))
 		{
@@ -4477,6 +4483,64 @@
                 // Assign 'this' to a variable for use in the tooltip closure below.
                 var thisBlock = this;
                 this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_SHIFT_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.logic_combine8 = function() {
+		    var code = '';
+            var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
+            var argument1 = Blockly.Arduino.valueToCode(this, 'B', Blockly.Arduino.ORDER_ATOMIC) || '';
+			code = '((0x00FF&((short int)'+argument0+')<<8)|'+'(0x00FF&((short int)'+argument1+')))';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+
+        Blockly.Blocks.logic_combine8 = {
+            // Logical operations: 'and', 'or'.
+			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
+            helpUrl: RoboBlocks.getHelpUrl('logic_combine'),
+			examples: ['logic_operation_example.bly'],
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
+			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
+			keys: ['LANG_LOGIC_BITWISE_SHIFT_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_LOGIC_BITWISE);
+                this.setOutput(true, Number);
+                this.appendValueInput('A').setCheck(Number);
+                this.appendValueInput('B').setCheck(Number).appendField(new Blockly.FieldImage("img/blocks/join8.svg", 48*options.zoom, 20*options.zoom, "*"));
+                this.setInputsInline(true);
+                var thisBlock = this;
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_COMBINE8_TOOLTIP'));
+            }
+        };
+		
+		Blockly.Arduino.logic_combine16 = function() {
+		    var code = '';
+            var argument0 = Blockly.Arduino.valueToCode(this, 'A', Blockly.Arduino.ORDER_ATOMIC) || '';
+            var argument1 = Blockly.Arduino.valueToCode(this, 'B', Blockly.Arduino.ORDER_ATOMIC) || '';
+			code = '((0x0000FFFF&((unsigned long int)'+argument0+')<<16)|'+'(0x0000FFFF&((unsigned long int)'+argument1+')))';
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
+        };
+
+        Blockly.Blocks.logic_combine16 = {
+            // Logical operations: 'and', 'or'.
+			category: RoboBlocks.locales.getKey('LANG_CATEGORY_LOGIC'),
+			subcategory: RoboBlocks.locales.getKey('LANG_SUBCATEGORY_BITWISE'),
+            helpUrl: RoboBlocks.getHelpUrl('logic_combine'),
+			examples: ['logic_operation_example.bly'],
+			tags: ['logic'],
+			category_colour: RoboBlocks.LANG_COLOUR_LOGIC,
+			colour: RoboBlocks.LANG_COLOUR_LOGIC_BITWISE,
+			keys: ['LANG_LOGIC_BITWISE_SHIFT_TOOLTIP'],
+            init: function() {
+                this.setColour(RoboBlocks.LANG_COLOUR_LOGIC_BITWISE);
+                this.setOutput(true, Number);
+                this.appendValueInput('A').setCheck(Number);
+                this.appendValueInput('B').setCheck(Number).appendField(new Blockly.FieldImage("img/blocks/join16.svg", 48*options.zoom, 20*options.zoom, "*"));
+                this.setInputsInline(true);
+                var thisBlock = this;
+                this.setTooltip(RoboBlocks.locales.getKey('LANG_LOGIC_BITWISE_COMBINE8_TOOLTIP'));
             }
         };
 

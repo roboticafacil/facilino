@@ -17,7 +17,7 @@ import com.google.appinventor.components.annotations.SimpleProperty;
 public abstract class FacilinoSensorBase extends AndroidNonvisibleComponent
     implements Component, FacilinoSensor, Deleteable {
   protected FacilinoBase _facilino;
-  protected final String logTag;
+  protected String logTag;
   protected byte _type;
   
   

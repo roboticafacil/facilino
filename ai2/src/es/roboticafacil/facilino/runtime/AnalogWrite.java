@@ -40,7 +40,7 @@ import java.util.Set;
                                  "with functions to send direct commands/telegrams to Facilino.",
                    category = ComponentCategory.EXTENSION,
                    nonVisible = true,
-                   iconName = "https://roboticafacil.es/facilino/blockly/img/ai2/digital_signal_16x16.png")
+                   iconName = "https://roboticafacil.es/facilino/blockly/img/ai2/pwm_signal_16x16.png")
 @SimpleObject (external=true)
 @UsesPermissions(permissionNames = "android.permission.INTERNET," +
                                    "android.permission.WRITE_EXTERNAL_STORAGE," +

@@ -43,6 +43,9 @@ import java.util.Set;
                                    "android.permission.READ_EXTERNAL_STORAGE")
 public class PushButton  extends FacilinoSensorBase {
   private byte _pin;
+  private boolean _valueDigital;
+  private boolean _prev_valueDigital;
+  private boolean _firstTime;
   
   /**
    * Creates a new Facilino component.
@@ -85,13 +88,27 @@ public class PushButton  extends FacilinoSensorBase {
         EventDispatcher.dispatchEvent(this, "Pushed");
     }
 	
+	@SimpleEvent(description = "Release button event.")
+    public void Released(){
+        EventDispatcher.dispatchEvent(this, "Released");
+    }
+	
 	@Override
   public void dispatchData(byte cmd, byte[] data) {
 	  if (cmd==FacilinoBase.CMD_PUSH_BUTTON){
 		  if (data[0]==_pin)
 		  {
-			  if (data[1]==0)
-				Pushed();
+			  _valueDigital = data[1]==0 ? true : false;
+			  if (_firstTime)
+				  _firstTime=false;
+			  else if (_valueDigital!=_prev_valueDigital)
+			  {
+					if (_valueDigital)
+						Pushed();
+					else
+						Released();
+			  }
+			  _prev_valueDigital=_valueDigital;
 		  }
 	  }
   }
