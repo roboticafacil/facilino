@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Gets characteristic data</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('ble_get_characteristic','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">If a characteristic checks the 'Write' attribute, then this instruction returns the associated data for that characteristic as an array of bytes (use the length' instruction to know the array length). It's contents depends on the characteristic and it is application dependant. This instruction must be used in combination of the following instructions:</p>
+<div id='blocklyInstruction0'></div>
+<script>injectInstruction('ble_device_server','blocklyInstruction0');</script>
+<div id='blocklyInstruction01'></div>
+<script>injectInstruction('ble_service','blocklyInstruction01');</script>
+<div id='blocklyInstruction02'></div>
+<script>injectInstruction('ble_characteristic','blocklyInstruction02');</script>
+<div id='blocklyInstruction03'></div>
+<script>injectInstruction('ble_get_characteristic_length','blocklyInstruction03');</script>
+<h4>Dropdown Lists</h4>
+<ul class="instruction">
+	<li>Characteristic: Name of the characteristic to use.</li>
+</ul>
+<h4>Output</h4>
+<p class="instruction">Returns an array with the characteristic data.</p>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_setupLoop_example']);</script> -->
+</body>
+</html>

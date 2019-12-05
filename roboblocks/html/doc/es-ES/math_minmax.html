@@ -54,7 +54,7 @@ function injectExample(example,exampleDiv) {
 	var mainWorkspace = Blockly.inject(exampleDiv, {readOnly:true, collapse: false});
 	openFunction('doc/examples/'+example);
 	var bbox = mainWorkspace.svgBlockCanvas_.getBBox();
-instructionPreview.style.height = (bbox.height+25)+ 'px';w
+instructionPreview.style.height = (bbox.height+25)+ 'px';
 instructionPreview.style.width = (bbox.width+25) + 'px';
 
 	window.dispatchEvent(new Event('resize'));

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Configures a BLE Device Server</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('ble_device_server','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">Creates a BLE device to provide custom services. The type of services depend on your device. It is your task to make them compatible with the BLE standards if you are looking for compatibility with external Apps (see <a href="https://www.bluetooth.com/specifications/gatt/services/" target="_blank">https://www.bluetooth.com/specifications/gatt/services/</a> for details). This instruction must be outside the Setup/Loop instruction and can be included just once on each program. You can detect when a new client is connected or disconnected and add the corresponding code to those events. To configure a new service, use the following instruction:</p>
+<div id='blocklyInstruction0'></div>
+<script>injectInstruction('ble_service','blocklyInstruction0');</script>
+<h4>Fields</h4>
+<ul class="instruction">
+	<li>Name: Name of the device (as it should be recognised by the client).</li>
+</ul>
+<h4>Statement Instructions</h4>
+<ul class="instruction">
+	<li>On Connect: set of instructions that are executed when a client is connected.</li>
+	<li>On Disconnect: set of instructions that are executed when a client is disconnected.</li>
+</ul>
+<h4>Mutator</h4>
+<p class="instruction">Create new services by adding them to the container:</p>
+<h5>Container</h5>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('ble_service_stack','blocklyInstruction1');</script>
+<h5>Elements</h5>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('ble_service_item','blocklyInstruction2');</script>
+<h4>Inputs</h4>
+<ul class="instruction">
+  <li>Service: Service to configure (it nees a custom service instruction with characteristics).</li>
+</ul>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_setupLoop_example']);</script> -->
+</body>
+</html>

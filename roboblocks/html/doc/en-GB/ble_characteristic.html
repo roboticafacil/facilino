@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Configures a BLE Characteristic</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('ble_characteristic','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">Creates a custom BLE characteristic based on the BLE2902 characteristic descriptor. The characteristic can implement the 'read', 'write' or 'notify' attributes or a combination of them. This instruction must be used in combination of the following instructions:</p>
+<div id='blocklyInstruction0'></div>
+<script>injectInstruction('ble_device_server','blocklyInstruction0');</script>
+<div id='blocklyInstruction01'></div>
+<script>injectInstruction('ble_service','blocklyInstruction01');</script>
+<h4>Fields</h4>
+<ul class="instruction">
+	<li>Name: Name of the characteristic (as it should be recognised by the client).</li>
+	<li>UUID: Universally Unique Identifier for the service. To create custom UUIDs, you can use <a href="https://www.uuidgenerator.net/" target="_blank">https://www.uuidgenerator.net/</a></li>
+</ul>
+<h4>Checkbox Fields</h4>
+<ul class="instruction">
+	<li>Read: Allows reading the characteristic (the client can read the characteristic value).</li>
+	<li>Write: Allows writing the characteristic (the client can modify the characteristic value). Then checked, a statement input with the 'On Write' event is added to the charactersitic to execute the corresponding code associated to the write action.</li>
+	<li>Notify: Allows to notify the client about the characteristic value.</li>
+</ul>
+<h4>Statement Instructions</h4>
+<ul class="instruction">
+	<li>On Write: When the write attribute is checked, this statement executes the corresponding code associated to the characteristic. Use the 'Characteristic Data' instruction to get access to the data (it's contents depends on the characteristic).</li>
+</ul>
+<h4>Output</h4>
+<p class="instruction">Returns the characteristic.</p>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_setupLoop_example']);</script> -->
+</body>
+</html>

@@ -45,7 +45,8 @@ padding-left:30px;
     <script src="javascript/blockly-bq/blocks_compressed.js"></script>
     <script src="javascript/blockly-bq/arduino_compressed.js"></script>
 	<script src="javascript/blockly-bq/FieldButton.js"></script>
-    <script src="facilino_not_obfuscated.js"></script>
+	<script src="facilino.js"></script>
+	<script src="roboblocks_compressed.js"></script>
 	<script src="roboblocks.js"></script>
 	<xml id='startBlocks' style='display: none'><block type='controls_setupLoop' deletable='true' x='20' y='5'></block></xml>
 
@@ -67,7 +68,8 @@ padding-left:30px;
                          <img src="assets/images/facilino-cuadrado-fondo-transparente-512x512.png" alt="Facilino" title="Facilino" media-simple="true" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://roboticafacil.es/facilino/blockly/Facilino.html" target="_blank"><h2>&nbsp;&nbsp;Facilino</h2></a></span>
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="Facilino.html"><h3>&nbsp;&nbsp;Facilino</h3></a></span>
+                <!-- <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://roboticafacil.es/facilino/blockly/Facilino.html" target="_blank"><h2>&nbsp;&nbsp;Facilino</h2></a></span> -->
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -132,6 +134,7 @@ padding-left:30px;
 		<div class="navbar-buttons mbr-section-btn"><button id="licenseP" class="btn btn-sm btn-primary-outline display-4" title="Enter your license" onclick="showHideLicense()"><span class="mbri-key mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></div>
 		<input id="license_text" name="license_text" type="text" onchange="checkLicenseFcn();" style="display: none"/>
 		<div class="navbar-buttons mbr-section-btn"><button id="button_copy" class="btn btn-sm btn-primary-outline display-4" title="Copy code to clipboard" onclick="copyToClipboard()"><span class="mbri-share mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
+		<div class="navbar-buttons mbr-section-btn"><button class="btn btn-sm btn-primary-outline display-4" title="Facilino Tutorial" onclick="window.location='./FacilinoTutorial.html'" target="_blank"><span class="mbri-rocket mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></button></div>
 		<div class="navbar-buttons mbr-section-btn"><button id="toolboxP" class="btn btn-sm btn-primary-outline display-4" title="Configure the toolbox" onclick="showToolbox()"><span class="mbri-preview mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 148, 0);"></span></div>
 		<div class="dropdown-menu text-white" id="toolbox_menu" style="display: none; background-color: rgb(35,35,35); position: absolute; left: 66%; ">Show/hide categories
 			<div class="dropdown">
@@ -177,7 +180,6 @@ padding-left:30px;
 				<div class="dropdown-menu dropdown-submenu">
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_BLUETOOTH')" aria-expanded="false">Bluetooth</button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_WIFI')" aria-expanded="false">WiFi</button>
-					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_IOT')" aria-expanded="false">IoT</button>
 					<button class="text-white dropdown-item display-4" onclick="showHideCategory('LANG_SUBCATEGORY_IR')" aria-expanded="false">IR</button>
 				</div>
 			</div>
@@ -294,7 +296,7 @@ padding-left:30px;
 		}
 		MyBlocks = JSON.parse(localStorage.getItem('MyBlocks'));
 		Blockly.Doc = [];
-		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_SUBCATEGORY_BITWISE','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_SUBCATEGORY_IR','LANG_SUBCATEGORY_BLE','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_LDR','LANG_SUBCATEGORY_DIMMER','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
+		window.toolbox = ['LANG_CATEGORY_PROCEDURES','LANG_SUBCATEGORY_CONTROL','LANG_SUBCATEGORY_INTERRUPTS','LANG_SUBCATEGORY_STATEMACHINE','LANG_CATEGORY_LOGIC','LANG_SUBCATEGORY_BITWISE','LANG_CATEGORY_MATH','LANG_CATEGORY_CURVE','LANG_CATEGORY_TEXT','LANG_CATEGORY_VARIABLES','LANG_SUBCATEGORY_ARRAYS','LANG_SUBCATEGORY_EEPROM','LANG_SUBCATEGORY_ANALOG','LANG_SUBCATEGORY_DIGITAL','LANG_SUBCATEGORY_BUTTON','LANG_SUBCATEGORY_BUS','LANG_SUBCATEGORY_OTHER','LANG_SUBCATEGORY_USB','LANG_SUBCATEGORY_BLUETOOTH','LANG_SUBCATEGORY_WIFI','LANG_SUBCATEGORY_IOT','LANG_SUBCATEGORY_IR','LANG_SUBCATEGORY_BLE','LANG_CATEGORY_DISTANCE','LANG_SUBCATEGORY_LCD','LANG_SUBCATEGORY_MAX7219','LANG_SUBCATEGORY_INFRARED','LANG_SUBCATEGORY_COLOR','LANG_SUBCATEGORY_LDR','LANG_SUBCATEGORY_DIMMER','LANG_SUBCATEGORY_BUZZER','LANG_SUBCATEGORY_VOICE','LANG_SUBCATEGORY_MIC','LANG_SUBCATEGORY_MUSIC','LANG_SUBCATEGORY_MOTORS','LANG_SUBCATEGORY_ROBOTBASE','LANG_SUBCATEGORY_ROBOTACC','LANG_SUBCATEGORY_WALK','LANG_SUBCATEGORY_SYSTEM_FILTER','LANG_SUBCATEGORY_SYSTEM_CONTROL','LANG_SUBCATEGORY_TEMPERATURE','LANG_SUBCATEGORY_HUMIDITY','LANG_SUBCATEGORY_RAIN','LANG_SUBCATEGORY_GAS','LANG_SUBCATEGORY_MISC','LANG_SUBCATERGORY_HTML','LANG_SUBCATERGORY_ESPUI','LANG_SUBCATERGORY_WS2812','LANG_SUBCATEGORY_OLED','LANG_CATEGORY_DEPRECATED'];
 		window.toolboxNames = getToolboxNames(window.toolbox);
 		//options = {zoom: 1, interrupts: {subcategory: 'LANG_SUBCATEGORY_INTERRUPTS', view:false}, ss: false, arrays: false, lcd: false, led_matrix: false, led_strip: false, oled: false, bluetooth: false, wifi: false, iot: false, buzzer: false, voice: false, mic: false, music: false, sonar: false, infrared: false, colour: false, motors: false, robot_base: false, robot_accessories: false, robot_walk: false, system_control: false, system_filtering: false, temperature: false, humidity: false, rain: false, gas: false, environment_other: false, html: false, web_ui: false, deprecated: false};
 		options = {zoom: 1};

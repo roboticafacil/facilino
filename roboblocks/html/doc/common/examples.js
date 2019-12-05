@@ -47,11 +47,11 @@ function getExampleHTML(name)
 	html_code+='<p class=\'components\'>'+examples[name].desc+'</p>';
 	if (examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier)
 	{
-		html_code+='<div class="button_wrapper"><p class="warning">Click first on the workspace area to get the focus.</p><p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction(\'doc/examples/'+name+'_'+examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier+'.bly\')">Open</button></p><p class=\'components\'>Be careful, all changes will be lost!</p></div>';
+		html_code+='<div class="button_wrapper"><p class="warning">Click first on an empty place at the workspace area.</p><p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction(\'doc/examples/'+name+'_'+examples[name].circuit[RoboBlocks.profiles['processor']].code_modifier+'.bly\')">Open</button></p><p class=\'components\'>Be careful, all changes will be lost!</p></div>';
 	}
 	else
 	{
-		html_code+='<div class="button_wrapper"><p class="warning">Click first on the workspace area to get the focus.</p><p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction(\'doc/examples/'+name+'.bly\')">Open</button></p><p class=\'components\'>Be careful, all changes will be lost!</p></div>';
+		html_code+='<div class="button_wrapper"><p class="warning">Click first on an empty place at the workspace area.</p><p><button align="center" class="button" style="cursor: pointer;" onClick="openFunction(\'doc/examples/'+name+'.bly\')">Open</button></p><p class=\'components\'>Be careful, all changes will be lost!</p></div>';
 	}
 	return html_code;
 }
@@ -773,6 +773,13 @@ examples['controls_lcd_clear1_example'].title='LCD I2C Clear and Set Cursor';
 examples['controls_lcd_clear1_example'].desc='This example shows a circuit with an LCD connected to I2C. The code in the example shows the phrase "Hello" in the first row and "world!" on the second row of the LCD.';
 examples['controls_lcd_clear1_example'].circuit=circuits['lcd_i2c'];
 
+examples['scrolling_text_example']={};
+examples['scrolling_text_example'].title='LCD I2C Clear and Set Cursor';
+examples['scrolling_text_example'].desc='This example shows a circuit with an LCD connected to I2C. The code in the example shows the phrase "Hello" in the first row and "world!" on the second row of the LCD.';
+examples['scrolling_text_example'].circuit=circuits['lcd_i2c'];
+
+
+
 examples['led_strip_demo']={};
 examples['led_strip_demo'].title='RGB LED Strip (round with 7 LEDs)';
 examples['led_strip_demo'].desc='In this example, we shown activate and deactivate the pixels of a 7-RGB LEDs strip (the pixel in the middle is set fixed to a different colour). The brightness of the pixels varies progresively.';
@@ -792,3 +799,8 @@ examples['plot_join_example']={};
 examples['plot_join_example'].title='Multiple Plot';
 examples['plot_join_example'].desc='This example plots values from TCRT5000 sensor on the console (plot view). The analog and digital signals have been scaled to have the same units.';
 examples['plot_join_example'].circuit=circuits['tcrt5000'];
+
+examples['logic_combine_example']={};
+examples['logic_combine_example'].title='Logic combine';
+examples['logic_combine_example'].desc='This example shows how to combine data of different sizes into one single data. The examples proves two equivalent ways of combining four 8-bit data (bytes) into a 32-bit number (long int). The results are printed in HEX format in the console (no leading zeros added).';
+examples['logic_combine_example'].circuit=circuits['Simple'];

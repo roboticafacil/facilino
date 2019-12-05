@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Configures a BLE Service</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('ble_service','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">Creates a BLE service to provide custom characteristics. The type of characteristics depend on your service. It is your task to make them compatible with the BLE standards if you are looking for compatibility with external Apps (see <a href="https://www.bluetooth.com/specifications/gatt/services/" target="_blank">https://www.bluetooth.com/specifications/gatt/services/</a> for details). This instruction must be used in combination of the following instruction:</p>
+<div id='blocklyInstruction0'></div>
+<script>injectInstruction('ble_device_server','blocklyInstruction0');</script>
+<h4>Fields</h4>
+<ul class="instruction">
+	<li>Name: Name of the service (as it should be recognised by the client).</li>
+	<li>UUID: Universally Unique Identifier for the service. To create custom UUIDs, you can use <a href="https://www.uuidgenerator.net/" target="_blank">https://www.uuidgenerator.net/</a></li>
+</ul>
+<h4>Mutator</h4>
+<p class="instruction">Create new characteristics by adding them to the container:</p>
+<h5>Container</h5>
+<div id='blocklyInstruction1'></div>
+<script>injectInstruction('ble_characteristic_stack','blocklyInstruction1');</script>
+<h5>Elements</h5>
+<div id='blocklyInstruction2'></div>
+<script>injectInstruction('ble_characteristic_item','blocklyInstruction2');</script>
+<h4>Inputs</h4>
+<ul class="instruction">
+  <li>Characteristic: Characteristic to configure (it nees a custom characteristics instruction with attributes and custom UUID).</li>
+</ul>
+<h4>Output</h4>
+<p class="instruction">Returns the service with the characteristics.</p>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_setupLoop_example']);</script> -->
+</body>
+</html>

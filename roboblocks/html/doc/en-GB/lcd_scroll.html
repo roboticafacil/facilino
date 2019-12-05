@@ -1,17 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'/>
-  <script src='doc/common/blocks_utils.js'></script>
-  <script src='doc/common/examples.js'></script>
-  <link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
-  <script src='doc/en-GB/footer.js'></script>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
 </head>
 <body>
 <h3 id="up">Scroll a text on a LCD (2x16)</h3>
 <h4>Instruction</h4>
 <div id='blocklyInstruction'></div>
-<script>injectInstruction('lcd_def1','blocklyInstruction');</script>
+<script>injectInstruction('lcd_scroll','blocklyInstruction');</script>
 <h4>Description</h4>
 <p class="instruction">This instruction scrolls a text on a LCD screen. You can indicate the delay on each character for scrolling the text and the row to perform the scroll.</p>
 <h4>Requirements</h4>
@@ -25,6 +25,6 @@
 </ul>
 <div id='examples'></div>
 <p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
-<script>createExamples(['controls_lcd_scroll_example']);</script>
+<script>createExamples(['scrolling_text_example']);</script>
 </body>
 </html>

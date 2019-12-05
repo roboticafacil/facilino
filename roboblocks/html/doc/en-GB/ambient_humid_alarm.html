@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'/>
+<script src='doc/common/blocks_utils.js'></script>
+<script src='doc/common/examples.js'></script>
+<link rel="stylesheet" type="text/css" href="doc/common/style.css"></link>
+<script src='doc/en-GB/footer.js'></script>
+</head>
+<body>
+<h3 id="up">Humidity sensor alarm (DHT11/DHT21/DHT22)</h3>
+<h4>Instruction</h4>
+<div id='blocklyInstruction'></div>
+<script>injectInstruction('ambient_humid_alarm','blocklyInstruction');</script>
+<h4>Description</h4>
+<p class="instruction">Checks the humidity alarm levels of the DHT11/DHT21/DHT22 sensor and, if an alarm is triggered, executes the corresponding code. Alarm levels are automatically set so that they are considered within the comfort humidity of a room and uses both temperature and humidity to determine the appropriate situation:</p>
+<h4>Requirements</h4>
+<p class="instruction"> This instruction requires DHT Adafruit Library and Adafruit Unified Sensor Library installed on Arduino IDE. These libraries are available at: <a href="https://github.com/adafruit/DHT-sensor-library" target="_blank">https://github.com/adafruit/DHT-sensor-library</a> and <a href="https://github.com/adafruit/Adafruit_Sensor" target="_blank">https://github.com/adafruit/Adafruit_Sensor</a> and also through the Library Manager:</p>
+<image src="doc/common/DHT_install.png" title="DHT_install" alt="dht_install"></image>
+<image src="doc/common/Adafruit_Unified_Sensor.png" title="Adrafruit_Sensor_install" alt="Adrafruit_Sensor_install"></image>
+<h4>Inputs</h4>
+<ul class="instruction">
+  <li>Bus Pin: Pin to which the sensor is connected to.</li>
+</ul>
+<h4>Checkbox Fields</h4>
+<ul class="instruction">
+	<li>Warn just once: Activate this checkbox to execute the code inside each of the cases just once. The code will not be executed again unless it changes from one state to another.</li>
+</ul>
+<h4>Statement Instructions</h4>
+<ul class="instruction">
+  <li>High humidity: Set of instructions to be executed in case of reading a humidity higher than the established high-humidity alarm level.</li>
+  <li>Medium humidity: Set of instructions to be executed in case of reading a humidity below the set high-humidity alarm level and below the low-humidity alarm level.</li>
+  <li>Low humidity: Set of instructions to be executed in case of reading a humidity below the set low-humidity alarm level.</li>
+</ul>
+<div id='examples'>No examples yet available!</div>
+<p id='footer'></p><script>document.getElementById('footer').innerHTML=footer;</script>
+<!-- <script>createExamples(['controls_setupLoop_example']);</script> -->
+</body>
+</html>

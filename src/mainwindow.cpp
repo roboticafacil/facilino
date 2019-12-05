@@ -1948,6 +1948,8 @@ void MainWindow::setToolboxCategories()
     ui->actionWiFI->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_WIFI"));
     addQTreeWidgetItemToParent(communicationItem,tr("IoT"),"LANG_SUBCATEGORY_IOT");
     ui->actionIoT->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_IOT"));
+    addQTreeWidgetItemToParent(communicationItem,tr("IR"),"LANG_SUBCATEGORY_IR");
+    ui->actionIR->setChecked(toolboxCategories.contains("LANG_SUBCATEGORY_IR"));
     QTreeWidgetItem *soundItem = new QTreeWidgetItem(ui->treeWidget);
     soundItem->setText(0,tr("Sound"));
     addQTreeWidgetItemToParent(soundItem,tr("Buzzer"),"LANG_SUBCATEGORY_BUZZER");
